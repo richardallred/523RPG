@@ -1,0 +1,22 @@
+/**
+ * UOW sample application master stylessheet.
+ *
+ * Some rules to get the example widgets to look nice. Adjust or remove for 
+ * your own app as needed.
+ *
+ * Copyright UNC Open Web Team 2010. All Rights Reserved.
+ */
+html, body, .dijitBorderContainer {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+h1 {
+    margin: 0em;
+	color: blue;
+}
+
+#sidebar {
+    width: 350px;
+}

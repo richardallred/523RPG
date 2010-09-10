@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Maze</title>
+    <style type="text/css">
+      @import "http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dojo/resources/dojo.css";
+      @import "http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dijit/themes/claro/claro.css";
+      @import "css/application.css";
+    </style>
+    <script type="text/javascript">
+        var djConfig = {
+            isDebug: false,
+            parseOnLoad: true,
+            baseUrl: './',
+            modulePaths: {'myapp' : 'widgets'}
+        };
+    </script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dojo/dojo.xd.js"></script>
+    <script type="text/javascript" src="/libs/uow/trace.js"></script>
+    <script type="text/javascript" src="/libs/uow.js"></script>
+    <script type="text/javascript" src="application.js"></script>
+  </head>
+  <body class="claro">
+    <div dojoType="dijit.layout.BorderContainer" liveSplitters="true">
+      <div dojoType="dijit.layout.ContentPane" region="top" splitter="false">
+        <h1>Maze</h1>
+      </div>
+      <div dojoType="dijit.layout.TabContainer" id="tabs" region="center" splitter="true">
+        <div dojoType="dijit.layout.ContentPane" title="Maze">
+          <h2>Maze.js</h2>
+		  <div dojoType="myapp.Maze"></div>
+        </div>
+        <div dojoType="dijit.layout.ContentPane" id="tab2" title="Stopwatch">
+          <h2>StopWatch widget created in markup</h2>
+          <div dojoType="myapp.StopWatch"></div>
+          <h2>StopWatch widget created programmatically</h2>
+        </div>
+      </div>
+      <div dojoType="dijit.layout.AccordionContainer" id="sidebar" region="right" splitter="true" minSize="200">
+        <div dojoType="dijit.layout.ContentPane" title="Pane1">Example</div>
+        <div dojoType="dijit.layout.ContentPane" title="Pane2">Another example</div>
+        <div dojoType="dijit.layout.ContentPane" title="Pane3">Yet another example</div>
+      </div>
+      <div dojoType="dijit.layout.ContentPane" id="footer" region="bottom" splitter="false">Status</div>
+    </div>
+  </body>
+</html>
