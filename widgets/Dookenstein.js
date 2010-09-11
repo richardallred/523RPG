@@ -1,5 +1,5 @@
 /**
-* Dookenstein version 0
+* Dookenstein version 1
  */
 dojo.provide('myapp.Dookenstein');
 dojo.require('dijit._Widget');
