@@ -27,20 +27,17 @@
         <h1>Maze</h1>
       </div>
       <div dojoType="dijit.layout.TabContainer" id="tabs" region="center" splitter="true">
-        <div dojoType="dijit.layout.ContentPane" title="Maze">
+        <div dojoType="dijit.layout.ContentPane" title="Dookenstein">
+          <h2>Return to Castle Dookenstein</h2>
+		  <div dojoType="myapp.Dookenstein"></div>
+        </div>
+        <div dojoType="dijit.layout.ContentPane" id="tab2" title="Maze">
           <h2>Maze.js</h2>
 		  <div dojoType="myapp.Maze"></div>
         </div>
-        <div dojoType="dijit.layout.ContentPane" id="tab2" title="Stopwatch">
-          <h2>StopWatch widget created in markup</h2>
-          <div dojoType="myapp.StopWatch"></div>
-          <h2>StopWatch widget created programmatically</h2>
-        </div>
       </div>
       <div dojoType="dijit.layout.AccordionContainer" id="sidebar" region="right" splitter="true" minSize="200">
-        <div dojoType="dijit.layout.ContentPane" title="Pane1">Example</div>
-        <div dojoType="dijit.layout.ContentPane" title="Pane2">Another example</div>
-        <div dojoType="dijit.layout.ContentPane" title="Pane3">Yet another example</div>
+        <div dojoType="dijit.layout.ContentPane" title="Pane1">This Pane will likely be deleted</div>
       </div>
       <div dojoType="dijit.layout.ContentPane" id="footer" region="bottom" splitter="false">Status</div>
     </div>

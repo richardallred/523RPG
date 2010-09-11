@@ -12,7 +12,7 @@ dojo.require('dijit.layout.BorderContainer');
 dojo.require('dijit.layout.ContentPane');
 dojo.require('dijit.layout.AccordionContainer');
 dojo.require('dijit.layout.TabContainer');
-dojo.require('myapp.StopWatch');
+dojo.require('myapp.Dookenstein');
 dojo.require('myapp.Maze');
 
 // adjust the namespace if you changed it in index.html; this widget serves
@@ -35,9 +35,9 @@ dojo.declare('myapp.Main', null, {
         
         // we create one StopWatch widget in markup in index.html
         // we'll create another here programmatically as a demonstration
-        var sw = new myapp.StopWatch();
-        var tab2 = dojo.byId('tab2');
-        dojo.place(sw.domNode, tab2, 'last');
+        //var sw = new myapp.StopWatch();
+        //var tab2 = dojo.byId('tab2');
+        //dojo.place(sw.domNode, tab2, 'last');
     },
     
     _onSelectPane: function(newPane, oldPane) {

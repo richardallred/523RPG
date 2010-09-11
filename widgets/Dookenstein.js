@@ -1,20 +1,18 @@
 /**
 * Dookenstein version 0
  */
-dojo.provide('myapp.Maze');
+dojo.provide('myapp.Dookenstein');
 dojo.require('dijit._Widget');
 dojo.require('dijit._Templated');
 dojo.require('dojo.i18n');
-dojo.requireLocalization('myapp', 'Maze');
+dojo.requireLocalization('myapp', 'Dookenstein');
 
-dojo.declare('myapp.Maze', [dijit._Widget, dijit._Templated], {
+dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
     widgetsInTemplate: true,
-	templatePath: dojo.moduleUrl('myapp.templates', 'Maze.html'),
+	templatePath: dojo.moduleUrl('myapp.templates', 'Dookenstein.html'),
 
     postMixInProperties: function() {
 		//Page 0: the program starts here (title page)
-	    //this.labels = dojo.i18n.getLocalization('myapp', 'Maze');
-		
 		//load from data all pages and choices
 		this.pageText = new Array();
 		this.choices = new Array();
@@ -43,8 +41,8 @@ dojo.declare('myapp.Maze', [dijit._Widget, dijit._Templated], {
 		//pageText is the text for that page, and choices is the possible decisions
 		//choices is split by the special character sequence ^* as follows
 		//choice one text^*choice one will lead to this page^*choice two text^*choice two will lead to this page...
-		this.pageText[0] = 'Welcome to the maze game.';
-		this.choices[0] = 'Enter the Maze!^*1';
+		this.pageText[0] = 'Welcome to Return to Castle Dookenstein, the epic adventure saga.';
+		this.choices[0] = 'Play the game!^*1';
 		this.pageText[1] = 'You are in a maze. <br>There are exits to the north and to the east.';
 		this.choices[1] = 'Go North^*2^*Go East^*3';
 		this.pageText[2] = 'You are in a maze. <br>There are exits to the south and to the east.';
@@ -251,7 +249,6 @@ dojo.declare('myapp.Maze', [dijit._Widget, dijit._Templated], {
 			this.buttonFour.attr('label', choicesArray[6]);
 		}
 		this.displayMessage.innerHTML = this.message;
-		this.displayPageNumber.innerHTML = '(page: ' + this.page + ')';
 		this.draw();
 	},
 	//draw images on the html5 canvas
