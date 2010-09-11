@@ -34,6 +34,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.message = this.pageText[this.page];
 		//if restart is set to 1, the game will reset upon the next button press
 		this.restart = 0;
+		//special mode for selecting multiple inventory items
+		this.invselect = 0;
     },
 	
 	loadPageTextAndChoices: function(event) {
@@ -45,31 +47,31 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[0] = 'Play the game!^*1';
 		this.pageText[1] = 'You are sent on a quest to the nearby land of Dookia, which has been at war with your people of Carolinia for centuries.  Your spies report that the King of Dookia has uncovered a legendary artifact, a powerful ring that gives the power to cast devestating magic.  The King, the brutal and tyrannous King K, plans to march into battle with the ring in one week\'s time to subjugate Carolinia under Dookian rule forever. Knowing that such an artifact could spell doom for Carolinia, you sneak into Dookia territory and approach the castle of the King.  You hope to sneak into the castle, recover the ring, and save your people.';
 		this.choices[1] = 'Continue^*2';
-		this.pageText[2] = 'INVSELECT:3^*When you were leaving Carolina, you were given access to the royal armory to obtain items you needed for your quest.  In order to travel lightly for the long journey to the Dookian castle, you decided to take just three items from the store room.';
-		this.choices[2] = 'Take a sword^*3^*Take a crossbow and bolts^*3^*Take a grappling hook^*3^*Take a lockpicking kit^*3^*Take a first aid kit^*3^*Take a suit of chainmail armor^*3';
-		this.pageText[3] = 'You are in a maze. <br>There are exits to the south and to the west.';
-		this.choices[3] = 'Go West^*1^*Go South^*32';
-		this.pageText[4] = 'You are in a maze. <br>There are exits in all directions.';
-		this.choices[4] = 'Go North^*5^*Go South^*7^*Go East^*6^*Go West^*13';
+		this.pageText[2] = 'INVSELECT:3^*When you were leaving Carolina, you were given access to the royal armory to obtain items you needed for your quest.  In order to travel lightly for the long journey to the Dookian castle, you decided to take just three items from the store room. <br> Which items did you take?';
+		this.choices[2] = 'Sword^*3^*Crossbow^*3^*Grappling hook^*3^*Lockpicking kit^*3^*First aid kit^*3^*Leather vest^*3';
+		this.pageText[3] = 'INVSELECT:1^*In order to pass through Dookia without arousing suspicion, you selected a disguise to enter the country with.  If you take the clothes of a Dookian merchant, you can talk your way through situations by pretending to be a harmless trader.  If you take the clothes of a Dookian mercenary, you can pretend to be looking for work while being constantly ready for combat.  If you take the dark garb of an assassin, you would arouse more suspicion but easily blend into dark areas. <br>Which clothes did you pick?';
+		this.choices[3] = 'Merchant Disguise^*4^*Mercenary Disguise^*4^*Assassin Garb^*4';
+		this.pageText[4] = 'You manage to arrive at Castle Dookenstein without incident.  The castle is a towering fortress of stone that is surrounded by a large moat.  There is a large forest to the right of the castle.  There is a path that leads to the castle drawbridge and the main gate, which is closed.  Across the drawbridge, there are two guards in full Dookian armor standing by the gate.  On the top of the castle, there are several more guards facing the front of the castle and holding crossbows.  You come up with several ideas to enter the castle, but all of them are risky. <br>  You could try to talk your way past the guards and enter the front gate. <br> You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.';
+		this.choices[4] = 'Try the front gate^*5^*Swim the moat^*6^*Attack the guards with a crossbow^*7^*Grapple up the back wall^*8';
 		this.pageText[5] = 'You are in a passageway.  There is a foul stench coming from the north. <br>There are exits to the north and to the south.';
 		this.choices[5] = 'Go North^*27^*Go South^*4';
 		this.pageText[6] = 'INVSPLIT:armor^*18^*19';
 		this.choices[6] = 'null^*1';
-		this.pageText[7] = 'You are in a maze. <br>There are exits to the north and to the east.';
-		this.choices[7] = 'Go North^*4^*Go East^*9';
-		this.pageText[8] = 'INVSPLIT:armor^*22^*23';
+		this.pageText[7] = 'INVSPLIT:Crossbow^*11^*9';
+		this.choices[7] = 'null^*1';
+		this.pageText[8] = 'INVSPLIT:Grappling hook^*100^*10';
 		this.choices[8] = 'null^*1';
-		this.pageText[9] = 'You are in a maze.  There is a hideous monster in the room that is blocking an exit to the east. <br>There is an exit to the west.';
-		this.choices[9] = 'Fight the Monster^*11^*Go West^*7';
-		this.pageText[10] = 'RESTART:^*You try to fight the monster with your bare hands but the monster easily dispatches you. <br>You are dead.';
-		this.choices[10] = 'null^*1';
-		this.pageText[11] = 'INVSPLIT:sword^*29^*10';
-		this.choices[11] = 'null^*1';
-		this.pageText[12] = 'INVSPLIT:armor^*26^*15';
+		this.pageText[9] = 'Since you did not bring a crossbow, it is impossible to attack the guards from the woods.';
+		this.choices[9] = 'Select another choice^*4';
+		this.pageText[10] = 'Since you did not bring a grappling hook, your plan to grapple up the back wall does not get very far.';
+		this.choices[10] = 'Select another choice^*4';
+		this.pageText[11] = 'You hide in the woods and carefully aim at one of the gate guards with your crossbow.  You aim is true and the guard falls to the ground.  The other guard sees this and shouts and alarm.  The castle gate opens and six armed soldiers on horseback emerge and gallop towards the forest, where you are hiding.  The horses are fast and will approach you very soon.';
+		this.choices[11] = 'Try to shoot the guards as they approach^*12^*Try to hide in a patch of nearby undergrowth^*13^*Run away as fast as you can through the trees^*14';
+		this.pageText[12] = 'RESTART:^*Crouching behind a bush, you manage to shoot two of the riders before the rest of them reach you.  One of the remaining four soldiers gallops up to you and cuts you down with his sword. <br>Your life ends here.';
 		this.choices[12] = 'null^*1';
-		this.pageText[13] = 'You are in a passageway. <br>There are exits to the east and to the west.';
-		this.choices[13] = 'Go East^*4^*Go West^*2';
-		this.pageText[14] = 'In this room, you see a skeleton of another adventurer on the ground.  In its hand is a sword, and it is wearing a suit of plate mail armor that looks like it would fit you. <br>There is an exit to the west.'
+		this.pageText[13] = 'RESTART:^*You dive into a thick patch of bushes that manage to conceal your person.  You hear the soldiers dismount and begin to search for you.  You keep completely still as several of the soldiers begin to hack at the vegetation with their swords.  After a few minutes, one of the swords cuts through to your hiding place.  Before you can react, the soldier runs you through. <br> Your life ends here.';
+		this.choices[13] = 'null^*1';
+		this.pageText[14] = 'text';
 		this.choices[14] = 'Take the sword^*8^*Put on the armor^*17^*Leave to the West^*4';
 		this.pageText[15] = 'LOSEHEALTH:5^*To the east, you can see the maze exit.  As you head towards it, you set off a trap that sends a swinging blade heading towards you.  You leap out of the way just in time and the blade grazes your back instead of killing you (You lose 5 health).  You brush yourself off and carefully make your way to the exit.';
 		this.choices[15] = 'Exit the Maze^*16';
@@ -141,10 +143,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			this.message = 'ERROR: The previous choice did not link to a page';
 		} else {
 			this.page = choicesArray[choiceNum * 2 - 1];
-			this.processChoice(this.page);
+			this.processChoice(this.page, choiceNum);
 		}
 	},
-	processChoice: function(pageNum) {			
+	processChoice: function(pageNum, choiceNum) {			
 		this.page = pageNum;
 		if (this.pageText.length <= this.page || this.choices.length <= this.page) {
 			this.message = 'ERROR: The specified page does not exist';
@@ -160,11 +162,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					if (inventoryCheck[1] in this.oc(this.inventory) || specialPageArray.length < 3) {
 						//passed inventory check, redirect to first page
 						this.page = specialPageArray[1];
-						this.processChoice(this.page);
+						this.processChoice(this.page,0);
+						return;
 					} else {
 						//failed inventory check, redirect to second page
 						this.page = specialPageArray[2];
-						this.processChoice(this.page);
+						this.processChoice(this.page,0);
+						return;
 					}
 				}
 				//if there is an inventory check (INVCHECK), true will go to the first ^* split, and false will redirect to the page after the ^*
@@ -175,7 +179,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					} else {
 						//failed inventory check, redirect to a new page
 						this.page = specialPageArray[2];
-						this.processChoice(this.page);
+						this.processChoice(this.page,0);
+						return;
 					}
 				}
 				//add inventory items with INVADD
@@ -186,28 +191,44 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						inventoryAddArray = inventoryAdd.split(',');
 						for (i = 0; i < inventoryAddArray.length; i++) {
 							//inventory[inventory.length] = inventoryAddArray[i];
-							inventory[this.inventory.length] = inventoryAddArray[i];
+							this.inventory[this.inventory.length] = inventoryAddArray[i];
 						}
 					} else {
 						this.inventory[this.inventory.length] = inventoryAdd[1];
 					}
 					this.message = specialPageArray[1];
 				}
-				//choose a certain number of inventory items with INVSELECT.  INVSELECT:n, choose n items
+				//choose a certain number of inventory items with INVSELECT.  INVSELECT:n, choose n items from the choices
 				else if (specialPageArray[0].match('INVSELECT:') != null) {
-					inventoryAddNumber = specialPageArray[0].split('INVADD:');
-					//Add multiple inventory items by seperating them by a comma
-					//if (inventoryAddNumber[1].match(',') != null) {
-					//	inventoryAddArray = inventoryAdd.split(',');
-					//	for (i = 0; i < inventoryAddArray.length; i++) {
-					//		//inventory[inventory.length] = inventoryAddArray[i];
-					//		inventory[this.inventory.length] = inventoryAddArray[i];
-					//	}
-					//} else {
-					//	this.inventory[this.inventory.length] = inventoryAdd[1];
-					//}
+					inventoryAddNumber = specialPageArray[0].split('INVSELECT:');
+					choicesArray = this.choices[this.page].split('^*');
+					alreadyTakenCount = 0;
+					if (this.invselect == 1) {
+						//add chosen item to inventory
+						this.inventory[this.inventory.length] = choicesArray[choiceNum * 2 - 2];
+					}
+					for (i = 0; i < choicesArray.length; i+=2) {
+						//remove all choices that have already been taken
+						if (choicesArray[i] in this.oc(this.inventory)) {
+							choicesArray[i] = 'Taken';
+							if (this.invselect == 1) {
+								alreadyTakenCount ++;
+							}
+						}
+						choicesArray[i+1] = this.page;
+					}
+					this.invselect = 1;
+					if (alreadyTakenCount >= inventoryAddNumber[1]) {
+						//the number of inventory items you can take has been reached, move on to the next page
+						this.invselect = 0;
+						choicesArray = this.choices[this.page].split('^*');
+						this.page = choicesArray[choiceNum * 2 - 1];
+						this.processChoice(this.page, choiceNum);
+						return;
+					}
 					this.message = specialPageArray[1];
 				}
+				//LOSEHEALTH: n, lose n health
 				else if (specialPageArray[0].match('LOSEHEALTH:') != null) {
 					healthLost = specialPageArray[0].split('LOSEHEALTH:');
 					this.health = this.health - healthLost[1];
@@ -236,7 +257,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			}
 			//End special pages testing
 			if (this.restart == 0) {
-				choicesArray = this.choices[this.page].split('^*');
+				if (this.invselect == 0) {
+					choicesArray = this.choices[this.page].split('^*');
+				}
 			} else {
 				choicesArray[0] = 'Restart';
 				choicesArray[1] = 1;
