@@ -1,4 +1,4 @@
-/**
+/** James - changed
  * Sample startup script for a UOW application.
  *
  * Import dojo modules or your own before you use them; remove these if you
