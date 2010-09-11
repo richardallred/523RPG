@@ -84,7 +84,7 @@ dojo.declare('myapp.Maze', [dijit._Widget, dijit._Templated], {
 		this.pageText[18] = 'INVCHECK:sword^*In this room, there is the skeleton of another adventurer on the ground.  You have stripped the skeleton of all its loot, and there is nothing else useful in the room. <br>There is an exit to the west.^*21'
 		this.choices[18] = 'Kick the skeleton^*20^*Go West^*4';
 		this.pageText[19] = 'INVCHECK:sword^*In this room, there is the skeleton of another adventurer on the ground, which is wearing a suit of plate mail armor. <br>There is an exit to the west.^*14';
-		this.choices[19] = 'Take the armor^*17^*Go West^*4';
+		this.choices[19] = 'Put on the armor^*17^*Go West^*4';
 		this.pageText[20] = 'LOSEHEALTH:2^*After having looted all its gear, you decide to maliciously kick the skeleton of the dead adventurer.  Nothing happens except that you cut your toe on a protruding piece of bone (You lose 2 health).';
 		this.choices[20] = 'Leave to the West^*4';
 		this.pageText[21] = 'In this room, there is the skeleton of another adventurer on the ground.  The skeleton is holding a sword. <br>There is an exit to the west.';
@@ -183,8 +183,7 @@ dojo.declare('myapp.Maze', [dijit._Widget, dijit._Templated], {
 					if (inventoryAdd[1].match(',') != null) {
 						inventoryAddArray = inventoryAdd.split(',');
 						for (i = 0; i < inventoryAddArray.length; i++) {
-							//inventory[inventory.length] = inventoryAddArray[i];
-							inventory[this.inventory.length] = inventoryAddArray[i];
+							this.inventory[this.inventory.length] = inventoryAddArray[i];
 						}
 					} else {
 						this.inventory[this.inventory.length] = inventoryAdd[1];
