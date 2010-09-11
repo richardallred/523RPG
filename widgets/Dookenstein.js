@@ -30,7 +30,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//odd elements of choiceArray contain page links
 		this.page = 0;
 		choicesArray = this.choices[this.page].split('^*');
-		this.labels = {choiceOne: choicesArray[0], choiceTwo: '', choiceThree: '', choiceFour: '', choiceFive: ''};		
+		this.labels = {choiceOne: choicesArray[0], choiceTwo: '', choiceThree: '', choiceFour: '', choiceFive: '', choiceSix: ''};		
 		this.message = this.pageText[this.page];
 		//if restart is set to 1, the game will reset upon the next button press
 		this.restart = 0;
@@ -45,8 +45,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[0] = 'Play the game!^*1';
 		this.pageText[1] = 'You are sent on a quest to the nearby land of Dookia, which has been at war with your people of Carolinia for centuries.  Your spies report that the King of Dookia has uncovered a legendary artifact, a powerful ring that gives the power to cast devestating magic.  The King, the brutal and tyrannous King K, plans to march into battle with the ring in one week\'s time to subjugate Carolinia under Dookian rule forever. Knowing that such an artifact could spell doom for Carolinia, you sneak into Dookia territory and approach the castle of the King.  You hope to sneak into the castle, recover the ring, and save your people.';
 		this.choices[1] = 'Continue^*2';
-		this.pageText[2] = 'When you were leaving Carolina, you were given access to the royal armory to obtain items you needed for your quest.  In order to travel lightly for the long journey to the Dookian castle, you decided to take just three items from the store room.';
-		this.choices[2] = 'Take a sword^*3^*Take a crossbow and bolts^*4^*Take a grappling hook^*5^*Take a lockpicking kit^*6^*Take a first aid kit^*7';
+		this.pageText[2] = 'INVSELECT:3^*When you were leaving Carolina, you were given access to the royal armory to obtain items you needed for your quest.  In order to travel lightly for the long journey to the Dookian castle, you decided to take just three items from the store room.';
+		this.choices[2] = 'Take a sword^*3^*Take a crossbow and bolts^*3^*Take a grappling hook^*3^*Take a lockpicking kit^*3^*Take a first aid kit^*3^*Take a suit of chainmail armor^*3';
 		this.pageText[3] = 'You are in a maze. <br>There are exits to the south and to the west.';
 		this.choices[3] = 'Go West^*1^*Go South^*32';
 		this.pageText[4] = 'You are in a maze. <br>There are exits in all directions.';
@@ -130,6 +130,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	_choiceFive: function(event) {
 		this.choose(5);
 	},
+	_choiceSix: function(event) {
+		this.choose(6);
+	},
 	choose: function(choiceNum) {
 		if (this.restart == 1) {
 			this.restartGame();
@@ -190,6 +193,21 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					this.message = specialPageArray[1];
 				}
+				//choose a certain number of inventory items with INVSELECT.  INVSELECT:n, choose n items
+				else if (specialPageArray[0].match('INVSELECT:') != null) {
+					inventoryAddNumber = specialPageArray[0].split('INVADD:');
+					//Add multiple inventory items by seperating them by a comma
+					//if (inventoryAddNumber[1].match(',') != null) {
+					//	inventoryAddArray = inventoryAdd.split(',');
+					//	for (i = 0; i < inventoryAddArray.length; i++) {
+					//		//inventory[inventory.length] = inventoryAddArray[i];
+					//		inventory[this.inventory.length] = inventoryAddArray[i];
+					//	}
+					//} else {
+					//	this.inventory[this.inventory.length] = inventoryAdd[1];
+					//}
+					this.message = specialPageArray[1];
+				}
 				else if (specialPageArray[0].match('LOSEHEALTH:') != null) {
 					healthLost = specialPageArray[0].split('LOSEHEALTH:');
 					this.health = this.health - healthLost[1];
@@ -216,6 +234,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					this.message = specialPageArray[0];
 				}
 			}
+			//End special pages testing
 			if (this.restart == 0) {
 				choicesArray = this.choices[this.page].split('^*');
 			} else {
@@ -264,6 +283,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		} else {
 			this.buttonFive.attr('style', 'display: inline');
 			this.buttonFive.attr('label', choicesArray[8]);
+		}
+		if (choicesArray.length <= 10 || choicesArray[10] == null || choicesArray[10] == '') {
+			this.buttonSix.attr('style', 'display: none');
+		} else {
+			this.buttonSix.attr('style', 'display: inline');
+			this.buttonSix.attr('label', choicesArray[10]);
 		}
 		this.displayMessage.innerHTML = this.message;
 		this.draw();
