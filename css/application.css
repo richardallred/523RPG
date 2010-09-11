@@ -14,9 +14,8 @@ html, body, .dijitBorderContainer {
 
 h1 {
     margin: 0em;
-	color: blue;
 }
 
 #sidebar {
-    width: 350px;
+    width: 300px;
 }

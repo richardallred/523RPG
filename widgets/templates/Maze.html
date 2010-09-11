@@ -1,26 +1,30 @@
 <div class="myappMaze">
-<span dojoAttachPoint="displayPageNumber"> (page: ${page}) </span> <br>
-<span dojoAttachPoint="displayMessage"> ${message} </span>
-<br><br>
-  <button dojoType="dijit.form.Button"
-          dojoAttachEvent="onClick:_choiceOne"
-          dojoAttachPoint="buttonOne">${labels.choiceOne}</button>
-<br>
-  <button dojoType="dijit.form.Button"
-          dojoAttachEvent="onClick:_choiceTwo"
-          dojoAttachPoint="buttonTwo"
-		  style="display: none;">${labels.choiceTwo}</button>
-<br>
-  <button dojoType="dijit.form.Button"
-          dojoAttachEvent="onClick:_choiceThree"
-          dojoAttachPoint="buttonThree"
-		  style="display: none;">${labels.choiceThree}</button>
-<br>
-  <button dojoType="dijit.form.Button"
-          dojoAttachEvent="onClick:_choiceFour"
-          dojoAttachPoint="buttonFour"
-		  style="display: none;">${labels.choiceFour}</button>
-<br><br><br><br>
-<canvas id="canvas" width="150" height="150" style="position:absolute;" dojoAttachPoint="dojoCanvas"></canvas>
+<div dojoType="dijit.layout.ContentPane" title="mazeDiv" region = "left">
+	<span dojoAttachPoint="displayPageNumber"> (page: ${page}) </span> <br>
+	<span dojoAttachPoint="displayMessage"> ${message} </span>
+	<br><br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceOne"
+			  dojoAttachPoint="buttonOne">${labels.choiceOne}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceTwo"
+			  dojoAttachPoint="buttonTwo"
+			  style="display: none;">${labels.choiceTwo}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceThree"
+			  dojoAttachPoint="buttonThree"
+			  style="display: none;">${labels.choiceThree}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceFour"
+			  dojoAttachPoint="buttonFour"
+			  style="display: none;">${labels.choiceFour}</button>
+	<br>
+</div>
+<div dojoType="dijit.layout.ContentPane" title="canvasDiv" style="float: bottom;" region = "bottom">
+	<canvas id="canvas" width="150" height="150" style="position:absolute;" dojoAttachPoint="dojoCanvas"></canvas>
+</div>
 
 </div>
