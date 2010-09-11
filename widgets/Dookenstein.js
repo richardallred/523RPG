@@ -30,7 +30,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//odd elements of choiceArray contain page links
 		this.page = 0;
 		choicesArray = this.choices[this.page].split('^*');
-		this.labels = {choiceOne: choicesArray[0], choiceTwo: '', choiceThree: '', choiceFour: ''};		
+		this.labels = {choiceOne: choicesArray[0], choiceTwo: '', choiceThree: '', choiceFour: '', choiceFive: ''};		
 		this.message = this.pageText[this.page];
 		//if restart is set to 1, the game will reset upon the next button press
 		this.restart = 0;
@@ -43,10 +43,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//choice one text^*choice one will lead to this page^*choice two text^*choice two will lead to this page...
 		this.pageText[0] = 'Welcome to Return to Castle Dookenstein, the epic adventure saga.';
 		this.choices[0] = 'Play the game!^*1';
-		this.pageText[1] = 'You are in a maze. <br>There are exits to the north and to the east.';
-		this.choices[1] = 'Go North^*2^*Go East^*3';
-		this.pageText[2] = 'You are in a maze. <br>There are exits to the south and to the east.';
-		this.choices[2] = 'Go South^*1^*Go East^*13';
+		this.pageText[1] = 'You are sent on a quest to the nearby land of Dookia, which has been at war with your people of Carolinia for centuries.  Your spies report that the King of Dookia has uncovered a legendary artifact, a powerful ring that gives the power to cast devestating magic.  The King, the brutal and tyrannous King K, plans to march into battle with the ring in one week\'s time to subjugate Carolinia under Dookian rule forever. Knowing that such an artifact could spell doom for Carolinia, you sneak into Dookia territory and approach the castle of the King.  You hope to sneak into the castle, recover the ring, and save your people.';
+		this.choices[1] = 'Continue^*2';
+		this.pageText[2] = 'When you were leaving Carolina, you were given access to the royal armory to obtain items you needed for your quest.  In order to travel lightly for the long journey to the Dookian castle, you decided to take just three items from the store room.';
+		this.choices[2] = 'Take a sword^*3^*Take a crossbow and bolts^*4^*Take a grappling hook^*5^*Take a lockpicking kit^*6^*Take a first aid kit^*7';
 		this.pageText[3] = 'You are in a maze. <br>There are exits to the south and to the west.';
 		this.choices[3] = 'Go West^*1^*Go South^*32';
 		this.pageText[4] = 'You are in a maze. <br>There are exits in all directions.';
@@ -80,7 +80,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[18] = 'INVCHECK:sword^*In this room, there is the skeleton of another adventurer on the ground.  You have stripped the skeleton of all its loot, and there is nothing else useful in the room. <br>There is an exit to the west.^*21'
 		this.choices[18] = 'Kick the skeleton^*20^*Go West^*4';
 		this.pageText[19] = 'INVCHECK:sword^*In this room, there is the skeleton of another adventurer on the ground, which is wearing a suit of plate mail armor. <br>There is an exit to the west.^*14';
-		this.choices[19] = 'Take the armor^*17^*Go West^*4';
+		this.choices[19] = 'Put on the armor^*17^*Go West^*4';
 		this.pageText[20] = 'LOSEHEALTH:2^*After having looted all its gear, you decide to maliciously kick the skeleton of the dead adventurer.  Nothing happens except that you cut your toe on a protruding piece of bone (You lose 2 health).';
 		this.choices[20] = 'Leave to the West^*4';
 		this.pageText[21] = 'In this room, there is the skeleton of another adventurer on the ground.  The skeleton is holding a sword. <br>There is an exit to the west.';
@@ -126,6 +126,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	},
 	_choiceFour: function(event) {
 		this.choose(4);
+	},
+	_choiceFive: function(event) {
+		this.choose(5);
 	},
 	choose: function(choiceNum) {
 		if (this.restart == 1) {
@@ -196,6 +199,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						this.restart = 1;
 					}
 				}
+				else if (specialPageArray[0].match('GAINHEALTH:') != null) {
+					healthGain = specialPageArray[0].split('GAINHEALTH:');
+					this.health = this.health + healthGain[1];
+					if (this.health > this.MAX_HEALTH) {
+						this.health = this.MAX_HEALTH;
+					}
+					this.message = specialPageArray[1] + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+				}
 				//restart the game on next button press with RESTART
 				else if (specialPageArray[0].match('RESTART:') != null) {
 					this.message = specialPageArray[1];
@@ -248,6 +259,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			this.buttonFour.attr('style', 'display: inline');
 			this.buttonFour.attr('label', choicesArray[6]);
 		}
+		if (choicesArray.length <= 8 || choicesArray[8] == null || choicesArray[8] == '') {
+			this.buttonFive.attr('style', 'display: none');
+		} else {
+			this.buttonFive.attr('style', 'display: inline');
+			this.buttonFive.attr('label', choicesArray[8]);
+		}
 		this.displayMessage.innerHTML = this.message;
 		this.draw();
 	},
@@ -255,137 +272,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	draw: function() {
         var canvas = dojo.byId("canvas");
         var ctx = canvas.getContext("2d");
-		//erase all red dots
 		ctx.fillStyle = "rgb(255,255,255)";
-		ctx.fillRect(9, 88, 5, 5);
-		ctx.fillRect(29, 88, 5, 5);
-		ctx.fillRect(9, 68, 5, 5);
-		ctx.fillRect(29, 68, 5, 5);
-		ctx.fillRect(29, 108, 5, 5);
-		ctx.fillRect(49, 108, 5, 5);
-		ctx.fillRect(9, 108, 5, 5);
-		ctx.fillRect(49, 68, 5, 5);
-		ctx.fillRect(49, 48, 5, 5);
-		ctx.fillRect(49, 28, 5, 5);
-		ctx.fillRect(69, 68, 5, 5);
-		ctx.fillRect(49, 88, 5, 5);
-		ctx.fillRect(69, 88, 5, 5);
-		ctx.fillRect(89, 88, 5, 5);
-		//set color to black
-		ctx.fillStyle = "rgb(0,0,0)";
-		if (this.page == 1) {
-			ctx.fillRect(0, 80, 2, 20);
-			ctx.fillRect(0, 80, 2, 20);
-			ctx.fillRect(0, 100, 20, 2);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(9, 88, 5, 5);
-		}
-		else if (this.page == 2) {
-			ctx.fillRect(0, 60, 20, 2);
-			ctx.fillRect(0, 60, 2, 20);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(9, 68, 5, 5);
-		}
-		else if (this.page == 3) {
-			ctx.fillRect(20, 80, 20, 2);
-			ctx.fillRect(40, 80, 2, 20);
-			//ctx.fillRect(20, 100, 22, 2);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(29, 88, 5, 5);
-		}
-		else if (this.page == 13) {
-			ctx.fillRect(20, 60, 20, 2);
-			ctx.fillRect(20, 80, 20, 2);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(29, 68, 5, 5);
-		}
-		else if (this.page == 4) {
-			//ctx.fillRect(40, 40, 2, 22);
-			//ctx.fillRect(60, 40, 2, 20);
-			//ctx.fillRect(60, 60, 20, 2);
-			//ctx.fillRect(60, 80, 20, 2);
-			//ctx.fillRect(40, 80, 2, 22);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(49, 68, 5, 5);
-		}
-		else if (this.page == 5) {
-			ctx.fillRect(40, 40, 2, 22);
-			//ctx.fillRect(40, 40, 20, 2);
-			ctx.fillRect(60, 40, 2, 20);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(49, 48, 5, 5);
-		}
-		else if (this.page == 14 || this.page == 18 || this.page == 19 || this.page == 20 || this.page == 21 || this.page == 22 || this.page == 23 || this.page == 24 || this.page == 25) {
-			ctx.fillRect(60, 60, 20, 2);
-			ctx.fillRect(80, 60, 2, 22);
-			ctx.fillRect(60, 80, 20, 2);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(69, 68, 5, 5);
-		}
-		else if (this.page == 7) {
-			ctx.fillRect(40, 80, 2, 22);
-			ctx.fillRect(40, 100, 20, 2);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(49, 88, 5, 5);
-		}
-		else if (this.page == 9 || this.page == 10 || this.page == 11 || this.page == 30 || this.page == 31) {
-			ctx.fillRect(60, 80, 20, 2);
-			ctx.fillRect(60, 100, 20, 2);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(69, 88, 5, 5);
-		}
-		else if (this.page == 15 || this.page == 26) {
-			ctx.fillRect(80, 80, 20, 2);
-			ctx.fillRect(80, 100, 20, 2);
-			//ctx.fillRect(100, 80, 2, 22);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(89, 88, 5, 5);
-		}
-		else if (this.page == 16) {
-			//draw green dot
-			ctx.fillStyle = "rgb(0,255,0)";
-			ctx.fillRect(109, 88, 5, 5);
-		}
-		else if (this.page == 27 || this.page == 28) {
-			ctx.fillRect(40, 20, 2, 22);
-			ctx.fillRect(40, 20, 20, 2);
-			ctx.fillRect(60, 20, 2, 20);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(49, 28, 5, 5);
-		}
-		else if (this.page == 32) {
-			ctx.fillRect(20, 120, 20, 2);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(29, 108, 5, 5);
-		}
-		else if (this.page == 33) {
-			ctx.fillRect(40, 120, 20, 2);
-			ctx.fillRect(40, 100, 20, 2);
-			ctx.fillRect(60, 100, 2, 22);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(49, 108, 5, 5);
-		}
-		else if (this.page == 34 || this.page == 35) {
-			ctx.fillRect(0, 120, 20, 2);
-			ctx.fillRect(0, 100, 20, 2);
-			ctx.fillRect(0, 100, 2, 22);
-			//draw red dot
-			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(9, 108, 5, 5);
-		}
+		ctx.fillRect(0,0,150,150);
 	},
 	//clear the inventory and the canvas and reset health
 	restartGame: function() {
