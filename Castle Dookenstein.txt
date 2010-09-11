@@ -1,0 +1,15 @@
+Castle Dookenstein
+Type: Adventure RPG
+Character: Ramses, you
+Plot: Spy in enemy castle.  Good bad guy.  Steal a secret/item/treasure/steal back something.  Enemy during war?
+Get in: Moat, grapple hook to roof, front door by guard/s
+Choose set of equipment at start
+Guard – talk, fight, run – get key ring
+Checkpoints necessary
+Monsters: guards, zombies, “The Blue Devil Himself”
+Boss: King K
+Minigames: Random maze, smart maze, memory games – grid of cards, simon light matching, lockpicking, safe combos.
+Items: grappling hook, snorkel, key/s / ring, lockpick
+* Healing: med kit, bandages, potions, water, food
+* Weapons: sword, axe, crossbow
+* Armor: shield, helm, body armor
