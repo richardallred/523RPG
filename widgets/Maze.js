@@ -34,7 +34,7 @@ dojo.declare('myapp.Maze', [dijit._Widget, dijit._Templated], {
 		//odd elements of choiceArray contain page links
 		this.page = 0;
 		choicesArray = this.choices[this.page].split('^*');
-		this.labels = {choiceOne: choicesArray[0], choiceTwo: '', choiceThree: '', choiceFour: ''};		
+		this.labels = {choiceOne: choicesArray[0], choiceTwo: '', choiceThree: '', choiceFour: '', choiceFive: '', choiceSix: ''};		
 		this.message = this.pageText[this.page];
 		//if restart is set to 1, the game will reset upon the next button press
 		this.restart = 0;
@@ -130,6 +130,12 @@ dojo.declare('myapp.Maze', [dijit._Widget, dijit._Templated], {
 	},
 	_choiceFour: function(event) {
 		this.choose(4);
+	},
+	_choiceFive: function(event) {
+		this.choose(5);
+	},
+	_choiceSix: function(event) {
+		this.choose(6);
 	},
 	choose: function(choiceNum) {
 		if (this.restart == 1) {
@@ -251,13 +257,25 @@ dojo.declare('myapp.Maze', [dijit._Widget, dijit._Templated], {
 			this.buttonFour.attr('style', 'display: inline');
 			this.buttonFour.attr('label', choicesArray[6]);
 		}
+		if (choicesArray.length <= 8 || choicesArray[8] == null || choicesArray[8] == '') {
+			this.buttonFive.attr('style', 'display: none');
+		} else {
+			this.buttonFive.attr('style', 'display: inline');
+			this.buttonFive.attr('label', choicesArray[8]);
+		}
+		if (choicesArray.length <= 10 || choicesArray[10] == null || choicesArray[10] == '') {
+			this.buttonSix.attr('style', 'display: none');
+		} else {
+			this.buttonSix.attr('style', 'display: inline');
+			this.buttonSix.attr('label', choicesArray[10]);
+		}
 		this.displayMessage.innerHTML = this.message;
 		this.displayPageNumber.innerHTML = '(page: ' + this.page + ')';
 		this.draw();
 	},
 	//draw images on the html5 canvas
 	draw: function() {
-        var canvas = dojo.byId("canvas");
+        var canvas = dojo.byId("mazeCanvas");
         var ctx = canvas.getContext("2d");
 		//erase all red dots
 		ctx.fillStyle = "rgb(255,255,255)";
@@ -401,7 +419,7 @@ dojo.declare('myapp.Maze', [dijit._Widget, dijit._Templated], {
 		this.clearCanvas();
 	},
 	clearCanvas: function() {
-        var canvas = dojo.byId("canvas");
+        var canvas = dojo.byId("mazeCanvas");
         var ctx = canvas.getContext("2d");
 		ctx.fillStyle = "rgb(255,255,255)";
 		ctx.fillRect(0,0,150,150);
