@@ -158,8 +158,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[54] = 'null^*1';
 		this.pageText[55] = 'Wait in the cell';
 		this.choices[55] = 'null^*1';
-		this.pageText[100] = 'Page 100 (grappling hook)';
-		this.choices[100] = 'Content not added^*1';
+		this.pageText[100] = "As you work your way around to the back of the castle looking for a good place to attach your grappling hook, you see two towers with windows that you could grapple to, one to the North and one to the East.  The northern tower is a bit higher than the east but the ledges appear to be the same from the ground."';
+		this.choices[100] = 'Grapple up the Northern Tower^*101^*Grapple up the Eastern Tower^*102';
 		this.pageText[200] = 'Page 200 (moat)';
 		this.choices[200] = 'Content not added^*1';
 		this.pageText[300] = 'Page 300 (castle courtyard)';
