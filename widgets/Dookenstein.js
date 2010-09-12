@@ -88,16 +88,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[19] = 'Pull the bolt out and try to <br>bandage yourself with leaves^*20^*Leave the bolt in your body and try to <br>make your way out of the forest^*21';
 		this.pageText[20] = 'RESTART:^*Wincing, you extract the bolt from your shoulder.  Blood flows freely from the wound as you wash it with water from the stream.  You gather a handful of leaves and try to staunch the flow, but the leaves are ineffective.  You soon pass out and die from blood loss.';
 		this.choices[20] = 'null^*1';
-		this.pageText[21] = 'RESTART:^*You decide to leave the bolt in your shoulder and start trying to find your way out of the woods.  You start to follow a path of broken twigs from where you ran, but you feel so weak you can hardly concentrate.  You soon reach the point where your wounded body can take no more and you collapse to the ground.  Your life ends here.';
+		this.pageText[21] = 'RESTART:^*You decide to leave the bolt in your shoulder and start trying to find your way out of the woods.  You start to follow a path of broken twigs from where you ran, but you feel so weak you can hardly concentrate.  You soon reach the point where your wounded body can take no more and you collapse to the ground. <br>Your life ends here.';
 		this.choices[21] = 'null^*1';
 		this.pageText[22] = 'LOSEHEALTH:30^*Wincing, you extract the bolt from your shoulder.  Blood flows freely from the wound as you wash it with water from the stream.  You wrap some bandanges around your shoulder and manage to stop the flow.  You are still alive, but your ordeal has cost you 30 health.  You decide to try to make your way back to the castle.';
 		this.choices[22] = 'Try to find a way out of the forest^*23';
-		this.pageText[23] = 'You manage to follow a path of broken twigs and torn foliage from where you ran, although it takes you several hours.  Your body is tired from the beating it took and you have to rest several times.  When you finally reach the castle again, it is nightfall.  You see that there are many guards patrolling the castle walls, and with the increased security the only way you can think of to enter the castle is to use the cover of night to sneak to the moat and swim across it.';
+		this.pageText[23] = 'You manage to follow a path of broken twigs and torn foliage from where you ran, although it takes you several hours.  Your body is tired from the beating it took and you have to rest several times.  When you finally reach the castle again, it is nightfall.  You see that there are many guards patrolling the castle walls.  With the increased security and your wounded state, the only way you can think of to enter the castle is to use the cover of night to sneak to the moat and swim across it.';
 		this.choices[23] = 'Swim the moat^*200';
 		this.pageText[24] = 'You cross the drawbridge and approach the gate.  One of the guards asks you to state your business.';
 		this.choices[24] = 'Say that you are looking for work in the King\'s guard.^*30^*Say that you are visiting the castle^*1^*Say that you have an important message for the King^*1';
 		this.pageText[25] = 'You cross the drawbridge and approach the gate.  The guards look at you suspiciously and put their hands on their weapons.  "Assassins are not welcome in this castle," says one of the guards.';
-		this.choices[25] = 'Say that you are visiting a friend^*1^*Say that you have an important message for the King^*1^*Attack the guards^*38^*Leave and try to find another way in^*31';
+		this.choices[25] = 'Say that you are visiting a friend^*39^*Say that you have an important message for the King^*40^*Attack the guards^*38^*Leave and try to find another way in^*31';
 		this.pageText[26] = 'INVSPLIT:Mercenary Disguise^*24^*25';
 		this.choices[26] = 'null^*1';
 		this.pageText[27] = 'LOSEGOLD:0^*"You need a merchant\'s permit to trade inside these walls," says one of the guards gruffly.  You tell him that you do not have one.  "We will be willing to overlook that detail, for 5 gold apiece," the guard says, winking at you.';
@@ -122,8 +122,20 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[36] = 'Leave and find another way in^*31^*Fight the guards^*38';
 		this.pageText[37] = 'bribe the guards';
 		this.choices[37] = 'null^*1';
-		this.pageText[38] = 'RESTART:^*Your attack is extremely short lived.  One of the gate guards shouts in warning and several of the guards on the roof fire crossbow bolts at you, turning you into a human pincushion.  Your life ends here.';
+		this.pageText[38] = 'RESTART:^*Your attack is extremely short lived.  One of the gate guards shouts in warning and several of the guards on the roof fire crossbow bolts at you, turning you into a human pincushion. <br>Your life ends here.';
 		this.choices[38] = 'null^*1';
+		this.pageText[39] = 'Say that you are visiting a friend (sin)';
+		this.choices[39] = 'null^*1';
+		this.pageText[40] = '"You think that we are such fools," says one of the guards, "that we would take and assassin to the king just because he claims to have a message?"  Both guards draw their swords.  "Surrender your weapons immediately," demands the guard.';
+		this.choices[40] = 'Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41';
+		this.pageText[41] = 'RESTART:^*You turn and sprint away from the guards but only make it a few steps before you are brought down by several crossbow bolts in the back. <br>Your life ends here.';
+		this.choices[41] = 'null^*1';
+		this.pageText[100] = 'Page 100 (grappling hook)';
+		this.choices[100] = 'Content not added^*1';
+		this.pageText[200] = 'Page 200 (moat)';
+		this.choices[200] = 'Content not added^*1';
+		this.pageText[300] = 'Page 300 (castle courtyard)';
+		this.choices[300] = 'Content not added^*1';
 	},
 	
 	_choiceOne: function(event) {
@@ -219,13 +231,24 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					for (i = 0; i < choicesArray.length; i+=2) {
 						//remove all choices that have already been taken
 						if (choicesArray[i] in this.oc(this.inventory)) {
-							choicesArray[i] = 'Taken';
+							choicesArray[i] = 'Taken ' + choicesArray[i];
 							if (this.invselect == 1) {
 								alreadyTakenCount ++;
 							}
 						}
 						choicesArray[i+1] = this.page;
 					}
+					//test to see if all items are taken for some reason
+					takenCountTest = 0;
+					for (i = 0; i < choicesArray.length; i+=2) {
+						if ('Taken' in this.oc(choicesArray[i].split(" "))) {
+							takenCountTest ++;
+						}
+					}
+					if (takenCountTest == choicesArray.length/2) {
+						alreadyTakenCount = inventoryAddNumber[1];
+					}
+					//go to inventory selection mode (stay on this page until all items are taken)
 					this.invselect = 1;
 					if (alreadyTakenCount >= inventoryAddNumber[1]) {
 						//the number of inventory items you can take has been reached, move on to the next page
