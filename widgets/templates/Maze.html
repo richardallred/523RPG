@@ -22,9 +22,19 @@
 			  dojoAttachPoint="buttonFour"
 			  style="display: none;">${labels.choiceFour}</button>
 	<br>
+		  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceFive"
+			  dojoAttachPoint="buttonFive"
+			  style="display: none;">${labels.choiceFive}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceSix"
+			  dojoAttachPoint="buttonSix"
+			  style="display: none;">${labels.choiceSix}</button>
+	<br>
 </div>
 <div dojoType="dijit.layout.ContentPane" title="canvasDiv" style="float: bottom;" region = "bottom">
-	<canvas id="canvas" width="150" height="150" style="position:absolute;" dojoAttachPoint="dojoCanvas"></canvas>
+	<canvas id="mazeCanvas" width="150" height="150" style="position:absolute;" dojoAttachPoint="dojoCanvas"></canvas>
 </div>
 
 </div>
