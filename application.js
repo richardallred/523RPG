@@ -45,7 +45,6 @@ dojo.declare('myapp.Main', null, {
             newPane: newPane.title,
             oldPane: oldPane.title
         });
-        this._footer.innerHTML = text;
     }
 });
 
