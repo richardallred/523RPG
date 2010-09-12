@@ -33,7 +33,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//odd elements of choiceArray contain page links
 		this.page = 0;
 		choicesArray = this.choices[this.page].split('^*');
-		this.labels = {choiceOne: choicesArray[0], choiceTwo: '', choiceThree: '', choiceFour: '', choiceFive: '', choiceSix: ''};		
+		this.labels = {choiceOne: choicesArray[0], choiceTwo: '', choiceThree: '', choiceFour: '', choiceFive: '', choiceSix: '', choiceSeven: '', choiceEight: ''};
 		this.message = this.pageText[this.page];
 		//if restart is set to 1, the game will reset upon the next button press
 		this.restart = 0;
@@ -50,8 +50,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[0] = 'Play the game!^*1';
 		this.pageText[1] = 'You are sent on a quest to the nearby land of Dookia, which has been at war with your people of Carolinia for centuries.  Your spies report that the King of Dookia has uncovered a legendary artifact, a powerful ring that gives its possessor the power to cast devestating magic.  The King, the brutal and tyrannous King K, plans to march into battle with the ring in one week\'s time to subjugate Carolinia under Dookian rule forever. Knowing that such an artifact could spell doom for Carolinia, you sneak into Dookia territory and approach the castle of the King.  You hope to sneak into the castle, recover the ring, and save your people.';
 		this.choices[1] = 'Continue^*2';
-		this.pageText[2] = 'INVSELECT:3^*When you were leaving Carolinia, you were given a pouch of gold coins and access to the royal armory to obtain items you needed for your quest.  In order to travel lightly for the long journey to the Dookian castle, you decided to take just three items from the store room. <br> Which items did you take?';
-		this.choices[2] = 'Sword^*3^*Crossbow^*3^*Grappling hook^*3^*Lockpicking kit^*3^*First aid kit^*3^*Leather vest^*3';
+		this.pageText[2] = 'INVSELECT:4^*When you were leaving Carolinia, you were given a pouch of gold coins and access to the royal armory to obtain items you needed for your quest.  In order to travel lightly for the long journey to the Dookian castle, you decided to take just four items from the store room. <br> Which items did you take?';
+		this.choices[2] = 'Sword^*3^*Crossbow^*3^*Hidden dagger^*3^*Grappling hook^*3^*Lockpicking kit^*3^*First aid kit^*3^*Leather vest^*3^*Shield^*3';
 		this.pageText[3] = 'INVSELECT:1^*In order to pass through Dookia without arousing suspicion, you selected a disguise to enter the country with.  If you take the clothes of a Dookian merchant, you can talk your way through situations by pretending to be a harmless trader.  If you take the clothes of a Dookian mercenary, you can pretend to be looking for work while being constantly ready for combat.  If you take the dark garb of an assassin, you would arouse more suspicion but easily blend into dark areas. <br>Which clothes did you pick?';
 		this.choices[3] = 'Merchant Disguise^*4^*Mercenary Disguise^*4^*Assassin Garb^*4';
 		this.pageText[4] = 'You manage to arrive at Castle Dookenstein without incident.  The castle is a towering fortress of stone that looms over the countryside, surrounded by a deep moat.  An ancient forest is to the right of the castle.  There is a path that leads to the castle drawbridge and the main gate, which is closed.  Across the drawbridge, there are two guards in full Dookian armor standing by the gate.  On the top of the castle, there are several more guards facing the front of the castle and holding crossbows.  You come up with several ideas to enter the castle, but all of them are risky. <br>  You could try to talk your way past the guards and enter the front gate. <br> You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.';
@@ -59,7 +59,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[5] = 'INVSPLIT:Merchant Disguise^*6^*26';
 		this.choices[5] = 'null^*1';
 		this.pageText[6] = 'As part of your mechant disguise, you brought a horse and cart full of goods.  You ride the horse across the drawbridge and approach the guards.  One of them asks you to state your business.';
-		this.choices[6] = 'Say that you wish to trade inside the castle walls^*27^*Say that you have an important delivery for the soldiers inside the castle^*28^*Say that you have an important message for the King^*29';
+		this.choices[6] = 'Say that you wish to trade inside the castle walls^*27^*Say that you have an important delivery for the soldiers inside the castle^*28^*Say that you have an important message for the King^*29^*Say that you are visiting a family member^*46';
 		this.pageText[7] = 'INVSPLIT:Crossbow^*11^*9';
 		this.choices[7] = 'null^*1';
 		this.pageText[8] = 'INVSPLIT:Grappling hook^*100^*10';
@@ -69,7 +69,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[10] = 'Since you did not bring a grappling hook, your plan to grapple up the back wall does not get very far.';
 		this.choices[10] = 'Select another choice^*4';
 		this.pageText[11] = 'You hide in the woods and carefully aim at one of the gate guards with your crossbow.  Your aim is true and the guard falls to the ground.  The other guard sees this and shouts an alarm.  The castle gate opens and six armed soldiers on horseback emerge and gallop towards the forest, where you are hiding.  The horses are fast and will approach you very soon.';
-		this.choices[11] = 'Try to shoot the guards as they approach^*12^*Try to hide in a patch of thick vegetation^*13^*Run away as fast as you can through the trees^*14';
+		this.choices[11] = 'Try to shoot the guards as they approach^*12^*Try to hide in a patch of thick vegetation^*13^*Run away as fast as you can through the trees^*14^*Try to grapple into a tree^*43';
 		this.pageText[12] = 'RESTART:^*Crouching behind a bush, you manage to shoot two of the riders before the rest of them reach you.  As you are reloading your crossbow for a third shot, one of the remaining four soldiers gallops up to you and cuts you down with his sword. <br>Your life ends here.';
 		this.choices[12] = 'null^*1';
 		this.pageText[13] = 'RESTART:^*You dive into a thick patch of bushes that manage to conceal your person.  You hear the soldiers dismount and begin to search for you.  You lie completely still as several of the soldiers begin to hack at the nearby undergrowth with their swords.  After a few minutes, one of the swords cuts through to your hiding place.  Before you can react, the soldier runs you through. <br> Your life ends here.';
@@ -94,10 +94,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[22] = 'Try to find a way out of the forest^*23';
 		this.pageText[23] = 'You manage to follow a path of broken twigs and torn foliage from where you ran, although it takes you several hours.  Your body is tired from the beating it took and you have to rest several times.  When you finally reach the castle again, it is nightfall.  You see that there are many guards patrolling the castle walls.  With the increased security and your wounded state, the only way you can think of to enter the castle is to use the cover of night to sneak to the moat and swim across it.';
 		this.choices[23] = 'Swim the moat^*200';
-		this.pageText[24] = 'You cross the drawbridge and approach the gate.  One of the guards asks you to state your business.';
-		this.choices[24] = 'Say that you are looking for work in the King\'s guard.^*30^*Say that you are visiting the castle^*1^*Say that you have an important message for the King^*1';
+		this.pageText[24] = 'You cross the drawbridge and approach the gate in your mercenary disguise.  One of the guards asks you to state your business.';
+		this.choices[24] = 'Say that you are looking for work in the castle guard^*30^*Say that you are making a delivery for a client^*47^*Say that you are visiting a family member^*46^*Say that you have an important message for the King^*48';
 		this.pageText[25] = 'You cross the drawbridge and approach the gate.  The guards look at you suspiciously and put their hands on their weapons.  "Assassins are not welcome in this castle," says one of the guards.';
-		this.choices[25] = 'Say that you are visiting a friend^*39^*Say that you have an important message for the King^*40^*Attack the guards^*38^*Leave and try to find another way in^*31';
+		this.choices[25] = 'Say that you are visiting a family member^*39^*Say that you have an important message for the King^*40^*Attack the guards^*38^*Leave and try to find another way in^*31';
 		this.pageText[26] = 'INVSPLIT:Mercenary Disguise^*24^*25';
 		this.choices[26] = 'null^*1';
 		this.pageText[27] = 'LOSEGOLD:0^*"You need a merchant\'s permit to trade inside these walls," says one of the guards gruffly.  You tell him that you do not have one.  "We will be willing to overlook that detail, for 5 gold apiece," the guard says, winking at you.';
@@ -124,12 +124,40 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[37] = 'null^*1';
 		this.pageText[38] = 'RESTART:^*Your attack is extremely short lived.  One of the gate guards shouts in warning and several of the guards on the roof fire crossbow bolts at you, turning you into a human pincushion. <br>Your life ends here.';
 		this.choices[38] = 'null^*1';
-		this.pageText[39] = 'Say that you are visiting a friend (sin)';
-		this.choices[39] = 'null^*1';
-		this.pageText[40] = '"You think that we are such fools," says one of the guards, "that we would take and assassin to the king just because he claims to have a message?"  Both guards draw their swords.  "Surrender your weapons immediately," demands the guard.';
+		this.pageText[39] = '"And just who exactly are you visiting?" says the guard.  You randomly make up a dookian sounding name, hoping that it sounds credible.  Both guards draw their swords.  "You\'re lying," says one of them, "Surrender your weapons immediately or you will be cut down."';
+		this.choices[39] = 'Insist that you are telling the truth^*49^*Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41';
+		this.pageText[40] = '"You think that we are such fools," says one of the guards, "that we would take an assassin to the king just because he claims to have a message?"  Both guards draw their swords.  "Surrender your weapons immediately," demands the guard.';
 		this.choices[40] = 'Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41';
 		this.pageText[41] = 'RESTART:^*You turn and sprint away from the guards but only make it a few steps before you are brought down by several crossbow bolts in the back. <br>Your life ends here.';
 		this.choices[41] = 'null^*1';
+		this.pageText[42] = 'INVCLEAR:Assassin garb,Hidden dagger^*The guards search you and remove all the items that you are carrying and all your gold coins.  They then bind your hands behind your back and lead you into the castle.  You are lead downwards into a dank dungeon and thrown into a filthy cell.  "We will soon find out what your true purpose here is," leers one of the guards.';
+		this.choices[42] = 'Continue^*50';
+		this.pageText[43] = 'INVSPLIT:Grappling hook^*44^*45';
+		this.choices[43] = 'null^*1';
+		this.pageText[44] = 'You quickly look around at the nearby branches and pick a thick one that might support your weight.  You fire your grappling hook twice, but it fails to lodge itself into the branch both times.  By now, the guards are dangerously close, and you have no choice but to try to hide in the foliage.';
+		this.choices[44] = 'Try to hide in a patch of thick vegetation^*13';
+		this.pageText[45] = 'You don\'t have a grappling hook.';
+		this.choices[45] = 'Go back^*11';
+		this.pageText[46] = 'Want to visit a family member (merch)';
+		this.choices[46] = 'null^*1';
+		this.pageText[47] = 'Delivery for a client (merc)';
+		this.choices[47] = 'null^*1';
+		this.pageText[48] = 'Message for the king (merc)';
+		this.choices[48] = 'null^*1';
+		this.pageText[49] = '"If you are telling the truth," says the guard, "Then you will surrender your weapons immediately and come with us."';
+		this.choices[49] = 'Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41';
+		this.pageText[50] = 'INVSPLIT:Hidden dagger^*51^*52';
+		this.choices[50] = 'null^*1';
+		this.pageText[51] = 'LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.';
+		this.choices[51] = 'Search for a way out of your cell^*53^*Save your strength and wait for a guard to approach^*54';
+		this.pageText[52] = 'You struggle to free your bound hands from their restraints, but to no avail.  You are surrounded by three stone cell walls and a study looking barred cell door, and you can think of no way out of the cell.  The guards have taken everything but the clothes on your back.  You have no option but to sit in the cell and wait to see what happens to you.';
+		this.choices[52] = 'Continue^*55';
+		this.pageText[53] = 'Search for a way out';
+		this.choices[53] = 'null^*1';
+		this.pageText[54] = 'Save your strength and wait for a guard';
+		this.choices[54] = 'null^*1';
+		this.pageText[55] = 'Wait in the cell';
+		this.choices[55] = 'null^*1';
 		this.pageText[100] = 'Page 100 (grappling hook)';
 		this.choices[100] = 'Content not added^*1';
 		this.pageText[200] = 'Page 200 (moat)';
@@ -155,6 +183,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	},
 	_choiceSix: function(event) {
 		this.choose(6);
+	},
+	_choiceSeven: function(event) {
+		this.choose(7);
+	},
+	_choiceEight: function(event) {
+		this.choose(8);
 	},
 	choose: function(choiceNum) {
 		if (this.restart == 1) {
@@ -209,13 +243,46 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					inventoryAdd = specialPageArray[0].split('INVADD:');
 					//Add multiple inventory items by seperating them by a comma
 					if (inventoryAdd[1].match(',') != null) {
-						inventoryAddArray = inventoryAdd.split(',');
+						inventoryAddArray = inventoryAdd[1].split(',');
 						for (i = 0; i < inventoryAddArray.length; i++) {
-							//inventory[inventory.length] = inventoryAddArray[i];
 							this.inventory[this.inventory.length] = inventoryAddArray[i];
 						}
 					} else {
 						this.inventory[this.inventory.length] = inventoryAdd[1];
+					}
+					this.message = specialPageArray[1];
+				}
+				//INVCLEAR: n, remove all inventory items except for n.  Clears gold unless 'gold' is listen in n
+				else if (specialPageArray[0].match('INVCLEAR:') != null) {
+					inventorySave = specialPageArray[0].split('INVCLEAR:');
+					//Add multiple inventory items by seperating them by a comma
+					remove = true;
+					if (inventorySave[1].match(',') != null) {
+						inventorySaveArray = inventorySave[1].split(',');
+						for (i = 1; i < this.inventory.length; i++) {
+							for (j = 0; j < inventorySaveArray.length; j++) {
+								if (this.inventory[i] == inventorySaveArray[j]) {
+									remove = false;
+								}
+							}
+							if (remove) {
+								this.inventory[i] = '';
+							} else {
+								remove = true;
+							}
+						}
+						if (!('gold' in this.oc(inventorySaveArray))) {
+							this.gold = 0;
+						}
+					} else {
+						for (i = 1; i < this.inventory.length; i++) {
+							if (!(this.inventory[i] == inventorySave[1])) {
+								this.inventory[i] = '';
+							}
+						}
+						if (inventorySave[1] != 'gold') {
+							this.gold = 0;
+						}
 					}
 					this.message = specialPageArray[1];
 				}
@@ -281,7 +348,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//LOSEGOLD: n, lose n gold
 				else if (specialPageArray[0].match('LOSEGOLD:') != null) {
 					goldLost = specialPageArray[0].split('LOSEGOLD:');
-					this.gold = this.gold - goldLost[1];
+					if (goldLost[1] == 'all') {
+						this.gold = 0;
+					} else {
+						this.gold = this.gold - goldLost[1];
+					}
 					if (this.gold < 0) {
 						this.gold = 0;
 					}
@@ -358,6 +429,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		} else {
 			this.buttonSix.attr('style', 'display: inline');
 			this.buttonSix.attr('label', choicesArray[10]);
+		}
+		if (choicesArray.length <= 12 || choicesArray[12] == null || choicesArray[12] == '') {
+			this.buttonSeven.attr('style', 'display: none');
+		} else {
+			this.buttonSeven.attr('style', 'display: inline');
+			this.buttonSeven.attr('label', choicesArray[12]);
+		}
+		if (choicesArray.length <= 14 || choicesArray[14] == null || choicesArray[14] == '') {
+			this.buttonEight.attr('style', 'display: none');
+		} else {
+			this.buttonEight.attr('style', 'display: inline');
+			this.buttonEight.attr('label', choicesArray[14]);
 		}
 		this.displayMessage.innerHTML = this.message;
 		this.draw();
