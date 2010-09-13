@@ -100,10 +100,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[25] = 'Say that you are visiting a family member^*39^*Say that you have an important message for the King^*40^*Attack the guards^*38^*Leave and try to find another way in^*31';
 		this.pageText[26] = 'INVSPLIT:Mercenary Disguise^*24^*25';
 		this.choices[26] = 'null^*1';
-		this.pageText[27] = 'LOSEGOLD:0^*"You need a merchant\'s permit to trade inside these walls," says one of the guards gruffly.  You tell him that you do not have one.  "We will be willing to overlook that detail, for 5 gold apiece," the guard says.';
+		this.pageText[27] = 'DISPLAYGOLD:^*"You need a merchant\'s permit to trade inside these walls," says one of the guards gruffly.  You tell him that you do not have one.  "We will be willing to overlook that detail, for 5 gold apiece," the guard says.';
 		this.choices[27] = 'Bribe the guards with 10 gold^*37^*Refuse to pay the guards^*36';
 		this.pageText[28] = 'INVCHECK:Grappling hook^*You say that you are bringing supplies and rations to the soldiers to prepare for the upcoming invasion.  One of the guards searches your cart thoroughly.  He takes out the grappling hook that you had hidden under a sack of food. "What use does a merchant have of this?" demands the guard.^*70';
-		this.choices[28] = 'Say that you were planning to sell it to someone inside the castle.^*73^*Say that you use it for recreation^*73^*Say that someone must have planted it in your cart^*73';
+		this.choices[28] = 'Say that you were planning to sell it to someone inside the castle.^*73^*Say that you use it for recreational purposes^*93^*Say that someone must have planted it in your cart^*93';
 		this.pageText[29] = '"The King has no time to waste with messages from common merchants," says one of the guards dismissively, "He is planning an important campaign and cannot be bothered right now."';
 		this.choices[29] = 'Try to bribe the guards^*64^*Leave and try to find another way in^*31';
 		this.pageText[30] = 'You are looking for work in the King\'s guard (merc)';
@@ -140,7 +140,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[45] = 'Go back^*11';
 		this.pageText[46] = '"And what family member is that?" asks one of the guards.  You quickly make up something that you hope is convincing. <br>You say that you are visiting...';
 		this.choices[46] = 'Your father, the Duke of Pucia^*56^*Your parents, the Rosens^*57^*Your half-cousin, Norman Orwell^*58';
-		this.pageText[47] = 'LOSEGOLD:0^*"Very well," says one of the guards, "Give me the item to deliver and the name of the person, and I will make sure that the item is delivered - for a small fee of five gold pieces, of course."';
+		this.pageText[47] = 'DISPLAYGOLD:^*"Very well," says one of the guards, "Give me the item to deliver and the name of the person, and I will make sure that the item is delivered - for a small fee of five gold pieces, of course."';
 		this.choices[47] = 'Give the guards one of your items and the gold^*62^*Say that the delivery must be made in person^*63';
 		this.pageText[48] = '"Very well," says one of the guards, "Give me the message and I will ensure that it is delivered to the King."';
 		this.choices[48] = 'Say that the message must be delivered in person^*65^*Tell him that there is a plot to overthrow the King^*66^*Tell him that the Carolinians plan to attack the castle^*67^*Tell him that one of the King\'s relatives has died^*68';
@@ -174,7 +174,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[62] = 'Content not added^*1';
 		this.pageText[63] = 'Say the delivery must be made in person';
 		this.choices[63] = 'Content not added^*1';
-		this.pageText[64] = 'LOSEGOLD:0^*You tell the guards that you will make it worth their while if they allow you an audience with the king.  The guards agree to do it, but only if they are each paid 10 gold pieces.  You try to negiotiate with them, but they say that their jobs are at stake and refuse to take any less money.';
+		this.pageText[64] = 'DISPLAYGOLD:^*You tell the guards that you will make it worth their while if they allow you an audience with the king.  The guards agree to do it, but only if they are each paid 10 gold pieces.  You try to negiotiate with them, but they say that their jobs are at stake and refuse to take any less money.';
 		this.choices[64] = 'Pay them 20 gold^*69^*Leave and try to find another way in^*31';
 		this.pageText[65] = 'The urgency of your tone convinces the guards and they reluctantly decide to allow you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.';
 		this.choices[65] = 'Content not added^*1';
@@ -194,9 +194,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[72] = 'Enter the castle^*300';
 		this.pageText[73] = 'INVSPLIT:Lockpicking kit^*74^*75';
 		this.choices[73] = 'null^*1';
-		this.pageText[74] = 'LOSEHEALTH:5^*The guards accept your story, but they confiscate your grappling hook.  The guard continues searching your cart, and finds the lockpicking kit that you had hidden there.  "A grappling hook and a lockpicking kit?" exclaims the guard, "You are no merchant!" Before you can react, the other guard takes a mace and clubs you on the head, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you.';
+		this.pageText[74] = 'LOSEHEALTH:5^*The guards reluctantly accept your story, but they confiscate your grappling hook to be safe.  The guard continues searching your cart, and finds the lockpicking kit that you had hidden there.  "A grappling hook and a lockpicking kit?" exclaims the guard, "You are no merchant!" Before you can react, the other guard takes a mace and clubs you on the head, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you.';
 		this.choices[74] = 'Continue^*42';
-		this.pageText[75] = 'INVREMOVE:Grappling hook,Sword,Crossbow^*The guards accept your story, but they confiscate your grappling hook.  The guard continues searching your cart, and removes any weapons that you had brought (except the hidden dagger).  Finally, the guards allow you entry.  "Deliver these supplies to Colonel Graywald in the barracks," says one of the guards, "He will pay you for them."';
+		this.pageText[75] = 'INVREMOVE:Grappling hook,Sword,Crossbow^*The guards reluctantly accept your story, but they confiscate your grappling hook to be safe.  The guard continues searching your cart, and removes any weapons that you had brought (except the hidden dagger).  Finally, the guards allow you entry.  "Deliver these supplies to Colonel Graywald in the barracks," says one of the guards, "He will pay you for them."';
 		this.choices[75] = 'Enter the castle^*300';
 		this.pageText[76] = 'RESTART:^*As you run past the guard and into the gate, he gives a shout of warning.  Several guards converge from the courtyard, and they cut you down with their swords.  Your life ends here.';
 		this.choices[76] = 'null^*1';
@@ -208,19 +208,19 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[79] = 'null^*1';
 		this.pageText[80] = 'INVSPLIT:Crossbow^*83^*84';
 		this.choices[80] = 'null^*1';
-		this.pageText[81] = 'LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  "You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have.';
+		this.pageText[81] = 'LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>As part of your merchant disguise, you hid your sword and crossbow in your cart.  Your hidden dagger is well concealed in your clothing.  You could hand them over or hope that the guards do not find them.';
 		this.choices[81] = 'Give the guards your sword, crossbow, and hidden dagger^*88^*Give the guards your sword and crossbow but not your hidden dagger^*91^*Pretend that you have no weapons^*92';
-		this.pageText[82] = 'LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  "You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have.';
+		this.pageText[82] = 'LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>As part of your merchant disguise, you hid your sword in your cart.  Your hidden dagger is well concealed in your clothing.  You could hand them over or hope that the guards do not find them.';
 		this.choices[82] = 'Give the guards your sword and hidden dagger^*88^*Give the guards your sword but not your hidden dagger^*90^*Pretend that you have no weapons^*92';
-		this.pageText[83] = 'LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  "You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have.';
+		this.pageText[83] = 'LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>As part of your merchant disguise, you hid your crossbow in your cart.  Your hidden dagger is well concealed in your clothing.  You could hand them over or hope that the guards do not find them.';
 		this.choices[83] = 'Give the guards your crossbow and hidden dagger^*88^*Give the guards your crossbow but not your hidden dagger^*90^*Pretend that you have no weapons^*92';
-		this.pageText[84] = 'LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  "You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have.';
+		this.pageText[84] = 'LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>Your hidden dagger is well concealed in your clothing.  You could hand it over or hope that the guards do not find it.';
 		this.choices[84] = 'Give the guards your hidden dagger^*88^*Pretend that you have no weapons^*89';
-		this.pageText[85] = 'LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  "You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have.';
+		this.pageText[85] = 'LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>As part of your merchant disguise, you hid your weapons in your cart.  You could hand them over or hope that the guards do not find them.';
 		this.choices[85] = 'Give the guards your weapons^*88^*Pretend that you have no weapons^*92';
 		this.pageText[86] = 'INVSPLIT:Crossbow^*85^*87';
 		this.choices[86] = 'null^*1';
-		this.pageText[87] = 'LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  "You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have."  You tell the guards that you have no weapons.  The guards briefly search you and your cart, and then allow you to enter the castle.';
+		this.pageText[87] = 'LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have."  You tell the guards that you have no weapons.  The guards briefly search you and your cart, and then allow you to enter the castle.';
 		this.choices[87] = 'Enter the Castle^*300';
 		this.pageText[88] = 'INVREMOVE:Sword,Crossbow,Hidden dagger^*The guards remove your weapons and briefly search you and your cart.  Satisfied, they allow you to enter the castle.';
 		this.choices[88]  = 'Enter the Castle^*300';
@@ -232,7 +232,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[91] = 'Enter the Castle^*300';
 		this.pageText[92] = 'RESTART:^*You tell the guards that you have no weapons. The guards briefly search you and your cart. "He is lying!" exclaims the guard searching the cart, as he uncovers a weapon.  "The punishment for lying to a castle guard is death," says the other guard grimly, drawing his sword.  Without any weapons, you cannot defend yourself. <br>Your life ends here.'
 		this.choices[92] = 'null^*1';
-		
+		this.pageText[93] = 'The guards do not believe you. "I think that the grappling hook is the tool of a spy, not a merchant," declares one of them.  Before you can react, the guards seize you.  "We will find out soon enough."';
+		this.pageText[93] = 'Continue^*42';
 		this.pageText[100] = 'As you work your way around to the back of the castle looking for a good place to attach your grappling hook, you see two towers with windows that you could grapple to, one to the North and one to the East.  The northern tower is a bit higher than the east but the ledges appear to be the same from the ground.';
 		this.choices[100] = 'Grapple up the Northern Tower^*101^*Grapple up the Eastern Tower^*102';
 		this.pageText[101]= 'You swing the hook around and around and launch it up to the ledge of the window on the Northern Tower.  You miss the ledge by a few feet.  After a few more failed tries you realize that your grappling hook is not quite long enough to reach this ledge.';
@@ -473,11 +474,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					if (this.gold < 0) {
 						this.gold = 0;
 					}
-					this.message = specialPageArray[1] + '<br>You have ' + this.gold + ' gold coins.';
+					//this.message = specialPageArray[1] + '<br>You have ' + this.gold + ' gold coins.';
+					this.message = specialPageArray[1];
 				}
 				else if (specialPageArray[0].match('GAINGOLD:') != null) {
 					goldGain = specialPageArray[0].split('GAINGOLD:');
 					this.gold = this.gold + goldGain[1];
+					this.message = specialPageArray[1] + '<br>You have ' + this.gold + ' gold coins.';
+				}
+				else if (specialPageArray[0].match('DISPLAYGOLD:') != null) {
 					this.message = specialPageArray[1] + '<br>You have ' + this.gold + ' gold coins.';
 				}
 				//restart the game on next button press with RESTART
