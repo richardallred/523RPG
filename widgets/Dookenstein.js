@@ -655,6 +655,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	restartGame: function() {
 		this.restart = 0;
 		this.health = this.MAX_HEALTH;
+		this.gold = this.STARTING_GOLD;
+		
 		for (i = 1; i < this.inventory.length; i++) {
 			this.inventory[i] = '';
 		}
