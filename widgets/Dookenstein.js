@@ -177,15 +177,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[64] = 'DISPLAYGOLD:^*You tell the guards that you will make it worth their while if they allow you an audience with the king.  The guards agree to do it, but only if they are each paid 10 gold pieces.  You try to negiotiate with them, but they say that their jobs are at stake and refuse to take any less money.';
 		this.choices[64] = 'Pay them 20 gold^*69^*Leave and try to find another way in^*31';
 		this.pageText[65] = 'The urgency of your tone convinces the guards and they reluctantly decide to allow you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.';
-		this.choices[65] = 'Content not added^*1';
+		this.choices[65] = 'Say that the message is for the King\'s ear only^*99^*Say that... content not added^*1';
 		this.pageText[66] = '"A plot to overthrow the King?" says one of the guards, "King K must hear of this immediately!" The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. "This mercenary says that he knows of a plot to overthrow you," announces one of the soldiers.  King K demands that you tell him the details immediately.';
-		this.choices[66] = 'Content not added^*1';
+		this.choices[66] = 'Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*99^*Say that... content not added^*1';
 		this.pageText[67] = 'The guards laugh at you. "The King doesn\'t care if those pathetic Carolinians attack the castle.  Castle Dookenstein is too well defended and the King has a weapon that will crush any opposing force.  Stop wasting our time with useless information."  The guard who spoke gestures for you to leave.';
 		this.choices[67] = 'Leave and try to find another way in^*31^*Attack the guards^*38';
 		this.pageText[68] = 'You tell the guard that the King\'s nephew has passed away.  "I will deliver that message to the King," says the guard.  The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The message will be delivered."';
 		this.choices[68] = 'Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31';
 		this.pageText[69] = 'LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.';
-		this.choices[69] = 'Content not added^*1';
+		this.choices[69] = 'Say that the message is for the King\'s ear only^*99^*Say that... content not added^*1';
 		this.pageText[70] = 'INVSPLIT:Lockpicking kit^*71^*72';
 		this.choices[70] = 'null^*1';
 		this.pageText[71] = 'You say that you are bringing supplies and rations to the soldiers to prepare for the upcoming invasion.  One of the guards searches your pack while the other guard searches your cart thoroughly.  He takes out the lockpicking kit that you had hidden in your cart. "These are used only by thieves and spies," says the guard, "You are no merchant!"  The guards immediately seize you.';
@@ -235,7 +235,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[93] = 'The guards do not believe you. "I think that the grappling hook is the tool of a spy, not a merchant," declares one of them.  Before you can react, the guards seize you.  "We will find out soon enough."';
 		this.choices[93] = 'Continue^*42';
 		this.pageText[94] = '"If you don\'t have enough gold, then you aren\'t getting into the castle," replies the guard.';
-		this.choices[94] = 'Say that you must have counted wrong and you actually have 20 gold pieces^*55^*Attack the guards^*38^*Leave and find another way in^*31';
+		this.choices[94] = 'Say that you must have counted wrong and <br>you actually have 20 gold pieces^*55^*Attack the guards^*38^*Leave and find another way in^*31';
 		this.pageText[95] = 'LOSEGOLD:5^*The guard takes your delivery and 5 gold pieces and calls for the gate to be opened. The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The delivery will be made."';
 		this.choices[95] = 'Insist that you come with the guard to make sure^*96^*Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31';
 		this.pageText[96] = 'You are allowed to follow the guard into the castle courtyard.  Knowing that the guard will soon find out that there is no such person as Norman Orwell, you wait until he is not looking and lose him in the crowd of people.  Soon, the guard is completely out of sight.';
@@ -244,6 +244,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[97] = 'Enter the Castle^*300';
 		this.pageText[98] = 'DISPLAYGOLD:^*You don\'t have enough money.';
 		this.choices[98] = 'Go Back^*52';
+		this.pageText[99] = 'The guards start to protest but the King brushes aside their concern.  "This man can do me no harm," he announces, "Leave my presence so he can tell me his information."  The soldiers disperse, grumbling to themselves.  "Now what is it you wanted to tell me?" asks King K.';
+		this.choices[99] = 'Attack the King now that he is alone^*600^*Tell him that ... content not added^*1^*Run out of the throne room^*601';
 		//Begin Grappling Story Line
 		this.pageText[100] = 'As you work your way around to the back of the castle looking for a good place to attach your grappling hook, you see two towers with windows that you could grapple to, one to the North and one to the East.  The northern tower is a bit higher than the east but the ledges appear to be the same from the ground.';
 		this.choices[100] = 'Grapple up the Northern Tower^*101^*Grapple up the Eastern Tower^*102';
@@ -259,6 +261,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//Begin Castle Courtyard story line
 		this.pageText[300] = 'Page 300 (castle courtyard)';
 		this.choices[300] = 'Content not added^*1';
+		//Begin Dungeon story line
 		this.pageText[550] = 'INVSPLIT:Hidden dagger^*551^*552';
 		this.choices[550] = 'null^*1';
 		this.pageText[551] = 'LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.';
@@ -271,6 +274,39 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[554] = 'Content not added^*1';
 		this.pageText[555] = 'Wait in the cell';
 		this.choices[555] = 'Content not added^*1';
+		//Begin Throne Room story line
+		this.pageText[600] = 'INVSPLIT:Sword^*602^*603';
+		this.choices[600] = 'null^*1';
+		this.pageText[601] = 'RESTART:^*You are intimidated by the King\'s presence and are unable to think of a convincing story.  You panic and try to run out of the throne room.  The King sees you running and casually flicks his ring finger.  You are struck down by a bolt of lightning that arcs from his ring. <br>Your life ends here.';
+		this.choices[601] = 'null^*1';
+		this.pageText[602] = 'INVSPLIT:Crossbow^*604^*605';
+		this.choices[602] = 'null^*1';
+		this.pageText[603] = 'INVSPLIT:Crossbow^*609^*610';
+		this.choices[603] = 'null^*1';		
+		this.pageText[604] = 'INVSPLIT:Hidden dagger^*606^*607';
+		this.choices[604] = 'null^*1';
+		this.pageText[605] = 'INVSPLIT:Hidden dagger^*608^*612';
+		this.choices[605] = 'null^*1';
+		this.pageText[606] = 'What weapon do you attack the King with?';
+		this.choices[606] = 'Sword^*612^*Crossbow^*613^*Hidden dagger^*614';
+		this.pageText[607] = 'What weapon do you attack the King with?';
+		this.choices[607] = 'Sword^*612^*Crossbow^*613';
+		this.pageText[608] = 'What weapon do you attack the King with?';
+		this.choices[608] = 'Sword^*612^*Hidden dagger^*614';
+		this.pageText[609] = 'INVSPLIT:Hidden dagger^*611^*613';
+		this.choices[609] = 'null^*1';		
+		this.pageText[610] = 'INVSPLIT:Hidden dagger^*614^*615';
+		this.choices[610] = 'null^*1';
+		this.pageText[611] = 'What weapon do you attack the King with?';
+		this.choices[611] = 'Crossbow^*613^*Hidden dagger^*614';
+		this.pageText[612] = 'RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You rush towards the King and draw your sword in one motion.  However, the King reacts quickly and flicks his ring finger towards you, sending an arc of lightning from his ring that stops you in your tracks. Your body does not survive the resulting shock.';
+		this.choices[612] = 'null^*1'
+		this.pageText[613] = 'RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You pull out your crossbow, and quickly fire a bolt at the King.  Unfortunately, the King is just as quick to flick his ring finger, causing the ring to spout a large jet of flame that incinerates the crossbow bolt and roasts you. <br>Your life ends here.';
+		this.choices[613] = 'null^*1'
+		this.pageText[614] = 'RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You whip out your hidden dagger and lunge towards him, but the King seems to anticipate your movement and quickly sends an arc of lightning from his ring that sends you flying across the room.  Your body does not survive the shock.';
+		this.choices[614] = 'null^*1';
+		this.pageText[615] = 'RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You don\'t have any weapons, but you lunge towards the King anyway, hoping to choke the life out of him before the guards realize that anything is wrong.  However, the King sees you lunge and sends a powerful blast of magic from his ring, instantly ending your life.';
+		this.choices[615] = 'null^*1';
 	},
 	
 	_choiceOne: function(event) {
