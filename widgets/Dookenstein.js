@@ -151,8 +151,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[51] = '"Welcome, Ernest," says the guard, bowing his head. "Enjoy your visit."  The gate opens and you enter the castle.';
 		this.choices[51] = 'Enter the castle^*300';
 		this.pageText[52] = 'DISPLAYGOLD:^*One of the guards gets a greedy glint in his eye.  "We could allow you to enter the castle, but it will cost you dearly.  15 gold pieces for each of us, and no less."';
-		this.choices[52] = 'Try to get in with only 20 gold pieces^*53^*Forget talking and fight your way in^*38^*Leave and try to find another way in^*31';
-		this.pageText[53] = 'LOSEGOLD:20^*The guards pocket your gold pieces and laugh at you.  "A fool and his money are soon parted," mocks one of the guards';
+		this.choices[52] = 'Give the guards 30 gold pieces^*97^*Try to get in with only 20 gold pieces^*53^*Forget talking and fight your way in^*38^*Leave and try to find another way in^*31';
+		this.pageText[53] = 'LOSEGOLD:20^*The guards pocket your gold pieces and laugh at you.  "A fool and his money are soon parted," mocks one of the guards.';
 		this.choices[53] = 'Attack them^*38^*Leave and try to find another way in^*31';
 		this.pageText[54] = 'DISPLAYGOLD:^*"If that delivery is so important to you," says one of the guards, "then it must be worth something for us to let you in.  10 gold pieces for each of us should be sufficient."';
 		this.choices[54] = 'Give the guards 20 gold^*55^*Say that you only have 10 gold^*94^*Attack the guards^*38^*Leave and try to find another way in^*31';
@@ -170,7 +170,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[60] = 'null^*1';
 		this.pageText[61] = 'LOSEHEALTH:5^*"The Duke has no son by that name," says one of the guards, "You are a spy."  The other guard draws a mace and clubs you on the head before you can react, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you.';
 		this.choices[61] = 'Continue^*42';
-		this.pageText[62] = 'INVREMOVESELECT:1^*When the guard asks you who you want to delivery made to, you make up a Dookian sounding name.  Which item do you give the guard to deliver?';
+		this.pageText[62] = 'INVREMOVESELECT:1^*When the guard asks you who you want to delivery made to, you make up a Dookian sounding name, Norman Orwell.  Which item do you give the guard to deliver?';
 		this.choices[62] = 'Continue^*95';
 		this.pageText[63] = '"You will have to make your delivery next week", says one of the guards, "Everyone in the castle is preparing for the upcoming invasion."  The guard gestures for you to leave.';
 		this.choices[63] = 'Say that the delivery must be made today^*54^*Leave and try to find another way in^*31^*Try to bribe the guards^*52^*Forget talking and fight your way in^*38';
@@ -203,7 +203,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[77] = 'INVSPLIT:Sword^*79^*80'
 		this.choices[77] = 'null^*1';
 		this.pageText[78] = 'INVSPLIT:Sword^*85^*86'
-		this.choices[78] = 
+		this.choices[78] = 'null^*1';
 		this.pageText[79] = 'INVSPLIT:Crossbow^*81^*82';
 		this.choices[79] = 'null^*1';
 		this.pageText[80] = 'INVSPLIT:Crossbow^*83^*84';
@@ -238,8 +238,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[94] = 'Say that you must have counted wrong and you actually have 20 gold pieces^*55^*Attack the guards^*38^*Leave and find another way in^*31';
 		this.pageText[95] = 'LOSEGOLD:5^*The guard takes your delivery and 5 gold pieces and calls for the gate to be opened. The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The delivery will be made."';
 		this.choices[95] = 'Insist that you come with the guard to make sure^*96^*Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31';
-		this.pageText[96] = 'Come with the guard';
-		this.choices[96] = 'Content not added^*1';
+		this.pageText[96] = 'You are allowed to follow the guard into the castle courtyard.  Knowing that the guard will soon find out that there is no such person as Norman Orwell, you wait until he is not looking and lose him in the crowd of people.  Soon, the guard is completely out of sight.';
+		this.choices[96] = 'Continue^*300';
+		this.pageText[97] = 'LOSEGOLD:30^*You pay the guards, and they allow you to enter the castle.^*98';
+		this.choices[97] = 'Enter the Castle^*300';
+		this.pageText[98] = 'DISPLAYGOLD:^*You don\'t have enough money.';
+		this.choices[98] = 'Go Back^*52';
 		
 		this.pageText[100] = 'As you work your way around to the back of the castle looking for a good place to attach your grappling hook, you see two towers with windows that you could grapple to, one to the North and one to the East.  The northern tower is a bit higher than the east but the ledges appear to be the same from the ground.';
 		this.choices[100] = 'Grapple up the Northern Tower^*101^*Grapple up the Eastern Tower^*102';
@@ -531,6 +535,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//LOSEGOLD: n, lose n gold
 				else if (specialPageArray[0].match('LOSEGOLD:') != null) {
 					goldLost = specialPageArray[0].split('LOSEGOLD:');
+					if (specialPageArray.length > 2) {
+						if (this.gold < goldLost[1]) {
+							//not enough gold, redirect to another page
+							this.page = specialPageArray[2];
+							this.processChoice(this.page,0);
+							return;
+						}
+					}
 					if (goldLost[1] == 'all') {
 						this.gold = 0;
 					} else {
