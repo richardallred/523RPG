@@ -244,7 +244,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[97] = 'Enter the Castle^*300';
 		this.pageText[98] = 'DISPLAYGOLD:^*You don\'t have enough money.';
 		this.choices[98] = 'Go Back^*52';
-		
+		//Begin Grappling Story Line
 		this.pageText[100] = 'As you work your way around to the back of the castle looking for a good place to attach your grappling hook, you see two towers with windows that you could grapple to, one to the North and one to the East.  The northern tower is a bit higher than the east but the ledges appear to be the same from the ground.';
 		this.choices[100] = 'Grapple up the Northern Tower^*101^*Grapple up the Eastern Tower^*102';
 		this.pageText[101]= 'You swing the hook around and around and launch it up to the ledge of the window on the Northern Tower.  You miss the ledge by a few feet.  After a few more failed tries you realize that your grappling hook is not quite long enough to reach this ledge.';
@@ -253,8 +253,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[102] = 'Pull yourself up the grapple^*104^*Reconsider this whole climbing thing and go back around to the front of the castle^*4';
 		this.pageText[103]='LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.';
 		this.choices[103] ='Try the Eastern tower^*102^*Go back to the castle entrance^*4';
+		//Begin Moat Story Line
 		this.pageText[200] = 'Page 200 (moat)';
 		this.choices[200] = 'Content not added^*1';
+		//Begin Castle Courtyard story line
 		this.pageText[300] = 'Page 300 (castle courtyard)';
 		this.choices[300] = 'Content not added^*1';
 		this.pageText[550] = 'INVSPLIT:Hidden dagger^*551^*552';
