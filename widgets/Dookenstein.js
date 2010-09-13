@@ -48,7 +48,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//choice one text^*choice one will lead to this page^*choice two text^*choice two will lead to this page...
 		this.pageText[0] = 'Welcome to Return to Castle Dookenstein, the epic adventure saga.';
 		this.choices[0] = 'Play the game!^*1';
-		this.pageText[1] = 'You are sent on a quest to the nearby land of Dookia, which has been at war with your people of Carolinia for centuries.  Your spies report that the King of Dookia has uncovered a legendary artifact, a powerful ring that gives its possessor the power to cast devestating magic.  The King, the brutal and tyrannous King K, plans to march into battle with the ring in one week\'s time to subjugate Carolinia under Dookian rule forever. Knowing that such an artifact could spell doom for Carolinia, you sneak into Dookia territory and approach the castle of the King.  You hope to sneak into the castle, recover the ring, and save your people.';
+		this.pageText[1] = 'You are sent on a quest to the nearby land of Dookia, which has been at war with your people of Carolinia for centuries.  Your spies report that the King of Dookia has uncovered a legendary artifact, a powerful ring that gives its possessor the power to cast devestating magic.  The brutal and tyrannous King K plans to march into battle with the ring in one week\'s time to subjugate Carolinia under Dookian rule forever. Knowing that such an artifact could spell doom for Carolinia, you sneak into Dookia territory and approach the castle of the King.  You hope to sneak into the castle, recover the ring, and save your people.';
 		this.choices[1] = 'Continue^*2';
 		this.pageText[2] = 'INVSELECT:4^*When you were leaving Carolinia, you were given a pouch of gold coins and access to the royal armory to obtain items you needed for your quest.  In order to travel lightly for the long journey to the Dookian castle, you decided to take just four items from the store room. <br> Which items did you take?';
 		this.choices[2] = 'Sword^*3^*Crossbow^*3^*Hidden dagger^*3^*Grappling hook^*3^*Lockpicking kit^*3^*First aid kit^*3^*Leather vest^*3^*Shield^*3';
@@ -58,7 +58,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[4] = 'Try the front gate^*5^*Swim the moat^*200^*Attack the guards with a crossbow^*7^*Grapple up the back wall^*8';
 		this.pageText[5] = 'INVSPLIT:Merchant Disguise^*6^*26';
 		this.choices[5] = 'null^*1';
-		this.pageText[6] = 'As part of your mechant disguise, you brought a horse and cart full of goods.  You ride the horse across the drawbridge and approach the guards.  One of them asks you to state your business.';
+		this.pageText[6] = 'As part of your merchant disguise, you brought a horse and cart full of goods.  You ride the horse across the drawbridge and approach the guards.  One of them asks you to state your business.';
 		this.choices[6] = 'Say that you wish to trade inside the castle walls^*27^*Say that you have an important delivery for the soldiers inside the castle^*28^*Say that you have an important message for the King^*29^*Say that you are visiting a family member^*46';
 		this.pageText[7] = 'INVSPLIT:Crossbow^*11^*9';
 		this.choices[7] = 'null^*1';
@@ -74,11 +74,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[12] = 'null^*1';
 		this.pageText[13] = 'RESTART:^*You dive into a thick patch of bushes that manage to conceal your person.  You hear the soldiers dismount and begin to search for you.  You lie completely still as several of the soldiers begin to hack at the nearby undergrowth with their swords.  After a few minutes, one of the swords cuts through to your hiding place.  Before you can react, the soldier runs you through. <br> Your life ends here.';
 		this.choices[13] = 'null^*1';
-		this.pageText[14] = 'You immediately start sprinting through the trees away from the castle.  The thick undergrowth hinders your progress, as you have to force your way through the vegetation.  You look over your shoulder and see the soldiers dismount their horses to give chase.  Two of them load crossbows and point them at your fleeing form.';
+		this.pageText[14] = 'You immediately start sprinting through the trees away from the castle.  The thick undergrowth hinders your progress, as you have to force your way through the vegetation.  You look over your shoulder and see the soldiers dismount their horses to give chase.  Three of them load crossbows and point them at your fleeing form.';
 		this.choices[14] = 'Dive to the ground^*15^*Keep running and hope you are not hit^*16';
 		this.pageText[15] = 'RESTART:^*As you dive to the ground, you can hear crossbow bolts whiz over your head.  Unfortunately, you dive into a thick patch of briars, which lodge into your clothes and skin.  The thorns tear at you as you struggle to extricate yourself, and by the time you struggle free, one of the soldiers has managed to catch up to you.  He cuts you down with his sword. <br> Your life ends here.';
 		this.choices[15] = 'null^*1';
-		this.pageText[16] = 'One of the crossbow bolts lodges harmlessly into a tree, but another one buries itself into your right shoulder.  Ignoring the pain, you continue to run haphazardly through the woods.  After several minutes of frenzied running, you are forced the stop from pain and exhaustion.  The soldiers are no where to be seen, but you realize that you are lost.  Except for a stream flowing on the left, there are no visible landmarks in sight.';
+		this.pageText[16] = 'Two of the crossbow bolts lodge harmlessly into trees, but one of them buries itself into your right shoulder.  Ignoring the pain, you continue to run haphazardly through the woods.  After several minutes of frenzied running, you are forced the stop from pain and exhaustion.  The soldiers are nowhere to be seen, but you realize that you are lost.  Except for a stream flowing on the left, there are no visible landmarks in sight.';
 		this.choices[16] = 'Continue^*17';
 		this.pageText[17] = 'INVSPLIT:First aid kit^*18^*19';
 		this.choices[17] = 'null^*1';
@@ -104,8 +104,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[27] = 'Bribe the guards with 10 gold^*37^*Refuse to pay the guards^*36';
 		this.pageText[28] = 'You have an important delivery for the soldiers inside (merchant)';
 		this.choices[28] = 'null^*1';
-		this.pageText[29] = 'You have a message for the king (merchant)';
-		this.choices[29] = 'null^*1';
+		this.pageText[29] = '"The King has no time to waste with messages from common merchants," says one of the guards dismissively, "He is planning an important campaign and cannot be bothered right now."';
+		this.choices[29] = 'Try to bribe the guards^*64^*Leave and try to find another way in^*31';
 		this.pageText[30] = 'You are looking for work in the King\'s guard (merc)';
 		this.choices[30] = 'null^*1';
 		this.pageText[31] = 'You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.';
@@ -130,20 +130,20 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[40] = 'Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41';
 		this.pageText[41] = 'RESTART:^*You turn and sprint away from the guards but only make it a few steps before you are brought down by several crossbow bolts in the back. <br>Your life ends here.';
 		this.choices[41] = 'null^*1';
-		this.pageText[42] = 'INVCLEAR:Assassin garb,Hidden dagger^*The guards search you and remove all the items that you are carrying and all your gold coins.  They then bind your hands behind your back and lead you into the castle.  You are lead downwards into a dank dungeon and thrown into a filthy cell.  "We will soon find out what your true purpose here is," leers one of the guards.';
+		this.pageText[42] = 'INVCLEAR:Assassin garb,Merchant Disguise,Mercenary Disguise,Hidden dagger^*The guards roughly search you and remove all the items that you are carrying and all your gold coins.  They then bind your hands behind your back and lead you into the castle.  You are lead downwards into a dank dungeon and thrown into a filthy cell.  "We will soon find out what your true purpose here is," leers one of the guards.';
 		this.choices[42] = 'Continue^*50';
 		this.pageText[43] = 'INVSPLIT:Grappling hook^*44^*45';
 		this.choices[43] = 'null^*1';
-		this.pageText[44] = 'You quickly look around at the nearby branches and pick a thick one that might support your weight.  You fire your grappling hook twice, but it fails to lodge itself into the branch both times.  By now, the guards are dangerously close, and you have no choice but to try to hide in the foliage.';
+		this.pageText[44] = 'You quickly look around at the nearby branches and pick a thick one that might support your weight.  You launch your grappling hook twice, but it fails to lodge itself into the branch both times.  By now, the guards are dangerously close, and you have no choice but to try to hide in the foliage.';
 		this.choices[44] = 'Try to hide in a patch of thick vegetation^*13';
-		this.pageText[45] = 'You don\'t have a grappling hook.';
+		this.pageText[45] = 'You don\'t have a grappling hook, and you don\'t have enough time to climb a tree with your bare hands.';
 		this.choices[45] = 'Go back^*11';
-		this.pageText[46] = 'Want to visit a family member (merch)';
-		this.choices[46] = 'null^*1';
-		this.pageText[47] = 'Delivery for a client (merc)';
-		this.choices[47] = 'null^*1';
-		this.pageText[48] = 'Message for the king (merc)';
-		this.choices[48] = 'null^*1';
+		this.pageText[46] = '"And what family member is that?" asks one of the guards.  You quickly make up something that you hope is convincing. <br>You say that you are visiting...';
+		this.choices[46] = 'Your father, the Duke of Pucia^*56^*Your parents, the Rosens^*57^*Your half-cousin, Norman Orwell^*58';
+		this.pageText[47] = 'LOSEGOLD:0^*"Very well," says one of the guards, "Give me the item to deliver and the name of the person, and I will make sure that the item is delivered - for a small fee of five gold pieces, of course."';
+		this.choices[47] = 'Give the guards one of your items and the gold^*62^*Say that the delivery must be made in person^*63';
+		this.pageText[48] = '"Very well," says one of the guards, "Give me the message and I will ensure that it is delivered to the King."';
+		this.choices[48] = 'Say that the message must be delivered in person^*65^*Tell him that there is a plot to overthrow the King^*66^*Tell him that the Carolinians have heard of the ring and plan to attack the castle^*67^*Tell him that one of the King\'s relatives has died^*68';
 		this.pageText[49] = '"If you are telling the truth," says the guard, "Then you will surrender your weapons immediately and come with us."';
 		this.choices[49] = 'Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41';
 		this.pageText[50] = 'INVSPLIT:Hidden dagger^*51^*52';
@@ -158,6 +158,34 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[54] = 'null^*1';
 		this.pageText[55] = 'Wait in the cell';
 		this.choices[55] = 'null^*1';
+		this.pageText[56] = '"I was not aware that his excellency was residing in the castle," the guard says, "Which one of his children are you? <br>You say that you are..."';
+		this.choices[56] = 'Frank^*59^*Ernest^*60^*Ned^*61^*Kyle^*61';
+		this.pageText[57] = 'Your parents';
+		this.choices[57] = 'null^*1';
+		this.pageText[58] = 'Your half-cousin';
+		this.choices[58] = 'null^*1';
+		this.pageText[59] = 'LOSEHEALTH:5^*"The Duke\'s son Frank died two months ago," says one of the guards, "You are either a ghost or a spy, and I don\'t believe in ghosts."  The other guard draws a mace and clubs you on the head before you can react, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you.';
+		this.choices[59] = 'Continue^*42';
+		this.pageText[60] = 'Ernest';
+		this.choices[60] = 'null^*1';
+		this.pageText[61] = 'LOSEHEALTH:5^*"The Duke has no son by that name," says one of the guards, "You are a spy."  The other guard draws a mace and clubs you on the head before you can react, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you.';
+		this.choices[61] = 'Continue^*42';
+		this.pageText[62] = 'Give the guard an item to deliver (merc)';
+		this.choices[62] = 'null^*1';
+		this.pageText[63] = 'Say the delivery must be made in person';
+		this.choices[63] = 'null^*1';
+		this.pageText[64] = 'LOSEGOLD:0^*You tell the guards that you will make it worth their while if they allow you an audience with the king.  The guards agree to do it, but only if they are each paid 10 gold pieces.  You try to negiotiate with them, but they say that their jobs are at stake and refuse to take any less money.';
+		this.choices[64] = 'Pay them 20 gold^*69^*Leave and try to find another way in^*31';
+		this.pageText[65] = 'The urgency of your tone convinces the guards and they reluctantly decide to allow you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.';
+		this.choices[65] = 'null^*1';
+		this.pageText[66] = 'Plot to overthrow the King';
+		this.choices[66] = 'null^*1';
+		this.pageText[67] = 'Plan to attack the castle';
+		this.choices[67] = 'null^*1';
+		this.pageText[68] = 'Relative has died';
+		this.choices[68] = 'null^*1';
+		this.pageText[69] = 'LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.';
+		this.choices[69] = 'null^*1';
 		this.pageText[100] = 'As you work your way around to the back of the castle looking for a good place to attach your grappling hook, you see two towers with windows that you could grapple to, one to the North and one to the East.  The northern tower is a bit higher than the east but the ledges appear to be the same from the ground.';
 		this.choices[100] = 'Grapple up the Northern Tower^*101^*Grapple up the Eastern Tower^*102';
 		this.pageText[101]= 'You swing the hook around and around and launch it up to the ledge of the window on the Northern Tower.  You miss the ledge by a few feet.  After a few more failed tries you realize that your grappling hook is not quite long enough to reach this ledge.';
@@ -258,10 +286,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					this.message = specialPageArray[1];
 				}
-				//INVCLEAR: n, remove all inventory items except for n.  Clears gold unless 'gold' is listen in n
+				//INVCLEAR: n, remove all inventory items except for n.  Clears gold unless 'gold' is listed in n
 				else if (specialPageArray[0].match('INVCLEAR:') != null) {
 					inventorySave = specialPageArray[0].split('INVCLEAR:');
-					//Add multiple inventory items by seperating them by a comma
+					//Save multiple inventory items by seperating them by a comma
 					remove = true;
 					if (inventorySave[1].match(',') != null) {
 						inventorySaveArray = inventorySave[1].split(',');
