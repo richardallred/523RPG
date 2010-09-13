@@ -74,7 +74,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[12] = 'null^*1';
 		this.pageText[13] = 'RESTART:^*You dive into a thick patch of bushes that manage to conceal your person.  You hear the soldiers dismount and begin to search for you.  You lie completely still as several of the soldiers begin to hack at the nearby undergrowth with their swords.  After a few minutes, one of the swords cuts through to your hiding place.  Before you can react, the soldier runs you through. <br> Your life ends here.';
 		this.choices[13] = 'null^*1';
-		this.pageText[14] = 'You immediately start sprinting through the trees away from the castle.  The thick undergrowth hinders your progress, as you have to force your way through the vegetation.  You look over your shoulder and see the soldiers dismount their horses to give chase.  Three of them load crossbows and point them at your fleeing form.';
+		this.pageText[14] = 'You immediately start sprinting through the trees away from the castle.  The thick undergrowth hinders your progress, as you have to force your way through the vegetation.  You look over your shoulder and see the soldiers dismount their horses to give chase.  Three of them load crossbows and point them at your fleeing form.  Despite the heavy vegetation, the soldiers have a clear shot at you.';
 		this.choices[14] = 'Dive to the ground^*15^*Keep running and hope you are not hit^*16';
 		this.pageText[15] = 'RESTART:^*As you dive to the ground, you can hear crossbow bolts whiz over your head.  Unfortunately, you dive into a thick patch of briars, which lodge into your clothes and skin.  The thorns tear at you as you struggle to extricate yourself, and by the time you struggle free, one of the soldiers has managed to catch up to you.  He cuts you down with his sword. <br> Your life ends here.';
 		this.choices[15] = 'null^*1';
@@ -122,7 +122,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[36] = 'Leave and find another way in^*31^*Fight the guards^*38';
 		this.pageText[37] = 'INVSPLIT:Hidden dagger^*77^*78';
 		this.choices[37] = 'null^*1';
-		this.pageText[38] = 'RESTART:^*Your attack is extremely short lived.  One of the gate guards shouts in warning and several of the guards on the roof fire crossbow bolts at you, turning you into a human pincushion. <br>Your life ends here.';
+		this.pageText[38] = 'RESTART:^*Your attack is extremely short lived.  One of the guards shouts in warning and several of the guards on the roof fire crossbow bolts at you, turning you into a human pincushion. <br>Your life ends here.';
 		this.choices[38] = 'null^*1';
 		this.pageText[39] = '"And just who exactly are you visiting?" says the guard.  You randomly make up a dookian sounding name, hoping that it sounds credible.  Both guards draw their swords.  "You\'re lying," says one of them, "Surrender your weapons immediately or you will be cut down."';
 		this.choices[39] = 'Insist that you are telling the truth^*49^*Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41';
@@ -131,7 +131,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[41] = 'RESTART:^*You turn and sprint away from the guards but only make it a few steps before you are brought down by several crossbow bolts in the back. <br>Your life ends here.';
 		this.choices[41] = 'null^*1';
 		this.pageText[42] = 'INVCLEAR:Assassin garb,Merchant Disguise,Mercenary Disguise,Hidden dagger^*The guards roughly search you and remove all the items that you are carrying and all your gold coins.  They then bind your hands behind your back and lead you into the castle.  You are lead downwards into a dank dungeon and thrown into a filthy cell.  "We will soon find out what your true purpose here is," leers one of the guards.';
-		this.choices[42] = 'Continue^*50';
+		this.choices[42] = 'Continue^*550';
 		this.pageText[43] = 'INVSPLIT:Grappling hook^*44^*45';
 		this.choices[43] = 'null^*1';
 		this.pageText[44] = 'You quickly look around at the nearby branches and pick a thick one that might support your weight.  You launch your grappling hook twice, but it fails to lodge itself into the branch both times.  By now, the guards are dangerously close, and you have no choice but to try to hide in the foliage.';
@@ -146,42 +146,42 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[48] = 'Say that the message must be delivered in person^*65^*Tell him that there is a plot to overthrow the King^*66^*Tell him that the Carolinians plan to attack the castle^*67^*Tell him that one of the King\'s relatives has died^*68';
 		this.pageText[49] = '"If you are telling the truth," says the guard, "Then you will surrender your weapons immediately and come with us."';
 		this.choices[49] = 'Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41';
-		this.pageText[50] = 'INVSPLIT:Hidden dagger^*51^*52';
-		this.choices[50] = 'null^*1';
-		this.pageText[51] = 'LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.';
-		this.choices[51] = 'Search for a way out of your cell^*53^*Save your strength and wait for a guard to approach^*54';
-		this.pageText[52] = 'You struggle to free your bound hands from their restraints, but to no avail.  You are surrounded by three stone cell walls and a study looking barred cell door, and you can think of no way out of the cell.  The guards have taken everything but the clothes on your back.  You have no option but to sit in the cell and wait to see what happens to you.';
-		this.choices[52] = 'Continue^*55';
-		this.pageText[53] = 'Search for a way out';
-		this.choices[53] = 'Content not added^*1';
-		this.pageText[54] = 'Save your strength and wait for a guard';
-		this.choices[54] = 'Content not added^*1';
-		this.pageText[55] = 'Wait in the cell';
-		this.choices[55] = 'Content not added^*1';
-		this.pageText[56] = '"I was not aware that his excellency was residing in the castle," the guard says, "Which one of his children are you? <br>You say that you are..."';
-		this.choices[56] = 'Frank^*59^*Ernest^*60^*Ned^*61^*Kyle^*61';
-		this.pageText[57] = 'Your parents';
-		this.choices[57] = 'Content not added^*1';
-		this.pageText[58] = 'Your half-cousin';
-		this.choices[58] = 'Content not added^*1';
+		this.pageText[50] = '"The Duke\'s youngest son Ernest is not a merchant," says one of the guards, "And you look nothing like him."  The guards seize you and place you under arrest.';
+		this.choices[50] = 'Continue^*42';
+		this.pageText[51] = '"Welcome, Ernest," says the guard, bowing his head. "Enjoy your visit."  The gate opens and you enter the castle.';
+		this.choices[51] = 'Enter the castle^*300';
+		this.pageText[52] = 'DISPLAYGOLD:^*One of the guards gets a greedy glint in his eye.  "We could allow you to enter the castle, but it will cost you dearly.  15 gold pieces for each of us, and no less."';
+		this.choices[52] = 'Try to get in with only 20 gold pieces^*53^*Forget talking and fight your way in^*38^*Leave and try to find another way in^*31';
+		this.pageText[53] = 'LOSEGOLD:20^*The guards pocket your gold pieces and laugh at you.  "A fool and his money are soon parted," mocks one of the guards';
+		this.choices[53] = 'Attack them^*38^*Leave and try to find another way in^*31';
+		this.pageText[54] = 'DISPLAYGOLD:^*"If that delivery is so important to you," says one of the guards, "then it must be worth something for us to let you in.  10 gold pieces for each of us should be sufficient."';
+		this.choices[54] = 'Give the guards 20 gold^*55^*Say that you only have 10 gold^*94^*Attack the guards^*38^*Leave and try to find another way in^*31';
+		this.pageText[55] = 'LOSEGOLD:20^*The guards take your gold coins and call for the gate to be opened.  "Make your delivery quickly and stay out of trouble," says one of them.';
+		this.choices[55] = 'Enter the Castle^*300';
+		this.pageText[56] = '"I was not aware that his excellency was residing in the castle," the guard says, "Which one of his children are you?"  You realize that you don\'t know the names of the Duke\'s children but you blurt out the first name that comes to mind. <br>You say that you are...';
+		this.choices[56] = 'Frank^*59^*Brian^*61^*Thomas^*61^*Leroy^*61^*Bob^*61^*Ernest^*60^*Ned^*61^*Kyle^*61';
+		this.pageText[57] = '"You will have to visit your parents another time," says one of the guards, "Everyone in the castle is preparing for the upcoming invasion."  The guard gestures for you to leave.';
+		this.choices[57] = 'Leave and try to find another way in^*31^*Try to bribe the guards^*52^*Forget talking and fight your way in^*38';
+		this.pageText[58] = '"You will have to visit your half-cousin another time," says one of the guards, "Everyone in the castle is preparing for the upcoming invasion."  The guard gestures for you to leave.';
+		this.choices[58] = 'Leave and try to find another way in^*31^*Try to bribe the guards^*52^*Forget talking and fight your way in^*38';
 		this.pageText[59] = 'LOSEHEALTH:5^*"The Duke\'s son Frank died two months ago," says one of the guards, "You are either a ghost or a spy, and I don\'t believe in ghosts."  The other guard draws a mace and clubs you on the head before you can react, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you.';
 		this.choices[59] = 'Continue^*42';
-		this.pageText[60] = 'Ernest';
-		this.choices[60] = 'Content not added^*1';
+		this.pageText[60] = 'INVSPLIT:Merchant Disguise^*50^*51';
+		this.choices[60] = 'null^*1';
 		this.pageText[61] = 'LOSEHEALTH:5^*"The Duke has no son by that name," says one of the guards, "You are a spy."  The other guard draws a mace and clubs you on the head before you can react, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you.';
 		this.choices[61] = 'Continue^*42';
-		this.pageText[62] = 'Give the guard an item to deliver';
-		this.choices[62] = 'Content not added^*1';
-		this.pageText[63] = 'Say the delivery must be made in person';
-		this.choices[63] = 'Content not added^*1';
+		this.pageText[62] = 'INVREMOVESELECT:1^*When the guard asks you who you want to delivery made to, you make up a Dookian sounding name.  Which item do you give the guard to deliver?';
+		this.choices[62] = 'Continue^*95';
+		this.pageText[63] = '"You will have to make your delivery next week", says one of the guards, "Everyone in the castle is preparing for the upcoming invasion."  The guard gestures for you to leave.';
+		this.choices[63] = 'Say that the delivery must be made today^*54^*Leave and try to find another way in^*31^*Try to bribe the guards^*52^*Forget talking and fight your way in^*38';
 		this.pageText[64] = 'DISPLAYGOLD:^*You tell the guards that you will make it worth their while if they allow you an audience with the king.  The guards agree to do it, but only if they are each paid 10 gold pieces.  You try to negiotiate with them, but they say that their jobs are at stake and refuse to take any less money.';
 		this.choices[64] = 'Pay them 20 gold^*69^*Leave and try to find another way in^*31';
 		this.pageText[65] = 'The urgency of your tone convinces the guards and they reluctantly decide to allow you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.';
 		this.choices[65] = 'Content not added^*1';
-		this.pageText[66] = 'Plot to overthrow the King';
-		this.choices[66] = 'null^*1';
+		this.pageText[66] = '"A plot to overthrow the King?" says one of the guards, "King K must hear of this immediately!" The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. "This mercenary says that he knows of a plot to overthrow you," announces one of the soldiers.  King K demands that you tell him the details immediately.';
+		this.choices[66] = 'Content not added^*1';
 		this.pageText[67] = 'The guards laugh at you. "The King doesn\'t care if those pathetic Carolinians attack the castle.  Castle Dookenstein is too well defended and the King has a weapon that will crush any opposing force.  Stop wasting our time with useless information."  The guard who spoke gestures for you to leave.';
-		this.choices[67] = 'Leave and try to find another way in^*31';
+		this.choices[67] = 'Leave and try to find another way in^*31^*Attack the guards^*38';
 		this.pageText[68] = 'You tell the guard that the King\'s nephew has passed away.  "I will deliver that message to the King," says the guard.  The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The message will be delivered."';
 		this.choices[68] = 'Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31';
 		this.pageText[69] = 'LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.';
@@ -233,7 +233,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[92] = 'RESTART:^*You tell the guards that you have no weapons. The guards briefly search you and your cart. "He is lying!" exclaims the guard searching the cart, as he uncovers a weapon.  "The punishment for lying to a castle guard is death," says the other guard grimly, drawing his sword.  Without any weapons, you cannot defend yourself. <br>Your life ends here.'
 		this.choices[92] = 'null^*1';
 		this.pageText[93] = 'The guards do not believe you. "I think that the grappling hook is the tool of a spy, not a merchant," declares one of them.  Before you can react, the guards seize you.  "We will find out soon enough."';
-		this.pageText[93] = 'Continue^*42';
+		this.choices[93] = 'Continue^*42';
+		this.pageText[94] = '"If you don\'t have enough gold, then you aren\'t getting into the castle," replies the guard.';
+		this.choices[94] = 'Say that you must have counted wrong and you actually have 20 gold pieces^*55^*Attack the guards^*38^*Leave and find another way in^*31';
+		this.pageText[95] = 'LOSEGOLD:5^*The guard takes your delivery and 5 gold pieces and calls for the gate to be opened. The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The delivery will be made."';
+		this.choices[95] = 'Insist that you come with the guard to make sure^*96^*Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31';
+		this.pageText[96] = 'Come with the guard';
+		this.choices[96] = 'Content not added^*1';
+		
 		this.pageText[100] = 'As you work your way around to the back of the castle looking for a good place to attach your grappling hook, you see two towers with windows that you could grapple to, one to the North and one to the East.  The northern tower is a bit higher than the east but the ledges appear to be the same from the ground.';
 		this.choices[100] = 'Grapple up the Northern Tower^*101^*Grapple up the Eastern Tower^*102';
 		this.pageText[101]= 'You swing the hook around and around and launch it up to the ledge of the window on the Northern Tower.  You miss the ledge by a few feet.  After a few more failed tries you realize that your grappling hook is not quite long enough to reach this ledge.';
@@ -246,6 +253,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[200] = 'Content not added^*1';
 		this.pageText[300] = 'Page 300 (castle courtyard)';
 		this.choices[300] = 'Content not added^*1';
+		this.pageText[550] = 'INVSPLIT:Hidden dagger^*551^*552';
+		this.choices[550] = 'null^*1';
+		this.pageText[551] = 'LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.';
+		this.choices[551] = 'Search for a way out of your cell^*553^*Save your strength and wait for a guard to approach^*554';
+		this.pageText[552] = 'You struggle to free your bound hands from their restraints, but to no avail.  You are surrounded by three stone cell walls and a study looking barred cell door, and you can think of no way out of the cell.  The guards have taken everything but the clothes on your back.  You have no option but to sit in the cell and wait to see what happens to you.';
+		this.choices[552] = 'Continue^*555';
+		this.pageText[553] = 'Search for a way out';
+		this.choices[553] = 'Content not added^*1';
+		this.pageText[554] = 'Save your strength and wait for a guard';
+		this.choices[554] = 'Content not added^*1';
+		this.pageText[555] = 'Wait in the cell';
+		this.choices[555] = 'Content not added^*1';
 	},
 	
 	_choiceOne: function(event) {
@@ -404,7 +423,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					this.message = specialPageArray[1];
 				}
-				//choose a certain number of inventory items with INVSELECT.  INVSELECT:n, choose n items from the choices
+				//choose a certain number of items to add to inventory with INVSELECT.  INVSELECT:n, choose n items from the choices
 				else if (specialPageArray[0].match('INVSELECT:') != null) {
 					inventoryAddNumber = specialPageArray[0].split('INVSELECT:');
 					choicesArray = this.choices[this.page].split('^*');
@@ -440,6 +459,52 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						this.invselect = 0;
 						choicesArray = this.choices[this.page].split('^*');
 						this.page = choicesArray[choiceNum * 2 - 1];
+						this.processChoice(this.page, choiceNum);
+						return;
+					}
+					this.message = specialPageArray[1];
+				}
+				//choose a certain number of items to remove from inventory with INVREMOVESELECT.  INVREMOVESELECT:n, choose n items from the choices
+				else if (specialPageArray[0].match('INVREMOVESELECT:') != null) {
+					inventoryRemoveNumber = specialPageArray[0].split('INVREMOVESELECT:');
+					//does not work for more than 1 item at the moment
+					inventoryRemoveNumber[1] = 1;
+					choicesArray = this.choices[this.page].split('^*');
+					nextPageNum = choicesArray[1];
+					j = 0;
+					for (i = 1; i < this.inventory.length; i++) {
+						if (this.inventory[i] != '') {
+							choicesArray[j] = this.inventory[i];
+							choicesArray[j+1] = nextPageNum;
+							//j is needed because inventory might contain null items
+							j = j + 2;
+						}
+					}
+					if (this.invselect == 1) {
+						//remove chosen item from inventory
+						for (i = 1; i < this.inventory.length; i++) {
+							if (this.inventory[i] == choicesArray[choiceNum * 2 - 2]) {
+								this.inventory[i] = '';
+							}
+						}
+					}
+					alreadyRemovedCount = 0;
+					for (i = 0; i < choicesArray.length; i+=2) {
+						//remove all choices that have already been taken
+						if (!(choicesArray[i] in this.oc(this.inventory))) {
+							choicesArray[i] = 'Removed ' + choicesArray[i];
+							if (this.invselect == 1) {
+								alreadyRemovedCount ++;
+							}
+						}
+						choicesArray[i+1] = this.page;
+					}
+					//go to inventory selection mode (stay on this page until all items are taken)
+					this.invselect = 1;
+					if (alreadyRemovedCount >= inventoryRemoveNumber[1] || this.inventory.length == 1) {
+						//the number of inventory items you can pick has been reached, move on to the next page
+						this.invselect = 0;
+						this.page = nextPageNum;
 						this.processChoice(this.page, choiceNum);
 						return;
 					}
