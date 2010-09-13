@@ -286,6 +286,43 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					this.message = specialPageArray[1];
 				}
+				//remove inventory items with INVREMOVE
+				else if (specialPageArray[0].match('INVREMOVE:') != null) {
+					inventoryRemove = specialPageArray[0].split('INVREMOVE:');
+					removedArray = new Array();
+					removedArray[0] = '<br> You are no longer carrying: ';
+					//Remove multiple inventory items by seperating them by a comma
+					if (inventoryRemove[1].match(',') != null) {
+						inventoryRemoveArray = inventoryRemove[1].split(',');
+						for (i = 1; i < this.inventory.length; i++) {
+							for (j = 0; j < inventoryRemoveArray.length; j++) {
+								console.log(inventoryRemoveArray[j]);
+								if (this.inventory[i] == inventoryRemoveArray[j]) {
+									this.inventory[i] = '';
+									removedArray[removedArray.length] = inventoryRemoveArray[j];
+								}
+							}
+						}
+					} else {
+						for (i = 1; i < this.inventory.length; i++) {
+							if (this.inventory[i] == inventoryRemove[1]) {
+								this.inventory[i] = '';
+								removedArray[1] = inventoryRemove[1];
+							}
+						}
+					}
+					if (removedArray.length == 1) {
+						this.message = specialPageArray[1];
+					} else {
+						this.message = specialPageArray[1];
+						for (i = 0; i < removedArray.length; i++) {
+							this.message = this.message + removedArray[i];
+							if (i > 0 && i < removedArray.length - 1) {
+								this.message = this.message + ', ';
+							}
+						}
+					}
+				}
 				//INVCLEAR: n, remove all inventory items except for n.  Clears gold unless 'gold' is listed in n
 				else if (specialPageArray[0].match('INVCLEAR:') != null) {
 					inventorySave = specialPageArray[0].split('INVCLEAR:');
