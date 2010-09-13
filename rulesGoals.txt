@@ -1,20 +1,24 @@
 Rules:
 •	Main point of contact:  James Mighion
 •	If someone cannot make a meeting, whether with the professor, the client, or the group, email and/or call or text James and he will get the message to everyone necessary
-•	
+•	Version control will be through Git
+•	If there is a conflict with your code and another team member's code currently on git, that team member should be contacted before changing their code
 
 Goals:
 •	Main:
 o	Get Nginx setup
 o	Get Git repository working
-o	Make contract of what is expected by the game
+o	Make contract of what is expected from the game
 o	Make a working demo of the game according to the write up
-o	Add text to speech and switch user capabilities
-o	
+o	Successfully link several pages of text with buttons
+o	Add switch user capabilities
+
 
 •	Secondary:
-o	Make the game more visually appealing with better graphics
-o	
+o	Make the game more visually appealing by adding graphics/pictures
+o	Add text-to-speech for blind users
+o	Add state to the game (inventory, health, gold)
 
 •	Stretch goals:
-o	
+o	Add checkpoints to allow the user to save the game
+o	Let users upload their own content
