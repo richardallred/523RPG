@@ -260,7 +260,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[200] = 'Content not added^*1';
 		//Begin Castle Courtyard story line
 		this.pageText[300] = 'You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  There are also several entrances to the castle interior in all directions.';
-		this.choices[300] = 'Go to the stable^*303^*Go to the merchant stalls^*304^*Go to the barracks^*305^*Keep walking across the courtyard^*306^*Enter the castle on the left^*307^*Enter the castle on the right^*308';
+		this.choices[300] = 'Go to the stable^*303^*Go to the merchant stalls^*304^*Go to the barracks^*305^*Keep walking across the courtyard^*306^*Enter the castle interior on the left^*307^*Enter the castle interior on the right^*308';
 		this.pageText[301] = 'Lose the guard in the crowd';
 		this.choices[301] = 'Content not added^*1';
 		this.pageText[302] = 'Follow the guard into the barracks';
@@ -294,8 +294,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[562] = 'Content not added^*1';
 		this.pageText[563] = 'As you spit out the liquid, you see it splash on to the face of what looks like a doctor.  Crying out, he lets go of your nose and clutches his eyes with his hands.  You are on an operating table in an infirmary, and you see a guard in Dookian uniform standing to your left.  He quickly draws a mace and prepares to strike you with it.';
 		this.choices[563] = 'Content not added^*1';
-		this.pageText[564] = 'GAINHEALTH:5^*You continue to pretend to be unconsious, but the hand on your nose forces you to swallow the bitter liquid.  You feel a tingling throughout your body, and you feel rejuvenated (You gain 5 health).';
-		this.choices[564] = 'Content not added^*1';
+		this.pageText[564] = 'GAINHEALTH:5^*You continue to pretend to be unconsious, but the hand on your nose forces you to swallow the bitter liquid.  You feel a tingling throughout your body, and you feel rejuvenated (You gain 5 health).  You are lifted up and your arms are retied behind your back, and then water is splashed on your face.  Coughing and sputtering, you look around the room.';
+		this.choices[564] = 'Continue^*565';
+		this.pageText[565] = 'You are in the infirmary of the castle, standing next to an operating table.  Most of the operating tables around you are empty.  Next to you are an armed Dookian guard and a person who looks like a doctor holding an empty bucket.';
+		this.choices[565] = 'Content not added^*1';
 		//Begin Throne Room story line
 		this.pageText[600] = 'INVSPLIT:Sword^*602^*603';
 		this.choices[600] = 'null^*1';
