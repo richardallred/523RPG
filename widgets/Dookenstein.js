@@ -259,8 +259,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[200] = 'Page 200 (moat)';
 		this.choices[200] = 'Content not added^*1';
 		//Begin Castle Courtyard story line
-		this.pageText[300] = 'Page 300 (castle courtyard)';
-		this.choices[300] = 'Content not added^*1';
+		this.pageText[300] = 'You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  There are also several entrances to the castle interior in all directions.';
+		this.choices[300] = 'Go to the stable^*303^*Go to the merchant stalls^*304^*Go to the barracks^*305^*Keep walking across the courtyard^*306^*Enter the castle on the left^*307^*Enter the castle on the right^*308';
 		this.pageText[301] = 'Lose the guard in the crowd';
 		this.choices[301] = 'Content not added^*1';
 		this.pageText[302] = 'Follow the guard into the barracks';
@@ -290,7 +290,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[560] = 'Content not added^*1';
 		this.pageText[561] = 'You are roughly shaken, but you let your body go limp and show no reaction.  You feel yourself being carried over a shoulder for some distance, before your hands are untied and you are set down on a flat surface.  A strange, bitter liquid is forced into your mouth, and you feel a hand pinch your nose, which would force you to swallow it.';
 		this.choices[561] = 'Open your eyes and spit it out^*563^*Swallow the bitter liquid^*564';
-		this.pageText[562] = 'Lash out with your feet';
+		this.pageText[562] = 'LOSEHEALTH:6^*You swiftly lash out with your right foot, only to badly bruise it on a piece of armor.  The guard that you kicked reacts by punching you hard in the chest and letting you crumple to the floor.  You lose 6 health.';
 		this.choices[562] = 'Content not added^*1';
 		this.pageText[563] = 'As you spit out the liquid, you see it splash on to the face of what looks like a doctor.  Crying out, he lets go of your nose and clutches his eyes with his hands.  You are on an operating table in an infirmary, and you see a guard in Dookian uniform standing to your left.  He quickly draws a mace and prepares to strike you with it.';
 		this.choices[563] = 'Content not added^*1';
