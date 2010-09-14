@@ -179,7 +179,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[65] = 'The guard leads you in through the gate and into the crowded castle courtyard.  "Colonel Graywald is in the barracks, over there," he says, pointing to a nearby building.  <br>You decide whether to follow the guard to the barracks or try to lose him in the courtyard crowd.';
 		this.choices[65] = 'Follow the guard^*302^*Lose the guard in the crowd^*301';
 		this.pageText[66] = 'You say that an invasion doesn\'t sound like the type of work you\'d enjoy.  "With all the battle preparations going on in the castle, there\'s not much need of a mercanary\'s services," says the guard, "Perhaps you should try somewhere else."';
-		this.choices[66] = 'Ask them if they could let you in so you can try your luck^*69^*Leave and find another way in^*31';
+		this.choices[66] = 'Ask them if they could let you in so you can look for work anyway^*69^*Leave and find another way in^*31';
 		this.pageText[67] = 'The guards laugh at you. "The King doesn\'t care if those pathetic Carolinians attack the castle.  Castle Dookenstein is too well defended and the King has a weapon that will crush any opposing force.  Stop wasting our time with useless information."  The guard who spoke gestures for you to leave.';
 		this.choices[67] = 'Leave and try to find another way in^*31^*Attack the guards^*38';
 		this.pageText[68] = 'You tell the guard that the King\'s nephew has passed away.  "I will deliver that message to the King," says the guard.  The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The message will be delivered."';
@@ -242,7 +242,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[96] = 'Continue^*300';
 		this.pageText[97] = 'LOSEGOLD:30^*You pay the guards, and they allow you to enter the castle.^*98';
 		this.choices[97] = 'Enter the Castle^*300';
-		this.pageText[98] = 'DISPLAYGOLD:^*You don\'t have enough money.';
+		this.pageText[98] = 'You don\'t have enough money.';
 		this.choices[98] = 'Go Back^*52';
 		this.pageText[99] = 'Page doesn\'t exist';
 		this.choices[99] = 'Content not added^*1';
@@ -522,8 +522,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//choose a certain number of items to remove from inventory with INVREMOVESELECT.  INVREMOVESELECT:n, choose n items from the choices
 				else if (specialPageArray[0].match('INVREMOVESELECT:') != null) {
 					inventoryRemoveNumber = specialPageArray[0].split('INVREMOVESELECT:');
-					//does not work for more than 1 item at the moment
-					inventoryRemoveNumber[1] = 1;
 					choicesArray = this.choices[this.page].split('^*');
 					nextPageNum = choicesArray[1];
 					j = 0;
@@ -535,10 +533,19 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							j = j + 2;
 						}
 					}
+					if (this.invselect == 0) {
+						originalInventorySize = choicesArray.length/2;
+						lastRemovedNum = 100;
+					}
+					currentInventorySize = choicesArray.length/2;
 					if (this.invselect == 1) {
 						//remove chosen item from inventory
+						if (choiceNum * 2 - 2 > lastRemovedNum) {
+							choiceNum -= 1;
+						}
 						for (i = 1; i < this.inventory.length; i++) {
 							if (this.inventory[i] == choicesArray[choiceNum * 2 - 2]) {
+								lastRemovedNum = choiceNum * 2 - 2;
 								this.inventory[i] = '';
 							}
 						}
@@ -556,7 +563,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					//go to inventory selection mode (stay on this page until all items are taken)
 					this.invselect = 1;
-					if (alreadyRemovedCount >= inventoryRemoveNumber[1] || this.inventory.length == 1) {
+					if (alreadyRemovedCount >= inventoryRemoveNumber[1] || this.inventory.length == 1 || originalInventorySize - currentInventorySize + alreadyRemovedCount >= inventoryRemoveNumber[1]) {
 						//the number of inventory items you can pick has been reached, move on to the next page
 						this.invselect = 0;
 						this.page = nextPageNum;
