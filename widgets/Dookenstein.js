@@ -255,6 +255,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[102] = 'Pull yourself up the grapple^*104^*Reconsider this whole climbing thing and go back around to the front of the castle^*4';
 		this.pageText[103]='LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.';
 		this.choices[103] ='Try the Eastern tower^*102^*Go back to the castle entrance^*4';
+		this.pageText[104]='You begin to climb up the rope attached to your grappling hook.  As you ascend the side of the castle you are careful to be quiet so as not to alert anyone to your prescence.  You finally reach the window at the top of the tower and as you approach the ledge you hear voices inside.';
+		this.choices[104]=
 		//Begin Moat Story Line
 		this.pageText[200] = 'Page 200 (moat)';
 		this.choices[200] = 'Content not added^*1';
