@@ -106,8 +106,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[28] = 'Say that you were planning to sell it to someone inside the castle.^*73^*Say that you use it for recreational purposes^*93^*Say that someone must have planted it in your cart^*93';
 		this.pageText[29] = '"The King has no time to waste with messages from common merchants," says one of the guards dismissively, "He is planning an important campaign and cannot be bothered right now."';
 		this.choices[29] = 'Try to bribe the guards^*64^*Leave and try to find another way in^*31';
-		this.pageText[30] = 'You are looking for work in the King\'s guard (merc)';
-		this.choices[30] = 'null^*1';
+		this.pageText[30] = '"There are no open positions in the castle guard," says one of the guards, "But Colonel Graywald is recruiting warriors for the upcoming invasion of Carolinia.  I hear the pay is decent."';
+		this.choices[30] = 'Say that you would like to join the invasion force^*65^*Say that you aren\'t interested in joining the war^*66';
 		this.pageText[31] = 'You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.';
 		this.choices[31] = 'Swim the moat^*200^*Attack the guards with a crossbow^*34^*Grapple up the back wall^*32';
 		this.pageText[32] = 'INVSPLIT:Grappling hook^*100^*33';
@@ -143,7 +143,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[47] = 'DISPLAYGOLD:^*"Very well," says one of the guards, "Give me the item to deliver and the name of the person, and I will make sure that the item is delivered - for a small fee of five gold pieces, of course."';
 		this.choices[47] = 'Give the guards one of your items and the gold^*62^*Say that the delivery must be made in person^*63';
 		this.pageText[48] = '"Very well," says one of the guards, "Give me the message and I will ensure that it is delivered to the King."';
-		this.choices[48] = 'Say that the message must be delivered in person^*65^*Tell him that there is a plot to overthrow the King^*66^*Tell him that the Carolinians plan to attack the castle^*67^*Tell him that one of the King\'s relatives has died^*68';
+		this.choices[48] = 'Say that the message must be delivered in person^*617^*Tell him that there is a plot to overthrow the King^*618^*Tell him that the Carolinians plan to attack the castle^*67^*Tell him that one of the King\'s relatives has died^*68';
 		this.pageText[49] = '"If you are telling the truth," says the guard, "Then you will surrender your weapons immediately and come with us."';
 		this.choices[49] = 'Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41';
 		this.pageText[50] = '"The Duke\'s youngest son Ernest is not a merchant," says one of the guards, "And you look nothing like him."  The guards seize you and place you under arrest.';
@@ -175,17 +175,17 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[63] = '"You will have to make your delivery next week", says one of the guards, "Everyone in the castle is preparing for the upcoming invasion."  The guard gestures for you to leave.';
 		this.choices[63] = 'Say that the delivery must be made today^*54^*Leave and try to find another way in^*31^*Try to bribe the guards^*52^*Forget talking and fight your way in^*38';
 		this.pageText[64] = 'DISPLAYGOLD:^*You tell the guards that you will make it worth their while if they allow you an audience with the king.  The guards agree to do it, but only if they are each paid 10 gold pieces.  You try to negiotiate with them, but they say that their jobs are at stake and refuse to take any less money.';
-		this.choices[64] = 'Pay them 20 gold^*69^*Leave and try to find another way in^*31';
-		this.pageText[65] = 'The urgency of your tone convinces the guards and they reluctantly decide to allow you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.';
-		this.choices[65] = 'Say that the message is for the King\'s ear only^*99^*Say that... content not added^*1';
-		this.pageText[66] = '"A plot to overthrow the King?" says one of the guards, "King K must hear of this immediately!" The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. "This mercenary says that he knows of a plot to overthrow you," announces one of the soldiers.  King K demands that you tell him the details immediately.';
-		this.choices[66] = 'Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*99^*Say that... content not added^*1';
+		this.choices[64] = 'Pay them 20 gold^*619^*Leave and try to find another way in^*31';
+		this.pageText[65] = 'The guard leads you in through the gate and into the crowded castle courtyard.  "Colonel Graywald is in the barracks, over there," he says, pointing to a nearby building.  <br>You decide whether to follow the guard to the barracks or try to lose him in the courtyard crowd.';
+		this.choices[65] = 'Follow the guard^*302^*Lose the guard in the crowd^*301';
+		this.pageText[66] = 'You say that an invasion doesn\'t sound like the type of work you\'d enjoy.  "With all the battle preparations going on in the castle, there\'s not much need of a mercanary\'s services," says the guard, "Perhaps you should try somewhere else."';
+		this.choices[66] = 'Ask them if they could let you in so you can try your luck^*69^*Leave and find another way in^*31';
 		this.pageText[67] = 'The guards laugh at you. "The King doesn\'t care if those pathetic Carolinians attack the castle.  Castle Dookenstein is too well defended and the King has a weapon that will crush any opposing force.  Stop wasting our time with useless information."  The guard who spoke gestures for you to leave.';
 		this.choices[67] = 'Leave and try to find another way in^*31^*Attack the guards^*38';
 		this.pageText[68] = 'You tell the guard that the King\'s nephew has passed away.  "I will deliver that message to the King," says the guard.  The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The message will be delivered."';
 		this.choices[68] = 'Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31';
-		this.pageText[69] = 'LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.';
-		this.choices[69] = 'Say that the message is for the King\'s ear only^*99^*Say that... content not added^*1';
+		this.pageText[69] = 'The guards say that they are under orders not to let outsiders into the castle at the moment, so they refuse your request.';
+		this.choices[69] = 'Try to bribe the guards^*52^*Try to fight your way in^*38^*Leave and find another way in^*31';
 		this.pageText[70] = 'INVSPLIT:Lockpicking kit^*71^*72';
 		this.choices[70] = 'null^*1';
 		this.pageText[71] = 'You say that you are bringing supplies and rations to the soldiers to prepare for the upcoming invasion.  One of the guards searches your pack while the other guard searches your cart thoroughly.  He takes out the lockpicking kit that you had hidden in your cart. "These are used only by thieves and spies," says the guard, "You are no merchant!"  The guards immediately seize you.';
@@ -238,14 +238,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[94] = 'Say that you must have counted wrong and <br>you actually have 20 gold pieces^*55^*Attack the guards^*38^*Leave and find another way in^*31';
 		this.pageText[95] = 'LOSEGOLD:5^*The guard takes your delivery and 5 gold pieces and calls for the gate to be opened. The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The delivery will be made."';
 		this.choices[95] = 'Insist that you come with the guard to make sure^*96^*Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31';
-		this.pageText[96] = 'You are allowed to follow the guard into the castle courtyard.  Knowing that the guard will soon find out that there is no such person as Norman Orwell, you wait until he is not looking and lose him in the crowd of people.  Soon, the guard is completely out of sight.';
+		this.pageText[96] = 'You are allowed to follow the guard into the castle courtyard.  Knowing that the guard will soon find out that there is no such person as Norman Orwell, you wait until he is distacted and slip in to the crowd of people.  You move around the crowd until the guard is out of sight.';
 		this.choices[96] = 'Continue^*300';
 		this.pageText[97] = 'LOSEGOLD:30^*You pay the guards, and they allow you to enter the castle.^*98';
 		this.choices[97] = 'Enter the Castle^*300';
 		this.pageText[98] = 'DISPLAYGOLD:^*You don\'t have enough money.';
 		this.choices[98] = 'Go Back^*52';
-		this.pageText[99] = 'The guards start to protest but the King brushes aside their concern.  "This man can do me no harm," he announces, "Leave my presence so he can tell me his information."  The soldiers disperse, grumbling to themselves.  "Now what is it you wanted to tell me?" asks King K.';
-		this.choices[99] = 'Attack the King now that he is alone^*600^*Tell him that ... content not added^*1^*Run out of the throne room^*601';
+		this.pageText[99] = 'Page doesn\'t exist';
+		this.choices[99] = 'Content not added^*1';
 		//Begin Grappling Story Line
 		this.pageText[100] = 'As you work your way around to the back of the castle looking for a good place to attach your grappling hook, you see two towers with windows that you could grapple to, one to the North and one to the East.  The northern tower is a bit higher than the east but the ledges appear to be the same from the ground.';
 		this.choices[100] = 'Grapple up the Northern Tower^*101^*Grapple up the Eastern Tower^*102';
@@ -261,6 +261,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//Begin Castle Courtyard story line
 		this.pageText[300] = 'Page 300 (castle courtyard)';
 		this.choices[300] = 'Content not added^*1';
+		this.pageText[301] = 'Lose the guard in the crowd';
+		this.choices[301] = 'Content not added^*1';
+		this.pageText[302] = 'Follow the guard into the barracks';
+		this.choices[302] = 'Content not added^*1';
 		//Begin Dungeon story line
 		this.pageText[550] = 'INVSPLIT:Hidden dagger^*551^*552';
 		this.choices[550] = 'null^*1';
@@ -307,6 +311,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[614] = 'null^*1';
 		this.pageText[615] = 'RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You don\'t have any weapons, but you lunge towards the King anyway, hoping to choke the life out of him before the guards realize that anything is wrong.  However, the King sees you lunge and sends a powerful blast of magic from his ring, instantly ending your life.';
 		this.choices[615] = 'null^*1';
+		this.pageText[616] = 'The guards start to protest but the King brushes aside their concern.  "This man can do me no harm," he announces, "Leave my presence so he can tell me his information."  The soldiers disperse, grumbling to themselves.  "Now what is it you wanted to tell me?" asks King K.';
+		this.choices[616] = 'Attack the King now that he is alone^*600^*Tell him that ... content not added^*1^*Run out of the throne room^*601';
+		this.pageText[617] = 'The urgency of your tone convinces the guards and they reluctantly decide to allow you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.';
+		this.choices[617] = 'Say that the message is for the King\'s ear only^*616^*Say that... content not added^*1';
+		this.pageText[618] = '"A plot to overthrow the King?" says one of the guards, "King K must hear of this immediately!" The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. "This mercenary says that he knows of a plot to overthrow you," announces one of the soldiers.  King K demands that you tell him the details immediately.';
+		this.choices[618] = 'Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*616^*Say that... content not added^*1';
+		this.pageText[619] = 'LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.';
+		this.choices[619] = 'Say that the message is for the King\'s ear only^*616^*Say that... content not added^*1';
 	},
 	
 	_choiceOne: function(event) {
