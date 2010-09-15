@@ -23,7 +23,7 @@ dojo.declare('myapp.Maze', [dijit._Widget, dijit._Templated], {
 		this.inventory = new Array();
 		this.inventory[0] = 'Inventory';
 		this.inventoryString = 'Inventory: None';
-		this.loadPageTextAndChoices();
+		this.loadMazePageTextAndChoices();
 		
 		this.MAX_HEALTH = 50;
 		this.health = this.MAX_HEALTH;
@@ -40,7 +40,7 @@ dojo.declare('myapp.Maze', [dijit._Widget, dijit._Templated], {
 		this.restart = 0;
     },
 	
-	loadPageTextAndChoices: function(event) {
+	loadMazePageTextAndChoices: function(event) {
 		//The index of the arrays is the page number
 		//pageText is the text for that page, and choices is the possible decisions
 		//choices is split by the special character sequence ^* as follows
