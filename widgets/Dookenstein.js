@@ -130,7 +130,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[40] = 'Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41';
 		this.pageText[41] = 'RESTART:^*You turn and sprint away from the guards but only make it a few steps before you are brought down by several crossbow bolts in the back. <br>Your life ends here.';
 		this.choices[41] = 'null^*1';
-		this.pageText[42] = 'INVCLEAR:Assassin garb,Merchant Disguise,Mercenary Disguise,Hidden dagger^*The guards roughly search you and remove all the items that you are carrying and all your gold coins.  They then bind your hands behind your back and lead you into the castle.  You are lead downwards into a dank dungeon and thrown into a filthy cell.  "We will soon find out what your true purpose here is," leers one of the guards.';
+		this.pageText[42] = 'INVCLEAR:Assassin garb,Merchant Disguise,Mercenary Disguise,Hidden dagger^*The guards roughly search you and remove all the items that you are carrying and all your gold coins.  They then bind your hands behind your back and lead you into the castle.  You are lead downwards into a dank dungeon and thrown into a filthy cell.  "Our interrogators will soon find out what your true purpose here is," leers one of the guards as he walks away.';
 		this.choices[42] = 'Continue^*550';
 		this.pageText[43] = 'INVSPLIT:Grappling hook^*44^*45';
 		this.choices[43] = 'null^*1';
@@ -139,7 +139,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[45] = 'You don\'t have a grappling hook, and you don\'t have enough time to climb a tree with your bare hands.';
 		this.choices[45] = 'Go back^*11';
 		this.pageText[46] = '"And what family member is that?" asks one of the guards.  You quickly make up something that you hope is convincing. <br>You say that you are visiting...';
-		this.choices[46] = 'Your father, the Duke of Pucia^*56^*Your parents, the Rosens^*57^*Your half-cousin, Norman Orwell^*58';
+		this.choices[46] = 'Your father, the Duke of Pucia^*56^*Your parents, the Rosens^*57^*Your half-cousin, Norman Orwell^*58^*Your uncle, King K^*99';
 		this.pageText[47] = 'DISPLAYGOLD:^*"Very well," says one of the guards, "Give me the item to deliver and the name of the person, and I will make sure that the item is delivered - for a small fee of five gold pieces, of course."';
 		this.choices[47] = 'Give the guards one of your items and the gold^*62^*Say that the delivery must be made in person^*63';
 		this.pageText[48] = '"Very well," says one of the guards, "Give me the message and I will ensure that it is delivered to the King."';
@@ -244,8 +244,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[97] = 'Enter the Castle^*300';
 		this.pageText[98] = 'You don\'t have enough money.';
 		this.choices[98] = 'Go Back^*52';
-		this.pageText[99] = 'Page doesn\'t exist';
-		this.choices[99] = 'Content not added^*1';
+		this.pageText[99] = '"The King has no nephews!" says one of the guards, "You are clearly lying to us, and we will find out why are really trying to enter the castle."  Before you can react, the guards have seized you.';
+		this.choices[99] = 'Continue^*42';
 		//Begin Grappling Story Line
 		this.pageText[100] = 'As you work your way around to the back of the castle looking for a good place to attach your grappling hook, you see two towers with windows that you could grapple to, one to the North and one to the East.  The northern tower is a bit higher than the east but the ledges appear to be the same from the ground.';
 		this.choices[100] = 'Grapple up the Northern Tower^*101^*Grapple up the Eastern Tower^*102';
@@ -260,8 +260,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.pageText[200] = 'Page 200 (moat)';
 		this.choices[200] = 'Content not added^*1';
 		//Begin Castle Courtyard story line
-		this.pageText[300] = 'Page 300 (castle courtyard)';
-		this.choices[300] = 'Content not added^*1';
+		this.pageText[300] = 'You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  There are also several entrances to the castle interior in all directions.';
+		this.choices[300] = 'Go to the stable^*303^*Go to the merchant stalls^*304^*Go to the barracks^*305^*Keep walking across the courtyard^*306^*Enter the castle interior on the left^*307^*Enter the castle interior on the right^*308';
 		this.pageText[301] = 'Lose the guard in the crowd';
 		this.choices[301] = 'Content not added^*1';
 		this.pageText[302] = 'Follow the guard into the barracks';
@@ -273,12 +273,32 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choices[551] = 'Search for a way out of your cell^*553^*Save your strength and wait for a guard to approach^*554';
 		this.pageText[552] = 'You struggle to free your bound hands from their restraints, but to no avail.  You are surrounded by three stone cell walls and a study looking barred cell door, and you can think of no way out of the cell.  The guards have taken everything but the clothes on your back.  You have no option but to sit in the cell and wait to see what happens to you.';
 		this.choices[552] = 'Continue^*555';
-		this.pageText[553] = 'Search for a way out';
-		this.choices[553] = 'Content not added^*1';
-		this.pageText[554] = 'Save your strength and wait for a guard';
+		this.pageText[553] = 'You run your hands along the stone walls and the floor of the cell, but find nothing unusual.  You test the strength of the cell door, but it is quite sturdy and will not open by force.  The door is locked by a large iron lock with a keyhole.  The only way of escape that you can think of is to reach through the bars of the cell door and try to pick the lock with your dagger, but you would risk breaking the dagger.';
+		this.choices[553] = 'Pick the lock with the dagger^*556^*Save your strength and wait for a guard^*554';
+		this.pageText[554] = 'INVCHECK:Hidden dagger^*You hide your dagger in your clothes and wait for a guard to approach.  After hours of waiting, you finally hear footsteps approaching your cell.^*560';
 		this.choices[554] = 'Content not added^*1';
-		this.pageText[555] = 'Wait in the cell';
-		this.choices[555] = 'Content not added^*1';
+		this.pageText[555] = 'LOSEHEALTH:3^*As you wait in the cell for hours, the ropes tying your hands cut into you, causing you to lose 3 health.  Soon you can no longer feel your arms, and the time passes in a haze of misery.  After a while, you hear footsteps approaching your cell.  In your condition, you don\'t have the strength to try to fight, but you consider feigning illness to get the guards to open the door.';
+		this.choices[555] = 'Pretend to be sick^*558^*Sit in the corner and wait to see what happens^*559';
+		this.pageText[556] = 'Your arm barely fits through the bars on the door, so your lockpicking attempt is very clumsy.  You move the dagger around in the keyhole until you hear a click as the dagger catches against something."';
+		this.choices[556] = 'Keep moving the dagger around in the lock^*557^*Pull the dagger out of the lock and wait for a guard instead^*554';
+		this.pageText[557] = 'INVREMOVE:Hidden dagger^*You keep forcing the dagger in the lock, hoping that the clicking sound you heard was the sound of the lock mechanism.  Unfortunately, this gets the dagger jammed in the lock, and when try to pull the dagger out it snaps at the hilt.  You reach around and try to pull the broken blade out of the lock, knowing that the guards would be suspicious otherwise, but the blade is hopelessly stuck. Cursing, you discard the useless dagger handle."';
+		this.choices[557] = 'You have no choice now but to wait for a guard to arrive^*554';
+		this.pageText[558] = 'LOSEHEALTH:2^*You have very little pretending to do, as standing up after hours of cramped waiting causes a wave of nausea to overtake you.  You vomit onto the floor (causing a loss of 2 health), and then lie down next to it as the guard approaches.  You hear the cell door being unlocked, and then two hands on your shoulder roughly jerk you upwards.';
+		this.choices[558] = 'Close your eyes and pretend to be unconscious^*561^*Lash out with your feet^*562';
+		this.pageText[559] = 'Wait to see what happens';
+		this.choices[559] = 'Content not added^*1';
+		this.pageText[560] = 'You bide your time and wait for a guard to approach.  After hours of waiting, but you finally hear footsteps approaching your cell.';
+		this.choices[560] = 'Content not added^*1';
+		this.pageText[561] = 'You are roughly shaken, but you let your body go limp and show no reaction.  You feel yourself being carried over a shoulder for some distance, before your hands are untied and you are set down on a flat surface.  A strange, bitter liquid is forced into your mouth, and you feel a hand pinch your nose, which would force you to swallow it.';
+		this.choices[561] = 'Open your eyes and spit it out^*563^*Swallow the bitter liquid^*564';
+		this.pageText[562] = 'LOSEHEALTH:6^*You swiftly lash out with your right foot, only to badly bruise it on a piece of armor.  The guard that you kicked reacts by punching you hard in the chest and letting you crumple to the floor.  You lose 6 health.';
+		this.choices[562] = 'Content not added^*1';
+		this.pageText[563] = 'As you spit out the liquid, you see it splash on to the face of what looks like a doctor.  Crying out, he lets go of your nose and clutches his eyes with his hands.  You are on an operating table in an infirmary, and you see a guard in Dookian uniform standing to your left.  He quickly draws a mace and prepares to strike you with it.';
+		this.choices[563] = 'Content not added^*1';
+		this.pageText[564] = 'GAINHEALTH:5^*You continue to pretend to be unconsious, but the hand on your nose forces you to swallow the bitter liquid.  You feel a tingling throughout your body, and you feel rejuvenated (You gain 5 health).  You are lifted up and your arms are retied behind your back, and then water is splashed on your face.  Coughing and sputtering, you look around the room.';
+		this.choices[564] = 'Continue^*565';
+		this.pageText[565] = 'You are in the infirmary of the castle, standing next to an operating table.  Most of the operating tables around you are empty.  Next to you are an armed Dookian guard and a person who looks like a doctor holding an empty bucket.';
+		this.choices[565] = 'Content not added^*1';
 		//Begin Throne Room story line
 		this.pageText[600] = 'INVSPLIT:Sword^*602^*603';
 		this.choices[600] = 'null^*1';
