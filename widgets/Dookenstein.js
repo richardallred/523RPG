@@ -65,7 +65,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		dataSplit = data.split('\n');
 		pageNumber = 0;
 		pageInfo = '';
-		for (i = 0; i < dataSplit.length - 1; i++) {
+		for (i = 0; i < dataSplit.length; i++) {
 			pageNumber = dataSplit[i].split(':')[0];
 			if (dataSplit[1].split(':').length > 1) {
 				pageInfo = dataSplit[i].split(':')[1];
@@ -87,11 +87,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		
 		this.page = 0;
 		this.message = this.pageText[this.page];
-		//this.choices[0] = 'Play the game!^*1';
 		choicesArray = this.choices[this.page].split('^*');
 		//must call refresh buttons in here because this method is dojo.deferred (will occur last)
 		this.refreshButtons();
-		
 		console.log(this.choices[1]);
 		console.log(this.choices[1].split('^*'));
 		//console.log(this.choices[1].split('^*')[1]);
@@ -99,7 +97,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		console.log(dojo.number.parse(this.choices[1].split('^*')[1]));
 		//console.log(this.choices[1] == 'Continue^*2');
 		//console.log(this.choices[1].toString() == 'Continue^*2');
+		this.choices[1] = this.choices[1].replace('Continue^*2','');
+		this.choices[1] = this.choices[1].replace(new RegExp( '\\n', 'g' ),'');
+		console.log(this.choices[1].length);
+		console.log(this.choices[1].charCodeAt());
 		this.choices[1] = 'Continue^*2';
+		console.log(this.choices[1].length);
 		//console.log(this.choices[1] == 'Continue^*2');
 		console.log(this.choices[1]);
 		console.log(this.choices[1].split('^*'));
