@@ -152,9 +152,9 @@
 75:Enter the castle^*300
 76:RESTART:^*As you run past the guard and into the gate, he gives a shout of warning.  Several guards converge from the courtyard, and they cut you down with their swords.  Your life ends here.
 76:null^*1
-77:INVSPLIT:Sword^*79^*8
+77:INVSPLIT:Sword^*79^*80
 77:null^*1
-78:INVSPLIT:Sword^*85^*8
+78:INVSPLIT:Sword^*85^*86
 78:null^*1
 79:INVSPLIT:Crossbow^*81^*82
 79:null^*1
