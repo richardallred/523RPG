@@ -214,19 +214,31 @@
 301:Content not added^*1
 302:Follow the guard into the barracks
 302:Content not added^*1
+303:Go the the stable
+303:Content not added^*1
+304:Go to the merchant stalls
+304:Content not added^*1
+305:Go to the barracks
+305:Content not added^*1
+306:Keep walking across the courtyard
+306:Content not added^*1
+307:Enter the castle interior on the left
+307:Content not added^*1
+308:Enter the castle interior on the right
+308:Content not added^*1
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
 551:Search for a way out of your cell^*553^*Save your strength and wait for a guard to approach^*554
 552:You struggle to free your bound hands from their restraints, but to no avail.  You are surrounded by three stone cell walls and a study looking barred cell door, and you can think of no way out of the cell.  The guards have taken everything but the clothes on your back.  You have no option but to sit in the cell and wait to see what happens to you.
 552:Continue^*555
-553:You run your hands along the stone walls and the floor of the cell, but find nothing unusual.  You test the strength of the cell door, but it is quite sturdy and will not open by force.  The door is locked by a large iron lock with a keyhole.  The only way of escape that you can think of is to reach through the bars of the cell door and try to pick the lock with your dagger, but you would risk breaking the dagger.
+553:You run your hands along the stone walls and the floor of the cell, but find no structural weaknesses.  You test the strength of the cell door, but it is quite sturdy and will not open by force.  The door is locked by a large iron lock with a keyhole.  The only way of escape that you can think of is to reach through the bars of the cell door and try to pick the lock with your dagger, but you would risk breaking the dagger.
 553:Pick the lock with the dagger^*556^*Save your strength and wait for a guard^*554
 554:INVCHECK:Hidden dagger^*You hide your dagger in your clothes and wait for a guard to approach.  After hours of waiting, you finally hear footsteps approaching your cell.^*560
 554:Content not added^*1
 555:LOSEHEALTH:3^*As you wait in the cell for hours, the ropes tying your hands cut into you, causing you to lose 3 health.  Soon you can no longer feel your arms, and the time passes in a haze of misery.  After a while, you hear footsteps approaching your cell.  In your condition, you don't have the strength to try to fight, but you consider feigning illness to get the guards to open the door.
 555:Pretend to be sick^*558^*Sit in the corner and wait to see what happens^*559
-556:Your arm barely fits through the bars on the door, so your lockpicking attempt is very clumsy.  You move the dagger around in the keyhole until you hear a click as the dagger catches against something."
+556:Your arm barely fits through the bars on the door, so your lockpicking attempt is very clumsy.  You move the dagger around in the keyhole until you hear a click as the dagger catches against something.
 556:Keep moving the dagger around in the lock^*557^*Pull the dagger out of the lock and wait for a guard instead^*554
 557:INVREMOVE:Hidden dagger^*You keep forcing the dagger in the lock, hoping that the clicking sound you heard was the sound of the lock mechanism.  Unfortunately, this gets the dagger jammed in the lock, and when try to pull the dagger out it snaps at the hilt.  You reach around and try to pull the broken blade out of the lock, knowing that the guards would be suspicious otherwise, but the blade is hopelessly stuck. Cursing, you discard the useless dagger handle."
 557:You have no choice now but to wait for a guard to arrive^*554
