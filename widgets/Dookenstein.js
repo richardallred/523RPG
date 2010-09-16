@@ -30,8 +30,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//postMixInProperties is called before the html is intialized
 		
 		//initialize jsonic from unc open web
-		this.js = uow.audio.initJSonic({defaultCaching : true});
-		this.js.say({text : 'Hello world'})
+		uow.getAudio({defaultCaching: true}).then(dojo.hitch(this, function(js) { this.js = js; }));
 		//initialize variables
 		this.pageText = new Array();
 		this.choices = new Array();
@@ -142,7 +141,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			specialPageArray = this.pageText[this.page].split('^*');
 			if (specialPageArray.length == 1) {
 				this.message = specialPageArray[0];
-				this.js.say({text : this.message});
 			} else {
 				//INVSPLIT:item.  If the item is in the inventory, go the first page, otherwise go to the second page
 				if (specialPageArray[0].match('INVSPLIT:') != null) {
@@ -438,12 +436,17 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	},
 	//update the choice buttons and display message
 	refreshButtons: function() {
+	
+		this.runJSonic();
 		this.buttonOne.attr('label', choicesArray[0]);
+		this.js.say({text : choicesArray[0]});
+		
 		if (choicesArray.length <= 2 || choicesArray[2] == null || choicesArray[2] == '') {
 			this.buttonTwo.attr('style', 'display: none');
 		} else {
 			this.buttonTwo.attr('style', 'display: inline');
 			this.buttonTwo.attr('label', choicesArray[2]);
+			this.js.say({text : choicesArray[2]});
 
 		}
 		if (choicesArray.length <= 4 || choicesArray[4] == null || choicesArray[4] == '') {		
@@ -451,39 +454,52 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		} else {
 			this.buttonThree.attr('style', 'display: inline');
 			this.buttonThree.attr('label', choicesArray[4]);
+			this.js.say({text : choicesArray[4]});
 		}
 		if (choicesArray.length <= 6 || choicesArray[6] == null || choicesArray[6] == '') {
 			this.buttonFour.attr('style', 'display: none');
 		} else {
 			this.buttonFour.attr('style', 'display: inline');
 			this.buttonFour.attr('label', choicesArray[6]);
+			this.js.say({text : choicesArray[6]});
 		}
 		if (choicesArray.length <= 8 || choicesArray[8] == null || choicesArray[8] == '') {
 			this.buttonFive.attr('style', 'display: none');
 		} else {
 			this.buttonFive.attr('style', 'display: inline');
 			this.buttonFive.attr('label', choicesArray[8]);
+			this.js.say({text : choicesArray[8]});
 		}
 		if (choicesArray.length <= 10 || choicesArray[10] == null || choicesArray[10] == '') {
 			this.buttonSix.attr('style', 'display: none');
 		} else {
 			this.buttonSix.attr('style', 'display: inline');
 			this.buttonSix.attr('label', choicesArray[10]);
+			this.js.say({text : choicesArray[10]});
 		}
 		if (choicesArray.length <= 12 || choicesArray[12] == null || choicesArray[12] == '') {
 			this.buttonSeven.attr('style', 'display: none');
 		} else {
 			this.buttonSeven.attr('style', 'display: inline');
 			this.buttonSeven.attr('label', choicesArray[12]);
+			this.js.say({text : choicesArray[12]});
 		}
 		if (choicesArray.length <= 14 || choicesArray[14] == null || choicesArray[14] == '') {
 			this.buttonEight.attr('style', 'display: none');
 		} else {
 			this.buttonEight.attr('style', 'display: inline');
 			this.buttonEight.attr('label', choicesArray[14]);
+			this.js.say({text : choicesArray[14]});
 		}
 		this.displayMessage.innerHTML = this.message;
 		this.draw();
+	},
+	runJSonic: function() {
+		this.js.stop();
+		//don't let JSonic read the <br> tag
+		messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),'');
+		this.js.say({text : messageminusbr});
+		this.js.say({text : 'Your choices are'});
 	},
 	//draw images on the html5 canvas
 	draw: function() {
