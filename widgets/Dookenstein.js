@@ -6,6 +6,7 @@ dojo.require('dijit._Widget');
 dojo.require('dijit._Templated');
 dojo.require('dojo.i18n');
 dojo.require('dojo.number');
+dojo.require('uow.audio.JSonic');
 dojo.requireLocalization('myapp', 'Dookenstein');
 
 dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
@@ -27,6 +28,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	},
     postMixInProperties: function() {
 		//postMixInProperties is called before the html is intialized
+		
+		//initialize jsonic from unc open web
+		this.js = uow.audio.initJSonic({defaultCaching : true});
+		this.js.say({text : 'Hello world'})
 		//initialize variables
 		this.pageText = new Array();
 		this.choices = new Array();
@@ -137,6 +142,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			specialPageArray = this.pageText[this.page].split('^*');
 			if (specialPageArray.length == 1) {
 				this.message = specialPageArray[0];
+				this.js.say({text : this.message});
 			} else {
 				//INVSPLIT:item.  If the item is in the inventory, go the first page, otherwise go to the second page
 				if (specialPageArray[0].match('INVSPLIT:') != null) {
