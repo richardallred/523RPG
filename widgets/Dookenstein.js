@@ -57,6 +57,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.restart = 0;
 		//special mode for selecting multiple inventory items
 		this.invselect = 0;
+		this.invselecting = 0;
     },
 	
 	loadPageTextAndChoices: function(data) {
@@ -254,7 +255,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					this.message = specialPageArray[1];
 				}
-				//choose a certain number of items to add to inventory with INVSELECT.  INVSELECT:n, choose n items from the choices
+				//INVSELECT: choose a certain number of items to add to inventory.  INVSELECT:n, choose n items from the choices
 				else if (specialPageArray[0].match('INVSELECT:') != null) {
 					inventoryAddNumber = specialPageArray[0].split('INVSELECT:');
 					choicesArray = this.choices[this.page].split('^*');
@@ -288,6 +289,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					if (alreadyTakenCount >= inventoryAddNumber[1]) {
 						//the number of inventory items you can take has been reached, move on to the next page
 						this.invselect = 0;
+						this.invselecting = 0;
 						choicesArray = this.choices[this.page].split('^*');
 						this.page = choicesArray[choiceNum * 2 - 1];
 						this.processChoice(this.page, choiceNum);
@@ -342,6 +344,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					if (alreadyRemovedCount >= inventoryRemoveNumber[1] || this.inventory.length == 1 || originalInventorySize - currentInventorySize + alreadyRemovedCount >= inventoryRemoveNumber[1]) {
 						//the number of inventory items you can pick has been reached, move on to the next page
 						this.invselect = 0;
+						this.invselecting = 0;
 						this.page = nextPageNum;
 						this.processChoice(this.page, choiceNum);
 						return;
@@ -434,62 +437,66 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		}
 		return o;
 	},
-	//update the choice buttons and display message
+	//update the choice buttons and display message.  Also read all text and draw on the canvas.
 	refreshButtons: function() {
 	
-		this.runJSonic();
+		//don't keep replaying text when in inventory selection mode
+		if (this.invselect == 1) {
+			if (this.invselecting == 0) {
+				this.invselecting = 1;
+			} else {
+				this.invselecting = 2;
+			}
+		} else {
+			this.invselecting = 0;
+		}
+		if (this.invselecting != 2) {
+			//read off page text and buttons
+			this.runJSonic();
+		}
+
 		this.buttonOne.attr('label', choicesArray[0]);
-		this.js.say({text : choicesArray[0]});
-		
 		if (choicesArray.length <= 2 || choicesArray[2] == null || choicesArray[2] == '') {
 			this.buttonTwo.attr('style', 'display: none');
 		} else {
 			this.buttonTwo.attr('style', 'display: inline');
 			this.buttonTwo.attr('label', choicesArray[2]);
-			this.js.say({text : choicesArray[2]});
-
 		}
 		if (choicesArray.length <= 4 || choicesArray[4] == null || choicesArray[4] == '') {		
 			this.buttonThree.attr('style', 'display: none');
 		} else {
 			this.buttonThree.attr('style', 'display: inline');
 			this.buttonThree.attr('label', choicesArray[4]);
-			this.js.say({text : choicesArray[4]});
 		}
 		if (choicesArray.length <= 6 || choicesArray[6] == null || choicesArray[6] == '') {
 			this.buttonFour.attr('style', 'display: none');
 		} else {
 			this.buttonFour.attr('style', 'display: inline');
 			this.buttonFour.attr('label', choicesArray[6]);
-			this.js.say({text : choicesArray[6]});
 		}
 		if (choicesArray.length <= 8 || choicesArray[8] == null || choicesArray[8] == '') {
 			this.buttonFive.attr('style', 'display: none');
 		} else {
 			this.buttonFive.attr('style', 'display: inline');
 			this.buttonFive.attr('label', choicesArray[8]);
-			this.js.say({text : choicesArray[8]});
 		}
 		if (choicesArray.length <= 10 || choicesArray[10] == null || choicesArray[10] == '') {
 			this.buttonSix.attr('style', 'display: none');
 		} else {
 			this.buttonSix.attr('style', 'display: inline');
 			this.buttonSix.attr('label', choicesArray[10]);
-			this.js.say({text : choicesArray[10]});
 		}
 		if (choicesArray.length <= 12 || choicesArray[12] == null || choicesArray[12] == '') {
 			this.buttonSeven.attr('style', 'display: none');
 		} else {
 			this.buttonSeven.attr('style', 'display: inline');
 			this.buttonSeven.attr('label', choicesArray[12]);
-			this.js.say({text : choicesArray[12]});
 		}
 		if (choicesArray.length <= 14 || choicesArray[14] == null || choicesArray[14] == '') {
 			this.buttonEight.attr('style', 'display: none');
 		} else {
 			this.buttonEight.attr('style', 'display: inline');
 			this.buttonEight.attr('label', choicesArray[14]);
-			this.js.say({text : choicesArray[14]});
 		}
 		this.displayMessage.innerHTML = this.message;
 		this.draw();
@@ -500,6 +507,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),'');
 		this.js.say({text : messageminusbr});
 		this.js.say({text : 'Your choices are'});
+		for (i = 0 ; i < choicesArray.length; i+=2) {
+			if (choicesArray[i] != null && choicesArray[i] != '') {
+				//remove br tag from choices text
+				choicesminusbr = choicesArray[i].replace(new RegExp( '<br>', 'g' ),'');
+				this.js.say({text : choicesminusbr});
+			}
+		}
 	},
 	//draw images on the html5 canvas
 	draw: function() {
