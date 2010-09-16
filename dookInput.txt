@@ -1,6 +1,6 @@
 0:Welcome to Return to Castle Dookenstein, the epic adventure saga.
 0:Play the game!^*1
-1:You are sent on a quest to the nearby land of Dookia, which has been at war with your people of Carolinia for centuries.  Your spies report that the King of Dookia has uncovered a legendary artifact, a powerful ring that gives its possessor the power to cast devestating magic.  The brutal and tyrannous King K plans to march into battle with the ring in one week\'s time to subjugate Carolinia under Dookian rule forever. Knowing that such an artifact could spell doom for Carolinia, you sneak into Dookia territory and approach the castle of the King.  You hope to sneak into the castle, recover the ring, and save your people.
+1:You are sent on a quest to the nearby land of Dookia, which has been at war with your people of Carolinia for centuries.  Your spies report that the King of Dookia has uncovered a legendary artifact, a powerful ring that gives its possessor the power to cast devestating magic.  The brutal and tyrannous King K plans to march into battle with the ring in one week's time to subjugate Carolinia under Dookian rule forever. Knowing that such an artifact could spell doom for Carolinia, you sneak into Dookia territory and approach the castle of the King.  You hope to sneak into the castle, recover the ring, and save your people.
 1:Continue^*2
 2:INVSELECT:4^*When you were leaving Carolinia, you were given a pouch of gold coins and access to the royal armory to obtain items you needed for your quest.  In order to travel lightly for the long journey to the Dookian castle, you decided to take just four items from the store room. <br> Which items did you take?
 2:Sword^*3^*Crossbow^*3^*Hidden dagger^*3^*Grappling hook^*3^*Lockpicking kit^*3^*First aid kit^*3^*Leather vest (not implemented yet)^*3^*Shield (not implemented yet)^*3
@@ -52,14 +52,14 @@
 25:Say that you are visiting a family member^*39^*Say that you have an important message for the King^*40^*Attack the guards^*38^*Leave and try to find another way in^*31
 26:INVSPLIT:Mercenary Disguise^*24^*25
 26:null^*1
-27:DISPLAYGOLD:^*"You need a merchant\'s permit to trade inside these walls," says one of the guards gruffly.  You tell him that you do not have one.  "We will be willing to overlook that detail, for 5 gold apiece," the guard says.
+27:DISPLAYGOLD:^*"You need a merchant's permit to trade inside these walls," says one of the guards gruffly.  You tell him that you do not have one.  "We will be willing to overlook that detail, for 5 gold apiece," the guard says.
 27:Bribe the guards with 10 gold^*37^*Refuse to pay the guards^*36
 28:INVCHECK:Grappling hook^*You say that you are bringing supplies and rations to the soldiers to prepare for the upcoming invasion.  One of the guards searches your cart thoroughly.  He takes out the grappling hook that you had hidden under a sack of food. "What use does a merchant have of this?" demands the guard.^*70
 28:Say that you were planning to sell it to someone inside the castle.^*73^*Say that you use it for recreational purposes^*93^*Say that someone must have planted it in your cart^*93
 29:"The King has no time to waste with messages from common merchants," says one of the guards dismissively, "He is planning an important campaign and cannot be bothered right now."
 29:Try to bribe the guards^*64^*Leave and try to find another way in^*31
 30:"There are no open positions in the castle guard," says one of the guards, "But Colonel Graywald is recruiting warriors for the upcoming invasion of Carolinia.  I hear the pay is decent."
-30:Say that you would like to join the invasion force^*65^*Say that you aren\'t interested in joining the war^*66
+30:Say that you would like to join the invasion force^*65^*Say that you aren't interested in joining the war^*66
 31:You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
 31:Swim the moat^*200^*Attack the guards with a crossbow^*34^*Grapple up the back wall^*32
 32:INVSPLIT:Grappling hook^*100^*33
@@ -70,13 +70,13 @@
 34:null^*1
 35:Since you did not bring a crossbow, it is impossible to attack the guards from the woods.
 35:Select another choice^*31
-36:"What kind of merchant doesn\'t have a permit?" demands one of the guards. "Get out of here," says the other one dismissively.
+36:"What kind of merchant doesn't have a permit?" demands one of the guards. "Get out of here," says the other one dismissively.
 36:Leave and find another way in^*31^*Fight the guards^*38
 37:INVSPLIT:Hidden dagger^*77^*78
 37:null^*1
 38:RESTART:^*Your attack is extremely short lived.  One of the guards shouts in warning and several of the guards on the roof fire crossbow bolts at you, turning you into a human pincushion. <br>Your life ends here.
 38:null^*1
-39:"And just who exactly are you visiting?" says the guard.  You randomly make up a dookian sounding name, hoping that it sounds credible.  Both guards draw their swords.  "You\'re lying," says one of them, "Surrender your weapons immediately or you will be cut down."
+39:"And just who exactly are you visiting?" says the guard.  You randomly make up a dookian sounding name, hoping that it sounds credible.  Both guards draw their swords.  "You're lying," says one of them, "Surrender your weapons immediately or you will be cut down."
 39:Insist that you are telling the truth^*49^*Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41
 40:"You think that we are such fools," says one of the guards, "that we would take an assassin to the king just because he claims to have a message?"  Both guards draw their swords.  "Surrender your weapons immediately," demands the guard.
 40:Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41
@@ -88,17 +88,17 @@
 43:null^*1
 44:You quickly look around at the nearby branches and pick a thick one that might support your weight.  You launch your grappling hook twice, but it fails to lodge itself into the branch both times.  By now, the guards are dangerously close, and you have no choice but to try to hide in the foliage.
 44:Try to hide in a patch of thick vegetation^*13
-45:You don\'t have a grappling hook, and you don\'t have enough time to climb a tree with your bare hands.
+45:You don't have a grappling hook, and you don't have enough time to climb a tree with your bare hands.
 45:Go back^*11
 46:"And what family member is that?" asks one of the guards.  You quickly make up something that you hope is convincing. <br>You say that you are visiting...
 46:Your father, the Duke of Pucia^*56^*Your parents, the Rosens^*57^*Your half-cousin, Norman Orwell^*58^*Your uncle, King K^*99
 47:DISPLAYGOLD:^*"Very well," says one of the guards, "Give me the item to deliver and the name of the person, and I will make sure that the item is delivered - for a small fee of five gold pieces, of course."
 47:Give the guards one of your items and the gold^*62^*Say that the delivery must be made in person^*63
 48:"Very well," says one of the guards, "Give me the message and I will ensure that it is delivered to the King."
-48:Say that the message must be delivered in person^*617^*Tell him that there is a plot to overthrow the King^*618^*Tell him that the Carolinians plan to attack the castle^*67^*Tell him that one of the King\'s relatives has died^*68
+48:Say that the message must be delivered in person^*617^*Tell him that there is a plot to overthrow the King^*618^*Tell him that the Carolinians plan to attack the castle^*67^*Tell him that one of the King's relatives has died^*68
 49:"If you are telling the truth," says the guard, "Then you will surrender your weapons immediately and come with us."
 49:Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41
-50:"The Duke\'s youngest son Ernest is not a merchant," says one of the guards, "And you look nothing like him."  The guards seize you and place you under arrest.
+50:"The Duke's youngest son Ernest is not a merchant," says one of the guards, "And you look nothing like him."  The guards seize you and place you under arrest.
 50:Continue^*42
 51:"Welcome, Ernest," says the guard, bowing his head. "Enjoy your visit."  The gate opens and you enter the castle.
 51:Enter the castle^*300
@@ -110,13 +110,13 @@
 54:Give the guards 20 gold^*55^*Say that you only have 10 gold^*94^*Attack the guards^*38^*Leave and try to find another way in^*31
 55:LOSEGOLD:20^*The guards take your gold coins and call for the gate to be opened.  "Make your delivery quickly and stay out of trouble," says one of them.
 55:Enter the Castle^*300
-56:"I was not aware that his excellency was residing in the castle," the guard says, "Which one of his children are you?"  You realize that you don\'t know the names of the Duke\'s children but you blurt out the first name that comes to mind. <br>You say that you are...
+56:"I was not aware that his excellency was residing in the castle," the guard says, "Which one of his children are you?"  You realize that you don't know the names of the Duke's children but you blurt out the first name that comes to mind. <br>You say that you are...
 56:Frank^*59^*Brian^*61^*Thomas^*61^*Leroy^*61^*Bob^*61^*Ernest^*60^*Ned^*61^*Kyle^*61
 57:"You will have to visit your parents another time," says one of the guards, "Everyone in the castle is preparing for the upcoming invasion."  The guard gestures for you to leave.
 57:Leave and try to find another way in^*31^*Try to bribe the guards^*52^*Forget talking and fight your way in^*38
 58:"You will have to visit your half-cousin another time," says one of the guards, "Everyone in the castle is preparing for the upcoming invasion."  The guard gestures for you to leave.
 58:Leave and try to find another way in^*31^*Try to bribe the guards^*52^*Forget talking and fight your way in^*38
-59:LOSEHEALTH:5^*"The Duke\'s son Frank died two months ago," says one of the guards, "You are either a ghost or a spy, and I don\'t believe in ghosts."  The other guard draws a mace and clubs you on the head before you can react, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you.
+59:LOSEHEALTH:5^*"The Duke's son Frank died two months ago," says one of the guards, "You are either a ghost or a spy, and I don't believe in ghosts."  The other guard draws a mace and clubs you on the head before you can react, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you.
 59:Continue^*42
 60:INVSPLIT:Merchant Disguise^*50^*51
 60:null^*1
@@ -130,11 +130,11 @@
 64:Pay them 20 gold^*619^*Leave and try to find another way in^*31
 65:The guard leads you in through the gate and into the crowded castle courtyard.  "Colonel Graywald is in the barracks, over there," he says, pointing to a nearby building.  <br>You decide whether to follow the guard to the barracks or try to lose him in the courtyard crowd.
 65:Follow the guard^*302^*Lose the guard in the crowd^*301
-66:You say that an invasion doesn\'t sound like the type of work you\'d enjoy.  "With all the battle preparations going on in the castle, there\'s not much need of a mercanary\'s services," says the guard, "Perhaps you should try somewhere else."
+66:You say that an invasion doesn't sound like the type of work you'd enjoy.  "With all the battle preparations going on in the castle, there's not much need of a mercanary's services," says the guard, "Perhaps you should try somewhere else."
 66:Ask them if they could let you in so you can look for work anyway^*69^*Leave and find another way in^*31
-67:The guards laugh at you. "The King doesn\'t care if those pathetic Carolinians attack the castle.  Castle Dookenstein is too well defended and the King has a weapon that will crush any opposing force.  Stop wasting our time with useless information."  The guard who spoke gestures for you to leave.
+67:The guards laugh at you. "The King doesn't care if those pathetic Carolinians attack the castle.  Castle Dookenstein is too well defended and the King has a weapon that will crush any opposing force.  Stop wasting our time with useless information."  The guard who spoke gestures for you to leave.
 67:Leave and try to find another way in^*31^*Attack the guards^*38
-68:You tell the guard that the King\'s nephew has passed away.  "I will deliver that message to the King," says the guard.  The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The message will be delivered."
+68:You tell the guard that the King's nephew has passed away.  "I will deliver that message to the King," says the guard.  The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The message will be delivered."
 68:Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31
 69:The guards say that they are under orders not to let outsiders into the castle at the moment, so they refuse your request.
 69:Try to bribe the guards^*52^*Try to fight your way in^*38^*Leave and find another way in^*31
@@ -160,19 +160,19 @@
 79:null^*1
 80:INVSPLIT:Crossbow^*83^*84
 80:null^*1
-81:LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>As part of your merchant disguise, you hid your sword and crossbow in your cart.  Your hidden dagger is well concealed in your clothing.  You could hand them over or hope that the guards do not find them.
+81:LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don't blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>As part of your merchant disguise, you hid your sword and crossbow in your cart.  Your hidden dagger is well concealed in your clothing.  You could hand them over or hope that the guards do not find them.
 81:Give the guards your sword, crossbow, and hidden dagger^*88^*Give the guards your sword and crossbow but not your hidden dagger^*91^*Pretend that you have no weapons^*92
-82:LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>As part of your merchant disguise, you hid your sword in your cart.  Your hidden dagger is well concealed in your clothing.  You could hand them over or hope that the guards do not find them.
+82:LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don't blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>As part of your merchant disguise, you hid your sword in your cart.  Your hidden dagger is well concealed in your clothing.  You could hand them over or hope that the guards do not find them.
 82:Give the guards your sword and hidden dagger^*88^*Give the guards your sword but not your hidden dagger^*90^*Pretend that you have no weapons^*92
-83:LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>As part of your merchant disguise, you hid your crossbow in your cart.  Your hidden dagger is well concealed in your clothing.  You could hand them over or hope that the guards do not find them.
+83:LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don't blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>As part of your merchant disguise, you hid your crossbow in your cart.  Your hidden dagger is well concealed in your clothing.  You could hand them over or hope that the guards do not find them.
 83:Give the guards your crossbow and hidden dagger^*88^*Give the guards your crossbow but not your hidden dagger^*90^*Pretend that you have no weapons^*92
-84:LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>Your hidden dagger is well concealed in your clothing.  You could hand it over or hope that the guards do not find it.
+84:LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don't blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>Your hidden dagger is well concealed in your clothing.  You could hand it over or hope that the guards do not find it.
 84:Give the guards your hidden dagger^*88^*Pretend that you have no weapons^*89
-85:LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>As part of your merchant disguise, you hid your weapons in your cart.  You could hand them over or hope that the guards do not find them.
+85:LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don't blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have." <br>As part of your merchant disguise, you hid your weapons in your cart.  You could hand them over or hope that the guards do not find them.
 85:Give the guards your weapons^*88^*Pretend that you have no weapons^*92
 86:INVSPLIT:Crossbow^*85^*87
 86:null^*1
-87:LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don\'t blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have."  You tell the guards that you have no weapons.  The guards briefly search you and your cart, and then allow you to enter the castle.
+87:LOSEGOLD:10^*The guards pocket your gold coins. "You must be some sort of fool to try to trade without a permit," says one of the guards, "Don't blame us if you get arrested."  <br>"You are not allowed to bring weapons into the castle," says the other guard, "We will have to confiscate any that you have."  You tell the guards that you have no weapons.  The guards briefly search you and your cart, and then allow you to enter the castle.
 87:Enter the Castle^*300
 88:INVREMOVE:Sword,Crossbow,Hidden dagger^*The guards remove your weapons and briefly search you and your cart.  Satisfied, they allow you to enter the castle.
 88:Enter the Castle^*300
@@ -186,7 +186,7 @@
 92:null^*1
 93:The guards do not believe you. "I think that the grappling hook is the tool of a spy, not a merchant," declares one of them.  Before you can react, the guards seize you.  "We will find out soon enough."
 93:Continue^*42
-94:"If you don\'t have enough gold, then you aren\'t getting into the castle," replies the guard.
+94:"If you don't have enough gold, then you aren't getting into the castle," replies the guard.
 94:Say that you must have counted wrong and <br>you actually have 20 gold pieces^*55^*Attack the guards^*38^*Leave and find another way in^*31
 95:LOSEGOLD:5^*The guard takes your delivery and 5 gold pieces and calls for the gate to be opened. The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The delivery will be made."
 95:Insist that you come with the guard to make sure^*96^*Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31
@@ -194,7 +194,7 @@
 96:Continue^*300
 97:LOSEGOLD:30^*You pay the guards, and they allow you to enter the castle.^*98
 97:Enter the Castle^*300
-98:You don\'t have enough money.
+98:You don't have enough money.
 98:Go Back^*52
 99:"The King has no nephews!" says one of the guards, "You are clearly lying to us, and we will find out why are really trying to enter the castle."  Before you can react, the guards have seized you.
 99:Continue^*42
@@ -224,7 +224,7 @@
 553:Pick the lock with the dagger^*556^*Save your strength and wait for a guard^*554
 554:INVCHECK:Hidden dagger^*You hide your dagger in your clothes and wait for a guard to approach.  After hours of waiting, you finally hear footsteps approaching your cell.^*560
 554:Content not added^*1
-555:LOSEHEALTH:3^*As you wait in the cell for hours, the ropes tying your hands cut into you, causing you to lose 3 health.  Soon you can no longer feel your arms, and the time passes in a haze of misery.  After a while, you hear footsteps approaching your cell.  In your condition, you don\'t have the strength to try to fight, but you consider feigning illness to get the guards to open the door.
+555:LOSEHEALTH:3^*As you wait in the cell for hours, the ropes tying your hands cut into you, causing you to lose 3 health.  Soon you can no longer feel your arms, and the time passes in a haze of misery.  After a while, you hear footsteps approaching your cell.  In your condition, you don't have the strength to try to fight, but you consider feigning illness to get the guards to open the door.
 555:Pretend to be sick^*558^*Sit in the corner and wait to see what happens^*559
 556:Your arm barely fits through the bars on the door, so your lockpicking attempt is very clumsy.  You move the dagger around in the keyhole until you hear a click as the dagger catches against something."
 556:Keep moving the dagger around in the lock^*557^*Pull the dagger out of the lock and wait for a guard instead^*554
@@ -248,7 +248,7 @@
 565:Content not added^*1
 600:INVSPLIT:Sword^*602^*603
 600:null^*1
-601:RESTART:^*You are intimidated by the King\'s presence and are unable to think of a convincing story.  You panic and try to run out of the throne room.  The King sees you running and casually flicks his ring finger.  You are struck down by a bolt of lightning that arcs from his ring. <br>Your life ends here.
+601:RESTART:^*You are intimidated by the King's presence and are unable to think of a convincing story.  You panic and try to run out of the throne room.  The King sees you running and casually flicks his ring finger.  You are struck down by a bolt of lightning that arcs from his ring. <br>Your life ends here.
 601:null^*1
 602:INVSPLIT:Crossbow^*604^*605
 602:null^*1
@@ -276,13 +276,13 @@
 613:null^*
 614:RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You whip out your hidden dagger and lunge towards him, but the King seems to anticipate your movement and quickly sends an arc of lightning from his ring that sends you flying across the room.  Your body does not survive the shock.
 614:null^*1
-615:RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You don\'t have any weapons, but you lunge towards the King anyway, hoping to choke the life out of him before the guards realize that anything is wrong.  However, the King sees you lunge and sends a powerful blast of magic from his ring, instantly ending your life.
+615:RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You don't have any weapons, but you lunge towards the King anyway, hoping to choke the life out of him before the guards realize that anything is wrong.  However, the King sees you lunge and sends a powerful blast of magic from his ring, instantly ending your life.
 615:null^*1
 616:The guards start to protest but the King brushes aside their concern.  "This man can do me no harm," he announces, "Leave my presence so he can tell me his information."  The soldiers disperse, grumbling to themselves.  "Now what is it you wanted to tell me?" asks King K.
 616:Attack the King now that he is alone^*600^*Tell him that ... content not added^*1^*Run out of the throne room^*601
 617:The urgency of your tone convinces the guards and they reluctantly decide to allow you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
-617:Say that the message is for the King\'s ear only^*616^*Say that... content not added^*1
+617:Say that the message is for the King's ear only^*616^*Say that... content not added^*1
 618:"A plot to overthrow the King?" says one of the guards, "King K must hear of this immediately!" The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. "This mercenary says that he knows of a plot to overthrow you," announces one of the soldiers.  King K demands that you tell him the details immediately.
 618:Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*616^*Say that... content not added^*1
 619:LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
-619:Say that the message is for the King\'s ear only^*616^*Say that... content not added^*1
+619:Say that the message is for the King's ear only^*616^*Say that... content not added^*1
