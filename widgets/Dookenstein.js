@@ -61,11 +61,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//choices is split by the special character sequence ^* as follows
 		//choice one text^*choice one will lead to this page^*choice two text^*choice two will lead to this page...
 		
-
 		dataSplit = data.split('\n');
 		pageNumber = 0;
 		pageInfo = '';
 		for (i = 0; i < dataSplit.length; i++) {
+			//remove any carriage returns (which are sometimes not removed by split('\n')
+			dataSplit[i] = dataSplit[i].replace(new RegExp( '\\r', 'g' ),'');
 			pageNumber = dataSplit[i].split(':')[0];
 			if (dataSplit[1].split(':').length > 1) {
 				pageInfo = dataSplit[i].split(':')[1];
@@ -90,24 +91,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		choicesArray = this.choices[this.page].split('^*');
 		//must call refresh buttons in here because this method is dojo.deferred (will occur last)
 		this.refreshButtons();
-		console.log(this.choices[1]);
-		console.log(this.choices[1].split('^*'));
-		//console.log(this.choices[1].split('^*')[1]);
-		//console.log((this.choices[1].split('^*')[1]) == "2");
-		console.log(dojo.number.parse(this.choices[1].split('^*')[1]));
-		//console.log(this.choices[1] == 'Continue^*2');
-		//console.log(this.choices[1].toString() == 'Continue^*2');
-		this.choices[1] = this.choices[1].replace('Continue^*2','');
-		this.choices[1] = this.choices[1].replace(new RegExp( '\\n', 'g' ),'');
-		console.log(this.choices[1].length);
-		console.log(this.choices[1].charCodeAt());
-		this.choices[1] = 'Continue^*2';
-		console.log(this.choices[1].length);
-		//console.log(this.choices[1] == 'Continue^*2');
-		console.log(this.choices[1]);
-		console.log(this.choices[1].split('^*'));
-		//console.log((this.choices[1].split('^*')[1]) == "2");
-		console.log(dojo.number.parse(this.choices[1].split('^*')[1]));
 	},
 	
 	_choiceOne: function(event) {
