@@ -178,6 +178,26 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		console.log("Changed focus to " + focusNum);
 		if (focusNum == 0) {
 			this.rereadText.focus();
+		} else if (focusNum == 1) {
+			this.buttonOne.focus();
+		} else if (focusNum == 2) {
+			this.buttonTwo.focus();
+		} else if (focusNum == 3) {
+			this.buttonThree.focus();
+		} else if (focusNum == 4) {
+			this.buttonFour.focus();
+		} else if (focusNum == 5) {
+			this.buttonFive.focus();
+		} else if (focusNum == 6) {
+			this.buttonSix.focus();
+		} else if (focusNum == 7) {
+			this.buttonSeven.focus();
+		} else if (focusNum == 8) {
+			this.buttonEight.focus();
+		} else if (focusNum == 9) {
+			this.buttonNine.focus();
+		} else if (focusNum == 10) {
+			this.buttonTen.focus();
 		}
 		//this.buttonOne.focus();
 	},
@@ -499,7 +519,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	//update the choice buttons and display message.  Also read all text and draw on the canvas.
 	refreshButtons: function() {
 	
-		//don't keep replaying text when in inventory selection mode
+		//don't keep replaying text when in inventory selection mode (but do play text the first time)
 		if (this.invselect == 1) {
 			if (this.invselecting == 0) {
 				this.invselecting = 1;
@@ -511,6 +531,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		}
 		if (this.invselecting != 2) {
 			//read off page text and buttons
+			this._focusZero();
 			this.runJSonic();
 		}
 
