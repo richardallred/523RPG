@@ -11,7 +11,7 @@ dojo.requireLocalization('myapp', 'Dookenstein');
 
 dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
     widgetsInTemplate: true,
-	templatePath: dojo.moduleUrl('myapp.templates', 'Dookenstein.html'),
+	templatePath: dojo.moduleUrl('myapp.templates', 'Dookenstein_test.html'),
 
 	postCreate: function() {
 		//postCreate is called after the dom is created
@@ -48,11 +48,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//At this point in the code, this.choices and this.pageText are still undefined
 		//choicesArray = this.choices[this.page].split('^*');
 		//this.labels = {choiceOne: choicesArray[0], choiceTwo: '', choiceThree: '', choiceFour: '', choiceFive: '', choiceSix: '', choiceSeven: '', choiceEight: ''};
-		this.labels = {choiceOne: '', choiceTwo: '', choiceThree: '', choiceFour: '', choiceFive: '', choiceSix: '', choiceSeven: '', choiceEight: ''};
+		this.labels = {choiceOne: '', choiceTwo: '', choiceThree: '', choiceFour: '', choiceFive: '', choiceSix: '', choiceSeven: '', choiceEight: '', choiceNine: '', choiceTen: ''};
 		//this.message = this.pageText[this.page];
 		//This message will be overwritten if the text file is loaded properly
-		this.message = 'Failed to load text file';
+		this.message = 'Failed to load game data';
 		
+		//set button focus to zero (no button selected)
+		this.currentFocus = 0;
 		//if restart is set to 1, the game will reset upon the next button press
 		this.restart = 0;
 		//special mode for selecting multiple inventory items
@@ -121,6 +123,63 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	},
 	_choiceEight: function(event) {
 		this.choose(8);
+	},
+	_choiceNine: function(event) {
+		this.choose(9);
+	},
+	_choiceTen: function(event) {
+		this.choose(10);
+	},
+	_focusZero: function(event) {
+		//select Read Text Again button
+		this.rereadText.focus();
+	},
+	_focusOne: function(event) {
+		this.changeFocus(1);
+	},
+	_focusTwo: function(event) {
+		this.changeFocus(2);
+	},
+	_focusThree: function(event) {
+		this.changeFocus(3);
+	},
+	_focusFour: function(event) {
+		this.changeFocus(4);
+	},
+	_focusFive: function(event) {
+		this.changeFocus(5);
+	},
+	_focusSix: function(event) {
+		this.changeFocus(6);
+	},
+	_focusSeven: function(event) {
+		this.changeFocus(7);
+	},
+	_focusEight: function(event) {
+		this.changeFocus(8);
+	},
+	_focusNine: function(event) {
+		this.changeFocus(9);
+	},
+	_focusTen: function(event) {
+		this.changeFocus(10);
+	},
+	_rereadText: function(event) {
+		this.runJSonic();
+	},
+	_onKeyPress: function(event) {
+		console.log('key pressed');
+	},
+	changeFocus: function(focusNum) {
+		this.currentFocus = focusNum;
+		//make JSonic say the name the button that is focused on
+		this.js.stop();
+		this.js.say({text: choicesArray[focusNum * 2 - 2]});
+		console.log("Changed focus to " + focusNum);
+		if (focusNum == 0) {
+			this.rereadText.focus();
+		}
+		//this.buttonOne.focus();
 	},
 	choose: function(choiceNum) {
 		if (this.restart == 1) {
@@ -498,6 +557,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			this.buttonEight.attr('style', 'display: inline');
 			this.buttonEight.attr('label', choicesArray[14]);
 		}
+		if (choicesArray.length <= 16 || choicesArray[16] == null || choicesArray[16] == '') {
+			this.buttonNine.attr('style', 'display: none');
+		} else {
+			this.buttonNine.attr('style', 'display: inline');
+			this.buttonNine.attr('label', choicesArray[16]);
+		}
+		if (choicesArray.length <= 18 || choicesArray[18] == null || choicesArray[18] == '') {
+			this.buttonTen.attr('style', 'display: none');
+		} else {
+			this.buttonTen.attr('style', 'display: inline');
+			this.buttonTen.attr('label', choicesArray[18]);
+		}
 		this.displayMessage.innerHTML = this.message;
 		this.draw();
 	},
@@ -505,15 +576,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.js.stop();
 		//don't let JSonic read the <br> tag
 		messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),'');
-		this.js.say({text : messageminusbr});
-		this.js.say({text : 'Your choices are'});
+		this.js.say({text : messageminusbr, cache : true});
+		this.js.say({text : 'Your choices are', cache : true});
 		for (i = 0 ; i < choicesArray.length; i+=2) {
 			if (choicesArray[i] != null && choicesArray[i] != '') {
 				//remove br tag from choices text
 				choicesminusbr = choicesArray[i].replace(new RegExp( '<br>', 'g' ),'');
-				this.js.say({text : choicesminusbr});
+				this.js.say({text : choicesminusbr, cache : true});
 			}
 		}
+		this.js.say({text : 'Read text again', cache : true});
 	},
 	//draw images on the html5 canvas
 	draw: function() {
