@@ -1,0 +1,9 @@
+The button that says Read Text Again is too low because it is placed below the choice buttons in the html.
+
+Sometimes JSonic randomly crashes and returns an error undefined.  Find out why and fix it.
+
+Make pageText and choices into a single 2 dimensional array
+
+Work on moat, courtyard, and grappling story lines
+
+Implement arrow keys to scroll through buttons - have JSonic read the selected choice when scrolling through
