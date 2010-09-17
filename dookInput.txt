@@ -1,4 +1,4 @@
-0:You are about to play Return to Castle Dookenstein. <br><br> Press the X key to scroll through the choices and press the C key or the Enter key to select a choice.
+0:You are about to play Return to Castle Dookenstein. <br><br> Press the X key to scroll through the choices and press the C key or the Enter key to select a choice.  <br>The number keys can also be used to scroll through choices.
 0:Play the game!^*1
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, and elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
