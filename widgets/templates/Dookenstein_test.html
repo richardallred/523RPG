@@ -1,0 +1,63 @@
+<div class="Dookenstein">
+<div dojoType="dijit.layout.ContentPane" title="dookDiv" dojoAttachEvent='onkeypress:_onKeyPress' region = "left">
+	<span dojoAttachPoint="displayMessage"> ${message} </span>
+	<br><br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceOne,onFocus:_focusOne"
+			  dojoAttachPoint="buttonOne">${labels.choiceOne}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceTwo,onFocus:_focusTwo"
+			  dojoAttachPoint="buttonTwo"
+			  style="display: none;">${labels.choiceTwo}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceThree,onFocus:_focusThree"
+			  dojoAttachPoint="buttonThree"
+			  style="display: none;">${labels.choiceThree}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceFour,onFocus:_focusFour"
+			  dojoAttachPoint="buttonFour"
+			  style="display: none;">${labels.choiceFour}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceFive,onFocus:_focusFive"
+			  dojoAttachPoint="buttonFive"
+			  style="display: none;">${labels.choiceFive}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceSix,onFocus:_focusSix"
+			  dojoAttachPoint="buttonSix"
+			  style="display: none;">${labels.choiceSix}</button>
+	<br>
+	<button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceSeven,onFocus:_focusSeven"
+			  dojoAttachPoint="buttonSeven"
+			  style="display: none;">${labels.choiceSeven}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceEight,onFocus:_focusEight"
+			  dojoAttachPoint="buttonEight"
+			  style="display: none;">${labels.choiceEight}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceNine,onFocus:_focusNine"
+			  dojoAttachPoint="buttonNine"
+			  style="display: none;">${labels.choiceNine}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_choiceTen,onFocus:_focusTen"
+			  dojoAttachPoint="buttonTen"
+			  style="display: none;">${labels.choiceTen}</button>
+	<br>
+	  <button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_rereadText"
+			  dojoAttachPoint="rereadText">Read text again</button>
+	<br>
+</div>
+<div dojoType="dijit.layout.ContentPane" title="canvasDiv" style="float: bottom;" region = "bottom">
+	<canvas id="canvas" width="150" height="150" style="position:absolute;" dojoAttachPoint="dojoCanvas"></canvas>
+</div>
+
+</div>
