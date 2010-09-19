@@ -1,5 +1,5 @@
 /**
-* Dookenstein version 2
+* Dookenstein version 3
  */
 dojo.provide('myapp.Dookenstein');
 dojo.require('dijit._Widget');
@@ -14,8 +14,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	templatePath: dojo.moduleUrl('myapp.templates', 'Dookenstein_test.html'),
 
 	postCreate: function() {
-		//postCreate is called after the dom is created
-		
+		//postCreate is called after the dom is created		
 		//load from data all pages and choices and update first page
 		var xhrArgs = {
 			url: 'dookInput.txt',
@@ -25,10 +24,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			load: dojo.hitch(this,"loadPageTextAndChoices")
 		}
 		dojo.xhrGet(xhrArgs);
+		this.connect(window,'onkeypress','_onKeyPress');
 	},
     postMixInProperties: function() {
 		//postMixInProperties is called before the html is intialized
-		
 		//initialize jsonic from unc open web
 		uow.getAudio({defaultCaching: true}).then(dojo.hitch(this, function(js) { this.js = js; }));
 		//initialize variables
@@ -43,23 +42,20 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.health = this.MAX_HEALTH;
 		this.STARTING_GOLD = 20;
 		this.gold = this.STARTING_GOLD;
-		
-		choicesArray = new Array();
-		//At this point in the code, this.choices and this.pageText are still undefined
-		//choicesArray = this.choices[this.page].split('^*');
-		//this.labels = {choiceOne: choicesArray[0], choiceTwo: '', choiceThree: '', choiceFour: '', choiceFive: '', choiceSix: '', choiceSeven: '', choiceEight: ''};
-		this.labels = {choiceOne: '', choiceTwo: '', choiceThree: '', choiceFour: '', choiceFive: '', choiceSix: '', choiceSeven: '', choiceEight: '', choiceNine: '', choiceTen: ''};
-		//this.message = this.pageText[this.page];
+		//array containing button objects
+		this.buttons = new Array();
 		//This message will be overwritten if the text file is loaded properly
 		this.message = 'Failed to load game data';
-		
-		//set button focus to zero (no button selected)
+		//set button focus to zero (Reread text button)
 		this.currentFocus = 0;
 		//if restart is set to 1, the game will reset upon the next button press
 		this.restart = 0;
 		//special mode for selecting multiple inventory items
 		this.invselect = 0;
 		this.invselecting = 0;
+		//set jsonic reading rate - default for JSonic is 200
+		this.sonicRate = 250;
+		this.sonicVolume = 1.0;
     },
 	
 	loadPageTextAndChoices: function(data) {
@@ -72,7 +68,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		pageNumber = 0;
 		pageInfo = '';
 		for (i = 0; i < dataSplit.length; i++) {
-			//remove any carriage returns (which are sometimes not removed by split('\n')
+			//remove any carriage returns (which are sometimes not removed by split('\n'))
 			dataSplit[i] = dataSplit[i].replace(new RegExp( '\\r', 'g' ),'');
 			pageNumber = dataSplit[i].split(':')[0];
 			if (dataSplit[1].split(':').length > 1) {
@@ -96,110 +92,84 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.page = 0;
 		this.message = this.pageText[this.page];
 		choicesArray = this.choices[this.page].split('^*');
-		//must call refresh buttons in here because this method is dojo.deferred (will occur last)
-		this.refreshButtons();
+		//must call refreshAll in here because this method is dojo.deferred (will occur last)
+		this.refreshAll();
 	},
 	
-	_choiceOne: function(event) {
-		this.choose(1);
+	_onClick: function(buttonNum) {
+		this.choose(buttonNum);
 	},
-	_choiceTwo: function(event) {
-		this.choose(2);
-	},
-	_choiceThree: function(event) {
-		this.choose(3);
-	},
-	_choiceFour: function(event) {
-		this.choose(4);
-	},
-	_choiceFive: function(event) {
-		this.choose(5);
-	},
-	_choiceSix: function(event) {
-		this.choose(6);
-	},
-	_choiceSeven: function(event) {
-		this.choose(7);
-	},
-	_choiceEight: function(event) {
-		this.choose(8);
-	},
-	_choiceNine: function(event) {
-		this.choose(9);
-	},
-	_choiceTen: function(event) {
-		this.choose(10);
-	},
+
 	_focusZero: function(event) {
 		//select Read Text Again button
+		this.currentFocus = 0;
 		this.rereadText.focus();
-	},
-	_focusOne: function(event) {
-		this.changeFocus(1);
-	},
-	_focusTwo: function(event) {
-		this.changeFocus(2);
-	},
-	_focusThree: function(event) {
-		this.changeFocus(3);
-	},
-	_focusFour: function(event) {
-		this.changeFocus(4);
-	},
-	_focusFive: function(event) {
-		this.changeFocus(5);
-	},
-	_focusSix: function(event) {
-		this.changeFocus(6);
-	},
-	_focusSeven: function(event) {
-		this.changeFocus(7);
-	},
-	_focusEight: function(event) {
-		this.changeFocus(8);
-	},
-	_focusNine: function(event) {
-		this.changeFocus(9);
-	},
-	_focusTen: function(event) {
-		this.changeFocus(10);
 	},
 	_rereadText: function(event) {
 		this.runJSonic();
 	},
-	_onKeyPress: function(event) {
-		console.log('key pressed');
+	_onKeyPress: function(e) {
+		//use e.keyCode to get ASCII values
+		//for switch users, switches are meant to mapped to X and C keys
+		if (e.keyCode == 109 || e.keyCode == 77) {
+			//pressed M key - mute JSonic
+			this.muteJSonic();
+		}
+		else if (e.keyCode == 97 || e.keyCode == 65 || e.keyCode == 37) {
+			//pressed A or left arrow key - slow reading down
+			this.slowDownJSonic();
+		}
+		else if (e.keyCode == 100 || e.keyCode == 68 || e.keyCode == 39) {
+			//pressed D or right arrow key - speed reading up
+			this.speedUpJSonic();
+		}
+		else if (e.keyCode == 99 ||e.keyCode == 67 || e.keyCode == 13 || e.keyCode == 32) {
+			//C or Enter or spacebar pressed - choose currently focused button
+			if (this.currentFocus == 0) {
+				this._rereadText();
+			} else {
+				this._onClick(this.currentFocus);
+			}
+		}
+		else if (e.keyCode == 119 ||e.keyCode == 87 || e.keyCode == 38) {
+			//W or up pressed - move up a button
+			this.currentFocus --;
+			if (this.currentFocus < 0) {
+				this.changeFocus(this.buttons.length);
+			} else {
+				this.changeFocus(this.currentFocus);
+			}
+		}
+		else if (e.keyCode == 115 ||e.keyCode == 83 || e.keyCode == 120 || e.keyCode == 88 || e.keyCode == 40) {
+			//X or S or down pressed - move down a button
+			this.currentFocus ++;
+			if (this.currentFocus > this.buttons.length) {
+				this.changeFocus(0);
+			} else {
+				this.changeFocus(this.currentFocus);
+			}
+		}
+		else if (e.keyCode >= 48 && e.keyCode <= 57) {
+			//0-9 key pressed - select choice zero to 9
+			convertedNum = (e.keyCode - 48);
+			if (this.buttons.length >= convertedNum) {
+				this.changeFocus(convertedNum);
+			}
+		}
 	},
 	changeFocus: function(focusNum) {
 		this.currentFocus = focusNum;
-		//make JSonic say the name the button that is focused on
-		this.js.stop();
-		this.js.say({text: choicesArray[focusNum * 2 - 2]});
-		console.log("Changed focus to " + focusNum);
 		if (focusNum == 0) {
-			this.rereadText.focus();
-		} else if (focusNum == 1) {
-			this.buttonOne.focus();
-		} else if (focusNum == 2) {
-			this.buttonTwo.focus();
-		} else if (focusNum == 3) {
-			this.buttonThree.focus();
-		} else if (focusNum == 4) {
-			this.buttonFour.focus();
-		} else if (focusNum == 5) {
-			this.buttonFive.focus();
-		} else if (focusNum == 6) {
-			this.buttonSix.focus();
-		} else if (focusNum == 7) {
-			this.buttonSeven.focus();
-		} else if (focusNum == 8) {
-			this.buttonEight.focus();
-		} else if (focusNum == 9) {
-			this.buttonNine.focus();
-		} else if (focusNum == 10) {
-			this.buttonTen.focus();
+		//set focus on read text again button
+			this._focusZero();
+			this.js.stop();
+			this.js.say({text: "Read text again"});
+		} else {
+			this.buttons[focusNum - 1].focus();
+			//make JSonic say the name the button that is focused on
+			this.js.stop();
+			this.js.say({text: this.buttons[focusNum - 1].label});
 		}
-		//this.buttonOne.focus();
 	},
 	choose: function(choiceNum) {
 		if (this.restart == 1) {
@@ -498,13 +468,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					choicesArray = this.choices[this.page].split('^*');
 				}
 			} else {
-				choicesArray[0] = 'Restart';
-				choicesArray[1] = 1;
-				for (i = 2; i < choicesArray.length; i++) {
-					choicesArray[i] = '';
-				}
+				//only possible choice is to restart the game
+				choicesArray = ['Restart',1];
 			}
-			this.refreshButtons();
+			this.refreshAll();
 		}
 	},
 	//oc converts an array into an object, to use with the "in" javascript command
@@ -517,8 +484,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		return o;
 	},
 	//update the choice buttons and display message.  Also read all text and draw on the canvas.
-	refreshButtons: function() {
-	
+	refreshAll: function() {
+		//delete all choices buttons
+		dojo.empty(this.buttonDiv);
+		this.buttons = [];
+		//make new choice buttons
+		this.createButtons(choicesArray);
 		//don't keep replaying text when in inventory selection mode (but do play text the first time)
 		if (this.invselect == 1) {
 			if (this.invselecting == 0) {
@@ -534,67 +505,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			this._focusZero();
 			this.runJSonic();
 		}
-
-		this.buttonOne.attr('label', choicesArray[0]);
-		if (choicesArray.length <= 2 || choicesArray[2] == null || choicesArray[2] == '') {
-			this.buttonTwo.attr('style', 'display: none');
-		} else {
-			this.buttonTwo.attr('style', 'display: inline');
-			this.buttonTwo.attr('label', choicesArray[2]);
-		}
-		if (choicesArray.length <= 4 || choicesArray[4] == null || choicesArray[4] == '') {		
-			this.buttonThree.attr('style', 'display: none');
-		} else {
-			this.buttonThree.attr('style', 'display: inline');
-			this.buttonThree.attr('label', choicesArray[4]);
-		}
-		if (choicesArray.length <= 6 || choicesArray[6] == null || choicesArray[6] == '') {
-			this.buttonFour.attr('style', 'display: none');
-		} else {
-			this.buttonFour.attr('style', 'display: inline');
-			this.buttonFour.attr('label', choicesArray[6]);
-		}
-		if (choicesArray.length <= 8 || choicesArray[8] == null || choicesArray[8] == '') {
-			this.buttonFive.attr('style', 'display: none');
-		} else {
-			this.buttonFive.attr('style', 'display: inline');
-			this.buttonFive.attr('label', choicesArray[8]);
-		}
-		if (choicesArray.length <= 10 || choicesArray[10] == null || choicesArray[10] == '') {
-			this.buttonSix.attr('style', 'display: none');
-		} else {
-			this.buttonSix.attr('style', 'display: inline');
-			this.buttonSix.attr('label', choicesArray[10]);
-		}
-		if (choicesArray.length <= 12 || choicesArray[12] == null || choicesArray[12] == '') {
-			this.buttonSeven.attr('style', 'display: none');
-		} else {
-			this.buttonSeven.attr('style', 'display: inline');
-			this.buttonSeven.attr('label', choicesArray[12]);
-		}
-		if (choicesArray.length <= 14 || choicesArray[14] == null || choicesArray[14] == '') {
-			this.buttonEight.attr('style', 'display: none');
-		} else {
-			this.buttonEight.attr('style', 'display: inline');
-			this.buttonEight.attr('label', choicesArray[14]);
-		}
-		if (choicesArray.length <= 16 || choicesArray[16] == null || choicesArray[16] == '') {
-			this.buttonNine.attr('style', 'display: none');
-		} else {
-			this.buttonNine.attr('style', 'display: inline');
-			this.buttonNine.attr('label', choicesArray[16]);
-		}
-		if (choicesArray.length <= 18 || choicesArray[18] == null || choicesArray[18] == '') {
-			this.buttonTen.attr('style', 'display: none');
-		} else {
-			this.buttonTen.attr('style', 'display: inline');
-			this.buttonTen.attr('label', choicesArray[18]);
-		}
 		this.displayMessage.innerHTML = this.message;
 		this.draw();
 	},
 	runJSonic: function() {
 		this.js.stop();
+		this.js.setProperty({name: "rate", value: this.sonicRate});
 		//don't let JSonic read the <br> tag
 		messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),'');
 		this.js.say({text : messageminusbr, cache : true});
@@ -607,6 +523,35 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			}
 		}
 		this.js.say({text : 'Read text again', cache : true});
+	},
+	muteJSonic: function() {
+		this.js.stop();
+		if (this.sonicVolume == 0.0) {
+			this.js.setProperty({name: "volume", value: 1.0});
+			this.sonicVolume = 1.0;
+			this.runJSonic();
+		} else {
+			this.js.setProperty({name: "volume", value: 0.0});
+			this.sonicVolume = 0.0;
+		}
+	},
+	speedUpJSonic: function() {
+		this.sonicRate += 50;
+		this.runJSonic();
+	},
+	slowDownJSonic: function() {
+		this.sonicRate -= 50;
+		this.runJSonic();
+	},
+	//create buttons and place them.  Parameter inputArray: array of choices for this page
+	createButtons: function(inputArray) {
+		for(var i = 0; i < inputArray.length; i+=2) {
+			var b = new dijit.form.Button({ label: inputArray[i] });
+			this.connect(b, 'onClick', dojo.hitch(this,"_onClick",i/2+1));
+			this.buttons.push(b);
+			dojo.place(b.domNode, this.buttonDiv);
+			dojo.create('br', null, this.buttonDiv);
+		}
 	},
 	//draw images on the html5 canvas
 	draw: function() {
