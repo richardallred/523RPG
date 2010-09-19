@@ -14,7 +14,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	templatePath: dojo.moduleUrl('myapp.templates', 'Dookenstein_test.html'),
 
 	postCreate: function() {
-		//postCreate is called after the dom is created		
+		//postCreate is called after the dom is created
 		//load from data all pages and choices and update first page
 		var xhrArgs = {
 			url: 'dookInput.txt',
@@ -406,7 +406,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					this.health = this.health - healthLost[1];
 					this.message = specialPageArray[1] + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
 					if (this.health <= 0) {
-						this.message = this.message + '<br>Your wounded body can take no more, and collapse to the ground.  You are dead.';
+						this.message = this.message + '<br>Your wounded body can take no more, and you collapse to the ground.  You are dead.';
 						this.restart = 1;
 					}
 				}
