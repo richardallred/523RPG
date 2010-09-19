@@ -1,4 +1,4 @@
-0:You are about to play Return to Castle Dookenstein. <br><br> Press the X key to scroll through the choices and press the C key or the Enter key to select a choice.  <br>The number keys can also be used to scroll through choices.
+0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
 0:Play the game!^*1
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, and elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
@@ -126,7 +126,7 @@
 62:Continue^*95
 63:"You will have to make your delivery next week", says one of the guards, "Everyone in the castle is preparing for the upcoming invasion."  The guard gestures for you to leave.
 63:Say that the delivery must be made today^*54^*Leave and try to find another way in^*31^*Try to bribe the guards^*52^*Forget talking and fight your way in^*38
-64:DISPLAYGOLD:^*You tell the guards that you will make it worth their while if they allow you an audience with the king.  The guards agree to do it, but only if they are each paid 10 gold pieces.  You try to negiotiate with them, but they say that their jobs are at stake and refuse to take any less money.
+64:DISPLAYGOLD:^*You tell the guards that you will make it worth their while if they allow you an audience with the king.  The guards agree to do it, but only if they are each paid 10 gold pieces.  You try to negiotiate with them, but they say that their jobs are at stake and refuse to take any less money. 
 64:Pay them 20 gold^*619^*Attack the guards^*38^*Leave and try to find another way in^*31
 65:The guard leads you in through the gate and into the crowded castle courtyard.  "Colonel Graywald is in the barracks, over there," he says, pointing to a nearby building.  <br>You decide whether to follow the guard to the barracks or try to lose him in the courtyard crowd.
 65:Follow the guard^*302^*Lose the guard in the crowd^*301
@@ -240,7 +240,7 @@
 555:Pretend to be sick^*558^*Sit in the corner and wait to see what happens^*559
 556:Your arm barely fits through the bars on the door, so your lockpicking attempt is very clumsy.  You move the dagger around in the keyhole until you hear a click as the dagger catches against something.
 556:Keep moving the dagger around in the lock^*557^*Pull the dagger out of the lock and wait for a guard instead^*554
-557:INVREMOVE:Hidden dagger^*You keep forcing the dagger in the lock, hoping that the clicking sound you heard was the sound of the lock mechanism.  Unfortunately, this gets the dagger jammed in the lock, and when try to pull the dagger out it snaps at the hilt.  You reach around and try to pull the broken blade out of the lock, knowing that the guards would be suspicious otherwise, but the blade is hopelessly stuck. Cursing, you discard the useless dagger handle."
+557:INVREMOVE:Hidden dagger^*You keep forcing the dagger in the lock, hoping that the clicking sound you heard was the sound of the lock mechanism.  Unfortunately, this gets the dagger jammed in the lock, and when you try to pull the dagger out it snaps at the hilt.  You reach around and try to pull the broken blade out of the lock, knowing that the guards would be suspicious otherwise, but the blade is hopelessly stuck. Cursing, you discard the useless dagger handle."
 557:You have no choice now but to wait for a guard to arrive^*554
 558:LOSEHEALTH:2^*You have very little pretending to do, as standing up after hours of cramped waiting causes a wave of nausea to overtake you.  You vomit onto the floor (causing a loss of 2 health), and then lie down next to it as the guard approaches.  You hear the cell door being unlocked, and then two hands on your shoulder roughly jerk you upwards.
 558:Close your eyes and pretend to be unconscious^*561^*Lash out with your feet^*562
