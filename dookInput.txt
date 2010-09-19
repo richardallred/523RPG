@@ -1,6 +1,6 @@
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
 0:Play the game!^*1
-1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, and elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
+1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dread castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
 2:INVSELECT:1^*In order to pass through Dookia without arousing suspicion, you selected a disguise to enter the country with.  If you take the clothes of a Dookian merchant, you can talk your way through situations by pretending to be a harmless trader.  If you take the clothes of a Dookian mercenary, you can pretend to be looking for work while being constantly ready for combat.  If you take the stealthy dark garb of an assassin, you would arouse more suspicion but easily blend into dark areas. <br>Which clothes did you pick?
 2:Merchant Disguise^*3^*Mercenary Disguise^*3^*Assassin Garb^*3
@@ -34,7 +34,7 @@
 16:Continue^*17
 17:INVSPLIT:First aid kit^*18^*19
 17:null^*1
-18:You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss.  If you pull the bolt out, you can wash the wound in the stream and bandage yourself with supplies from your first aid kit.  However, pulling the bolt out may cause you to pass out from the resulting bleeding
+18:You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss.  If you pull the bolt out, you can wash the wound in the stream and bandage yourself with supplies from your first aid kit.  However, pulling the bolt out may cause you to pass out from the resulting bleeding.
 18:Pull the bolt out and bandage <br>yourself with the first aid kit^*22^*Leave the bolt in your body and try to <br>make your way out of the forest^*21
 19:You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss.  If you pull the bolt out, you can wash the wound in the stream and attempt to bandage yourself with leaves from the forest floor.  However, pulling the bolt out may cause you to pass out from the resulting bleeding.
 19:Pull the bolt out and try to <br>bandage yourself with leaves^*20^*Leave the bolt in your body and try to <br>make your way out of the forest^*21
@@ -42,7 +42,7 @@
 20:null^*1
 21:RESTART:^*You decide to leave the bolt in your shoulder and start trying to find your way out of the woods.  You start to follow a path of broken twigs from where you ran, but you feel so weak you can hardly concentrate.  You soon reach the point where your wounded body can take no more and you collapse to the ground. <br>Your life ends here.
 21:null^*1
-22:LOSEHEALTH:30^*Wincing, you extract the bolt from your shoulder.  Blood flows freely from the wound as you wash it with water from the stream.  You wrap some bandanges around your shoulder and manage to stop the flow.  You are still alive, but your ordeal has cost you 30 health.  You decide to try to make your way back to the castle.
+22:LOSEHEALTH:30^*Wincing, you extract the bolt from your shoulder.  Blood flows freely from the wound as you wash it with water from the stream.  You wrap some bandanges around your shoulder and manage to stop the flow.  You are still alive, but your ordeal has cost you 30 health.  You decide to try to make your way back to the castle. 
 22:Try to find a way out of the forest^*23
 23:You manage to follow a path of broken twigs and torn foliage from where you ran, although it takes you several hours.  Your body is tired from the beating it took and you have to rest several times.  When you finally reach the castle again, it is nightfall.  You see that there are many guards patrolling the castle walls.  With the increased security and your wounded state, the only way you can think of to enter the castle is to use the cover of night to sneak to the moat and swim across it.
 23:Swim the moat^*200
@@ -176,7 +176,7 @@
 87:Enter the Castle^*300
 88:INVREMOVE:Sword,Crossbow,Hidden dagger^*The guards remove your weapons and briefly search you and your cart.  Satisfied, they allow you to enter the castle.
 88:Enter the Castle^*300
-89:The guards briefly search you and your cart but do not find your hidden dagger.  Satisfied, the allow you to enter the castle.
+89:The guards briefly search you and your cart but do not find your hidden dagger.  Satisfied, they allow you to enter the castle.
 89:Enter the Castle^*300
 90:INVREMOVE:Sword,Crossbow^*The guards take your weapon and briefly search you and your cart but do not find your hidden dagger.  Satisfied, the allow you to enter the castle.
 90:Enter the Castle^*300
@@ -206,10 +206,24 @@
 102:Pull yourself up the grapple^*104^*Reconsider this whole climbing thing and go back around to the front of the castle^*4
 103:LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.
 103:Try the Eastern tower^*102^*Go back to the castle entrance^*4
-200:Page 200 (moat)
-200:Content not added^*1
-300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  There are also several entrances to the castle interior in all directions.
-300:Go to the stable^*303^*Go to the merchant stalls^*304^*Go to the barracks^*305^*Keep walking across the courtyard^*306^*Enter the castle interior on the left^*307^*Enter the castle interior on the right^*308
+200:Making sure that none of the patrolling castle guards can see you, you make your way over to the side of the castle and search for entrances near the moat.  You see a 3 foot by 3 foot square tunnel in the side of the castle that is covered by a metal grate with a large lock on it.  You see a small, slime covered waste disposal hole that you could try to squeeze through, but you do not relish the thought.  You see a patch of uneven bricks that you could attempt to scale, but the nearest window that you could enter is 40 feet from the ground.
+200:Swim towards the tunnel with the grating^*201^*Swim towards the small hole^*202^*Swim towards the uneven bricks and try to scale the wall^*203
+201:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to the grate, where you spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health.
+201:Continue^*204
+202:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to reach the hole.  You grab on to the bottom of it and spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health.
+202:Continue^*205
+203:RESTART:^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to one of the bricks on the other side.  You slowly and painfully pull yourself up the bricks, which cut into your hands as you try to climb them.  You manage to make it up a good distance before your aching hands lose their grip, causing you to plummet into the moat below.  You hit the moat with such force that it knocks you out, and you end up floating facedown in the moat. <br>Your life ends here.
+203:Restart^*1
+204:INVSPLIT:Lockpicking kit^*206^*207
+204:null^*1
+205:LOSEHEALTH:5^*The smell emerging from the hole that you have grabbed on to is even worse than that of the moat.  Grimacing, you pull yourself up to it and shove your pack inside.  As you try to struggle through headfirst, fetid water drips off your clothing and you are coated with a layer of slime.  On the other side, you see what looks like a servant's washroom.  After several long minutes of struggling, you manage to get your bruised body through.  The painful struggle has cost you another 5 health. 
+205:Content not added^*1
+206:Tunnel with grate (with lockpicking kit)
+206:Content not added^*1
+207:Tunnel with grate (without lockpicking kit)
+207:Content not added^*1
+300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  In the center of the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep and the King's quarters are inside the inner bailey, but the guards probably will not let you in.
+300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
 301:Lose the guard in the crowd
 301:Content not added^*1
 302:Follow the guard into the barracks
@@ -220,12 +234,10 @@
 304:Content not added^*1
 305:Go to the barracks
 305:Content not added^*1
-306:Keep walking across the courtyard
+306:Enter a castle turret
 306:Content not added^*1
-307:Enter the castle interior on the left
+307:Go to the inner bailey gate
 307:Content not added^*1
-308:Enter the castle interior on the right
-308:Content not added^*1
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
