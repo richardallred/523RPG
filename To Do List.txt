@@ -1,0 +1,12 @@
+Use dojo hash to mess around with url and possibly save state
+
+Make pageText and choices into a single 2 dimensional array
+(and/or make choices an array of object like these:
+var choices = {
+label: buttonLabel
+link: link to page number
+}
+
+Work on moat, courtyard, and grappling story lines
+
+Implement WASD keys to scroll through buttons - have JSonic read the selected choice when scrolling through
