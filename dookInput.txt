@@ -10,7 +10,7 @@
 4:Try the front gate^*5^*Swim the moat^*200^*Attack the guards with a crossbow^*7^*Grapple up the back wall^*8
 5:INVSPLIT:Merchant Disguise^*6^*26
 5:null^*1
-6:As part of your merchant disguise, you brought a horse and cart full of goods.  You ride the horse across the drawbridge and approach the guards.  One of them asks you to state your business.
+6:INVADD:Horse and cart^*As part of your merchant disguise, you brought a horse and cart full of goods.  You ride the horse across the drawbridge and approach the guards.  One of them asks you to state your business.
 6:Say that you wish to trade inside the castle walls^*27^*Say that you have an important delivery for the soldiers inside the castle^*28^*Say that you have an important message for the King^*29^*Say that you are visiting a family member^*46
 7:INVSPLIT:Crossbow^*11^*9
 7:null^*1
@@ -308,12 +308,24 @@
 306:Content not added^*1
 307:Go to the inner bailey gate
 307:Content not added^*1
-308:DISPLAYGOLD:^*You lead your horse and cart over to the stables and are greeted by a stableboy.  "It will cost you 1 gold coin to stable your horse for the day," he says.
-308:Content not added^*1
+308:INVSPLIT:Horse and cart^*315^*316
+308:null^*1
 309:DISPLAYGOLD:^*You walk over to the stables.  Many horses are stabled here, and you see a sign saying that some of them are available for rent.  You see a particularly fine mare that can be rented for 5 gold coins.
-309:Rent the horse^*310^*Go back to the courtyard^*300
-310:Rent a horse
-310:Content not added^*
+309:Pay the 5 gold to rent the horse^*310^*Try to steal the horse^*311^*Go back to the courtyard^*300
+310:Rent the horse
+310:Content not added^*1
+311:Steal the horse
+311:Content not added^*1
+312:Pay the stable boy
+312:Continue^*1
+313:Offer some goods
+313:Continue^*1
+314:Sell the horse
+314:Continue^*1
+315:DISPLAYGOLD:^*You lead your horse and cart over to the stables and are greeted by a stable boy.  "It will cost you 1 gold coin to stable your horse for the day," he says. 
+315:Pay the stable boy^*312^*Offer him some goods from your cart as payment instead^*313^*Tell him that you want to sell your horse^*314
+316:Since you do not have or need a horse, there is no real reason to go to the stables right now.
+316:Go back^*300
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
