@@ -1,4 +1,12 @@
-Use dojo hash to mess around with url and possibly save state
+Use dojo hash to mess around with the url and possibly save state
+
+Mess with the html and css to try to display inventory, gold and health on the right side of the screen (possibly in one of those pane things)
+
+Try to figure out why the WASD keys do not work in firefox but the arrow keys do
+
+Make a lockpicking minigame to add to the locked grate in the moat storyline
+
+Add code for a combat system (COMBAT:'Monster Name','Monster strength','Monster health'^*) or something like that
 
 Make pageText and choices into a single 2 dimensional array
 (and/or make choices an array of object like these:
@@ -8,5 +16,3 @@ link: link to page number
 }
 
 Work on moat, courtyard, and grappling story lines
-
-Implement WASD keys to scroll through buttons - have JSonic read the selected choice when scrolling through
