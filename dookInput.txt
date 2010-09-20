@@ -292,7 +292,7 @@
 241:Continue^*233
 242:LOSEHEALTH:20^*You lie completely still as you listen to the rats finish eating all the food.  To your horror, you hear the rats continue towards you and you feel them swarm all over you.  When you feel them start to sink their teeth into you, you stuggle wildly, but are unable to shake them off.  Soon, you lie there helplessly as the rats gnaw on you, certain that you are going to die.  Eventually, you feel the rats crawl off of you and scamper away, though you have many deep wounds and are covered with bites.  You have lost 20 health.
 242:Continue^*231
-300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  In the center of the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep and the King's quarters are inside the inner bailey, but the guards probably will not let you in.
+300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  Across the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep and the King's quarters are inside the inner bailey, but the guards probably will not let you in.
 300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
 301:Lose the guard in the crowd
 301:Content not added^*1
@@ -302,7 +302,7 @@
 303:null^*1
 304:INVSPLIT:Merchant Disguise^*317^*318
 304:null^*1
-305:Go to the barracks
+305:INVSPLIT:Merchant Disguise^*310^*311
 305:Content not added^*1
 306:Enter a castle turret
 306:Content not added^*1
@@ -310,11 +310,11 @@
 307:Content not added^*1
 308:INVSPLIT:Horse and cart^*315^*316
 308:null^*1
-309:DISPLAYGOLD:^*You walk over to the stables.  Many horses are stabled here, and you see a sign saying that some of them are available for rent.  You see a particularly fine mare that can be rented for 5 gold coins.
-309:Pay the 5 gold to rent the horse^*310^*Try to steal the horse^*311^*Go back to the courtyard^*300
-310:Rent the horse
-310:Content not added^*1
-311:Steal the horse
+309:You walk over to the stables.  Many horses are stabled here, and you see a sign saying that some of them are available for rent.  You currently have no need of a horse right now, so you return to the courtyard.
+309:Go back to the courtyard^*300
+310:INVSPLIT:Horse and cart^*341^*342
+310:null^*1
+311:Barracks (Mercenary disguise)
 311:Content not added^*1
 312:INVREMOVE:Horse and cart,false^*You pay the stable boy one gold coin and he leads your horse into the stable.  The stable boy asks you what you want him to do with the goods in your cart and offers to buy them for 5 gold coins if you do not need them.  You don't actually have any need of the goods now that you have successfully entered the castle, but you know that they are worth more than 5 gold coins.
 312:Accept his offer^*332^*Demand a higher price^*333^*Insist on keeping the goods for yourself^*334
@@ -331,7 +331,7 @@
 318:As you approach the merchant stalls, you see a several stalls of food, goods and equipment, clothing and armor, and weapons
 318:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323
 319:As you lead your horse and cart over to the merchant stalls, one of the guards standing near the stalls approaches you.  "If you want to sell your goods here, I will need to see your merchant's permit," he says.
-319:Say that you lost your permit^*324^*Say that your permit has expired and you are about to buy a new one^*325^*Say that you are not planning on selling anything^*326^*Try to bribe the guard into letting you sell your goods^*327
+319:Say that you have lost your permit^*324^*Say that your permit has expired and you are about to buy a new one^*325^*Say that you are not planning on selling anything^*326^*Try to bribe the guard into letting you sell your goods^*327
 320:Food
 320:Content not added^*1
 321:Goods and equipment
@@ -342,12 +342,12 @@
 323:Content not added^*1
 324:INVREMOVE:Horse and cart,false^*"You are not allowed to trade here without a permit," says the guard, "I will have to confiscate your goods.  Consider yourself lucky that I did not arrest you."  The guard removes your cart from your horse and orders you to bring your horse to the stable.  You head over to the stable under the guard's watchful eye.
 324:Continue^*328
-325:"Buy a new one?" asks the guard, "Everyone knows that permits are issued by the Dookian merchant's guild!"  The guard shouts for help and several more guards converge from the courtyard.  They surround you and draw their weapons.  "This man is a spy," says the guard, "Take him to the dungeon."  You are outnumbered and surrounded and have no choice but to surrender.
+325:"Buy a new one?" asks the guard incredulously, "Everyone knows that permits are issued by the Dookian merchant's guild!"  The guard shouts for help and several more guards converge from the courtyard.  They surround you and draw their weapons.  "This man is a spy," says the guard, "Take him to the dungeon."  You are outnumbered and surrounded and have no choice but to surrender.
 325:Continue^*42
 326:"If you are not planning on selling anything," says the guard, "Then please leave the trading district."  You decide to get rid of your horse and cart at the stables to avoid further trouble.
 326:Continue^*303
-327:Bribe the guard
-327:Content not added^*1
+327:The guard refuses to take your bribe.  "You had better explain to me this instant why you are trying to trade without a permit, or you will be explaning it to our interrogators!" he demands.
+327:Say that you have lost your permit^*324^*Say that your permit has expired and you are going to buy a new one^*325^*Leave your horse and cart behind and try to run away from the guard^*340
 328:DISPLAYGOLD:^*You lead your horse over to the stables and are greeted by a stable boy.  "It will cost you 1 gold coin to stable your horse for the day," he says. 
 328:Pay the stable boy^*331^*Tell him that you want to sell your horse^*339^*Leave without paying and abandon your horse somewhere^*329
 329:You walk over to an empty part of the courtyard and abandon your horse.  Now that you no longer have your horse and cart, you can safely return to the merchant stalls.
@@ -356,15 +356,15 @@
 330:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
 331:LOSEGOLD:1^*You pay the stable boy a gold coin and he takes your horse inside.  "We will take good care of him for you," says the stable boy.  Now that you longer have your horse and cart, you can safely return to the merchant stalls.
 331:Continue^*318
-332:GAINGOLD:4^*The stable boy pays you and starts unloading the goods from your cart.  The goods were mostly trinkets and food, and you already have ample provisions.  Where in the courtyard do you go next?
+332:GAINGOLD:4^*The stable boy pays you and starts unloading the goods from your cart.  The goods were mostly food, and you already have ample provisions.  Where in the courtyard do you go next?
 332:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
-333:LOSEGOLD:1^*The stable boy is insulted that you think his price is unfair and leaves you with all the goods.  There isn't anything that would be useful for your mission in your cart - it is mostly trinkets and food, and you already have ample provisions.  The cart is too heavy to carry, so you take a little bit of the food and abandon the rest of the goods and the cart in front of the stable.   Where in the courtyard do you go next?
+333:LOSEGOLD:1^*The stable boy is insulted that you think his price is unfair and leaves you with all the goods.  There isn't anything that would be useful for your mission in your cart - it is mostly food, and you already have ample provisions.  The cart is too heavy to carry, so you take a little bit of the food and abandon the rest of the goods and the cart in front of the stable.   Where in the courtyard do you go next?
 333:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
-334:LOSEGOLD:1^*You refuse the stable boy's offer and he leaves you with all the goods.  There isn't anything that would be useful for your mission in your cart - it is mostly trinkets and food, and you already have ample provisions.  The cart is too heavy to carry, so you take a little bit of the food and abandon the rest of the goods and the cart in front of the stable.   Where in the courtyard do you go next?
+334:LOSEGOLD:1^*You refuse the stable boy's offer and he leaves you with all the goods.  There isn't anything that would be useful for your mission in your cart - it is mostly food, and you already have ample provisions.  The cart is too heavy to carry, so you take a little bit of the food and abandon the rest of the goods and the cart in front of the stable.   Where in the courtyard do you go next?
 334:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
-335:The stable boy is insulted that you think his price is unfair and leaves you with all the goods.  There isn't anything that would be useful for your mission in your cart - it is mostly trinkets and food, and you already have ample provisions.  The cart is too heavy to carry, so you take a little bit of the food and abandon the rest of the goods and the cart in front of the stable.   Where in the courtyard do you go next?
+335:The stable boy is insulted that you think his price is unfair and leaves you with all the goods.  There isn't anything that would be useful for your mission in your cart - it is mostly food, and you already have ample provisions.  The cart is too heavy to carry, so you take a little bit of the food and abandon the rest of the goods and the cart in front of the stable.   Where in the courtyard do you go next?
 335:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
-336:You refuse the stable boy's offer and he leaves you with all the goods.  There isn't anything that would be useful for your mission in your cart - it is mostly trinkets and food, and you already have ample provisions.  The cart is too heavy to carry, so you take a little bit of the food and abandon the rest of the goods and the cart in front of the stable.   Where in the courtyard do you go next?
+336:You refuse the stable boy's offer and he leaves you with all the goods.  There isn't anything that would be useful for your mission in your cart - it is mostly food, and you already have ample provisions.  The cart is too heavy to carry, so you take a little bit of the food and abandon the rest of the goods and the cart in front of the stable.   Where in the courtyard do you go next?
 336:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
 337:GAINGOLD:10^*The stablemaster gives you 10 coins and takes your horse and cart inside.  You leave the stables and go back into the courtyard.  Where do you go next?
 337:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
@@ -372,6 +372,24 @@
 338:Continue^*337
 339:GAINGOLD:7^*The stable boy runs in to fetch the owner of the stables, who offers you 7 gold coins for your horse.  Since you don't need the horse, you accept the offer and the stablemaster pays you.  Now that you longer have your horse and cart, you can safely return to the merchant stalls.
 339:Continue^*318
+340:RESTART:^*As you sprint away from the guard, he gives a shout of warning and points in your direction.  Several guards converge from the courtyard, and they cut you down with their swords.  Your life ends here.
+340:null^*1
+341:The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  Inside the main entrance of the barracks, you see a large chamber where a huge man with scars crossing his face is talking to a group of soldiers and guards.  As you approach, one of the guards accosts you and asks you what you are doing.
+341:Say you have a delivery for the soldiers^*344^*Ask him if he wants to buy any of your goods^*345^*Say that you were just passing by^*346
+342:The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  Inside the main entrance of the barracks, you see a large chamber where a huge man with scars crossing his face is talking to a group of soldiers and guards.
+342:Go up to the main entrance^*343^*Return to the courtyard^*300
+343:You walk up to the main entrance of the barracks.  One of the guards stops you.  "The barracks is off-limits to merchants," he says.
+343:Tell him that you need the help of the guards^*348^*Tell him that you are looking for a job as a guard^*347^*Leave and go back to the courtyard^*300
+344:The guard calls for Colonel Graywald.  The man with scars crossing his face walks over to you.  The guard tells him that you have brought a delivery and the colonel looks at the contents of your cart.  "There was no delivery requested," says the colonel, "And we already have plenty of food supplies.  Get this man out of my sight and find out why he is lying to me."  Several of the guards immediately seize you.
+344:Continue^*42
+345:"You are not allowed to sell your goods outside of the trading district," says the guard.  "Get out of here and stop wasting my time before I have you arrested!"  You lead your horse and cart back into the courtyard.
+345:Continue^*300
+346:You say that you were just passing by, and you walk past the barracks and return to the courtyard.
+346:Continue^*300
+347:Tell him that you want to get a job as a guard
+347:Content not added^*1
+348:Tell him you need help
+348:Content not added^*1
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
@@ -386,8 +404,8 @@
 555:Pretend to be sick^*558^*Sit in the corner and wait to see what happens^*559
 556:Your arm barely fits through the bars on the door, so your lockpicking attempt is very clumsy.  You move the dagger around in the keyhole until you hear a click as the dagger catches against something.
 556:Keep moving the dagger around in the lock^*557^*Pull the dagger out of the lock and wait for a guard instead^*554
-557:INVREMOVE:Hidden dagger^*You keep forcing the dagger in the lock, hoping that the clicking sound you heard was the sound of the lock mechanism.  Unfortunately, this gets the dagger jammed in the lock, and when you try to pull the dagger out it snaps at the hilt.  You reach around and try to pull the broken blade out of the lock, knowing that the guards would be suspicious otherwise, but the blade is hopelessly stuck. Cursing, you discard the useless dagger handle."
-557:You have no choice now but to wait for a guard to arrive^*554
+557:INVREMOVE:Hidden dagger^*You keep forcing the dagger in the lock, hoping that the clicking sound you heard was the sound of the lock mechanism.  Unfortunately, this gets the dagger jammed in the lock, and when you try to pull the dagger out it snaps at the hilt.  You reach around and try to pull the broken blade out of the lock, knowing that the guards would be suspicious otherwise, but the blade is hopelessly stuck. Cursing, you discard the useless dagger handle.  You have no choice now but to wait for a guard to arrive.
+557:Continue^*554
 558:LOSEHEALTH:2^*You have very little pretending to do, as standing up after hours of cramped waiting causes a wave of nausea to overtake you.  You vomit onto the floor (causing a loss of 2 health), and then lie down next to it as the guard approaches.  You hear the cell door being unlocked, and then two hands on your shoulder roughly jerk you upwards.
 558:Close your eyes and pretend to be unconscious^*561^*Lash out with your feet^*562
 559:Wait to see what happens
