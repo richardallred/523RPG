@@ -1,16 +1,16 @@
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
 0:Play the game!^*1
-1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, and elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
+1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dread castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
 2:INVSELECT:1^*In order to pass through Dookia without arousing suspicion, you selected a disguise to enter the country with.  If you take the clothes of a Dookian merchant, you can talk your way through situations by pretending to be a harmless trader.  If you take the clothes of a Dookian mercenary, you can pretend to be looking for work while being constantly ready for combat.  If you take the stealthy dark garb of an assassin, you would arouse more suspicion but easily blend into dark areas. <br>Which clothes did you pick?
 2:Merchant Disguise^*3^*Mercenary Disguise^*3^*Assassin Garb^*3
-3:INVSELECT:4^*When you were leaving Carolinia, you were given a pouch of gold coins and access to the royal armory to obtain items you needed for your quest.  In order to travel lightly for the long journey to the Dookian castle, you decided to take just four items from the store room. <br> Which items did you take?
-3:Sword^*4^*Crossbow^*4^*Hidden dagger^*4^*Grappling hook^*4^*Lockpicking kit^*4^*First aid kit^*4^*Leather vest^*4^*Shield^*4
+3:INVSELECT:4^*When you were leaving Carolinia, you were given a pouch of gold coins, provisions, and access to the royal armory to obtain items you needed for your quest.  In order to travel lightly for the long journey to the Dookian castle, you decided to take just four items from the store room. <br> Which items did you take?
+3:Sword^*4^*Crossbow^*4^*Hidden dagger^*4^*Grappling hook^*4^*Lockpicking kit^*4^*First aid kit^*4^*Tinderbox and torch^*4^*Shield^*4
 4:You manage to arrive at Castle Dookenstein without incident.  The castle is a towering fortress of stone that looms over the countryside, surrounded by a deep moat.  An ancient forest is to the right of the castle.  There is a path that leads to the castle drawbridge and the main gate, which is closed.  Across the drawbridge, there are two guards in full Dookian armor standing by the gate.  On the top of the castle, there are several more guards facing the front of the castle and holding crossbows.  You come up with several ideas to enter the castle, but all of them are risky. <br>  You could try to talk your way past the guards and enter the front gate. <br> You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
 4:Try the front gate^*5^*Swim the moat^*200^*Attack the guards with a crossbow^*7^*Grapple up the back wall^*8
 5:INVSPLIT:Merchant Disguise^*6^*26
 5:null^*1
-6:As part of your merchant disguise, you brought a horse and cart full of goods.  You ride the horse across the drawbridge and approach the guards.  One of them asks you to state your business.
+6:INVADD:Horse and cart^*As part of your merchant disguise, you brought a horse and cart full of goods.  You ride the horse across the drawbridge and approach the guards.  One of them asks you to state your business.
 6:Say that you wish to trade inside the castle walls^*27^*Say that you have an important delivery for the soldiers inside the castle^*28^*Say that you have an important message for the King^*29^*Say that you are visiting a family member^*46
 7:INVSPLIT:Crossbow^*11^*9
 7:null^*1
@@ -34,7 +34,7 @@
 16:Continue^*17
 17:INVSPLIT:First aid kit^*18^*19
 17:null^*1
-18:You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss.  If you pull the bolt out, you can wash the wound in the stream and bandage yourself with supplies from your first aid kit.  However, pulling the bolt out may cause you to pass out from the resulting bleeding
+18:You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss.  If you pull the bolt out, you can wash the wound in the stream and bandage yourself with supplies from your first aid kit.  However, pulling the bolt out may cause you to pass out from the resulting bleeding.
 18:Pull the bolt out and bandage <br>yourself with the first aid kit^*22^*Leave the bolt in your body and try to <br>make your way out of the forest^*21
 19:You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss.  If you pull the bolt out, you can wash the wound in the stream and attempt to bandage yourself with leaves from the forest floor.  However, pulling the bolt out may cause you to pass out from the resulting bleeding.
 19:Pull the bolt out and try to <br>bandage yourself with leaves^*20^*Leave the bolt in your body and try to <br>make your way out of the forest^*21
@@ -42,7 +42,7 @@
 20:null^*1
 21:RESTART:^*You decide to leave the bolt in your shoulder and start trying to find your way out of the woods.  You start to follow a path of broken twigs from where you ran, but you feel so weak you can hardly concentrate.  You soon reach the point where your wounded body can take no more and you collapse to the ground. <br>Your life ends here.
 21:null^*1
-22:LOSEHEALTH:30^*Wincing, you extract the bolt from your shoulder.  Blood flows freely from the wound as you wash it with water from the stream.  You wrap some bandanges around your shoulder and manage to stop the flow.  You are still alive, but your ordeal has cost you 30 health.  You decide to try to make your way back to the castle.
+22:LOSEHEALTH:25^*Wincing, you extract the bolt from your shoulder.  Blood flows freely from the wound as you wash it with water from the stream.  You wrap some bandanges around your shoulder and manage to stop the flow.  You are still alive, but your ordeal has cost you 25 health.  You decide to try to make your way back to the castle. 
 22:Try to find a way out of the forest^*23
 23:You manage to follow a path of broken twigs and torn foliage from where you ran, although it takes you several hours.  Your body is tired from the beating it took and you have to rest several times.  When you finally reach the castle again, it is nightfall.  You see that there are many guards patrolling the castle walls.  With the increased security and your wounded state, the only way you can think of to enter the castle is to use the cover of night to sneak to the moat and swim across it.
 23:Swim the moat^*200
@@ -52,10 +52,10 @@
 25:Say that you are visiting a family member^*39^*Say that you have an important message for the King^*40^*Attack the guards^*38^*Leave and try to find another way in^*31
 26:INVSPLIT:Mercenary Disguise^*24^*25
 26:null^*1
-27:DISPLAYGOLD:^*"You need a merchant's permit to trade inside these walls," says one of the guards gruffly.  You tell him that you do not have one.  "We will be willing to overlook that detail, for 5 gold apiece," the guard says.
+27:DISPLAYGOLD:^*One of the guards demands to see your merchant's permit.  You tell him that you lost yours.  "We will be willing to overlook that detail, for 5 gold apiece," the guard says.
 27:Bribe the guards with 10 gold^*37^*Refuse to pay the guards^*36
 28:INVCHECK:Grappling hook^*You say that you are bringing supplies and rations to the soldiers to prepare for the upcoming invasion.  One of the guards searches your cart thoroughly.  He takes out the grappling hook that you had hidden under a sack of food. "What use does a merchant have of this?" demands the guard.^*70
-28:Say that you were planning to sell it to someone inside the castle.^*73^*Say that you use it for recreational purposes^*93^*Say that someone must have planted it in your cart^*93
+28:Say that you were planning to sell it to someone inside the castle.^*73^*Say that you use it for recreational purposes^*93^*Say that someone must have planted it in your cart^*93^*Say that it was a gift from a friend^*73
 29:"The King has no time to waste with messages from common merchants," says one of the guards dismissively, "He is planning an important campaign and cannot be bothered right now."
 29:Try to bribe the guards^*64^*Attack the guards^*38^*Leave and try to find another way in^*31
 30:"There are no open positions in the castle guard," says one of the guards, "But Colonel Graywald is recruiting warriors for the upcoming invasion of Carolinia.  I hear the pay is decent."
@@ -176,7 +176,7 @@
 87:Enter the Castle^*300
 88:INVREMOVE:Sword,Crossbow,Hidden dagger^*The guards remove your weapons and briefly search you and your cart.  Satisfied, they allow you to enter the castle.
 88:Enter the Castle^*300
-89:The guards briefly search you and your cart but do not find your hidden dagger.  Satisfied, the allow you to enter the castle.
+89:The guards briefly search you and your cart but do not find your hidden dagger.  Satisfied, they allow you to enter the castle.
 89:Enter the Castle^*300
 90:INVREMOVE:Sword,Crossbow^*The guards take your weapon and briefly search you and your cart but do not find your hidden dagger.  Satisfied, the allow you to enter the castle.
 90:Enter the Castle^*300
@@ -206,26 +206,126 @@
 102:Pull yourself up the grapple^*104^*Reconsider this whole climbing thing and go back around to the front of the castle^*4
 103:LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.
 103:Try the Eastern tower^*102^*Go back to the castle entrance^*4
-200:Page 200 (moat)
-200:Content not added^*1
-300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  There are also several entrances to the castle interior in all directions.
-300:Go to the stable^*303^*Go to the merchant stalls^*304^*Go to the barracks^*305^*Keep walking across the courtyard^*306^*Enter the castle interior on the left^*307^*Enter the castle interior on the right^*308
+200:Making sure that none of the patrolling castle guards can see you, you make your way over to the side of the castle and search for entrances near the moat.  You see a 3 foot by 3 foot square tunnel in the side of the castle that is covered by a rusty metal grate with a large lock on it.  You see a small, slime covered waste disposal hole that you could try to squeeze through, but you do not relish the thought.  You see a patch of uneven bricks that you could attempt to scale, but the nearest window that you could enter is 40 feet from the ground.
+200:Swim towards the tunnel with the grating^*201^*Swim towards the small hole^*202^*Swim towards the uneven bricks and try to scale the wall^*203
+201:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to the grate, where you spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health.
+201:Continue^*204
+202:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to reach the hole.  You grab on to the bottom of it and spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health.
+202:Continue^*205
+203:RESTART:^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to one of the bricks on the other side.  You slowly and painfully pull yourself up the bricks, which cut into your hands as you try to climb them.  You manage to make it up a good distance before your aching hands lose their grip, causing you to plummet into the moat below.  You hit the moat with such force that it knocks you out, and you end up floating facedown in it. <br>Your life ends here.
+203:Restart^*1
+204:INVSPLIT:Lockpicking kit^*206^*207
+204:null^*1
+205:LOSEHEALTH:5^*The smell emerging from the hole that you have grabbed on to is even worse than that of the moat.  Grimacing, you pull yourself up to it and shove your pack inside.  As you try to struggle through headfirst, fetid water drips off of your clothing and you are coated with a layer of slime.  On the other side, you see what looks like a servant's washroom.  After several long minutes of struggling, you manage to get your bruised body through.  The painful struggle has cost you another 5 health. 
+205:Wash yourself and your clothes off in the washroom^*208^*Leave the room before someone arrives^*209
+206:You climb up the grate and pull your lockpicking kit out of your pack.  The lock is rusted and very difficult to pick, but eventually you manage to get it open.  You let the lock fall into the moat and the grate swings open.  You climb in to what appears to be an exit tunnel from the castle.  There is not much light coming in from outside, and the tunnel descends into pitch darkness very quickly.
+206:Enter the tunnel^*210^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
+207:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.  You try to force the lock, but to no avail.  The lock and the grate are both made of solid metal and there is no way past them.  You have no choice but to abandon the tunnel.
+207:Swim to the small hole^*211^*Swim to the uneven bricks and try to scale the wall^*212
+208:Wash yourself
+208:Content not added^*1
+209:Leave the room
+209:Content not added^*1
+210:INVSPLIT:Tinderbox and torch^*213^*214
+210:null^*1
+211:Though you hate the thought of once again swimming in the moat, you jump down from the tunnel and swim the short distance to the small hole you saw earlier.  As you grab on to the bottom of hole to pull yourself up, you shudder with revulsion when your hand touches a wet, slimy substance.  The hole looks smaller than you remembered and you aren't certain if you can fit through it.
+211:Continue^*205
+212:RESTART:^*Though you hate the thought of once again swimming in the moat, you jump down from the tunnel and swim over to the patch of uneven bricks.  You slowly and painfully pull yourself up the bricks, which cut into your hands as you try to climb them.  You manage to make it up a good distance before your aching hands lose their grip, causing you to plummet into the moat below.  You hit the moat with such force that it knocks you out, and you end up floating facedown in it. <br>Your life ends here.
+212:Restart^*1
+213:As you crawl into the tunnel, you use your tinderbox to light your torch.  Fortunately, your pack managed to keep it dry during your swim.  You crawl past walls that have cracked with age and brush away several cobwebs.  Suddenly, you hear the pattering of many tiny feet.  You see a swarm of rats approaching you.
+213:Try to fight the rats^*215^*Try to scare them off with your torch^*216^*Try to feed them some food from your pack^*217^*Ignore them and keep crawling forwards^*218^*Extinguish your torch and lie completely still^*227
+214:You crawl through the pitch black tunnel, feeling the walls with your hands.  You momentarily panic when your hand pass through something sticky, but you realize that it is only a cobweb.  True horror only sets in when you hear the pattering of many tiny feet approaching you.  You desperately try to put the terrible image of being eaten alive by rats out of your mind.
+214:Try to fight the rats in the dark^*215^*Take some food from your pack and scatter it around^*217^*Crawl out of the tunnel as fast as you can^*226^*Stay as still as possible and hope they pass you by^*227
+215:INVSPLIT:Sword^*219^*220
+215:null^*1
+216:As the swarm of rats approach, you wave your torch rapidly in front of you.  Several of the rats back away from the heat and bright light emanating from the torch.  You continue to crawl forwards, forcing the rats back with your torch each time.  This works for a while, until several of the hungry rats decide to try to leap past the torch to get to you.  You react quickly, swatting them down with the torch and setting them ablaze.  The rats run around in panic, setting others in the swarm on fire.  You quickly back away from the blazing mass of rats, but the smoke filling up the tunnel is too much for your lungs and you pass out from the lack of oxygen.
+216:Continue^*240
+217:INVCHECK:Tinderbox and torch^*You open your pack and take out part of the provisions that you had packed for yourself.  You scatter the food in a pile in front of you, hoping it will sate the rats.  You back away, and see the rats rush forwards towards the food.  There are many rats, and they quickly devour the food and continue towards you.^*225
+217:Try to fight the rats^*215^*Try to scare them off with your torch^*216^*Continue crawling forwards as if the rats were not there^*218^*Extinguish your torch and lie completely still^*227
+218:RESTART:^*As you crawl forwards, you see the rats cluster around you in a thick, furry circle.  They seem hesitant to approach your torch.  Then one of them comes up from behind you and bites your leg.  Startled, you drop the torch, and the other rats waste little time jumping onto you and sinking their teeth into you.  You are eaten alive.
+218:Restart^*1
+219:INVCHECK:Hidden dagger^*What do you want to fight the rats with?^*221
+219:Your sword^*222^*Your hidden dagger^*223^*Your bare hands^*224
+220:INVCHECK:Hidden dagger^*What do you want to fight the rats with?^*224
+220:Your hidden dagger^*223^*Your bare hands^*224
+221:What do you want to fight the rats with?
+221:Your sword^*222^*Your bare hands^*224
+222:INVSPLIT:Tinderbox and torch^*235^*228
+222:null^*1
+223:INVSPLIT:Tinderbox and torch^*236^*229
+223:null^*1
+224:INVSPLIT:Tinderbox and torch^*237^*230
+224:null^*1
+225:You feel around in your pack until you find the provisions that you had packed for yourself.  You scatter whatever food you can find randomly in front of you.  You hear the pattering of feet, then the sound of eating.
+225:Try to crawl past the feasting rats^*241^*Lie still and wait for the rats to finish eating^*242
+226:RESTART:^*Panicking, you crawl as fast as you can towards the exit, scraping your hands against the stone floor of the tunnel.  You don't get far before you feel many tiny teeth sink into you.  You flail your arms and legs wildly, but any rats that you manage to shake off are quickly replaced by new ones.  Your life comes to a dreadful end in the dark tunnel.
+226:Restart^*1
+227:RESTART:^*You lie motionless in the dark, praying that the rats pass you by.  It takes all your willpower to remain still when you feel the tiny feet and furry bodies swarm all over you.  Suddenly, you feel a sharp set of teeth sink into you, which causes your body to jerk involuntarily.  This causes the other rats to enter a frenzy and quickly devour you. <br>Your life ends here.
+227:Restart^*1
+228:RESTART:^*You find that drawing your sword is very clumsy in the narrow tunnel.  As your hear the rats approaching you, you blindly swing the sword back and forth, hearing it clang against the wall with each swing.  Many of the rats easily avoid your blade and you feel them leap onto you and sink their teeth into you.  You are soon overwhelmed and eaten alive. 
+228:Restart^*1
+229:LOSEHEALTH:15^*You take out your hidden dagger and prepare for combat.  As the rats approach, you blindly slash with your dagger, hoping to hit as many of them as possible.  Many of the rats leap on to you and sink their teeth into you, but you slash any that bite you with your dagger.  After what seems like an eternity of fighting, you are surrounded by dead rats and covered in nasty bites.  The rats have seriously wounded you, causing you to lose 15 health.
+229:Continue^*231
+230:RESTART:^*As the rats approach you, you lash out blindly with your hands and your feet.  You can feel your blows connecting with several of the rats, but several more manage to get past your defenses and sink their teeth into your flesh.  You are soon overwhelmed and eaten alive.
+230:Restart^*1
+231:INVSPLIT:First aid kit^*232^*233
+231:null^*1
+232:GAINHEALTH:5^*You search your pack until you feel your first aid kit.  Wincing, you take bandages from it and treat your many wounds the best you can.  This treatment causes you to regain 5 of your lost health.  When you have finished, you continue crawling along the tunnel until you feel several sacks full of something piled in front of you.  You struggle for several mintues to push the heavy sacks out of the way, until finally you can see what looks like a storeroom in front of you.
+232:Continue^*234
+233:You continue crawling along the tunnel, wincing every time your wounds touch the stone floor.  After what seems like a long time, you feel several full sacks in front of you.  You struggle for several mintues to push the heavy sacks out of the way, until finally you can see light.  When your eyes adjust, you can see what looks like a torch lit underground storeroom in front of you.
+233:Continue^*234
+234:Storeroom
+234:Content not added^*1
+235:As you try to draw your sword, it clangs against a nearby stone wall.  Since you are in a small 3 foot by 3 foot square tunnel, using the sword effectively is almost impossible.  You sheathe the sword and decide to use a different weapon.
+235:Go back^*219
+236:As you draw your hidden dagger and crouch into a combat position, you see the rats cluster around you in a thick, furry circle.  They seem hesitant to approach your torch.  One of them slowly approaches you, but you lash out with your dagger, skewering it.  You wave your torch to keep most of the swarm away, while cutting any that get close.  Eventually most of the rats give up and scamper away.
+236:Continue^*239
+237:You see the rats cluster around you in a thick, furry circle.  They seem hesitant to approach your torch.  One of them tries to approach you from behind, but you lash out with your foot, sending it flying.  Several more try to approach your body, but you swing your torch at them, setting them ablaze.  The rats run around in panic, setting more of the swarm on fire.  Soon the tunnel is brightly lit with the fur of burning rats.  The fire quickly consumes the oxygen in your area in the tunnel, and you pass out coughing from the smoke.
+237:Continue^*238
+238:LOSEHEALTH:10^*You wake up in great pain and in pitch darkness.  You lie there groaning for a few moments before feeling around in the dark for your tinderbox and torch.  When you finally are able to light the torch, you see yourself surrounded by the charred corpses of many rats.  Your body is badly burnt in several places and your lungs still hurt from breathing in all that smoke.  You have lost 10 health from the fire.
+238:Continue^*239
+239:You continue crawling along the tunnel until you reach what looks like a large pile of sacks blocking the way.  You struggle for several mintues to push the heavy sacks out of the way, until finally you can see what looks like an underground storeroom in front of you.  The storeroom is already lit by torches, so you extinguish yours.
+239:Continue^*234
+240:LOSEHEALTH:5^*You wake up wheezing in the pitch darkness.  You lie there taking deep breaths of air for a few moments, before feeling around in the dark for your tinderbox and torch.  You light the torch and clear away a large pile of charred rat corpses in front of you.  You are mostly unharmed, though you do lose 5 health from the pain in your lungs.
+240:Continue^*239
+241:LOSEHEALTH:10^*You try to keep as close to the wall of the tunnel as you can while crawling past the rats, but the tunnel is only 3 feet wide and it is not easy.  Several of the rats feel you as you pass them by and sink their teeth into your arm.  You grimace in pain but continue moving fowards, hoping that the rest of the swarm does not notice you.  After you think you have passed most of the rats, you slam your arm against the wall, stunning the rats that were attached to you.  The nasty rat bites on your skin cause you to lose 10 health, but you have no time to nurse you wounds.  You must keep moving forwards and hope that the rest of the rats do you not come after you.
+241:Continue^*233
+242:LOSEHEALTH:20^*You lie completely still as you listen to the rats finish eating all the food.  To your horror, you hear the rats continue towards you and you feel them swarm all over you.  When you feel them start to sink their teeth into you, you stuggle wildly, but are unable to shake them off.  Soon, you lie there helplessly as the rats gnaw on you, certain that you are going to die.  Eventually, you feel the rats crawl off of you and scamper away, though you have many deep wounds and are covered with bites.  You have lost 20 health.
+242:Continue^*231
+300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  In the center of the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep and the King's quarters are inside the inner bailey, but the guards probably will not let you in.
+300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
 301:Lose the guard in the crowd
 301:Content not added^*1
 302:Follow the guard into the barracks
 302:Content not added^*1
-303:Go the the stable
-303:Content not added^*1
+303:INVSPLIT:Merchant Disguise^*308^*309
+303:null^*1
 304:Go to the merchant stalls
 304:Content not added^*1
 305:Go to the barracks
 305:Content not added^*1
-306:Keep walking across the courtyard
+306:Enter a castle turret
 306:Content not added^*1
-307:Enter the castle interior on the left
+307:Go to the inner bailey gate
 307:Content not added^*1
-308:Enter the castle interior on the right
-308:Content not added^*1
+308:INVSPLIT:Horse and cart^*315^*316
+308:null^*1
+309:DISPLAYGOLD:^*You walk over to the stables.  Many horses are stabled here, and you see a sign saying that some of them are available for rent.  You see a particularly fine mare that can be rented for 5 gold coins.
+309:Pay the 5 gold to rent the horse^*310^*Try to steal the horse^*311^*Go back to the courtyard^*300
+310:Rent the horse
+310:Content not added^*1
+311:Steal the horse
+311:Content not added^*1
+312:Pay the stable boy
+312:Continue^*1
+313:Offer some goods
+313:Continue^*1
+314:Sell the horse
+314:Continue^*1
+315:DISPLAYGOLD:^*You lead your horse and cart over to the stables and are greeted by a stable boy.  "It will cost you 1 gold coin to stable your horse for the day," he says. 
+315:Pay the stable boy^*312^*Offer him some goods from your cart as payment instead^*313^*Tell him that you want to sell your horse^*314
+316:Since you do not have or need a horse, there is no real reason to go to the stables right now.
+316:Go back^*300
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
