@@ -233,10 +233,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					this.message = specialPageArray[1];
 				}
-				//INVREMOVE:item1,item2,... Remove items from inventory
+				//INVREMOVE:item1,item2,... Remove items from inventory.  Add false as a parameter to display no message
 				else if (specialPageArray[0].match('INVREMOVE:') != null) {
 					inventoryRemove = specialPageArray[0].split('INVREMOVE:');
-					removedArray = new Array();
+					removedArray = [];
+					inventoryRemoveArray = [];
 					removedArray[0] = '<br> You are no longer carrying: ';
 					//Remove multiple inventory items by seperating them by a comma
 					if (inventoryRemove[1].match(',') != null) {
@@ -262,10 +263,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					} else {
 						//display what items have been removed (if any)
 						this.message = specialPageArray[1];
-						for (i = 0; i < removedArray.length; i++) {
-							this.message = this.message + removedArray[i];
-							if (i > 0 && i < removedArray.length - 1) {
-								this.message = this.message + ', ';
+						if ('false' in this.oc(inventoryRemoveArray)) {
+							//do not show a "you are no long carrying" message
+						} else {
+							for (i = 0; i < removedArray.length; i++) {
+								this.message = this.message + removedArray[i];
+								if (i > 0 && i < removedArray.length - 1) {
+									this.message = this.message + ', ';
+								}
 							}
 						}
 					}
@@ -433,7 +438,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					if (goldLost[1] == 'all') {
 						this.gold = 0;
 					} else {
-						this.gold = this.gold - goldLost[1];
+						this.gold = dojo.number.parse(this.gold) - dojo.number.parse(goldLost[1]);
 					}
 					if (this.gold < 0) {
 						this.gold = 0;
@@ -444,7 +449,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//GAINGOLD: n, gain n gold
 				else if (specialPageArray[0].match('GAINGOLD:') != null) {
 					goldGain = specialPageArray[0].split('GAINGOLD:');
-					this.gold = this.gold + goldGain[1];
+					this.gold = dojo.number.parse(this.gold) + dojo.number.parse(goldGain[1]);
 					this.message = specialPageArray[1] + '<br>You have ' + this.gold + ' gold coins.';
 				}
 				//DISPLAYGOLD: show how much gold the player has in the message
