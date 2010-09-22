@@ -564,11 +564,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	drawHealthBar: function(currentHealth) {
         var canvas = dojo.byId("canvas");
         var ctx = canvas.getContext("2d");
+		MAX_WIDTH = canvas.width;
+		MAX_HEIGHT = canvas.height;
 		ctx.fillStyle = "rgb(255,0,0)";
-		ctx.fillRect(0,0,this.MAX_HEALTH*6,15);
+		ctx.fillRect(0,0,MAX_WIDTH,15);
 		ctx.fillStyle = "rgb(0,128,0)";
 		console.log(this.health);
-		ctx.fillRect(0,0,currentHealth*6,15);
+		proportion = currentHealth/this.MAX_HEALTH;
+		ctx.fillRect(0,0,proportion * MAX_WIDTH,15);
 	},
 	//clear the inventory and the canvas and reset health and gold
 	restartGame: function() {
@@ -585,7 +588,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
         var canvas = dojo.byId("canvas");
         var ctx = canvas.getContext("2d");
 		ctx.fillStyle = "rgb(255,255,255)";
-		ctx.fillRect(0,0,150,150);
+		MAX_WIDTH = canvas.width;
+		MAX_HEIGHT = canvas.height;
+		ctx.fillRect(0,0,MAX_WIDTH,MAX_HEIGHT);
 	},
 	
 });
