@@ -475,6 +475,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			} else {
 				//only possible choice is to restart the game
 				choicesArray = ['Restart',1];
+				this.health = 0;
+				this.drawHealthBar(this.health);
 			}
 			this.refreshAll();
 		}
@@ -511,7 +513,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			this.runJSonic();
 		}
 		this.displayMessage.innerHTML = this.message;
-		this.drawHealthBar();
+		this.drawHealthBar(this.health);
 	},
 	runJSonic: function() {
 		this.js.stop();
@@ -559,15 +561,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		}
 	},
 	//draw images on the html5 canvas
-	drawHealthBar: function() {
+	drawHealthBar: function(currentHealth) {
         var canvas = dojo.byId("canvas");
         var ctx = canvas.getContext("2d");
 		ctx.fillStyle = "rgb(255,0,0)";
 		ctx.fillRect(0,0,this.MAX_HEALTH*6,15);
 		ctx.fillStyle = "rgb(0,128,0)";
-		ctx.fillRect(0,0,this.health*6,15);
-		
-		
+		console.log(this.health);
+		ctx.fillRect(0,0,currentHealth*6,15);
 	},
 	//clear the inventory and the canvas and reset health and gold
 	restartGame: function() {
