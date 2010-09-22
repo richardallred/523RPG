@@ -511,7 +511,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			this.runJSonic();
 		}
 		this.displayMessage.innerHTML = this.message;
-		this.draw();
+		this.drawHealthBar();
 	},
 	runJSonic: function() {
 		this.js.stop();
@@ -559,11 +559,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		}
 	},
 	//draw images on the html5 canvas
-	draw: function() {
+	drawHealthBar: function() {
         var canvas = dojo.byId("canvas");
         var ctx = canvas.getContext("2d");
-		ctx.fillStyle = "rgb(255,255,255)";
-		ctx.fillRect(0,0,150,150);
+		ctx.fillStyle = "rgb(255,0,0)";
+		ctx.fillRect(0,0,this.MAX_HEALTH*6,15);
+		ctx.fillStyle = "rgb(0,128,0)";
+		ctx.fillRect(0,0,this.health*6,15);
+		
+		
 	},
 	//clear the inventory and the canvas and reset health and gold
 	restartGame: function() {
