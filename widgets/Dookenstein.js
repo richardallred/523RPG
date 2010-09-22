@@ -11,7 +11,7 @@ dojo.requireLocalization('myapp', 'Dookenstein');
 
 dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
     widgetsInTemplate: true,
-	templatePath: dojo.moduleUrl('myapp.templates', 'Dookenstein_test.html'),
+	templatePath: dojo.moduleUrl('myapp.templates', 'Dookenstein.html'),
 
 	postCreate: function() {
 		//postCreate is called after the dom is created
@@ -566,12 +566,17 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
         var ctx = canvas.getContext("2d");
 		MAX_WIDTH = canvas.width;
 		MAX_HEIGHT = canvas.height;
+		HEALTHBAR_HEIGHT = 20;
 		ctx.fillStyle = "rgb(255,0,0)";
-		ctx.fillRect(0,0,MAX_WIDTH,15);
+		ctx.fillRect(0,0,MAX_WIDTH,HEALTHBAR_HEIGHT);
 		ctx.fillStyle = "rgb(0,128,0)";
-		console.log(this.health);
 		proportion = currentHealth/this.MAX_HEALTH;
-		ctx.fillRect(0,0,proportion * MAX_WIDTH,15);
+		ctx.fillRect(0,0,proportion * MAX_WIDTH,HEALTHBAR_HEIGHT);
+		//add notification text
+		ctx.fillStyle = 'rgb(255,255,255)';
+		ctx.font = '20px sans-serif';
+		ctx.textBaseline = 'top';
+		ctx.fillText("Current Health:" + currentHealth +"/"+this.MAX_HEALTH,0,0);
 	},
 	//clear the inventory and the canvas and reset health and gold
 	restartGame: function() {
