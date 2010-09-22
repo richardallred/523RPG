@@ -30,19 +30,19 @@
 14:Dive to the ground^*15^*Keep running and hope you are not hit^*16
 15:RESTART:^*As you dive to the ground, you can hear crossbow bolts whiz over your head.  Unfortunately, you dive into a thick patch of briars, which lodge into your clothes and skin.  The thorns tear at you as you struggle to extricate yourself, and by the time you struggle free, one of the soldiers has managed to catch up to you.  He cuts you down with his sword. <br> Your life ends here.
 15:null^*1
-16:Two of the crossbow bolts lodge harmlessly into trees, but one of them buries itself into your right shoulder.  Ignoring the pain, you continue to run haphazardly through the woods.  After several minutes of frenzied running, you are forced the stop from pain and exhaustion.  The soldiers are nowhere to be seen, but you realize that you are lost.  Except for a stream flowing on the left, there are no visible landmarks in sight.
+16:LOSEHEALTH:5^*Two of the crossbow bolts lodge harmlessly into trees, but one of them buries itself into your right shoulder (You lose 5 health).  Ignoring the pain, you continue to run haphazardly through the woods.  After several minutes of frenzied running, you are forced the stop from pain and exhaustion.  The soldiers are nowhere to be seen, but you realize that you are lost.  Except for a stream flowing on the left, there are no visible landmarks in sight.
 16:Continue^*17
 17:INVSPLIT:First aid kit^*18^*19
 17:null^*1
-18:You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss.  If you pull the bolt out, you can wash the wound in the stream and bandage yourself with supplies from your first aid kit.  However, pulling the bolt out may cause you to pass out from the resulting bleeding.
+18:LOSEHEALTH:5^*You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss (You have lost 5 more health).  If you pull the bolt out, you can wash the wound in the stream and bandage yourself with supplies from your first aid kit.  However, pulling the bolt out may cause you to pass out from the resulting bleeding.
 18:Pull the bolt out and bandage <br>yourself with the first aid kit^*22^*Leave the bolt in your body and try to <br>make your way out of the forest^*21
-19:You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss.  If you pull the bolt out, you can wash the wound in the stream and attempt to bandage yourself with leaves from the forest floor.  However, pulling the bolt out may cause you to pass out from the resulting bleeding.
+19:LOSEHEALTH:5^*You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss (You have lost 5 more health).  If you pull the bolt out, you can wash the wound in the stream and attempt to bandage yourself with leaves from the forest floor.  However, pulling the bolt out may cause you to pass out from the resulting bleeding.
 19:Pull the bolt out and try to <br>bandage yourself with leaves^*20^*Leave the bolt in your body and try to <br>make your way out of the forest^*21
 20:RESTART:^*Wincing, you extract the bolt from your shoulder.  Blood flows freely from the wound as you wash it with water from the stream.  You gather a handful of leaves and try to staunch the flow, but the leaves are ineffective.  You soon pass out and die from blood loss.
 20:null^*1
 21:RESTART:^*You decide to leave the bolt in your shoulder and start trying to find your way out of the woods.  You start to follow a path of broken twigs from where you ran, but you feel so weak you can hardly concentrate.  You soon reach the point where your wounded body can take no more and you collapse to the ground. <br>Your life ends here.
 21:null^*1
-22:LOSEHEALTH:25^*Wincing, you extract the bolt from your shoulder.  Blood flows freely from the wound as you wash it with water from the stream.  You wrap some bandanges around your shoulder and manage to stop the flow.  You are still alive, but your ordeal has cost you 25 health.  You decide to try to make your way back to the castle. 
+22:LOSEHEALTH:15^*Wincing, you extract the bolt from your shoulder.  Blood flows freely from the wound as you wash it with water from the stream.  You wrap some bandanges around your shoulder and manage to stop the flow.  You are still alive, but your ordeal has cost you 15 health.  You decide to try to make your way back to the castle. 
 22:Try to find a way out of the forest^*23
 23:You manage to follow a path of broken twigs and torn foliage from where you ran, although it takes you several hours.  Your body is tired from the beating it took and you have to rest several times.  When you finally reach the castle again, it is nightfall.  You see that there are many guards patrolling the castle walls.  With the increased security and your wounded state, the only way you can think of to enter the castle is to use the cover of night to sneak to the moat and swim across it.
 23:Swim the moat^*200
@@ -216,8 +216,8 @@
 203:Restart^*1
 204:INVSPLIT:Lockpicking kit^*206^*207
 204:null^*1
-205:LOSEHEALTH:5^*The smell emerging from the hole that you have grabbed on to is even worse than that of the moat.  Grimacing, you pull yourself up to it and shove your pack inside.  As you try to struggle through headfirst, fetid water drips off of your clothing and you are coated with a layer of slime.  On the other side, you see what looks like a servant's washroom.  After several long minutes of struggling, you manage to get your bruised body through.  The painful struggle has cost you another 5 health. 
-205:Wash yourself and your clothes off in the washroom^*208^*Leave the room before someone arrives^*209
+205:LOSEHEALTH:5^*The smell emerging from the hole that you have grabbed on to is even worse than that of the moat.  Grimacing, you pull yourself up to it and shove your pack inside.  As you try to struggle through headfirst, fetid water drips off of your clothing and you are coated with a layer of slime and rotten food.  On the other side, you see a large kitchen.  After several long minutes of struggling, you manage to get your bruised body through.  The painful struggle has cost you another 5 health.  You see an exit on the other side of the room and a basin of water nearby that looks like it is used to wash dishes.
+205:Wash yourself and your clothes off in the basin^*208^*Leave the room before someone arrives^*209
 206:You climb up the grate and pull your lockpicking kit out of your pack.  The lock is rusted and very difficult to pick, but eventually you manage to get it open.  You let the lock fall into the moat and the grate swings open.  You climb in to what appears to be an exit tunnel from the castle.  There is not much light coming in from outside, and the tunnel descends into pitch darkness very quickly.
 206:Enter the tunnel^*210^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
 207:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.  You try to force the lock, but to no avail.  The lock and the grate are both made of solid metal and there is no way past them.  You have no choice but to abandon the tunnel.
@@ -288,7 +288,7 @@
 239:Continue^*234
 240:LOSEHEALTH:5^*You wake up wheezing in the pitch darkness.  You lie there taking deep breaths of air for a few moments, before feeling around in the dark for your tinderbox and torch.  You light the torch and clear away a large pile of charred rat corpses in front of you.  You are mostly unharmed, though you do lose 5 health from the pain in your lungs.
 240:Continue^*239
-241:LOSEHEALTH:10^*You try to keep as close to the wall of the tunnel as you can while crawling past the rats, but the tunnel is only 3 feet wide and it is not easy.  Several of the rats feel you as you pass them by and sink their teeth into your arm.  You grimace in pain but continue moving fowards, hoping that the rest of the swarm does not notice you.  After you think you have passed most of the rats, you slam your arm against the wall, stunning the rats that were attached to you.  The nasty rat bites on your skin cause you to lose 10 health, but you have no time to nurse you wounds.  You must keep moving forwards and hope that the rest of the rats do you not come after you.
+241:LOSEHEALTH:10^*You try to keep as close to the wall of the tunnel as you can while crawling past the rats, but the tunnel is only 3 feet wide and it is not easy.  Several of the rats feel you as you pass them by and sink their teeth into your arm.  You grimace in pain but continue moving fowards, hoping that the rest of the swarm does not notice you.  After you think you have passed most of the rats, you slam your arm against the wall, stunning the rats that were attached to you.  The nasty rat bites on your skin cause you to lose 10 health, but you have no time to nurse your wounds.  You must keep moving forwards and hope that the rest of the rats do you not come after you.
 241:Continue^*233
 242:LOSEHEALTH:20^*You lie completely still as you listen to the rats finish eating all the food.  To your horror, you hear the rats continue towards you and you feel them swarm all over you.  When you feel them start to sink their teeth into you, you stuggle wildly, but are unable to shake them off.  Soon, you lie there helplessly as the rats gnaw on you, certain that you are going to die.  Eventually, you feel the rats crawl off of you and scamper away, though you have many deep wounds and are covered with bites.  You have lost 20 health.
 242:Continue^*231
@@ -329,16 +329,16 @@
 317:INVSPLIT:Horse and cart^*319^*318
 317:null^*1
 318:As you approach the merchant stalls, you see a several stalls of food, goods and equipment, clothing and armor, and weapons
-318:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323
+318:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
 319:As you lead your horse and cart over to the merchant stalls, one of the guards standing near the stalls approaches you.  "If you want to sell your goods here, I will need to see your merchant's permit," he says.
 319:Say that you have lost your permit^*324^*Say that your permit has expired and you are about to buy a new one^*325^*Say that you are not planning on selling anything^*326^*Try to bribe the guard into letting you sell your goods^*327
-320:Food
-320:Content not added^*1
-321:Goods and equipment
-321:Content not added^*1
-322:Clothing and armor
+320:DISPLAYGOLD:^*You look at the variety of available food stalls.  You see merchants selling fresh bread, cheeses, vegetables, and roast meat.  You also see many jugs of ale and mead on display.  You are already carrying enough rations for your mission, but the food for sale looks delicious and you consider buying some for a meal.
+320:Buy some bread and cheese for 2 gold coins^*349^*Buy some roast meat for 4 goin coins^*350^*Buy some ale for 2 gold coins^*351^*Go back to the other stalls^*352
+321:DISPLAYGOLD:^*You see many goods vendors hawking their wares in various stalls.  Most of the goods are not useful for your mission, but you see a few for sale that you consider buying.
+321:Buy a first aid kit for 5 gold coins^*353^*Buy a tinderbox and torch for 4 gold coins^*354^*Buy a compass for 2 gold coins^*355^*Buy some rat poison for 3 gold coins^*356^*Buy a length of rope for 3 gold coins^*357^*Go back to the other stalls^*318
+322:DISPLAYGOLD:^*Clothing and armor
 322:Content not added^*1
-323:Weapons
+323:DISPLAYGOLD:^*Weapons
 323:Content not added^*1
 324:INVREMOVE:Horse and cart,false^*"You are not allowed to trade here without a permit," says the guard, "I will have to confiscate your goods.  Consider yourself lucky that I did not arrest you."  The guard removes your cart from your horse and orders you to bring your horse to the stable.  You head over to the stable under the guard's watchful eye.
 324:Continue^*328
@@ -390,6 +390,36 @@
 347:Content not added^*1
 348:Tell him you need help
 348:Content not added^*1
+349:LOSEGOLD:2^*You pay two gold coins to the vendor and buy some hot, fresh bread and a slice of cheese.  You sit down and enjoy the delicious meal.  It is quite refreshing.^*320
+349:Visit the other stalls^*352^*Return to the Courtyard^*300
+350:LOSEGOLD:4^*You pay four gold coins for a large piece of roast oxen.  You sit down and enjoy the hot, delicious meat.  The meal is quite refreshing.^*320
+350:Visit the other stalls^*352^*Return to the Courtyard^*300
+351:LOSEGOLD:2^*You pay two gold coins and purchase a jug of ale.  You drink a little of it, but the ale has gone bad and it has a terrible, sour taste.  You demand a refund from the vendor, but he just laughs out you.  You don't want any trouble with the guards, so you leave and throw away the bad ale.^*320
+351:Visit the other stalls^*352^*Return to the Courtyard^*300
+352:Which stall do you want to look at?
+352:Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
+353:INVCHECK:First aid kit^*You already have a first aid kit, and you do not need another one^*358
+353:Go back^*321
+354:INVCHECK:Tinderbox and torch^*You already have a tinderbox and torch, and you do not need another one^*359
+354:Go back^*321
+355:INVCHECK:Compass^*You already have a compass, and you do not need another one^*360
+355:Go back^*321
+356:INVCHECK:Rat poison^*You already have enough rat poison, and you do not need any more^*361
+356:Go back^*321
+357:INVCHECK:Rope^*You already have enough rope.^*362
+357:Go back^*321
+358:INVBUY:First aid kit,5^*You pay 5 gold coins and buy the first aid kit.
+358:Return to the goods stall^*321^*Look at the other stalls^*363^*Return to the courtyard^*300
+359:INVBUY:Tinderbox and torch,4^*You pay 4 gold coins and buy the tinderbox and torch.
+359:Return to the goods stall^*321^*Look at the other stalls^*363^*Return to the courtyard^*300
+360:INVBUY:Compass,2^*You pay 2 gold coins and buy the compass.
+360:Return to the goods stall^*321^*Look at the other stalls^*363^*Return to the courtyard^*300
+361:INVBUY:Rat poison,3^*You pay 3 gold coins and buy some rat poison.
+361:Return to the goods stall^*321^*Look at the other stalls^*363^*Return to the courtyard^*300
+362:INVBUY:Rope,3^*You pay 3 gold coins and buy a length of rope.
+362:Return to the goods stall^*321^*Look at the other stalls^*363^*Return to the courtyard^*300
+363:What stall do you want to look at?
+363:Look at the food^*320^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
