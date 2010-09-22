@@ -233,6 +233,27 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					this.message = specialPageArray[1];
 				}
+				//INVBUY:item,gold cost ... Add an item to your inventory and remove that amount of gold.
+				else if (specialPageArray[0].match('INVBUY:') != null) {
+					inventoryAdd = specialPageArray[0].split('INVBUY:');
+					//Add multiple inventory items by seperating them by a comma
+					if (inventoryAdd[1].match(',') != null) {
+						goldSpent = inventoryAdd[1].split(',');
+						if (dojo.number.parse(this.gold) < dojo.number.parse(goldSpent[1])) {
+							this.message = "You do not have enough gold coins.";
+						} else {
+							this.message = specialPageArray[1];
+							//add to inventory
+							this.inventory[this.inventory.length] = goldSpent[0];
+							//spend gold
+							this.gold = dojo.number.parse(this.gold) - dojo.number.parse(goldSpent[1]);
+						}
+					} else {
+						//no gold cost was specified, so act like INVADD
+						this.message = specialPageArray[1];
+						this.inventory[this.inventory.length] = inventoryAdd[1];
+					}
+				}
 				//INVREMOVE:item1,item2,... Remove items from inventory.  Add false as a parameter to display no message
 				else if (specialPageArray[0].match('INVREMOVE:') != null) {
 					inventoryRemove = specialPageArray[0].split('INVREMOVE:');
@@ -408,7 +429,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//LOSEHEALTH: n, lose n health.  Cause death of health is 0 or less
 				else if (specialPageArray[0].match('LOSEHEALTH:') != null) {
 					healthLost = specialPageArray[0].split('LOSEHEALTH:');
-					this.health = this.health - healthLost[1];
+					this.health = dojo.number.parse(this.health) - dojo.number.parse(healthLost[1]);
 					this.message = specialPageArray[1] + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
 					if (this.health <= 0) {
 						this.message = this.message + '<br>Your wounded body can take no more, and you collapse to the ground.  You are dead.';
@@ -418,7 +439,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//GAINHEALTH: n, gain n health.  Cannot go above maximum health.
 				else if (specialPageArray[0].match('GAINHEALTH:') != null) {
 					healthGain = specialPageArray[0].split('GAINHEALTH:');
-					this.health = this.health + healthGain[1];
+					this.health = dojo.number.parse(this.health) + dojo.number.parse(healthGain[1]);
 					if (this.health > this.MAX_HEALTH) {
 						this.health = this.MAX_HEALTH;
 					}
@@ -428,7 +449,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				else if (specialPageArray[0].match('LOSEGOLD:') != null) {
 					goldLost = specialPageArray[0].split('LOSEGOLD:');
 					if (specialPageArray.length > 2) {
-						if (this.gold < goldLost[1]) {
+						if (dojo.number.parse(this.gold) < dojo.number.parse(goldLost[1])) {
 							//not enough gold, redirect to another page
 							this.page = specialPageArray[2];
 							this.processChoice(this.page,0);
@@ -454,7 +475,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				}
 				//DISPLAYGOLD: show how much gold the player has in the message
 				else if (specialPageArray[0].match('DISPLAYGOLD:') != null) {
-					this.message = specialPageArray[1] + '<br>You have ' + this.gold + ' gold coins.';
+					if (this.gold == 1) {
+						this.message = specialPageArray[1] + '<br>You have ' + this.gold + ' gold coin.';
+					} else {
+						this.message = specialPageArray[1] + '<br>You have ' + this.gold + ' gold coins.';
+					}
 				}
 				//restart the game on next button press with RESTART
 				else if (specialPageArray[0].match('RESTART:') != null) {
