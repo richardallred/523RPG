@@ -240,6 +240,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					if (inventoryAdd[1].match(',') != null) {
 						goldSpent = inventoryAdd[1].split(',');
 						if (dojo.number.parse(this.gold) < dojo.number.parse(goldSpent[1])) {
+							if (specialPageArray.length > 2) {
+								//not enough gold, redirect to another page (optional)
+								this.page = specialPageArray[2];
+								this.processChoice(this.page,0);
+								return;
+							}
 							this.message = "You do not have enough gold coins.";
 						} else {
 							this.message = specialPageArray[1];
@@ -546,15 +552,19 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//don't let JSonic read the <br> tag
 		messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),'');
 		this.js.say({text : messageminusbr, cache : true});
-		this.js.say({text : 'Your choices are', cache : true});
+		choicesString = 'Your choices are: ';
+		//this.js.say({text : 'Your choices are', cache : true});
 		for (i = 0 ; i < choicesArray.length; i+=2) {
 			if (choicesArray[i] != null && choicesArray[i] != '') {
 				//remove br tag from choices text
 				choicesminusbr = choicesArray[i].replace(new RegExp( '<br>', 'g' ),'');
-				this.js.say({text : choicesminusbr, cache : true});
+				choicesString = choicesString + choicesminusbr + " ";
+				//this.js.say({text : choicesminusbr, cache : true});
 			}
 		}
-		this.js.say({text : 'Read text again', cache : true});
+		choicesString = choicesString + 'Read text again';
+		//this.js.say({text : 'Read text again', cache : true});
+		this.js.say({text : choicesString, cache : true});
 	},
 	muteJSonic: function() {
 		this.js.stop();
