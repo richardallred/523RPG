@@ -336,10 +336,10 @@
 320:Buy some bread and cheese for 2 gold coins^*349^*Buy some roast meat for 4 goin coins^*350^*Buy some ale for 2 gold coins^*351^*Go back to the other stalls^*352
 321:DISPLAYGOLD:^*You see many goods vendors hawking their wares in various stalls.  Most of the goods are not useful for your mission, but you see a few for sale that you consider buying.
 321:Buy a first aid kit for 5 gold coins^*353^*Buy a tinderbox and torch for 4 gold coins^*354^*Buy a compass for 2 gold coins^*355^*Buy some rat poison for 3 gold coins^*356^*Buy a length of rope for 3 gold coins^*357^*Go back to the other stalls^*318
-322:DISPLAYGOLD:^*Clothing and armor
-322:Content not added^*1
-323:DISPLAYGOLD:^*Weapons
-323:Content not added^*1
+322:INVSPLIT:Merchant Disguise^*364^*365
+322:null^*1
+323:DISPLAYGOLD:^*You see a wide variety of weapons on display, including swords, maces, daggers, and flails.  You also see an assortment of bows and crossbows, along with quivers of arrows and bolts.  Though there are many weapons in display, there are only a few that catch your eye.
+323:Buy a sword for 10 gold coins^*382^*Buy a mace for 8 gold coins^*384^*Buy a crossbow and bolts for 12 gold coins^*383^*Go back to the other stalls^*388
 324:INVREMOVE:Horse and cart,false^*"You are not allowed to trade here without a permit," says the guard, "I will have to confiscate your goods.  Consider yourself lucky that I did not arrest you."  The guard removes your cart from your horse and orders you to bring your horse to the stable.  You head over to the stable under the guard's watchful eye.
 324:Continue^*328
 325:"Buy a new one?" asks the guard incredulously, "Everyone knows that permits are issued by the Dookian merchant's guild!"  The guard shouts for help and several more guards converge from the courtyard.  They surround you and draw their weapons.  "This man is a spy," says the guard, "Take him to the dungeon."  You are outnumbered and surrounded and have no choice but to surrender.
@@ -390,11 +390,11 @@
 347:Content not added^*1
 348:Tell him you need help
 348:Content not added^*1
-349:LOSEGOLD:2^*You pay two gold coins to the vendor and buy some hot, fresh bread and a slice of cheese.  You sit down and enjoy the delicious meal.  It is quite refreshing.^*320
+349:LOSEGOLD:2^*You pay two gold coins to the vendor and buy some hot, fresh bread and a slice of cheese.  You sit down and enjoy the delicious meal.  It is quite refreshing.^*381
 349:Visit the other stalls^*352^*Return to the Courtyard^*300
-350:LOSEGOLD:4^*You pay four gold coins for a large piece of roast oxen.  You sit down and enjoy the hot, delicious meat.  The meal is quite refreshing.^*320
+350:LOSEGOLD:4^*You pay four gold coins for a large piece of roast oxen.  You sit down and enjoy the hot, delicious meat.  The meal is quite refreshing.^*381
 350:Visit the other stalls^*352^*Return to the Courtyard^*300
-351:LOSEGOLD:2^*You pay two gold coins and purchase a jug of ale.  You drink a little of it, but the ale has gone bad and it has a terrible, sour taste.  You demand a refund from the vendor, but he just laughs out you.  You don't want any trouble with the guards, so you leave and throw away the bad ale.^*320
+351:LOSEGOLD:2^*You pay two gold coins and purchase a jug of ale.  You drink a little of it, but the ale has gone bad and it has a terrible, sour taste.  You demand a refund from the vendor, but he just laughs out you.  You don't want any trouble with the guards, so you leave and throw away the bad ale.^*381
 351:Visit the other stalls^*352^*Return to the Courtyard^*300
 352:Which stall do you want to look at?
 352:Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
@@ -420,6 +420,57 @@
 362:Return to the goods stall^*321^*Look at the other stalls^*363^*Return to the courtyard^*300
 363:What stall do you want to look at?
 363:Look at the food^*320^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
+364:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent mercenary disguise, which you could exchange your merchant clothing for.  In the armor stand, you see a set of fine shields for purchase, as well as a suit of chainmail armor that would fit you.
+364:Buy a mercenary disguise for 3 gold coins^*366^*Buy the chainmail armor for 10 gold coins^*367^*Buy a shield for 6 gold coins^*368^*Go back to the other stalls^*372
+365:INVSPLIT:Chainmail armor^*379^*380
+365:null^*1
+366:INVREMOVE:Merchant Disguise,false^*To get a better price on the clothing necessary make the mercenary disguise, you remove your merchant disguise in order to trade it to the vendor.
+366:Continue^*370
+367:INVCHECK:Chainmail armor^*You are already wearing chainmail armor.^*377
+367:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+368:INVCHECK:Shield^*You already have a shield, and you do not need another one.^*378
+368:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+369:INVREMOVE:Mercenary Disguise,false^*To get a better price on the clothing necessary make the merchant disguise, you remove your mercenary disguise in order to trade it to the vendor.
+369:Continue^*373
+370:INVBUY:Mercenary Disguise,3^*You pay 3 gold pieces and put on the mercenary disguise.  What do you do next?^*371
+370:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+371:INVADD:Merchant Disguise^*You can't afford the clothing needed for the mercenary disguise, so you put the merchant disguise back on.
+371:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+372:What stall do you want to look at?
+372:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the weapons^*323^*Return to the courtyard^*300
+373:INVBUY:Merchant Disguise,2^*You pay 2 gold pieces and put on the merchant disguise.  What do you do next?^*374
+373:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+374:INVADD:Mercenary Disguise^*You can't afford the clothing needed for the merchant disguise, so you put the mercenary disguise back on.
+374:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+375:The chainmail armor would look very out of place in a merchant disguise, so you decide not to buy it.
+375:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+376:INVBUY:Chainmail armor,10^*You pay 10 coins for the chainmail armor and put it on over your outfit.
+376:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+377:INVSPLIT:Merchant Disguise^*375^*376
+377:null^*1
+378:INVBUY:Shield,6^*You pay 6 coins and buy a shield.
+378:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+379:The only of interest in the clothing and armor stalls is a set of finely crafted shields for sale.
+379:Buy the shield for 6 gold coins^*368^*Go back to the other stalls^*372
+380:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent merchant disguise, which you could exchange your current clothing for.  In the armor stand, you see a fine shield for purchase, as well as a suit of chainmail armor that would fit you.
+380:Buy a merchant disguise for 2 gold coins^*369^*Buy the chainmail armor for 10 gold coins^*367^*Buy the shield for 6 gold coins^*368^*Go back to the other stalls^*372
+381:You do not have enough gold coins to afford that.
+381:Return to the food stalls^*320^*Visit the other stalls^*352^*Return to the Courtyard^*300
+382:INVCHECK:Sword^*You already have a sword, and do not need another one.^*385
+382:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
+383:INVCHECK:Crossbow^*You already have a crossbow and plenty of bolts, so you do not need to buy another one.^*386
+383:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
+384:INVCHECK:Mace^*You already have a mace, and do not need another one.^*387
+384:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
+385:INVBUY:Sword,10^*You pay 10 coins and buy a sword.
+385:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
+386:INVBUY:Crossbow,12^*You pay 12 coins and buy a crossbow.
+386:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
+387:INVBUY:Mace,8^*You pay 8 coins and buy a mace.
+387:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
+388:What stall do you want to look at?
+388:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Return to the courtyard^*300
+
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
