@@ -552,13 +552,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//don't let JSonic read the <br> tag
 		messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),'');
 		this.js.say({text : messageminusbr, cache : true});
+		//choicesString = messageminusbr + '  Your choices are: ';
 		choicesString = 'Your choices are: ';
 		//this.js.say({text : 'Your choices are', cache : true});
 		for (i = 0 ; i < choicesArray.length; i+=2) {
 			if (choicesArray[i] != null && choicesArray[i] != '') {
 				//remove br tag from choices text
 				choicesminusbr = choicesArray[i].replace(new RegExp( '<br>', 'g' ),'');
-				choicesString = choicesString + choicesminusbr + " ";
+				choicesString = choicesString + choicesminusbr + ".  ";
 				//this.js.say({text : choicesminusbr, cache : true});
 			}
 		}
