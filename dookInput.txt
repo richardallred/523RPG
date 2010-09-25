@@ -190,8 +190,8 @@
 94:Say that you must have counted wrong and <br>you actually have 20 gold pieces^*55^*Attack the guards^*38^*Leave and find another way in^*31
 95:LOSEGOLD:5^*The guard takes your delivery and 5 gold pieces and calls for the gate to be opened. The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The delivery will be made."
 95:Insist that you come with the guard to make sure^*96^*Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31
-96:You are allowed to follow the guard into the castle courtyard.  Knowing that the guard will soon find out that there is no such person as Norman Orwell, you wait until he is distacted and slip in to the crowd of people.  You move around the crowd until the guard is out of sight.
-96:Continue^*300
+96:You are allowed to follow the guard into the castle courtyard.  Knowing that the guard will soon find out that there is no such person as Norman Orwell, you wait until he is distacted and slip in to the crowd of people.  You quickly move through the crowd away from him.  In a few moments, you hear him give a shout of surprise, but you are already a good distance away from him.  You can see a stable and some merchant stalls nearby.
+96:Try to hide in the stable^*399^*Try to hide in the merchant stalls^*400
 97:LOSEGOLD:30^*You pay the guards, and they allow you to enter the castle.^*98
 97:Enter the Castle^*300
 98:You don't have enough money.
@@ -207,7 +207,7 @@
 103:LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.
 103:Try the Eastern tower^*102^*Go back to the castle entrance^*4
 104:Pull yourself up the grapple
-104:Content not added^*999
+104:Content not added^*999^*Go back to the castle entrance^*4
 200:Making sure that none of the patrolling castle guards can see you, you make your way over to the side of the castle and search for entrances near the moat.  You see a 3 foot by 3 foot square tunnel in the side of the castle that is covered by a rusty metal grate with a large lock on it.  You see a small, slime covered waste disposal hole that you could try to squeeze through, but you do not relish the thought.  You see a patch of uneven bricks that you could attempt to scale, but the nearest window that you could enter is 40 feet from the ground.
 200:Swim towards the tunnel with the grating^*201^*Swim towards the small hole^*202^*Swim towards the uneven bricks and try to scale the wall^*203
 201:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to the grate, where you spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health.
@@ -276,8 +276,8 @@
 232:Continue^*234
 233:You continue crawling along the tunnel, wincing every time your wounds touch the stone floor.  After what seems like a long time, you feel several full sacks in front of you.  You struggle for several mintues to push the heavy sacks out of the way, until finally you can see light.  When your eyes adjust, you can see what looks like a torch lit underground storeroom in front of you.
 233:Continue^*234
-234:Storeroom
-234:Content not added^*999
+234:The underground storeroom is dimly lit by several torches on the wall.  There are sacks scattered everywhere and many barrels of goods.  Most of the goods in the storeroom look like they contain food items and ingredients, but the room has so much stuff that you cannot tell.  You can see a large wine rack on one side of the room and on the other side there is short a flight of stairs leading up to a single door out of the room.
+234:Search the room for useful items^*243^*Leave the room before someone comes in and sees you^*244
 235:As you try to draw your sword, it clangs against a nearby stone wall.  Since you are in a small 3 foot by 3 foot square tunnel, using the sword effectively is almost impossible.  You sheathe the sword and decide to use a different weapon.
 235:Go back^*219
 236:As you draw your hidden dagger and crouch into a combat position, you see the rats cluster around you in a thick, furry circle.  They seem hesitant to approach your torch.  One of them slowly approaches you, but you lash out with your dagger, skewering it.  You wave your torch to keep most of the swarm away, while cutting any that get close.  Eventually most of the rats give up and scamper away.
@@ -294,10 +294,72 @@
 241:Continue^*233
 242:LOSEHEALTH:20^*You lie completely still as you listen to the rats finish eating all the food.  To your horror, you hear the rats continue towards you and you feel them swarm all over you.  When you feel them start to sink their teeth into you, you stuggle wildly, but are unable to shake them off.  Soon, you lie there helplessly as the rats gnaw on you, certain that you are going to die.  Eventually, you feel the rats crawl off of you and scamper away, though you have many deep wounds and are covered with bites.  You have lost 20 health.
 242:Continue^*231
+243:INVADD:Rat poison, Bottle of wine^*You quickly search through the sacks and barrels, but most of it is just food supplies.  In one of the sacks, you see a supply of arsenic in a container labeled "Rat poison", which you take.  You also take one of the bottles of wine from the rack.  You are searching through a tall pile of sacks when you hear the door open and see a Dookian guard entering the room.
+243:Quickly hide in the pile of sacks^*245^*Prepare for combat^*246^*Extinguish a nearby torch and hide in the shadows^*248^*Do nothing and pretend that you belong in the storeroom^*247
+244:Not wanting to waste time searching through the many sacks and barrels in the storeroom, you immediately go to the exit.
+244:Content not added^*999
+245:Quickly hide in the pile of sacks
+245:Content not added^*999
+246:Prepare for combat
+246:Content not added^*999
+247:Pretend you belong
+247:Content not added^*999
+248:INVSPLIT:Assassin Garb^*249^*250
+248:Content not added^*999
+249:LOSEHEALTH:2^*You quickly rip the closest torch from the wall and grind it into the ground to extinguish it.  In your haste, you accidently burn yourself and lose 2 health.  In the resulting darkness, you crouch near some sacks and remain still.  The guard looks around the room curiously, but he does not see your dark clothing in the shadows.  He eventually walks over to the wine rack and takes a bottle, turning his back towards you.
+249:Attack the guard and try to take him by surprise^*251^*Wait for the guard to leave the room^*252
+250:Hide in shadows
+250:Content not added^*999
+251:INVSPLIT:Crossbow^*253^*254
+251:null^*1
+252:The guard takes the bottle of wine with him and leaves the room.  After waiting for a few moments to make sure the guard does not come back, you decide that you have spent enough time in the storeroom and head to the exit.
+252:Continue^*259
+253:You pull out your crossbow and silently fire a bolt into the guard's back.  The guard immediately collapses and you hear the bottle of wine break as it falls to the ground.  You walk over to the body and find that the guard is dead.
+253:Search the body^*258^*Leave the room instead^*259
+254:INVSPLIT:Hidden dagger^*255^*256
+254:null^*1
+255:Your silent assassin's clothing makes it easy for you to sneak up on the guard and draw your hidden dagger.  Before the guard can react, you slit his throat and he falls dead to the ground.
+255:Search the body^*258^*Leave the room instead^*259
+256:INVCHECK:Sword^*You silently draw your sword and sneak up to the guard.  Before he can react, you cut him down and he falls dead to the ground.^*257
+256:Search the body^*258^*Leave the room instead^*259
+257:INVADD:Sword^*Your silent assassin's clothing makes it easy for you to sneak up on the guard.  When you reach him, you grab him and forcefully throw him into the wine rack, smashing many of the bottles.  Before the guard can recover, you pull his own sword from its scabbard and use it to cut him down.  The guard falls to the ground, dead.
+257:Search the guard's body^*258^*Leave the room instead^*259
+258:INVSPLIT:Sword^*260^*261
+258:null^*1
+259:Leave the room
+259:Content not added^*999
+260:GAINGOLD:5^*You search the guard's body and find a pouch with 5 gold coins, which you take.  The guard also has a mace, which could be a useful weapon.  The guard is almost your size, so his uniform would probably fit you.
+260:Take the mace^*262^*Change into the guard's uniform^*263^*Leave the room^*259
+261:GAINGOLD:5^*You search the guard's body and find a pouch with 5 gold coins, which you take.  The guard also has a sword and mace as weapons.  The guard is almost your size, so his uniform would probably fit you.
+261:Take the sword^*264^*Take the mace^*265^*Change into the guard's uniform^*263^*Leave the room^*259
+262:INVADD:Mace^*You take the guard's mace.  What do you do next?
+262:Change into the guard's unform^*263^*Leave the room^*259
+263:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb^*You are happy to discard your current outfit, which is filthy and has been covered in muck from swimming in the moat.  You try on the guard's armor and it fits you quite well.
+263:Continue^*267
+264:INVADD:Sword^*You take the guard's sword.  What do you do next?
+264:Take the mace^*262^*Change into the guard's uniform^*263^*Leave the room^*259
+265:INVADD:Mace^*You take the guard's mace.  What do you do next?
+265:Take the sword^*266^*Change into the guard's unform^*263^*Leave the room^*259
+266:INVADD:Sword^*You take the guard's sword.  What do you do next?
+266:Change into the guard's unform^*263^*Leave the room^*259
+267:INVSPLIT:Sword^*268^*269
+267:null^*1
+268:INVSPLIT:Mace^*270^*271
+268:null^*1
+269:INVSPLIT:Mace^*272^*273
+269:null^*1
+270:INVADD:Guard disguise^*You take your sword and mace and sheathe them both.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
+270:Continue^*259
+271:INVADD:Guard disguise,Mace^*You pick up the guard's mace off the ground and sheathe it along with your sword.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
+271:Continue^*259
+272:INVADD:Guard disguise,Sword^*You take the guard's sword and mace and sheathe them both.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
+272:Continue^*259
+273:INVADD:Guard disguise,Sword,Mace^*You take the guard's sword and mace and sheathe them both.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
+273:Continue^*259
 300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  Across the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep where the King resides is inside the inner bailey, but you know there is little chance of the guards letting you through.
 300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
-301:Lose the guard in the crowd
-301:Content not added^*999
+301:You wait until you and the guard are passing through a large crowd of people, then you dart into the crowd while he is not watching.  In a few moments, you hear him give a shout of surprise, but you are already a good distance away from him.  You can see a stable and some merchant stalls nearby.
+301:Try to hide in the stable^*399^*Try to hide in the merchant stalls^*400
 302:Follow the guard into the barracks
 302:Content not added^*999
 303:INVSPLIT:Merchant Disguise^*308^*309
@@ -492,6 +554,18 @@
 397:Continue^*42
 398:Even if you could defeat the guards at the gate and somehow avoid the crossbow bolts from the guards on the wall, there would be no way for you to get the gate open.  You quickly reconsider your decision.
 398:Go back^*392
+399:You rush into the stables, past one of the stable boys who tries to talk to you.  You open one of the stalls and close it behind you, crouching next to one of the horses.  You wait for a while until you are sure nobody is looking for you, then you walk out into the courtyard.
+399:Continue^*300
+400:DISPLAYGOLD:^*You weave your way in between two merchants selling clothes, and duck behind one of the stalls.  The clothes seller sees you and asks you what on earth you are doing.  He then sees a group of guards searching the crowd.  "3 gold will buy my silence, friend," the merchant whispers to you.
+400:Pay the merchant 3 gold to keep quiet^*401^*Refuse to pay the merchant^*402^*Threaten the merchant^*403^*Attack the merchant quickly to silence him^*404
+401:LOSEGOLD:3^*You quietly hand the merchant three gold coins and he acts as if nothing had happened.  Soon, the guards give up searching for you and disperse.  You thank the merchant and walk out into the courtyard.^*402
+401:Continue^*300
+402:You tell the merchant that you don't have any gold coins.  The merchant just laughs at you and calls to the guards.  Soon, you are surrounded by a group of guards with their weapons drawn.  The guard that you followed into the castle points at you and orders that you immediately be arrested.
+402:Continue^*42
+403:You whisper to the merchant that if he does not keep his silence then it will be the last thing he does.  He immediately runs from the stall, shouting for the guards.  Soon, you are surrounded by a group of guards with their weapons drawn.  The guard that you followed into the castle points at you and orders that you immediately be arrested.
+403:Continue^*42
+404:You lunge towards the merchant, but he is too fast for you.  He leaps out of the way and immediately runs from the stall, shouting for the guards.  Soon, you are surrounded by a group of guards with their weapons drawn.  The guard that you followed into the castle points at you and orders that you immediately be arrested.
+404:Continue^*42
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
