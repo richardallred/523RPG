@@ -1,5 +1,5 @@
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
-0:Play the game!^*1
+0:Play the game^*1
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dread castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
 2:INVSELECT:1^*In order to pass through Dookia without arousing suspicion, you selected a disguise to enter the country with.  If you take the clothes of a Dookian merchant, you can talk your way through situations by pretending to be a harmless trader.  If you take the clothes of a Dookian mercenary, you can pretend to be looking for work while being constantly ready for combat.  If you take the stealthy dark garb of an assassin, you would arouse more suspicion but easily blend into dark areas. <br>Which clothes did you pick?
@@ -30,13 +30,13 @@
 14:Dive to the ground^*15^*Keep running and hope you are not hit^*16
 15:RESTART:^*As you dive to the ground, you can hear crossbow bolts whiz over your head.  Unfortunately, you dive into a thick patch of briars, which lodge into your clothes and skin.  The thorns tear at you as you struggle to extricate yourself, and by the time you struggle free, one of the soldiers has managed to catch up to you.  He cuts you down with his sword. <br> Your life ends here.
 15:null^*1
-16:LOSEHEALTH:5^*Two of the crossbow bolts lodge harmlessly into trees, but one of them buries itself into your right shoulder (You lose 5 health).  Ignoring the pain, you continue to run haphazardly through the woods.  After several minutes of frenzied running, you are forced the stop from pain and exhaustion.  The soldiers are nowhere to be seen, but you realize that you are lost.  Except for a stream flowing on the left, there are no visible landmarks in sight.
+16:LOSEHEALTH:5^*Two of the crossbow bolts lodge harmlessly into trees, but one of them buries itself into your right shoulder (You lose 5 health).  Ignoring the pain, you continue to run haphazardly through the woods.  After several minutes of frenzied running, you are forced the stop from pain and exhaustion.  The soldiers are nowhere to be seen, but you realize that you are lost.  Except for a stream flowing on the left, there are no visible landmarks in sight. 
 16:Continue^*17
 17:INVSPLIT:First aid kit^*18^*19
 17:null^*1
-18:LOSEHEALTH:5^*You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss (You have lost 5 more health).  If you pull the bolt out, you can wash the wound in the stream and bandage yourself with supplies from your first aid kit.  However, pulling the bolt out may cause you to pass out from the resulting bleeding.
+18:LOSEHEALTH:5^*You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss (You have lost 5 more health).  If you pull the bolt out, you can wash the wound in the stream and bandage yourself with supplies from your first aid kit.  However, pulling the bolt out may cause you to pass out from the resulting bleeding. 
 18:Pull the bolt out and bandage <br>yourself with the first aid kit^*22^*Leave the bolt in your body and try to <br>make your way out of the forest^*21
-19:LOSEHEALTH:5^*You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss (You have lost 5 more health).  If you pull the bolt out, you can wash the wound in the stream and attempt to bandage yourself with leaves from the forest floor.  However, pulling the bolt out may cause you to pass out from the resulting bleeding.
+19:LOSEHEALTH:5^*You look down at your shoulder and see that your clothes are stained with blood.  The bolt has embedded itself into your flesh, and the wound is still bleeding.  You are starting to feel faint from blood loss (You have lost 5 more health).  If you pull the bolt out, you can wash the wound in the stream and attempt to bandage yourself with leaves from the forest floor.  However, pulling the bolt out may cause you to pass out from the resulting bleeding. 
 19:Pull the bolt out and try to <br>bandage yourself with leaves^*20^*Leave the bolt in your body and try to <br>make your way out of the forest^*21
 20:RESTART:^*Wincing, you extract the bolt from your shoulder.  Blood flows freely from the wound as you wash it with water from the stream.  You gather a handful of leaves and try to staunch the flow, but the leaves are ineffective.  You soon pass out and die from blood loss.
 20:null^*1
@@ -52,7 +52,7 @@
 25:Say that you are visiting a family member^*39^*Say that you have an important message for the King^*40^*Attack the guards^*38^*Leave and try to find another way in^*31
 26:INVSPLIT:Mercenary Disguise^*24^*25
 26:null^*1
-27:DISPLAYGOLD:^*One of the guards demands to see your merchant's permit.  You tell him that you lost yours.  "We will be willing to overlook that detail, for 5 gold apiece," the guard says.
+27:DISPLAYGOLD:^*One of the guards demands to see your merchant's permit.  You tell him that you lost yours.  "We will be willing to overlook that detail, for 5 gold apiece," the guard says. 
 27:Bribe the guards with 10 gold^*37^*Refuse to pay the guards^*36
 28:INVCHECK:Grappling hook^*You say that you are bringing supplies and rations to the soldiers to prepare for the upcoming invasion.  One of the guards searches your cart thoroughly.  He takes out the grappling hook that you had hidden under a sack of food. "What use does a merchant have of this?" demands the guard.^*70
 28:Say that you were planning to sell it to someone inside the castle.^*73^*Say that you use it for recreational purposes^*93^*Say that someone must have planted it in your cart^*93^*Say that it was a gift from a friend^*73
@@ -82,7 +82,7 @@
 40:Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41
 41:RESTART:^*You turn and sprint away from the guards but only make it a few steps before you are brought down by several crossbow bolts in the back. <br>Your life ends here.
 41:null^*1
-42:INVCLEAR:Assassin garb,Merchant Disguise,Mercenary Disguise,Hidden dagger^*The guards roughly search you and remove all the items that you are carrying and all your gold coins.  They then bind your hands behind your back and lead you into the castle.  You are lead downwards into a dank dungeon and thrown into a filthy cell.  "Our interrogators will soon find out what your true purpose here is," leers one of the guards as he walks away.
+42:INVCLEAR:Assassin Garb,Merchant Disguise,Mercenary Disguise,Hidden dagger^*The guards roughly search you and remove all the items that you are carrying and all your gold coins.  They then bind your hands behind your back and lead you into the castle keep.  You are lead downwards into a dank dungeon and thrown into a filthy cell.  "Our interrogators will soon find out what your true purpose here is," leers one of the guards as he walks away.
 42:Continue^*550
 43:INVSPLIT:Grappling hook^*44^*45
 43:null^*1
@@ -92,7 +92,7 @@
 45:Go back^*11
 46:"And what family member is that?" asks one of the guards.  You quickly make up something that you hope is convincing. <br>You say that you are visiting...
 46:Your father, the Duke of Pucia^*56^*Your parents, the Rosens^*57^*Your half-cousin, Norman Orwell^*58^*Your uncle, King K^*99
-47:DISPLAYGOLD:^*"Very well," says one of the guards, "Give me the item to deliver and the name of the person, and I will make sure that the item is delivered - for a small fee of five gold pieces, of course."
+47:DISPLAYGOLD:^*"Very well," says one of the guards, "Give me the item to deliver and the name of the person, and I will make sure that the item is delivered - for a small fee of five gold pieces, of course." 
 47:Give the guards one of your items and the gold^*62^*Say that the delivery must be made in person^*63
 48:"Very well," says one of the guards, "Give me the message and I will ensure that it is delivered to the King."
 48:Say that the message must be delivered in person^*617^*Tell him that there is a plot to overthrow the King^*618^*Tell him that the Carolinians plan to attack the castle^*67^*Tell him that one of the King's relatives has died^*68
@@ -102,11 +102,11 @@
 50:Continue^*42
 51:"Welcome, Ernest," says the guard, bowing his head. "Enjoy your visit."  The gate opens and you enter the castle.
 51:Enter the castle^*300
-52:DISPLAYGOLD:^*One of the guards gets a greedy glint in his eye.  "We could allow you to enter the castle, but it will cost you dearly.  15 gold pieces for each of us, and no less."
+52:DISPLAYGOLD:^*One of the guards gets a greedy glint in his eye.  "We could allow you to enter the castle, but it will cost you dearly.  15 gold pieces for each of us, and no less." 
 52:Give the guards 30 gold pieces^*97^*Try to get in with only 20 gold pieces^*53^*Forget talking and fight your way in^*38^*Leave and try to find another way in^*31
 53:LOSEGOLD:20^*The guards pocket your gold pieces and laugh at you.  "A fool and his money are soon parted," mocks one of the guards.
 53:Attack them^*38^*Leave and try to find another way in^*31
-54:DISPLAYGOLD:^*"If that delivery is so important to you," says one of the guards, "then it must be worth something for us to let you in.  10 gold pieces for each of us should be sufficient."
+54:DISPLAYGOLD:^*"If that delivery is so important to you," says one of the guards, "then it must be worth something for us to let you in.  10 gold pieces for each of us should be sufficient." 
 54:Give the guards 20 gold^*55^*Say that you only have 10 gold^*94^*Attack the guards^*38^*Leave and try to find another way in^*31
 55:LOSEGOLD:20^*The guards take your gold coins and call for the gate to be opened.  "Make your delivery quickly and stay out of trouble," says one of them.
 55:Enter the Castle^*300
@@ -120,7 +120,7 @@
 59:Continue^*42
 60:INVSPLIT:Merchant Disguise^*50^*51
 60:null^*1
-61:LOSEHEALTH:5^*"The Duke has no son by that name," says one of the guards, "You are a spy."  The other guard draws a mace and clubs you on the head before you can react, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you.
+61:LOSEHEALTH:5^*"The Duke has no son by that name," says one of the guards, "You are a spy."  The other guard draws a mace and clubs you on the head before you can react, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you. 
 61:Continue^*42
 62:INVREMOVESELECT:1^*When the guard asks you who you want to delivery made to, you make up a Dookian sounding name, Norman Orwell.  Which item do you give the guard to deliver?
 62:Continue^*95
@@ -142,7 +142,7 @@
 70:null^*1
 71:You say that you are bringing supplies and rations to the soldiers to prepare for the upcoming invasion.  One of the guards searches your pack while the other guard searches your cart thoroughly.  He takes out the lockpicking kit that you had hidden in your cart. "These are used only by thieves and spies," says the guard, "You are no merchant!"  The guards immediately seize you.
 71:Continue^*42
-72:INVREMOVE:Sword,Crossbow^*You say that you are bringing supplies and rations to the soldiers to prepare for the upcoming invasion.  One of the guards searches your pack while the other guard searches your cart thoroughly.  They remove any weapons that you had brought (except the hidden dagger). Finally, the guards allow you entry.  "Deliver these supplies to Colonel Graywald in the barracks," says one of the guards, "He will pay you for them."
+72:INVREMOVE:Sword,Crossbow^*You say that you are bringing supplies and rations to the soldiers to prepare for the upcoming invasion.  One of the guards searches your pack while the other guard searches your cart thoroughly.  They remove any weapons that you had brought (except the hidden dagger). Finally, the guards allow you entry.  "Deliver these supplies to Colonel Graywald in the barracks," says one of the guards, "He will pay you for them." 
 72:Enter the castle^*300
 73:INVSPLIT:Lockpicking kit^*74^*75
 73:null^*1
@@ -182,7 +182,7 @@
 90:Enter the Castle^*300
 91:INVREMOVE:Sword,Crossbow^*The guards take your sword and crossbow and briefly search you and your cart but do not find your hidden dagger.  Satisfied, the allow you to enter the castle.
 91:Enter the Castle^*300
-92:RESTART:^*You tell the guards that you have no weapons. The guards briefly search you and your cart. "He is lying!" exclaims the guard searching the cart, as he uncovers a weapon.  "The punishment for lying to a castle guard is death," says the other guard grimly, drawing his sword.  Without any weapons, you cannot defend yourself. <br>Your life ends here
+92:RESTART:^*You tell the guards that you have no weapons. The guards briefly search you and your cart. "He is lying!" exclaims the guard searching the cart, as he uncovers a weapon.  "The punishment for lying to a castle guard is death," says the other guard grimly, drawing his sword.  Without any weapons, you cannot defend yourself. <br>Your life ends here.
 92:null^*1
 93:The guards do not believe you. "I think that the grappling hook is the tool of a spy, not a merchant," declares one of them.  Before you can react, the guards seize you.  "We will find out soon enough."
 93:Continue^*42
@@ -190,8 +190,8 @@
 94:Say that you must have counted wrong and <br>you actually have 20 gold pieces^*55^*Attack the guards^*38^*Leave and find another way in^*31
 95:LOSEGOLD:5^*The guard takes your delivery and 5 gold pieces and calls for the gate to be opened. The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The delivery will be made."
 95:Insist that you come with the guard to make sure^*96^*Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31
-96:You are allowed to follow the guard into the castle courtyard.  Knowing that the guard will soon find out that there is no such person as Norman Orwell, you wait until he is distacted and slip in to the crowd of people.  You move around the crowd until the guard is out of sight.
-96:Continue^*300
+96:You are allowed to follow the guard into the castle courtyard.  Knowing that the guard will soon find out that there is no such person as Norman Orwell, you wait until he is distacted and slip in to the crowd of people.  You quickly move through the crowd away from him.  In a few moments, you hear him give a shout of surprise, but you are already a good distance away from him.  You can see a stable and some merchant stalls nearby.
+96:Try to hide in the stable^*399^*Try to hide in the merchant stalls^*400
 97:LOSEGOLD:30^*You pay the guards, and they allow you to enter the castle.^*98
 97:Enter the Castle^*300
 98:You don't have enough money.
@@ -206,9 +206,11 @@
 102:Pull yourself up the grapple^*104^*Reconsider this whole climbing thing and go back around to the front of the castle^*4
 103:LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.
 103:Try the Eastern tower^*102^*Go back to the castle entrance^*4
+104:Pull yourself up the grapple
+104:Content not added^*999^*Go back to the castle entrance^*4
 200:Making sure that none of the patrolling castle guards can see you, you make your way over to the side of the castle and search for entrances near the moat.  You see a 3 foot by 3 foot square tunnel in the side of the castle that is covered by a rusty metal grate with a large lock on it.  You see a small, slime covered waste disposal hole that you could try to squeeze through, but you do not relish the thought.  You see a patch of uneven bricks that you could attempt to scale, but the nearest window that you could enter is 40 feet from the ground.
 200:Swim towards the tunnel with the grating^*201^*Swim towards the small hole^*202^*Swim towards the uneven bricks and try to scale the wall^*203
-201:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to the grate, where you spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health.
+201:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to the grate, where you spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health. 
 201:Continue^*204
 202:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to reach the hole.  You grab on to the bottom of it and spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health.
 202:Continue^*205
@@ -222,10 +224,10 @@
 206:Enter the tunnel^*210^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
 207:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.  You try to force the lock, but to no avail.  The lock and the grate are both made of solid metal and there is no way past them.  You have no choice but to abandon the tunnel.
 207:Swim to the small hole^*211^*Swim to the uneven bricks and try to scale the wall^*212
-208:Wash yourself
-208:Content not added^*1
+208:You climb into the basin and scrub yourself vigorously with some nearby lye soap.  It seems like it takes forever, but eventually you get most of the filth off of yourself and your clothes.
+208:Content not added^*999
 209:Leave the room
-209:Content not added^*1
+209:Content not added^*999
 210:INVSPLIT:Tinderbox and torch^*213^*214
 210:null^*1
 211:Though you hate the thought of once again swimming in the moat, you jump down from the tunnel and swim the short distance to the small hole you saw earlier.  As you grab on to the bottom of hole to pull yourself up, you shudder with revulsion when your hand touches a wet, slimy substance.  The hole looks smaller than you remembered and you aren't certain if you can fit through it.
@@ -274,8 +276,8 @@
 232:Continue^*234
 233:You continue crawling along the tunnel, wincing every time your wounds touch the stone floor.  After what seems like a long time, you feel several full sacks in front of you.  You struggle for several mintues to push the heavy sacks out of the way, until finally you can see light.  When your eyes adjust, you can see what looks like a torch lit underground storeroom in front of you.
 233:Continue^*234
-234:Storeroom
-234:Content not added^*1
+234:The underground storeroom is dimly lit by several torches on the wall.  There are sacks scattered everywhere and many barrels of goods.  Most of the goods in the storeroom look like they contain food items and ingredients, but the room has so much stuff that you cannot tell.  You can see a large wine rack on one side of the room and on the other side there is short a flight of stairs leading up to a single door out of the room.
+234:Search the room for useful items^*243^*Leave the room before someone comes in and sees you^*244
 235:As you try to draw your sword, it clangs against a nearby stone wall.  Since you are in a small 3 foot by 3 foot square tunnel, using the sword effectively is almost impossible.  You sheathe the sword and decide to use a different weapon.
 235:Go back^*219
 236:As you draw your hidden dagger and crouch into a combat position, you see the rats cluster around you in a thick, furry circle.  They seem hesitant to approach your torch.  One of them slowly approaches you, but you lash out with your dagger, skewering it.  You wave your torch to keep most of the swarm away, while cutting any that get close.  Eventually most of the rats give up and scamper away.
@@ -290,32 +292,100 @@
 240:Continue^*239
 241:LOSEHEALTH:10^*You try to keep as close to the wall of the tunnel as you can while crawling past the rats, but the tunnel is only 3 feet wide and it is not easy.  Several of the rats feel you as you pass them by and sink their teeth into your arm.  You grimace in pain but continue moving fowards, hoping that the rest of the swarm does not notice you.  After you think you have passed most of the rats, you slam your arm against the wall, stunning the rats that were attached to you.  The nasty rat bites on your skin cause you to lose 10 health, but you have no time to nurse your wounds.  You must keep moving forwards and hope that the rest of the rats do you not come after you.
 241:Continue^*233
-242:LOSEHEALTH:20^*You lie completely still as you listen to the rats finish eating all the food.  To your horror, you hear the rats continue towards you and you feel them swarm all over you.  When you feel them start to sink their teeth into you, you stuggle wildly, but are unable to shake them off.  Soon, you lie there helplessly as the rats gnaw on you, certain that you are going to die.  Eventually, you feel the rats crawl off of you and scamper away, though you have many deep wounds and are covered with bites.  You have lost 20 health.
+242:LOSEHEALTH:20^*You lie completely still as you listen to the rats finish eating all the food.  To your horror, you hear the rats continue towards you and you feel them swarm all over you.  When you feel them start to sink their teeth into you, you stuggle wildly, but are unable to shake them off.  Soon, you lie there helplessly as the rats gnaw on you, certain that you are going to die.  Eventually, you feel the rats crawl off of you and scamper away, though you have many deep wounds and are covered with painful bites.  You have lost 20 health.
 242:Continue^*231
-300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  Across the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep and the King's quarters are inside the inner bailey, but the guards probably will not let you in.
+243:INVADD:Rat poison, Bottle of wine^*You quickly search through the sacks and barrels, but most of it is just food supplies.  In one of the sacks, you see a supply of arsenic in a container labeled "Rat poison", which you take.  You also take one of the bottles of wine from the rack.  You are searching through a tall pile of sacks when you hear the door open and see a Dookian guard entering the room.
+243:Quickly hide in the pile of sacks^*245^*Prepare for combat^*246^*Extinguish a nearby torch and hide in the shadows^*248^*Do nothing and pretend that you belong in the storeroom^*247
+244:Not wanting to waste time searching through the many sacks and barrels in the storeroom, you immediately go to the exit.
+244:Content not added^*999
+245:You bury yourself in the large pile of sacks, shoving yourself in between them.  You only barely manage to conceal yourself before you hear the guard walking into the room.  You hear the guard pause for a few moments, before he walks over to the wine rack and takes a bottle.  After the guard finally leaves the storeroom, you wait for a few moments before pulling yourself out of your hiding place.  Not wanting to spend any more time in the room, you immediately head for the exit.
+245:Content not added^*999
+246:INVSPLIT:Crossbow^*274^*275
+246:null^*1
+247:As the guard enters the room, you sift through the contents of one of the barrels and pretend that nothing strange has happened.  You hear the guard walk towards you and stop for a few seconds as he appraises you.  Then you hear the guard draw his sword.  You will have to defend yourself.
+247:Continue^*276
+248:INVSPLIT:Assassin Garb^*249^*250
+248:null^*1
+249:LOSEHEALTH:2^*You quickly rip the closest torch from the wall and grind it into the ground to extinguish it.  In your haste, you accidently burn yourself and lose 2 health.  In the resulting darkness, you crouch near some sacks and remain still.  The guard looks around the room curiously, but he does not see your dark clothing in the shadows.  He eventually walks over to the wine rack and takes a bottle, turning his back towards you.
+249:Attack the guard and try to take him by surprise^*251^*Wait for the guard to leave the room^*252
+250:LOSEHEALTH:2^*You quickly rip the closest torch from the wall and grind it into the ground to extinguish it.  In your haste, you accidently burn yourself and lose 2 health.  In the resulting darkness, you crouch near some sacks and remain still.  The guard looks around the room curiously, until he looks straight at you and approaches you, drawing his sword.  You will have to defend yourself.
+250:Continue^*276
+251:INVSPLIT:Crossbow^*253^*254
+251:null^*1
+252:The guard takes the bottle of wine with him and leaves the room.  After waiting for a few moments to make sure the guard does not come back, you decide that you have spent enough time in the storeroom and head to the exit.
+252:Continue^*259
+253:You pull out your crossbow and silently fire a bolt into the guard's back.  The guard immediately collapses and you hear the bottle of wine break as it falls to the ground.  You walk over to the body and find that the guard is dead.
+253:Search the body^*258^*Leave the room instead^*259
+254:INVSPLIT:Hidden dagger^*255^*256
+254:null^*1
+255:Your silent assassin's clothing makes it easy for you to sneak up on the guard and draw your hidden dagger.  Before the guard can react, you slit his throat and he falls dead to the ground.
+255:Search the body^*258^*Leave the room instead^*259
+256:INVCHECK:Sword^*You silently draw your sword and sneak up to the guard.  Before he can react, you cut him down and he falls dead to the ground.^*257
+256:Search the body^*258^*Leave the room instead^*259
+257:INVADD:Sword^*Your silent assassin's clothing makes it easy for you to sneak up on the guard.  When you reach him, you grab him and forcefully throw him into the wine rack, smashing many of the bottles.  Before the guard can recover, you pull his own sword from its scabbard and use it to cut him down.  The guard falls to the ground, dead.
+257:Search the guard's body^*258^*Leave the room instead^*259
+258:INVSPLIT:Sword^*260^*261
+258:null^*1
+259:Leave the room
+259:Content not added^*999
+260:GAINGOLD:5^*You search the guard's body and find a pouch with 5 gold coins, which you take.  The guard also has a mace, which could be a useful weapon.  The guard is almost your size, so his uniform would probably fit you.
+260:Take the mace^*262^*Change into the guard's uniform^*263^*Leave the room^*259
+261:GAINGOLD:5^*You search the guard's body and find a pouch with 5 gold coins, which you take.  The guard also has a sword and mace as weapons.  The guard is almost your size, so his uniform would probably fit you.
+261:Take the sword^*264^*Take the mace^*265^*Change into the guard's uniform^*263^*Leave the room^*259
+262:INVADD:Mace^*You take the guard's mace.  What do you do next?
+262:Change into the guard's unform^*263^*Leave the room^*259
+263:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb^*You are happy to discard your current outfit, which is filthy and has been covered in muck from swimming in the moat.  You try on the guard's armor and it fits you quite well.
+263:Continue^*267
+264:INVADD:Sword^*You take the guard's sword.  What do you do next?
+264:Take the mace^*262^*Change into the guard's uniform^*263^*Leave the room^*259
+265:INVADD:Mace^*You take the guard's mace.  What do you do next?
+265:Take the sword^*266^*Change into the guard's unform^*263^*Leave the room^*259
+266:INVADD:Sword^*You take the guard's sword.  What do you do next?
+266:Change into the guard's unform^*263^*Leave the room^*259
+267:INVSPLIT:Sword^*268^*269
+267:null^*1
+268:INVSPLIT:Mace^*270^*271
+268:null^*1
+269:INVSPLIT:Mace^*272^*273
+269:null^*1
+270:INVADD:Guard disguise^*You take your sword and mace and sheathe them both.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
+270:Continue^*259
+271:INVADD:Guard disguise,Mace^*You pick up the guard's mace off the ground and sheathe it along with your sword.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
+271:Continue^*259
+272:INVADD:Guard disguise,Sword^*You take the guard's sword and mace and sheathe them both.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
+272:Continue^*259
+273:INVADD:Guard disguise,Sword,Mace^*You take the guard's sword and mace and sheathe them both.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
+273:Continue^*259
+274:You pull out your crossbow as the guard enters the room.  He sees you and draws his sword as he runs towards you.  You fire a bolt at the guard and hit him in the chest, but he continues running towards you.  You don't have enough time to reload and fire another shot, so you prepare for a fight.
+274:Continue^*276
+275:The guard sees you and draws his sword as he runs towards you.  You prepare to fight him.
+275:Continue^*276
+276:You are fighting a guard.
+276:Content not added^*999
+300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  Across the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep where the King resides is inside the inner bailey, but you know there is little chance of the guards letting you through.
 300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
-301:Lose the guard in the crowd
-301:Content not added^*1
+301:You wait until you and the guard are passing through a large crowd of people, then you dart into the crowd while he is not watching.  In a few moments, you hear him give a shout of surprise, but you are already a good distance away from him.  You can see a stable and some merchant stalls nearby.
+301:Try to hide in the stable^*399^*Try to hide in the merchant stalls^*400
 302:Follow the guard into the barracks
-302:Content not added^*1
+302:Content not added^*999
 303:INVSPLIT:Merchant Disguise^*308^*309
 303:null^*1
 304:INVSPLIT:Merchant Disguise^*317^*318
 304:null^*1
 305:INVSPLIT:Merchant Disguise^*310^*311
-305:Content not added^*1
+305:null^*1
 306:Enter a castle turret
-306:Content not added^*1
-307:Go to the inner bailey gate
-307:Content not added^*1
+306:Content not added^*999^*Return to the Courtyard^*300
+307:The inner bailey is surrounded by a tall stone wall and the only entrance into it is a single gate.  Both sides of the gate are flanked by two guards.  On the top of the wall, you can see many patrolling guards with crossbows who are looking out into the outer bailey.
+307:Approach the guards and try to talk your way in^*389^*Walk along the edge of the wall to look for weaknesses^*390^*Go back to the central courtyard^*300
 308:INVSPLIT:Horse and cart^*315^*316
 308:null^*1
 309:You walk over to the stables.  Many horses are stabled here, and you see a sign saying that some of them are available for rent.  You currently have no need of a horse right now, so you return to the courtyard.
 309:Go back to the courtyard^*300
 310:INVSPLIT:Horse and cart^*341^*342
 310:null^*1
-311:Barracks (Mercenary disguise)
-311:Content not added^*1
+311:The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  Inside the main entrance of the barracks, you see a large chamber where a huge man with scars crossing his face is writing something on a piece of parchment.  You walk up to the barracks entrance and the man turns and looks at you.  "I don't recognize you," he growls, "Are you one of the new recruits?"
+311:Content not added^*999^*Return to the courtyard^*300
 312:INVREMOVE:Horse and cart,false^*You pay the stable boy one gold coin and he leads your horse into the stable.  The stable boy asks you what you want him to do with the goods in your cart and offers to buy them for 5 gold coins if you do not need them.  You don't actually have any need of the goods now that you have successfully entered the castle, but you know that they are worth more than 5 gold coins.
 312:Accept his offer^*332^*Demand a higher price^*333^*Insist on keeping the goods for yourself^*334
 313:INVREMOVE:Horse and cart,false^*The stable boy accepts the offer and takes some food from your cart as payment before leading your horse inside.  He offers to buy the rest of your goods for 4 gold coins if you do not need them.  You don't actually have any need of the goods now that you have successfully entered the castle, but you know that they are worth more than 4 gold coins.
@@ -328,18 +398,18 @@
 316:Go back^*300
 317:INVSPLIT:Horse and cart^*319^*318
 317:null^*1
-318:As you approach the merchant stalls, you see a several stalls of food, goods and equipment, clothing and armor, and weapons
+318:As you approach the merchant stalls, you see several stalls of food, goods and equipment, clothing and armor, and weapons
 318:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
 319:As you lead your horse and cart over to the merchant stalls, one of the guards standing near the stalls approaches you.  "If you want to sell your goods here, I will need to see your merchant's permit," he says.
 319:Say that you have lost your permit^*324^*Say that your permit has expired and you are about to buy a new one^*325^*Say that you are not planning on selling anything^*326^*Try to bribe the guard into letting you sell your goods^*327
-320:DISPLAYGOLD:^*You look at the variety of available food stalls.  You see merchants selling fresh bread, cheeses, vegetables, and roast meat.  You also see many jugs of ale and mead on display.  You are already carrying enough rations for your mission, but the food for sale looks delicious and you consider buying some for a meal.
+320:DISPLAYGOLD:^*You look at the variety of available food stalls.  You see merchants selling fresh bread, cheeses, vegetables, and roast meat.  You also see many jugs of ale and mead on display.  You are already carrying enough rations for your mission, but the food for sale looks delicious and you consider buying some for a meal. 
 320:Buy some bread and cheese for 2 gold coins^*349^*Buy some roast meat for 4 goin coins^*350^*Buy some ale for 2 gold coins^*351^*Go back to the other stalls^*352
-321:DISPLAYGOLD:^*You see many goods vendors hawking their wares in various stalls.  Most of the goods are not useful for your mission, but you see a few for sale that you consider buying.
-321:Buy a first aid kit for 5 gold coins^*353^*Buy a tinderbox and torch for 4 gold coins^*354^*Buy a compass for 2 gold coins^*355^*Buy some rat poison for 3 gold coins^*356^*Buy a length of rope for 3 gold coins^*357^*Go back to the other stalls^*318
-322:DISPLAYGOLD:^*Clothing and armor
-322:Content not added^*1
-323:DISPLAYGOLD:^*Weapons
-323:Content not added^*1
+321:DISPLAYGOLD:^*You see many goods vendors hawking their wares in various stalls.  Most of the goods are not useful for your mission, but you see a few for sale that you consider buying. 
+321:Buy a first aid kit for 5 gold coins^*353^*Buy a tinderbox and torch for 4 gold coins^*354^*Buy a compass for 2 gold coins^*355^*Buy some rat poison for 3 gold coins^*356^*Buy a length of rope for 3 gold coins^*357^*Go back to the other stalls^*363
+322:INVSPLIT:Merchant Disguise^*364^*365
+322:null^*1
+323:DISPLAYGOLD:^*You see a wide variety of weapons on display, including swords, maces, daggers, and flails.  You also see an assortment of bows and crossbows, along with quivers of arrows and bolts.  Though there are many weapons on display, there are only a few that catch your eye. 
+323:Buy a sword for 10 gold coins^*382^*Buy a mace for 8 gold coins^*384^*Buy a crossbow and bolts for 12 gold coins^*383^*Go back to the other stalls^*388
 324:INVREMOVE:Horse and cart,false^*"You are not allowed to trade here without a permit," says the guard, "I will have to confiscate your goods.  Consider yourself lucky that I did not arrest you."  The guard removes your cart from your horse and orders you to bring your horse to the stable.  You head over to the stable under the guard's watchful eye.
 324:Continue^*328
 325:"Buy a new one?" asks the guard incredulously, "Everyone knows that permits are issued by the Dookian merchant's guild!"  The guard shouts for help and several more guards converge from the courtyard.  They surround you and draw their weapons.  "This man is a spy," says the guard, "Take him to the dungeon."  You are outnumbered and surrounded and have no choice but to surrender.
@@ -374,7 +444,7 @@
 339:Continue^*318
 340:RESTART:^*As you sprint away from the guard, he gives a shout of warning and points in your direction.  Several guards converge from the courtyard, and they cut you down with their swords.  Your life ends here.
 340:null^*1
-341:The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  Inside the main entrance of the barracks, you see a large chamber where a huge man with scars crossing his face is talking to a group of soldiers and guards.  As you approach, one of the guards accosts you and asks you what you are doing.
+341:The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  Inside the main entrance of the barracks, you see a large chamber where a huge man with scars crossing his face is talking to a group of soldiers and guards.  As you approach with your horse and cart, one of the guards accosts you and asks you what you are doing.
 341:Say you have a delivery for the soldiers^*344^*Ask him if he wants to buy any of your goods^*345^*Say that you were just passing by^*346
 342:The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  Inside the main entrance of the barracks, you see a large chamber where a huge man with scars crossing his face is talking to a group of soldiers and guards.
 342:Go up to the main entrance^*343^*Return to the courtyard^*300
@@ -387,24 +457,24 @@
 346:You say that you were just passing by, and you walk past the barracks and return to the courtyard.
 346:Continue^*300
 347:Tell him that you want to get a job as a guard
-347:Content not added^*1
+347:Content not added^*999^*Return to the courtyard^*300
 348:Tell him you need help
-348:Content not added^*1
-349:LOSEGOLD:2^*You pay two gold coins to the vendor and buy some hot, fresh bread and a slice of cheese.  You sit down and enjoy the delicious meal.  It is quite refreshing.^*320
+348:Content not added^*999^*Return to the courtyard^*300
+349:LOSEGOLD:2^*You pay two gold coins to the vendor and buy some hot, fresh bread and a slice of cheese.  You sit down and enjoy the delicious meal.  It is quite refreshing.^*381
 349:Visit the other stalls^*352^*Return to the Courtyard^*300
-350:LOSEGOLD:4^*You pay four gold coins for a large piece of roast oxen.  You sit down and enjoy the hot, delicious meat.  The meal is quite refreshing.^*320
+350:LOSEGOLD:4^*You pay four gold coins for a large piece of roast oxen.  You sit down and enjoy the hot, delicious meat.  The meal is quite refreshing.^*381
 350:Visit the other stalls^*352^*Return to the Courtyard^*300
-351:LOSEGOLD:2^*You pay two gold coins and purchase a jug of ale.  You drink a little of it, but the ale has gone bad and it has a terrible, sour taste.  You demand a refund from the vendor, but he just laughs out you.  You don't want any trouble with the guards, so you leave and throw away the bad ale.^*320
+351:LOSEGOLD:2^*You pay two gold coins and purchase a jug of ale.  You drink a little of it, but the ale has gone bad and it has a terrible, sour taste.  You demand a refund from the vendor, but he just laughs out you.  You don't want any trouble with the guards, so you leave and throw away the bad ale.^*381
 351:Visit the other stalls^*352^*Return to the Courtyard^*300
 352:Which stall do you want to look at?
 352:Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
-353:INVCHECK:First aid kit^*You already have a first aid kit, and you do not need another one^*358
+353:INVCHECK:First aid kit^*You already have a first aid kit, and you do not need another one.^*358
 353:Go back^*321
-354:INVCHECK:Tinderbox and torch^*You already have a tinderbox and torch, and you do not need another one^*359
+354:INVCHECK:Tinderbox and torch^*You already have a tinderbox and torch, and you do not need another one.^*359
 354:Go back^*321
-355:INVCHECK:Compass^*You already have a compass, and you do not need another one^*360
+355:INVCHECK:Compass^*You already have a compass, and you do not need another one.^*360
 355:Go back^*321
-356:INVCHECK:Rat poison^*You already have enough rat poison, and you do not need any more^*361
+356:INVCHECK:Rat poison^*You already have enough rat poison, and you do not need any more.^*361
 356:Go back^*321
 357:INVCHECK:Rope^*You already have enough rope.^*362
 357:Go back^*321
@@ -420,38 +490,158 @@
 362:Return to the goods stall^*321^*Look at the other stalls^*363^*Return to the courtyard^*300
 363:What stall do you want to look at?
 363:Look at the food^*320^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
+364:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent mercenary disguise, which you could exchange your merchant clothing for.  In the armor stand, you see a set of fine shields for purchase, as well as a suit of chainmail armor that would fit you. 
+364:Buy a mercenary disguise for 3 gold coins^*366^*Buy the chainmail armor for 10 gold coins^*367^*Buy a shield for 6 gold coins^*368^*Go back to the other stalls^*372
+365:INVSPLIT:Chainmail armor^*379^*380
+365:null^*1
+366:INVREMOVE:Merchant Disguise,false^*To get a better price on the clothing necessary make the mercenary disguise, you remove your merchant disguise in order to trade it to the vendor.
+366:Continue^*370
+367:INVCHECK:Chainmail armor^*You are already wearing chainmail armor.^*377
+367:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+368:INVCHECK:Shield^*You already have a shield, and you do not need another one.^*378
+368:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+369:INVREMOVE:Mercenary Disguise,false^*To get a better price on the clothing necessary make the merchant disguise, you remove your mercenary disguise in order to trade it to the vendor.
+369:Continue^*373
+370:INVBUY:Mercenary Disguise,3^*You pay 3 gold pieces and put on the mercenary disguise.  What do you do next?^*371
+370:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+371:INVADD:Merchant Disguise^*You can't afford the clothing needed for the mercenary disguise, so you put the merchant disguise back on.
+371:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+372:What stall do you want to look at?
+372:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the weapons^*323^*Return to the courtyard^*300
+373:INVBUY:Merchant Disguise,2^*You pay 2 gold pieces and put on the merchant disguise.  What do you do next?^*374
+373:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+374:INVADD:Mercenary Disguise^*You can't afford the clothing needed for the merchant disguise, so you put the mercenary disguise back on.
+374:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+375:The chainmail armor would look very out of place in a merchant disguise, so you decide not to buy it.
+375:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+376:INVBUY:Chainmail armor,10^*You pay 10 coins for the chainmail armor and put it on over your outfit.
+376:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+377:INVSPLIT:Merchant Disguise^*375^*376
+377:null^*1
+378:INVBUY:Shield,6^*You pay 6 coins and buy a shield.
+378:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
+379:The only of interest in the clothing and armor stalls is a set of finely crafted shields for sale.
+379:Buy the shield for 6 gold coins^*368^*Go back to the other stalls^*372
+380:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent merchant disguise, which you could exchange your current clothing for.  In the armor stand, you see a fine shield for purchase, as well as a suit of chainmail armor that would fit you.
+380:Buy a merchant disguise for 2 gold coins^*369^*Buy the chainmail armor for 10 gold coins^*367^*Buy the shield for 6 gold coins^*368^*Go back to the other stalls^*372
+381:You do not have enough gold coins to afford that.
+381:Return to the food stalls^*320^*Visit the other stalls^*352^*Return to the Courtyard^*300
+382:INVCHECK:Sword^*You already have a sword, and do not need another one.^*385
+382:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
+383:INVCHECK:Crossbow^*You already have a crossbow and plenty of bolts, so you do not need to buy another one.^*386
+383:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
+384:INVCHECK:Mace^*You already have a mace, and do not need another one.^*387
+384:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
+385:INVBUY:Sword,10^*You pay 10 coins and buy a sword.
+385:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
+386:INVBUY:Crossbow,12^*You pay 12 coins and buy a crossbow and bolts.
+386:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
+387:INVBUY:Mace,8^*You pay 8 coins and buy a mace.
+387:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
+388:What stall do you want to look at?
+388:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Return to the courtyard^*300
+389:INVSPLIT:Guard Disguise^*391^*392
+389:null^*1
+390:INVCHECK:Grappling hook^*You walk along the entire length of the wall, but there are no weaknesses and it is unclimbable.  The further away you get from the gate, the less guards you see patrolling.  Near the end of the wall, there is a portion where you cannot see any guards.  You look around and there are no people in sight.  You consider attempting to throw your grappling hook up to one of the crenellations in order to climb up.^*393
+390:Try to grapple up the wall^*394^*Return to the inner bailey gate instead^*307^*Go back to the central courtyard^*300
+391:Inner bailey gate (guard disguise)
+391:Content not added^*999
+392:As you walk up to the gate, one of the guards informs you that civilians are not allowed into the inner bailey.
+392:Say that you were given permission to enter the gate^*395^*Say that you have an important message for the King^*396^*Try to bribe your way in^*397^*Try to fight your way in^*398^*Return to the central courtyard^*300
+393:You walk along the entire length of the wall, but there are no weaknesses in it and it is unclimbable.
+393:Go back to the inner bailey gate^*307^*Go back to the central courtyard^*300
+394:Try to grapple up the wall
+394:Content not added^*999^*Return to the courtyard^*300
+395:You were given permission to enter the gate
+395:Content not added^*999^*Return to the courtyard^*300
+396:Important message for the King
+396:Content not added^*999^*Return to the courtyard^*300
+397:You hint to one of the guards that you would make it worth his while if he were to let you into the gate.  Upon hearing this, the guard grabs you and calls for help.  Soon, you are surrounded by guards, who draw weapons and point them at you.  "You are under arrest for trying to bribe the royal guard," one of them says.  You are outnumbered and have no choice but to surrender.
+397:Continue^*42
+398:Even if you could defeat the guards at the gate and somehow avoid the crossbow bolts from the guards on the wall, there would be no way for you to get the gate open.  You quickly reconsider your decision.
+398:Go back^*392
+399:You rush into the stables, past one of the stable boys who tries to talk to you.  You open one of the stalls and close it behind you, crouching next to one of the horses.  You wait for a while until you are sure nobody is looking for you, then you walk out into the courtyard.
+399:Continue^*300
+400:DISPLAYGOLD:^*You weave your way in between two merchants selling clothes, and duck behind one of the stalls.  The clothes seller sees you and asks you what on earth you are doing.  He then sees a group of guards searching the crowd.  "3 gold will buy my silence, friend," the merchant whispers to you. 
+400:Pay the merchant 3 gold to keep quiet^*401^*Refuse to pay the merchant^*402^*Threaten the merchant^*403^*Attack the merchant quickly to silence him^*404
+401:LOSEGOLD:3^*You quietly hand the merchant three gold coins and he acts as if nothing had happened.  Soon, the guards give up searching for you and disperse.  You thank the merchant and walk out into the courtyard.^*402
+401:Continue^*300
+402:You tell the merchant that you don't have any gold coins.  The merchant just laughs at you and calls to the guards.  Soon, you are surrounded by a group of guards with their weapons drawn.  The guard that you followed into the castle points at you and orders that you immediately be arrested.
+402:Continue^*42
+403:You whisper to the merchant that if he does not keep his silence then it will be the last thing he does.  He immediately runs from the stall, shouting for the guards.  Soon, you are surrounded by a group of guards with their weapons drawn.  The guard that you followed into the castle points at you and orders that you immediately be arrested.
+403:Continue^*42
+404:You lunge towards the merchant, but he is too fast for you.  He leaps out of the way and immediately runs from the stall, shouting for the guards.  Soon, you are surrounded by a group of guards with their weapons drawn.  The guard that you followed into the castle points at you and orders that you immediately be arrested.
+404:Continue^*42
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
 551:Search for a way out of your cell^*553^*Save your strength and wait for a guard to approach^*554
-552:You struggle to free your bound hands from their restraints, but to no avail.  You are surrounded by three stone cell walls and a study looking barred cell door, and you can think of no way out of the cell.  The guards have taken everything but the clothes on your back.  You have no option but to sit in the cell and wait to see what happens to you.
-552:Continue^*555
+552:You struggle to free your bound hands from their restraints, but to no avail.  You are surrounded by three stone cell walls and a study looking barred cell door, and you can think of no way out of the cell.  The guards have taken everything but the clothes on your back. 
+552:Search the cell walls for weaknesses^*560^*Save your strength and wait to see what happens^*555
 553:You run your hands along the stone walls and the floor of the cell, but find no structural weaknesses.  You test the strength of the cell door, but it is quite sturdy and will not open by force.  The door is locked by a large iron lock with a keyhole.  The only way of escape that you can think of is to reach through the bars of the cell door and try to pick the lock with your dagger, but you would risk breaking the dagger.
-553:Pick the lock with the dagger^*556^*Save your strength and wait for a guard^*554
-554:INVCHECK:Hidden dagger^*You hide your dagger in your clothes and wait for a guard to approach.  After hours of waiting, you finally hear footsteps approaching your cell.^*560
-554:Content not added^*1
-555:LOSEHEALTH:3^*As you wait in the cell for hours, the ropes tying your hands cut into you, causing you to lose 3 health.  Soon you can no longer feel your arms, and the time passes in a haze of misery.  After a while, you hear footsteps approaching your cell.  In your condition, you don't have the strength to try to fight, but you consider feigning illness to get the guards to open the door.
+553:Pick the lock with the dagger^*556^*Save your strength and wait for a guard to approach^*554
+554:You hide your dagger in your clothes and wait for a guard to approach.  After hours of waiting, you finally hear footsteps approaching your cell.  You know that you can't risk the guards seeing that you have cut the ropes tying your hands, so you come up with a plan to take them by surprise.
+554:Hide the dagger behind your back and prepare to attack^*566^*Lie down and pretend to be sick^*567
+555:LOSEHEALTH:3^*As you wait in the cell for hours, the ropes tying your hands cut into you, causing you to lose 3 health.  Soon you can no longer feel your arms, and the time passes in a haze of misery.  After a while, you hear footsteps approaching your cell.  In your condition, you don't have the strength to try to fight, but you consider feigning illness to get the guards to open the door. 
 555:Pretend to be sick^*558^*Sit in the corner and wait to see what happens^*559
 556:Your arm barely fits through the bars on the door, so your lockpicking attempt is very clumsy.  You move the dagger around in the keyhole until you hear a click as the dagger catches against something.
 556:Keep moving the dagger around in the lock^*557^*Pull the dagger out of the lock and wait for a guard instead^*554
 557:INVREMOVE:Hidden dagger^*You keep forcing the dagger in the lock, hoping that the clicking sound you heard was the sound of the lock mechanism.  Unfortunately, this gets the dagger jammed in the lock, and when you try to pull the dagger out it snaps at the hilt.  You reach around and try to pull the broken blade out of the lock, knowing that the guards would be suspicious otherwise, but the blade is hopelessly stuck. Cursing, you discard the useless dagger handle.  You have no choice now but to wait for a guard to arrive.
-557:Continue^*554
-558:LOSEHEALTH:2^*You have very little pretending to do, as standing up after hours of cramped waiting causes a wave of nausea to overtake you.  You vomit onto the floor (causing a loss of 2 health), and then lie down next to it as the guard approaches.  You hear the cell door being unlocked, and then two hands on your shoulder roughly jerk you upwards.
-558:Close your eyes and pretend to be unconscious^*561^*Lash out with your feet^*562
-559:Wait to see what happens
-559:Content not added^*1
-560:You bide your time and wait for a guard to approach.  After hours of waiting, but you finally hear footsteps approaching your cell.
-560:Content not added^*1
+557:Continue^*569
+558:LOSEHEALTH:2^*You have very little pretending to do, as standing up after hours of cramped waiting causes a wave of nausea to overtake you.  You vomit onto the floor (causing a loss of 2 health), and then you lie down next to it and close your eyes as the guards approach.  You hear the cell door being unlocked, and then two hands on your shoulder roughly jerk you upwards. 
+558:Close your eyes and pretend to be unconscious^*561^*Lash out with your foot^*562
+559:Two armed guards approach the door, and one of them unlocks the door and opens it.  You are dragged upwards and marched out of the cell and down the hallway.
+559:Continue^*572
+560:You painstakingly run your bound hands along the walls, but you can find no structural weaknesses anywhere.  Frustrated and exhausted, you give up your search and wait to see what happens.
+560:Continue^*555
 561:You are roughly shaken, but you let your body go limp and show no reaction.  You feel yourself being carried over a shoulder for some distance, before your hands are untied and you are set down on a flat surface.  A strange, bitter liquid is forced into your mouth, and you feel a hand pinch your nose, which would force you to swallow it.
 561:Open your eyes and spit it out^*563^*Swallow the bitter liquid^*564
-562:LOSEHEALTH:6^*You swiftly lash out with your right foot, only to badly bruise it on a piece of armor.  The guard that you kicked reacts by punching you hard in the chest and letting you crumple to the floor.  You lose 6 health.
-562:Content not added^*1
-563:As you spit out the liquid, you see it splash on to the face of what looks like a doctor.  Crying out, he lets go of your nose and clutches his eyes with his hands.  You are on an operating table in an infirmary, and you see a guard in Dookian uniform standing to your left.  He quickly draws a mace and prepares to strike you with it.
-563:Content not added^*1
+562:LOSEHEALTH:6^*You swiftly lash out with your right foot, only to badly bruise it on a piece of armor.  The guard that you kicked reacts by punching you hard in the chest and letting you crumple to the floor.  You lose 6 health.  As you lie, on the floor, groaning, the two guards that came into your cell drag you up and march you into the hallway.
+562:Continue^*572
+563:As you spit out the liquid, you see it splash on to the face of what looks like a doctor.  Crying out, he lets go of your nose and clutches his eyes with his hands.  You are on an operating table in an infirmary, and you see two guards in Dookian uniform standing to your left.  The doctor is on your right, and he is wearing a belt pouch with many surgical tools.  The guard closest to you quickly draws a mace and prepares to strike you with it.
+563:Try to ward off the blow with your hands^*573^*Quickly roll off the table^*574^*Lunge towards the guard and try to catch his hand^*584
 564:GAINHEALTH:5^*You continue to pretend to be unconsious, but the hand on your nose forces you to swallow the bitter liquid.  You feel a tingling throughout your body, and you feel rejuvenated (You gain 5 health).  You are lifted up and your arms are retied behind your back, and then water is splashed on your face.  Coughing and sputtering, you look around the room.
 564:Continue^*565
-565:You are in the infirmary of the castle, standing next to an operating table.  Most of the operating tables around you are empty.  Next to you are an armed Dookian guard and a person who looks like a doctor holding an empty bucket.
-565:Content not added^*1
+565:You are in the infirmary of the castle, standing next to an operating table.  Most of the operating tables around you are empty.  Next to you are two armed Dookian guards and a person who looks like a doctor holding an empty bucket.  The guards grab you and march you out of the infirmary, and you are lead back into the castle keep and down into the dungeons.
+565:Continue^*572
+566:You sit in the corner of the cell, pretending that your hands are tied behind your back while concealing the dagger in one of them.  Two guards approach the door, and one of them unlocks the door and opens it.  When he comes inside, you quickly spring up and plunge the the dagger into his throat, taking the guard completely by surprise.  You pull the dagger out and he falls to the ground with an awful gurgling sound.  The other guard draws a sword and advances towards you.
+566:Continue^*568
+567:LOSEHEALTH:4^*You lie on the floor of the cell, pretending to groan in pain.  Two guards approach the cell, and you hear one of them unlock the door.  One of the guards roughly hoists you up by the shoulders, and at that moment you strike with your dagger, stabbing the guard in the chest.  The guard responds by kicking you viciously with an armored foot (causing you to lose 4 health), but it is too late.  He falls to the ground and you pull the dagger out of his chest and whirl around to face the second guard, who has drawn his sword. 
+567:Continue^*568
+568:You are fighting a dungeon guard
+568:Content not added^*999
+569:You sit down and wait for hours before two guards finally arrive at your cell.  One of the guards takes out a key to unlock the cell, but sees the dagger blade jammed in the lock.  He gives a shout of surprise and orders you to stand with your face the to wall and your arms above your head.
+569:Obey the guard's order^*570^*Pretend that you did not hear him^*571
+570:You stand with your hands above your head while the guard tries to fix the lock.  He finally gets it unlocked, and the two guards come in and once again tie your hands behind your back.  You are then marched out of the cell and down a hallway.
+570:Content not added^*999
+571:RESTART:^*The guard orders you to stand again, but you just ignore him.  "I don't trust this one," says the guard, "We shouldn't risk keeping him alive."  One of the guards stands outside the cell to watch you while the other one leaves.  The other guard soons returns with a crossbow and shoots you through the bars of the cell.  <br>Your life ends here.
+571:Restart^*1
+572:Marched down a hallway
+572:Content not added^*999
+573:LOSEHEALTH:6^*You instinctively turn your head away and put up your hands to protect yourself against the blow, but it does not help much as the guard hits you several times with the mace.  You lose 6 health.  The blows from the mace have knocked you out. 
+573:Content not added^*999
+574:INVSPLIT:Assassin Garb^*575^*576
+574:null^*1
+575:Your flexible assassin's clothing allows you to react instantly, and you roll off the table just in time to avoid the mace smashing into it.  You hit the ground to the right of the table and immediately spring up.  The guard who swung the mace kicks over the operating table and comes after you, while the other guard draws a sword.
+575:Grab a surgical knife from the doctor's belt and fight the guards^*577^*Sprint out of the room while you have the chance^*578
+576:LOSEHEALTH:2^*You quickly roll off of the table, but the blow from the mace catches you on the left arm, causing you to lose two health.  You crash to the ground, wincing, but you ignore the pain and quickly pull yourself up.  The guard who swung the mace kicks over the operating table and comes after you, while the other guard draws a sword.
+576:Grab a surgical knife from the doctor's belt and fight the guards^*577^*Sprint out of the room while you have the chance^*578
+577:You are fighting two guards.  One of them is armed with a mace and one of them is armed with a sword.  You are armed with a knife.
+577:Content not added^*999
+578:LOSEHEALTH:4^*You waste no time and immediately sprint towards the infirmary exit, weaving between the operating tables.  The guards run after you, but their armor slows them down.  One of the guards throws a knife at you, which grazes the side of your back, causing you to lose 4 health.  You eventually reach the exit and burst out of the infirmary, panting for breath. 
+578:Continue^*579
+579:You emerge in a large courtyard, which you recognize as the inner bailey of the castle.  Due to the hours you spent waiting in the dungeon, it is now night time.  In the distance is the towering castle keep, where you were previously imprisoned.  To the right is a guarded gate that leads to the outer bailey, and to the left you see a large array of tents.  You know that the guards in the infirmary will catch up to you quickly, but it doesn't look like there are many places to hide.
+579:Run towards the keep^*580^*Run towards the tents^*581
+580:RESTART:^*You run as fast as you can towards the keep, and when you look back over your shoulder you can see the guards run out of the infirmary and come after you, pointing and shouting.  As you get closer to the keep, you are suddenly brought down by a rain of arrows coming from the archers guarding the keep.  <br>Your life ends here.
+580:null^*1
+581:You run as fast as you can towards the tents, and when you look back over your shoulder you can see the guards run out of the infirmary and come after you.  You get there a good distance ahead of the guards, and you can see a large number of massive tents ranging from many plain while tents to a few ornately decorated tents.  The area looks deserted at the moment, but you decide to hide in one of the tents to avoid the guards.
+581:Hide in a plain white tent^*582^*Hide in an ornately decorated tent^*583
+582:Hide in a white tent
+582:Content not added^*999
+583:Hide in an ornate tent
+583:Content not added^*999
+584:RESTART:^*You lunge towards the guard and catch his hand, but not in time to stop the mace from smashing into your side.  You ignore the pain and try to wrest the mace out of the guard's hand, but the other guard draws his sword and runs you through.  <br>Your life ends here.
+584:null^*1
 600:INVSPLIT:Sword^*602^*603
 600:null^*1
 601:RESTART:^*You are intimidated by the King's presence and are unable to think of a convincing story.  You panic and try to run out of the throne room.  The King sees you running and casually flicks his ring finger.  You are struck down by a bolt of lightning that arcs from his ring. <br>Your life ends here.
@@ -485,10 +675,12 @@
 615:RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You don't have any weapons, but you lunge towards the King anyway, hoping to choke the life out of him before the guards realize that anything is wrong.  However, the King sees you lunge and sends a powerful blast of magic from his ring, instantly ending your life.
 615:null^*1
 616:The guards start to protest but the King brushes aside their concern.  "This man can do me no harm," he announces, "Leave my presence so he can tell me his information."  The soldiers disperse, grumbling to themselves.  "Now what is it you wanted to tell me?" asks King K.
-616:Attack the King now that he is alone^*600^*Tell him that ... content not added^*1^*Run out of the throne room^*601
+616:Attack the King now that he is alone^*600^*Tell him that ... content not added^*999^*Run out of the throne room^*601
 617:The urgency of your tone convinces the guards and they reluctantly decide to allow you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
-617:Say that the message is for the King's ear only^*616^*Say that... content not added^*1
+617:Say that the message is for the King's ear only^*616^*Say that... content not added^*999
 618:"A plot to overthrow the King?" says one of the guards, "King K must hear of this immediately!" The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. "This mercenary says that he knows of a plot to overthrow you," announces one of the soldiers.  King K demands that you tell him the details immediately.
-618:Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*616^*Say that... content not added^*1
+618:Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*616^*Say that... content not added^*999
 619:LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers lead you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
-619:Say that the message is for the King's ear only^*616^*Say that... content not added^*1
+619:Say that the message is for the King's ear only^*616^*Say that... content not added^*999
+999:RESTART:^*Content not added: As you try to go to a place that does not yet exist, you fall through a rip in the space-time continuum.  <br>Your life ends here.
+999:null^*1
