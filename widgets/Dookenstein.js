@@ -235,12 +235,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						} else {
 							this.inventory[this.inventory.length] = inventoryAdd[1];
 						}
-<<<<<<< HEAD
-						this.message = specialPageArray[p+1];
-						//console.log(this.inventory);
-=======
 						//this.message = specialPageArray[p+1];
->>>>>>> origin/master
 					}
 					//INVBUY:item,gold cost ... Add an item to your inventory and remove that amount of gold.
 					//Does not work with multiple commands but is almost equivalent to INVADD: and LOSEGOLD: together
@@ -523,10 +518,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						//this.message = specialPageArray[p];
 					}
 				}
-<<<<<<< HEAD
-				//console.log(this.message);
-=======
->>>>>>> origin/master
 			}
 			//End special pages testing
 			if (this.restart == 0) {
