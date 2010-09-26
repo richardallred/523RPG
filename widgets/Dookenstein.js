@@ -111,7 +111,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	_onKeyPress: function(e) {
 		//use e.keyCode to get ASCII values
 		//for switch users, switches are meant to mapped to X and C keys
-		console.log(e.keyCode);
 		if (e.keyCode == 109 || e.keyCode == 77) {
 			//pressed M key - mute JSonic
 			this.muteJSonic();
@@ -368,6 +367,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					//go to inventory selection mode (stay on this page until all items are taken)
 					this.invselect = 1;
+					
+					this.message = specialPageArray[1];
+					selectedString = inventoryAddNumber[1] - alreadyTakenCount;
+					if (inventoryAddNumber[1] == 1) {
+						//do not show "you can take 1 more item" if there is only one item to take
+					} else {
+						if (selectedString != 1) {
+							this.message = this.message + ' <br>You can take ' + selectedString + ' more items.'
+						} else {
+							this.message = this.message + ' <br>You can take ' + selectedString + ' more item.'
+						}
+					}
 					if (alreadyTakenCount >= inventoryAddNumber[1]) {
 						//the number of inventory items you can take has been reached, move on to the next page
 						this.invselect = 0;
@@ -377,7 +388,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						this.processChoice(this.page, choiceNum);
 						return;
 					}
-					this.message = specialPageArray[1];
 				}
 				//choose a certain number of items to remove from inventory with INVREMOVESELECT.  INVREMOVESELECT:n, choose n items from the choices
 				else if (specialPageArray[0].match('INVREMOVESELECT:') != null) {
