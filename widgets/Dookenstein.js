@@ -24,7 +24,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			load: dojo.hitch(this,"loadPageTextAndChoices")
 		}
 		dojo.xhrGet(xhrArgs);
-		this.connect(window,'onkeypress','_onKeyPress');
+		this.connect(window,'onkeyup','_onKeyPress');
 	},
     postMixInProperties: function() {
 		//postMixInProperties is called before the html is intialized
@@ -111,6 +111,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	_onKeyPress: function(e) {
 		//use e.keyCode to get ASCII values
 		//for switch users, switches are meant to mapped to X and C keys
+		console.log(e.keyCode);
 		if (e.keyCode == 109 || e.keyCode == 77) {
 			//pressed M key - mute JSonic
 			this.muteJSonic();
