@@ -234,6 +234,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.inventory[this.inventory.length] = inventoryAdd[1];
 						}
 						this.message = specialPageArray[p+1];
+						//console.log(this.inventory);
 					}
 					//INVBUY:item,gold cost ... Add an item to your inventory and remove that amount of gold.
 					else if (specialPageArray[p].match('INVBUY:') != null) {
@@ -511,7 +512,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						//this.message = specialPageArray[p];
 					}
 				}
-				console.log(this.message);
+				//console.log(this.message);
 			}
 			//End special pages testing
 			if (this.restart == 0) {
