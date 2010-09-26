@@ -195,6 +195,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				this.message = specialPageArray[specialPageArray.length-1];
 				for(p=0; p<specialPageArray.length; p++){
 					//INVSPLIT:item.  If the item is in the inventory, go the first page, otherwise go to the second page
+					//INVSPLIT does not work with multiple special commands
 					if (specialPageArray[p].match('INVSPLIT:') != null) {
 						inventoryCheck = specialPageArray[p].split('INVSPLIT:');
 						if (inventoryCheck[1] in this.oc(this.inventory) || specialPageArray.length < 3) {
@@ -210,6 +211,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						}
 					}
 					//INVCHECK:item.  If the item is in the inventory, display the page, otherwise redirect to another page
+					//INVCHECK does not work with multiple special commands
 					else if (specialPageArray[p].match('INVCHECK:') != null) {
 						inventoryCheck = specialPageArray[p].split('INVCHECK:');
 						if (inventoryCheck[1] in this.oc(this.inventory) || specialPageArray.length < 3) {
@@ -233,9 +235,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						} else {
 							this.inventory[this.inventory.length] = inventoryAdd[1];
 						}
-						this.message = specialPageArray[p+1];
+						//this.message = specialPageArray[p+1];
 					}
 					//INVBUY:item,gold cost ... Add an item to your inventory and remove that amount of gold.
+					//Does not work with multiple commands but is almost equivalent to INVADD: and LOSEGOLD: together
 					else if (specialPageArray[p].match('INVBUY:') != null) {
 						inventoryAdd = specialPageArray[p].split('INVBUY:');
 						//Add multiple inventory items by seperating them by a comma
@@ -288,10 +291,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							}
 						}
 						if (removedArray.length == 1) {
-							this.message = specialPageArray[p+1];
+							//this.message = specialPageArray[p+1];
 						} else {
 							//display what items have been removed (if any)
-							this.message = specialPageArray[p+1];
+							//this.message = specialPageArray[p+1];
 							if ('false' in this.oc(inventoryRemoveArray)) {
 								//do not show a "you are no long carrying" message
 							} else {
@@ -336,7 +339,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								this.gold = 0;
 							}
 						}
-						this.message = specialPageArray[p+1];
+						//this.message = specialPageArray[p+1];
 					}
 					//INVSELECT: choose a certain number of items to add to inventory.  INVSELECT:n, choose n items from the choices
 					else if (specialPageArray[p].match('INVSELECT:') != null) {
@@ -450,7 +453,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						healthLost = specialPageArray[p].split('LOSEHEALTH:');
 						this.health = dojo.number.parse(this.health) - dojo.number.parse(healthLost[1]);
 						this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
-						console.log(this.message);
 						if (this.health <= 0) {
 							this.message = this.message + '<br>Your wounded body can take no more, and you collapse to the ground.  You are dead.';
 							this.restart = 1;
@@ -463,7 +465,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if (this.health > this.MAX_HEALTH) {
 							this.health = this.MAX_HEALTH;
 						}
-						this.message = specialPageArray[p+1] + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+						//this.message = specialPageArray[p+1] + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+						this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
 					}
 					//LOSEGOLD: n, lose n gold.  Optional to redirect to another page is not enough gold.
 					else if (specialPageArray[p].match('LOSEGOLD:') != null) {
@@ -485,25 +488,29 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.gold = 0;
 						}
 						//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
-						this.message = specialPageArray[p+1];
+						//this.message = specialPageArray[p+1];
 					}
 					//GAINGOLD: n, gain n gold
 					else if (specialPageArray[p].match('GAINGOLD:') != null) {
 						goldGain = specialPageArray[p].split('GAINGOLD:');
 						this.gold = dojo.number.parse(this.gold) + dojo.number.parse(goldGain[1]);
-						this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
+						//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
+						this.message = this.message + '<br>You have ' + this.gold + ' gold coins.';
+
 					}
 					//DISPLAYGOLD: show how much gold the player has in the message
 					else if (specialPageArray[p].match('DISPLAYGOLD:') != null) {
 						if (this.gold == 1) {
-							this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coin.';
+							this.message = this.message + '<br>You have ' + this.gold + ' gold coin.';
+							//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coin.';
 						} else {
-							this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
+							this.message = this.message + '<br>You have ' + this.gold + ' gold coins.';
+							//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
 						}
 					}
 					//restart the game on next button press with RESTART
 					else if (specialPageArray[p].match('RESTART:') != null) {
-						this.message = specialPageArray[p+1];
+						//this.message = specialPageArray[p+1];
 						this.restart = 1;
 					}
 					else {
@@ -511,7 +518,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						//this.message = specialPageArray[p];
 					}
 				}
-				console.log(this.message);
 			}
 			//End special pages testing
 			if (this.restart == 0) {
