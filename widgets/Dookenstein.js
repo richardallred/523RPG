@@ -192,320 +192,349 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			if (specialPageArray.length == 1) {
 				this.message = specialPageArray[0];
 			} else {
-				//INVSPLIT:item.  If the item is in the inventory, go the first page, otherwise go to the second page
-				if (specialPageArray[0].match('INVSPLIT:') != null) {
-					inventoryCheck = specialPageArray[0].split('INVSPLIT:');
-					if (inventoryCheck[1] in this.oc(this.inventory) || specialPageArray.length < 3) {
-						//passed inventory check, redirect to first page
-						this.page = specialPageArray[1];
-						this.processChoice(this.page,0);
-						return;
-					} else {
-						//failed inventory check, redirect to second page
-						this.page = specialPageArray[2];
-						this.processChoice(this.page,0);
-						return;
-					}
-				}
-				//INVCHECK:item.  If the item is in the inventory, display the page, otherwise redirect to another page
-				else if (specialPageArray[0].match('INVCHECK:') != null) {
-					inventoryCheck = specialPageArray[0].split('INVCHECK:');
-					if (inventoryCheck[1] in this.oc(this.inventory) || specialPageArray.length < 3) {
-						this.message = specialPageArray[1];
-					} else {
-						//failed inventory check, redirect to a new page
-						this.page = specialPageArray[2];
-						this.processChoice(this.page,0);
-						return;
-					}
-				}
-				//INVADD:item1,item2,...  Add items to inventory
-				else if (specialPageArray[0].match('INVADD:') != null) {
-					inventoryAdd = specialPageArray[0].split('INVADD:');
-					//Add multiple inventory items by seperating them by a comma
-					if (inventoryAdd[1].match(',') != null) {
-						inventoryAddArray = inventoryAdd[1].split(',');
-						for (i = 0; i < inventoryAddArray.length; i++) {
-							this.inventory[this.inventory.length] = inventoryAddArray[i];
-						}
-					} else {
-						this.inventory[this.inventory.length] = inventoryAdd[1];
-					}
-					this.message = specialPageArray[1];
-				}
-				//INVBUY:item,gold cost ... Add an item to your inventory and remove that amount of gold.
-				else if (specialPageArray[0].match('INVBUY:') != null) {
-					inventoryAdd = specialPageArray[0].split('INVBUY:');
-					//Add multiple inventory items by seperating them by a comma
-					if (inventoryAdd[1].match(',') != null) {
-						goldSpent = inventoryAdd[1].split(',');
-						if (dojo.number.parse(this.gold) < dojo.number.parse(goldSpent[1])) {
-							if (specialPageArray.length > 2) {
-								//not enough gold, redirect to another page (optional)
-								this.page = specialPageArray[2];
-								this.processChoice(this.page,0);
-								return;
-							}
-							this.message = "You do not have enough gold coins.";
+				//the last thing in the array should be the actual page text (except in special circumstances)
+				this.message = specialPageArray[specialPageArray.length-1];
+				//loop through all special commands and run them if found
+				for(p=0; p<specialPageArray.length; p++){
+					//INVSPLIT:item.  If the item is in the inventory, go the first page, otherwise go to the second page
+					//INVSPLIT does not work with multiple special commands
+					if (specialPageArray[p].match('INVSPLIT:') != null) {
+						inventoryCheck = specialPageArray[p].split('INVSPLIT:');
+						if (inventoryCheck[1] in this.oc(this.inventory) || specialPageArray.length < 3) {
+							//passed inventory check, redirect to first page
+							this.page = specialPageArray[1];
+							this.processChoice(this.page,0);
+							return;
 						} else {
-							this.message = specialPageArray[1];
-							//add to inventory
-							this.inventory[this.inventory.length] = goldSpent[0];
-							//spend gold
-							this.gold = dojo.number.parse(this.gold) - dojo.number.parse(goldSpent[1]);
-						}
-					} else {
-						//no gold cost was specified, so act like INVADD
-						this.message = specialPageArray[1];
-						this.inventory[this.inventory.length] = inventoryAdd[1];
-					}
-				}
-				//INVREMOVE:item1,item2,... Remove items from inventory.  Add false as a parameter to display no message
-				else if (specialPageArray[0].match('INVREMOVE:') != null) {
-					inventoryRemove = specialPageArray[0].split('INVREMOVE:');
-					removedArray = [];
-					inventoryRemoveArray = [];
-					removedArray[0] = '<br> You are no longer carrying: ';
-					//Remove multiple inventory items by seperating them by a comma
-					if (inventoryRemove[1].match(',') != null) {
-						inventoryRemoveArray = inventoryRemove[1].split(',');
-						for (i = 1; i < this.inventory.length; i++) {
-							for (j = 0; j < inventoryRemoveArray.length; j++) {
-								if (this.inventory[i] == inventoryRemoveArray[j]) {
-									this.inventory[i] = '';
-									removedArray[removedArray.length] = inventoryRemoveArray[j];
-								}
-							}
-						}
-					} else {
-						for (i = 1; i < this.inventory.length; i++) {
-							if (this.inventory[i] == inventoryRemove[1]) {
-								this.inventory[i] = '';
-								removedArray[1] = inventoryRemove[1];
-							}
-						}
-					}
-					if (removedArray.length == 1) {
-						this.message = specialPageArray[1];
-					} else {
-						//display what items have been removed (if any)
-						this.message = specialPageArray[1];
-						if ('false' in this.oc(inventoryRemoveArray)) {
-							//do not show a "you are no long carrying" message
-						} else {
-							for (i = 0; i < removedArray.length; i++) {
-								this.message = this.message + removedArray[i];
-								if (i > 0 && i < removedArray.length - 1) {
-									this.message = this.message + ', ';
-								}
-							}
-						}
-					}
-				}
-				//INVCLEAR: items, remove all inventory contents except for the items specified.  Clears gold unless 'gold' is listed in items
-				else if (specialPageArray[0].match('INVCLEAR:') != null) {
-					inventorySave = specialPageArray[0].split('INVCLEAR:');
-					//Save multiple inventory items by seperating them by a comma
-					remove = true;
-					if (inventorySave[1].match(',') != null) {
-						inventorySaveArray = inventorySave[1].split(',');
-						for (i = 1; i < this.inventory.length; i++) {
-							for (j = 0; j < inventorySaveArray.length; j++) {
-								if (this.inventory[i] == inventorySaveArray[j]) {
-									remove = false;
-								}
-							}
-							if (remove) {
-								this.inventory[i] = '';
-							} else {
-								remove = true;
-							}
-						}
-						if (!('gold' in this.oc(inventorySaveArray))) {
-							this.gold = 0;
-						}
-					} else {
-						for (i = 1; i < this.inventory.length; i++) {
-							if (!(this.inventory[i] == inventorySave[1])) {
-								this.inventory[i] = '';
-							}
-						}
-						if (inventorySave[1] != 'gold') {
-							this.gold = 0;
-						}
-					}
-					this.message = specialPageArray[1];
-				}
-				//INVSELECT: choose a certain number of items to add to inventory.  INVSELECT:n, choose n items from the choices
-				else if (specialPageArray[0].match('INVSELECT:') != null) {
-					inventoryAddNumber = specialPageArray[0].split('INVSELECT:');
-					choicesArray = this.choices[this.page].split('^*');
-					alreadyTakenCount = 0;
-					if (this.invselect == 1) {
-						//add chosen item to inventory
-						this.inventory[this.inventory.length] = choicesArray[choiceNum * 2 - 2];
-					}
-					for (i = 0; i < choicesArray.length; i+=2) {
-						//remove all choices that have already been taken
-						if (choicesArray[i] in this.oc(this.inventory)) {
-							choicesArray[i] = 'Taken ' + choicesArray[i];
-							if (this.invselect == 1) {
-								alreadyTakenCount ++;
-							}
-						}
-						choicesArray[i+1] = this.page;
-					}
-					//test to see if all items are taken for some reason
-					takenCountTest = 0;
-					for (i = 0; i < choicesArray.length; i+=2) {
-						if ('Taken' in this.oc(choicesArray[i].split(" "))) {
-							takenCountTest ++;
-						}
-					}
-					if (takenCountTest == choicesArray.length/2) {
-						alreadyTakenCount = inventoryAddNumber[1];
-					}
-					//go to inventory selection mode (stay on this page until all items are taken)
-					this.invselect = 1;
-					
-					this.message = specialPageArray[1];
-					selectedString = inventoryAddNumber[1] - alreadyTakenCount;
-					if (inventoryAddNumber[1] == 1) {
-						//do not show "you can take 1 more item" if there is only one item to take
-					} else {
-						if (selectedString != 1) {
-							this.message = this.message + ' <br>You can take ' + selectedString + ' more items.'
-						} else {
-							this.message = this.message + ' <br>You can take ' + selectedString + ' more item.'
-						}
-					}
-					if (alreadyTakenCount >= inventoryAddNumber[1]) {
-						//the number of inventory items you can take has been reached, move on to the next page
-						this.invselect = 0;
-						this.invselecting = 0;
-						choicesArray = this.choices[this.page].split('^*');
-						this.page = choicesArray[choiceNum * 2 - 1];
-						this.processChoice(this.page, choiceNum);
-						return;
-					}
-				}
-				//choose a certain number of items to remove from inventory with INVREMOVESELECT.  INVREMOVESELECT:n, choose n items from the choices
-				else if (specialPageArray[0].match('INVREMOVESELECT:') != null) {
-					inventoryRemoveNumber = specialPageArray[0].split('INVREMOVESELECT:');
-					choicesArray = this.choices[this.page].split('^*');
-					nextPageNum = choicesArray[1];
-					j = 0;
-					for (i = 1; i < this.inventory.length; i++) {
-						if (this.inventory[i] != '') {
-							choicesArray[j] = this.inventory[i];
-							choicesArray[j+1] = nextPageNum;
-							//j is needed because inventory might contain null items
-							j = j + 2;
-						}
-					}
-					if (this.invselect == 0) {
-						originalInventorySize = choicesArray.length/2;
-						lastRemovedNum = 100;
-					}
-					currentInventorySize = choicesArray.length/2;
-					if (this.invselect == 1) {
-						//remove chosen item from inventory
-						if (choiceNum * 2 - 2 > lastRemovedNum) {
-							choiceNum -= 1;
-						}
-						for (i = 1; i < this.inventory.length; i++) {
-							if (this.inventory[i] == choicesArray[choiceNum * 2 - 2]) {
-								lastRemovedNum = choiceNum * 2 - 2;
-								this.inventory[i] = '';
-							}
-						}
-					}
-					alreadyRemovedCount = 0;
-					for (i = 0; i < choicesArray.length; i+=2) {
-						//remove all choices that have already been taken
-						if (!(choicesArray[i] in this.oc(this.inventory))) {
-							choicesArray[i] = 'Removed ' + choicesArray[i];
-							if (this.invselect == 1) {
-								alreadyRemovedCount ++;
-							}
-						}
-						choicesArray[i+1] = this.page;
-					}
-					//go to inventory selection mode (stay on this page until all items are taken)
-					this.invselect = 1;
-					if (alreadyRemovedCount >= inventoryRemoveNumber[1] || this.inventory.length == 1 || originalInventorySize - currentInventorySize + alreadyRemovedCount >= inventoryRemoveNumber[1]) {
-						//the number of inventory items you can pick has been reached, move on to the next page
-						this.invselect = 0;
-						this.invselecting = 0;
-						this.page = nextPageNum;
-						this.processChoice(this.page, choiceNum);
-						return;
-					}
-					this.message = specialPageArray[1];
-				}
-				//LOSEHEALTH: n, lose n health.  Cause death of health is 0 or less
-				else if (specialPageArray[0].match('LOSEHEALTH:') != null) {
-					healthLost = specialPageArray[0].split('LOSEHEALTH:');
-					this.health = dojo.number.parse(this.health) - dojo.number.parse(healthLost[1]);
-					this.message = specialPageArray[1] + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
-					if (this.health <= 0) {
-						this.message = this.message + '<br>Your wounded body can take no more, and you collapse to the ground.  You are dead.';
-						this.restart = 1;
-					}
-				}
-				//GAINHEALTH: n, gain n health.  Cannot go above maximum health.
-				else if (specialPageArray[0].match('GAINHEALTH:') != null) {
-					healthGain = specialPageArray[0].split('GAINHEALTH:');
-					this.health = dojo.number.parse(this.health) + dojo.number.parse(healthGain[1]);
-					if (this.health > this.MAX_HEALTH) {
-						this.health = this.MAX_HEALTH;
-					}
-					this.message = specialPageArray[1] + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
-				}
-				//LOSEGOLD: n, lose n gold.  Optional to redirect to another page is not enough gold.
-				else if (specialPageArray[0].match('LOSEGOLD:') != null) {
-					goldLost = specialPageArray[0].split('LOSEGOLD:');
-					if (specialPageArray.length > 2) {
-						if (dojo.number.parse(this.gold) < dojo.number.parse(goldLost[1])) {
-							//not enough gold, redirect to another page
+							//failed inventory check, redirect to second page
 							this.page = specialPageArray[2];
 							this.processChoice(this.page,0);
 							return;
 						}
 					}
-					if (goldLost[1] == 'all') {
-						this.gold = 0;
-					} else {
-						this.gold = dojo.number.parse(this.gold) - dojo.number.parse(goldLost[1]);
+					//GOLDSPLIT:n.  If current gold >= n, go to the first page, otherwise go to the second page
+					//GOLDSPLIT does not work with multiple special commands
+					else if (specialPageArray[p].match('GOLDSPLIT:') != null) {
+						goldCheck = specialPageArray[p].split('GOLDSPLIT:');
+						if (this.gold >= goldCheck[1]) {
+							//passed gold check, redirect to first page
+							this.page = specialPageArray[1];
+							this.processChoice(this.page,0);
+							return;
+						} else {
+							//failed gold check, redirect to second page
+							this.page = specialPageArray[2];
+							this.processChoice(this.page,0);
+							return;
+						}
 					}
-					if (this.gold < 0) {
-						this.gold = 0;
+					//INVCHECK:item.  If the item is in the inventory, display the page, otherwise redirect to another page
+					//INVCHECK does not work with multiple special commands
+					else if (specialPageArray[p].match('INVCHECK:') != null) {
+						inventoryCheck = specialPageArray[p].split('INVCHECK:');
+						if (inventoryCheck[1] in this.oc(this.inventory) || specialPageArray.length < 3) {
+							this.message = specialPageArray[p+1];
+						} else {
+							//failed inventory check, redirect to a new page
+							this.page = specialPageArray[2];
+							this.processChoice(this.page,0);
+							return;
+						}
 					}
-					//this.message = specialPageArray[1] + '<br>You have ' + this.gold + ' gold coins.';
-					this.message = specialPageArray[1];
-				}
-				//GAINGOLD: n, gain n gold
-				else if (specialPageArray[0].match('GAINGOLD:') != null) {
-					goldGain = specialPageArray[0].split('GAINGOLD:');
-					this.gold = dojo.number.parse(this.gold) + dojo.number.parse(goldGain[1]);
-					this.message = specialPageArray[1] + '<br>You have ' + this.gold + ' gold coins.';
-				}
-				//DISPLAYGOLD: show how much gold the player has in the message
-				else if (specialPageArray[0].match('DISPLAYGOLD:') != null) {
-					if (this.gold == 1) {
-						this.message = specialPageArray[1] + '<br>You have ' + this.gold + ' gold coin.';
-					} else {
-						this.message = specialPageArray[1] + '<br>You have ' + this.gold + ' gold coins.';
+					//INVADD:item1,item2,...  Add items to inventory
+					else if (specialPageArray[p].match('INVADD:') != null) {
+						inventoryAdd = specialPageArray[p].split('INVADD:');
+						//Add multiple inventory items by seperating them by a comma
+						if (inventoryAdd[1].match(',') != null) {
+							inventoryAddArray = inventoryAdd[1].split(',');
+							for (i = 0; i < inventoryAddArray.length; i++) {
+								this.inventory[this.inventory.length] = inventoryAddArray[i];
+							}
+						} else {
+							this.inventory[this.inventory.length] = inventoryAdd[1];
+						}
+						//this.message = specialPageArray[p+1];
 					}
-				}
-				//restart the game on next button press with RESTART
-				else if (specialPageArray[0].match('RESTART:') != null) {
-					this.message = specialPageArray[1];
-					this.restart = 1;
-				}
-				else {
-					//the special command was not found, so display it in the message (this should not happen)
-					this.message = specialPageArray[0];
+					//INVBUY:item,gold cost ... Add an item to your inventory and remove that amount of gold.
+					//Does not work with multiple commands but is almost equivalent to INVADD: and LOSEGOLD: together
+					else if (specialPageArray[p].match('INVBUY:') != null) {
+						inventoryAdd = specialPageArray[p].split('INVBUY:');
+						//Add multiple inventory items by seperating them by a comma
+						if (inventoryAdd[1].match(',') != null) {
+							goldSpent = inventoryAdd[1].split(',');
+							if (dojo.number.parse(this.gold) < dojo.number.parse(goldSpent[1])) {
+								if (specialPageArray.length > 2) {
+									//not enough gold, redirect to another page (optional)
+									this.page = specialPageArray[2];
+									this.processChoice(this.page,0);
+									return;
+								}
+								this.message = "You do not have enough gold coins.";
+							} else {
+								this.message = specialPageArray[p+1];
+								//add to inventory
+								this.inventory[this.inventory.length] = goldSpent[0];
+								//spend gold
+								this.gold = dojo.number.parse(this.gold) - dojo.number.parse(goldSpent[1]);
+							}
+						} else {
+							//no gold cost was specified, so act like INVADD
+							this.message = specialPageArray[p+1];
+							this.inventory[this.inventory.length] = inventoryAdd[1];
+						}
+					}
+					//INVREMOVE:item1,item2,... Remove items from inventory.  Add false as a parameter to display no message
+					else if (specialPageArray[p].match('INVREMOVE:') != null) {
+						inventoryRemove = specialPageArray[p].split('INVREMOVE:');
+						removedArray = [];
+						inventoryRemoveArray = [];
+						removedArray[0] = '<br> You are no longer carrying: ';
+						//Remove multiple inventory items by seperating them by a comma
+						if (inventoryRemove[1].match(',') != null) {
+							inventoryRemoveArray = inventoryRemove[1].split(',');
+							for (i = 1; i < this.inventory.length; i++) {
+								for (j = 0; j < inventoryRemoveArray.length; j++) {
+									if (this.inventory[i] == inventoryRemoveArray[j]) {
+										this.inventory[i] = '';
+										removedArray[removedArray.length] = inventoryRemoveArray[j];
+									}
+								}
+							}
+						} else {
+							for (i = 1; i < this.inventory.length; i++) {
+								if (this.inventory[i] == inventoryRemove[1]) {
+									this.inventory[i] = '';
+									removedArray[1] = inventoryRemove[1];
+								}
+							}
+						}
+						if (removedArray.length == 1) {
+							//this.message = specialPageArray[p+1];
+						} else {
+							//display what items have been removed (if any)
+							//this.message = specialPageArray[p+1];
+							if ('false' in this.oc(inventoryRemoveArray)) {
+								//do not show a "you are no long carrying" message
+							} else {
+								for (i = 0; i < removedArray.length; i++) {
+									this.message = this.message + removedArray[i];
+									if (i > 0 && i < removedArray.length - 1) {
+										this.message = this.message + ', ';
+									}
+								}
+							}
+						}
+					}
+					//INVCLEAR: items, remove all inventory contents except for the items specified.  Clears gold unless 'gold' is listed in items
+					else if (specialPageArray[p].match('INVCLEAR:') != null) {
+						inventorySave = specialPageArray[p].split('INVCLEAR:');
+						//Save multiple inventory items by seperating them by a comma
+						remove = true;
+						if (inventorySave[1].match(',') != null) {
+							inventorySaveArray = inventorySave[1].split(',');
+							for (i = 1; i < this.inventory.length; i++) {
+								for (j = 0; j < inventorySaveArray.length; j++) {
+									if (this.inventory[i] == inventorySaveArray[j]) {
+										remove = false;
+									}
+								}
+								if (remove) {
+									this.inventory[i] = '';
+								} else {
+									remove = true;
+								}
+							}
+							if (!('gold' in this.oc(inventorySaveArray))) {
+								this.gold = 0;
+							}
+						} else {
+							for (i = 1; i < this.inventory.length; i++) {
+								if (!(this.inventory[i] == inventorySave[1])) {
+									this.inventory[i] = '';
+								}
+							}
+							if (inventorySave[1] != 'gold') {
+								this.gold = 0;
+							}
+						}
+						//this.message = specialPageArray[p+1];
+					}
+					//INVSELECT: choose a certain number of items to add to inventory.  INVSELECT:n, choose n items from the choices
+					else if (specialPageArray[p].match('INVSELECT:') != null) {
+						inventoryAddNumber = specialPageArray[p].split('INVSELECT:');
+						choicesArray = this.choices[this.page].split('^*');
+						alreadyTakenCount = 0;
+						if (this.invselect == 1) {
+							//add chosen item to inventory
+							this.inventory[this.inventory.length] = choicesArray[choiceNum * 2 - 2];
+						}
+						for (i = 0; i < choicesArray.length; i+=2) {
+							//remove all choices that have already been taken
+							if (choicesArray[i] in this.oc(this.inventory)) {
+								choicesArray[i] = 'Taken ' + choicesArray[i];
+								if (this.invselect == 1) {
+									alreadyTakenCount ++;
+								}
+							}
+							choicesArray[i+1] = this.page;
+						}
+						//test to see if all items are taken for some reason
+						takenCountTest = 0;
+						for (i = 0; i < choicesArray.length; i+=2) {
+							if ('Taken' in this.oc(choicesArray[i].split(" "))) {
+								takenCountTest ++;
+							}
+						}
+						if (takenCountTest == choicesArray.length/2) {
+							alreadyTakenCount = inventoryAddNumber[1];
+						}
+						//go to inventory selection mode (stay on this page until all items are taken)
+						this.invselect = 1;
+						
+						//this.message = specialPageArray[p+1];
+						selectedString = inventoryAddNumber[1] - alreadyTakenCount;
+						if (inventoryAddNumber[1] == 1) {
+							//do not show "you can take 1 more item" if there is only one item to take
+						} else {
+							if (selectedString != 1) {
+								this.message = this.message + ' <br>You can take ' + selectedString + ' more items.'
+							} else {
+								this.message = this.message + ' <br>You can take ' + selectedString + ' more item.'
+							}
+						}
+						if (alreadyTakenCount >= inventoryAddNumber[1]) {
+							//the number of inventory items you can take has been reached, move on to the next page
+							this.invselect = 0;
+							this.invselecting = 0;
+							choicesArray = this.choices[this.page].split('^*');
+							this.page = choicesArray[choiceNum * 2 - 1];
+							this.processChoice(this.page, choiceNum);
+							return;
+						}
+					}
+					//choose a certain number of items to remove from inventory with INVREMOVESELECT.  INVREMOVESELECT:n, choose n items from the choices
+					else if (specialPageArray[p].match('INVREMOVESELECT:') != null) {
+						inventoryRemoveNumber = specialPageArray[p].split('INVREMOVESELECT:');
+						choicesArray = this.choices[this.page].split('^*');
+						nextPageNum = choicesArray[1];
+						j = 0;
+						for (i = 1; i < this.inventory.length; i++) {
+							if (this.inventory[i] != '') {
+								choicesArray[j] = this.inventory[i];
+								choicesArray[j+1] = nextPageNum;
+								//j is needed because inventory might contain null items
+								j = j + 2;
+							}
+						}
+						if (this.invselect == 0) {
+							originalInventorySize = choicesArray.length/2;
+							lastRemovedNum = 100;
+						}
+						currentInventorySize = choicesArray.length/2;
+						if (this.invselect == 1) {
+							//remove chosen item from inventory
+							if (choiceNum * 2 - 2 > lastRemovedNum) {
+								choiceNum -= 1;
+							}
+							for (i = 1; i < this.inventory.length; i++) {
+								if (this.inventory[i] == choicesArray[choiceNum * 2 - 2]) {
+									lastRemovedNum = choiceNum * 2 - 2;
+									this.inventory[i] = '';
+								}
+							}
+						}
+						alreadyRemovedCount = 0;
+						for (i = 0; i < choicesArray.length; i+=2) {
+							//remove all choices that have already been taken
+							if (!(choicesArray[i] in this.oc(this.inventory))) {
+								choicesArray[i] = 'Removed ' + choicesArray[i];
+								if (this.invselect == 1) {
+									alreadyRemovedCount ++;
+								}
+							}
+							choicesArray[i+1] = this.page;
+						}
+						//go to inventory selection mode (stay on this page until all items are taken)
+						this.invselect = 1;
+						if (alreadyRemovedCount >= inventoryRemoveNumber[1] || this.inventory.length == 1 || originalInventorySize - currentInventorySize + alreadyRemovedCount >= inventoryRemoveNumber[1]) {
+							//the number of inventory items you can pick has been reached, move on to the next page
+							this.invselect = 0;
+							this.invselecting = 0;
+							this.page = nextPageNum;
+							this.processChoice(this.page, choiceNum);
+							return;
+						}
+						//this.message = specialPageArray[p+1];
+					}
+					//LOSEHEALTH: n, lose n health.  Cause death of health is 0 or less
+					else if (specialPageArray[p].match('LOSEHEALTH:') != null) {
+						healthLost = specialPageArray[p].split('LOSEHEALTH:');
+						this.health = dojo.number.parse(this.health) - dojo.number.parse(healthLost[1]);
+						this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+						if (this.health <= 0) {
+							this.message = this.message + '<br>Your wounded body can take no more, and you collapse to the ground.  You are dead.';
+							this.restart = 1;
+						}
+					}
+					//GAINHEALTH: n, gain n health.  Cannot go above maximum health.
+					else if (specialPageArray[p].match('GAINHEALTH:') != null) {
+						healthGain = specialPageArray[p].split('GAINHEALTH:');
+						this.health = dojo.number.parse(this.health) + dojo.number.parse(healthGain[1]);
+						if (this.health > this.MAX_HEALTH) {
+							this.health = this.MAX_HEALTH;
+						}
+						//this.message = specialPageArray[p+1] + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+						this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+					}
+					//LOSEGOLD: n, lose n gold.  Optional to redirect to another page is not enough gold.
+					else if (specialPageArray[p].match('LOSEGOLD:') != null) {
+						goldLost = specialPageArray[p].split('LOSEGOLD:');
+						if (specialPageArray.length > 2) {
+							if (dojo.number.parse(this.gold) < dojo.number.parse(goldLost[1])) {
+								//not enough gold, redirect to another page
+								this.page = specialPageArray[2];
+								this.processChoice(this.page,0);
+								return;
+							}
+						}
+						if (goldLost[1] == 'all') {
+							this.gold = 0;
+						} else {
+							this.gold = dojo.number.parse(this.gold) - dojo.number.parse(goldLost[1]);
+						}
+						if (this.gold < 0) {
+							this.gold = 0;
+						}
+						//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
+						//this.message = specialPageArray[p+1];
+					}
+					//GAINGOLD: n, gain n gold
+					else if (specialPageArray[p].match('GAINGOLD:') != null) {
+						goldGain = specialPageArray[p].split('GAINGOLD:');
+						this.gold = dojo.number.parse(this.gold) + dojo.number.parse(goldGain[1]);
+						//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
+						this.message = this.message + '<br>You have ' + this.gold + ' gold coins.';
+
+					}
+					//DISPLAYGOLD: show how much gold the player has in the message
+					else if (specialPageArray[p].match('DISPLAYGOLD:') != null) {
+						if (this.gold == 1) {
+							this.message = this.message + '<br>You have ' + this.gold + ' gold coin.';
+							//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coin.';
+						} else {
+							this.message = this.message + '<br>You have ' + this.gold + ' gold coins.';
+							//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
+						}
+					}
+					//restart the game on next button press with RESTART
+					else if (specialPageArray[p].match('RESTART:') != null) {
+						//this.message = specialPageArray[p+1];
+						this.restart = 1;
+					}
+					else {
+						//the special command was not found, so display it in the message (this should not happen)
+						//this.message = specialPageArray[p];
+					}
 				}
 			}
 			//End special pages testing

@@ -1,0 +1,8 @@
+Requirements
+-------------------------
+
+-Game must be fun
+-Game must be playable by a switch user (only has access to two buttons)
+-Game must be playable by a blind person(text to speech, easy to understand menus etc.)
+-Game will not involve 3rd party plugins and will be playable in all relevant browsers(IE 9?)
+-Game will run efficently and will be open to extending with new content
