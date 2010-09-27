@@ -296,10 +296,10 @@
 242:Continue^*231
 243:INVADD:Rat poison, Bottle of wine^*You quickly search through the sacks and barrels, but most of it is just food supplies.  In one of the sacks, you see a supply of arsenic in a container labeled "Rat poison", which you take.  You also take one of the bottles of wine from the rack.  You are searching through a tall pile of sacks when you hear the door open and see a Dookian guard entering the room.
 243:Quickly hide in the pile of sacks^*245^*Prepare for combat^*246^*Extinguish a nearby torch and hide in the shadows^*248^*Do nothing and pretend that you belong in the storeroom^*247
-244:Not wanting to waste time searching through the many sacks and barrels in the storeroom, you immediately go to the exit.
-244:Content not added^*999
+244:Not wanting to waste time searching through the many sacks and barrels in the storeroom, you decide to immediately exit.
+244:Continue^*277
 245:You bury yourself in the large pile of sacks, shoving yourself in between them.  You only barely manage to conceal yourself before you hear the guard walking into the room.  You hear the guard pause for a few moments, before he walks over to the wine rack and takes a bottle.  After the guard finally leaves the storeroom, you wait for a few moments before pulling yourself out of your hiding place.  Not wanting to spend any more time in the room, you immediately head for the exit.
-245:Content not added^*999
+245:Continue^*277
 246:INVSPLIT:Crossbow^*274^*275
 246:null^*1
 247:As the guard enters the room, you sift through the contents of one of the barrels and pretend that nothing strange has happened.  You hear the guard walk towards you and stop for a few seconds as he appraises you.  Then you hear the guard draw his sword.  You will have to defend yourself.
@@ -362,6 +362,12 @@
 275:Continue^*276
 276:You are fighting a guard.
 276:Content not added^*999
+277: You exit the storeroom and find yourself in a long dark hallway lined with doors.  Hanging on the wall is a torch that allows you to clearly see the closest door.  Suddenly, you hear a slow eerie creek comming from the end of the hallway.  You can hear a guard entering.  You can either prepare to fight the guard or dart into the closest door and remain unseen.
+277:Prepare for battle^*278^*Flee and enter the closest door^*279
+278:LOSEHEALTH:50^*The guard detects your presence, draws his sword and lunges forard skewering you before you can make a move.  
+278:Content not added^*999
+279:You manage to evade the guard and enter into the castle's kitchen.
+279:Content not addedL^*999
 300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  Across the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep where the King resides is inside the inner bailey, but you know there is little chance of the guards letting you through.
 300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
 301:You wait until you and the guard are passing through a large crowd of people, then you dart into the crowd while he is not watching.  In a few moments, you hear him give a shout of surprise, but you are already a good distance away from him.  You can see a stable and some merchant stalls nearby.
