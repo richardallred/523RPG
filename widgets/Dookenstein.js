@@ -192,7 +192,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			if (specialPageArray.length == 1) {
 				this.message = specialPageArray[0];
 			} else {
+				//the last thing in the array should be the actual page text (except in special circumstances)
 				this.message = specialPageArray[specialPageArray.length-1];
+				//loop through all special commands and run them if found
 				for(p=0; p<specialPageArray.length; p++){
 					//INVSPLIT:item.  If the item is in the inventory, go the first page, otherwise go to the second page
 					//INVSPLIT does not work with multiple special commands
@@ -205,6 +207,22 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							return;
 						} else {
 							//failed inventory check, redirect to second page
+							this.page = specialPageArray[2];
+							this.processChoice(this.page,0);
+							return;
+						}
+					}
+					//GOLDSPLIT:n.  If current gold >= n, go to the first page, otherwise go to the second page
+					//GOLDSPLIT does not work with multiple special commands
+					else if (specialPageArray[p].match('GOLDSPLIT:') != null) {
+						goldCheck = specialPageArray[p].split('GOLDSPLIT:');
+						if (this.gold >= goldCheck[1]) {
+							//passed gold check, redirect to first page
+							this.page = specialPageArray[1];
+							this.processChoice(this.page,0);
+							return;
+						} else {
+							//failed gold check, redirect to second page
 							this.page = specialPageArray[2];
 							this.processChoice(this.page,0);
 							return;
