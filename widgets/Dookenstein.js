@@ -133,7 +133,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					addedWeapon.missMessages = ['You miss.'];
 				}
 				this.possibleWeapons[this.possibleWeapons.length] = addedWeapon;
-				console.log('Added Weapon.  Name: ' + addedWeapon.name + ', Strength bonus: ' + addedWeapon.strengthbonus + ', Accuracy: ' + addedWeapon.accuracy + ', Hit message 1: ' + addedWeapon.hitMessages[0] + ', Miss message 1:' + addedWeapon.missMessages[0]);
+				//console.log('Added Weapon.  Name: ' + addedWeapon.name + ', Strength bonus: ' + addedWeapon.strengthbonus + ', Accuracy: ' + addedWeapon.accuracy + ', Hit message 1: ' + addedWeapon.hitMessages[0] + ', Miss message 1:' + addedWeapon.missMessages[0]);
 			}
 			else if (dataSplit[i].indexOf('UNARMED:') != -1) {
 				//Parse weapon information for the case where you must fight unarmed (default:bare hands)
@@ -170,7 +170,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				if (addedUnarmed.missMessages.length == 0) {
 					addedUnarmed.missMessages = ['You miss.'];
 				}
-				console.log('Added Unarmed.  Name: ' + addedUnarmed.name + ', Strength bonus: ' + addedUnarmed.strengthbonus + ', Accuracy: ' + addedUnarmed.accuracy + ', Hit message 1: ' + addedUnarmed.hitMessages[0] + ', Miss message 1:' + addedUnarmed.missMessages[0]);
+				//console.log('Added Unarmed.  Name: ' + addedUnarmed.name + ', Strength bonus: ' + addedUnarmed.strengthbonus + ', Accuracy: ' + addedUnarmed.accuracy + ', Hit message 1: ' + addedUnarmed.hitMessages[0] + ', Miss message 1:' + addedUnarmed.missMessages[0]);
 			}
 			else if (dataSplit[i].indexOf('INITIALIZE:') != -1) {
 				//Initialize variables - default is 50 health, 10 strength, and 0 gold
@@ -209,7 +209,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					for (y = 0; y < this.initVariableList.length; y++) {
 						this.variableList[y] = this.initVariableList[y];
 					}
-					console.log('Initialized variable: ' + newVariable.name + ', value: ' + newVariable.value);
+					//console.log('Initialized variable: ' + newVariable.name + ', value: ' + newVariable.value);
 				}
 			} else {
 				// parse page information
@@ -370,46 +370,46 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				
 				for(p=0; p<specialPageArray.length; p++){
 					//INVSPLIT:item.  If the item is in the inventory, go the first page, otherwise go to the second page
-					//INVSPLIT does not work with multiple special commands
+					//INVSPLIT does not work with multiple special commands unless it is last
 					if (specialPageArray[p].match('INVSPLIT:') != null) {
 						inventoryCheck = specialPageArray[p].split('INVSPLIT:');
 						if (inventoryCheck[1] in this.oc(this.inventory) || specialPageArray.length < 3) {
 							//passed inventory check, redirect to first page
-							this.page = specialPageArray[1];
+							this.page = specialPageArray[specialPageArray.length-2];
 							this.processChoice(this.page,0);
 							return;
 						} else {
 							//failed inventory check, redirect to second page
-							this.page = specialPageArray[2];
+							this.page = specialPageArray[specialPageArray.length-1];
 							this.processChoice(this.page,0);
 							return;
 						}
 					}
 					//GOLDSPLIT:n.  If current gold >= n, go to the first page, otherwise go to the second page
-					//GOLDSPLIT does not work with multiple special commands
+					//GOLDSPLIT does not work with multiple special commands unless it is last
 					else if (specialPageArray[p].match('GOLDSPLIT:') != null) {
 						goldCheck = specialPageArray[p].split('GOLDSPLIT:');
 						if (this.gold >= goldCheck[1]) {
 							//passed gold check, redirect to first page
-							this.page = specialPageArray[1];
+							this.page = specialPageArray[specialPageArray.length-2];
 							this.processChoice(this.page,0);
 							return;
 						} else {
 							//failed gold check, redirect to second page
-							this.page = specialPageArray[2];
+							this.page = specialPageArray[specialPageArray.length-1];
 							this.processChoice(this.page,0);
 							return;
 						}
 					}
 					//INVCHECK:item.  If the item is in the inventory, display the page, otherwise redirect to another page
-					//INVCHECK does not work with multiple special commands
+					//INVCHECK does not work with multiple special commands unless it is the last command
 					else if (specialPageArray[p].match('INVCHECK:') != null) {
 						inventoryCheck = specialPageArray[p].split('INVCHECK:');
 						if (inventoryCheck[1] in this.oc(this.inventory) || specialPageArray.length < 3) {
 							this.message = specialPageArray[p+1];
 						} else {
 							//failed inventory check, redirect to a new page
-							this.page = specialPageArray[2];
+							this.page = specialPageArray[specialPageArray.length-1];
 							this.processChoice(this.page,0);
 							return;
 						}
@@ -429,7 +429,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						//this.message = specialPageArray[p+1];
 					}
 					//INVBUY:item,gold cost ... Add an item to your inventory and remove that amount of gold.
-					//Does not work with multiple commands but is almost equivalent to INVADD: and LOSEGOLD: together
+					//Only works with multiple commands if it is the last command
 					else if (specialPageArray[p].match('INVBUY:') != null) {
 						inventoryAdd = specialPageArray[p].split('INVBUY:');
 						//Add multiple inventory items by seperating them by a comma
@@ -438,7 +438,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							if (dojo.number.parse(this.gold) < dojo.number.parse(goldSpent[1])) {
 								if (specialPageArray.length > 2) {
 									//not enough gold, redirect to another page (optional)
-									this.page = specialPageArray[2];
+									this.page = specialPageArray[specialPageArray.length-1];
 									this.processChoice(this.page,0);
 									return;
 								}
@@ -672,7 +672,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if (specialPageArray.length > 2) {
 							if (dojo.number.parse(this.gold) < dojo.number.parse(goldLost[1])) {
 								//not enough gold, redirect to another page
-								this.page = specialPageArray[2];
+								this.page = specialPageArray[specialPageArray.length-1];
 								this.processChoice(this.page,0);
 								return;
 							}
@@ -707,7 +707,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						}
 					}
 					//VARSPLIT:var, value.  If var = value, go to the first page, otherwise go to the second page.
-					//Does not work with multiple commands
+					//Does not work with multiple commands unless it is last
 					else if (specialPageArray[p].match('VARSPLIT:') != null) {
 						varSplit = specialPageArray[p].split('VARSPLIT:')[1].split(',');
 						passedCheck = false;
@@ -720,12 +720,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						}
 						if (passedCheck) {
 							//passed variable check, redirect to first page
-							this.page = specialPageArray[1];
+							this.page = specialPageArray[specialPageArray.length-2];
 							this.processChoice(this.page,0);
 							return;
 						} else {
-							//failed inventory check, redirect to second page
-							this.page = specialPageArray[2];
+							//failed variable check, redirect to second page
+							this.page = specialPageArray[specialPageArray.length-1];
 							this.processChoice(this.page,0);
 							return;
 						}
@@ -891,11 +891,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			MAX_WIDTH = canvas.width;
 			MAX_HEIGHT = canvas.height;
 			HEALTHBAR_HEIGHT = 20;
+			HEALTHBAR_WIDTH = 0.5 * MAX_WIDTH;
 			ctx.fillStyle = "rgb(255,0,0)";
-			ctx.fillRect(0,0,MAX_WIDTH,HEALTHBAR_HEIGHT);
+			ctx.fillRect(0,0,HEALTHBAR_WIDTH,HEALTHBAR_HEIGHT);
 			ctx.fillStyle = "rgb(0,128,0)";
 			proportion = currentHealth/this.MAX_HEALTH;
-			ctx.fillRect(0,0,proportion * MAX_WIDTH,HEALTHBAR_HEIGHT);
+			ctx.fillRect(0,0,proportion * HEALTHBAR_WIDTH,HEALTHBAR_HEIGHT);
 			//add notification text
 			ctx.fillStyle = 'rgb(255,255,255)';
 			ctx.font = '20px sans-serif';
