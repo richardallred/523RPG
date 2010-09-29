@@ -102,7 +102,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//Parse weapon information
 				var added = {
 					name: 'Error with weapon initialization - no name specified',
-					type: 'weapon'
+					type: 'weapon',
 					strengthbonus: 'NaN',
 					accuracy: 'NaN',
 					hitMessages: [],
