@@ -227,7 +227,7 @@ ARMOR:Guard disguise^*1^*75
 200:Swim towards the tunnel with the grating^*201^*Swim towards the small hole^*202^*Swim towards the uneven bricks and try to scale the wall^*203
 201:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to the grate, where you spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health. 
 201:Continue^*204
-201:images/grate_test.jpg
+201:images/locked_test.jpg
 202:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to reach the hole.  You grab on to the bottom of it and spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health.
 202:Continue^*205
 203:RESTART:^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to one of the bricks on the other side.  You slowly and painfully pull yourself up the bricks, which cut into your hands as you try to climb them.  You manage to make it up a good distance before your aching hands lose their grip, causing you to plummet into the moat below.  You hit the moat with such force that it knocks you out, and you end up floating facedown in it. <br>Your life ends here.
@@ -241,7 +241,7 @@ ARMOR:Guard disguise^*1^*75
 206:images/grate_test.jpg
 207:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.  You try to force the lock, but to no avail.  The lock and the grate are both made of solid metal and there is no way past them.  You have no choice but to abandon the tunnel.
 207:Swim to the small hole^*211^*Swim to the uneven bricks and try to scale the wall^*212
-207:images/grate_test.jpg
+207:images/locked_test.jpg
 208:You climb into the basin and scrub yourself vigorously with some nearby lye soap.  It seems like it takes forever, but eventually you get most of the filth off of yourself and your clothes.
 208:Leave the kitchen^*280
 209:Content not added
