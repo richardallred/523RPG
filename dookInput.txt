@@ -300,13 +300,13 @@
 245:Continue^*277
 246:INVSPLIT:Crossbow^*274^*275
 246:null^*1
-247:As the guard enters the room, you sift through the contents of one of the barrels and pretend that nothing strange has happened.  You hear the guard walk towards you and stop for a few seconds as he appraises you.  Then you hear the guard draw his sword.  You will have to defend yourself.
+247:As the guard enters the room, you sift through the contents of one of the barrels and pretend that nothing strange has happened.  You hear the guard walk towards you and stop for a few seconds as he appraises you.  Then you hear the guard draw his sword.  You will have to defend yourself. 
 247:Continue^*276
 248:INVSPLIT:Assassin Garb^*249^*250
 248:null^*1
-249:LOSEHEALTH:2^*You quickly rip the closest torch from the wall and grind it into the ground to extinguish it.  In your haste, you accidently burn yourself and lose 2 health.  In the resulting darkness, you crouch near some sacks and remain still.  The guard looks around the room curiously, but he does not see your dark clothing in the shadows.  He eventually walks over to the wine rack and takes a bottle, turning his back towards you.
+249:LOSEHEALTH:2^*You quickly rip the closest torch from the wall and grind it into the ground to extinguish it.  In your haste, you accidently burn yourself and lose 2 health.  In the resulting darkness, you crouch near some sacks and remain still.  The guard looks around the room curiously, but he does not see your dark clothing in the shadows.  He eventually walks over to the wine rack and takes a bottle, turning his back towards you. 
 249:Attack the guard and try to take him by surprise^*251^*Wait for the guard to leave the room^*252
-250:LOSEHEALTH:2^*You quickly rip the closest torch from the wall and grind it into the ground to extinguish it.  In your haste, you accidently burn yourself and lose 2 health.  In the resulting darkness, you crouch near some sacks and remain still.  The guard looks around the room curiously, until he looks straight at you and approaches you, drawing his sword.  You will have to defend yourself.
+250:LOSEHEALTH:2^*You quickly rip the closest torch from the wall and grind it into the ground to extinguish it.  In your haste, you accidently burn yourself and lose 2 health.  In the resulting darkness, you crouch near some sacks and remain still.  The guard looks around the room curiously, until he looks straight at you and approaches you, drawing his sword.  You will have to defend yourself. 
 250:Continue^*276
 251:INVSPLIT:Crossbow^*253^*254
 251:null^*1
