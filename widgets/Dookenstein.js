@@ -52,6 +52,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//initialize weapon data (default: unarmed with bare hands)
 		var defaultWeapon = {
 			name: 'Your bare hands',
+			type: 'unarmed',
 			strengthbonus: '-4',
 			accuracy: '55',
 			hitMessages: ['You hit your enemy'],
@@ -99,78 +100,101 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			}
 			else if (dataSplit[i].indexOf('WEAPON:') != -1) {
 				//Parse weapon information
-				var addedWeapon = {
+				var added = {
 					name: 'Error with weapon initialization - no name specified',
+					type: 'weapon'
 					strengthbonus: 'NaN',
 					accuracy: 'NaN',
 					hitMessages: [],
 					missMessages: []
 				}
-				weaponSplit = dataSplit[i].split('WEAPON:')[1].split(this.DELIMITER);
-				addedWeapon.name = weaponSplit[0];
-				addedWeapon.strengthbonus = dojo.number.parse(weaponSplit[1]);
-				addedWeapon.accuracy = dojo.number.parse(weaponSplit[2]);
-				if (isNaN(addedWeapon.strengthbonus)) {
+				splitResult = dataSplit[i].split('WEAPON:')[1].split(this.DELIMITER);
+				added.name = splitResult[0];
+				added.strengthbonus = dojo.number.parse(splitResult[1]);
+				added.accuracy = dojo.number.parse(splitResult[2]);
+				if (isNaN(added.strengthbonus)) {
 					console.log('Error initializing weapon strength (Not a number)!');
-					addedWeapon.strengthbonus = -4;
+					added.strengthbonus = -4;
 				}
-				if (isNaN(addedWeapon.accuracy)) {
+				if (isNaN(added.accuracy)) {
 					console.log('Error initializing weapon accuracy (Not a number)!');
-					addedWeapon.accuracy = 55;
+					added.accuracy = 55;
 				}
-				for (y = 0; y < weaponSplit.length; y++) {
-					if (weaponSplit[y].indexOf('HIT:') != -1) {
-						addedWeapon.hitMessages[addedWeapon.hitMessages.length] = weaponSplit[y].split('HIT:')[1];
+				for (y = 0; y < splitResult.length; y++) {
+					if (splitResult[y].indexOf('HIT:') != -1) {
+						added.hitMessages[added.hitMessages.length] = splitResult[y].split('HIT:')[1];
 					}
-					if (weaponSplit[y].indexOf('MISS:') != -1) {
-						addedWeapon.missMessages[addedWeapon.missMessages.length] = weaponSplit[y].split('MISS:')[1];
+					if (splitResult[y].indexOf('MISS:') != -1) {
+						added.missMessages[added.missMessages.length] = splitResult[y].split('MISS:')[1];
 					}
 				}
-				if (addedWeapon.hitMessages.length == 0) {
-					addedWeapon.hitMessages = ['You hit your enemy'];
+				if (added.hitMessages.length == 0) {
+					added.hitMessages = ['You hit your enemy'];
 				}
-				if (addedWeapon.missMessages.length == 0) {
-					addedWeapon.missMessages = ['You miss.'];
+				if (added.missMessages.length == 0) {
+					added.missMessages = ['You miss.'];
 				}
-				this.possibleWeapons[this.possibleWeapons.length] = addedWeapon;
-				//console.log('Added Weapon.  Name: ' + addedWeapon.name + ', Strength bonus: ' + addedWeapon.strengthbonus + ', Accuracy: ' + addedWeapon.accuracy + ', Hit message 1: ' + addedWeapon.hitMessages[0] + ', Miss message 1:' + addedWeapon.missMessages[0]);
+				this.possibleWeapons[this.possibleWeapons.length] = added;
+				//console.log('Added Weapon.  Name: ' + added.name + ', Strength bonus: ' + added.strengthbonus + ', Accuracy: ' + added.accuracy + ', Hit message 1: ' + added.hitMessages[0] + ', Miss message 1:' + added.missMessages[0]);
 			}
 			else if (dataSplit[i].indexOf('UNARMED:') != -1) {
 				//Parse weapon information for the case where you must fight unarmed (default:bare hands)
-				var addedUnarmed = {
+				var added = {
 					name: 'Error with unarmed initialization - no name specified',
 					strengthbonus: 'NaN',
 					accuracy: 'NaN',
 					hitMessages: [],
 					missMessages: []
 				}
-				unarmedSplit = dataSplit[i].split('UNARMED:')[1].split(this.DELIMITER);
-				addedUnarmed.name = unarmedSplit[0];
-				addedUnarmed.strengthbonus = dojo.number.parse(unarmedSplit[1]);
-				addedUnarmed.accuracy = dojo.number.parse(unarmedSplit[2]);
-				if (isNaN(addedUnarmed.strengthbonus)) {
+				splitResult = dataSplit[i].split('UNARMED:')[1].split(this.DELIMITER);
+				added.name = splitResult[0];
+				added.strengthbonus = dojo.number.parse(splitResult[1]);
+				added.accuracy = dojo.number.parse(splitResult[2]);
+				if (isNaN(added.strengthbonus)) {
 					console.log('Error initializing unarmed strength (Not a number)!');
-					addedUnarmed.strengthbonus = -4;
+					added.strengthbonus = -4;
 				}
-				if (isNaN(addedUnarmed.accuracy)) {
+				if (isNaN(added.accuracy)) {
 					console.log('Error initializing unarmed accuracy (Not a number)!');
-					addedUnarmed.accuracy = 55;
+					added.accuracy = 55;
 				}
-				for (y = 0; y < unarmedSplit.length; y++) {
-					if (unarmedSplit[y].indexOf('HIT:') != -1) {
-						addedUnarmed.hitMessages[addedUnarmed.hitMessages.length] = unarmedSplit[y].split('HIT:')[1];
+				for (y = 0; y < splitResult.length; y++) {
+					if (splitResult[y].indexOf('HIT:') != -1) {
+						added.hitMessages[added.hitMessages.length] = splitResult[y].split('HIT:')[1];
 					}
-					if (unarmedSplit[y].indexOf('MISS:') != -1) {
-						addedUnarmed.missMessages[addedUnarmed.missMessages.length] = unarmedSplit[y].split('MISS:')[1];
+					if (splitResult[y].indexOf('MISS:') != -1) {
+						added.missMessages[added.missMessages.length] = splitResult[y].split('MISS:')[1];
 					}
 				}
-				if (addedUnarmed.hitMessages.length == 0) {
-					addedUnarmed.hitMessages = ['You hit your enemy'];
+				if (added.hitMessages.length == 0) {
+					added.hitMessages = ['You hit your enemy'];
 				}
-				if (addedUnarmed.missMessages.length == 0) {
-					addedUnarmed.missMessages = ['You miss.'];
+				if (added.missMessages.length == 0) {
+					added.missMessages = ['You miss.'];
 				}
-				//console.log('Added Unarmed.  Name: ' + addedUnarmed.name + ', Strength bonus: ' + addedUnarmed.strengthbonus + ', Accuracy: ' + addedUnarmed.accuracy + ', Hit message 1: ' + addedUnarmed.hitMessages[0] + ', Miss message 1:' + addedUnarmed.missMessages[0]);
+				this.unarmed = added;
+				//console.log('Added Unarmed.  Name: ' + added.name + ', Strength bonus: ' + added.strengthbonus + ', Accuracy: ' + added.accuracy + ', Hit message 1: ' + added.hitMessages[0] + ', Miss message 1:' + added.missMessages[0]);
+			}	else if (dataSplit[i].indexOf('SHIELD:') != -1) {
+				//Parse weapon information for the case where you must fight unarmed (default:bare hands)
+				var added = {
+					name: 'Error with shield initialization - no name specified',
+					type: 'shield',
+					defense: NaN,
+					probability: NaN
+				}
+				splitResult = dataSplit[i].split('SHIELD:')[1].split(this.DELIMITER);
+				added.name = splitResult[0];
+				added.defense = dojo.number.parse(splitResult[1]);
+				added.probability = dojo.number.parse(splitResult[2]);
+				if (isNaN(added.defense)) {
+					console.log('Error initializing shield defense (Not a number)!');
+					added.defense = 0;
+				}
+				if (isNaN(added.probability)) {
+					console.log('Error initializing shield probability (Not a number)!');
+					added.probability = 0;
+				}
+				this.possibleWeapons[this.possibleWeapons.length] = added;
 			}
 			else if (dataSplit[i].indexOf('INITIALIZE:') != -1) {
 				//Initialize variables - default is 50 health, 10 strength, and 0 gold
@@ -364,6 +388,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				DISPLAYGOLD - Display a message saying how much gold the character has
 				VARSPLIT:var,value^*x^*y - Go to page x if external variable var = value, otherwise go to page y
 				VARSET:var,value - Set the value of external variable var to value
+				VARDISPLAY:var - Display the value of var in a message
 				COMBAT: - Special command to start combat
 				RESTART: - The story has reached some sort of end, so restart from page 1
 				*/
@@ -686,7 +711,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.gold = 0;
 						}
 						//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
-						//this.message = specialPageArray[p+1];
+						this.message = specialPageArray[p+1];
 					}
 					//GAINGOLD: n, gain n gold
 					else if (specialPageArray[p].match('GAINGOLD:') != null) {
@@ -736,6 +761,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						for (y = 0; y < this.variableList.length; y++) {
 							if (this.variableList[y].name == varSet[0]) {
 								this.variableList[y].value = varSet[1];
+							}
+						}
+					}
+					//VARDISPLAY: var.  Display the value of var.
+					else if (specialPageArray[p].match('VARDISPLAY:') != null) {
+						varSplit = specialPageArray[p].split('VARDISPLAY:')[1];
+						for (y = 0; y < this.variableList.length; y++) {
+							if (this.variableList[y].name == varSplit) {
+								this.message = this.message + '<br>' + this.variableList[y].name + ':' + this.variableList[y].value;
 							}
 						}
 					}
