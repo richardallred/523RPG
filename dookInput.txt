@@ -225,9 +225,7 @@
 207:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.  You try to force the lock, but to no avail.  The lock and the grate are both made of solid metal and there is no way past them.  You have no choice but to abandon the tunnel.
 207:Swim to the small hole^*211^*Swim to the uneven bricks and try to scale the wall^*212
 208:You climb into the basin and scrub yourself vigorously with some nearby lye soap.  It seems like it takes forever, but eventually you get most of the filth off of yourself and your clothes.
-208:Content not added^*999
-209:Leave the room
-209:Content not added^*999
+208:Leave the kitchen^*280
 210:INVSPLIT:Tinderbox and torch^*213^*214
 210:null^*1
 211:Though you hate the thought of once again swimming in the moat, you jump down from the tunnel and swim the short distance to the small hole you saw earlier.  As you grab on to the bottom of hole to pull yourself up, you shudder with revulsion when your hand touches a wet, slimy substance.  The hole looks smaller than you remembered and you aren't certain if you can fit through it.
@@ -362,12 +360,14 @@
 275:Continue^*276
 276:You are fighting a guard.
 276:Content not added^*999
-277: You exit the storeroom and find yourself in a long dark hallway lined with doors.  Hanging on the wall is a torch that allows you to clearly see the closest door.  Suddenly, you hear a slow eerie creek comming from the end of the hallway.  You can hear a guard entering.  You can either prepare to fight the guard or dart into the closest door and remain unseen.
+277: You exit and find yourself in a long dark hallway lined with doors.  Hanging on the wall is a torch that allows you to clearly see the closest door.  Suddenly, you hear a slow eerie creek comming from the end of the hallway.  You can hear a guard entering.  You can either prepare to fight the guard or dart into the closest door and remain unseen.
 277:Prepare for battle^*278^*Flee and enter the closest door^*279
-278:LOSEHEALTH:50^*The guard detects your presence, draws his sword and lunges forard skewering you before you can make a move.  
-278:Content not added^*999
-279:You manage to evade the guard and enter into the castle's kitchen.
-279:Content not addedL^*999
+278:The guard detects your presence, draws his sword and lunges forard skewering you before you can make a move.  
+278:Combat not added^*999
+279:You manage to evade the guard and enter into the castle kitchen.  You see a washbasin, but nothing else of interest.
+279:Wash your self off^*208^*Leave the room^*280
+280:You are finally greeted with a clear view of the basement of the castle.  You see doors to enter Servant housing, a washroom, the armory, the interrogation room, and finally an dark opening on the other end of the hall of whitch you can see very little.
+280:Peek into the servant housing BEWARE^*999^*Enter the washroom^*999^*Visit the armory^*999^*Try your hand at interrogation^*999^*Venture into the abyss at the opposite end of the hallway^*999
 300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  Across the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep where the King resides is inside the inner bailey, but you know there is little chance of the guards letting you through.
 300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
 301:You wait until you and the guard are passing through a large crowd of people, then you dart into the crowd while he is not watching.  In a few moments, you hear him give a shout of surprise, but you are already a good distance away from him.  You can see a stable and some merchant stalls nearby.
