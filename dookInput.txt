@@ -3,6 +3,7 @@ INITIALIZE:Health,50
 INITIALIZE:Strength,10
 INITIALIZE:Gold,20
 INITIALIZE:Horse and cart,0
+INITIALIZE:mealsEaten,0
 WEAPON:Sword^*4^*85^*HIT:You swing your blade^*HIT:You lunge with your sword^*HIT:You quickly strike^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked.
 WEAPON:Mace^*5^*75^*HIT:You bring your mace downwards in a crushing blow^*HIT:You swing your mace in a wide arc^*HIT:You hit with a stunning blow^*MISS:Your mace is blocked.^*MISS:You swing your mace, but miss.^*MISS:You fail to do any damage.
 WEAPON:Hidden dagger^*2^*65^*HIT:You stab with your dagger^*HIT:You slash with your dagger^*HIT:You cut with your dagger^*MISS:You fail to do any damage.^*MISS:Your dagger is blocked.^*MISS:You swing your dagger, but miss.^*MISS:You stab with your dagger, but you are unable to do any damage.
@@ -426,7 +427,7 @@ ARMOR:Guard disguise^*1^*75
 317:VARSPLIT:Horse and cart,1^*319^*318
 317:null^*1
 318:As you approach the merchant stalls, you see several stalls of food, goods and equipment, clothing and armor, and weapons
-318:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
+318:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
 319:As you lead your horse and cart over to the merchant stalls, one of the guards standing near the stalls approaches you.  "If you want to sell your goods here, I will need to see your merchant's permit," he says.
 319:Say that you have lost your permit^*324^*Say that your permit has expired and you are about to buy a new one^*325^*Say that you are not planning on selling anything^*326^*Try to bribe the guard into letting you sell your goods^*327
 320:DISPLAYGOLD:^*You look at the variety of available food stalls.  You see merchants selling fresh bread, cheeses, vegetables, and roast meat.  You also see many jugs of ale and mead on display.  You are already carrying enough rations for your mission, but the food for sale looks delicious and you consider buying some for a meal. 
@@ -487,11 +488,11 @@ ARMOR:Guard disguise^*1^*75
 347:Content not added^*999^*Return to the courtyard^*300
 348:Tell him you need help
 348:Content not added^*999^*Return to the courtyard^*300
-349:LOSEGOLD:2^*You pay two gold coins to the vendor and buy some hot, fresh bread and a slice of cheese.  You sit down and enjoy the delicious meal.  It is quite refreshing.^*381
+349:VARSET:mealsEaten,1^*LOSEGOLD:2^*You pay two gold coins to the vendor and buy some hot, fresh bread and a slice of cheese.  You sit down and enjoy the delicious meal.  It is quite refreshing.^*381
 349:Visit the other stalls^*352^*Return to the Courtyard^*300
-350:LOSEGOLD:4^*You pay four gold coins for a large piece of roast oxen.  You sit down and enjoy the hot, delicious meat.  The meal is quite refreshing.^*381
+350:VARSET:mealsEaten,1^*LOSEGOLD:4^*You pay four gold coins for a large piece of roast oxen.  You sit down and enjoy the hot, delicious meat.  The meal is quite refreshing.^*381
 350:Visit the other stalls^*352^*Return to the Courtyard^*300
-351:LOSEGOLD:2^*You pay two gold coins and purchase a jug of ale.  You drink a little of it, but the ale has gone bad and it has a terrible, sour taste.  You demand a refund from the vendor, but he just laughs out you.  You don't want any trouble with the guards, so you leave and throw away the bad ale.^*381
+351:VARSET:mealsEaten,1^*LOSEGOLD:2^*You pay two gold coins and purchase a jug of ale.  You drink a little of it, but the ale has gone bad and it has a terrible, sour taste.  You demand a refund from the vendor, but he just laughs out you.  You don't want any trouble with the guards, so you leave and throw away the bad ale.^*381
 351:Visit the other stalls^*352^*Return to the Courtyard^*300
 352:Which stall do you want to look at?
 352:Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
@@ -516,25 +517,25 @@ ARMOR:Guard disguise^*1^*75
 362:INVBUY:Rope,3^*You pay 3 gold coins and buy a length of rope.
 362:Return to the goods stall^*321^*Look at the other stalls^*363^*Return to the courtyard^*300
 363:What stall do you want to look at?
-363:Look at the food^*320^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
+363:Look at the food^*366^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
 364:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent mercenary disguise, which you could exchange your merchant clothing for.  In the armor stand, you see a set of fine shields for purchase, as well as a suit of chainmail armor that would fit you. 
 364:Buy a mercenary disguise for 3 gold coins^*370^*Buy the chainmail armor for 10 gold coins^*367^*Buy a shield for 6 gold coins^*368^*Go back to the other stalls^*372
 365:INVSPLIT:Chainmail armor^*379^*380
 365:null^*1
-366:Page not used
+366:VARSPLIT:mealsEaten,0^*320^*369
 366:null^*1
 367:INVCHECK:Chainmail armor^*You are already wearing chainmail armor.^*377
 367:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 368:INVCHECK:Shield^*You already have a shield, and you do not need another one.^*378
 368:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
-369:Page not used
-369:null^*1
+369:You look at the variety of available food stalls.  You see merchants selling fresh bread, cheeses, vegetables, and roast meat.  You also see many jugs of ale and mead on display.  The food looks delicious, but you aren't very hungry. 
+369:Look at the other stalls^*352^*Return to the courtyard^*300
 370:INVREMOVE:Merchant Disguise,false^*INVBUY:Mercenary Disguise,3^*To get a better price on the clothing necessary make the mercenary disguise, you remove your merchant disguise in order to trade it to the vendor.  You then pay 3 gold pieces and put on the mercenary disguise.  What do you do next?^*371
 370:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 371:INVADD:Merchant Disguise^*You can't afford the clothing needed for the mercenary disguise.
 371:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 372:What stall do you want to look at?
-372:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the weapons^*323^*Return to the courtyard^*300
+372:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the weapons^*323^*Return to the courtyard^*300
 373:INVREMOVE:Mercenary Disguise,false^*INVBUY:Merchant Disguise,2^*To get a better price on the clothing necessary make the merchant disguise, you remove your mercenary disguise in order to trade it to the vendor.  You then pay 2 gold pieces and put on the merchant disguise.  What do you do next?^*374
 373:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 374:INVADD:Mercenary Disguise^*You can't afford the clothing needed for the merchant disguise.
@@ -552,7 +553,7 @@ ARMOR:Guard disguise^*1^*75
 380:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent merchant disguise, which you could exchange your current clothing for.  In the armor stand, you see a set of finely shields for purchase, as well as a suit of chainmail armor that would fit you.
 380:Buy a merchant disguise for 2 gold coins^*373^*Buy the chainmail armor for 10 gold coins^*367^*Buy a shield for 6 gold coins^*368^*Go back to the other stalls^*372
 381:You do not have enough gold coins to afford that.
-381:Return to the food stalls^*320^*Visit the other stalls^*352^*Return to the Courtyard^*300
+381:Return to the food stalls^*366^*Visit the other stalls^*352^*Return to the Courtyard^*300
 382:INVCHECK:Sword^*You already have a sword, and do not need another one.^*385
 382:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
 383:INVCHECK:Crossbow^*You already have a crossbow and plenty of bolts, so you do not need to buy another one.^*386
@@ -566,7 +567,7 @@ ARMOR:Guard disguise^*1^*75
 387:INVBUY:Mace,8^*You pay 8 coins and buy a mace.
 387:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
 388:What stall do you want to look at?
-388:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Return to the courtyard^*300
+388:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Return to the courtyard^*300
 389:INVSPLIT:Guard Disguise^*391^*392
 389:null^*1
 390:INVCHECK:Grappling hook^*You walk along the entire length of the wall, but there are no weaknesses and it is unclimbable.  The further away you get from the gate, the less guards you see patrolling.  Near the end of the wall, there is a portion where you cannot see any guards.  You look around and there are no people in sight.  You consider attempting to throw your grappling hook up to one of the crenellations in order to climb up.^*393
