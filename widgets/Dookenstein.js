@@ -883,8 +883,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//Fight selected
 								strCompare = this.strength + currentWeapon.strengthbonus - enemyStr;
 								k = Math.floor(Math.random()*(10));
-								damageDealt = 10 + strCompare + Math.round(k/2) - enemyDef;
-								damageTaken = 5 - strCompare + Math.floor(k/2);
+								damageDealt = 4 + Math.round(strCompare/2) + k - enemyDef;
+								damageTaken = 5 - Math.round(strCompare/2) - Math.floor(k/2);
 								if (damageDealt < 0) {
 									damageDealt = 0;
 								}
@@ -892,16 +892,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									damageTaken = 0;
 								}
 								damageRatio = damageDealt/enemyHealth;
-								if (damageRatio < 0.1) {
-									damageMessage = ' and barely make a scratch.'
-								} else if (damageRatio < 0.2) {
-									damageMessage = ' and inflict a minor wound.'
-								} else if (damageRatio < 0.3) {
-									damageMessage = ' and inflict a large wound.'
-								} else if (damageRatio < 0.4) {
-									damageMessage = ' and inflict a deep wound.'
+								if (k < 2) {
+									damageMessage = ' and barely make a scratch,'
+								} else if (k < 5) {
+									damageMessage = ' and inflict a minor wound,'
+								} else if (k < 7) {
+									damageMessage = ' and inflict a large wound,'
+								} else if (k < 9) {
+									damageMessage = ' and inflict a deep wound,'
 								} else {
-									damageMessage = ' and inflict a grave wound.'
+									damageMessage = ' and inflict a grave wound,'
 								}
 								randomNum = Math.random();
 								if (randomNum <= currentWeapon.accuracy/100) {
@@ -917,7 +917,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 								if (youHit) {
 									k = Math.floor(Math.random()*(currentWeapon.hitMessages.length));
-									this.message = this.message + ' <br>' + currentWeapon.hitMessages[k] + ' and hit for ' + damageDealt + ' damage.';
+									this.message = this.message + ' <br>' + currentWeapon.hitMessages[k] + damageMessage + ' dealing ' + damageDealt + ' damage.';
 									enemyHealth -= damageDealt;
 								} else {
 									if (Math.random() < 0.4) {
@@ -935,13 +935,20 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									if (currentShield != "None") {
 										if (Math.random() <= currentShield.probability/100) {
 											damageTaken -= currentShield.defense;
+											if (damageTaken < 0) {
+												damageTaken = 0;
+											}
 											this.message = this.message + ' <br>Your ' + currentShield.name + ' protects you from ' + currentShield.defense + ' of the damage.';
 										}
 									}									
 									this.health -= damageTaken;
 								} else {
 									//k = Math.floor(Math.random()*(enemyMissMessages.length+1));
-									this.message = this.message + ' <br>The enemy misses.';
+									if (currentShield != "None" && Math.random() < 0.5) {
+										this.message = this.message + ' <br>You block with your shield.';
+									} else {
+										this.message = this.message + ' <br>The enemy misses.';
+									}
 								}
 
 								if (this.health < 0) {
