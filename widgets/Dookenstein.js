@@ -53,7 +53,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		var defaultWeapon = {
 			name: 'Your bare hands',
 			type: 'unarmed',
-			strengthbonus: '-4',
+			strengthbonus: '-3',
 			accuracy: '55',
 			hitMessages: ['You hit your enemy'],
 			missMessages: ['You miss.']
@@ -76,6 +76,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.invselect = 0;
 		//special mode for combat
 		this.inCombat = 0;
+		this.chooseWeapon = 0;
 		this.invselecting = 0;
 		//set jsonic reading rate - default for JSonic is 200
 		this.sonicRate = 250;
@@ -98,7 +99,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//set delimiter to something other than '^*'
 				this.DELIMITER = dataSplit[i].split('DELIMITER:')[1];
 			}
-			else if (dataSplit[i].indexOf('WEAPON:') != -1) {
+			else if (dataSplit[i].indexOf('INITWEAPON:') != -1) {
 				//Parse weapon information
 				var added = {
 					name: 'Error with weapon initialization - no name specified',
@@ -108,13 +109,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					hitMessages: [],
 					missMessages: []
 				}
-				splitResult = dataSplit[i].split('WEAPON:')[1].split(this.DELIMITER);
+				splitResult = dataSplit[i].split('INITWEAPON:')[1].split(this.DELIMITER);
 				added.name = splitResult[0];
 				added.strengthbonus = dojo.number.parse(splitResult[1]);
 				added.accuracy = dojo.number.parse(splitResult[2]);
 				if (isNaN(added.strengthbonus)) {
 					console.log('Error initializing weapon strength (Not a number)!');
-					added.strengthbonus = -4;
+					added.strengthbonus = -3;
 				}
 				if (isNaN(added.accuracy)) {
 					console.log('Error initializing weapon accuracy (Not a number)!');
@@ -152,7 +153,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				added.accuracy = dojo.number.parse(splitResult[2]);
 				if (isNaN(added.strengthbonus)) {
 					console.log('Error initializing unarmed strength (Not a number)!');
-					added.strengthbonus = -4;
+					added.strengthbonus = -3;
 				}
 				if (isNaN(added.accuracy)) {
 					console.log('Error initializing unarmed accuracy (Not a number)!');
@@ -776,26 +777,193 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					//COMBAT: enemy name, enemy weapon, enemy base strength, enemy defense, enemy health, hit messages, miss messages, run away option, run away link
 					//Combat does not work with multiple commands
 					else if (specialPageArray[p].match('COMBAT:') != null) {
-						if (this.inCombat = 0) {
-							//just entering combat, allow the user to switch weapons
-						}
-						//default for wonCombat is false, set to true if the enemy's health goes to zero
-						wonCombat = false;
-						for (i = 0; i < choicesArray.length; i+=2) {
-							//remove all choices that have already been taken
-							if (choicesArray[i] in this.oc(this.inventory)) {
-								choicesArray[i] = 'Taken ' + choicesArray[i];
-								if (this.invselect == 1) {
-									alreadyTakenCount ++;
+						if (this.inCombat == 0) {
+							//parse enemy info
+							combatInfo = specialPageArray[p].split('COMBAT:')[1].split(',');
+							enemyWeaponName = 'None';
+							enemyStr = 10;
+							enemyDef = 0;
+							enemyHealth = 20;
+							enemyAcc = 55;
+							enemyHitMessages = [];
+							enemyMissMessages = [];
+							for (x = 0; x < combatInfo.length; x++) {
+								if (combatInfo[x].match('WEAPON:') != null) {
+									enemyWeaponName = combatInfo[x].split('WEAPON:')[1];
+								}
+								if (combatInfo[x].match('STRENGTH:') != null) {
+									enemyStr = dojo.number.parse(combatInfo[x].split('STRENGTH:')[1]);
+								}
+								if (isNaN(enemyStr)) {
+									console.log('Error initializing strength for ' + combatInfo[0] + '. (Not a number)!');
+									enemyStr = 10;
+								}
+								if (combatInfo[x].match('DEFENSE:') != null) {
+									enemyDef = dojo.number.parse(combatInfo[x].split('DEFENSE:')[1]);
+								}
+								if (isNaN(enemyDef)) {
+									console.log('Error initializing defense for ' + combatInfo[0] + '. (Not a number)!');
+									enemyDef = 0;
+								}
+								if (combatInfo[x].match('HEALTH:') != null) {
+									enemyHealth = dojo.number.parse(combatInfo[x].split('HEALTH:')[1]);
+								}
+								if (isNaN(enemyHealth)) {
+									console.log('Error initializing health for ' + combatInfo[0] + '. (Not a number)!');
+									enemyHealth = 20;
+								}
+								if (combatInfo[x].match('HIT:') != null) {
+									enemyHitMessages[enemyHitMessages.length] = combatInfo[x].split('HIT:')[1];
+								}
+								if (combatInfo[x].match('MISS:') != null) {
+									enemyMissMessages[enemyMissMessages.length] = combatInfo[x].split('MISS:')[1];
 								}
 							}
-							choicesArray[i+1] = this.page;
+							for (x = 0; x < this.possibleWeapons.length; x++) {
+								if (this.possibleWeapons[x].name == enemyWeaponName) {
+									enemyStr = dojo.number.parse(enemyStr) + dojo.number.parse(this.possibleWeapons[x].strengthbonus);
+									enemyAcc = dojo.number.parse(this.possibleWeapons[x].accuracy);
+								}
+							}
 						}
-						//go to combat mode
-						this.inCombat = 1;
-						if (wonCombat) {
-							this.message = specialPageArray[p+1];
-							this.inCombat = 0;
+						if (this.chooseWeapon == -1) {
+							//just selected a weapon
+							currentWeapon = availableWeapons[choiceNum - 1];
+							disableFight = true;
+						} else {
+							disableFight = false;
+						}
+						if (this.inCombat == 1 && choiceNum == 2 && this.chooseWeapon == 0) {
+							//change weapon selected
+							this.chooseWeapon = 1;
+						} else {
+							this.chooseWeapon = 0;
+						}
+						if (this.inCombat == 0 || this.chooseWeapon == 1) {
+							//just entering combat, allow the user to switch weapons
+							this.message = 'Choose a weapon to fight with.'
+							availableWeapons = [];
+							for (x = 0; x < this.possibleWeapons.length; x++) {
+								for (y = 1; y < this.inventory.length; y++) {
+									if (this.possibleWeapons[x].name == this.inventory[y] && this.possibleWeapons[x].type == 'weapon') {
+										availableWeapons[availableWeapons.length] = this.possibleWeapons[x];
+									}
+								}
+							}
+							availableWeapons[availableWeapons.length] = this.unarmed;
+							choicesArray = [];
+							for (z = 0; z < availableWeapons.length; z++) {
+								choicesArray[z*2] = availableWeapons[z].name;
+								choicesArray[z*2+1] = this.page;
+							}
+							availableShields = [];
+							for (x = 0; x < this.possibleWeapons.length; x++) {
+								for (y = 1; y < this.inventory.length; y++) {
+									if (this.possibleWeapons[x].name == this.inventory[y] && this.possibleWeapons[x].type == 'shield') {
+										availableShields[availableShields.length] = this.possibleWeapons[x];
+									}
+								}
+							}
+							if (availableShields.length == 1) {
+								currentShield = availableShields[0];
+							} else {
+								currentShield = "None";
+							}
+							this.chooseWeapon = -1;
+							this.inCombat = 1;
+						} else {
+							//default for wonCombat is false, set to true if the enemy's health goes to zero
+							wonCombat = false;
+							if (currentShield != "None") {
+								this.message = 'Currently in combat with ' + combatInfo[0] + '.  You are using: ' + currentWeapon.name + ' and ' + currentShield.name + '.';
+							} else {
+								this.message = 'Currently in combat with ' + combatInfo[0] + '.  You are using: ' + currentWeapon.name;
+							}
+							if (choiceNum == 1 && !disableFight) {
+								//Fight selected
+								strCompare = this.strength + currentWeapon.strengthbonus - enemyStr;
+								k = Math.floor(Math.random()*(10));
+								damageDealt = 10 + strCompare + Math.round(k/2) - enemyDef;
+								damageTaken = 5 - strCompare + Math.floor(k/2);
+								if (damageDealt < 0) {
+									damageDealt = 0;
+								}
+								if (damageTaken < 0) {
+									damageTaken = 0;
+								}
+								damageRatio = damageDealt/enemyHealth;
+								if (damageRatio < 0.1) {
+									damageMessage = ' and barely make a scratch.'
+								} else if (damageRatio < 0.2) {
+									damageMessage = ' and inflict a minor wound.'
+								} else if (damageRatio < 0.3) {
+									damageMessage = ' and inflict a large wound.'
+								} else if (damageRatio < 0.4) {
+									damageMessage = ' and inflict a deep wound.'
+								} else {
+									damageMessage = ' and inflict a grave wound.'
+								}
+								randomNum = Math.random();
+								if (randomNum <= currentWeapon.accuracy/100) {
+									youHit = true;
+								} else {
+									youHit = false;
+								}
+								randomNum = Math.random();
+								if (randomNum <= enemyAcc/100) {
+									enemyHit = true;
+								} else {
+									enemyHit = false;
+								}
+								if (youHit) {
+									k = Math.floor(Math.random()*(currentWeapon.hitMessages.length));
+									this.message = this.message + ' <br>' + currentWeapon.hitMessages[k] + ' and hit for ' + damageDealt + ' damage.';
+									enemyHealth -= damageDealt;
+								} else {
+									if (Math.random() < 0.4) {
+										k = Math.floor(Math.random()*(currentWeapon.missMessages.length));
+										this.message = this.message + ' <br>' + currentWeapon.missMessages[k];
+									} else {
+										k = Math.floor(Math.random()*(enemyMissMessages.length));
+										this.message = this.message + ' <br>' + enemyMissMessages[k];
+									}
+								}
+								if (enemyHit) {
+									k = Math.floor(Math.random()*(enemyHitMessages.length));
+									this.message = this.message + ' <br>' + enemyHitMessages[k] + ' and hits you for ' + damageTaken + ' damage.';
+									//reduce damage from shield and armor
+									if (currentShield != "None") {
+										if (Math.random() <= currentShield.probability/100) {
+											damageTaken -= currentShield.defense;
+											this.message = this.message + ' <br>Your ' + currentShield.name + ' protects you from ' + currentShield.defense + ' of the damage.';
+										}
+									}									
+									this.health -= damageTaken;
+								} else {
+									//k = Math.floor(Math.random()*(enemyMissMessages.length+1));
+									this.message = this.message + ' <br>The enemy misses.';
+								}
+
+								if (this.health < 0) {
+									this.health = 0;
+								}
+								this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+								if (this.health <= 0) {
+									this.message = this.message + '<br>You have been killed in combat.';
+									this.restart = 1;
+								} else if (enemyHealth <= 0) {
+									wonCombat = true;
+								}
+							}
+							choicesArray = [];
+							choicesArray[0] = 'Fight';
+							choicesArray[1] = this.page;
+							choicesArray[2] = 'Change Weapon';
+							choicesArray[3] = this.page;
+							if (wonCombat) {
+								this.message = this.message + '<br>' + specialPageArray[p+1];
+								this.inCombat = 0;
+							}
 						}
 					}
 					//restart the game on next button press with RESTART
@@ -965,6 +1133,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.MAX_HEALTH = this.STARTING_HEALTH;
 		this.health = this.MAX_HEALTH;
 		this.gold = this.STARTING_GOLD;
+		
+		this.inCombat = 0;
 		
 		for (i = 1; i < this.inventory.length; i++) {
 			//clear whole inventory except for the never used 0th element
