@@ -4,10 +4,10 @@ INITIALIZE:Strength,10
 INITIALIZE:Gold,20
 INITIALIZE:Horse and cart,0
 INITIALIZE:mealsEaten,0
-WEAPON:Sword^*4^*85^*HIT:You swing your blade^*HIT:You lunge with your sword^*HIT:You quickly strike^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked.
-WEAPON:Mace^*5^*75^*HIT:You bring your mace downwards in a crushing blow^*HIT:You swing your mace in a wide arc^*HIT:You hit with a stunning blow^*MISS:Your mace is blocked.^*MISS:You swing your mace, but miss.^*MISS:You fail to do any damage.
-WEAPON:Hidden dagger^*2^*65^*HIT:You stab with your dagger^*HIT:You slash with your dagger^*HIT:You cut with your dagger^*MISS:You fail to do any damage.^*MISS:Your dagger is blocked.^*MISS:You swing your dagger, but miss.^*MISS:You stab with your dagger, but you are unable to do any damage.
-UNARMED:Your bare hands^*-4^*55^*HIT:You quickly punch^*HIT:You lash out with your foot in a swift kick^*HIT:You throw your enemy to the ground^*HIT:You fistcuff your enemy^*MISS:Your fists fail to do any damage.^*MISS:You kick, but miss.^*MISS:You swing your fist, but miss.^*MISS:You fail to do any damage.
+INITWEAPON:Sword^*4^*85^*HIT:You swing your blade^*HIT:You lunge with your sword^*HIT:You quickly strike^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked.
+INITWEAPON:Mace^*5^*75^*HIT:You bring your mace downwards in a crushing blow^*HIT:You swing your mace in a wide arc^*HIT:You hit with a stunning blow^*MISS:Your mace is blocked.^*MISS:You swing your mace, but miss.^*MISS:You fail to do any damage.
+INITWEAPON:Hidden dagger^*2^*65^*HIT:You stab with your dagger^*HIT:You slash with your dagger^*HIT:You cut with your dagger^*MISS:You fail to do any damage.^*MISS:Your dagger is blocked.^*MISS:You swing your dagger, but miss.^*MISS:You stab with your dagger, but you are unable to do any damage.
+UNARMED:Your bare hands^*-3^*55^*HIT:You quickly punch^*HIT:You lash out with your foot in a swift kick^*HIT:You throw your enemy to the ground^*HIT:You fistcuff your enemy^*MISS:Your fists fail to do any damage.^*MISS:You kick, but miss.^*MISS:You swing your fist, but miss.^*MISS:You fail to do any damage.
 SHIELD:Shield^*2^*33
 ARMOR:Guard disguise^*1^*75
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
@@ -375,10 +375,10 @@ ARMOR:Guard disguise^*1^*75
 273:INVADD:Guard disguise,Sword,Mace^*You take the guard's sword and mace and sheathe them both.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
 273:Continue^*259
 274:You pull out your crossbow as the guard enters the room.  He sees you and draws his sword as he runs towards you.  You fire a bolt at the guard and hit him in the chest, but he continues running towards you.  You don't have enough time to reload and fire another shot, so you prepare for a fight.
-274:Continue^*276
+274:Continue^*281
 275:The guard sees you and draws his sword as he runs towards you.  You prepare to fight him.
 275:Continue^*276
-276:COMBAT:an armed guard,Sword,STRENGTH:10,DEFENSE:2,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor,MISS:Your blow glances off the guard's armor,MISS:The guard quickly parries your blow,MISS:The guard evades you^*You manage to defeat the guard.  You are victorious!
+276:COMBAT:an armed guard,WEAPON:Sword,STRENGTH:10,DEFENSE:2,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor.,MISS:Your blow glances off the guard's armor.,MISS:The guard quickly parries your blow.,MISS:The guard evades you.^*You manage to defeat the guard.  You are victorious!
 276:Content not added^*999
 277:You exit and find yourself in a long dark hallway lined with doors.  Hanging on the wall is a torch that allows you to clearly see the closest door.  Suddenly, you hear a slow eerie creek comming from the end of the hallway.  You can hear a guard entering.  You can either prepare to fight the guard or dart into the closest door and remain unseen.
 277:Prepare for battle^*278^*Flee and enter the closest door^*279
@@ -388,7 +388,7 @@ ARMOR:Guard disguise^*1^*75
 279:Wash your self off^*208^*Leave the room^*280
 280:You are finally greeted with a clear view of the basement of the castle.  You see doors to enter Servant housing, a washroom, the armory, the interrogation room, and finally an dark opening on the other end of the hall of whitch you can see very little.
 280:Peek into the servant housing BEWARE^*999^*Enter the washroom^*999^*Visit the armory^*999^*Try your hand at interrogation^*999^*Venture into the abyss at the opposite end of the hallway^*999
-281:COMBAT:a wounded guard,Sword,STRENGTH:9,DEFENSE:2,HEALTH:25,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor,MISS:Your blow glances off the guard's armor,MISS:The guard quickly parries your blow,MISS:The guard evades you^*You manage to defeat the wounded guard.  You are victorious!
+281:COMBAT:a wounded guard,WEAPON:Sword,STRENGTH:7,DEFENSE:2,HEALTH:25,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor,MISS:Your blow glances off the guard's armor,MISS:The guard quickly parries your blow,MISS:The guard evades you^*You manage to defeat the wounded guard.  You are victorious!
 281:Content not added
 300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  Across the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep where the King resides is inside the inner bailey, but you know there is little chance of the guards letting you through.
 300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
@@ -636,7 +636,7 @@ ARMOR:Guard disguise^*1^*75
 566:Continue^*568
 567:LOSEHEALTH:4^*You lie on the floor of the cell, pretending to groan in pain.  Two guards approach the cell, and you hear one of them unlock the door.  One of the guards roughly hoists you up by the shoulders, and at that moment you strike with your dagger, stabbing the guard in the chest.  The guard responds by kicking you viciously with an armored foot (causing you to lose 4 health), but it is too late.  He falls to the ground and you pull the dagger out of his chest and whirl around to face the second guard, who has drawn his sword. 
 567:Continue^*568
-568:You are fighting a dungeon guard
+568:COMBAT:a dungeon guard,WEAPON:Sword,STRENGTH:8,DEFENSE:2,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your dagger glances off the guard's armor.,MISS:Your dagger glances off the guard's armor.,MISS:The guard quickly parries your dagger swing.,MISS:The guard evades you.^*You manage to defeat the second guard.  You are now free to leave your cell.
 568:Content not added^*999
 569:You sit down and wait for hours before two guards finally arrive at your cell.  One of the guards takes out a key to unlock the cell, but sees the dagger blade jammed in the lock.  He gives a shout of surprise and orders you to stand with your face to the wall and your arms above your head.
 569:Obey the guard's order^*570^*Pretend that you did not hear him^*571
