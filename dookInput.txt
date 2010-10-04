@@ -6,6 +6,7 @@ INITIALIZE:Horse and cart,0
 INITIALIZE:mealsEaten,0
 INITIALIZE:turnedAway,0
 INITIALIZE:turretLockPicked,0
+INITIALIZE:killedArchers,0
 INITWEAPON:Sword^*4^*85^*HIT:You swing your blade^*HIT:You lunge with your sword^*HIT:You quickly strike^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked.
 INITWEAPON:Mace^*5^*75^*HIT:You bring your mace downwards in a crushing blow^*HIT:You swing your mace in a wide arc^*HIT:You hit with a stunning blow^*MISS:Your mace is blocked.^*MISS:You swing your mace, but miss.^*MISS:You fail to do any damage.
 INITWEAPON:Hidden dagger^*2^*65^*HIT:You stab with your dagger^*HIT:You slash with your dagger^*HIT:You cut with your dagger^*MISS:You fail to do any damage.^*MISS:Your dagger is blocked.^*MISS:You swing your dagger, but miss.^*MISS:You stab with your dagger, but you are unable to do any damage.
@@ -620,11 +621,11 @@ ARMOR:Guard disguise^*1^*75
 411:Continue^*300
 412:You go up to one of the large turrets in the corner of the courtyard.  The only entrance you can see from the ground level is a thick wooden door that is locked by a large metal padlock.  You look around and see that nobody is watching you, so now would be a good time to try to break in.
 412:Knock on the door^*410^*Try to pick the lock^*405^*Try to force the door open^*408^*Return to the Courtyard^*300
-413:INVCHECK:Crossbow^*You walk up the winding several stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.^*415
-413:Climb back down the staircase^*416^*Keep climbing up the staircase^*417^*Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419^*Shoot one of the archers with your crossbow and try to take the other one by surprise^*420
+413:VARSPLIT:killedArchers,1^*439^*438
+413:null^*1
 414:Climb down the startcase
 414:Content not added^*999
-415:You walk up the winding several stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.
+415:You walk up several winding stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.
 415:Climb back down the staircase^*416^*Keep climbing up the staircase^*417^*Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419
 416:Taking care to make your steps silent so the archers do not hear you, you climb down the staircase and return to the ground level of the turret.
 416:Climb back up the staircase^*413^*Climb down the staircase^*414^*Return the courtyard^*300
@@ -634,7 +635,7 @@ ARMOR:Guard disguise^*1^*75
 418:Take the sword^*422^*Take the mace^*423^*Take the throwing knives^*424
 419:INVSPLIT:Mace^*425^*427
 419:null^*1
-420:From your hidden position in the stairwell, you pull out your crossbow and fire a bolt into one of the archers, who cries out and falls to the ground.  You immediately drop the crossbow and lunge towards the other archer, who whips around and tries to fire a shot at you from his bow.  You knock the bow out of his hands, causing his arrow to barely miss you.  He is forced to defend himself with his fists.
+420:VARSET:killedArchers,1^*From your hidden position in the stairwell, you pull out your crossbow and fire a bolt into one of the archers, who cries out and falls to the ground.  You immediately drop the crossbow and lunge towards the other archer, who whips around and tries to fire a shot at you from his bow.  You knock the bow out of his hands, causing his arrow to barely miss you.  He is forced to defend himself with his fists.
 420:Continue^*421
 421:COMBAT:an archer,WEAPON:Your bare hands,STRENGTH:9,DEFENSE:0,HEALTH:30,HIT:The archer punches you,HIT:The archer kicks you,MISS:The archer sidesteps.,MISS:The archer evades you.,MISS:The archer grabs your arm and stops you from hitting him.^*You manage to defeat the archer.  Now that both archers are down, you can search the room.
 421:Content not added^*999
@@ -644,22 +645,38 @@ ARMOR:Guard disguise^*1^*75
 423:Take the sword^*422^*Take the throwing knives^*424^*Sneak behind one of the archers and attack him^*419^*Sneak back out of the room^*426
 424:INVADD:Throwing knives^*You silently pick up the sheaf of throwing knives.  You glance backwards, but the archers have not noticed you.  One of the archers scratches his back and his head almost turns towards you.  You decide that you will have to act quickly.
 424:Try to take out the archers with the throwing knives^*432^*Sneak back out of the room^*426
-425:LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly bring your mace down, knocking him out with a single blow.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
+425:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly bring your mace down, knocking him out with a single blow.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
 425:Continue^*421
 426:RESTART:^*You try to sneak back out of the room, but your luck does not hold.  One of the archers turns around and sees you while you are in the middle of the room.  He gives a shout of warning and both archers quickly turn around and fire two arrows into your body.  As you slump to the ground the archers quickly reload their bows and fire two more arrows into you. <br>Your life ends here.
 426:null^*1
 427:INVSPLIT:Sword^*428^*429
 427:null^*1
-428:LOSEHEALTH:5^*:You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You drive your sword forwards and run him through.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  You pull your sword out of the first archer and knock the second archer's bow out of his hand before he can fire again. He is forced to defend himself with his fists.
+428:VARSET:killedArchers,1^*LOSEHEALTH:5^*:You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You drive your sword forwards and run him through.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  You pull your sword out of the first archer and knock the second archer's bow out of his hand before he can fire again. He is forced to defend himself with his fists.
 428:Continue^*421
 429:INVSPLIT:Hidden dagger^*430^*431
 429:null^*1
-430:LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly cut him down with your dagger before he can react.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
+430:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly cut him down with your dagger before he can react.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
 430:Continue^*421
 431:RESTART:^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You don't have any weapons, so you grab him before he can react and slam him to the ground.  Unfortunately, the other archer hears this and looses an arrow into your back.  As you fall forwards, the archer reloads and hits you with another arrow.  You are helpless as the archer continues pierce you with deadly arrows.  <br> Your life ends here.
 431:null^*1
-432:Take out with knives
-432:Content not added^*999
+432:INVSPLIT:First aid kit^*433^*434
+432:null^*1
+433:VARSET:killedArchers,1^*LOSEHEALTH:10^*You toss one of the knives at an archer, who goes down as your knife buries into his back.  The other archer hears his companion hit the ground and whips around, firing a shot at you from his bow as you throw another knife at him.  You knife hits the archer in the chest and his arrow hits you in the thigh.  The archer falls down, grasping at the knife in his chest.  You wince as you pull the arrow out of your thigh and bandage the heavily bleeding wound with supplies from your first aid kit.  You have lost 10 health from the arrow.
+433:Search the body of the guards^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
+434:VARSET:killedArchers,1^*LOSEHEALTH:20^*You toss one of the knives at an archer, who goes down as your knife buries into his back.  The other archer hears his companion hit the ground and whips around, firing a shot at you from his bow as you throw another knife at him.  You knife hits the archer in the chest and his arrow hits you in the thigh.  The archer falls down, grasping at the knife in his chest.  You wince as you pull the arrow out of your thigh and blood flows freely from the wound.  You limp over to one of the archers and rip some cloth from his clothing and create a makeshift bandage for your leg.  You have lost 20 health from the arrow and from blood loss.
+434:Search the body of the guards^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
+435:Search the body
+435:Content not added^*999
+436:Search the room
+436:Content not added^*999
+437:You climb down the stairs and return to the ground level of the turret.
+437:Climb back up the staircase^*413^*Climb down the staircase^*414^*Return the courtyard^*300
+438:INVCHECK:Crossbow^*You walk up several winding stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.^*415
+438:Climb back down the staircase^*416^*Keep climbing up the staircase^*417^*Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419^*Shoot one of the archers with your crossbow and try to take the other one by surprise^*420
+439:You walk up the winding several stairs until you reach the next level.  You see a guard post with a weapons rack and some supplies, as well as the bodies of two archers on the ground.
+439:Climb back down the staircase^*437^*Keep climbing up the staircase^*417^*Search the room^*440
+440:Search the room.
+440:Content not added^*999
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
