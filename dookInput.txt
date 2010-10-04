@@ -4,6 +4,8 @@ INITIALIZE:Strength,10
 INITIALIZE:Gold,20
 INITIALIZE:Horse and cart,0
 INITIALIZE:mealsEaten,0
+INITIALIZE:turnedAway,0
+INITIALIZE:turretLockPicked,0
 INITWEAPON:Sword^*4^*85^*HIT:You swing your blade^*HIT:You lunge with your sword^*HIT:You quickly strike^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked.
 INITWEAPON:Mace^*5^*75^*HIT:You bring your mace downwards in a crushing blow^*HIT:You swing your mace in a wide arc^*HIT:You hit with a stunning blow^*MISS:Your mace is blocked.^*MISS:You swing your mace, but miss.^*MISS:You fail to do any damage.
 INITWEAPON:Hidden dagger^*2^*65^*HIT:You stab with your dagger^*HIT:You slash with your dagger^*HIT:You cut with your dagger^*MISS:You fail to do any damage.^*MISS:Your dagger is blocked.^*MISS:You swing your dagger, but miss.^*MISS:You stab with your dagger, but you are unable to do any damage.
@@ -74,7 +76,7 @@ ARMOR:Guard disguise^*1^*75
 29:Try to bribe the guards^*64^*Attack the guards^*38^*Leave and try to find another way in^*31
 30:"There are no open positions in the castle guard," says one of the guards, "But Colonel Graywald is recruiting warriors for the upcoming invasion of Carolinia.  I hear the pay is decent."
 30:Say that you would like to join the invasion force^*65^*Say that you aren't interested in joining the war^*66
-31:You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
+31:VARSET:turnedAway,1^*You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
 31:Swim the moat^*200^*Attack the guards with a crossbow^*34^*Grapple up the back wall^*32
 31:images/castle_test.jpg
 32:INVSPLIT:Grappling hook^*100^*33
@@ -213,16 +215,18 @@ ARMOR:Guard disguise^*1^*75
 98:Go Back^*52
 99:"The King has no nephews!" says one of the guards, "You are clearly lying to us, and we will find out why are really trying to enter the castle."  Before you can react, the guards have seized you.
 99:Continue^*42
-100:As you work your way around to the back of the castle looking for a good place to attach your grappling hook, you see two towers with windows that you could grapple to, one to the North and one to the East.  The northern tower is a bit higher than the east but the ledges appear to be the same from the ground.
+100:You work your way around to the back of the castle looking for a good place to attach your grappling hook.  Fortunately, you don't see any guards patrolling the back wall.  The main crenellations are too high up to attach your grappling hook to, but you see two towers with windows that you could grapple to on opposite ends of the castle.  The northern tower is a bit higher up than the eastern tower, but you can see the faint flicker of torchlight coming from the eastern tower.
 100:Grapple up the Northern Tower^*101^*Grapple up the Eastern Tower^*102
-101:You swing the hook around and around and launch it up to the ledge of the window on the Northern Tower.  You miss the ledge by a few feet.  After a few more failed tries you realize that your grappling hook is not quite long enough to reach this ledge.
-101:Keep trying to get up the North Tower by climbing up a nearby tree^*103^*Give up and try the Eastern Tower^*102
-102:You walk over to the eastern tower and you swing the hook around and around and launch it up to the ledge of the window, it catches and the hold seems firm
-102:Pull yourself up the grapple^*104^*Reconsider this whole climbing thing and go back around to the front of the castle^*4
+101:You swing the hook around and around and launch it up to the ledge of the window on the Northern Tower.  You miss the ledge by a few feet.  After a few more failed tries you realize that your grappling hook is not quite long enough to reach this ledge.  You see a nearby tree that you climb with a large, sturdy looking branch that you could stand on to give you the height difference that you need.
+101:Climb up the tree and try to grapple from there^*103^*Give up and try the Eastern Tower^*102
+102:You walk over to the eastern tower and you swing the hook around and around and launch it up to the ledge of the window.  The window is very high up and it is an extremely difficult throw.  After several failed tries, your arm is sore from the effort.  You are about to give up when you have a stroke of luck and the grapple catches on the ledge of the window.  The hold seems firm, but you cringe at the idea of scaling a large length of wall with your sore arms.
+102:Pull yourself up the grapple^*104^*Abandon your grappling hook and go back around to the front of the castle^*105
 103:LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.
 103:Try the Eastern tower^*102^*Go back to the castle entrance^*4
 104:Pull yourself up the grapple
 104:Content not added^*999^*Go back to the castle entrance^*4
+105:INVREMOVE:Grappling hook^*The grapple is firmly attached the window ledge, but you do not want to risk the long climb up the castle wall, since you know that a fall from that height would likely be fatal.  You decide to leave the grapple attached to the window and return to the front of the castle.
+105:Continue^*4
 200:Making sure that none of the patrolling castle guards can see you, you make your way over to the side of the castle and search for entrances near the moat.  You see a 3 foot by 3 foot square tunnel in the side of the castle that is covered by a rusty metal grate with a large lock on it.  You see a small, slime covered waste disposal hole that you could try to squeeze through, but you do not relish the thought.  You see a patch of uneven bricks that you could attempt to scale, but the nearest window that you could enter is 40 feet from the ground.
 200:Swim towards the tunnel with the grating^*201^*Swim towards the small hole^*202^*Swim towards the uneven bricks and try to scale the wall^*203
 201:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to the grate, where you spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health. 
@@ -254,7 +258,7 @@ ARMOR:Guard disguise^*1^*75
 212:Restart^*1
 213:As you crawl into the tunnel, you use your tinderbox to light your torch.  Fortunately, your pack managed to keep it dry during your swim.  You crawl past walls that have cracked with age and brush away several cobwebs.  Suddenly, you hear the pattering of many tiny feet.  You see a swarm of rats approaching you.
 213:Try to fight the rats^*215^*Try to scare them off with your torch^*216^*Try to feed them some food from your pack^*217^*Ignore them and keep crawling forwards^*218^*Extinguish your torch and lie completely still^*227
-214:You crawl through the pitch black tunnel, feeling the walls with your hands.  You momentarily panic when your hand pass through something sticky, but you realize that it is only a cobweb.  True horror only sets in when you hear the pattering of many tiny feet approaching you.  You desperately try to put the terrible image of being eaten alive by rats out of your mind.
+214:You crawl through the pitch black tunnel, feeling the walls with your hands.  You momentarily panic when your hand passes through something sticky, but you realize that it is only a cobweb.  True horror only sets in when you hear the pattering of many tiny feet approaching you.  You desperately try to put the terrible image of being eaten alive by rats out of your mind.
 214:Try to fight the rats in the dark^*215^*Take some food from your pack and scatter it around^*217^*Crawl out of the tunnel as fast as you can^*226^*Stay as still as possible and hope they pass you by^*227
 215:INVSPLIT:Sword^*219^*220
 215:null^*1
@@ -402,8 +406,8 @@ ARMOR:Guard disguise^*1^*75
 304:null^*1
 305:INVSPLIT:Merchant Disguise^*310^*311
 305:null^*1
-306:Enter a castle turret
-306:Content not added^*999^*Return to the Courtyard^*300
+306:VARSPLIT:turretLockPicked,1^*409^*412
+306:null^*1
 307:The inner bailey is surrounded by a tall stone wall and the only entrance into it is a single gate.  Both sides of the gate are flanked by two guards.  On the top of the wall, you can see many patrolling guards with crossbows who are looking out into the outer bailey.
 307:Approach the guards and try to talk your way in^*389^*Walk along the edge of the wall to look for weaknesses^*390^*Go back to the central courtyard^*300
 308:VARSPLIT:Horse and cart,1^*315^*316
@@ -600,6 +604,62 @@ ARMOR:Guard disguise^*1^*75
 403:Continue^*42
 404:You lunge towards the merchant, but he is too fast for you.  He leaps out of the way and immediately runs from the stall, shouting for the guards.  Soon, you are surrounded by a group of guards with their weapons drawn.  The guard that you followed into the castle points at you and orders that you immediately be arrested.
 404:Continue^*42
+405:INVSPLIT:Lock picking kit^*406^*407
+405:null^*1
+406:After making sure that nobody is watching you, you take out your lock picking kit and try to break into the lock.  Fortunately, the lock is not very complex and you manage to get it open quickly.  You pull the door open and go inside.
+406:Continue^*409
+407:You have nothing to pick the lock with.
+407:Knock on the door^*410^*Try to force the door open^*408^*Return to the courtyard^*300
+408:You try shaking the door and the lock, but they are both sturdy and unyielding.  You try to kick the door open, but the wood is very solid and you are unable to have any effect on the door.  You are eventually forced to give up.
+408:Ram your shoulder into the door to try to break it down^*411^*Try to pick the lock^*405^*Return to the courtyard^*300
+409:As you enter the turret, you see a small room enclosed by a circular wall of stone.  At the end of the room, you see a stone spiral staircase that is enclosed in a smaller circular wall. It leads both upwards and downwards, though you cannot see where it goes in either direction.
+409:Climb the spiral staircase up^*413^*Climb the spiral staircase down^*414^*Leave the turret and return to the courtyard^*300
+410:You knock on the door several times, but there is no answer.
+410:Try to pick the lock^*405^*Try to force open the door^*408^*Return to the courtyard^*300
+411:LOSEHEALTH:2^*You back up several steps and then charge towards the door, running as fast as you can.  You slam into the door, but the only result is that your shoulder is badly bruised and you lose 2 health.  You curse the door and decide to return to the courtyard.
+411:Continue^*300
+412:You go up to one of the large turrets in the corner of the courtyard.  The only entrance you can see from the ground level is a thick wooden door that is locked by a large metal padlock.  You look around and see that nobody is watching you, so now would be a good time to try to break in.
+412:Knock on the door^*410^*Try to pick the lock^*405^*Try to force the door open^*408^*Return to the Courtyard^*300
+413:INVCHECK:Crossbow^*You walk up the winding several stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.^*415
+413:Climb back down the staircase^*416^*Keep climbing up the staircase^*417^*Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419^*Shoot one of the archers with your crossbow and try to take the other one by surprise^*420
+414:Climb down the startcase
+414:Content not added^*999
+415:You walk up the winding several stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.
+415:Climb back down the staircase^*416^*Keep climbing up the staircase^*417^*Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419
+416:Taking care to make your steps silent so the archers do not hear you, you climb down the staircase and return to the ground level of the turret.
+416:Climb back up the staircase^*413^*Climb down the staircase^*414^*Return the courtyard^*300
+417:Keep climbing up
+417:Content not added^*999
+418:You sneak across the room, trying to keep your steps silent on the stone floor so the archers do not hear you.  You manage to reach the weapons rack without them noticing.  You see a sword, a mace, and some throwing knives that you can take.
+418:Take the sword^*422^*Take the mace^*423^*Take the throwing knives^*424
+419:INVSPLIT:Mace^*425^*427
+419:null^*1
+420:From your hidden position in the stairwell, you pull out your crossbow and fire a bolt into one of the archers, who cries out and falls to the ground.  You immediately drop the crossbow and lunge towards the other archer, who whips around and tries to fire a shot at you from his bow.  You knock the bow out of his hands, causing his arrow to barely miss you.  He is forced to defend himself with his fists.
+420:Continue^*421
+421:COMBAT:an archer,WEAPON:Your bare hands,STRENGTH:9,DEFENSE:0,HEALTH:30,HIT:The archer punches you,HIT:The archer kicks you,MISS:The archer sidesteps.,MISS:The archer evades you.,MISS:The archer grabs your arm and stops you from hitting him.^*You manage to defeat the archer.  Now that both archers are down, you can search the room.
+421:Content not added^*999
+422:RESTART:^*You slowly try to pull the sword out, but the edge of the sword slides against the metal of the rack and one of the archers hears you pulling it out.  He gives a shout of warning and both archers quickly turn around and fire two arrows into your body.  As you slump to the ground the archers quickly reload their bows and fire two more arrows into you. <br>Your life ends here.
+422:null^*1
+423:INVADD:Mace^*You slowly ease the mace out of the rack and into your hand.  You glance around nervously, but the archers still have their backs turned to you.
+423:Take the sword^*422^*Take the throwing knives^*424^*Sneak behind one of the archers and attack him^*419^*Sneak back out of the room^*426
+424:INVADD:Throwing knives^*You silently pick up the sheaf of throwing knives.  You glance backwards, but the archers have not noticed you.  One of the archers scratches his back and his head almost turns towards you.  You decide that you will have to act quickly.
+424:Try to take out the archers with the throwing knives^*432^*Sneak back out of the room^*426
+425:LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly bring your mace down, knocking him out with a single blow.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
+425:Continue^*421
+426:RESTART:^*You try to sneak back out of the room, but your luck does not hold.  One of the archers turns around and sees you while you are in the middle of the room.  He gives a shout of warning and both archers quickly turn around and fire two arrows into your body.  As you slump to the ground the archers quickly reload their bows and fire two more arrows into you. <br>Your life ends here.
+426:null^*1
+427:INVSPLIT:Sword^*428^*429
+427:null^*1
+428:LOSEHEALTH:5^*:You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You drive your sword forwards and run him through.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  You pull your sword out of the first archer and knock the second archer's bow out of his hand before he can fire again. He is forced to defend himself with his fists.
+428:Continue^*421
+429:INVSPLIT:Hidden dagger^*430^*431
+429:null^*1
+430:LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly cut him down with your dagger before he can react.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
+430:Continue^*421
+431:RESTART:^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You don't have any weapons, so you grab him before he can react and slam him to the ground.  Unfortunately, the other archer hears this and looses an arrow into your back.  As you fall forwards, the archer reloads and hits you with another arrow.  You are helpless as the archer continues pierce you with deadly arrows.  <br> Your life ends here.
+431:null^*1
+432:Take out with knives
+432:Content not added^*999
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
