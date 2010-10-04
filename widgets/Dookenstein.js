@@ -226,14 +226,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					this.gold = this.STARTING_GOLD;
 				} else {
 					//initialized unknown variable: add it to the list
+					var newInitVariable = {
+						name: initialSplit[0],
+						value: initialSplit[1]
+					}
 					var newVariable = {
 						name: initialSplit[0],
 						value: initialSplit[1]
 					}
-					this.initVariableList[this.variableList.length] = newVariable;
-					for (y = 0; y < this.initVariableList.length; y++) {
-						this.variableList[y] = this.initVariableList[y];
-					}
+					this.initVariableList[this.initVariableList.length] = newInitVariable;
+					this.variableList[this.variableList.length] = newVariable;
 					//console.log('Initialized variable: ' + newVariable.name + ', value: ' + newVariable.value);
 				}
 			} else {
