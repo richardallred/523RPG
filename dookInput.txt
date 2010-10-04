@@ -1,5 +1,20 @@
+DELIMITER:^*
+INITIALIZE:Health,50
+INITIALIZE:Strength,10
+INITIALIZE:Gold,20
+INITIALIZE:Horse and cart,0
+INITIALIZE:mealsEaten,0
+INITIALIZE:turnedAway,0
+INITIALIZE:turretLockPicked,0
+INITWEAPON:Sword^*4^*85^*HIT:You swing your blade^*HIT:You lunge with your sword^*HIT:You quickly strike^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked.
+INITWEAPON:Mace^*5^*75^*HIT:You bring your mace downwards in a crushing blow^*HIT:You swing your mace in a wide arc^*HIT:You hit with a stunning blow^*MISS:Your mace is blocked.^*MISS:You swing your mace, but miss.^*MISS:You fail to do any damage.
+INITWEAPON:Hidden dagger^*2^*65^*HIT:You stab with your dagger^*HIT:You slash with your dagger^*HIT:You cut with your dagger^*MISS:You fail to do any damage.^*MISS:Your dagger is blocked.^*MISS:You swing your dagger, but miss.^*MISS:You stab with your dagger, but you are unable to do any damage.
+UNARMED:Your bare hands^*-3^*55^*HIT:You quickly punch^*HIT:You lash out with your foot in a swift kick^*HIT:You throw your enemy to the ground^*HIT:You fistcuff your enemy^*MISS:Your fists fail to do any damage.^*MISS:You kick, but miss.^*MISS:You swing your fist, but miss.^*MISS:You fail to do any damage.
+SHIELD:Shield^*2^*33
+ARMOR:Guard disguise^*1^*75
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
 0:Play the game^*1
+0:images/castle_test.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
 2:INVSELECT:1^*In order to pass through Dookia without arousing suspicion, you selected a disguise to enter the country with.  If you take the clothes of a Dookian merchant, you can talk your way through situations by pretending to be a harmless trader.  If you take the clothes of a Dookian mercenary, you can pretend to be looking for work while being constantly ready for combat.  If you take the stealthy dark garb of an assassin, you would arouse more suspicion but easily blend into dark areas. <br>Which clothes did you pick?
@@ -8,9 +23,10 @@
 3:Sword^*4^*Crossbow^*4^*Hidden dagger^*4^*Grappling hook^*4^*Lock picking kit^*4^*First aid kit^*4^*Tinderbox and torch^*4^*Shield^*4
 4:You manage to arrive at Castle Dookenstein without incident.  The castle is a towering fortress of stone that looms over the countryside, surrounded by a deep moat.  An ancient forest is to the right of the castle.  There is a path that leads to the castle drawbridge and the main gate, which is closed.  Across the drawbridge, there are two guards in full Dookian armor standing by the gate.  On the top of the castle, there are several more guards facing the front of the castle and holding crossbows.  You come up with several ideas to enter the castle, but all of them are risky. <br>  You could try to talk your way past the guards and enter the front gate. <br> You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
 4:Try the front gate^*5^*Swim the moat^*200^*Attack the guards with a crossbow^*7^*Grapple up the back wall^*8
+4:images/castle_test.jpg
 5:INVSPLIT:Merchant Disguise^*6^*26
 5:null^*1
-6:INVADD:Horse and cart^*As part of your merchant disguise, you brought a horse and cart full of goods.  You ride the horse across the drawbridge and approach the guards.  One of them asks you to state your business.
+6:VARSET:Horse and cart,1^*As part of your merchant disguise, you brought a horse and cart full of goods.  You ride the horse across the drawbridge and approach the guards.  One of them asks you to state your business.
 6:Say that you wish to trade inside the castle walls^*27^*Say that you have an important delivery for the soldiers inside the castle^*28^*Say that you have an important message for the King^*29^*Say that you are visiting a family member^*46
 7:INVSPLIT:Crossbow^*11^*9
 7:null^*1
@@ -60,8 +76,9 @@
 29:Try to bribe the guards^*64^*Attack the guards^*38^*Leave and try to find another way in^*31
 30:"There are no open positions in the castle guard," says one of the guards, "But Colonel Graywald is recruiting warriors for the upcoming invasion of Carolinia.  I hear the pay is decent."
 30:Say that you would like to join the invasion force^*65^*Say that you aren't interested in joining the war^*66
-31:You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
+31:VARSET:turnedAway,1^*You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
 31:Swim the moat^*200^*Attack the guards with a crossbow^*34^*Grapple up the back wall^*32
+31:images/castle_test.jpg
 32:INVSPLIT:Grappling hook^*100^*33
 32:null^*1
 33:Since you did not bring a grappling hook, your plan to grapple up the back wall does not get very far.
@@ -198,20 +215,23 @@
 98:Go Back^*52
 99:"The King has no nephews!" says one of the guards, "You are clearly lying to us, and we will find out why are really trying to enter the castle."  Before you can react, the guards have seized you.
 99:Continue^*42
-100:As you work your way around to the back of the castle looking for a good place to attach your grappling hook, you see two towers with windows that you could grapple to, one to the North and one to the East.  The northern tower is a bit higher than the east but the ledges appear to be the same from the ground.
+100:You work your way around to the back of the castle looking for a good place to attach your grappling hook.  Fortunately, you don't see any guards patrolling the back wall.  The main crenellations are too high up to attach your grappling hook to, but you see two towers with windows that you could grapple to on opposite ends of the castle.  The northern tower is a bit higher up than the eastern tower, but you can see the faint flicker of torchlight coming from the eastern tower.
 100:Grapple up the Northern Tower^*101^*Grapple up the Eastern Tower^*102
-101:You swing the hook around and around and launch it up to the ledge of the window on the Northern Tower.  You miss the ledge by a few feet.  After a few more failed tries you realize that your grappling hook is not quite long enough to reach this ledge.
-101:Keep trying to get up the North Tower by climbing up a nearby tree^*103^*Give up and try the Eastern Tower^*102
-102:You walk over to the eastern tower and you swing the hook around and around and launch it up to the ledge of the window, it catches and the hold seems firm
-102:Pull yourself up the grapple^*104^*Reconsider this whole climbing thing and go back around to the front of the castle^*4
+101:You swing the hook around and around and launch it up to the ledge of the window on the Northern Tower.  You miss the ledge by a few feet.  After a few more failed tries you realize that your grappling hook is not quite long enough to reach this ledge.  You see a nearby tree that you climb with a large, sturdy looking branch that you could stand on to give you the height difference that you need.
+101:Climb up the tree and try to grapple from there^*103^*Give up and try the Eastern Tower^*102
+102:You walk over to the eastern tower and you swing the hook around and around and launch it up to the ledge of the window.  The window is very high up and it is an extremely difficult throw.  After several failed tries, your arm is sore from the effort.  You are about to give up when you have a stroke of luck and the grapple catches on the ledge of the window.  The hold seems firm, but you cringe at the idea of scaling a large length of wall with your sore arms.
+102:Pull yourself up the grapple^*104^*Abandon your grappling hook and go back around to the front of the castle^*105
 103:LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.
 103:Try the Eastern tower^*102^*Go back to the castle entrance^*4
 104:Pull yourself up the grapple
 104:Content not added^*999^*Go back to the castle entrance^*4
+105:INVREMOVE:Grappling hook^*The grapple is firmly attached the window ledge, but you do not want to risk the long climb up the castle wall, since you know that a fall from that height would likely be fatal.  You decide to leave the grapple attached to the window and return to the front of the castle.
+105:Continue^*4
 200:Making sure that none of the patrolling castle guards can see you, you make your way over to the side of the castle and search for entrances near the moat.  You see a 3 foot by 3 foot square tunnel in the side of the castle that is covered by a rusty metal grate with a large lock on it.  You see a small, slime covered waste disposal hole that you could try to squeeze through, but you do not relish the thought.  You see a patch of uneven bricks that you could attempt to scale, but the nearest window that you could enter is 40 feet from the ground.
 200:Swim towards the tunnel with the grating^*201^*Swim towards the small hole^*202^*Swim towards the uneven bricks and try to scale the wall^*203
 201:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to the grate, where you spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health. 
 201:Continue^*204
+201:images/locked_test.jpg
 202:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to reach the hole.  You grab on to the bottom of it and spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health.
 202:Continue^*205
 203:RESTART:^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to one of the bricks on the other side.  You slowly and painfully pull yourself up the bricks, which cut into your hands as you try to climb them.  You manage to make it up a good distance before your aching hands lose their grip, causing you to plummet into the moat below.  You hit the moat with such force that it knocks you out, and you end up floating facedown in it. <br>Your life ends here.
@@ -222,10 +242,14 @@
 205:Wash yourself and your clothes off in the basin^*208^*Leave the room before someone arrives^*209
 206:You climb up the grate and pull your lock picking kit out of your pack.  The lock is rusted and very difficult to pick, but eventually you manage to get it open.  You let the lock fall into the moat and the grate swings open.  You climb in to what appears to be an exit tunnel from the castle.  There is not much light coming in from outside, and the tunnel descends into pitch darkness very quickly.
 206:Enter the tunnel^*210^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
+206:images/grate_test.jpg
 207:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.  You try to force the lock, but to no avail.  The lock and the grate are both made of solid metal and there is no way past them.  You have no choice but to abandon the tunnel.
 207:Swim to the small hole^*211^*Swim to the uneven bricks and try to scale the wall^*212
+207:images/locked_test.jpg
 208:You climb into the basin and scrub yourself vigorously with some nearby lye soap.  It seems like it takes forever, but eventually you get most of the filth off of yourself and your clothes.
 208:Leave the kitchen^*280
+209:Content not added
+209:Content not added^*999
 210:INVSPLIT:Tinderbox and torch^*213^*214
 210:null^*1
 211:Though you hate the thought of once again swimming in the moat, you jump down from the tunnel and swim the short distance to the small hole you saw earlier.  As you grab on to the bottom of hole to pull yourself up, you shudder with revulsion when your hand touches a wet, slimy substance.  The hole looks smaller than you remembered and you aren't certain if you can fit through it.
@@ -234,7 +258,7 @@
 212:Restart^*1
 213:As you crawl into the tunnel, you use your tinderbox to light your torch.  Fortunately, your pack managed to keep it dry during your swim.  You crawl past walls that have cracked with age and brush away several cobwebs.  Suddenly, you hear the pattering of many tiny feet.  You see a swarm of rats approaching you.
 213:Try to fight the rats^*215^*Try to scare them off with your torch^*216^*Try to feed them some food from your pack^*217^*Ignore them and keep crawling forwards^*218^*Extinguish your torch and lie completely still^*227
-214:You crawl through the pitch black tunnel, feeling the walls with your hands.  You momentarily panic when your hand pass through something sticky, but you realize that it is only a cobweb.  True horror only sets in when you hear the pattering of many tiny feet approaching you.  You desperately try to put the terrible image of being eaten alive by rats out of your mind.
+214:You crawl through the pitch black tunnel, feeling the walls with your hands.  You momentarily panic when your hand passes through something sticky, but you realize that it is only a cobweb.  True horror only sets in when you hear the pattering of many tiny feet approaching you.  You desperately try to put the terrible image of being eaten alive by rats out of your mind.
 214:Try to fight the rats in the dark^*215^*Take some food from your pack and scatter it around^*217^*Crawl out of the tunnel as fast as you can^*226^*Stay as still as possible and hope they pass you by^*227
 215:INVSPLIT:Sword^*219^*220
 215:null^*1
@@ -355,12 +379,12 @@
 273:INVADD:Guard disguise,Sword,Mace^*You take the guard's sword and mace and sheathe them both.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
 273:Continue^*259
 274:You pull out your crossbow as the guard enters the room.  He sees you and draws his sword as he runs towards you.  You fire a bolt at the guard and hit him in the chest, but he continues running towards you.  You don't have enough time to reload and fire another shot, so you prepare for a fight.
-274:Continue^*276
+274:Continue^*281
 275:The guard sees you and draws his sword as he runs towards you.  You prepare to fight him.
 275:Continue^*276
-276:You are fighting a guard.
+276:COMBAT:an armed guard,WEAPON:Sword,STRENGTH:10,DEFENSE:2,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor.,MISS:Your blow glances off the guard's armor.,MISS:The guard quickly parries your blow.,MISS:The guard evades you.^*You manage to defeat the guard.  You are victorious!
 276:Content not added^*999
-277: You exit and find yourself in a long dark hallway lined with doors.  Hanging on the wall is a torch that allows you to clearly see the closest door.  Suddenly, you hear a slow eerie creek comming from the end of the hallway.  You can hear a guard entering.  You can either prepare to fight the guard or dart into the closest door and remain unseen.
+277:You exit and find yourself in a long dark hallway lined with doors.  Hanging on the wall is a torch that allows you to clearly see the closest door.  Suddenly, you hear a slow eerie creek comming from the end of the hallway.  You can hear a guard entering.  You can either prepare to fight the guard or dart into the closest door and remain unseen.
 277:Prepare for battle^*278^*Flee and enter the closest door^*279
 278:The guard detects your presence, draws his sword and lunges forard skewering you before you can make a move.  
 278:Combat not added^*999
@@ -368,6 +392,8 @@
 279:Wash your self off^*208^*Leave the room^*280
 280:You are finally greeted with a clear view of the basement of the castle.  You see doors to enter Servant housing, a washroom, the armory, the interrogation room, and finally an dark opening on the other end of the hall of whitch you can see very little.
 280:Peek into the servant housing BEWARE^*999^*Enter the washroom^*999^*Visit the armory^*999^*Try your hand at interrogation^*999^*Venture into the abyss at the opposite end of the hallway^*999
+281:COMBAT:a wounded guard,WEAPON:Sword,STRENGTH:7,DEFENSE:2,HEALTH:25,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor,MISS:Your blow glances off the guard's armor,MISS:The guard quickly parries your blow,MISS:The guard evades you^*You manage to defeat the wounded guard.  You are victorious!
+281:Content not added
 300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  Across the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep where the King resides is inside the inner bailey, but you know there is little chance of the guards letting you through.
 300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
 301:You wait until you and the guard are passing through a large crowd of people, then you dart into the crowd while he is not watching.  In a few moments, you hear him give a shout of surprise, but you are already a good distance away from him.  You can see a stable and some merchant stalls nearby.
@@ -380,32 +406,32 @@
 304:null^*1
 305:INVSPLIT:Merchant Disguise^*310^*311
 305:null^*1
-306:Enter a castle turret
-306:Content not added^*999^*Return to the Courtyard^*300
+306:VARSPLIT:turretLockPicked,1^*409^*412
+306:null^*1
 307:The inner bailey is surrounded by a tall stone wall and the only entrance into it is a single gate.  Both sides of the gate are flanked by two guards.  On the top of the wall, you can see many patrolling guards with crossbows who are looking out into the outer bailey.
 307:Approach the guards and try to talk your way in^*389^*Walk along the edge of the wall to look for weaknesses^*390^*Go back to the central courtyard^*300
-308:INVSPLIT:Horse and cart^*315^*316
+308:VARSPLIT:Horse and cart,1^*315^*316
 308:null^*1
 309:You walk over to the stables.  Many horses are stabled here, and you see a sign saying that some of them are available for rent.  You currently have no need of a horse right now, so you return to the courtyard.
 309:Go back to the courtyard^*300
-310:INVSPLIT:Horse and cart^*341^*342
+310:VARSPLIT:Horse and cart,1^*341^*342
 310:null^*1
 311:The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  Inside the main entrance of the barracks, you see a large chamber where a huge man with scars crossing his face is writing something on a piece of parchment.  You walk up to the barracks entrance and the man turns and looks at you.  "I don't recognize you," he growls, "Are you one of the new recruits?"
 311:Content not added^*999^*Return to the courtyard^*300
-312:INVREMOVE:Horse and cart,false^*You pay the stable boy one gold coin and he leads your horse into the stable.  The stable boy asks you what you want him to do with the goods in your cart and offers to buy them for 5 gold coins if you do not need them.  You don't actually have any need of the goods now that you have successfully entered the castle, but you know that they are worth more than 5 gold coins.
+312:VARSET:Horse and cart,0^*You pay the stable boy one gold coin and he leads your horse into the stable.  The stable boy asks you what you want him to do with the goods in your cart and offers to buy them for 5 gold coins if you do not need them.  You don't actually have any need of the goods now that you have successfully entered the castle, but you know that they are worth more than 5 gold coins.
 312:Accept his offer^*332^*Demand a higher price^*333^*Insist on keeping the goods for yourself^*334
-313:INVREMOVE:Horse and cart,false^*The stable boy accepts the offer and takes some food from your cart as payment before leading your horse inside.  He offers to buy the rest of your goods for 4 gold coins if you do not need them.  You don't actually have any need of the goods now that you have successfully entered the castle, but you know that they are worth more than 4 gold coins.
+313:VARSET:Horse and cart,0^*The stable boy accepts the offer and takes some food from your cart as payment before leading your horse inside.  He offers to buy the rest of your goods for 4 gold coins if you do not need them.  You don't actually have any need of the goods now that you have successfully entered the castle, but you know that they are worth more than 4 gold coins.
 313:Accept his offer^*332^*Demand a higher price^*335^*Insist on keeping the goods for yourself^*336
-314:INVREMOVE:Horse and cart,false^*The stable boy runs in to fetch the owner of the stables, who offers you 10 gold coins for the horse and the cart.
+314:VARSET:Horse and cart,0^*The stable boy runs in to fetch the owner of the stables, who offers you 10 gold coins for the horse and the cart.
 314:Accept his offer^*337^*Ask for a higher price^*338
 315:DISPLAYGOLD:^*You lead your horse and cart over to the stables and are greeted by a stable boy.  "It will cost you 1 gold coin to stable your horse for the day," he says. 
 315:Pay the stable boy^*312^*Offer him some goods from your cart as payment instead^*313^*Tell him that you want to sell your horse and cart^*314^*Leave without paying and abandon your horse and cart somewhere^*330
 316:Since you do not have or need a horse, there is no real reason to go to the stables right now.
 316:Go back^*300
-317:INVSPLIT:Horse and cart^*319^*318
+317:VARSPLIT:Horse and cart,1^*319^*318
 317:null^*1
 318:As you approach the merchant stalls, you see several stalls of food, goods and equipment, clothing and armor, and weapons
-318:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
+318:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
 319:As you lead your horse and cart over to the merchant stalls, one of the guards standing near the stalls approaches you.  "If you want to sell your goods here, I will need to see your merchant's permit," he says.
 319:Say that you have lost your permit^*324^*Say that your permit has expired and you are about to buy a new one^*325^*Say that you are not planning on selling anything^*326^*Try to bribe the guard into letting you sell your goods^*327
 320:DISPLAYGOLD:^*You look at the variety of available food stalls.  You see merchants selling fresh bread, cheeses, vegetables, and roast meat.  You also see many jugs of ale and mead on display.  You are already carrying enough rations for your mission, but the food for sale looks delicious and you consider buying some for a meal. 
@@ -416,7 +442,7 @@
 322:null^*1
 323:DISPLAYGOLD:^*You see a wide variety of weapons on display, including swords, maces, daggers, and flails.  You also see an assortment of bows and crossbows, along with quivers of arrows and bolts.  Though there are many weapons on display, there are only a few that catch your eye. 
 323:Buy a sword for 10 gold coins^*382^*Buy a mace for 8 gold coins^*384^*Buy a crossbow and bolts for 12 gold coins^*383^*Go back to the other stalls^*388
-324:INVREMOVE:Horse and cart,false^*"You are not allowed to trade here without a permit," says the guard, "I will have to confiscate your goods.  Consider yourself lucky that I did not arrest you."  The guard removes your cart from your horse and orders you to bring your horse to the stable.  You head over to the stable under the guard's watchful eye.
+324:VARSET:Horse and cart,0^*"You are not allowed to trade here without a permit," says the guard, "I will have to confiscate your goods.  Consider yourself lucky that I did not arrest you."  The guard removes your cart from your horse and orders you to bring your horse to the stable.  You head over to the stable under the guard's watchful eye.
 324:Continue^*328
 325:"Buy a new one?" asks the guard incredulously, "Everyone knows that permits are issued by the Dookian merchant's guild!"  The guard shouts for help and several more guards converge from the courtyard.  They surround you and draw their weapons.  "This man is a spy," says the guard, "Take him to the dungeon."  You are outnumbered and surrounded and have no choice but to surrender.
 325:Continue^*42
@@ -428,7 +454,7 @@
 328:Pay the stable boy^*331^*Tell him that you want to sell your horse^*339^*Leave without paying and abandon your horse somewhere^*329
 329:You walk over to an empty part of the courtyard and abandon your horse.  Now that you no longer have your horse and cart, you can safely return to the merchant stalls.
 329:Continue^*318
-330:INVREMOVE:Horse and cart,false^*You walk over to an empty part of the courtyard and abandon your horse and cart.  Where in the courtyard do you go next?
+330:VARSET:Horse and cart,0^*You walk over to an empty part of the courtyard and abandon your horse and cart.  Where in the courtyard do you go next?
 330:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
 331:LOSEGOLD:1^*You pay the stable boy a gold coin and he takes your horse inside.  "We will take good care of him for you," says the stable boy.  Now that you longer have your horse and cart, you can safely return to the merchant stalls.
 331:Continue^*318
@@ -466,11 +492,11 @@
 347:Content not added^*999^*Return to the courtyard^*300
 348:Tell him you need help
 348:Content not added^*999^*Return to the courtyard^*300
-349:LOSEGOLD:2^*You pay two gold coins to the vendor and buy some hot, fresh bread and a slice of cheese.  You sit down and enjoy the delicious meal.  It is quite refreshing.^*381
+349:VARSET:mealsEaten,1^*LOSEGOLD:2^*You pay two gold coins to the vendor and buy some hot, fresh bread and a slice of cheese.  You sit down and enjoy the delicious meal.  It is quite refreshing.^*381
 349:Visit the other stalls^*352^*Return to the Courtyard^*300
-350:LOSEGOLD:4^*You pay four gold coins for a large piece of roast oxen.  You sit down and enjoy the hot, delicious meat.  The meal is quite refreshing.^*381
+350:VARSET:mealsEaten,1^*LOSEGOLD:4^*You pay four gold coins for a large piece of roast oxen.  You sit down and enjoy the hot, delicious meat.  The meal is quite refreshing.^*381
 350:Visit the other stalls^*352^*Return to the Courtyard^*300
-351:LOSEGOLD:2^*You pay two gold coins and purchase a jug of ale.  You drink a little of it, but the ale has gone bad and it has a terrible, sour taste.  You demand a refund from the vendor, but he just laughs out you.  You don't want any trouble with the guards, so you leave and throw away the bad ale.^*381
+351:VARSET:mealsEaten,1^*LOSEGOLD:2^*You pay two gold coins and purchase a jug of ale.  You drink a little of it, but the ale has gone bad and it has a terrible, sour taste.  You demand a refund from the vendor, but he just laughs out you.  You don't want any trouble with the guards, so you leave and throw away the bad ale.^*381
 351:Visit the other stalls^*352^*Return to the Courtyard^*300
 352:Which stall do you want to look at?
 352:Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
@@ -495,28 +521,28 @@
 362:INVBUY:Rope,3^*You pay 3 gold coins and buy a length of rope.
 362:Return to the goods stall^*321^*Look at the other stalls^*363^*Return to the courtyard^*300
 363:What stall do you want to look at?
-363:Look at the food^*320^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
+363:Look at the food^*366^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
 364:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent mercenary disguise, which you could exchange your merchant clothing for.  In the armor stand, you see a set of fine shields for purchase, as well as a suit of chainmail armor that would fit you. 
-364:Buy a mercenary disguise for 3 gold coins^*366^*Buy the chainmail armor for 10 gold coins^*367^*Buy a shield for 6 gold coins^*368^*Go back to the other stalls^*372
+364:Buy a mercenary disguise for 3 gold coins^*370^*Buy the chainmail armor for 10 gold coins^*367^*Buy a shield for 6 gold coins^*368^*Go back to the other stalls^*372
 365:INVSPLIT:Chainmail armor^*379^*380
 365:null^*1
-366:INVREMOVE:Merchant Disguise,false^*To get a better price on the clothing necessary make the mercenary disguise, you remove your merchant disguise in order to trade it to the vendor.
-366:Continue^*370
+366:VARSPLIT:mealsEaten,0^*320^*369
+366:null^*1
 367:INVCHECK:Chainmail armor^*You are already wearing chainmail armor.^*377
 367:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 368:INVCHECK:Shield^*You already have a shield, and you do not need another one.^*378
 368:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
-369:INVREMOVE:Mercenary Disguise,false^*To get a better price on the clothing necessary make the merchant disguise, you remove your mercenary disguise in order to trade it to the vendor.
-369:Continue^*373
-370:INVBUY:Mercenary Disguise,3^*You pay 3 gold pieces and put on the mercenary disguise.  What do you do next?^*371
+369:You look at the variety of available food stalls.  You see merchants selling fresh bread, cheeses, vegetables, and roast meat.  You also see many jugs of ale and mead on display.  The food looks delicious, but you aren't very hungry. 
+369:Look at the other stalls^*352^*Return to the courtyard^*300
+370:INVREMOVE:Merchant Disguise,false^*INVBUY:Mercenary Disguise,3^*To get a better price on the clothing necessary make the mercenary disguise, you remove your merchant disguise in order to trade it to the vendor.  You then pay 3 gold pieces and put on the mercenary disguise.  What do you do next?^*371
 370:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
-371:INVADD:Merchant Disguise^*You can't afford the clothing needed for the mercenary disguise, so you put the merchant disguise back on.
+371:INVADD:Merchant Disguise^*You can't afford the clothing needed for the mercenary disguise.
 371:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 372:What stall do you want to look at?
-372:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the weapons^*323^*Return to the courtyard^*300
-373:INVBUY:Merchant Disguise,2^*You pay 2 gold pieces and put on the merchant disguise.  What do you do next?^*374
+372:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the weapons^*323^*Return to the courtyard^*300
+373:INVREMOVE:Mercenary Disguise,false^*INVBUY:Merchant Disguise,2^*To get a better price on the clothing necessary make the merchant disguise, you remove your mercenary disguise in order to trade it to the vendor.  You then pay 2 gold pieces and put on the merchant disguise.  What do you do next?^*374
 373:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
-374:INVADD:Mercenary Disguise^*You can't afford the clothing needed for the merchant disguise, so you put the mercenary disguise back on.
+374:INVADD:Mercenary Disguise^*You can't afford the clothing needed for the merchant disguise.
 374:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 375:The chainmail armor would look very out of place in a merchant disguise, so you decide not to buy it.
 375:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
@@ -527,11 +553,11 @@
 378:INVBUY:Shield,6^*You pay 6 coins and buy a shield.
 378:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 379:The only of interest in the clothing and armor stalls is a set of finely crafted shields for sale.
-379:Buy the shield for 6 gold coins^*368^*Go back to the other stalls^*372
-380:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent merchant disguise, which you could exchange your current clothing for.  In the armor stand, you see a fine shield for purchase, as well as a suit of chainmail armor that would fit you.
-380:Buy a merchant disguise for 2 gold coins^*369^*Buy the chainmail armor for 10 gold coins^*367^*Buy the shield for 6 gold coins^*368^*Go back to the other stalls^*372
+379:Buy a shield for 6 gold coins^*368^*Go back to the other stalls^*372
+380:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent merchant disguise, which you could exchange your current clothing for.  In the armor stand, you see a set of finely shields for purchase, as well as a suit of chainmail armor that would fit you.
+380:Buy a merchant disguise for 2 gold coins^*373^*Buy the chainmail armor for 10 gold coins^*367^*Buy a shield for 6 gold coins^*368^*Go back to the other stalls^*372
 381:You do not have enough gold coins to afford that.
-381:Return to the food stalls^*320^*Visit the other stalls^*352^*Return to the Courtyard^*300
+381:Return to the food stalls^*366^*Visit the other stalls^*352^*Return to the Courtyard^*300
 382:INVCHECK:Sword^*You already have a sword, and do not need another one.^*385
 382:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
 383:INVCHECK:Crossbow^*You already have a crossbow and plenty of bolts, so you do not need to buy another one.^*386
@@ -545,7 +571,7 @@
 387:INVBUY:Mace,8^*You pay 8 coins and buy a mace.
 387:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
 388:What stall do you want to look at?
-388:Look at the food^*320^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Return to the courtyard^*300
+388:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Return to the courtyard^*300
 389:INVSPLIT:Guard Disguise^*391^*392
 389:null^*1
 390:INVCHECK:Grappling hook^*You walk along the entire length of the wall, but there are no weaknesses and it is unclimbable.  The further away you get from the gate, the less guards you see patrolling.  Near the end of the wall, there is a portion where you cannot see any guards.  You look around and there are no people in sight.  You consider attempting to throw your grappling hook up to one of the crenellations in order to climb up.^*393
@@ -578,6 +604,62 @@
 403:Continue^*42
 404:You lunge towards the merchant, but he is too fast for you.  He leaps out of the way and immediately runs from the stall, shouting for the guards.  Soon, you are surrounded by a group of guards with their weapons drawn.  The guard that you followed into the castle points at you and orders that you immediately be arrested.
 404:Continue^*42
+405:INVSPLIT:Lock picking kit^*406^*407
+405:null^*1
+406:After making sure that nobody is watching you, you take out your lock picking kit and try to break into the lock.  Fortunately, the lock is not very complex and you manage to get it open quickly.  You pull the door open and go inside.
+406:Continue^*409
+407:You have nothing to pick the lock with.
+407:Knock on the door^*410^*Try to force the door open^*408^*Return to the courtyard^*300
+408:You try shaking the door and the lock, but they are both sturdy and unyielding.  You try to kick the door open, but the wood is very solid and you are unable to have any effect on the door.  You are eventually forced to give up.
+408:Ram your shoulder into the door to try to break it down^*411^*Try to pick the lock^*405^*Return to the courtyard^*300
+409:As you enter the turret, you see a small room enclosed by a circular wall of stone.  At the end of the room, you see a stone spiral staircase that is enclosed in a smaller circular wall. It leads both upwards and downwards, though you cannot see where it goes in either direction.
+409:Climb the spiral staircase up^*413^*Climb the spiral staircase down^*414^*Leave the turret and return to the courtyard^*300
+410:You knock on the door several times, but there is no answer.
+410:Try to pick the lock^*405^*Try to force open the door^*408^*Return to the courtyard^*300
+411:LOSEHEALTH:2^*You back up several steps and then charge towards the door, running as fast as you can.  You slam into the door, but the only result is that your shoulder is badly bruised and you lose 2 health.  You curse the door and decide to return to the courtyard.
+411:Continue^*300
+412:You go up to one of the large turrets in the corner of the courtyard.  The only entrance you can see from the ground level is a thick wooden door that is locked by a large metal padlock.  You look around and see that nobody is watching you, so now would be a good time to try to break in.
+412:Knock on the door^*410^*Try to pick the lock^*405^*Try to force the door open^*408^*Return to the Courtyard^*300
+413:INVCHECK:Crossbow^*You walk up the winding several stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.^*415
+413:Climb back down the staircase^*416^*Keep climbing up the staircase^*417^*Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419^*Shoot one of the archers with your crossbow and try to take the other one by surprise^*420
+414:Climb down the startcase
+414:Content not added^*999
+415:You walk up the winding several stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.
+415:Climb back down the staircase^*416^*Keep climbing up the staircase^*417^*Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419
+416:Taking care to make your steps silent so the archers do not hear you, you climb down the staircase and return to the ground level of the turret.
+416:Climb back up the staircase^*413^*Climb down the staircase^*414^*Return the courtyard^*300
+417:Keep climbing up
+417:Content not added^*999
+418:You sneak across the room, trying to keep your steps silent on the stone floor so the archers do not hear you.  You manage to reach the weapons rack without them noticing.  You see a sword, a mace, and some throwing knives that you can take.
+418:Take the sword^*422^*Take the mace^*423^*Take the throwing knives^*424
+419:INVSPLIT:Mace^*425^*427
+419:null^*1
+420:From your hidden position in the stairwell, you pull out your crossbow and fire a bolt into one of the archers, who cries out and falls to the ground.  You immediately drop the crossbow and lunge towards the other archer, who whips around and tries to fire a shot at you from his bow.  You knock the bow out of his hands, causing his arrow to barely miss you.  He is forced to defend himself with his fists.
+420:Continue^*421
+421:COMBAT:an archer,WEAPON:Your bare hands,STRENGTH:9,DEFENSE:0,HEALTH:30,HIT:The archer punches you,HIT:The archer kicks you,MISS:The archer sidesteps.,MISS:The archer evades you.,MISS:The archer grabs your arm and stops you from hitting him.^*You manage to defeat the archer.  Now that both archers are down, you can search the room.
+421:Content not added^*999
+422:RESTART:^*You slowly try to pull the sword out, but the edge of the sword slides against the metal of the rack and one of the archers hears you pulling it out.  He gives a shout of warning and both archers quickly turn around and fire two arrows into your body.  As you slump to the ground the archers quickly reload their bows and fire two more arrows into you. <br>Your life ends here.
+422:null^*1
+423:INVADD:Mace^*You slowly ease the mace out of the rack and into your hand.  You glance around nervously, but the archers still have their backs turned to you.
+423:Take the sword^*422^*Take the throwing knives^*424^*Sneak behind one of the archers and attack him^*419^*Sneak back out of the room^*426
+424:INVADD:Throwing knives^*You silently pick up the sheaf of throwing knives.  You glance backwards, but the archers have not noticed you.  One of the archers scratches his back and his head almost turns towards you.  You decide that you will have to act quickly.
+424:Try to take out the archers with the throwing knives^*432^*Sneak back out of the room^*426
+425:LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly bring your mace down, knocking him out with a single blow.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
+425:Continue^*421
+426:RESTART:^*You try to sneak back out of the room, but your luck does not hold.  One of the archers turns around and sees you while you are in the middle of the room.  He gives a shout of warning and both archers quickly turn around and fire two arrows into your body.  As you slump to the ground the archers quickly reload their bows and fire two more arrows into you. <br>Your life ends here.
+426:null^*1
+427:INVSPLIT:Sword^*428^*429
+427:null^*1
+428:LOSEHEALTH:5^*:You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You drive your sword forwards and run him through.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  You pull your sword out of the first archer and knock the second archer's bow out of his hand before he can fire again. He is forced to defend himself with his fists.
+428:Continue^*421
+429:INVSPLIT:Hidden dagger^*430^*431
+429:null^*1
+430:LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly cut him down with your dagger before he can react.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
+430:Continue^*421
+431:RESTART:^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You don't have any weapons, so you grab him before he can react and slam him to the ground.  Unfortunately, the other archer hears this and looses an arrow into your back.  As you fall forwards, the archer reloads and hits you with another arrow.  You are helpless as the archer continues pierce you with deadly arrows.  <br> Your life ends here.
+431:null^*1
+432:Take out with knives
+432:Content not added^*999
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
@@ -614,7 +696,7 @@
 566:Continue^*568
 567:LOSEHEALTH:4^*You lie on the floor of the cell, pretending to groan in pain.  Two guards approach the cell, and you hear one of them unlock the door.  One of the guards roughly hoists you up by the shoulders, and at that moment you strike with your dagger, stabbing the guard in the chest.  The guard responds by kicking you viciously with an armored foot (causing you to lose 4 health), but it is too late.  He falls to the ground and you pull the dagger out of his chest and whirl around to face the second guard, who has drawn his sword. 
 567:Continue^*568
-568:You are fighting a dungeon guard
+568:COMBAT:a dungeon guard,WEAPON:Sword,STRENGTH:8,DEFENSE:2,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your dagger glances off the guard's armor.,MISS:Your dagger glances off the guard's armor.,MISS:The guard quickly parries your dagger swing.,MISS:The guard evades you.^*You manage to defeat the second guard.  You are now free to leave your cell.
 568:Content not added^*999
 569:You sit down and wait for hours before two guards finally arrive at your cell.  One of the guards takes out a key to unlock the cell, but sees the dagger blade jammed in the lock.  He gives a shout of surprise and orders you to stand with your face to the wall and your arms above your head.
 569:Obey the guard's order^*570^*Pretend that you did not hear him^*571

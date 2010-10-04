@@ -1,5 +1,5 @@
 /**
-* Dookenstein version 3
+* Dookenstein version 4
  */
 dojo.provide('myapp.Dookenstein');
 dojo.require('dijit._Widget');
@@ -33,15 +33,37 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//initialize variables
 		this.pageText = new Array();
 		this.choices = new Array();
+		this.images = new Array();
 		this.inventory = new Array();
 		//the zeroth element of inventory is never used and is filled with the word inventory
 		this.inventory[0] = 'Inventory';
-		
-		//set starting health and gold.  Health can never go above MAX_HEALTH
-		this.MAX_HEALTH = 50;
+
+		//Set delimiter (regular expression to parse input - default is ^*)
+		this.DELIMITER = '^*'
+		//set starting health and gold.  Health can never go above MAX_HEALTH (default max health is 50)
+		this.STARTING_HEALTH = 50;
+		this.MAX_HEALTH = this.STARTING_HEALTH;
 		this.health = this.MAX_HEALTH;
-		this.STARTING_GOLD = 20;
+		this.STARTING_GOLD = 0;
 		this.gold = this.STARTING_GOLD;
+		//set starting strength/combat skill (default is 10)
+		this.STARTING_STRENGTH = 10;
+		this.strength = this.STARTING_STRENGTH;
+		//initialize weapon data (default: unarmed with bare hands)
+		var defaultWeapon = {
+			name: 'Your bare hands',
+			type: 'unarmed',
+			strengthbonus: '-3',
+			accuracy: '55',
+			hitMessages: ['You hit your enemy'],
+			missMessages: ['You miss.']
+		}
+		this.unarmed = defaultWeapon;
+		//initialize weapons array (does not include unarmed)
+		this.possibleWeapons = new Array();
+		//initialize external variables array
+		this.initVariableList = new Array();
+		this.variableList = new Array();
 		//array containing button objects
 		this.buttons = new Array();
 		//This message will be overwritten if the text file is loaded properly
@@ -52,6 +74,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.restart = 0;
 		//special mode for selecting multiple inventory items
 		this.invselect = 0;
+		//special mode for combat
+		this.inCombat = 0;
+		this.chooseWeapon = 0;
 		this.invselecting = 0;
 		//set jsonic reading rate - default for JSonic is 200
 		this.sonicRate = 250;
@@ -61,7 +86,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	loadPageTextAndChoices: function(data) {
 		//The index of the arrays is the page number
 		//pageText is the text for that page, and choices is the possible decisions
-		//choices is split by the special character sequence ^* as follows
+		//choices is split by the special character sequence this.DELIMITER (Default ^*) as follows
 		//choice one text^*choice one will lead to this page^*choice two text^*choice two will lead to this page...
 		
 		dataSplit = data.split('\n');
@@ -70,28 +95,177 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		for (i = 0; i < dataSplit.length; i++) {
 			//remove any carriage returns (which are sometimes not removed by split('\n'))
 			dataSplit[i] = dataSplit[i].replace(new RegExp( '\\r', 'g' ),'');
-			pageNumber = dataSplit[i].split(':')[0];
-			if (dataSplit[1].split(':').length > 1) {
-				pageInfo = dataSplit[i].split(':')[1];
-				//get text after all other colons
-				for (k = 2; k < dataSplit[i].split(':').length; k++) {
-					pageInfo = pageInfo + ':' + dataSplit[i].split(':')[k];
+			if (dataSplit[i].indexOf('DELIMITER:') != -1) {
+				//set delimiter to something other than '^*'
+				this.DELIMITER = dataSplit[i].split('DELIMITER:')[1];
+			}
+			else if (dataSplit[i].indexOf('INITWEAPON:') != -1) {
+				//Parse weapon information
+				var added = {
+					name: 'Error with weapon initialization - no name specified',
+					type: 'weapon',
+					strengthbonus: 'NaN',
+					accuracy: 'NaN',
+					hitMessages: [],
+					missMessages: []
+				}
+				splitResult = dataSplit[i].split('INITWEAPON:')[1].split(this.DELIMITER);
+				added.name = splitResult[0];
+				added.strengthbonus = dojo.number.parse(splitResult[1]);
+				added.accuracy = dojo.number.parse(splitResult[2]);
+				if (isNaN(added.strengthbonus)) {
+					console.log('Error initializing weapon strength (Not a number)!');
+					added.strengthbonus = -3;
+				}
+				if (isNaN(added.accuracy)) {
+					console.log('Error initializing weapon accuracy (Not a number)!');
+					added.accuracy = 55;
+				}
+				for (y = 0; y < splitResult.length; y++) {
+					if (splitResult[y].indexOf('HIT:') != -1) {
+						added.hitMessages[added.hitMessages.length] = splitResult[y].split('HIT:')[1];
+					}
+					if (splitResult[y].indexOf('MISS:') != -1) {
+						added.missMessages[added.missMessages.length] = splitResult[y].split('MISS:')[1];
+					}
+				}
+				if (added.hitMessages.length == 0) {
+					added.hitMessages = ['You hit your enemy'];
+				}
+				if (added.missMessages.length == 0) {
+					added.missMessages = ['You miss.'];
+				}
+				this.possibleWeapons[this.possibleWeapons.length] = added;
+				//console.log('Added Weapon.  Name: ' + added.name + ', Strength bonus: ' + added.strengthbonus + ', Accuracy: ' + added.accuracy + ', Hit message 1: ' + added.hitMessages[0] + ', Miss message 1:' + added.missMessages[0]);
+			}
+			else if (dataSplit[i].indexOf('UNARMED:') != -1) {
+				//Parse weapon information for the case where you must fight unarmed (default:bare hands)
+				var added = {
+					name: 'Error with unarmed initialization - no name specified',
+					strengthbonus: 'NaN',
+					accuracy: 'NaN',
+					hitMessages: [],
+					missMessages: []
+				}
+				splitResult = dataSplit[i].split('UNARMED:')[1].split(this.DELIMITER);
+				added.name = splitResult[0];
+				added.strengthbonus = dojo.number.parse(splitResult[1]);
+				added.accuracy = dojo.number.parse(splitResult[2]);
+				if (isNaN(added.strengthbonus)) {
+					console.log('Error initializing unarmed strength (Not a number)!');
+					added.strengthbonus = -3;
+				}
+				if (isNaN(added.accuracy)) {
+					console.log('Error initializing unarmed accuracy (Not a number)!');
+					added.accuracy = 55;
+				}
+				for (y = 0; y < splitResult.length; y++) {
+					if (splitResult[y].indexOf('HIT:') != -1) {
+						added.hitMessages[added.hitMessages.length] = splitResult[y].split('HIT:')[1];
+					}
+					if (splitResult[y].indexOf('MISS:') != -1) {
+						added.missMessages[added.missMessages.length] = splitResult[y].split('MISS:')[1];
+					}
+				}
+				if (added.hitMessages.length == 0) {
+					added.hitMessages = ['You hit your enemy'];
+				}
+				if (added.missMessages.length == 0) {
+					added.missMessages = ['You miss.'];
+				}
+				this.unarmed = added;
+				//console.log('Added Unarmed.  Name: ' + added.name + ', Strength bonus: ' + added.strengthbonus + ', Accuracy: ' + added.accuracy + ', Hit message 1: ' + added.hitMessages[0] + ', Miss message 1:' + added.missMessages[0]);
+			}	else if (dataSplit[i].indexOf('SHIELD:') != -1) {
+				//Parse weapon information for the case where you must fight unarmed (default:bare hands)
+				var added = {
+					name: 'Error with shield initialization - no name specified',
+					type: 'shield',
+					defense: NaN,
+					probability: NaN
+				}
+				splitResult = dataSplit[i].split('SHIELD:')[1].split(this.DELIMITER);
+				added.name = splitResult[0];
+				added.defense = dojo.number.parse(splitResult[1]);
+				added.probability = dojo.number.parse(splitResult[2]);
+				if (isNaN(added.defense)) {
+					console.log('Error initializing shield defense (Not a number)!');
+					added.defense = 0;
+				}
+				if (isNaN(added.probability)) {
+					console.log('Error initializing shield probability (Not a number)!');
+					added.probability = 0;
+				}
+				this.possibleWeapons[this.possibleWeapons.length] = added;
+			}
+			else if (dataSplit[i].indexOf('INITIALIZE:') != -1) {
+				//Initialize variables - default is 50 health, 10 strength, and 0 gold
+				initialSplit = dataSplit[i].split('INITIALIZE:')[1].split(',');
+				if (initialSplit[0] == 'Health') {
+					this.STARTING_HEALTH = dojo.number.parse(initialSplit[1]);
+					if (isNaN(this.STARTING_HEALTH)) {
+						console.log('Failed to initialize Health (Error - Not a number).  Health set to default of 50.');
+						this.STARTING_HEALTH = 50;
+					}
+					//Max health is the value that your health cannot exceed.  This could change in-game if you get stronger
+					//Starting health is initialized in the game file and will not change.  When game is reset, max health returns to starting health
+					this.MAX_HEALTH = this.STARTING_HEALTH;
+					this.health = this.MAX_HEALTH;
+				} else if (initialSplit[0] == 'Strength') {
+					this.STARTING_STRENGTH = dojo.number.parse(initialSplit[1]);
+					if (isNaN(this.STARTING_STRENGTH)) {
+						console.log('Failed to initialize Strength (Error - Not a number).  Strength set to default of 10.');
+						this.STARTING_STRENGTH = 10;
+					}
+					this.strength = this.STARTING_STRENGTH;
+				} else if (initialSplit[0] == 'Gold') {
+					this.STARTING_GOLD = dojo.number.parse(initialSplit[1]);
+					if (isNaN(this.STARTING_GOLD)) {
+						console.log('Failed to initialize Gold (Error - Not a number).  Gold set to default of 0.');
+						this.STARTING_GOLD = 0;
+					}
+					this.gold = this.STARTING_GOLD;
+				} else {
+					//initialized unknown variable: add it to the list
+					var newVariable = {
+						name: initialSplit[0],
+						value: initialSplit[1]
+					}
+					this.initVariableList[this.variableList.length] = newVariable;
+					for (y = 0; y < this.initVariableList.length; y++) {
+						this.variableList[y] = this.initVariableList[y];
+					}
+					//console.log('Initialized variable: ' + newVariable.name + ', value: ' + newVariable.value);
 				}
 			} else {
-				pageInfo = '';
-				console.log('Error: page detected with no information');
-			}
-			//fill pageText first, then choices
-			if (this.pageText[pageNumber] == null) {
-				this.pageText[pageNumber] = pageInfo;
-			} else {
-				this.choices[pageNumber] = pageInfo;
+				// parse page information
+				pageNumber = dataSplit[i].split(':')[0];
+				if (dataSplit[1].split(':').length > 1) {
+					pageInfo = dataSplit[i].split(':')[1];
+					//get text after all other colons
+					for (k = 2; k < dataSplit[i].split(':').length; k++) {
+						pageInfo = pageInfo + ':' + dataSplit[i].split(':')[k];
+					}
+				} else {
+					pageInfo = '';
+					console.log('Error: page detected with no information');
+				}
+				//fill pageText first, then choices, then image link
+				if (this.pageText[pageNumber] == null) {
+					this.pageText[pageNumber] = pageInfo;
+				} else if (this.choices[pageNumber] == null) {
+					this.choices[pageNumber] = pageInfo;
+				} else {
+					//page text and choices are already full, so add an image
+					this.images[pageNumber] = pageInfo;
+				}
 			}
 		}
 		
 		this.page = 0;
 		this.message = this.pageText[this.page];
-		choicesArray = this.choices[this.page].split('^*');
+		//choicesArray = this.choices[this.page].split('^*');
+		choicesArray = this.choices[this.page].split(this.DELIMITER);
+
 		//must call refreshAll in here because this method is dojo.deferred (will occur last)
 		this.refreshAll();
 	},
@@ -188,55 +362,80 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			this.message = 'ERROR: The specified page does not exist';
 		} else {
 			//check for special pages (combat, death, items)
-			specialPageArray = this.pageText[this.page].split('^*');
+			//specialPageArray = this.pageText[this.page].split('^*');
+			specialPageArray = this.pageText[this.page].split(this.DELIMITER);
+
 			if (specialPageArray.length == 1) {
+				//no special commands, just display the text
 				this.message = specialPageArray[0];
 			} else {
 				//the last thing in the array should be the actual page text (except in special circumstances)
 				this.message = specialPageArray[specialPageArray.length-1];
 				//loop through all special commands and run them if found
+				/*List of special commands:
+				INVSPLIT:item^*x^*y - Go to page x if item is in inventory, otherwise go to page y
+				GOLDSPLIT:n^*x^*y - If gold is at least n, go to page x, otherwise go to page y
+				INVCHECK:item^*text^*x - If item is in inventory, display text.  Otherwise, redirect to page x
+				INVADD:item1,item2 - Add all listed items to inventory
+				INVBUY:item,n^*x - Add item to inventory, lose n gold.  Redirect to page x if gold is less than n
+				INVREMOVE:item1,item2 - Remove all listed items from inventory and display a message.  Add false to not display a message
+				INVCLEAR:item1, item2 - Remove all inventory items except the ones listed
+				INVSELECT:n - Select n inventory items of the user's choice from the list of choices
+				INVREMOVESELECT:n - Remove n inventory items of the user's choice from the inventory
+				LOSEHEALTH:n - Lose n health.  If resulting health is 0 or less, the character dies
+				GAINHEALTH:n - Gain n health.  Cannot exceed the maximum health
+				LOSEGOLD:n^*x - Lose n gold.  Redirect to page x if gold is less than n (optional)
+				GAINGOLD:n - Gain n gold
+				DISPLAYGOLD - Display a message saying how much gold the character has
+				VARSPLIT:var,value^*x^*y - Go to page x if external variable var = value, otherwise go to page y
+				VARSET:var,value - Set the value of external variable var to value
+				VARDISPLAY:var - Display the value of var in a message
+				COMBAT: - Special command to start combat
+				RESTART: - The story has reached some sort of end, so restart from page 1
+				*/
+				
 				for(p=0; p<specialPageArray.length; p++){
 					//INVSPLIT:item.  If the item is in the inventory, go the first page, otherwise go to the second page
-					//INVSPLIT does not work with multiple special commands
+					//INVSPLIT does not work with multiple special commands unless it is last
 					if (specialPageArray[p].match('INVSPLIT:') != null) {
 						inventoryCheck = specialPageArray[p].split('INVSPLIT:');
 						if (inventoryCheck[1] in this.oc(this.inventory) || specialPageArray.length < 3) {
 							//passed inventory check, redirect to first page
-							this.page = specialPageArray[1];
+							this.page = specialPageArray[specialPageArray.length-2];
 							this.processChoice(this.page,0);
 							return;
 						} else {
 							//failed inventory check, redirect to second page
-							this.page = specialPageArray[2];
+							this.page = specialPageArray[specialPageArray.length-1];
 							this.processChoice(this.page,0);
 							return;
 						}
 					}
 					//GOLDSPLIT:n.  If current gold >= n, go to the first page, otherwise go to the second page
-					//GOLDSPLIT does not work with multiple special commands
+					//GOLDSPLIT does not work with multiple special commands unless it is last
 					else if (specialPageArray[p].match('GOLDSPLIT:') != null) {
 						goldCheck = specialPageArray[p].split('GOLDSPLIT:');
 						if (this.gold >= goldCheck[1]) {
 							//passed gold check, redirect to first page
-							this.page = specialPageArray[1];
+							this.page = specialPageArray[specialPageArray.length-2];
 							this.processChoice(this.page,0);
 							return;
 						} else {
 							//failed gold check, redirect to second page
-							this.page = specialPageArray[2];
+							this.page = specialPageArray[specialPageArray.length-1];
 							this.processChoice(this.page,0);
 							return;
 						}
 					}
 					//INVCHECK:item.  If the item is in the inventory, display the page, otherwise redirect to another page
-					//INVCHECK does not work with multiple special commands
+					//INVCHECK does not work with multiple special commands unless it is the last command
 					else if (specialPageArray[p].match('INVCHECK:') != null) {
 						inventoryCheck = specialPageArray[p].split('INVCHECK:');
 						if (inventoryCheck[1] in this.oc(this.inventory) || specialPageArray.length < 3) {
 							this.message = specialPageArray[p+1];
 						} else {
 							//failed inventory check, redirect to a new page
-							this.page = specialPageArray[2];
+							this.page = specialPageArray[specialPageArray.length-1];
 							this.processChoice(this.page,0);
 							return;
 						}
@@ -256,7 +455,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						//this.message = specialPageArray[p+1];
 					}
 					//INVBUY:item,gold cost ... Add an item to your inventory and remove that amount of gold.
-					//Does not work with multiple commands but is almost equivalent to INVADD: and LOSEGOLD: together
+					//Only works with multiple commands if it is the last command
 					else if (specialPageArray[p].match('INVBUY:') != null) {
 						inventoryAdd = specialPageArray[p].split('INVBUY:');
 						//Add multiple inventory items by seperating them by a comma
@@ -265,7 +464,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							if (dojo.number.parse(this.gold) < dojo.number.parse(goldSpent[1])) {
 								if (specialPageArray.length > 2) {
 									//not enough gold, redirect to another page (optional)
-									this.page = specialPageArray[2];
+									this.page = specialPageArray[specialPageArray.length-1];
 									this.processChoice(this.page,0);
 									return;
 								}
@@ -314,7 +513,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							//display what items have been removed (if any)
 							//this.message = specialPageArray[p+1];
 							if ('false' in this.oc(inventoryRemoveArray)) {
-								//do not show a "you are no long carrying" message
+								//do not show a "you are no longer carrying" message
 							} else {
 								for (i = 0; i < removedArray.length; i++) {
 									this.message = this.message + removedArray[i];
@@ -362,7 +561,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					//INVSELECT: choose a certain number of items to add to inventory.  INVSELECT:n, choose n items from the choices
 					else if (specialPageArray[p].match('INVSELECT:') != null) {
 						inventoryAddNumber = specialPageArray[p].split('INVSELECT:');
-						choicesArray = this.choices[this.page].split('^*');
+						//choicesArray = this.choices[this.page].split('^*');
+						choicesArray = this.choices[this.page].split(this.DELIMITER);
+
 						alreadyTakenCount = 0;
 						if (this.invselect == 1) {
 							//add chosen item to inventory
@@ -406,7 +607,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							//the number of inventory items you can take has been reached, move on to the next page
 							this.invselect = 0;
 							this.invselecting = 0;
-							choicesArray = this.choices[this.page].split('^*');
+							//choicesArray = this.choices[this.page].split('^*');
+							choicesArray = this.choices[this.page].split(this.DELIMITER);
 							this.page = choicesArray[choiceNum * 2 - 1];
 							this.processChoice(this.page, choiceNum);
 							return;
@@ -415,7 +617,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					//choose a certain number of items to remove from inventory with INVREMOVESELECT.  INVREMOVESELECT:n, choose n items from the choices
 					else if (specialPageArray[p].match('INVREMOVESELECT:') != null) {
 						inventoryRemoveNumber = specialPageArray[p].split('INVREMOVESELECT:');
-						choicesArray = this.choices[this.page].split('^*');
+						//choicesArray = this.choices[this.page].split('^*');
+						choicesArray = this.choices[this.page].split(this.DELIMITER);
 						nextPageNum = choicesArray[1];
 						j = 0;
 						for (i = 1; i < this.inventory.length; i++) {
@@ -470,6 +673,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					else if (specialPageArray[p].match('LOSEHEALTH:') != null) {
 						healthLost = specialPageArray[p].split('LOSEHEALTH:');
 						this.health = dojo.number.parse(this.health) - dojo.number.parse(healthLost[1]);
+						if (this.health < 0) {
+							this.health = 0;
+						}
 						this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
 						if (this.health <= 0) {
 							this.message = this.message + '<br>Your wounded body can take no more, and you collapse to the ground.  You are dead.';
@@ -492,7 +698,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if (specialPageArray.length > 2) {
 							if (dojo.number.parse(this.gold) < dojo.number.parse(goldLost[1])) {
 								//not enough gold, redirect to another page
-								this.page = specialPageArray[2];
+								this.page = specialPageArray[specialPageArray.length-1];
 								this.processChoice(this.page,0);
 								return;
 							}
@@ -506,7 +712,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.gold = 0;
 						}
 						//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
-						//this.message = specialPageArray[p+1];
+						this.message = specialPageArray[p+1];
 					}
 					//GAINGOLD: n, gain n gold
 					else if (specialPageArray[p].match('GAINGOLD:') != null) {
@@ -526,6 +732,247 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
 						}
 					}
+					//VARSPLIT:var, value.  If var = value, go to the first page, otherwise go to the second page.
+					//Does not work with multiple commands unless it is last
+					else if (specialPageArray[p].match('VARSPLIT:') != null) {
+						varSplit = specialPageArray[p].split('VARSPLIT:')[1].split(',');
+						passedCheck = false;
+						for (y = 0; y < this.variableList.length; y++) {
+							if (this.variableList[y].name == varSplit[0]) {
+								if (this.variableList[y].value == varSplit[1]) {
+									passedCheck = true;
+								}
+							}
+						}
+						if (passedCheck) {
+							//passed variable check, redirect to first page
+							this.page = specialPageArray[specialPageArray.length-2];
+							this.processChoice(this.page,0);
+							return;
+						} else {
+							//failed variable check, redirect to second page
+							this.page = specialPageArray[specialPageArray.length-1];
+							this.processChoice(this.page,0);
+							return;
+						}
+					}
+					//VARSET: var, value.  Set an external variable (specified in the game data file)
+					else if (specialPageArray[p].match('VARSET:') != null) {
+						varSet = specialPageArray[p].split('VARSET:')[1].split(',');
+						for (y = 0; y < this.variableList.length; y++) {
+							if (this.variableList[y].name == varSet[0]) {
+								this.variableList[y].value = varSet[1];
+							}
+						}
+					}
+					//VARDISPLAY: var.  Display the value of var.
+					else if (specialPageArray[p].match('VARDISPLAY:') != null) {
+						varSplit = specialPageArray[p].split('VARDISPLAY:')[1];
+						for (y = 0; y < this.variableList.length; y++) {
+							if (this.variableList[y].name == varSplit) {
+								this.message = this.message + '<br>' + this.variableList[y].name + ':' + this.variableList[y].value;
+							}
+						}
+					}
+					//COMBAT: enemy name, enemy weapon, enemy base strength, enemy defense, enemy health, hit messages, miss messages, run away option, run away link
+					//Combat does not work with multiple commands
+					else if (specialPageArray[p].match('COMBAT:') != null) {
+						if (this.inCombat == 0) {
+							//parse enemy info
+							combatInfo = specialPageArray[p].split('COMBAT:')[1].split(',');
+							enemyWeaponName = 'None';
+							enemyStr = 10;
+							enemyDef = 0;
+							enemyHealth = 20;
+							enemyAcc = 55;
+							enemyHitMessages = [];
+							enemyMissMessages = [];
+							for (x = 0; x < combatInfo.length; x++) {
+								if (combatInfo[x].match('WEAPON:') != null) {
+									enemyWeaponName = combatInfo[x].split('WEAPON:')[1];
+								}
+								if (combatInfo[x].match('STRENGTH:') != null) {
+									enemyStr = dojo.number.parse(combatInfo[x].split('STRENGTH:')[1]);
+								}
+								if (isNaN(enemyStr)) {
+									console.log('Error initializing strength for ' + combatInfo[0] + '. (Not a number)!');
+									enemyStr = 10;
+								}
+								if (combatInfo[x].match('DEFENSE:') != null) {
+									enemyDef = dojo.number.parse(combatInfo[x].split('DEFENSE:')[1]);
+								}
+								if (isNaN(enemyDef)) {
+									console.log('Error initializing defense for ' + combatInfo[0] + '. (Not a number)!');
+									enemyDef = 0;
+								}
+								if (combatInfo[x].match('HEALTH:') != null) {
+									enemyHealth = dojo.number.parse(combatInfo[x].split('HEALTH:')[1]);
+								}
+								if (isNaN(enemyHealth)) {
+									console.log('Error initializing health for ' + combatInfo[0] + '. (Not a number)!');
+									enemyHealth = 20;
+								}
+								if (combatInfo[x].match('HIT:') != null) {
+									enemyHitMessages[enemyHitMessages.length] = combatInfo[x].split('HIT:')[1];
+								}
+								if (combatInfo[x].match('MISS:') != null) {
+									enemyMissMessages[enemyMissMessages.length] = combatInfo[x].split('MISS:')[1];
+								}
+							}
+							for (x = 0; x < this.possibleWeapons.length; x++) {
+								if (this.possibleWeapons[x].name == enemyWeaponName) {
+									enemyStr = dojo.number.parse(enemyStr) + dojo.number.parse(this.possibleWeapons[x].strengthbonus);
+									enemyAcc = dojo.number.parse(this.possibleWeapons[x].accuracy);
+								}
+							}
+						}
+						if (this.chooseWeapon == -1) {
+							//just selected a weapon
+							currentWeapon = availableWeapons[choiceNum - 1];
+							disableFight = true;
+						} else {
+							disableFight = false;
+						}
+						if (this.inCombat == 1 && choiceNum == 2 && this.chooseWeapon == 0) {
+							//change weapon selected
+							this.chooseWeapon = 1;
+						} else {
+							this.chooseWeapon = 0;
+						}
+						if (this.inCombat == 0 || this.chooseWeapon == 1) {
+							//just entering combat, allow the user to switch weapons
+							this.message = 'Choose a weapon to fight with.'
+							availableWeapons = [];
+							for (x = 0; x < this.possibleWeapons.length; x++) {
+								for (y = 1; y < this.inventory.length; y++) {
+									if (this.possibleWeapons[x].name == this.inventory[y] && this.possibleWeapons[x].type == 'weapon') {
+										availableWeapons[availableWeapons.length] = this.possibleWeapons[x];
+									}
+								}
+							}
+							availableWeapons[availableWeapons.length] = this.unarmed;
+							choicesArray = [];
+							for (z = 0; z < availableWeapons.length; z++) {
+								choicesArray[z*2] = availableWeapons[z].name;
+								choicesArray[z*2+1] = this.page;
+							}
+							availableShields = [];
+							for (x = 0; x < this.possibleWeapons.length; x++) {
+								for (y = 1; y < this.inventory.length; y++) {
+									if (this.possibleWeapons[x].name == this.inventory[y] && this.possibleWeapons[x].type == 'shield') {
+										availableShields[availableShields.length] = this.possibleWeapons[x];
+									}
+								}
+							}
+							if (availableShields.length == 1) {
+								currentShield = availableShields[0];
+							} else {
+								currentShield = "None";
+							}
+							this.chooseWeapon = -1;
+							this.inCombat = 1;
+						} else {
+							//default for wonCombat is false, set to true if the enemy's health goes to zero
+							wonCombat = false;
+							if (currentShield != "None") {
+								this.message = 'Currently in combat with ' + combatInfo[0] + '.  You are using: ' + currentWeapon.name + ' and ' + currentShield.name + '.';
+							} else {
+								this.message = 'Currently in combat with ' + combatInfo[0] + '.  You are using: ' + currentWeapon.name;
+							}
+							if (choiceNum == 1 && !disableFight) {
+								//Fight selected
+								strCompare = this.strength + currentWeapon.strengthbonus - enemyStr;
+								k = Math.floor(Math.random()*(10));
+								damageDealt = 4 + Math.round(strCompare/2) + k - enemyDef;
+								damageTaken = 5 - Math.round(strCompare/2) - Math.floor(k/2);
+								if (damageDealt < 0) {
+									damageDealt = 0;
+								}
+								if (damageTaken < 0) {
+									damageTaken = 0;
+								}
+								damageRatio = damageDealt/enemyHealth;
+								if (k < 2) {
+									damageMessage = ' and barely make a scratch,'
+								} else if (k < 5) {
+									damageMessage = ' and inflict a minor wound,'
+								} else if (k < 7) {
+									damageMessage = ' and inflict a large wound,'
+								} else if (k < 9) {
+									damageMessage = ' and inflict a deep wound,'
+								} else {
+									damageMessage = ' and inflict a grave wound,'
+								}
+								randomNum = Math.random();
+								if (randomNum <= currentWeapon.accuracy/100) {
+									youHit = true;
+								} else {
+									youHit = false;
+								}
+								randomNum = Math.random();
+								if (randomNum <= enemyAcc/100) {
+									enemyHit = true;
+								} else {
+									enemyHit = false;
+								}
+								if (youHit) {
+									k = Math.floor(Math.random()*(currentWeapon.hitMessages.length));
+									this.message = this.message + ' <br>' + currentWeapon.hitMessages[k] + damageMessage + ' dealing ' + damageDealt + ' damage.';
+									enemyHealth -= damageDealt;
+								} else {
+									if (Math.random() < 0.4) {
+										k = Math.floor(Math.random()*(currentWeapon.missMessages.length));
+										this.message = this.message + ' <br>' + currentWeapon.missMessages[k];
+									} else {
+										k = Math.floor(Math.random()*(enemyMissMessages.length));
+										this.message = this.message + ' <br>' + enemyMissMessages[k];
+									}
+								}
+								if (enemyHit) {
+									k = Math.floor(Math.random()*(enemyHitMessages.length));
+									this.message = this.message + ' <br>' + enemyHitMessages[k] + ' and hits you for ' + damageTaken + ' damage.';
+									//reduce damage from shield and armor
+									if (currentShield != "None") {
+										if (Math.random() <= currentShield.probability/100) {
+											damageTaken -= currentShield.defense;
+											if (damageTaken < 0) {
+												damageTaken = 0;
+											}
+											this.message = this.message + ' <br>Your ' + currentShield.name + ' protects you from ' + currentShield.defense + ' of the damage.';
+										}
+									}									
+									this.health -= damageTaken;
+								} else {
+									//k = Math.floor(Math.random()*(enemyMissMessages.length+1));
+									if (currentShield != "None" && Math.random() < 0.5) {
+										this.message = this.message + ' <br>You block with your shield.';
+									} else {
+										this.message = this.message + ' <br>The enemy misses.';
+									}
+								}
+
+								if (this.health < 0) {
+									this.health = 0;
+								}
+								this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+								if (this.health <= 0) {
+									this.message = this.message + '<br>You have been killed in combat.';
+									this.restart = 1;
+								} else if (enemyHealth <= 0) {
+									wonCombat = true;
+								}
+							}
+							choicesArray = [];
+							choicesArray[0] = 'Fight';
+							choicesArray[1] = this.page;
+							choicesArray[2] = 'Change Weapon';
+							choicesArray[3] = this.page;
+							if (wonCombat) {
+								this.message = this.message + '<br>' + specialPageArray[p+1];
+								this.inCombat = 0;
+							}
+						}
+					}
 					//restart the game on next button press with RESTART
 					else if (specialPageArray[p].match('RESTART:') != null) {
 						//this.message = specialPageArray[p+1];
@@ -539,9 +986,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			}
 			//End special pages testing
 			if (this.restart == 0) {
-				if (this.invselect == 0) {
-					//if you are in inventory selection mode, do not go to the next page
-					choicesArray = this.choices[this.page].split('^*');
+				if (this.invselect == 0 && this.inCombat == 0) {
+					//if you are in inventory selection mode or combat mode, you are overriding the choice selection
+					//choicesArray = this.choices[this.page].split('^*');
+					choicesArray = this.choices[this.page].split(this.DELIMITER);
 				}
 			} else {
 				//only possible choice is to restart the game
@@ -584,7 +1032,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			this.runJSonic();
 		}
 		this.displayMessage.innerHTML = this.message;
-		this.drawHealthBar(this.health);
+		this.drawAll();
 	},
 	runJSonic: function() {
 		this.js.stop();
@@ -637,31 +1085,71 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		}
 	},
 	//draw images on the html5 canvas
+	drawAll: function() {
+		this.clearCanvas();		
+		this.drawHealthBar(this.health);
+		if (this.images[this.page] != null) {
+			this.drawImage(this.images[this.page]);
+		}
+	},
 	drawHealthBar: function(currentHealth) {
-        var canvas = dojo.byId("canvas");
-        var ctx = canvas.getContext("2d");
+		if (this.MAX_HEALTH > 0) {
+			//only draw the health bar if health is enabled in this adventure
+			var canvas = dojo.byId("canvas");
+			var ctx = canvas.getContext("2d");
+			MAX_WIDTH = canvas.width;
+			MAX_HEIGHT = canvas.height;
+			HEALTHBAR_HEIGHT = 20;
+			HEALTHBAR_WIDTH = 0.5 * MAX_WIDTH;
+			ctx.fillStyle = "rgb(255,0,0)";
+			ctx.fillRect(0,0,HEALTHBAR_WIDTH,HEALTHBAR_HEIGHT);
+			ctx.fillStyle = "rgb(0,128,0)";
+			proportion = currentHealth/this.MAX_HEALTH;
+			ctx.fillRect(0,0,proportion * HEALTHBAR_WIDTH,HEALTHBAR_HEIGHT);
+			//add notification text
+			ctx.fillStyle = 'rgb(255,255,255)';
+			ctx.font = '20px sans-serif';
+			ctx.textBaseline = 'top';
+			ctx.fillText("Current Health:" + currentHealth +"/"+this.MAX_HEALTH,0,0);
+		}
+	},
+	drawImage: function(imageURL) {
+		var canvas = dojo.byId("canvas");
+		var ctx = canvas.getContext("2d");
 		MAX_WIDTH = canvas.width;
-		MAX_HEIGHT = canvas.height;
-		HEALTHBAR_HEIGHT = 20;
-		ctx.fillStyle = "rgb(255,0,0)";
-		ctx.fillRect(0,0,MAX_WIDTH,HEALTHBAR_HEIGHT);
-		ctx.fillStyle = "rgb(0,128,0)";
-		proportion = currentHealth/this.MAX_HEALTH;
-		ctx.fillRect(0,0,proportion * MAX_WIDTH,HEALTHBAR_HEIGHT);
-		//add notification text
-		ctx.fillStyle = 'rgb(255,255,255)';
-		ctx.font = '20px sans-serif';
-		ctx.textBaseline = 'top';
-		ctx.fillText("Current Health:" + currentHealth +"/"+this.MAX_HEALTH,0,0);
+		MAX_HEIGHT = canvas.height - (HEALTHBAR_HEIGHT + 5);
+		var img = new Image();
+		img.onload = function(){
+			if (img.width > img.height) {
+				imgScale = MAX_WIDTH / img.width;
+				newWidth = MAX_WIDTH;
+				newHeight = img.height * imgScale;
+				ctx.drawImage(img,0,HEALTHBAR_HEIGHT + 5,newWidth,newHeight);
+			} else {
+				imgScale = MAX_HEIGHT / img.height;
+				newWidth = img.width * imgScale;
+				newHeight = MAX_HEIGHT;
+				ctx.drawImage(img,0,HEALTHBAR_HEIGHT + 5,newWidth,newHeight);
+			}
+		}
+		img.src = imageURL;
 	},
 	//clear the inventory and the canvas and reset health and gold
 	restartGame: function() {
 		this.restart = 0;
+		this.MAX_HEALTH = this.STARTING_HEALTH;
 		this.health = this.MAX_HEALTH;
 		this.gold = this.STARTING_GOLD;
 		
+		this.inCombat = 0;
+		
 		for (i = 1; i < this.inventory.length; i++) {
+			//clear whole inventory except for the never used 0th element
 			this.inventory[i] = '';
+		}
+		for (i = 0; i < this.initVariableList.length; i++) {
+			//reset all external variables
+			this.variableList[i].value = this.initVariableList[i].value;
 		}
 		this.clearCanvas();
 	},
