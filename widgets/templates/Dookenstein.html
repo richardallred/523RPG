@@ -3,8 +3,11 @@
 	<span dojoAttachPoint="displayMessage"> Failed to load game data </span>
 	<br><br>
 		<div dojoAttachPoint="buttonDiv"></div>
-
-	  <button dojoType="dijit.form.Button"
+		<button dojoType="dijit.form.Button"
+			  dojoAttachEvent="onClick:_rereadText"
+			  dojoAttachPoint="rereadText">More Options</button>
+	
+		<button dojoType="dijit.form.Button"
 			  dojoAttachEvent="onClick:_rereadText"
 			  dojoAttachPoint="rereadText">Read text again</button>
 	<br>
