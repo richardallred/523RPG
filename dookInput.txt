@@ -393,9 +393,19 @@ ARMOR:Guard disguise^*1^*75
 279:You manage to evade the guard and enter into the castle kitchen.  You see a washbasin, but nothing else of interest.
 279:Wash your self off^*208^*Leave the room^*280
 280:You are finally greeted with a clear view of the basement of the castle.  You see doors to enter Servant housing, a washroom, the armory, the interrogation room, and finally an dark opening on the other end of the hall of whitch you can see very little.
-280:Peek into the servant housing BEWARE^*999^*Enter the washroom^*999^*Visit the armory^*999^*Try your hand at interrogation^*999^*Venture into the abyss at the opposite end of the hallway^*999
+280:Peek into the servant housing BEWARE^*999^*Enter the washroom^*282^*Visit the armory^*286^*Try your hand at interrogation^*999^*Venture into the abyss at the opposite end of the hallway^*999
 281:COMBAT:You are fighting a wounded guard. The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:7,DEFENSE:2,HEALTH:25,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor,MISS:Your blow glances off the guard's armor,MISS:The guard quickly parries your blow,MISS:The guard evades you^*You manage to defeat the wounded guard.  You are victorious!
 281:Content not added
+282:You enter the washroom.  To your left you see a pile of old tattered clothing.  Overhead a dim light illuminates the room.  You see what looks like a pile of gold laying on the floor.  Additionally, you see the door slowly open.
+282:Pickup the gold^*282^*Protect yourself from the creature on the other side of the door^*283^*Slam the door shut^*284
+283:GAINGOLD:5^*You take five gold off of the floor and add it to your inventory.
+283:Leave the room^*280
+284:INVADD:RATMEAT^*You draw you weapon and prepare for battle. Just as the door opens enough for someone to make their way through you see that the door was opened by a rat. You quickly slay the rat and add its meat to your inventory.
+284:Pickup the pile of gold^*282^*Leave the room^*280
+285:You slam the door shut only to see a rat scurry into the room from under the door.  The ray burries itsself under one of the many piles of clothes littering the floor.
+285:Leave the room^*280^*Pick up the gold^*282
+286:Opening the door to the armory carefully incase there are any of the Kings's men inside, you manage to luck out and it is empty.  A dragon scale lays on the counter. 
+286:Content not added^*999
 300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  Across the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep where the King resides is inside the inner bailey, but you know there is little chance of the guards letting you through.
 300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
 301:You wait until you and the guard are passing through a large crowd of people, then you dart into the crowd while he is not watching.  In a few moments, you hear him give a shout of surprise, but you are already a good distance away from him.  You can see a stable and some merchant stalls nearby.
