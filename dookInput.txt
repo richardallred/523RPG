@@ -8,6 +8,7 @@ INITIALIZE:mealsEaten,0
 INITIALIZE:turnedAway,0
 INITIALIZE:turretLockPicked,0
 INITIALIZE:killedArchers,0
+INITIALIZE:killedColonel,0
 INITWEAPON:Sword^*4^*90^*HIT:You swing your blade at the #enemy^*HIT:You lunge at the #enemy with your sword^*HIT:You quickly strike the #enemy^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage to the #enemy.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked by the #enemy.
 INITWEAPON:Mace^*5^*80^*HIT:You bring your mace downwards in a crushing blow^*HIT:You swing your mace in a wide arc^*HIT:You hit the #enemy with a stunning blow^*MISS:Your mace is blocked by the #enemy.^*MISS:You swing your mace, but miss.^*MISS:You fail to do any damage to the #enemy.
 INITWEAPON:Hidden dagger^*2^*75^*HIT:You stab the #enemy with your dagger^*HIT:You slash the #enemy with your dagger^*HIT:You cut the #enemy with your dagger^*MISS:You fail to do any damage to the #enemy.^*MISS:Your dagger is blocked by the #enemy.^*MISS:You swing your dagger, but miss.^*MISS:You stab the #enemy with your dagger, but you are unable to do any damage.
@@ -169,7 +170,7 @@ ARMOR:Guard disguise^*1^*75
 74:Continue^*42
 75:INVREMOVE:Grappling hook,Sword,Crossbow^*The guards reluctantly accept your story, but they confiscate your grappling hook to be safe.  The guard continues searching your cart, and removes any weapons that you had brought (except the hidden dagger).  Finally, the guards allow you entry.  "Deliver these supplies to Colonel Graywald in the barracks," says one of the guards, "He will pay you for them."
 75:Enter the castle^*300
-76:RESTART:^*As you run past the guard and into the gate, he gives a shout of warning.  Several guards converge from the courtyard, and they cut you down with their swords.  Your life ends here.
+76:RESTART:^*As you run past the guard and into the gate, he gives a shout of warning.  Several guards converge from the courtyard, and they cut you down with their swords. <br>Your life ends here.
 76:null^*1
 77:INVSPLIT:Sword^*79^*80
 77:null^*1
@@ -231,10 +232,10 @@ ARMOR:Guard disguise^*1^*75
 105:Continue^*4
 200:Making sure that none of the patrolling castle guards can see you, you make your way over to the side of the castle and search for entrances near the moat.  You see a 3 foot by 3 foot square tunnel in the side of the castle that is covered by a rusty metal grate with a large lock on it.  You see a small, slime covered waste disposal hole that you could try to squeeze through, but you do not relish the thought.  You see a patch of uneven bricks that you could attempt to scale, but the nearest window that you could enter is 40 feet from the ground.
 200:Swim towards the tunnel with the grating^*201^*Swim towards the small hole^*202^*Swim towards the uneven bricks and try to scale the wall^*203
-201:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to the grate, where you spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health. 
+201:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to the grate, where you spend a few minutes choking and retching.  Swallowing the disgusting moat water has caused you to lose 5 health. 
 201:Continue^*204
 201:images/locked_test.jpg
-202:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to reach the hole.  You grab on to the bottom of it and spend a few minutes choking and gagging.  Swallowing the disgusting moat water has caused you to lose 5 health.
+202:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to reach the hole.  You grab on to the bottom of it and spend a few minutes choking and retching.  Swallowing the disgusting moat water has caused you to lose 5 health.
 202:Continue^*205
 203:RESTART:^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to one of the bricks on the other side.  You slowly and painfully pull yourself up the bricks, which cut into your hands as you try to climb them.  You manage to make it up a good distance before your aching hands lose their grip, causing you to plummet into the moat below.  You hit the moat with such force that it knocks you out, and you end up floating facedown in it. <br>Your life ends here.
 203:Restart^*1
@@ -250,7 +251,7 @@ ARMOR:Guard disguise^*1^*75
 207:images/locked_test.jpg
 208:You climb into the basin and scrub yourself vigorously with some nearby lye soap.  It seems like it takes forever, but eventually you get most of the filth off of yourself and your clothes.
 208:Leave the kitchen^*280
-209:Content not added
+209:Leave the room before someone arrives
 209:Content not added^*999
 210:INVSPLIT:Tinderbox and torch^*213^*214
 210:null^*1
@@ -410,8 +411,8 @@ ARMOR:Guard disguise^*1^*75
 300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
 301:You wait until you and the guard are passing through a large crowd of people, then you dart into the crowd while he is not watching.  In a few moments, you hear him give a shout of surprise, but you are already a good distance away from him.  You can see a stable and some merchant stalls nearby.
 301:Try to hide in the stable^*399^*Try to hide in the merchant stalls^*400
-302:Follow the guard into the barracks
-302:Content not added^*999
+302:The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  The guard leads you into the main entrance of the barracks, and you see a large chamber where a huge man with scars crossing his face is talking with a group of soldiers.  "This mercenary wishes to join the invasion force," announces the guard, before leaving.
+302:Continue^*441
 303:INVSPLIT:Merchant Disguise^*308^*309
 303:null^*1
 304:INVSPLIT:Merchant Disguise^*317^*318
@@ -429,7 +430,7 @@ ARMOR:Guard disguise^*1^*75
 310:VARSPLIT:Horse and cart,1^*341^*342
 310:null^*1
 311:The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  Inside the main entrance of the barracks, you see a large chamber where a huge man with scars crossing his face is writing something on a piece of parchment.  You walk up to the barracks entrance and the man turns and looks at you.  "I don't recognize you," he growls, "Are you one of the new recruits?"
-311:Content not added^*999^*Return to the courtyard^*300
+311:Say that you are a new recruit^*441^*Content not added^*999^*Return to the courtyard^*300
 312:VARSET:Horse and cart,0^*You pay the stable boy one gold coin and he leads your horse into the stable.  The stable boy asks you what you want him to do with the goods in your cart and offers to buy them for 5 gold coins if you do not need them.  You don't actually have any need of the goods now that you have successfully entered the castle, but you know that they are worth more than 5 gold coins.
 312:Accept his offer^*332^*Demand a higher price^*333^*Insist on keeping the goods for yourself^*334
 313:VARSET:Horse and cart,0^*The stable boy accepts the offer and takes some food from your cart as payment before leading your horse inside.  He offers to buy the rest of your goods for 4 gold coins if you do not need them.  You don't actually have any need of the goods now that you have successfully entered the castle, but you know that they are worth more than 4 gold coins.
@@ -688,6 +689,100 @@ ARMOR:Guard disguise^*1^*75
 439:Climb back down the staircase^*437^*Keep climbing up the staircase^*417^*Search the room^*440
 440:Search the room.
 440:Content not added^*999
+441:"So you are a new recruit for the invasion force?" says the scar-faced man.  "You will refer to me as Colonel Graywald.  I am your commanding officer."  He leads you inside the barracks to an armory full of weapons and armor for the soldiers.  "Get in uniform and report to the training field immediately," he orders, before walking out of the room.
+441:Put on the Dookian soldier armor^*442^*Take some of the weapons in the armory^*443^*Leave the armory and explore the barracks^*444
+442:INVREMOVE:Mercenary Disguise^*INVADD:Soldier's Uniform^*You search the racks of armor until you find a suit that fits you.  You remove your mercenary disguise and put on the plated armor of a Dookian soldier.  What do you do next?
+442:Take some of the weapons in the armory^*443^*Go to the training field^*445^*Leave the armory and explore the barracks^*446
+443:INVSPLIT:Soldier's Uniform^*447^*448
+443:null^*1
+444:You walk out of the armory and start to walk down one of the barracks hallways when a soldier appears from around the corner.  "What are you doing here?" he demands.
+444:Say that it is none of his business^*450^*Say that you are a new recruit^*451^*Attack him^*452^*Run away^*453
+445:LOSEHEALTH:5^*You leave the barracks and walk behind it to the fenced-off training field.  Colonel Graywald is there with a group of soldiers.  "You're late," he growls, "The next time you fail to arrive on time you will be disciplined."  You are forced to spend the rest of the day doing a brutal training regimen with the other soldiers under the watchful eye of the colonel.  You are exhausted from the training and you lose 5 health.  Afterwards, night has fallen, and all the soldiers go through a large gate to the castle's inner bailey.
+445:Continue^*483
+446:You walk out of the armory and start to walk down one of the barracks hallways.  Several soldiers walk by you, but they ignore you.  You see a room that leads to a group of beds, as well as a door that leads to what looks like a room for planning military operations.
+446:Go to the room with the beds^*455^*Go to the planning room^*456^*Go to the training field^*445
+447:INVADD:Sword,Mace,false^*The only weapons in the armory are an array of swords and maces.  You take all of the weapons that you do not already have and sheathe them as part of your soldier's uniform.
+447:Go to the training field^*445^*Explore the barracks instead^*446
+448:INVADD:Sword,Mace,false^*The only weapons in the armory are an array of swords and maces.  You take all of the weapons that you do not already have.  What do you do next?
+448:Put on the Dookian soldier armor^*449^*Leave the armory and explore the barracks^*444
+449:INVREMOVE:Mercenary Disguise^*INVADD:Soldier's Uniform^*You remove your mercenary disguise and put on the plated armor of a Dookian soldier.  You then sheathe your sword and your mace as part of the uniform.  What do you do next?
+449:Go to the training field^*445^*Explore the barracks instead^*446
+450:"It is my business, since only soldiers are allowed back here," the soldier says while drawing a wicked looking mace.
+450:Attack the soldier^*454^*Turn and run away^*453^*Apologize to the soldier and say you are a new recruit^*451
+451:The soldier directs you back to the armory and tells you to put on a uniform.  "You should report to Colonel Grayward in the training field afterwards," he says as he leaves.
+451:Put on the Dookian soldier armor^*442
+452:RESTART:^*You quickly attack the soldier, hoping to take him by surprise, but his reflexes are quick and he immediately draws his sword to fend off your attack.  Several more soldiers hear the sound of the fighting and converge on you with their swords drawn.  There is no way you no way you can fight them all and win, and you are soon cut down by many blades.  <br>Your life ends here.
+452:null^*1
+453:RESTART:^*You turn and run down the hallway, and you can hear the soldier shout at you as he gives chase.  Several more soldiers converge after hearing all this noise, and one of them fatally wounds you with his blade as you run by him.  <br>Your life ends here.
+453:null^*1
+454:RESTART:^*You attack, but several more soldiers hear the sound of the fighting and converge on you with their swords drawn.  There is no way you can fight them all and win, and you are soon cut down by many blades.  <br>Your life ends here.
+454:null^*1
+455:You enter a large room that looks like the sleeping quarters for the guards and soldiers.  It is currently unoccupied.  The room has several windows looking out into the courtyard.  The beds are little more than cloth covered staw on the ground and they have been placed closely together in several rows.  Next to many of the beds are sacks that you assume contain the soldiers' possessions, and there are several locked chests on the other end of the room.
+455:Search the sacks^*471^*Look at one of the locked chests^*472^*Leave the room^*459
+456:You enter the room and see that nobody else is inside.  You a table in the middle of the room with several pieces of parchment on it.  You also a see a locked safe on the other side of the room.
+456:Examine the documents on the table^*457^*Inspect the safe^*458^*Leave the room^*459
+457:INVSPLIT:Crossbow^*461^*462
+457:null^*1
+458:You close the door to the room behind you and walk over and look at the safe, which is made of solid iron.  You do not know the combination to the safe.
+458:Try to crack the safe^*465^*Look at the documents on the table^*466^*Leave the room^*459
+459:You leave the room and return to the hallway.
+459:Go to the room with the beds^*455^*Go to the planning room^*456^*Go to the training field^*445
+460:COMBAT:You are fighting Colonel Graywald.  He is using a greatsword,NAME:colonel,WEAPON:None,STRENGTH:25,DEFENSE:1,HEALTH:60,HIT:Colonel Graywald slashes you with his sword,HIT:Colonel Graywald swings his blade,HIT:The colonel lunges forwards and stabs you with his sword,MISS:The colonel sidesteps your blow.,MISS:The colonel blocks you with the hilt of his greatsword.,MISS:The colonel dodges your blow with lightning reflexes.^*You manage to defeat the colonel.
+460:Continue^*464
+461:You close the door to the room behind you and walk over to the table to read the documents.  You see detailed military plans for the upcoming invasions of Carolinia.  While you are reading, you hear the door open and you see Colonel Graywald enter the room.  He roars with fury when he sees you and draws a massive sword.  You react quickly and fire a bolt from your crossbow, which hits the colonel in the chest.  Amazingly, the colonel seems unfazed by the bolt in his chest and he rushes towards you in a rage.
+461:Continue^*463
+462:You close the door to the room behind you and walk over to the table to read the documents.  You see detailed military plans for the upcoming invasions of Carolinia.  While you are reading, you hear the door open and you see Colonel Graywald enter the room.  He roars with fury when he sees you and draws a massive sword.  You are trapped in the room and have no option but to fight him.
+462:Continue^*460
+463:COMBAT:You are fighting Colonel Graywald.  He is using a greatsword,NAME:colonel,WEAPON:None,STRENGTH:24,DEFENSE:1,HEALTH:40,HIT:Colonel Graywald slashes you with his sword,HIT:Colonel Graywald swings his blade,HIT:The colonel lunges forwards and stabs you with his sword,MISS:The colonel sidesteps your blow.,MISS:The colonel blocks you with the hilt of his greatsword.,MISS:The colonel dodges your blow with lightning reflexes.^*You manage to defeat the colonel.
+463:Continue^*464
+464:VARSET:killedColonel,1^*Defeated colonel
+464:Content not added^*999
+465:INVSPLIT:Crossbow^*467^*468
+465:null^*1
+466:INVSPLIT:Crossbow^*469^*470
+466:null^*1
+467:You slowly turn the safe locking mechanism while carefully listening to the safe and hoping to hear a click.  Suddenly, you hear the door open behind you and you see Colonel Graywald enter the room.  He roars with fury when he sees you and draws a massive sword.  You react quickly and fire a bolt from your crossbow, which hits the colonel in the chest.  Amazingly, the colonel seems unfazed by the bolt in his chest and he rushes towards you in a rage.
+467:Continue^*463
+468:You slowly turn the safe locking mechanism while carefully listening to the safe and hoping to hear a click.  Suddenly, you hear the door open behind you and you see Colonel Graywald enter the room.  He roars with fury when he sees you and draws a massive sword.  You are trapped in the room and have no option but to fight him.
+468:Continue^*460
+469:You walk over to the table to read the documents.  You see detailed military plans for the upcoming invasions of Carolinia.  While you are reading, you hear the door open and you see Colonel Graywald enter the room.  He roars with fury when he sees you and draws a massive sword.  You react quickly and fire a bolt from your crossbow, which hits the colonel in the chest.  Amazingly, the colonel seems unfazed by the bolt in his chest and he rushes towards you in a rage.
+469:Continue^*463
+470:You walk over to the table to read the documents.  You see detailed military plans for the upcoming invasions of Carolinia.  While you are reading, you hear the door open and you see Colonel Graywald enter the room.  He roars with fury when he sees you and draws a massive sword.  You are trapped in the room and have no option but to fight him.
+470:Continue^*460
+471:GAINGOLD:6^*You search a few of the sacks, but they contain mostly personal possessions and clothing.  Among the sacks you search, you manage to find 6 gold coins, which you take.  After searching through a few sacks, you decide that searching through any more would be too risky.
+471:Look at one of the locked chests^*477^*Leave and go to the planning room^*476^*Leave and go to the training field^*445^*Leave and go to the courtyard^*473
+472:INVSPLIT:Lockpicking kit^*478^*479
+472:null^*1
+473:You walk out of the barracks and start to head towards the courtyard when you hear a voice behind you shouting at you to stop.  You see Colonel Graywald approach you, surrounded by a regiment of soldiers.
+473:Wait to see what the colonel has to say^*474^*Run into the courtyard^*475
+474:RESTART:^*The colonel approaches you and his group of soldiers surrounds you. "First you disobeyed my order to meet me at the training field, and then one of my men saw you rummaging through the soldiers' possessions," says the colonel.  "The punishment for this treasonous behavior is death."  He draws a massive greatsword and executes you on the spot. <br>Your life ends here.
+474:null^*1
+475:RESTART:^*You run into the courtyard, hoping to lose yourself in the crowd.  Unfortunately, several of Colonel Graywald's soldiers were carrying crossbows, and you are brought down by a slew of bolts in your back. <br>Your life ends here.
+475:null^*1
+476:You enter the room and see that nobody else is inside.  You a table in the middle of the room with several pieces of parchment on it.  You also a see a locked safe on the other side of the room.
+476:Examine the documents on the table^*457^*Inspect the safe^*458^*Leave the room and go to the training field^*445^*Leave the room and go to the courtyard^*473
+477:RESTART:^*As you are examining the lock on one of the chests, you hear a group of soldiers enter the room behind you.  "I saw you rummaging through our supplies," says one of the soldiers, "We don't take kindly to thieves around here."  The soldiers draw their swords and advance towards you.  You try to fight them off, but you are hopelessly outnumbered. <br>Your life ends here.
+477:null^*1
+478:You examine the lock on one of the chests, and you determine that you could probably pick it fairly quickly and easily with the tools from your lockpicking kit.
+478:Pick the lock^*480^*Search the sacks^*471^*Leave the room^*459
+479:You examine the lock on one of the chests, and you determine that it would be impossible to force it open.  Since you do not have anything to pick the lock with and you do not have a key, you are not able to get any of the chests open.
+479:Search the sacks^*471^*Leave the room^*459
+480:GAINGOLD:10^*You successfully pick the lock and open the chest to find a pouch of 10 gold coins, a diary, and a vial of scentless black liquid.  You take the pouch of gold and flip through the diary, but the diary does not contain anything useful so you put it back in the chest.
+480:Sip the black liquid^*482^*Take the vial of liquid but do not drink it^*484^*Leave the liquid in the chest^*485
+481:RESTART:^*You go to another locked chest and start picking the lock.  While you are picking it, you hear a group of soldiers enter the room behind you.  "That man is a thief!" shouts one of the soldiers as he sees you picking the lock.  The soldiers draw their swords and advance towards you.  You try to fight them off, but you are hopelessly outnumbered. <br>Your life ends here.
+481:null^*1
+482:You sip the black liquid.  It tastes surprisingly good, so you drink the entire vial.  You do not feel any effects other than a slight tingling in your stomach.  What do you do next?
+482:Open another locked chest^*481^*Search the sacks^*471^*Leave and go to the planning room^*476^*Leave and go to the training field^*445^*Leave and go to the courtyard^*473
+483:As you walk into the inner bailey with the group of soldiers, you can see the towering castle keep in front of you.  You know that the King is somewhere in the keep, and you vow to somehow get inside.  You walk past a building that looks like an infirmary and the group eventually reaches a large collection of tents.  There is a huge group of soldiers milling around the tents, and you guess that this is the invasion force that is going to attack Carolinia in a few days.  You are assigned to one of the tents, and each of the large tents has several straw beds inside.
+483:Go to sleep on one of the beds^*486^*Leave the tent and explore^*487
+484:INVADD:Vial of black liquid^*You take the vial of black liquid and put it into your pack.  What do you do next?
+484:Open another locked chest^*481^*Search the sacks^*471^*Leave and go to the planning room^*476^*Leave and go to the training field^*445^*Leave and go to the courtyard^*473
+485:Wanting nothing to do with the strange black liquid, you leave it in the chest with the diary.  What do you do next?
+485:Open another locked chest^*481^*Search the sacks^*471^*Leave and go to the planning room^*476^*Leave and go to the training field^*445^*Leave and go to the courtyard^*473
+486:Go to sleep
+486:Content not added^*1
+487:Explore the tents
+487:Content not added^*1
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
