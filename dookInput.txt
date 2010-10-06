@@ -1,6 +1,7 @@
 DELIMITER:^*
 COMMENTDELIMITER://
 //Jon test
+//Jon test 2
 INITIALIZE:Health,50
 INITIALIZE:Strength,10
 INITIALIZE:Gold,20
