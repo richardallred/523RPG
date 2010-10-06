@@ -27,7 +27,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.connect(window,'onkeyup','_onKeyPress');
 	},
     postMixInProperties: function() {
-		//postMixInProperties is called before the html is intialized
+		//postMixInProperties is called before the html is initialized
 		//initialize jsonic from unc open web
 		uow.getAudio({defaultCaching: true}).then(dojo.hitch(this, function(js) { this.js = js; }));
 		//initialize variables
@@ -39,7 +39,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.inventory[0] = 'Inventory';
 
 		//Set delimiter (regular expression to parse input - default is ^*)
-		this.DELIMITER = '^*'
+		this.DELIMITER = '^*';
+		//Set comment delimiter (//, for example) - default is that comments are not allowed in the file
+		this.COMMENTDELIMITER = "";
 		//set starting health and gold.  Health can never go above MAX_HEALTH (default max health is 50)
 		this.STARTING_HEALTH = 50;
 		this.MAX_HEALTH = this.STARTING_HEALTH;
@@ -95,7 +97,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		for (i = 0; i < dataSplit.length; i++) {
 			//remove any carriage returns (which are sometimes not removed by split('\n'))
 			dataSplit[i] = dataSplit[i].replace(new RegExp( '\\r', 'g' ),'');
-			if (dataSplit[i].indexOf('DELIMITER:') != -1) {
+			if (this.COMMENTDELIMITER != "" && dataSplit[i].indexOf(this.COMMENTDELIMITER) == 0) {
+				//comment delimiter found at start of line, so do nothing
+			}
+			else if (dataSplit[i].indexOf('COMMENTDELIMITER:') != -1) {
+				//set delimiter for comments
+				this.COMMENTDELIMITER = dataSplit[i].split('COMMENTDELIMITER:')[1];
+			}
+			else if (dataSplit[i].indexOf('DELIMITER:') != -1) {
 				//set delimiter to something other than '^*'
 				this.DELIMITER = dataSplit[i].split('DELIMITER:')[1];
 			}
@@ -276,7 +285,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.choose(buttonNum);
 	},
 
-	_focusZero: function(event) {
+	_focusSettings: function(event) {
+		//select the Settings button
+		this.currentFocus = -1;
+		this.settings.focus();
+	},
+	_focusReread: function(event) {
 		//select Read Text Again button
 		this.currentFocus = 0;
 		this.rereadText.focus();
@@ -284,6 +298,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	_rereadText: function(event) {
 		this.runJSonic();
 	},
+	_settings: function(event) {
+		console.log("settings selected");
+	},
+	
 	_onKeyPress: function(e) {
 		//use e.keyCode to get ASCII values
 		//for switch users, switches are meant to mapped to X and C keys
@@ -303,6 +321,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//C or Enter or spacebar pressed - choose currently focused button
 			if (this.currentFocus == 0) {
 				this._rereadText();
+			} else if (this.currentFocus == -1) {
+				this._settings();
 			} else {
 				this._onClick(this.currentFocus);
 			}
@@ -310,7 +330,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		else if (e.keyCode == 119 ||e.keyCode == 87 || e.keyCode == 38) {
 			//W or up pressed - move up a button
 			this.currentFocus --;
-			if (this.currentFocus < 0) {
+			if (this.currentFocus < -1) {
 				this.changeFocus(this.buttons.length);
 			} else {
 				this.changeFocus(this.currentFocus);
@@ -320,7 +340,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//X or S or down pressed - move down a button
 			this.currentFocus ++;
 			if (this.currentFocus > this.buttons.length) {
-				this.changeFocus(0);
+				this.changeFocus(-1);
 			} else {
 				this.changeFocus(this.currentFocus);
 			}
@@ -337,9 +357,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.currentFocus = focusNum;
 		if (focusNum == 0) {
 		//set focus on read text again button
-			this._focusZero();
+			this._focusReread();
 			this.js.stop();
 			this.js.say({text: "Read text again"});
+		} else if (focusNum == -1) {
+		//set focus on settings button
+			this._focusSettings();
+			this.js.stop();
+			this.js.say({text: "Settings"});
 		} else {
 			this.buttons[focusNum - 1].focus();
 			//make JSonic say the name the button that is focused on
@@ -591,8 +616,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if (takenCountTest == choicesArray.length/2) {
 							alreadyTakenCount = inventoryAddNumber[1];
 						}
-						//go to inventory selection mode (stay on this page until all items are taken)
-						this.invselect = 1;
 						
 						//this.message = specialPageArray[p+1];
 						selectedString = inventoryAddNumber[1] - alreadyTakenCount;
@@ -601,10 +624,20 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						} else {
 							if (selectedString != 1) {
 								this.message = this.message + ' <br>You can take ' + selectedString + ' more items.'
+								if (this.invselect == 1) {
+									this.js.say({text :'You can take ' + selectedString + ' more items.'});
+								}
 							} else {
 								this.message = this.message + ' <br>You can take ' + selectedString + ' more item.'
+								if (this.invselect == 1) {
+									this.js.say({text :'You can take ' + selectedString + ' more item.'});
+								}
 							}
 						}
+						
+						//go to inventory selection mode (stay on this page until all items are taken)
+						this.invselect = 1;
+						
 						if (alreadyTakenCount >= inventoryAddNumber[1]) {
 							//the number of inventory items you can take has been reached, move on to the next page
 							this.invselect = 0;
@@ -782,14 +815,20 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if (this.inCombat == 0) {
 							//parse enemy info
 							combatInfo = specialPageArray[p].split('COMBAT:')[1].split(',');
+							enemyName = 'enemy';
 							enemyWeaponName = 'None';
 							enemyStr = 10;
 							enemyDef = 0;
 							enemyHealth = 20;
+							initialEnemyHealth = 20;
+							enemyHealthFraction = enemyHealth/initialEnemyHealth;
 							enemyAcc = 55;
 							enemyHitMessages = [];
 							enemyMissMessages = [];
 							for (x = 0; x < combatInfo.length; x++) {
+								if (combatInfo[x].match('NAME:') != null) {
+									enemyName = combatInfo[x].split('NAME:')[1];
+								}
 								if (combatInfo[x].match('WEAPON:') != null) {
 									enemyWeaponName = combatInfo[x].split('WEAPON:')[1];
 								}
@@ -809,6 +848,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 								if (combatInfo[x].match('HEALTH:') != null) {
 									enemyHealth = dojo.number.parse(combatInfo[x].split('HEALTH:')[1]);
+									initialEnemyHealth = enemyHealth;
 								}
 								if (isNaN(enemyHealth)) {
 									console.log('Error initializing health for ' + combatInfo[0] + '. (Not a number)!');
@@ -824,7 +864,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							for (x = 0; x < this.possibleWeapons.length; x++) {
 								if (this.possibleWeapons[x].name == enemyWeaponName) {
 									enemyStr = dojo.number.parse(enemyStr) + dojo.number.parse(this.possibleWeapons[x].strengthbonus);
-									enemyAcc = dojo.number.parse(this.possibleWeapons[x].accuracy);
+									enemyAcc = dojo.number.parse(this.possibleWeapons[x].accuracy) - 10;
 								}
 							}
 						}
@@ -877,16 +917,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							//default for wonCombat is false, set to true if the enemy's health goes to zero
 							wonCombat = false;
 							if (currentShield != "None") {
-								this.message = 'Currently in combat with ' + combatInfo[0] + '.  You are using: ' + currentWeapon.name + ' and ' + currentShield.name + '.';
+								this.message = combatInfo[0] + '.  You are using: ' + currentWeapon.name + ' and ' + currentShield.name + '.';
 							} else {
-								this.message = 'Currently in combat with ' + combatInfo[0] + '.  You are using: ' + currentWeapon.name;
+								this.message = combatInfo[0] + '.  You are using: ' + currentWeapon.name;
 							}
 							if (choiceNum == 1 && !disableFight) {
 								//Fight selected
 								strCompare = this.strength + currentWeapon.strengthbonus - enemyStr;
 								k = Math.floor(Math.random()*(10));
 								damageDealt = 4 + Math.round(strCompare/2) + k - enemyDef;
-								damageTaken = 5 - Math.round(strCompare/2) - Math.floor(k/2);
+								damageTaken = 4 - Math.round(strCompare/2) - Math.floor(k/2);
 								if (damageDealt < 0) {
 									damageDealt = 0;
 								}
@@ -917,10 +957,37 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								} else {
 									enemyHit = false;
 								}
+								for (t = 0; t < currentWeapon.hitMessages.length; t++) {
+									currentWeapon.hitMessages[t] = currentWeapon.hitMessages[t].replace('#enemy',enemyName);
+								}
+								for (t = 0; t < currentWeapon.missMessages.length; t++) {
+									currentWeapon.missMessages[t] = currentWeapon.missMessages[t].replace('#enemy',enemyName);
+								}
 								if (youHit) {
 									k = Math.floor(Math.random()*(currentWeapon.hitMessages.length));
 									this.message = this.message + ' <br>' + currentWeapon.hitMessages[k] + damageMessage + ' dealing ' + damageDealt + ' damage.';
 									enemyHealth -= damageDealt;
+									enemyHealthFraction = enemyHealth/initialEnemyHealth;
+									if (enemyHealthFraction <= 0) {
+										this.message = this.message + ' <br>The ' + enemyName + ' collapses.'
+									} else if (enemyHealthFraction < 0.1) {
+										this.message = this.message + ' <br>The ' + enemyName + ' looks nearly dead.'
+									} else if (enemyHealthFraction < 0.2) {
+										this.message = this.message + ' <br>The ' + enemyName + ' looks severely wounded.'
+									} else if (enemyHealthFraction < 0.3) {
+										this.message = this.message + ' <br>The ' + enemyName + ' looks weak.'
+									} else if (enemyHealthFraction < 0.4) {
+										this.message = this.message + ' <br>The ' + enemyName + ' looks quite wounded.'
+									} else if (enemyHealthFraction < 0.5) {
+										this.message = this.message + ' <br>The ' + enemyName + ' looks hurt.'
+									} else if (enemyHealthFraction < 0.6) {
+										this.message = this.message + ' <br>The ' + enemyName + ' looks somewhat wounded.'
+									} else if (enemyHealthFraction < 0.8) {
+										this.message = this.message + ' <br>The ' + enemyName + ' looks a little wounded.'
+									} else {
+										this.message = this.message + ' <br>The ' + enemyName + ' looks mostly healthy.'
+									}
+									
 								} else {
 									if (Math.random() < 0.4) {
 										k = Math.floor(Math.random()*(currentWeapon.missMessages.length));
@@ -930,8 +997,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										this.message = this.message + ' <br>' + enemyMissMessages[k];
 									}
 								}
-								if (enemyHit) {
+								if (enemyHit && enemyHealth > 0) {
 									k = Math.floor(Math.random()*(enemyHitMessages.length));
+									damageTaken = Math.ceil(damageTaken * enemyHealthFraction);
 									this.message = this.message + ' <br>' + enemyHitMessages[k] + ' and hits you for ' + damageTaken + ' damage.';
 									//reduce damage from shield and armor
 									if (currentShield != "None") {
@@ -940,16 +1008,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											if (damageTaken < 0) {
 												damageTaken = 0;
 											}
-											this.message = this.message + ' <br>Your ' + currentShield.name + ' protects you from ' + currentShield.defense + ' of the damage.';
+											this.message = this.message + ' <br>Your ' + currentShield.name + ' has protected you from some of the damage.';
 										}
 									}									
 									this.health -= damageTaken;
-								} else {
+								} else if (enemyHealth > 0) {
 									//k = Math.floor(Math.random()*(enemyMissMessages.length+1));
 									if (currentShield != "None" && Math.random() < 0.5) {
-										this.message = this.message + ' <br>You block with your shield.';
+										this.message = this.message + ' <br>You block the ' + enemyName + 'with your shield.';
 									} else {
-										this.message = this.message + ' <br>The enemy misses.';
+										this.message = this.message + ' <br>The ' + enemyName + ' misses.';
 									}
 								}
 
@@ -958,7 +1026,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 								this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
 								if (this.health <= 0) {
-									this.message = this.message + '<br>You have been killed in combat.';
+									this.message = this.message + '<br>The ' + enemyName + ' has killed you in combat.';
 									this.restart = 1;
 								} else if (enemyHealth <= 0) {
 									wonCombat = true;
@@ -1030,7 +1098,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		}
 		if (this.invselecting != 2) {
 			//read off page text and buttons
-			this._focusZero();
+			this._focusReread();
 			this.runJSonic();
 		}
 		this.displayMessage.innerHTML = this.message;
@@ -1053,7 +1121,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//this.js.say({text : choicesminusbr, cache : true});
 			}
 		}
-		choicesString = choicesString + 'Read text again';
+		choicesString = choicesString + 'Settings.  Read text again';
 		//this.js.say({text : 'Read text again', cache : true});
 		this.js.say({text : choicesString, cache : true});
 	},
