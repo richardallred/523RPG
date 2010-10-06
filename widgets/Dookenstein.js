@@ -403,7 +403,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				INVSPLIT:item^*x^*y - Go to page x if item is in inventory, otherwise go to page y
 				GOLDSPLIT:n^*x^*y - If gold is at least n, go to page x, otherwise go to page y
 				INVCHECK:item^*text^*x - If item is in inventory, display text.  Otherwise, redirect to page x
-				INVADD:item1,item2 - Add all listed items to inventory
+				INVADD:item1,item2 - Add all listed items to inventory.  Add false as a parameter to avoid duplicate adding.
 				INVBUY:item,n^*x - Add item to inventory, lose n gold.  Redirect to page x if gold is less than n
 				INVREMOVE:item1,item2 - Remove all listed items from inventory and display a message.  Add false to not display a message
 				INVCLEAR:item1, item2 - Remove all inventory items except the ones listed
@@ -467,17 +467,36 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							return;
 						}
 					}
-					//INVADD:item1,item2,...  Add items to inventory
+					//INVADD:item1,item2,...  Add items to inventory.  Add false as a paramter to avoid duplicate adding
 					else if (specialPageArray[p].match('INVADD:') != null) {
 						inventoryAdd = specialPageArray[p].split('INVADD:');
 						//Add multiple inventory items by seperating them by a comma
 						if (inventoryAdd[1].match(',') != null) {
 							inventoryAddArray = inventoryAdd[1].split(',');
+							checkForDuplicates = false;
+							if ('false' in this.oc(inventoryAddArray)) {
+								checkForDuplicates = true;
+							}
 							for (i = 0; i < inventoryAddArray.length; i++) {
-								this.inventory[this.inventory.length] = inventoryAddArray[i];
+								if (!checkForDuplicates) {
+									this.inventory[this.inventory.length] = inventoryAddArray[i];
+								} else {
+									//only add something to the inventory if it is not already there
+									if (inventoryAddArray[i] in this.oc(this.inventory)) {
+									} else if (inventoryAddArray[i] != 'false') {
+										this.inventory[this.inventory.length] = inventoryAddArray[i];
+									}
+								}
 							}
 						} else {
 							this.inventory[this.inventory.length] = inventoryAdd[1];
+						}
+						inventoryDisplayTest = false;
+						if (inventoryDisplayTest) {
+							//display inventory in the message, for testing purposes only
+							for (u = 0; u < this.inventory.length; u++) {
+								this.message = this.message + '<br>' + this.inventory[u];
+							}
 						}
 						//this.message = specialPageArray[p+1];
 					}
@@ -1000,7 +1019,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								if (enemyHit && enemyHealth > 0) {
 									k = Math.floor(Math.random()*(enemyHitMessages.length));
 									damageTaken = Math.ceil(damageTaken * enemyHealthFraction);
-									this.message = this.message + ' <br>' + enemyHitMessages[k] + ' and hits you for ' + damageTaken + ' damage.';
+									this.message = this.message + ' <br>' + enemyHitMessages[k] + ', hitting you for ' + damageTaken + ' damage.';
 									//reduce damage from shield and armor
 									if (currentShield != "None") {
 										if (Math.random() <= currentShield.probability/100) {
