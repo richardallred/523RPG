@@ -637,8 +637,8 @@ ARMOR:Guard disguise^*1^*75
 413:null^*1
 414:Climb down the startcase
 414:Content not added^*999
-415:You walk up several winding stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.
-415:Climb back down the staircase^*416^*Keep climbing up the staircase^*417^*Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419
+415:Page not used
+415:null^*1
 416:Taking care to make your steps silent so the archers do not hear you, you climb down the staircase and return to the ground level of the turret.
 416:Climb back up the staircase^*413^*Climb down the staircase^*414^*Return the courtyard^*300
 417:Keep climbing up
@@ -683,8 +683,8 @@ ARMOR:Guard disguise^*1^*75
 436:Content not added^*999
 437:You climb down the stairs and return to the ground level of the turret.
 437:Climb back up the staircase^*413^*Climb down the staircase^*414^*Return the courtyard^*300
-438:INVCHECK:Crossbow^*You walk up several winding stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.^*415
-438:Climb back down the staircase^*416^*Keep climbing up the staircase^*417^*Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419^*Shoot one of the archers with your crossbow and try to take the other one by surprise^*420
+438:You walk up several winding stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.
+438:Climb back down the staircase^*416^*Keep climbing up the staircase^*417^*Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419^*DISPLAYIF:Crossbow,Shoot one of the archers with your crossbow and try to take the other one by surprise^*420
 439:You walk up the winding several stairs until you reach the next level.  You see a guard post with a weapons rack and some supplies, as well as the bodies of two archers on the ground.
 439:Climb back down the staircase^*437^*Keep climbing up the staircase^*417^*Search the room^*440
 440:Search the room.
@@ -701,9 +701,9 @@ ARMOR:Guard disguise^*1^*75
 445:Continue^*483
 446:You walk out of the armory and start to walk down one of the barracks hallways.  Several soldiers walk by you, but they ignore you.  You see a room that leads to a group of beds, as well as a door that leads to what looks like a room for planning military operations.
 446:Go to the room with the beds^*455^*Go to the planning room^*456^*Go to the training field^*445
-447:INVADD:Sword,Mace,false^*The only weapons in the armory are an array of swords and maces.  You take all of the weapons that you do not already have and sheathe them as part of your soldier's uniform.
+447:INVADD:Sword,Mace^*The only weapons in the armory are an array of swords and maces.  You take all of the weapons that you do not already have and sheathe them as part of your soldier's uniform.
 447:Go to the training field^*445^*Explore the barracks instead^*446
-448:INVADD:Sword,Mace,false^*The only weapons in the armory are an array of swords and maces.  You take all of the weapons that you do not already have.  What do you do next?
+448:INVADD:Sword,Mace^*The only weapons in the armory are an array of swords and maces.  You take all of the weapons that you do not already have.  What do you do next?
 448:Put on the Dookian soldier armor^*449^*Leave the armory and explore the barracks^*444
 449:INVREMOVE:Mercenary Disguise^*INVADD:Soldier's Uniform^*You remove your mercenary disguise and put on the plated armor of a Dookian soldier.  You then sheathe your sword and your mace as part of the uniform.  What do you do next?
 449:Go to the training field^*445^*Explore the barracks instead^*446
@@ -751,7 +751,7 @@ ARMOR:Guard disguise^*1^*75
 470:Continue^*460
 471:GAINGOLD:6^*You search a few of the sacks, but they contain mostly personal possessions and clothing.  Among the sacks you search, you manage to find 6 gold coins, which you take.  After searching through a few sacks, you decide that searching through any more would be too risky.
 471:Look at one of the locked chests^*477^*Leave and go to the planning room^*476^*Leave and go to the training field^*445^*Leave and go to the courtyard^*473
-472:INVSPLIT:Lockpicking kit^*478^*479
+472:INVSPLIT:Lock picking kit^*478^*479
 472:null^*1
 473:You walk out of the barracks and start to head towards the courtyard when you hear a voice behind you shouting at you to stop.  You see Colonel Graywald approach you, surrounded by a regiment of soldiers.
 473:Wait to see what the colonel has to say^*474^*Run into the courtyard^*475
@@ -763,7 +763,7 @@ ARMOR:Guard disguise^*1^*75
 476:Examine the documents on the table^*457^*Inspect the safe^*458^*Leave the room and go to the training field^*445^*Leave the room and go to the courtyard^*473
 477:RESTART:^*As you are examining the lock on one of the chests, you hear a group of soldiers enter the room behind you.  "I saw you rummaging through our supplies," says one of the soldiers, "We don't take kindly to thieves around here."  The soldiers draw their swords and advance towards you.  You try to fight them off, but you are hopelessly outnumbered. <br>Your life ends here.
 477:null^*1
-478:You examine the lock on one of the chests, and you determine that you could probably pick it fairly quickly and easily with the tools from your lockpicking kit.
+478:You examine the lock on one of the chests, and you determine that you could probably pick it fairly quickly and easily with the tools from your lock picking kit.
 478:Pick the lock^*480^*Search the sacks^*471^*Leave the room^*459
 479:You examine the lock on one of the chests, and you determine that it would be impossible to force it open.  Since you do not have anything to pick the lock with and you do not have a key, you are not able to get any of the chests open.
 479:Search the sacks^*471^*Leave the room^*459
@@ -853,37 +853,37 @@ ARMOR:Guard disguise^*1^*75
 583:Content not added^*999
 584:RESTART:^*You lunge towards the guard and catch his hand, but not in time to stop the mace from smashing into your side.  You ignore the pain and try to wrest the mace out of the guard's hand, but the other guard draws his sword and runs you through.  <br>Your life ends here.
 584:null^*1
-600:INVSPLIT:Sword^*602^*603
-600:null^*1
+600:What weapon do you attack the King with?
+600:DISPLAYIF:Sword,Sword^*612^*DISPLAYIF:Crossbow,Crossbow^*613^*DISPLAYIF:Hidden dagger,Hidden dagger^*614^*DISPLAYIFNOT:Sword,Crossbow,Hidden dagger,Your bare hands^*615
 601:RESTART:^*You are intimidated by the King's presence and are unable to think of a convincing story.  You panic and try to run out of the throne room.  The King sees you running and casually flicks his ring finger.  You are struck down by a bolt of lightning that arcs from his ring. <br>Your life ends here.
 601:null^*1
-602:INVSPLIT:Crossbow^*604^*605
+602:Page not used
 602:null^*1
-603:INVSPLIT:Crossbow^*609^*610
-603:null^*1';
-604:INVSPLIT:Hidden dagger^*606^*607
+603:Page not used
+603:null^*1
+604:Page not used
 604:null^*1
-605:INVSPLIT:Hidden dagger^*608^*612
+605:Page not used
 605:null^*1
-606:What weapon do you attack the King with?
-606:Sword^*612^*Crossbow^*613^*Hidden dagger^*614
-607:What weapon do you attack the King with?
-607:Sword^*612^*Crossbow^*613
-608:What weapon do you attack the King with?
-608:Sword^*612^*Hidden dagger^*614
-609:INVSPLIT:Hidden dagger^*611^*613
-609:null^*1';
-610:INVSPLIT:Hidden dagger^*614^*615
+606:Page not used
+606:null^*1
+607:Page not used
+607:null^*1
+608:Page not used
+608:null^*1
+609:Page not used
+609:null^*1
+610:Page not used
 610:null^*1
-611:What weapon do you attack the King with?
-611:Crossbow^*613^*Hidden dagger^*614
+611:Page not used
+611:null^*1
 612:RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You rush towards the King and draw your sword in one motion.  However, the King reacts quickly and flicks his ring finger towards you, sending an arc of lightning from his ring that stops you in your tracks. Your body does not survive the resulting shock.
-612:null^*
+612:null^*1
 613:RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You pull out your crossbow, and quickly fire a bolt at the King.  Unfortunately, the King is just as quick to flick his ring finger, causing the ring to spout a large jet of flame that incinerates the crossbow bolt and roasts you. <br>Your life ends here.
-613:null^*
+613:null^*1
 614:RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You whip out your hidden dagger and lunge towards him, but the King seems to anticipate your movement and quickly sends an arc of lightning from his ring that sends you flying across the room.  Your body does not survive the shock.
 614:null^*1
-615:RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You don't have any weapons, but you lunge towards the King anyway, hoping to choke the life out of him before the guards realize that anything is wrong.  However, the King sees you lunge and sends a powerful blast of magic from his ring, instantly ending your life.
+615:RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You don't have any weapons, but you lunge towards the King anyway, hoping to choke the life out of him before the guards realize that anything is wrong.  However, the King sees you lunge and sends a powerful blast of magic from his ring, which instantly ends your life.
 615:null^*1
 616:The guards start to protest but the King brushes aside their concern.  "This man can do me no harm," he announces, "Leave my presence so he can tell me his information."  The soldiers disperse, grumbling to themselves.  "Now what is it you wanted to tell me?" asks King K.
 616:Attack the King now that he is alone^*600^*Tell him that ... content not added^*999^*Run out of the throne room^*601
