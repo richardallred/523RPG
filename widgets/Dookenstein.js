@@ -333,10 +333,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	navigateSettings: function(choiceNum) {
 		//navigate the settings menu
 		this.menuLevel ++;
-		if (this.menuLevel > 3) {
+		if (this.menuLevel > 4) {
 			this.message = "Option not implemented";
 			choicesArray = [];
 			this.menuLevel --;
+		}
+		else if (this.menuLevel == 4) {
+			if (this.menuCategory == "Inventory options") {
+				this.message = "This item cannot be used right now."
+				this.menuLevel --;
+			} else {
+				this.menuLevel --;
+			}
 		}
 		else if (this.menuLevel == 3) {
 			if (this.menuCategory == "Font settings") {
@@ -488,6 +496,62 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				} else {
 					this.menuLevel --;
 				}
+			} else if (this.menuCategory == "Inventory options") {
+				if (choiceNum == 1) {
+					inventoryArray = [];
+					for (b = 0; b < this.inventory.length; b++) {
+						if (this.inventory[b] == "undefined") {
+							this.inventory[b] = "";
+						}
+						if (this.inventory[b] != "") {
+							inventoryArray[inventoryArray.length] = this.inventory[b];
+						}
+					}
+					if (inventoryArray.length == 1) {
+						this.message = "There are no items in your inventory.";
+					} else {
+						this.message = inventoryArray[0] + ": ";
+						for (b = 1; b < inventoryArray.length; b++) {
+							if (inventoryArray[b] != "undefined") {
+								this.message = this.message + inventoryArray[b];
+							}
+							if (b < inventoryArray.length - 1) {
+								this.message = this.message + ", ";
+							} else {
+								this.message = this.message + ". ";
+							}
+						}
+					}
+					this.menuLevel --;
+				} else if (choiceNum == 2) {
+					inventoryArray = [];
+					for (b = 0; b < this.inventory.length; b++) {
+						if (this.inventory[b] == "undefined") {
+							this.inventory[b] = "";
+						}
+						if (this.inventory[b] != "") {
+							inventoryArray[inventoryArray.length] = this.inventory[b];
+						}
+					}
+					if (inventoryArray.length == 1) {
+						this.message = "There are no items in your inventory.";
+						this.menuLevel --;
+					} else {
+						choicesArray = [];
+						j = 0;
+						this.message = "Select an inventory item to use.";
+						for (b = 1; b < inventoryArray.length; i++) {
+							if (inventoryArray[b] != 'undefined') {
+								choicesArray[j] = inventoryArray[j];
+								choicesArray[j+1] = nextPageNum;
+								//j is needed because inventory might contain null items
+								j = j + 2;
+							}
+						}
+					}
+				} else {
+					this.menuLevel --;
+				}
 			} else {
 				this.menuLevel --;
 			}
@@ -594,6 +658,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					//Display health
 					this.message = 'Health Left: ' + this.health + '/' + this.MAX_HEALTH;
 					this.menuLevel --;
+				}
+				else if (choiceNum == 4) {
+					//Display gold
+					this.message = 'You have ' + this.gold + ' gold.';
+					this.menuLevel --;
 				} else {
 					this.menuLevel --;
 				}
@@ -635,6 +704,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				choicesArray[3] = 2;
 				choicesArray[4] = "Display Health Left";
 				choicesArray[5] = 3;
+				choicesArray[6] = "Display Gold Left";
+				choicesArray[7] = 4;
 			} else {
 				this._settings();
 			}
@@ -748,7 +819,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				INVSPLIT:item^*x^*y - Go to page x if item is in inventory, otherwise go to page y
 				GOLDSPLIT:n^*x^*y - If gold is at least n, go to page x, otherwise go to page y
 				INVCHECK:item^*text^*x - If item is in inventory, display text.  Otherwise, redirect to page x
-				INVADD:item1,item2 - Add all listed items to inventory.  Add false as a parameter to avoid duplicate adding.
+				INVADD:item1,item2 - Add all listed items to inventory.  Add true as a parameter to allow duplicate adding.
 				INVBUY:item,n^*x - Add item to inventory, lose n gold.  Redirect to page x if gold is less than n
 				INVREMOVE:item1,item2 - Remove all listed items from inventory and display a message.  Add false to not display a message
 				INVCLEAR:item1, item2 - Remove all inventory items except the ones listed
@@ -812,15 +883,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							return;
 						}
 					}
-					//INVADD:item1,item2,...  Add items to inventory.  Add false as a paramter to avoid duplicate adding
+					//INVADD:item1,item2,...  Add items to inventory.  Add true as a paramter to allow duplicate adding
 					else if (specialPageArray[p].match('INVADD:') != null) {
 						inventoryAdd = specialPageArray[p].split('INVADD:');
 						//Add multiple inventory items by seperating them by a comma
 						if (inventoryAdd[1].match(',') != null) {
 							inventoryAddArray = inventoryAdd[1].split(',');
-							checkForDuplicates = false;
-							if ('false' in this.oc(inventoryAddArray)) {
-								checkForDuplicates = true;
+							checkForDuplicates = true;
+							if ('true' in this.oc(inventoryAddArray)) {
+								checkForDuplicates = false;
 							}
 							for (i = 0; i < inventoryAddArray.length; i++) {
 								if (!checkForDuplicates) {
@@ -828,7 +899,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								} else {
 									//only add something to the inventory if it is not already there
 									if (inventoryAddArray[i] in this.oc(this.inventory)) {
-									} else if (inventoryAddArray[i] != 'false') {
+										this.message = this.message + ' <br>You already have a ' + inventoryAddArray[i] + ' so you do not take another one.'
+									} else if (inventoryAddArray[i] != 'true') {
 										this.inventory[this.inventory.length] = inventoryAddArray[i];
 									}
 								}
@@ -1018,6 +1090,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						inventoryRemoveNumber = specialPageArray[p].split('INVREMOVESELECT:');
 						//choicesArray = this.choices[this.page].split('^*');
 						choicesArray = this.choices[this.page].split(this.DELIMITER);
+						choicesArray = [];
 						nextPageNum = choicesArray[1];
 						j = 0;
 						for (i = 1; i < this.inventory.length; i++) {
@@ -1441,10 +1514,100 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			}
 			//End special pages testing
 			if (this.restart == 0) {
+				//if you are in inventory selection mode or combat mode, you are overriding the choice selection
 				if (this.invselect == 0 && this.inCombat == 0) {
-					//if you are in inventory selection mode or combat mode, you are overriding the choice selection
-					//choicesArray = this.choices[this.page].split('^*');
-					choicesArray = this.choices[this.page].split(this.DELIMITER);
+					//Special commands for choices:
+					//DISPLAYIF:item1,item2,...,text  Only display this choice if all listed items are in inventory
+					//DISPLAYIFNOT:item1,item2,...,text  Only display this choice if none of the listed items are in the inventory
+					//DISPLAYIFVAR:variable,value,text  Only display this choice if variable = value
+					//DISPLAYIFNOTVAR:variable,value,text  Only display this choice if variable != value
+					choicesArray = [];
+					tempChoicesArray = this.choices[this.page].split(this.DELIMITER);
+					t = 0;
+					for (r = 0; r < tempChoicesArray.length; r+=2) {
+						if (tempChoicesArray[r].indexOf('DISPLAYIFNOTVAR:') == 0) {
+							varSplit = tempChoicesArray[r].split('DISPLAYIFNOTVAR:')[1].split(',');
+							passedCheck = false;
+							for (y = 0; y < this.variableList.length; y++) {
+								if (this.variableList[y].name == varSplit[0]) {
+									if (this.variableList[y].value == varSplit[1]) {
+										passedCheck = true;
+									}
+								}
+							}
+							if (passedCheck) {
+								//passed variable check, so do not display the choice
+							} else {
+								//failed variable check, so display the choice
+								choicesArray[t] = varSplit[2];
+								choicesArray[t+1] = tempChoicesArray[r+1];
+								t += 2;
+							}
+						} else if (tempChoicesArray[r].indexOf('DISPLAYIFNOT:') == 0) {
+							inventoryCheckArray = tempChoicesArray[r].split('DISPLAYIFNOT:')[1].split(',');
+							passedCheck = true;
+							for (i = 0; i < inventoryCheckArray.length-1; i++) {
+								if (inventoryCheckArray[i] in this.oc(this.inventory)) {
+									//item is in inventory, will not display choice
+									passedCheck = false;
+								} else {
+									//item is not in inventory, passedCheck remains true
+								}
+							}
+							if (passedCheck) {
+								//all items in inventory, display choice
+								//choice text is the last comma parameter of DISPLAYIF
+								choicesArray[t] = inventoryCheckArray[inventoryCheckArray.length-1];
+								choicesArray[t+1] = tempChoicesArray[r+1];
+								t += 2;
+							} else {
+								//failed inventory check, do not display
+							}
+						} else if (tempChoicesArray[r].indexOf('DISPLAYIFVAR:') == 0) {
+							varSplit = tempChoicesArray[r].split('DISPLAYIFVAR:')[1].split(',');
+							passedCheck = false;
+							for (y = 0; y < this.variableList.length; y++) {
+								if (this.variableList[y].name == varSplit[0]) {
+									if (this.variableList[y].value == varSplit[1]) {
+										passedCheck = true;
+									}
+								}
+							}
+							if (passedCheck) {
+								//passed variable check, display the choice
+								choicesArray[t] = varSplit[2];
+								choicesArray[t+1] = tempChoicesArray[r+1];
+								t += 2
+							} else {
+								//failed variable check, do not display the choice
+							}
+						} else if (tempChoicesArray[r].indexOf('DISPLAYIF:') == 0) {
+							inventoryCheckArray = tempChoicesArray[r].split('DISPLAYIF:')[1].split(',');
+							passedCheck = true;
+							for (i = 0; i < inventoryCheckArray.length-1; i++) {
+								if (inventoryCheckArray[i] in this.oc(this.inventory)) {
+									//item is in inventory, passedCheck remains true
+								} else {
+									//item is not in inventory, will not display choice
+									passedCheck = false;
+								}
+							}
+							if (passedCheck) {
+								//all items in inventory, display choice
+								//choice text is the last comma parameter of DISPLAYIF
+								choicesArray[t] = inventoryCheckArray[inventoryCheckArray.length-1];
+								choicesArray[t+1] = tempChoicesArray[r+1];
+								t += 2;
+							} else {
+								//failed inventory check, do not display
+							}
+						} else {
+							//no special commands
+							choicesArray[t] = tempChoicesArray[r];
+							choicesArray[t+1] = tempChoicesArray[r+1];
+							t += 2;
+						}
+					}
 				}
 			} else {
 				//only possible choice is to restart the game
@@ -1598,10 +1761,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		
 		this.inCombat = 0;
 		
-		for (i = 1; i < this.inventory.length; i++) {
+		/*for (i = 1; i < this.inventory.length; i++) {
 			//clear whole inventory except for the never used 0th element
 			this.inventory[i] = '';
-		}
+		}*/
+		this.inventory = [];
 		for (i = 0; i < this.initVariableList.length; i++) {
 			//reset all external variables
 			this.variableList[i].value = this.initVariableList[i].value;
