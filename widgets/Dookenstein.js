@@ -1346,6 +1346,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if (this.inCombat == 0 || this.chooseWeapon == 1) {
 							//just entering combat, allow the user to switch weapons
 							this.message = 'Choose a weapon to fight with.'
+							this.js.stop();
+							this.js.say({text : this.message, cache : true});
 							availableWeapons = [];
 							for (x = 0; x < this.possibleWeapons.length; x++) {
 								for (y = 1; y < this.inventory.length; y++) {
@@ -1414,6 +1416,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							} else {
 								this.message = combatInfo[0] + '.  You are using: ' + currentWeapon.name;
 							}
+							if (disableFight) {
+								this.js.stop();
+								this.js.say({text : this.message, cache : true});
+							}
 							if (choiceNum == 1 && !disableFight) {
 								//Fight selected
 								strCompare = this.strength + currentWeapon.strengthbonus - enemyStr;
@@ -1479,8 +1485,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									enemyHealth -= damageDealt;
 									enemyHealthFraction = enemyHealth/initialEnemyHealth;
 									if (enemyHealthFraction <= 0) {
-										combatString = combatString + ' <br>The ' + enemyName + ' collapses.'
-										//this.message = this.message + ' <br>The ' + enemyName + ' collapses.'
+										combatString = combatString + ' <br>The ' + enemyName + ' collapses. '
+										//this.message = this.message + ' <br>The ' + enemyName + ' collapses. '
 									} else if (enemyHealthFraction < 0.1) {
 										combatString = combatString + ' <br>The ' + enemyName + ' looks nearly dead.'
 										//this.message = this.message + ' <br>The ' + enemyName + ' looks nearly dead.'
@@ -1565,6 +1571,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									this.health = 0;
 								}
 								combatString = combatString + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+								if (enemyHealth > 0) {
+									combatminusbr = combatString.replace(new RegExp( '<br>', 'g' ),'');
+									this.js.stop();
+									this.js.say({text : combatminusbr, cache : true});
+								}
 								//this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
 								if (this.health <= 0) {
 									combatString = combatString + '<br>The ' + enemyName + ' has killed you in combat. ';
@@ -1739,11 +1750,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.drawAll();
 	},
 	runJSonic: function() {
-		this.js.stop();
+		if (this.inCombat == 0) {
+			this.js.stop();
+		}
 		this.js.setProperty({name: "rate", value: this.sonicRate});
 		//don't let JSonic read the <br> tag
-		messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),'');
-		this.js.say({text : messageminusbr, cache : true});
+		if (this.inCombat == 0) {
+			messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),'');
+			this.js.say({text : messageminusbr, cache : true});
+		}
 		//choicesString = messageminusbr + '  Your choices are: ';
 		choicesString = 'Your choices are: ';
 		//this.js.say({text : 'Your choices are', cache : true});
