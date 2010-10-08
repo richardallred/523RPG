@@ -77,6 +77,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.message = 'Failed to load game data';
 		//set button focus to zero (Reread text button)
 		this.currentFocus = 0;
+		this.reread = 0;
 		//if restart is set to 1, the game will reset upon the next button press
 		this.restart = 0;
 		//special mode for selecting multiple inventory items
@@ -324,6 +325,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.rereadText.focus();
 	},
 	_rereadText: function(event) {
+		this.reread = 1;
 		this.runJSonic();
 	},
 	_settings: function(event) {
@@ -1754,15 +1756,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.drawAll();
 	},
 	runJSonic: function() {
-		if (this.inCombat == 0) {
+		if (this.inCombat == 0 || this.reread == 1) {
 			this.js.stop();
 		}
 		this.js.setProperty({name: "rate", value: this.sonicRate});
 		//don't let JSonic read the <br> tag
-		if (this.inCombat == 0) {
+		if (this.inCombat == 0 || this.reread == 1) {
 			messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),'');
 			this.js.say({text : messageminusbr, cache : true});
 		}
+		this.reread = 0;
 		//choicesString = messageminusbr + '  Your choices are: ';
 		choicesString = 'Your choices are: ';
 		//this.js.say({text : 'Your choices are', cache : true});
