@@ -619,10 +619,10 @@ ARMOR:Chainmail armor^*2^*75
 403:Continue^*42
 404:You lunge towards the merchant, but he is too fast for you.  He leaps out of the way and immediately runs from the stall, shouting for the guards.  Soon, you are surrounded by a group of guards with their weapons drawn.  The guard that you followed into the castle points at you and orders that you immediately be arrested.
 404:Continue^*42
-405:After making sure that nobody is watching you, you take out your lock picking kit and try to break into the lock.  Fortunately, the lock is not very complex and you manage to get it open quickly.  You pull the door open and go inside.
+405:VARSET:turretLockPicked,1^*After making sure that nobody is watching you, you take out your lock picking kit and try to break into the lock.  Fortunately, the lock is not very complex and you manage to get it open quickly.  You pull the door open and go inside.
 405:Continue^*409
 406:You know that you need to continue into the inner bailey to get to the castle keep, but you somehow need to get off the wall first.  <br>You could attach your grappling hook to the wall and use its rope to climb down the other side, but that would mean that you would have to abandon the grapple.  <br>You could jump down and hope that you do not injure yourself in the fall.  <br>You could walk along the top of the wall and hope that you can find one of the rope ladders the guards use to get up and down the wall.
-406:Use the grappling hook to climb down^*488^*Jump down^*489^*Walk along the top of the wall^*490
+406:Use the grappling hook to climb down^*488^*DISPLAYIF:Rope,Use the length of rope you bought to climb down^*497^*Jump down^*489^*Walk along the top of the wall^*490
 407:Page not used
 407:null^*1
 408:You try shaking the door and the lock, but they are both sturdy and unyielding.  You try to kick the door open, but the wood is very solid and you are unable to have any effect on the door.  You are eventually forced to give up.
@@ -637,10 +637,10 @@ ARMOR:Chainmail armor^*2^*75
 412:Knock on the door^*410^*DISPLAYIF:Lock picking kit,Try to pick the lock^*405^*Try to force the door open^*408^*Return to the Courtyard^*300
 413:VARSPLIT:killedArchers,1^*439^*438
 413:null^*1
-414:Climb down the startcase
-414:Content not added^*999
-415:Page not used
-415:null^*1
+414:You climb down the winding staircase, but after a little while, it becomes too dark to see.
+414:Climb back up to the ground level^*415^*DISPLAYIF:Tinderbox and torch,Light your torch and continue down^*491^*DISPLAYIFNOT:Tinderbox and torch,Keep climbing down in the dark^*492
+415:You climb back up the staircase and return to the ground level of the turret.
+415:Climb up the staircase^*413^*Climb back down the staircase^*414^*Return the courtyard^*300
 416:Taking care to make your steps silent so the archers do not hear you, you climb down the staircase and return to the ground level of the turret.
 416:Climb back up the staircase^*413^*Climb down the staircase^*414^*Return the courtyard^*300
 417:Keep climbing up
@@ -659,17 +659,17 @@ ARMOR:Chainmail armor^*2^*75
 423:Take the sword^*422^*Take the throwing knives^*424^*Sneak behind one of the archers and attack him^*419^*Sneak back out of the room^*426
 424:INVADD:Throwing knives^*You silently pick up the sheaf of throwing knives.  You glance backwards, but the archers have not noticed you.  One of the archers scratches his back and his head almost turns towards you.  You decide that you will have to act quickly.
 424:Try to take out the archers with the throwing knives^*432^*Sneak back out of the room^*426
-425:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly bring your mace down, knocking him out with a single blow.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
+425:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly bring your mace down, knocking him out with a single blow.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causes you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
 425:Continue^*421
 426:RESTART:^*You try to sneak back out of the room, but your luck does not hold.  One of the archers turns around and sees you while you are in the middle of the room.  He gives a shout of warning and both archers quickly turn around and fire two arrows into your body.  As you slump to the ground the archers quickly reload their bows and fire two more arrows into you. <br>Your life ends here.
 426:null^*1
 427:INVSPLIT:Sword^*428^*429
 427:null^*1
-428:VARSET:killedArchers,1^*LOSEHEALTH:5^*:You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You drive your sword forwards and run him through.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  You pull your sword out of the first archer and knock the second archer's bow out of his hand before he can fire again. He is forced to defend himself with his fists.
+428:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You drive your sword forwards and run him through.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causes you to lose 5 health.  You pull your sword out of the first archer and knock the second archer's bow out of his hand before he can fire again. He is forced to defend himself with his fists.
 428:Continue^*421
 429:INVSPLIT:Hidden dagger^*430^*431
 429:null^*1
-430:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly cut him down with your dagger before he can react.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causing you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
+430:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly cut him down with your dagger before he can react.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causes you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
 430:Continue^*421
 431:RESTART:^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You don't have any weapons, so you grab him before he can react and slam him to the ground.  Unfortunately, the other archer hears this and looses an arrow into your back.  As you fall forwards, the archer reloads and hits you with another arrow.  You are helpless as the archer continues pierce you with deadly arrows.  <br> Your life ends here.
 431:null^*1
@@ -785,12 +785,34 @@ ARMOR:Chainmail armor^*2^*75
 486:Content not added^*999
 487:Explore the tents
 487:Content not added^*999
-488:INVREMOVE:Grappling hook^*Use the grappling hook to climb down.
-488:Content not added^*999
-489:LOSEHEALTH:15^*Jump down
-489:Content not added^*999
+488:INVREMOVE:Grappling hook^*You attach the grappling hook to one of the crenellations and use the rope to rappel down the wall.  Since the grappling hook is firmly attached to the wall, there is no way to retrieve it and you leave it behind.
+488:Continue^*500
+489:LOSEHEALTH:15^*Your Carolinian warrior training has taught you how to fall long distances without harm by dissipating the force of the fall through your entire body.  You steel yourself and leap from the wall.  You hit the ground and roll, but the fall is severe and your body is jolted with pain from the impact.  You lose 15 health from the fall, but you check yourself and find that you did not break any bones.
+489:Continue^*500
 490:Walk along the wall
 490:Content not added^*999
+491:You light your torch with your tinderbox and continue down the stairs.  Soon, you reach the bottom of the staircase and you can see a large underground storeroom in front of you.  It is clear that this storeroom has not been used in a while, since there are sacks strewn across the floor and cobwebs stretch across the corners of the room.  On the far wall of the room, you can see a gaping hole surrounded by many cracks in the stone.
+491:Search the sacks^*494^*Examine the gaping hole^*495^*Leave and climb back up the stairs^*415
+492:You feel your way along the stone walls as you slowly make your way down the staircase.  Soon, you reach the bottom of the stairs.  The area is pitch dark, but you can feel a chill in the air and you sense that there is a room in front of you.
+492:Feel your way along the walls of the room^*493^*Blindly walk through the center of the room^*496^*Climb back up the stairs^*415
+493:Feel your way into the room
+493:Content not added^*999
+494:You search through the sacks, but only food several non-perishable food items.  You already have enough rations for yourself, so you do not take anything.
+494:Examine the gaping hole^*495^*Leave and climb back up the stairs^*415
+495:You see that the gaping hole in the wall leads downwards into a dark pit.  Even with the light from your torch, you cannot see the bottom of the pit.  You get a whiff of air from the pit and you cringe as you receive a terrible, rotten scent.
+495:DISPLAYIF:Grappling hook,Use your grappling hook to try to climb down the pit^*498^*DISPLAYIF:Rope,Use your length of rope to try to climb down the pit^*499^*Jump down the pit^*501^*Search through the sacks in the room^*494^*Leave the room and climb back up the stairs^*415
+496:Walk through the center of the room
+496:Content not added^*999
+497:INVREMOVE:Rope^*Using the length of rope you bought at the merchant stalls, you tie one of the ends around one of the crenellations and rappel down the wall with the rest of the rope.  Since the rope is tied to the wall, there is no way to retrieve it and you leave it behind.
+497:Continue^*500
+498:Climb down with grappling hook
+498:Content not added^*999
+499:Climb down with rope
+499:Content not added^*999
+500:You are now in the inner bailey courtyard.  You look around and recognize the building closest to you as an infirmary.  Some distance across the courtyard is the castle keep.  Also some distance away is the group of tents that you saw earlier.
+500:Content not added^*999
+501:Jump down the pit
+501:Content not added^*999
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
