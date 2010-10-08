@@ -15,6 +15,8 @@ INITWEAPON:Hidden dagger^*2^*75^*HIT:You stab the #enemy with your dagger^*HIT:Y
 UNARMED:Your bare hands^*-3^*65^*HIT:You quickly punch the #enemy^*HIT:You lash out with your foot in a swift kick^*HIT:You throw the #enemy to the ground^*HIT:You fistcuff the #enemy^*MISS:Your fists fail to do any damage to the #enemy.^*MISS:You kick, but miss.^*MISS:You swing your fist, but miss.^*MISS:You fail to do any damage to the #enemy.
 SHIELD:Shield^*2^*33
 ARMOR:Guard disguise^*1^*75
+ARMOR:Soldier's Uniform^*1^*75
+ARMOR:Chainmail armor^*2^*75
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
 0:Play the game^*1
 0:images/castle_test.jpg
@@ -263,20 +265,20 @@ ARMOR:Guard disguise^*1^*75
 213:Try to fight the rats^*215^*Try to scare them off with your torch^*216^*Try to feed them some food from your pack^*217^*Ignore them and keep crawling forwards^*218^*Extinguish your torch and lie completely still^*227
 214:You crawl through the pitch black tunnel, feeling the walls with your hands.  You momentarily panic when your hand passes through something sticky, but you realize that it is only a cobweb.  True horror only sets in when you hear the pattering of many tiny feet approaching you.  You desperately try to put the terrible image of being eaten alive by rats out of your mind.
 214:Try to fight the rats in the dark^*215^*Take some food from your pack and scatter it around^*217^*Crawl out of the tunnel as fast as you can^*226^*Stay as still as possible and hope they pass you by^*227
-215:INVSPLIT:Sword^*219^*220
-215:null^*1
+215:What do you want to fight the rats with?
+215:DISPLAYIF:Sword,Your sword^*222^*DISPLAYIF,Hidden dagger,Your hidden dagger^*223^*Your bare hands^*224
 216:As the swarm of rats approach, you wave your torch rapidly in front of you.  Several of the rats back away from the heat and bright light emanating from the torch.  You continue to crawl forwards, forcing the rats back with your torch each time.  This works for a while, until several of the hungry rats decide to try to leap past the torch to get to you.  You react quickly, swatting them down with the torch and setting them ablaze.  The rats run around in panic, setting others in the swarm on fire.  You quickly back away from the blazing mass of rats, but the smoke filling up the tunnel is too much for your lungs and you pass out from the lack of oxygen.
 216:Continue^*240
 217:INVCHECK:Tinderbox and torch^*You open your pack and take out part of the provisions that you had packed for yourself.  You scatter the food in a pile in front of you, hoping it will sate the rats.  You back away, and see the rats rush forwards towards the food.  There are many rats, and they quickly devour the food and continue towards you.^*225
 217:Try to fight the rats^*215^*Try to scare them off with your torch^*216^*Continue crawling forwards as if the rats were not there^*218^*Extinguish your torch and lie completely still^*227
 218:RESTART:^*As you crawl forwards, you see the rats cluster around you in a thick, furry circle.  They seem hesitant to approach your torch.  Then one of them comes up from behind you and bites your leg.  Startled, you drop the torch, and the other rats waste little time jumping onto you and sinking their teeth into you.  You are eaten alive.
 218:Restart^*1
-219:INVCHECK:Hidden dagger^*What do you want to fight the rats with?^*221
-219:Your sword^*222^*Your hidden dagger^*223^*Your bare hands^*224
-220:INVCHECK:Hidden dagger^*What do you want to fight the rats with?^*224
-220:Your hidden dagger^*223^*Your bare hands^*224
-221:What do you want to fight the rats with?
-221:Your sword^*222^*Your bare hands^*224
+219:What do you want to fight the rats with?
+219:DISPLAYIF,Hidden dagger,Your hidden dagger^*223^*Your bare hands^*224
+220:Page not used
+220:null^*1
+221:Page not used
+221:null^*1
 222:INVSPLIT:Tinderbox and torch^*235^*228
 222:null^*1
 223:INVSPLIT:Tinderbox and torch^*236^*229
@@ -595,8 +597,8 @@ ARMOR:Guard disguise^*1^*75
 392:Say that you were given permission to enter the gate^*395^*Say that you have an important message for the King^*396^*Try to bribe your way in^*397^*Try to fight your way in^*398^*Return to the central courtyard^*300
 393:You walk along the entire length of the wall, but there are no weaknesses in it and it is unclimbable.
 393:Go back to the inner bailey gate^*307^*Go back to the central courtyard^*300
-394:Try to grapple up the wall
-394:Content not added^*999^*Return to the courtyard^*300
+394:You throw your grappling hook and it catches on one of the wall crenellations and holds firm.  You pull yourself up the rope and scale the wall, hoping that nobody sees you.  You manage to climb onto the wall sucessfully, and you crouch down to avoid being seen.  In the distance, you can see several patrolling guards walking along the top of the wall.  On the other side of the wall, you can see the inner bailey.  The first thing you notice in that courtyard is the towering castle keep.  You know that the King is somewhere in the keep, and you vow to somehow get inside.  You also see a huge group of white tents to the left of the keep, and a large building in front of you.
+394:Continue^*406
 395:You were given permission to enter the gate
 395:Content not added^*999^*Return to the courtyard^*300
 396:Important message for the King
@@ -617,22 +619,22 @@ ARMOR:Guard disguise^*1^*75
 403:Continue^*42
 404:You lunge towards the merchant, but he is too fast for you.  He leaps out of the way and immediately runs from the stall, shouting for the guards.  Soon, you are surrounded by a group of guards with their weapons drawn.  The guard that you followed into the castle points at you and orders that you immediately be arrested.
 404:Continue^*42
-405:INVSPLIT:Lock picking kit^*406^*407
-405:null^*1
-406:After making sure that nobody is watching you, you take out your lock picking kit and try to break into the lock.  Fortunately, the lock is not very complex and you manage to get it open quickly.  You pull the door open and go inside.
-406:Continue^*409
-407:You have nothing to pick the lock with.
-407:Knock on the door^*410^*Try to force the door open^*408^*Return to the courtyard^*300
+405:After making sure that nobody is watching you, you take out your lock picking kit and try to break into the lock.  Fortunately, the lock is not very complex and you manage to get it open quickly.  You pull the door open and go inside.
+405:Continue^*409
+406:You know that you need to continue into the inner bailey to get to the castle keep, but you somehow need to get off the wall first.  <br>You could attach your grappling hook to the wall and use its rope to climb down the other side, but that would mean that you would have to abandon the grapple.  <br>You could jump down and hope that you do not injure yourself in the fall.  <br>You could walk along the top of the wall and hope that you can find one of the rope ladders the guards use to get up and down the wall.
+406:Use the grappling hook to climb down^*488^*Jump down^*489^*Walk along the top of the wall^*490
+407:Page not used
+407:null^*1
 408:You try shaking the door and the lock, but they are both sturdy and unyielding.  You try to kick the door open, but the wood is very solid and you are unable to have any effect on the door.  You are eventually forced to give up.
-408:Ram your shoulder into the door to try to break it down^*411^*Try to pick the lock^*405^*Return to the courtyard^*300
+408:Ram your shoulder into the door to try to break it down^*411^*DISPLAYIF:Lock picking kit,Try to pick the lock^*405^*Return to the courtyard^*300
 409:As you enter the turret, you see a small room enclosed by a circular wall of stone.  At the end of the room, you see a stone spiral staircase that is enclosed in a smaller circular wall. It leads both upwards and downwards, though you cannot see where it goes in either direction.
 409:Climb the spiral staircase up^*413^*Climb the spiral staircase down^*414^*Leave the turret and return to the courtyard^*300
 410:You knock on the door several times, but there is no answer.
-410:Try to pick the lock^*405^*Try to force open the door^*408^*Return to the courtyard^*300
+410:DISPLAYIF:Lock picking kit,Try to pick the lock^*405^*Try to force open the door^*408^*Return to the courtyard^*300
 411:LOSEHEALTH:2^*You back up several steps and then charge towards the door, running as fast as you can.  You slam into the door, but the only result is that your shoulder is badly bruised and you lose 2 health.  You curse the door and decide to return to the courtyard.
 411:Continue^*300
 412:You go up to one of the large turrets in the corner of the courtyard.  The only entrance you can see from the ground level is a thick wooden door that is locked by a large metal padlock.  You look around and see that nobody is watching you, so now would be a good time to try to break in.
-412:Knock on the door^*410^*Try to pick the lock^*405^*Try to force the door open^*408^*Return to the Courtyard^*300
+412:Knock on the door^*410^*DISPLAYIF:Lock picking kit,Try to pick the lock^*405^*Try to force the door open^*408^*Return to the Courtyard^*300
 413:VARSPLIT:killedArchers,1^*439^*438
 413:null^*1
 414:Climb down the startcase
@@ -780,9 +782,15 @@ ARMOR:Guard disguise^*1^*75
 485:Wanting nothing to do with the strange black liquid, you leave it in the chest with the diary.  What do you do next?
 485:Open another locked chest^*481^*Search the sacks^*471^*Leave and go to the planning room^*476^*Leave and go to the training field^*445^*Leave and go to the courtyard^*473
 486:Go to sleep
-486:Content not added^*1
+486:Content not added^*999
 487:Explore the tents
-487:Content not added^*1
+487:Content not added^*999
+488:INVREMOVE:Grappling hook^*Use the grappling hook to climb down.
+488:Content not added^*999
+489:LOSEHEALTH:15^*Jump down
+489:Content not added^*999
+490:Walk along the wall
+490:Content not added^*999
 550:INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
