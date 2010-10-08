@@ -1302,6 +1302,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								if (combatInfo[x].match('DEFENSE:') != null) {
 									enemyDef = dojo.number.parse(combatInfo[x].split('DEFENSE:')[1]);
 								}
+								if (combatInfo[x].match('ACCURARCY:') != null) {
+									enemyAcc = dojo.number.parse(combatInfo[x].split('ACCURARCY:')[1]);
+								}
 								if (isNaN(enemyDef)) {
 									console.log('Error initializing defense for ' + combatInfo[0] + '. (Not a number)!');
 									enemyDef = 0;
@@ -1324,7 +1327,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							for (x = 0; x < this.possibleWeapons.length; x++) {
 								if (this.possibleWeapons[x].name == enemyWeaponName) {
 									enemyStr = dojo.number.parse(enemyStr) + dojo.number.parse(this.possibleWeapons[x].strengthbonus);
-									enemyAcc = dojo.number.parse(this.possibleWeapons[x].accuracy) - 10;
 								}
 							}
 						}
@@ -1415,17 +1417,26 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							if (choiceNum == 1 && !disableFight) {
 								//Fight selected
 								strCompare = this.strength + currentWeapon.strengthbonus - enemyStr;
+								//k is randomly selected from 0-10.  A higher k value means that you deal more and take less damage.
 								k = Math.floor(Math.random()*(10));
-								damageDealt = 4 + Math.round(strCompare/2) + k - enemyDef;
+								//75% chance that enemy defense will reduce damage you deal
+								if (Math.random() <= 0.75) {
+									damageDealt = 4 + Math.round(strCompare/2) + k - enemyDef;
+								} else {
+									damageDealt = 4 + Math.round(strCompare/2) + k;
+								}
+								//if you are at low health, you will deal less damage
+								damageDealt = damageDealt - Math.round(Math.floor(damageDealt * (1 - this.health/this.STARTING_HEALTH))/2);
 								damageTaken = 4 - Math.round(strCompare/2) - Math.floor(k/2);
-								if (damageDealt < 0) {
-									damageDealt = 0;
+								if (damageDealt <= 0) {
+									//always deal at least one damage, if you hit
+									damageDealt = 1;
 								}
 								if (damageTaken < 0) {
 									damageTaken = 0;
 								}
 								damageRatio = damageDealt/enemyHealth;
-								if (damageDealt == 0) {
+								if (damageDealt == 1) {
 									damageMessage = ' and barely make a scratch,'
 								} else if (k < 5) {
 									damageMessage = ' and inflict a minor wound,'
@@ -1443,7 +1454,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									youHit = false;
 								}
 								randomNum = Math.random();
-								if (randomNum <= enemyAcc/100) {
+								modifiedEnemyAcc = enemyAcc;
+								if (currentShield != "None") {
+									modifiedEnemyAcc -= 10;
+								}
+								if (currentArmor != "None") {
+									modifiedEnemyAcc -= 5;
+								}
+								if (randomNum <= modifiedEnemyAcc/100) {
 									enemyHit = true;
 								} else {
 									enemyHit = false;
@@ -1502,7 +1520,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 								if (enemyHit && enemyHealth > 0) {
 									k = Math.floor(Math.random()*(enemyHitMessages.length));
-									damageTaken = Math.ceil(damageTaken * enemyHealthFraction);
+									damageTaken = damageTaken - Math.round(Math.floor(damageTaken * (1 - enemyHealthFraction))/2);
 									combatString = combatString + ' <br>' + enemyHitMessages[k] + ', hitting you for ' + damageTaken + ' damage. ';
 									//this.message = this.message + ' <br>' + enemyHitMessages[k] + ', hitting you for ' + damageTaken + ' damage.';
 									//reduce damage from shield and armor
