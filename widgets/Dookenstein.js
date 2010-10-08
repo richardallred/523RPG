@@ -189,7 +189,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				}
 				this.unarmed = added;
 				//console.log('Added Unarmed.  Name: ' + added.name + ', Strength bonus: ' + added.strengthbonus + ', Accuracy: ' + added.accuracy + ', Hit message 1: ' + added.hitMessages[0] + ', Miss message 1:' + added.missMessages[0]);
-			}	else if (dataSplit[i].indexOf('SHIELD:') != -1) {
+			}
+			else if (dataSplit[i].indexOf('SHIELD:') != -1) {
 				//Parse weapon information for the case where you must fight unarmed (default:bare hands)
 				var added = {
 					name: 'Error with shield initialization - no name specified',
@@ -207,6 +208,28 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				}
 				if (isNaN(added.probability)) {
 					console.log('Error initializing shield probability (Not a number)!');
+					added.probability = 0;
+				}
+				this.possibleWeapons[this.possibleWeapons.length] = added;
+			}
+			else if (dataSplit[i].indexOf('ARMOR:') != -1) {
+				//Parse weapon information for the case where you must fight unarmed (default:bare hands)
+				var added = {
+					name: 'Error with armor initialization - no name specified',
+					type: 'armor',
+					defense: NaN,
+					probability: NaN
+				}
+				splitResult = dataSplit[i].split('ARMOR:')[1].split(this.DELIMITER);
+				added.name = splitResult[0];
+				added.defense = dojo.number.parse(splitResult[1]);
+				added.probability = dojo.number.parse(splitResult[2]);
+				if (isNaN(added.defense)) {
+					console.log('Error initializing armor defense (Not a number)!');
+					added.defense = 0;
+				}
+				if (isNaN(added.probability)) {
+					console.log('Error initializing armor probability (Not a number)!');
 					added.probability = 0;
 				}
 				this.possibleWeapons[this.possibleWeapons.length] = added;
@@ -533,19 +556,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							inventoryArray[inventoryArray.length] = this.inventory[b];
 						}
 					}
-					if (inventoryArray.length == 1) {
+					if (inventoryArray.length <= 1) {
 						this.message = "There are no items in your inventory.";
 						this.menuLevel --;
 					} else {
 						choicesArray = [];
-						j = 0;
+						h = 0;
 						this.message = "Select an inventory item to use.";
-						for (b = 1; b < inventoryArray.length; i++) {
-							if (inventoryArray[b] != 'undefined') {
-								choicesArray[j] = inventoryArray[j];
-								choicesArray[j+1] = nextPageNum;
-								//j is needed because inventory might contain null items
-								j = j + 2;
+						for (c = 1; c < inventoryArray.length; c++) {
+							if (inventoryArray[c] != 'undefined') {
+								choicesArray[h] = inventoryArray[c];
+								choicesArray[h+1] = c;
+								h = h + 2;
 							}
 						}
 					}
@@ -631,7 +653,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				} else {
 					this.menuLevel --;
 				}
-			} else if (this.menuCategory == "Game options") {
+			} else if (this.menuCategory == "Game options" || this.menuCategory == "Inventory options") {
 				if (choiceNum == 1) {
 					//Set difficulty level
 					this.message = "Your difficulty level is " + this.difficulty + ".  What do you want to change the difficulty level to?";
@@ -644,7 +666,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					choicesArray[4] = "Hard";
 					choicesArray[5] = 3;
 				}
-				else if (choiceNum == 2) {
+				else if (choiceNum == 2 || this.menuCategory == "Inventory options") {
 					this.message = "Inventory options";
 					this.menuCategory = "Inventory options";
 					//Manage Inventory
@@ -1336,6 +1358,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								choicesArray[z*2] = availableWeapons[z].name;
 								choicesArray[z*2+1] = this.page;
 							}
+							//parse shields
 							availableShields = [];
 							for (x = 0; x < this.possibleWeapons.length; x++) {
 								for (y = 1; y < this.inventory.length; y++) {
@@ -1344,10 +1367,40 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									}
 								}
 							}
-							if (availableShields.length == 1) {
+							if (availableShields.length > 1) {
+								currentShield = availableShields[0];
+								//automatically choose best shield
+								for (z = 0; z < availableShields.length; z++) {
+									if (availableShields[z].defense > currentShields.defense) {
+										currentShield = availableShield[z];
+									}
+								}
+							} else if (availableShields.length == 1) {
 								currentShield = availableShields[0];
 							} else {
 								currentShield = "None";
+							}
+							//parse armor
+							availableArmor = [];
+							for (x = 0; x < this.possibleWeapons.length; x++) {
+								for (y = 1; y < this.inventory.length; y++) {
+									if (this.possibleWeapons[x].name == this.inventory[y] && this.possibleWeapons[x].type == 'armor') {
+										availableArmor[availableArmor.length] = this.possibleWeapons[x];
+									}
+								}
+							}
+							if (availableArmor.length > 1) {
+								currentArmor = availableArmor[0];
+								//automatically choose best armor
+								for (z = 0; z < availableArmor.length; z++) {
+									if (availableArmor[z].defense > currentArmor.defense) {
+										currentArmor = availableArmor[z];
+									}
+								}
+							} else if (availableArmor.length == 1) {
+								currentArmor = availableArmor[0];
+							} else {
+								currentArmor = "None";
 							}
 							this.chooseWeapon = -1;
 							this.inCombat = 1;
@@ -1372,7 +1425,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									damageTaken = 0;
 								}
 								damageRatio = damageDealt/enemyHealth;
-								if (k < 2) {
+								if (damageDealt == 0) {
 									damageMessage = ' and barely make a scratch,'
 								} else if (k < 5) {
 									damageMessage = ' and inflict a minor wound,'
@@ -1453,21 +1506,36 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									combatString = combatString + ' <br>' + enemyHitMessages[k] + ', hitting you for ' + damageTaken + ' damage. ';
 									//this.message = this.message + ' <br>' + enemyHitMessages[k] + ', hitting you for ' + damageTaken + ' damage.';
 									//reduce damage from shield and armor
-									if (currentShield != "None") {
+									if (currentShield != "None" && damageTaken > 0) {
 										if (Math.random() <= currentShield.probability/100) {
 											damageTaken -= currentShield.defense;
-											if (damageTaken < 0) {
-												damageTaken = 0;
+											if (damageTaken > 0) {
+												combatString = combatString + ' <br>Your ' + currentShield.name + ' protects you from some of the damage. ';
+											} else {
+												combatString = combatString + ' <br>Your ' + currentShield.name + ' protects you from all of the damage. ';
 											}
-											combatString = combatString + ' <br>Your ' + currentShield.name + ' has protected you from some of the damage. ';
 											//this.message = this.message + ' <br>Your ' + currentShield.name + ' has protected you from some of the damage.';
 										}
-									}									
+									}
+									if (currentArmor != "None" && damageTaken > 0) {
+										if (Math.random() <= currentArmor.probability/100) {
+											damageTaken -= currentArmor.defense;
+											if (damageTaken > 0) {
+												combatString = combatString + ' <br>Your ' + currentArmor.name + ' protects you from some of the damage. ';
+											} else {
+												combatString = combatString + ' <br>Your ' + currentArmor.name + ' protects you from all of the damage. ';
+											}
+											//this.message = this.message + ' <br>Your ' + currentShield.name + ' has protected you from some of the damage.';
+										}
+									}
+									if (damageTaken < 0) {
+										damageTaken = 0;
+									}
 									this.health -= damageTaken;
 								} else if (enemyHealth > 0) {
 									//k = Math.floor(Math.random()*(enemyMissMessages.length+1));
 									if (currentShield != "None" && Math.random() < 0.5) {
-										combatString = combatString + ' <br>You block the ' + enemyName + 'with your shield. ';
+										combatString = combatString + ' <br>You block the ' + enemyName + ' with your shield. ';
 										//this.message = this.message + ' <br>You block the ' + enemyName + 'with your shield.';
 									} else {
 										combatString = combatString + ' <br>The ' + enemyName + ' misses. ';
