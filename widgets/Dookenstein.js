@@ -68,6 +68,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.variableList = new Array();
 		//array containing button objects
 		this.buttons = new Array();
+		//menu level for game settings
+		this.menuLevel = -1;
+		this.menuCategory = "Settings";
+		//default difficulty level is normal.  A harder difficulty will decrease the character's survivability
+		this.difficulty = "Normal";
 		//This message will be overwritten if the text file is loaded properly
 		this.message = 'Failed to load game data';
 		//set button focus to zero (Reread text button)
@@ -299,7 +304,342 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.runJSonic();
 	},
 	_settings: function(event) {
-		console.log("settings selected");
+		//"Settings" or "Go back" was selected
+		if (this.menuLevel == -1 || this.menuLevel == 1) {
+			this.menuLevel = 0;
+			this.menuCategory = "Settings";
+			//currently in the game, go to settings menu
+			this.message = "Settings";
+			choicesArray = [];
+			choicesArray[0] = "Sound Options";
+			choicesArray[1] = 1;
+			choicesArray[2] = "Display Options";
+			choicesArray[3] = 2;
+			choicesArray[4] = "Game Options";
+			choicesArray[5] = 3;
+			this.settings.attr('label','Go back');
+		} else if (this.menuLevel == 0) {
+			//currently in main settings menu, go back to the game
+			this.menuLevel = -1;
+			this.settings.attr('label','Settings');
+			this.processChoice(this.page,0);
+		} else {
+			this.menuLevel = this.menuLevel - 2;
+			this.navigateSettings(0);
+		}
+		this.refreshAll();
+	},
+	
+	navigateSettings: function(choiceNum) {
+		//navigate the settings menu
+		this.menuLevel ++;
+		if (this.menuLevel > 3) {
+			this.message = "Option not implemented";
+			choicesArray = [];
+			this.menuLevel --;
+		}
+		else if (this.menuLevel == 3) {
+			if (this.menuCategory == "Font settings") {
+				if (choiceNum == 1) {
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						if(p[i].style.fontSize) {
+							var s = parseInt(p[i].style.fontSize.replace("px",""));
+						} else {
+							var s = 12;
+						}
+						if(s<=40) {
+							s += 2;
+							this.message = "Font size increased to " + s + "."
+						}
+						p[i].style.fontSize = s+"px"
+				   }
+					this.menuLevel --;
+				}
+				else if (choiceNum == 2) {
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						if(p[i].style.fontSize) {
+							var s = parseInt(p[i].style.fontSize.replace("px",""));
+						} else {
+							var s = 12;
+						}
+						if(s>=8) {
+							s -= 2;
+							this.message = "Font size decreased to " + s + "."
+						}
+						p[i].style.fontSize = s+"px"
+				   }
+					this.menuLevel --;
+				} else {
+					this.menuLevel --;
+				}
+			} else if (this.menuCategory == "Font color") {
+				if (choiceNum == 1) {
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.color = "black";
+					}
+					this.message = "Font color set to black."
+					this.menuLevel --;
+				}
+				else if (choiceNum == 2) {
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.color = "white";
+					}
+					this.message = "Font color set to white."
+					this.menuLevel --;
+				}
+				else if (choiceNum == 3) {
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.color = "blue";
+					}
+					this.message = "Font color set to blue."
+					this.menuLevel --;
+				}
+				else if (choiceNum == 4) {
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.color = "green";
+					}
+					this.message = "Font color set to green."
+					this.menuLevel --;
+				} else if (choiceNum == 5) {
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.color = "yellow";
+					}
+					this.message = "Font color set to yellow."
+					this.menuLevel --;
+				} else if (choiceNum == 6) {
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.color = "pink";
+					}
+					this.message = "Font color set to pink."
+					this.menuLevel --;
+				} else {
+					this.menuLevel --;
+				}
+			} else if (this.menuCategory == "Background color") {
+				if (choiceNum == 1) {
+					this.message = "Background color set to white."
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.background = "white";
+					}
+					this.menuLevel --;
+				}
+				else if (choiceNum == 2) {
+					this.message = "Background color set to blue."
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.background = "blue";
+					}
+					this.menuLevel --;
+				} else if (choiceNum == 3) {
+					this.message = "Background color set to black."
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.background = "black";
+					}
+					this.menuLevel --;
+				} else if (choiceNum == 4) {
+					this.message = "Background color set to green."
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.background = "green";
+					}
+					this.menuLevel --;
+				} else if (choiceNum == 5) {
+					this.message = "Background color set to yellow."
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.background = "yellow";
+					}
+					this.menuLevel --;
+				} else if (choiceNum == 6) {
+					this.message = "Background color set to pink."
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.background = "pink";
+					}
+					this.menuLevel --;
+				} else {
+					this.menuLevel --;
+				}
+			} else if (this.menuCategory == "Difficulty options") {
+				if (choiceNum == 1) {
+					this.difficulty = "Easy";
+					this.message = "Set difficulty to " + this.difficulty + "."
+					this.menuLevel --;
+				}
+				else if (choiceNum == 2) {
+					this.difficulty = "Normal";
+					this.message = "Set difficulty to " + this.difficulty + "."
+					this.menuLevel --;
+				}
+				else if (choiceNum == 3) {
+					this.difficulty = "Hard";
+					this.message = "Set difficulty to " + this.difficulty + "."
+					this.menuLevel --;
+				} else {
+					this.menuLevel --;
+				}
+			} else {
+				this.menuLevel --;
+			}
+		}
+		else if (this.menuLevel == 2) {
+			if (this.menuCategory == "Audio settings") {
+				if (choiceNum == 1) {
+					//Mute Sound
+					this.muteJSonic();
+					if (this.sonicVolume == 0.0) {
+						this.message = "Sound muted.";
+					} else {
+						this.message = "Sound unmuted.";
+					}
+					this.menuLevel --;
+				}
+				else if (choiceNum == 2) {
+					//Speed up reading
+					this.speedUpJSonic();
+					this.message = "Sped up reading.";
+					this.menuLevel --;
+				}
+				else if (choiceNum == 3) {
+					//Slow down reading
+					this.slowDownJSonic();
+					this.message = "Slowed down reading.";
+					this.menuLevel --;
+				} else {
+					this.menuLevel --;
+				}
+			} else if (this.menuCategory == "Display settings") {
+				if (choiceNum == 1) {
+					//Change font size
+					this.message = "Font settings";
+					this.menuCategory = "Font settings";
+					choicesArray = [];
+					choicesArray[0] = "Increase font size";
+					choicesArray[1] = 1;
+					choicesArray[2] = "Decrease font size";
+					choicesArray[3] = 2;
+				}
+				else if (choiceNum == 2) {
+					this.message = "What do you want to set the font color to?";
+					this.menuCategory = "Font color";
+					//Change font color
+					choicesArray = [];
+					choicesArray[0] = "Black";
+					choicesArray[1] = 1;
+					choicesArray[2] = "White";
+					choicesArray[3] = 2;
+					choicesArray[4] = "Blue";
+					choicesArray[5] = 3;
+					choicesArray[6] = "Green";
+					choicesArray[7] = 4;
+					choicesArray[8] = "Yellow";
+					choicesArray[9] = 5;
+					choicesArray[10] = "Pink";
+					choicesArray[11] = 6;
+				}
+				else if (choiceNum == 3) {
+					this.message = "What do you want to set the background color to?";
+					this.menuCategory = "Background color";
+					//Change background color
+					choicesArray = [];
+					choicesArray[0] = "White";
+					choicesArray[1] = 1;
+					choicesArray[2] = "Blue";
+					choicesArray[3] = 2;
+					choicesArray[4] = "Black";
+					choicesArray[5] = 2;
+					choicesArray[6] = "Green";
+					choicesArray[7] = 4;
+					choicesArray[8] = "Yellow";
+					choicesArray[9] = 5;
+					choicesArray[10] = "Pink";
+					choicesArray[11] = 6;
+				} else {
+					this.menuLevel --;
+				}
+			} else if (this.menuCategory == "Game options") {
+				if (choiceNum == 1) {
+					//Set difficulty level
+					this.message = "Your difficulty level is " + this.difficulty + ".  What do you want to change the difficulty level to?";
+					this.menuCategory = "Difficulty options";
+					choicesArray = [];
+					choicesArray[0] = "Easy";
+					choicesArray[1] = 1;
+					choicesArray[2] = "Normal";
+					choicesArray[3] = 2;
+					choicesArray[4] = "Hard";
+					choicesArray[5] = 3;
+				}
+				else if (choiceNum == 2) {
+					this.message = "Inventory options";
+					this.menuCategory = "Inventory options";
+					//Manage Inventory
+					choicesArray = [];
+					choicesArray[0] = "Display inventory";
+					choicesArray[1] = 1;
+					choicesArray[2] = "Use an inventory item";
+					choicesArray[3] = 2;
+				}
+				else if (choiceNum == 3) {
+					//Display health
+					this.message = 'Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+					this.menuLevel --;
+				} else {
+					this.menuLevel --;
+				}
+			} else {
+				this.menuLevel --;
+			}
+			
+		}
+		else if (this.menuLevel == 1) {
+			if (choiceNum == 1 || this.menuCategory == "Audio settings") {
+				this.message = "Audio settings";
+				this.menuCategory = "Audio settings";
+				choicesArray = [];
+				choicesArray[0] = "Mute Sound";
+				choicesArray[1] = 1;
+				choicesArray[2] = "Speed up reading";
+				choicesArray[3] = 2;
+				choicesArray[4] = "Slow down reading";
+				choicesArray[5] = 3;
+			}
+			else if (choiceNum == 2 || this.menuCategory == "Font settings" || this.menuCategory == "Font color" || this.menuCategory == "Background color") {
+				this.message = "Display settings";
+				this.menuCategory = "Display settings";
+				choicesArray = [];
+				choicesArray[0] = "Change font size";
+				choicesArray[1] = 1;
+				choicesArray[2] = "Change font color";
+				choicesArray[3] = 2;
+				choicesArray[4] = "Change background color";
+				choicesArray[5] = 3;
+			}
+			else if (choiceNum == 3 || this.menuCategory == "Game options" || this.menuCategory == "Difficulty options" || this.menuCategory == "Inventory options") {
+				this.message = "Game options";
+				this.menuCategory = "Game options";
+				choicesArray = [];
+				choicesArray[0] = "Set difficultly level";
+				choicesArray[1] = 1;
+				choicesArray[2] = "Manage Inventory";
+				choicesArray[3] = 2;
+				choicesArray[4] = "Display Health Left";
+				choicesArray[5] = 3;
+			} else {
+				this._settings();
+			}
+		}
+		this.refreshAll();
 	},
 	
 	_onKeyPress: function(e) {
@@ -379,8 +719,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		if (choicesArray.length < choiceNum * 2) {
 			this.message = 'ERROR: The previous choice did not link to a page';
 		} else {
-			this.page = choicesArray[choiceNum * 2 - 1];
-			this.processChoice(this.page, choiceNum);
+			if (this.menuLevel == -1) {
+				//if menuLevel is not -1, then currently in game settings mode
+				this.page = choicesArray[choiceNum * 2 - 1];
+				this.processChoice(this.page, choiceNum);
+			} else {
+				this.navigateSettings(choiceNum);
+			}
 		}
 	},
 	processChoice: function(pageNum, choiceNum) {
@@ -831,6 +1176,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					//COMBAT: enemy name, enemy weapon, enemy base strength, enemy defense, enemy health, hit messages, miss messages, run away option, run away link
 					//Combat does not work with multiple commands
 					else if (specialPageArray[p].match('COMBAT:') != null) {
+						combatString = "";
 						if (this.inCombat == 0) {
 							//parse enemy info
 							combatInfo = specialPageArray[p].split('COMBAT:')[1].split(',');
@@ -936,7 +1282,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							//default for wonCombat is false, set to true if the enemy's health goes to zero
 							wonCombat = false;
 							if (currentShield != "None") {
-								this.message = combatInfo[0] + '.  You are using: ' + currentWeapon.name + ' and ' + currentShield.name + '.';
+								this.message = combatInfo[0] + '.  You are using: ' + currentWeapon.name + ' and ' + currentShield.name + '. ';
 							} else {
 								this.message = combatInfo[0] + '.  You are using: ' + currentWeapon.name;
 							}
@@ -984,42 +1330,55 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 								if (youHit) {
 									k = Math.floor(Math.random()*(currentWeapon.hitMessages.length));
-									this.message = this.message + ' <br>' + currentWeapon.hitMessages[k] + damageMessage + ' dealing ' + damageDealt + ' damage.';
+									combatString = combatString + ' <br>' + currentWeapon.hitMessages[k] + damageMessage + ' dealing ' + damageDealt + ' damage.';
+									//this.message = this.message + ' <br>' + currentWeapon.hitMessages[k] + damageMessage + ' dealing ' + damageDealt + ' damage.';
 									enemyHealth -= damageDealt;
 									enemyHealthFraction = enemyHealth/initialEnemyHealth;
 									if (enemyHealthFraction <= 0) {
-										this.message = this.message + ' <br>The ' + enemyName + ' collapses.'
+										combatString = combatString + ' <br>The ' + enemyName + ' collapses.'
+										//this.message = this.message + ' <br>The ' + enemyName + ' collapses.'
 									} else if (enemyHealthFraction < 0.1) {
-										this.message = this.message + ' <br>The ' + enemyName + ' looks nearly dead.'
+										combatString = combatString + ' <br>The ' + enemyName + ' looks nearly dead.'
+										//this.message = this.message + ' <br>The ' + enemyName + ' looks nearly dead.'
 									} else if (enemyHealthFraction < 0.2) {
-										this.message = this.message + ' <br>The ' + enemyName + ' looks severely wounded.'
+										combatString = combatString + ' <br>The ' + enemyName + ' looks severely wounded.'
+										//this.message = this.message + ' <br>The ' + enemyName + ' looks severely wounded.'
 									} else if (enemyHealthFraction < 0.3) {
-										this.message = this.message + ' <br>The ' + enemyName + ' looks weak.'
+										combatString = combatString + ' <br>The ' + enemyName + ' looks weak.'
+										//this.message = this.message + ' <br>The ' + enemyName + ' looks weak.'
 									} else if (enemyHealthFraction < 0.4) {
-										this.message = this.message + ' <br>The ' + enemyName + ' looks quite wounded.'
+										combatString = combatString + ' <br>The ' + enemyName + ' looks quite wounded.'
+										//this.message = this.message + ' <br>The ' + enemyName + ' looks quite wounded.'
 									} else if (enemyHealthFraction < 0.5) {
-										this.message = this.message + ' <br>The ' + enemyName + ' looks hurt.'
+										combatString = combatString + ' <br>The ' + enemyName + ' looks hurt.'
+										//this.message = this.message + ' <br>The ' + enemyName + ' looks hurt.'
 									} else if (enemyHealthFraction < 0.6) {
-										this.message = this.message + ' <br>The ' + enemyName + ' looks somewhat wounded.'
+										combatString = combatString + ' <br>The ' + enemyName + ' looks somewhat wounded.'
+										//this.message = this.message + ' <br>The ' + enemyName + ' looks somewhat wounded.'
 									} else if (enemyHealthFraction < 0.8) {
-										this.message = this.message + ' <br>The ' + enemyName + ' looks a little wounded.'
+										combatString = combatString + ' <br>The ' + enemyName + ' looks a little wounded.'
+										//this.message = this.message + ' <br>The ' + enemyName + ' looks a little wounded.'
 									} else {
-										this.message = this.message + ' <br>The ' + enemyName + ' looks mostly healthy.'
+										combatString = combatString + ' <br>The ' + enemyName + ' looks mostly healthy.'
+										//this.message = this.message + ' <br>The ' + enemyName + ' looks mostly healthy.'
 									}
 									
 								} else {
 									if (Math.random() < 0.4) {
 										k = Math.floor(Math.random()*(currentWeapon.missMessages.length));
-										this.message = this.message + ' <br>' + currentWeapon.missMessages[k];
+										combatString = combatString + ' <br>' + currentWeapon.missMessages[k] + ' ';
+										//this.message = this.message + ' <br>' + currentWeapon.missMessages[k];
 									} else {
 										k = Math.floor(Math.random()*(enemyMissMessages.length));
-										this.message = this.message + ' <br>' + enemyMissMessages[k];
+										combatString = combatString + ' <br>' + enemyMissMessages[k] + ' ';
+										//this.message = this.message + ' <br>' + enemyMissMessages[k];
 									}
 								}
 								if (enemyHit && enemyHealth > 0) {
 									k = Math.floor(Math.random()*(enemyHitMessages.length));
 									damageTaken = Math.ceil(damageTaken * enemyHealthFraction);
-									this.message = this.message + ' <br>' + enemyHitMessages[k] + ', hitting you for ' + damageTaken + ' damage.';
+									combatString = combatString + ' <br>' + enemyHitMessages[k] + ', hitting you for ' + damageTaken + ' damage. ';
+									//this.message = this.message + ' <br>' + enemyHitMessages[k] + ', hitting you for ' + damageTaken + ' damage.';
 									//reduce damage from shield and armor
 									if (currentShield != "None") {
 										if (Math.random() <= currentShield.probability/100) {
@@ -1027,25 +1386,30 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											if (damageTaken < 0) {
 												damageTaken = 0;
 											}
-											this.message = this.message + ' <br>Your ' + currentShield.name + ' has protected you from some of the damage.';
+											combatString = combatString + ' <br>Your ' + currentShield.name + ' has protected you from some of the damage. ';
+											//this.message = this.message + ' <br>Your ' + currentShield.name + ' has protected you from some of the damage.';
 										}
 									}									
 									this.health -= damageTaken;
 								} else if (enemyHealth > 0) {
 									//k = Math.floor(Math.random()*(enemyMissMessages.length+1));
 									if (currentShield != "None" && Math.random() < 0.5) {
-										this.message = this.message + ' <br>You block the ' + enemyName + 'with your shield.';
+										combatString = combatString + ' <br>You block the ' + enemyName + 'with your shield. ';
+										//this.message = this.message + ' <br>You block the ' + enemyName + 'with your shield.';
 									} else {
-										this.message = this.message + ' <br>The ' + enemyName + ' misses.';
+										combatString = combatString + ' <br>The ' + enemyName + ' misses. ';
+										//this.message = this.message + ' <br>The ' + enemyName + ' misses.';
 									}
 								}
 
 								if (this.health < 0) {
 									this.health = 0;
 								}
-								this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+								combatString = combatString + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+								//this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
 								if (this.health <= 0) {
-									this.message = this.message + '<br>The ' + enemyName + ' has killed you in combat.';
+									combatString = combatString + '<br>The ' + enemyName + ' has killed you in combat. ';
+									//this.message = this.message + '<br>The ' + enemyName + ' has killed you in combat.';
 									this.restart = 1;
 								} else if (enemyHealth <= 0) {
 									wonCombat = true;
@@ -1057,9 +1421,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							choicesArray[2] = 'Change Weapon';
 							choicesArray[3] = this.page;
 							if (wonCombat) {
-								this.message = this.message + '<br>' + specialPageArray[p+1];
+								combatString = combatString + '<br>' + specialPageArray[p+1];
+								//this.message = this.message + '<br>' + specialPageArray[p+1];
 								this.inCombat = 0;
 							}
+							this.message = this.message + combatString;
 						}
 					}
 					//restart the game on next button press with RESTART
