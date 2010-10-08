@@ -1527,10 +1527,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								if (enemyHit && enemyHealth > 0) {
 									k = Math.floor(Math.random()*(enemyHitMessages.length));
 									damageTaken = damageTaken - Math.round(Math.floor(damageTaken * (1 - enemyHealthFraction))/2);
+									if (damageTaken <= 0) {
+										//lose a minimum of 1 health if you are hit (unless you have armor)
+										damageTaken = 1;
+									}
 									combatString = combatString + ' <br>' + enemyHitMessages[k] + ', hitting you for ' + damageTaken + ' damage. ';
 									//this.message = this.message + ' <br>' + enemyHitMessages[k] + ', hitting you for ' + damageTaken + ' damage.';
 									//reduce damage from shield and armor
-									if (currentShield != "None" && damageTaken > 0) {
+									if (currentShield != "None") {
 										if (Math.random() <= currentShield.probability/100) {
 											damageTaken -= currentShield.defense;
 											if (damageTaken > 0) {
