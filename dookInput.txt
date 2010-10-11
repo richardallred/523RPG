@@ -12,6 +12,7 @@ INITIALIZE:killedColonel,0
 INITWEAPON:Sword^*4^*90^*HIT:You swing your blade at the #enemy^*HIT:You lunge at the #enemy with your sword^*HIT:You quickly strike the #enemy^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage to the #enemy.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked by the #enemy.
 INITWEAPON:Mace^*5^*80^*HIT:You bring your mace downwards in a crushing blow^*HIT:You swing your mace in a wide arc^*HIT:You hit the #enemy with a stunning blow^*MISS:Your mace is blocked by the #enemy.^*MISS:You swing your mace, but miss.^*MISS:You fail to do any damage to the #enemy.
 INITWEAPON:Hidden dagger^*2^*75^*HIT:You stab the #enemy with your dagger^*HIT:You slash the #enemy with your dagger^*HIT:You cut the #enemy with your dagger^*MISS:You fail to do any damage to the #enemy.^*MISS:Your dagger is blocked by the #enemy.^*MISS:You swing your dagger, but miss.^*MISS:You stab the #enemy with your dagger, but you are unable to do any damage.
+INITWEAPON:Knife^*1^*70^*HIT:You stab the #enemy with your knife^*HIT:You slash the #enemy with your knife^*HIT:You cut the #enemy with your knife^*MISS:You fail to do any damage to the #enemy.^*MISS:Your knife is blocked by the #enemy.^*MISS:You swing your knife, but miss.^*MISS:You stab the #enemy with your knife, but you are unable to do any damage.
 UNARMED:Your bare hands^*-3^*65^*HIT:You quickly punch the #enemy^*HIT:You lash out with your foot in a swift kick^*HIT:You throw the #enemy to the ground^*HIT:You fistcuff the #enemy^*MISS:Your fists fail to do any damage to the #enemy.^*MISS:You kick, but miss.^*MISS:You swing your fist, but miss.^*MISS:You fail to do any damage to the #enemy.
 SHIELD:Shield^*2^*33
 ARMOR:Guard disguise^*1^*75
@@ -162,13 +163,13 @@ ARMOR:Chainmail armor^*2^*75
 69:Try to bribe the guards^*52^*Try to fight your way in^*38^*Leave and find another way in^*31
 70:INVSPLIT:Lock picking kit^*71^*72
 70:null^*1
-71:You say that you are bringing supplies and rations to the soldiers to prepare for the upcoming invasion.  One of the guards searches your pack while the other guard searches your cart thoroughly.  He takes out the lock picking kit that you had hidden in your cart. "These are used only by thieves and spies," says the guard, "You are no merchant!"  The guards immediately seize you.
+71:You say that you are bringing supplies and rations to the soldiers to prepare for the upcoming invasion.  One of the guards searches your pack while the other guard searches your cart thoroughly.  He takes out the lock picking kit that you had hidden under your cart. "These are used only by thieves and spies," says the guard, "You are no merchant!"  The guards immediately seize you.
 71:Continue^*42
 72:INVREMOVE:Sword,Crossbow^*You say that you are bringing supplies and rations to the soldiers to prepare for the upcoming invasion.  One of the guards searches your pack while the other guard searches your cart thoroughly.  They remove any weapons that you had brought (except the hidden dagger). Finally, the guards allow you entry.  "Deliver these supplies to Colonel Graywald in the barracks," says one of the guards, "He will pay you for them." 
 72:Enter the castle^*300
 73:INVSPLIT:Lock picking kit^*74^*75
 73:null^*1
-74:LOSEHEALTH:5^*The guards reluctantly accept your story, but they confiscate your grappling hook to be safe.  The guard continues searching your cart, and finds the lock picking kit that you had hidden there.  "A grappling hook and a lock picking kit?" exclaims the guard, "You are no merchant!" Before you can react, the other guard takes a mace and clubs you on the head, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you.
+74:LOSEHEALTH:5^*The guards reluctantly accept your story, but they confiscate your grappling hook to be safe.  The guard continues searching your cart, and finds the lock picking kit that you had hidden underneath it.  "A grappling hook and a lock picking kit?" exclaims the guard, "You are no merchant!" Before you can react, the other guard takes a mace and clubs you on the head, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you.
 74:Continue^*42
 75:INVREMOVE:Grappling hook,Sword,Crossbow^*The guards reluctantly accept your story, but they confiscate your grappling hook to be safe.  The guard continues searching your cart, and removes any weapons that you had brought (except the hidden dagger).  Finally, the guards allow you entry.  "Deliver these supplies to Colonel Graywald in the barracks," says one of the guards, "He will pay you for them."
 75:Enter the castle^*300
@@ -266,7 +267,7 @@ ARMOR:Chainmail armor^*2^*75
 214:You crawl through the pitch black tunnel, feeling the walls with your hands.  You momentarily panic when your hand passes through something sticky, but you realize that it is only a cobweb.  True horror only sets in when you hear the pattering of many tiny feet approaching you.  You desperately try to put the terrible image of being eaten alive by rats out of your mind.
 214:Try to fight the rats in the dark^*215^*Take some food from your pack and scatter it around^*217^*Crawl out of the tunnel as fast as you can^*226^*Stay as still as possible and hope they pass you by^*227
 215:What do you want to fight the rats with?
-215:DISPLAYIF:Sword,Your sword^*222^*DISPLAYIF,Hidden dagger,Your hidden dagger^*223^*Your bare hands^*224
+215:DISPLAYIF:Sword,Your sword^*222^*DISPLAYIF:Hidden dagger,Your hidden dagger^*223^*Your bare hands^*224
 216:As the swarm of rats approach, you wave your torch rapidly in front of you.  Several of the rats back away from the heat and bright light emanating from the torch.  You continue to crawl forwards, forcing the rats back with your torch each time.  This works for a while, until several of the hungry rats decide to try to leap past the torch to get to you.  You react quickly, swatting them down with the torch and setting them ablaze.  The rats run around in panic, setting others in the swarm on fire.  You quickly back away from the blazing mass of rats, but the smoke filling up the tunnel is too much for your lungs and you pass out from the lack of oxygen.
 216:Continue^*240
 217:INVCHECK:Tinderbox and torch^*You open your pack and take out part of the provisions that you had packed for yourself.  You scatter the food in a pile in front of you, hoping it will sate the rats.  You back away, and see the rats rush forwards towards the food.  There are many rats, and they quickly devour the food and continue towards you.^*225
@@ -857,8 +858,8 @@ ARMOR:Chainmail armor^*2^*75
 570:Content not added^*999
 571:RESTART:^*The guard orders you to stand again, but you just ignore him.  "I don't trust this one," says the guard, "We shouldn't risk keeping him alive."  One of the guards stands outside the cell to watch you while the other one leaves.  The other guard soon returns with a crossbow and shoots you through the bars of the cell.  <br>Your life ends here.
 571:Restart^*1
-572:Marched down a hallway
-572:Content not added^*999
+572:You are marched down the dungeon corridor past many empty cells.  At the end of the corridor, there is a solid metal door with a heavy bolt on it.  One of the guards opens the door and you are lead into a torture chamber full of grisly intruments of pain.  Inside, you can see a hooded torturer sharpening a knife on a grindstone.   You panic and try to struggle, but the guard holds you in a firm grip.  The other guard remains outside and bolts the door behind you.  The guard holding you leads you over to one of the walls and unties your hands, then forces them above your head and against the wall.  You are unable to move your hands, but the rest of your body is free.
+572:Try to kick the guard^*585^*Try to trip the guard^*586^*Try to headbutt the guard^*587^*Do nothing^*588
 573:LOSEHEALTH:6^*You instinctively turn your head away and put up your hands to protect yourself against the blow, but it does not help much as the guard hits you several times with the mace.  You lose 6 health.  The blows from the mace have knocked you out. 
 573:Content not added^*999
 574:INVSPLIT:Assassin Garb^*575^*576
@@ -883,6 +884,36 @@ ARMOR:Chainmail armor^*2^*75
 583:Content not added^*999
 584:RESTART:^*You lunge towards the guard and catch his hand, but not in time to stop the mace from smashing into your side.  You ignore the pain and try to wrest the mace out of the guard's hand, but the other guard draws his sword and runs you through.  <br>Your life ends here.
 584:null^*1
+585:You try to kick the guard to get him to let you go, but he is protected by his armor and your struggles do not faze him.  The guard quickly shackles your hands against the wall and backs away.  You are helpless as you watch the interrogator heat a large iron brand in a furnace.  He approaches you with with the red hot brand and gives you a menacing smile.
+585:Beg for mercy^*591^*Say nothing^*592
+586:INVADD:Sword^*You quickly curl your leg around the guard's legs and pull his feet out from under him.  The guard falls down, pulling you down with him.  He hits the ground hard with the back of his head, which knocks him out, and you fall with a crash on top of him.  The interrogator runs at you with his knife, and you quickly pull the guard's sword from its sheath and turn to fight him.
+586:Continue^*589
+587:LOSEHEALTH:3^*You rapidly bring your head forwards, ramming the guard directly in the forehead (You lose 3 health).  He lets go of your arms and staggers backwards, and you lunge towards him despite the blinding pain in your head.  You try to throw the guard to the ground, but he recovers quickly and shoves you against the wall.  He punches you hard in the chest and shackles you hands above your head while you are gasping for breath.  With your hands chained, you are helpless as you watch the interrogator heat a large iron brand in a furnace.  He approaches you with with the red hot brand and gives you a menacing smile.
+587:Beg for mercy^*591^*Say nothing^*592
+588:The guard shackles your hands to the wall and backs away.  You are helpless as you watch the interrogator heat a large iron brand in a furnace.  He approaches you with with the red hot brand and gives you a menacing smile.
+588:Beg for mercy^*591^*Say nothing^*592
+589:COMBAT:You are fighting an interrogator. He is using a sharp torturing knife,NAME:interrogator,WEAPON:Knife,STRENGTH:19,DEFENSE:0,ACCURACY:75,HEALTH:50,HIT:The interrogator stabs you with his knife,HIT:The interrogator cuts you deeply,HIT:The interrogator slashes you,MISS:The interrogator parries your sword.,MISS:The interrogator dodges your sword thrust.,MISS:The interrogator evades you.,MISS:The interrogator grabs your arm and pushes your sword out of the way.^*You cut down the interrogator with your sword and he falls to the ground with a crash.
+589:Continue^*590
+590:Defeated interrogator
+590:Content not added^*999
+591:LOSEHEALTH:10^*The interrogator laughs at your pleas and presses the hot brand against your chest, causing you to cry out and your body to convulse with pain (You lose 10 health).  When he removes the brand, your flesh is singed and you are gasping with pain.  "If you want any mercy, you will tell me why you are here, intruder," he whispers to you.
+591:Content not added^*999
+592:LOSEHEALTH:10^*The interrogator presses the hot brand against your chest, causing you to cry out and your body to convulse with pain (You lose 10 health).  When he removes the brand, your flesh is singed and you are gasping with pain.  "You will tell me why you are here, intruder," he whispers to you.
+592:Tell him the truth^*593^*Tell him that he's making a mistake and that you are innocent^*594^*Tell him that you are a fugitive trying to hide out in the castle^*599^*Tell him that you secretly work for King K^*595^*Tell him that you won't give him any information^*596^*Say nothing^*596
+593:RESTART:^*You blurt out that you were sent on a mission to the castle to retrieve King K's ring and stop his invasion of Carolinia.  The interrogator laughs.  "Those pathetic Carolinians really are desperate to send the likes of you," he taunts.  He proceeds to torture you to death in an extremely painful manner. <br>Your life ends here. 
+593:null^*1
+594:INVSPLIT:Assassin Garb^*702^*703
+594:null^*1
+595:"You're making a mistake," you gasp, "I'm an agent working undercover for King K.  I was returning from a mission in Carolinia to give my report to the King when the guards detained me."  The interrogator glares at you.  "If you are lying to me, I will make sure that your death is long and painful," he says.  He sends a guard to ask the King to verify your story.  After a while, the guard returns.  "The King wants to see him," announces the guard.
+595:Continue^*700
+596:LOSEHEALTH:15^*The interrogator presses the brand across your leg, badly burning you.  "Let me know when you are ready to talk," he growls.  He continues to press the brand against you as your scream in pain.  Soon the pain is so unbearable that you are forced to say something.  (You have lost another 15 health from the torture).
+596:Tell him the truth^*593^*Tell him that he's making a mistake and that you are innocent^*597^*Tell him that you are a fugitive trying to hide out in the castle^*599^*Tell him that you secretly work for King K^*595^*Tell him that you would sooner die then give him any information^*598
+597:RESTART:^*"You're making a terrible mistake," you gasp, "I have done no wrong."  The interrogator just ignores you and continues to torture you with the hot iron.  Soon, he forces the truth out of you and proceeds to torture you to death.  <br>Your life ends here. 
+597:null^*1
+598:RESTART:^*You grit your teeth against the pain and growl that you would sooner die than give him any information.  You follow that statement up by dramatically spitting in the interrogator's face.  "Everyone talks, eventually," says the interrogator, as he continues to torture you with the hot iron.  Soon, he forces the truth out of you and proceeds to torture you to death.  <br>Your life ends here. 
+598:null^*1
+599:"Stop! I'll talk!" you gasp, "The truth is that I ran into trouble from the law in the province of Devion.  I was trying to hide out in the castle, and the guards arrested me."  The torturer is about to press the iron against you again when the guard who is watching intervenes.  "You've gotten the information we need," he says to the torturer, "We will have to turn him in the Devion militia."  You see the interrogator glaring at you through his hood as the guard unshackles you and leads you from the room.
+599:Continue^*701
 600:What weapon do you attack the King with?
 600:DISPLAYIF:Sword,Sword^*612^*DISPLAYIF:Crossbow,Crossbow^*613^*DISPLAYIF:Hidden dagger,Hidden dagger^*614^*DISPLAYIFNOT:Sword,Crossbow,Hidden dagger,Your bare hands^*615
 601:RESTART:^*You are intimidated by the King's presence and are unable to think of a convincing story.  You panic and try to run out of the throne room.  The King sees you running and casually flicks his ring finger.  You are struck down by a bolt of lightning that arcs from his ring. <br>Your life ends here.
@@ -923,5 +954,14 @@ ARMOR:Chainmail armor^*2^*75
 618:Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*616^*Say that... content not added^*999
 619:LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
 619:Say that the message is for the King's ear only^*616^*Say that... content not added^*999
+700:Lead out of the chamber
+700:Content not added^*999
+701:Lead out of the chamber
+701:Content not added^*999
+702:RESTART:^*"You're making a terrible mistake," you gasp, "I have done no wrong."  The interrogator laughs.  "An assassin comes into this castle and claims to be innocent?" he says, "You make a terrible liar."  He continues to torture you with the hot iron until he forces the truth out of you.  He then tortures you to death.  <br>Your life ends here. 
+702:null^*1
+703:Content not added
+703:Content not added^*999
+
 999:RESTART:^*Content not added: As you try to go to a place that does not yet exist, you fall through a rip in the space-time continuum.  <br>Your life ends here.
 999:null^*1
