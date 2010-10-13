@@ -409,48 +409,34 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				}
 			} else if (this.menuCategory == "Font color") {
 				if (choiceNum == 1) {
-					var p = document.getElementsByTagName('div');
-					for(i=0;i<p.length;i++) {
-						p[i].style.color = "black";
-					}
+					this.displayMessage.style.color = "black";
 					this.message = "Font color set to black."
 					this.menuLevel --;
 				}
 				else if (choiceNum == 2) {
-					var p = document.getElementsByTagName('div');
-					for(i=0;i<p.length;i++) {
-						p[i].style.color = "white";
-					}
+					this.displayMessage.style.color = "white";
 					this.message = "Font color set to white."
 					this.menuLevel --;
 				}
 				else if (choiceNum == 3) {
-					var p = document.getElementsByTagName('div');
-					for(i=0;i<p.length;i++) {
-						p[i].style.color = "blue";
-					}
+					this.displayMessage.style.color = "blue";
 					this.message = "Font color set to blue."
 					this.menuLevel --;
 				}
 				else if (choiceNum == 4) {
-					var p = document.getElementsByTagName('div');
-					for(i=0;i<p.length;i++) {
-						p[i].style.color = "green";
-					}
+					this.displayMessage.style.color = "green";
 					this.message = "Font color set to green."
 					this.menuLevel --;
 				} else if (choiceNum == 5) {
-					var p = document.getElementsByTagName('div');
-					for(i=0;i<p.length;i++) {
-						p[i].style.color = "yellow";
-					}
+					this.displayMessage.style.color = "yellow";
 					this.message = "Font color set to yellow."
 					this.menuLevel --;
 				} else if (choiceNum == 6) {
-					var p = document.getElementsByTagName('div');
-					for(i=0;i<p.length;i++) {
-						p[i].style.color = "pink";
-					}
+					this.displayMessage.style.color = "red";
+					this.message = "Font color set to red."
+					this.menuLevel --;
+				} else if (choiceNum == 7) {
+					this.displayMessage.style.color = "pink";
 					this.message = "Font color set to pink."
 					this.menuLevel --;
 				} else {
@@ -494,6 +480,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					this.menuLevel --;
 				} else if (choiceNum == 6) {
+					this.message = "Background color set to red."
+					var p = document.getElementsByTagName('div');
+					for(i=0;i<p.length;i++) {
+						p[i].style.background = "red";
+					}
+					this.menuLevel --;
+				} else if (choiceNum == 7) {
 					this.message = "Background color set to pink."
 					var p = document.getElementsByTagName('div');
 					for(i=0;i<p.length;i++) {
@@ -632,8 +625,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					choicesArray[7] = 4;
 					choicesArray[8] = "Yellow";
 					choicesArray[9] = 5;
-					choicesArray[10] = "Pink";
+					choicesArray[10] = "Red";
 					choicesArray[11] = 6;
+					choicesArray[12] = "Pink";
+					choicesArray[13] = 7;
 				}
 				else if (choiceNum == 3) {
 					this.message = "What do you want to set the background color to?";
@@ -650,8 +645,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					choicesArray[7] = 4;
 					choicesArray[8] = "Yellow";
 					choicesArray[9] = 5;
-					choicesArray[10] = "Pink";
+					choicesArray[10] = "Red";
 					choicesArray[11] = 6;
+					choicesArray[12] = "Pink";
+					choicesArray[13] = 7;
 				} else {
 					this.menuLevel --;
 				}
@@ -1777,7 +1774,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//this.js.say({text : choicesminusbr, cache : true});
 			}
 		}
-		choicesString = choicesString + 'Settings.  Read text again';
+		choicesString = choicesString + this.settings.label + '.  ' + this.rereadText.label;
 		//this.js.say({text : 'Read text again', cache : true});
 		this.js.say({text : choicesString, cache : true});
 	},
@@ -1883,7 +1880,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	clearCanvas: function() {
         var canvas = dojo.byId("canvas");
         var ctx = canvas.getContext("2d");
-		ctx.fillStyle = "rgb(255,255,255)";
+		if (this.buttonDiv.style.background != "") {
+			//fill canvas to the same color as the background color
+			ctx.fillStyle = this.buttonDiv.style.background;
+		} else {
+			ctx.fillStyle = "rgb(255,255,255)";
+		}
 		MAX_WIDTH = canvas.width;
 		MAX_HEIGHT = canvas.height;
 		ctx.fillRect(0,0,MAX_WIDTH,MAX_HEIGHT);
