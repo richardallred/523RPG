@@ -335,7 +335,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				}
 			}
 		}
-		this.message = outputString;
+		//this.message = outputString;
 		//console.log(outputString);
 	},
 	
