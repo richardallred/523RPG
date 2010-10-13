@@ -305,9 +305,28 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.message = this.pageText[this.page];
 		//choicesArray = this.choices[this.page].split('^*');
 		choicesArray = this.choices[this.page].split(this.DELIMITER);
-
+		this.exportPageTextAndChoices();
 		//must call refreshAll in here because this method is dojo.deferred (will occur last)
 		this.refreshAll();
+	},
+
+	exportPageTextAndChoices: function() {
+		outputString = '';
+		for (i = 0; i < this.choices.length; i++) {
+			if (this.choices[i] != null) {
+				choiceSplit = this.choices[i].split(this.DELIMITER);
+				for (j = 1; j < choiceSplit.length; j+= 2) {
+					if (choiceSplit[j] != 1 && choiceSplit[j] != 999) {
+						stringtoAdd = i + '->' + choiceSplit[j] + ';<br>';
+						if (!outputString.match(stringtoAdd)) {
+							outputString += i + '->' + choiceSplit[j] + ';<br>';
+						}
+					}
+				}
+			}
+		}
+		//this.message = outputString;
+		//console.log(outputString);
 	},
 	
 	_onClick: function(buttonNum) {
