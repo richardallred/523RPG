@@ -321,11 +321,21 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if (!outputString.match(stringtoAdd)) {
 							outputString += i + '->' + choiceSplit[j] + ';<br>';
 						}
+					} else {
+						pageTextSplit = this.pageText[i].split(this.DELIMITER);
+						for (k = 0; k < pageTextSplit.length; k++) {
+							if (!isNaN(dojo.number.parse(pageTextSplit[k]))) {
+								stringtoAdd = i + '->' + pageTextSplit[k] + ';<br>';
+								if (!outputString.match(stringtoAdd)) {
+									outputString += i + '->' + pageTextSplit[k] + ';<br>';
+								}
+							}
+						}
 					}
 				}
 			}
 		}
-		//this.message = outputString;
+		this.message = outputString;
 		//console.log(outputString);
 	},
 	
