@@ -796,7 +796,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//set focus on settings button
 			this._focusSettings();
 			this.js.stop();
-			this.js.say({text: "Settings"});
+			this.js.say({text: this.settings.label});
 		} else {
 			this.buttons[focusNum - 1].focus();
 			//make JSonic say the name the button that is focused on
