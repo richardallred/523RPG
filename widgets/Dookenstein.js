@@ -867,6 +867,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//loop through all special commands and run them if found
 				/*List of special commands:
 				INVSPLIT:item^*x^*y - Go to page x if item is in inventory, otherwise go to page y
+				ANYSPLIT:item1,item2^*x^*y - Go to page x if any of the listed items are in inventory, otherwise go to page y
 				GOLDSPLIT:n^*x^*y - If gold is at least n, go to page x, otherwise go to page y
 				INVCHECK:item^*text^*x - If item is in inventory, display text.  Otherwise, redirect to page x
 				INVADD:item1,item2 - Add all listed items to inventory.  Add true as a parameter to allow duplicate adding.
@@ -893,6 +894,28 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					if (specialPageArray[p].match('INVSPLIT:') != null) {
 						inventoryCheck = specialPageArray[p].split('INVSPLIT:');
 						if (inventoryCheck[1] in this.oc(this.inventory) || specialPageArray.length < 3) {
+							//passed inventory check, redirect to first page
+							this.page = specialPageArray[specialPageArray.length-2];
+							this.processChoice(this.page,0);
+							return;
+						} else {
+							//failed inventory check, redirect to second page
+							this.page = specialPageArray[specialPageArray.length-1];
+							this.processChoice(this.page,0);
+							return;
+						}
+					}
+					//ANYSPLIT:item,item2,...  If any of the items are in the inventory, go the first page, otherwise go to the second page
+					//ANYSPLIT does not work with multiple special commands unless it is last
+					if (specialPageArray[p].match('ANYSPLIT:') != null) {
+						inventoryCheckArray = specialPageArray[p].split('ANYSPLIT:')[1].split(',');
+						passedCheck = false;
+						for (q = 0; q < inventoryCheckArray.length; q++) {
+							if (inventoryCheckArray[q] in this.oc(this.inventory)) {
+								passedCheck = true;
+							}
+						}
+						if (passedCheck) {
 							//passed inventory check, redirect to first page
 							this.page = specialPageArray[specialPageArray.length-2];
 							this.processChoice(this.page,0);
