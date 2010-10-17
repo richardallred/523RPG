@@ -7,15 +7,22 @@ INITIALIZE:Horse and cart,0
 INITIALIZE:mealsEaten,0
 INITIALIZE:turnedAway,0
 INITIALIZE:turretLockPicked,0
+INITIALIZE:storeroomVisited,0
+INITIALIZE:guardroomVisited,0
+INITIALIZE:dungeonVisited,0
+INITIALIZE:kitchenVisited,0
 INITIALIZE:killedArchers,0
 INITIALIZE:killedColonel,0
+INITIALIZE:unwashed,0
+INITALIZE:lostPack,0
 INITWEAPON:Sword^*4^*90^*HIT:You swing your blade at the #enemy^*HIT:You lunge at the #enemy with your sword^*HIT:You quickly strike the #enemy^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage to the #enemy.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked by the #enemy.
 INITWEAPON:Mace^*5^*80^*HIT:You bring your mace downwards in a crushing blow^*HIT:You swing your mace in a wide arc^*HIT:You hit the #enemy with a stunning blow^*MISS:Your mace is blocked by the #enemy.^*MISS:You swing your mace, but miss.^*MISS:You fail to do any damage to the #enemy.
 INITWEAPON:Hidden dagger^*2^*75^*HIT:You stab the #enemy with your dagger^*HIT:You slash the #enemy with your dagger^*HIT:You cut the #enemy with your dagger^*MISS:You fail to do any damage to the #enemy.^*MISS:Your dagger is blocked by the #enemy.^*MISS:You swing your dagger, but miss.^*MISS:You stab the #enemy with your dagger, but you are unable to do any damage.
 INITWEAPON:Knife^*1^*70^*HIT:You stab the #enemy with your knife^*HIT:You slash the #enemy with your knife^*HIT:You cut the #enemy with your knife^*MISS:You fail to do any damage to the #enemy.^*MISS:Your knife is blocked by the #enemy.^*MISS:You swing your knife, but miss.^*MISS:You stab the #enemy with your knife, but you are unable to do any damage.
+INITWEAPON:Kitchen Knife^*1^*70^*HIT:You stab the #enemy with your knife^*HIT:You slash the #enemy with your knife^*HIT:You cut the #enemy with your knife^*MISS:You fail to do any damage to the #enemy.^*MISS:Your knife is blocked by the #enemy.^*MISS:You swing your knife, but miss.^*MISS:You stab the #enemy with your knife, but you are unable to do any damage.
 UNARMED:Your bare hands^*-3^*65^*HIT:You quickly punch the #enemy^*HIT:You lash out with your foot in a swift kick^*HIT:You throw the #enemy to the ground^*HIT:You fistcuff the #enemy^*MISS:Your fists fail to do any damage to the #enemy.^*MISS:You kick, but miss.^*MISS:You swing your fist, but miss.^*MISS:You fail to do any damage to the #enemy.
 SHIELD:Shield^*2^*33
-ARMOR:Guard disguise^*1^*75
+ARMOR:Guard Disguise^*1^*75
 ARMOR:Soldier's Uniform^*1^*75
 ARMOR:Chainmail armor^*2^*75
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
@@ -231,9 +238,9 @@ ARMOR:Chainmail armor^*2^*75
 103:Try the Eastern tower^*102^*Go back to the castle entrance^*4
 104:Pull yourself up the grapple
 104:Content not added^*999^*Go back to the castle entrance^*4
-105:INVREMOVE:Grappling hook^*The grapple is firmly attached the window ledge, but you do not want to risk the long climb up the castle wall, since you know that a fall from that height would likely be fatal.  You decide to leave the grapple attached to the window and return to the front of the castle.
-105:Continue^*4
-200:Making sure that none of the patrolling castle guards can see you, you make your way over to the side of the castle and search for entrances near the moat.  You see a 3 foot by 3 foot square tunnel in the side of the castle that is covered by a rusty metal grate with a large lock on it.  You see a small, slime covered waste disposal hole that you could try to squeeze through, but you do not relish the thought.  You see a patch of uneven bricks that you could attempt to scale, but the nearest window that you could enter is 40 feet from the ground.
+105:INVREMOVE:Grappling hook^*The grapple is firmly attached the window ledge, but you do not want to risk the long climb up the castle wall, since you know that a fall from that height would likely be fatal.  You decide to leave the grapple attached to the window and return to the front of the castle.  What do you try next?
+105:DISPLAYIFVAR:turnedAway,0,Try the front gate^*5^*Swim the moat^*200^*DISPLAYIF:Crossbow,Attack the guards with a crossbow^*7
+200:VARSET:unwashed,1^*Making sure that none of the patrolling castle guards can see you, you make your way over to the side of the castle and search for entrances near the moat.  You see a 3 foot by 3 foot square tunnel in the side of the castle that is covered by a rusty metal grate with a large lock on it.  You see a small, slime covered waste disposal hole that you could try to squeeze through, but you do not relish the thought.  You see a patch of uneven bricks that you could attempt to scale, but the nearest window that you could enter is 40 feet from the ground.
 200:Swim towards the tunnel with the grating^*201^*Swim towards the small hole^*202^*Swim towards the uneven bricks and try to scale the wall^*203
 201:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to the grate, where you spend a few minutes choking and retching.  Swallowing the disgusting moat water has caused you to lose 5 health. 
 201:Continue^*204
@@ -244,7 +251,7 @@ ARMOR:Chainmail armor^*2^*75
 203:Restart^*1
 204:INVSPLIT:Lock picking kit^*206^*207
 204:null^*1
-205:LOSEHEALTH:5^*The smell emerging from the hole that you have grabbed on to is even worse than that of the moat.  Grimacing, you pull yourself up to it and shove your pack inside.  As you try to struggle through headfirst, fetid water drips off of your clothing and you are coated with a layer of slime and rotten food.  On the other side, you see a large kitchen.  After several long minutes of struggling, you manage to get your bruised body through.  The painful struggle has cost you another 5 health.  You see an exit on the other side of the room and a basin of water nearby that looks like it is used to wash dishes.
+205:VARSET:vistedKitchen,1^*LOSEHEALTH:5^*The smell emerging from the hole that you have grabbed on to is even worse than that of the moat.  Grimacing, you pull yourself up to it and shove your pack inside.  As you try to struggle through headfirst, fetid water drips off of your clothing and you are coated with a layer of slime and rotten food.  On the other side, you see a large kitchen.  After several long minutes of struggling, you manage to get your bruised body through.  The painful struggle has cost you another 5 health.  You see an exit on the other side of the room and a basin of water nearby that looks like it is used to wash dishes.
 205:Wash yourself and your clothes off in the basin^*208^*Leave the room before someone arrives^*209
 206:You climb up the grate and pull your lock picking kit out of your pack.  The lock is rusted and very difficult to pick, but eventually you manage to get it open.  You let the lock fall into the moat and the grate swings open.  You climb in to what appears to be an exit tunnel from the castle.  There is not much light coming in from outside, and the tunnel descends into pitch darkness very quickly.
 206:Enter the tunnel^*210^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
@@ -252,10 +259,10 @@ ARMOR:Chainmail armor^*2^*75
 207:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.  You try to force the lock, but to no avail.  The lock and the grate are both made of solid metal and there is no way past them.  You have no choice but to abandon the tunnel.
 207:Swim to the small hole^*211^*Swim to the uneven bricks and try to scale the wall^*212
 207:images/locked_test.jpg
-208:You climb into the basin and scrub yourself vigorously with some nearby lye soap.  It seems like it takes forever, but eventually you get most of the filth off of yourself and your clothes.
-208:Leave the kitchen^*280
-209:Leave the room before someone arrives
-209:Content not added^*999
+208:VARSET:unwashed,0^*You don't even bother to remove your clothing as you climb into the basin and scrub yourself vigorously with some nearby lye soap.  It seems like it takes forever, but eventually you get most of the filth off of yourself and your clothes.  After you are clean, you climb out of the basin, dripping wet.  Just then, you see a servant entering the kitchen.  He takes one look at you and runs out of the room, shouting for help.
+208:Chase him out of the room^*800^*Try to find somewhere to hide in the kitchen^*801^*Ignore him and search the kitchen instead^*802
+209:RESTART:^*You decide not to waste any time cleaning yourself off, as someone could enter the kitchen at any moment.  You leave the room and enter a long, narrow hallway that is lined with torches.  You walk down the hallway to the right and pass by a room where you can see several guards playing a gambling game with dice.  One of them glances over at you and gives a shout when he sees your wet, filth-covered clothes and body.  All the guards draw weapons and come after you.  Knowing that you cannot not fight them all and win, you try to run, but the guards catch you and cut you down with their swords.  <br>Your life ends here.
+209:null^*1
 210:INVSPLIT:Tinderbox and torch^*213^*214
 210:null^*1
 211:Though you hate the thought of once again swimming in the moat, you jump down from the tunnel and swim the short distance to the small hole you saw earlier.  As you grab on to the bottom of hole to pull yourself up, you shudder with revulsion when your hand touches a wet, slimy substance.  The hole looks smaller than you remembered and you aren't certain if you can fit through it.
@@ -304,7 +311,7 @@ ARMOR:Chainmail armor^*2^*75
 232:Continue^*234
 233:You continue crawling along the tunnel, wincing every time your wounds touch the stone floor.  After what seems like a long time, you feel several full sacks in front of you.  You struggle for several minutes to push the heavy sacks out of the way, until finally you can see light.  When your eyes adjust, you can see what looks like a torch lit underground storeroom in front of you.
 233:Continue^*234
-234:The underground storeroom is dimly lit by several torches on the wall.  There are sacks scattered everywhere and many barrels of goods.  Most of the goods in the storeroom look like they contain food items and ingredients, but the room has so much stuff that you cannot tell.  You can see a large wine rack on one side of the room and on the other side there is short a flight of stairs leading up to a single door out of the room.
+234:VARSET:storeroomVisited,1^*The underground storeroom is dimly lit by several torches on the wall.  There are sacks scattered everywhere and many barrels of goods.  Most of the goods in the storeroom look like they contain food items and ingredients, but the room has so much stuff that you cannot tell.  You can see a large wine rack on one side of the room and on the other side there is short a flight of stairs leading up to a single door out of the room.
 234:Search the room for useful items^*243^*Leave the room before someone comes in and sees you^*244
 235:As you try to draw your sword, it clangs against a nearby stone wall.  Since you are in a small 3 foot by 3 foot square tunnel, using the sword effectively is almost impossible.  You sheathe the sword and decide to use a different weapon.
 235:Go back^*219
@@ -325,9 +332,9 @@ ARMOR:Chainmail armor^*2^*75
 243:INVADD:Rat poison, Bottle of wine^*You quickly search through the sacks and barrels, but most of it is just food supplies.  In one of the sacks, you see a supply of arsenic in a container labeled "Rat poison", which you take.  You also take one of the bottles of wine from the rack.  You are searching through a tall pile of sacks when you hear the door open and see a Dookian guard entering the room.
 243:Quickly hide in the pile of sacks^*245^*Prepare for combat^*246^*Extinguish a nearby torch and hide in the shadows^*248^*Do nothing and pretend that you belong in the storeroom^*247
 244:Not wanting to waste time searching through the many sacks and barrels in the storeroom, you decide to immediately exit.
-244:Continue^*277
-245:You bury yourself in the large pile of sacks, shoving yourself in between them.  You only barely manage to conceal yourself before you hear the guard walking into the room.  You hear the guard pause for a few moments, before he walks over to the wine rack and takes a bottle.  After the guard finally leaves the storeroom, you wait for a few moments before pulling yourself out of your hiding place.  Not wanting to spend any more time in the room, you immediately head for the exit.
-245:Continue^*277
+244:Continue^*259
+245:You bury yourself in the large pile of sacks, shoving yourself in between them.  You only barely manage to conceal yourself before you hear the guard walking into the room.  You hear the guard pause for a few moments, before he walks over to the wine rack and takes a bottle.  After the guard finally leaves the storeroom, you wait for a few moments before pulling yourself out of your hiding place.
+245:Finish searching the storeroom^*265^*Leave the room^*259
 246:INVSPLIT:Crossbow^*274^*275
 246:null^*1
 247:As the guard enters the room, you sift through the contents of one of the barrels and pretend that nothing strange has happened.  You hear the guard walk towards you and stop for a few seconds as he appraises you.  Then you hear the guard draw his sword.  You will have to defend yourself. 
@@ -340,8 +347,8 @@ ARMOR:Chainmail armor^*2^*75
 250:Continue^*276
 251:INVSPLIT:Crossbow^*253^*254
 251:null^*1
-252:The guard takes the bottle of wine with him and leaves the room.  After waiting for a few moments to make sure the guard does not come back, you decide that you have spent enough time in the storeroom and head to the exit.
-252:Continue^*259
+252:The guard takes the bottle of wine with him and leaves the room without seeing you.
+252:Finish searching the storeroom^*265^*Leave the room^*259
 253:You pull out your crossbow and silently fire a bolt into the guard's back.  The guard immediately collapses and you hear the bottle of wine break as it falls to the ground.  You walk over to the body and find that the guard is dead.
 253:Search the body^*258^*Leave the room instead^*259
 254:INVSPLIT:Hidden dagger^*255^*256
@@ -352,54 +359,53 @@ ARMOR:Chainmail armor^*2^*75
 256:Search the body^*258^*Leave the room instead^*259
 257:INVADD:Sword^*Your silent assassin's clothing makes it easy for you to sneak up on the guard.  When you reach him, you grab him and forcefully throw him into the wine rack, smashing many of the bottles.  Before the guard can recover, you pull his own sword from its scabbard and use it to cut him down.  The guard falls to the ground, dead.
 257:Search the guard's body^*258^*Leave the room instead^*259
-258:INVSPLIT:Sword^*260^*261
+258:INVSPLIT:Sword^*260^*263
 258:null^*1
-259:Leave the room
-259:Content not added^*999
-260:GAINGOLD:5^*You search the guard's body and find a pouch with 5 gold coins, which you take.  The guard also has a mace, which could be a useful weapon.  The guard is almost your size, so his uniform would probably fit you.
-260:Take the mace^*262^*Change into the guard's uniform^*263^*Leave the room^*259
-261:GAINGOLD:5^*You search the guard's body and find a pouch with 5 gold coins, which you take.  The guard also has a sword and mace as weapons.  The guard is almost your size, so his uniform would probably fit you.
-261:Take the sword^*264^*Take the mace^*265^*Change into the guard's uniform^*263^*Leave the room^*259
+259:VARSPLIT:visitedKitchen,1^*823^*824
+259:null^*1
+260:INVSPLIT:Mace^*267^*261
+260:null^*1
+261:GAINGOLD:5^*You search the guard's body and find a pouch with 5 gold coins, which you take.  The guard also has a mace, which could be a useful weapon.  The guard is almost your size, so his uniform would probably fit you. 
+261:Take the mace and the uniform^*266^*Take the mace but keep your current clothes^*262^*Take nothing and leave the room^*259
 262:INVADD:Mace^*You take the guard's mace.  What do you do next?
-262:Change into the guard's uniform^*263^*Leave the room^*259
-263:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb^*You are happy to discard your current outfit, which is filthy and has been covered in muck from swimming in the moat.  You try on the guard's armor and it fits you quite well.
-263:Continue^*267
-264:INVADD:Sword^*You take the guard's sword.  What do you do next?
-264:Take the mace^*262^*Change into the guard's uniform^*263^*Leave the room^*259
-265:INVADD:Mace^*You take the guard's mace.  What do you do next?
-265:Take the sword^*266^*Change into the guard's uniform^*263^*Leave the room^*259
-266:INVADD:Sword^*You take the guard's sword.  What do you do next?
-266:Change into the guard's uniform^*263^*Leave the room^*259
-267:INVSPLIT:Sword^*268^*269
-267:null^*1
-268:INVSPLIT:Mace^*270^*271
-268:null^*1
-269:INVSPLIT:Mace^*272^*273
-269:null^*1
-270:INVADD:Guard disguise^*You take your sword and mace and sheathe them both.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
-270:Continue^*259
-271:INVADD:Guard disguise,Mace^*You pick up the guard's mace off the ground and sheathe it along with your sword.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
-271:Continue^*259
-272:INVADD:Guard disguise,Sword^*You take the guard's sword and mace and sheathe them both.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
-272:Continue^*259
-273:INVADD:Guard disguise,Sword,Mace^*You take the guard's sword and mace and sheathe them both.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.  You head towards the exit of the storeroom.
-273:Continue^*259
+262:Finish searching the storeroom^*265^*Leave the room^*259
+263:GAINGOLD:5^*You search the guard's body and find a pouch with 5 gold coins, which you take.  The guard also has a sword and mace as weapons.  The guard is almost your size, so his uniform would probably fit you. 
+263:Take the weapons and the uniform^*271^*Take the weapons but keep your current clothes^*264^*Take nothing and leave the room^*259
+264:INVADD:Sword,Mace^*You take the guard's weapons.  What do you do next?
+264:Finish searching the storeroom^*265^*Leave the room^*259
+265:Now that you don't have to worry about the guard, you are free to finish searching the storeroom.  You search through several more sacks before deciding that you probably won't find anything else useful.  You decide to leave the storeroom.
+265:Continue^*259
+266:VARSPLIT:unwashed,1^*278,279
+266:null^*1
+267:GAINGOLD:5^*You search the guard's body and find a pouch with 5 gold coins, which you take.  The guard has a sword and mace as weapons, but you already have both of those.  The guard is almost your size, so his uniform would probably fit you. 
+267:Take the guard's uniform^*268^*Keep your current clothes and finish searching the storeroom instead^*265
+268:VARSPLIT:unwashed,1^*269^*270
+269:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise^*INVADD:Guard Disguise^*You are happy to discard your current outfit, which is filthy and has been covered in muck from swimming in the moat.  You try on the guard's armor and it fits you quite well.
+269:Finish searching the storeroom^*265^*Leave the room^*259
+270:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise^*INVADD:Guard Disguise^*You discard your current outfit and try on the guard's armor.  It fits you quite well and you decide to keep it.
+270:Finish searching the storeroom^*265^*Leave the room^*259
+271:VARSPLIT:unwashed,1^*272^*273
+271:null^*1
+272:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Diguise^*INVADD:Sword,Mace,Guard Disguise^*You are happy to discard your current outfit, which is filthy and has been covered in muck from swimming in the moat.  You try on the guard's armor and it fits you quite well. You take the guard's sword and mace and sheathe them as part of your guard disguise.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.
+272:Finish searching the storeroom^*265^*Leave the room^*259
+273:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Diguise^*INVADD:Sword,Mace,Guard Disguise^*You discard your current outfit and try on the guard's armor.  It fits you quite well and you decide to keep it.  You take the guard's sword and mace and sheathe them as part of your guard disguise.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.
+273:Finish searching the storeroom^*265^*Leave the room^*259
 274:You pull out your crossbow as the guard enters the room.  He sees you and draws his sword as he runs towards you.  You fire a bolt at the guard and hit him in the chest, but he continues running towards you.  You don't have enough time to reload and fire another shot, so you prepare for a fight.
 274:Continue^*281
 275:The guard sees you and draws his sword as he runs towards you.  You prepare to fight him.
 275:Continue^*276
-276:COMBAT:You are fighting an armed guard. The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:10,DEFENSE:2,ACCURACY:70,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor.,MISS:Your blow glances off the guard's armor.,MISS:The guard quickly parries your blow.,MISS:The guard evades you.^*You manage to defeat the guard.  You are victorious!
-276:Content not added^*999
+276:COMBAT:You are fighting an armed guard. The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:10,DEFENSE:2,ACCURACY:70,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor.,MISS:Your blow glances off the guard's armor.,MISS:The guard quickly parries your blow.,MISS:The guard evades you.^*The guard succumbs to his wounds and collapses to the ground.
+276:Continue^*258
 277:You exit and find yourself in a long dark hallway lined with doors.  Hanging on the wall is a torch that allows you to clearly see the closest door.  Suddenly, you hear a slow eerie creek comming from the end of the hallway.  You can hear a guard entering.  You can either prepare to fight the guard or dart into the closest door and remain unseen.
 277:Prepare for battle^*278^*Flee and enter the closest door^*279
-278:The guard detects your presence, draws his sword and lunges forard skewering you before you can make a move.  
-278:Combat not added^*999
-279:You manage to evade the guard and enter into the castle kitchen.  You see a washbasin, but nothing else of interest.
-279:Wash your self off^*208^*Leave the room^*280
+278:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb^*INVADD:Mace,Guard Disguise^*You are happy to discard your current outfit, which is filthy and has been covered in muck from swimming in the moat.  You try on the guard's armor and it fits you quite well. You take the guard's mace and sheathe it along with your sword.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.
+278:Finish searching the storeroom^*265^*Leave the room^*259
+279:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb^*INVADD:Mace,Guard Disguise^*You discard your current outfit and try on the guard's armor.  It fits you quite well and you decide to keep it. You take the guard's mace and sheathe it along with your sword.  With the guard's uniform and weapons, you hope that you can pass through the castle without any more trouble.
+279:Finish searching the storeroom^*265^*Leave the room^*259
 280:You are finally greeted with a clear view of the basement of the castle.  You see doors to enter Servant housing, a washroom, the armory, the interrogation room, and finally an dark opening on the other end of the hall of whitch you can see very little.
 280:Peek into the servant housing BEWARE^*999^*Enter the washroom^*282^*Visit the armory^*286^*Try your hand at interrogation^*999^*Venture into the abyss at the opposite end of the hallway^*999
-281:COMBAT:You are fighting a wounded guard. The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:7,DEFENSE:2,HEALTH:25,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor,MISS:Your blow glances off the guard's armor,MISS:The guard quickly parries your blow,MISS:The guard evades you^*You manage to defeat the wounded guard.  You are victorious!
-281:Content not added^*999
+281:COMBAT:You are fighting a wounded guard. The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:7,DEFENSE:2,HEALTH:25,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor,MISS:Your blow glances off the guard's armor,MISS:The guard quickly parries your blow,MISS:The guard evades you^*The guard succumbs to his wounds and collapses to the ground.
+281:Continue^*258
 282:You enter the washroom.  To your left you see a pile of old tattered clothing.  Overhead a dim light illuminates the room.  You see what looks like a pile of gold laying on the floor.  Additionally, you see the door slowly open.
 282:Pickup the gold^*282^*Protect yourself from the creature on the other side of the door^*283^*Slam the door shut^*284
 283:GAINGOLD:5^*You take five gold off of the floor and add it to your inventory.
@@ -814,7 +820,7 @@ ARMOR:Chainmail armor^*2^*75
 500:Content not added^*999
 501:Jump down the pit
 501:Content not added^*999
-550:INVSPLIT:Hidden dagger^*551^*552
+550:VARSET:dungeonVisited,1^*VARSET:lostPack,1^*INVSPLIT:Hidden dagger^*551^*552
 550:null^*1
 551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
 551:Search for a way out of your cell^*553^*Save your strength and wait for a guard to approach^*554
@@ -960,8 +966,67 @@ ARMOR:Chainmail armor^*2^*75
 701:Content not added^*999
 702:RESTART:^*"You're making a terrible mistake," you gasp, "I have done no wrong."  The interrogator laughs.  "An assassin comes into this castle and claims to be innocent?" he says, "You make a terrible liar."  He continues to torture you with the hot iron until he forces the truth out of you.  He then tortures you to death.  <br>Your life ends here. 
 702:null^*1
-703:Content not added
+703:Tell him you are innocent
 703:Content not added^*999
-
+800:Chase him out of the room
+800:Content not added^*999
+801:You quickly glance around the kitchen, but there aren't very many good hiding places.  You eventually settle for crouching behind a cluster of barrels.  Soon, you hear several people enter the kitchen.  You wait nervously as they walk around the kitchen for a few moments.  Eventually, they leave the room and you decide to leave your hiding place.
+801:Search the kitchen^*805^*Leave the kitchen^*806
+802:INVADD:Knife^*You decide that the servant is not a threat and you start to search the kitchen for useful items.  You find several knives and a large assortment of food.  While you are searching, the servant comes back in to the room, flanked by several guards.  The guards draw weapons and come approach you, quickly cornering you.
+802:Try to fight the guards^*803^*Surrender to the guards^*804
+803:RESTART:^*You try to fight the guards, but you are heavily outnumbered and they easily defeat you.  <br>Your life ends here.
+803:null^*1
+804:INVCLEAR:Assassin Garb,Merchant Disguise,Mercenary Disguise,Hidden dagger^*As the guards approach you, you raise your hands in surrender.  The guards roughly search you and remove all the items that you are carrying and all your gold coins.  They then bind your hands behind your back and lead you down several torch lit passageways.  You are lead into a dank dungeon corridor and thrown into a filthy cell.  "Our interrogators will soon find out what your true purpose here is," leers one of the guards as he walks away.
+804:Continue^*550
+805:INVADD:Kitchen Knife^*You search through the kitchen for useful items.  You find several knives, and take one of them.  You see a large assortment of food and meat, but you do not need any right now.  You search through a few of the barrels in the kitchen, but they contain nothing useful.  After you are finished searching, you decide to leave the kitchen.
+805:Continue^*806
+806:You leave the room and enter a long, narrow hallway that is lined with torches.  There is an open door along the hallway to the right, though you cannot see what is inside.  To the left, there is a closed and locked door.  In both directions, the hallway turns off into a corner.
+806:Go to the right^*807^*Go to the left^*808
+807:You walk down the hallway to the right, towards the open door that you saw.  As you get close, you can hear voices coming from the door.  It sounds like several people are playing some sort of gambling game.
+807:Look into the doorway^*816^*Walk past the door^*816^*Turn around and walk to the left^*808
+808:VARSPLIT:storeroomVisited,0^*813^*814
+808:null^*1
+809:You try to open the door but it is firmly locked and it is impossible to force open.
+809:DISPLAYIF:Lock picking kit,Pick the lock^*811^*Knock on the door^*812^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
+810:You walk down the hallway and walk around the corner.
+810:
+811:VARSET:storeroomVisited,1^*You use several picks from your lock picking kit and manage to get the door open.  Inside, you see a large underground storeroom that is dimly lit by several torches on the wall.  There are sacks scattered everywhere and many barrels of goods.  Most of the goods in the storeroom look like they contain food items and ingredients, but the room has so much stuff that you cannot tell.  You can see a large wine rack on the side of the room.
+811:Search the room for useful items^*243^*Leave the room^*244
+812:You knock on the door but there is no response.
+812:DISPLAYIF:Lock picking kit,Pick the lock^*811^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
+813:You walk down the hallway until you reach the locked door.
+813:Continue down the hallway and turn the corner^*810^*Try to open the door^*809
+814:You walk down the hallway past the door to the storeroom and turn around the corner.
+814:Content not added^*999
+815:VARSPLIT:guardroomVisited,0^*826^*827
+815:null^*1
+816:INVSPLIT:Assassin Garb^*817^*818
+816:null^*1
+817:RESTART:^*Inside the door, you can see several guards playing a gambling game with dice.  One of them glances over at you and sees you.  He gives a shout when he notices your assassin's clothing.  All the guards draw weapons and come after you.  Knowing that you cannot not fight them all and win, you try to run, but the guards catch you and cut you down with their swords.  <br>Your life ends here.
+817:null^*1
+818:ANYSPLIT:Guard Disguise,Servant Disguise,Soldier's Uniform^*819^*820
+818:null*^1
+819:VARSET:guardroomVisited,1^*Inside the door, you can see several guards playing a gambling game with dice.  One of them glances over at you and sees you.  He gives you a nod of acknowledgement.  You walk past the door and continue around the corner.
+819:Content not added^*999
+820:VARSPLIT:guardroomVisited,2^*828^*822
+820:null^*1
+821:RESTART:^*You dash past the guards and run around the corner, and you can hear several of them shouting at you as they give chase.  You have a good head start on them, but you run into another guard who is walking towards you.  The guard draws his sword and blocks your path.  The other guards catch up to you and cut you down with their swords.  <br>Your life ends here.
+821:null^*1
+822:Inside the door, you can see several guards playing a gambling game with dice.  One of them glances over at you and sees you.  He shouts in a drunken voice that only servants are allowed to be down here.
+822:Run past the guards^*821^*Say that you are lost^*829
+823:You leave the storeroom and go back to the hallway.  There is a corner to your left and the door to the kitchen to the right.
+823:Go to the left and turn the corner^*810^*Go to the right past the kitchen^*815
+824:You leave the storeroom and enter a torchlit hallway.  There is a corner to the left and two doors to the right.
+824:Go to the left^*810^*Go to the right^*825
+825:VARSET:kitchenVisited,1^*You walk down the hallway to the right until you can see inside one of the doors.  Inside, you see an unoccupied kitchen.  As you already have plenty of food, you doubt that you will find much of use inside it.
+825:Enter the kitchen and search it^*805^*Walk past the kitchen^*815
+826:You walk down the hallway to the right past the kitchen and towards the open door that you saw earlier.  As you get closer, you can hear voices coming from the door.  It sounds like several people are playing some sort of gambling game.
+826:Look into the doorway^*816^*Walk past the door^*816^*Turn around and walk to the left^*808
+827:You walk past the kitchen and the guards' room and walk around the corner (same link as page 819)
+827:Content not added^*999
+828:You try to sneak by the door where you saw the guards playing a gambling game earlier.  One of the guards sees you and shouts to the others.  They draw their swords and approach.  "I find it hard to believe that you could get lost down here twice," says one of them.
+828:Fight the guards^*803^*Run past the guards^*821^*DISPLAYIFVAR:dungeonVisited,0,Surrender to the guards^*804
+829:VARSET:guardroomVisited,2^*Say that you are lost.
+829:Content not added^*999
 999:RESTART:^*Content not added: As you try to go to a place that does not yet exist, you fall through a rip in the space-time continuum.  <br>Your life ends here.
 999:null^*1
