@@ -885,6 +885,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				VARSET:var,value - Set the value of external variable var to value
 				VARDISPLAY:var - Display the value of var in a message
 				COMBAT: - Special command to start combat
+				LOCKPICK:var - Creates a lock picking game with var number of tumblers
 				RESTART: - The story has reached some sort of end, so restart from page 1
 				*/
 				
@@ -1652,6 +1653,29 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							}
 							this.message = this.message + combatString;
 						}
+					}
+					//LOCKPICK: num of tumblers
+					else if (specialPageArray[p].match('LOCKPICK:') !=null) {
+						//Read # of tumblers as set by the call from the input file
+						numOfTumbler = specialPageArray[p].split('LOCKPICK:');
+						numOfTumblers=dojo.number.parse(numOfTumbler[1]);
+						console.log("There are " + numOfTumblers +" Tumblers in this lock");
+						var tumblers= new Array(numOfTumblers);
+						console.log("created tumbler array");
+						for(m=0; m<numOfTumblers; m++){
+							//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
+							if(this.difficulty=="Easy"){
+								tumblers[m]=Math.ceil(Math.random()*3);
+							}else if(this.difficulty=="Normal"){
+								tumblers[m]=Math.ceil(Math.random()*6);
+							}else{
+								tumblers[m]=Math.ceil(Math.random()*10);
+							}
+								
+							console.log("Tumber #"+(m+1)+" requires "+ tumblers[m]+" key presses"); 
+						}
+						//TODO: Add actual lock picking
+						
 					}
 					//restart the game on next button press with RESTART
 					else if (specialPageArray[p].match('RESTART:') != null) {
