@@ -963,8 +963,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if (inventoryAdd[1].match(',') != null) {
 							inventoryAddArray = inventoryAdd[1].split(',');
 							checkForDuplicates = true;
+							displayInvMessage = true;
 							if ('true' in this.oc(inventoryAddArray)) {
 								checkForDuplicates = false;
+							}
+							if ('false' in this.oc(inventoryAddArray)) {
+								displayInvMessage = false;
 							}
 							for (i = 0; i < inventoryAddArray.length; i++) {
 								if (!checkForDuplicates) {
@@ -972,14 +976,21 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								} else {
 									//only add something to the inventory if it is not already there
 									if (inventoryAddArray[i] in this.oc(this.inventory)) {
-										this.message = this.message + ' <br>You already have a ' + inventoryAddArray[i] + ' so you do not take another one.'
-									} else if (inventoryAddArray[i] != 'true') {
+										if (displayInvMessage) {
+											this.message = this.message + ' <br>You already have a ' + inventoryAddArray[i] + ' so you do not take another one.'
+										}
+									} else if (inventoryAddArray[i] != 'true' && inventoryAddArray[i] != 'false') {
 										this.inventory[this.inventory.length] = inventoryAddArray[i];
 									}
 								}
 							}
 						} else {
-							this.inventory[this.inventory.length] = inventoryAdd[1];
+							//only one parameter specified
+							if (inventoryAdd[1] in this.oc(this.inventory)) {
+								this.message = this.message + ' <br>You already have a ' + inventoryAdd[1] + ' so you do not take another one.'
+							} else {
+								this.inventory[this.inventory.length] = inventoryAdd[1];
+							}
 						}
 						inventoryDisplayTest = false;
 						if (inventoryDisplayTest) {
@@ -1326,58 +1337,194 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if (this.inCombat == 0) {
 							//parse enemy info
 							combatInfo = specialPageArray[p].split('COMBAT:')[1].split(',');
-							enemyName = 'enemy';
-							enemyWeaponName = 'None';
-							enemyStr = 10;
-							enemyDef = 0;
-							enemyHealth = 20;
-							initialEnemyHealth = 20;
-							enemyHealthFraction = enemyHealth/initialEnemyHealth;
-							enemyAcc = 55;
-							enemyHitMessages = [];
-							enemyMissMessages = [];
+							//enemyName = 'enemy';
+							//enemyWeaponName = 'None';
+							//enemyStr = 10;
+							//enemyDef = 0;
+							//enemyHealth = 20;
+							//initialEnemyHealth = 20;
+							//enemyHealthFraction = enemyHealth/initialEnemyHealth;
+							//enemyAcc = 55;
+							//enemyHitMessages = [];
+							//enemyMissMessages = [];
+							enemies = [];
+							//default enemy values (if none specified)
+							var enemyVar = {
+								name: 'enemy',
+								weapon: 'None',
+								str: 10,
+								def: 0,
+								health: 20,
+								initialHealth: 20,
+								acc: 55,
+								hitmessages:[],
+								missmessages:[]
+							}
+							enemies[0] = enemyVar;
+							enemyHealthFraction = 1;
 							for (x = 0; x < combatInfo.length; x++) {
 								if (combatInfo[x].match('NAME:') != null) {
-									enemyName = combatInfo[x].split('NAME:')[1];
+									enemies[0].name = combatInfo[x].split('NAME:')[1];
 								}
-								if (combatInfo[x].match('WEAPON:') != null) {
-									enemyWeaponName = combatInfo[x].split('WEAPON:')[1];
+								else if (combatInfo[x].match('WEAPON:') != null) {
+									enemies[0].weapon = combatInfo[x].split('WEAPON:')[1];
 								}
-								if (combatInfo[x].match('STRENGTH:') != null) {
-									enemyStr = dojo.number.parse(combatInfo[x].split('STRENGTH:')[1]);
+								else if (combatInfo[x].match('STRENGTH:') != null) {
+									enemies[0].str = dojo.number.parse(combatInfo[x].split('STRENGTH:')[1]);
+									if (isNaN(enemies[0].str)) {
+										console.log('Error initializing strength for ' + combatInfo[0] + '. (Not a number)!');
+										enemies[0].str = 10;
+									}
 								}
-								if (isNaN(enemyStr)) {
-									console.log('Error initializing strength for ' + combatInfo[0] + '. (Not a number)!');
-									enemyStr = 10;
+								else if (combatInfo[x].match('DEFENSE:') != null) {
+									enemies[0].def = dojo.number.parse(combatInfo[x].split('DEFENSE:')[1]);
+									if (isNaN(enemies[0].def)) {
+										console.log('Error initializing defense for ' + combatInfo[0] + '. (Not a number)!');
+										enemies[0].def = 0;
+									}
 								}
-								if (combatInfo[x].match('DEFENSE:') != null) {
-									enemyDef = dojo.number.parse(combatInfo[x].split('DEFENSE:')[1]);
+								else if (combatInfo[x].match('ACCURACY:') != null) {
+									enemies[0].acc = dojo.number.parse(combatInfo[x].split('ACCURACY:')[1]);
+									if (isNaN(enemies[0].acc)) {
+										console.log('Error initializing accuracy for ' + combatInfo[0] + '. (Not a number)!');
+										enemies[0].acc = 55;
+									}
 								}
-								if (combatInfo[x].match('ACCURARCY:') != null) {
-									enemyAcc = dojo.number.parse(combatInfo[x].split('ACCURARCY:')[1]);
+								else if (combatInfo[x].match('HEALTH:') != null) {
+									enemies[0].health = dojo.number.parse(combatInfo[x].split('HEALTH:')[1]);
+									if (isNaN(enemies[0].health)) {
+										console.log('Error initializing health for ' + combatInfo[0] + '. (Not a number)!');
+										enemies[0].health = 20;
+									}
+									enemies[0].initialHealth = enemies[0].health;
 								}
-								if (isNaN(enemyDef)) {
-									console.log('Error initializing defense for ' + combatInfo[0] + '. (Not a number)!');
-									enemyDef = 0;
+								else if (combatInfo[x].match('HIT:') != null) {
+									enemies[0].hitmessages[enemies[0].hitmessages.length] = combatInfo[x].split('HIT:')[1];
 								}
-								if (combatInfo[x].match('HEALTH:') != null) {
-									enemyHealth = dojo.number.parse(combatInfo[x].split('HEALTH:')[1]);
-									initialEnemyHealth = enemyHealth;
+								else if (combatInfo[x].match('MISS:') != null) {
+									enemies[0].missmessages[enemies[0].missmessages.length] = combatInfo[x].split('MISS:')[1];
 								}
-								if (isNaN(enemyHealth)) {
-									console.log('Error initializing health for ' + combatInfo[0] + '. (Not a number)!');
-									enemyHealth = 20;
+								else if (combatInfo[x].match('RUN:') != null) {
+									console.log("Run away: ") + combatInfo[x].split('RUN:')[1];
 								}
-								if (combatInfo[x].match('HIT:') != null) {
-									enemyHitMessages[enemyHitMessages.length] = combatInfo[x].split('HIT:')[1];
+								else if (combatInfo[x].match('NAME') != null) {
+									//added multiple enemies by use of NAME2, NAME3, etc
+									newEnemyNumber = dojo.number.parse(combatInfo[x].split('NAME')[1].split(':')[0]);
+									if (!isNaN(newEnemyNumber)) {
+										var newEnemy = {
+											name: 'enemy',
+											weapon: 'None',
+											str: 10,
+											def: 0,
+											health: 20,
+											initialHealth: 20,
+											acc: 55,
+											hitmessages:[],
+											missmessages:[]
+										}
+										enemies[newEnemyNumber-1] = newEnemy;
+										enemies[newEnemyNumber-1].name = combatInfo[x].split('NAME')[1].split(':')[1];
+									}
 								}
-								if (combatInfo[x].match('MISS:') != null) {
-									enemyMissMessages[enemyMissMessages.length] = combatInfo[x].split('MISS:')[1];
+								else if (combatInfo[x].match('WEAPON') != null) {
+									newEnemyNumber = dojo.number.parse(combatInfo[x].split('WEAPON')[1].split(':')[0]);
+									if (!isNaN(newEnemyNumber)) {
+										if (enemies.length < newEnemyNumber) {
+											console.log('Error: NAME' + newEnemyNumber + ': must be specified for this enemy.');
+										} else {
+											enemies[newEnemyNumber-1].weapon = combatInfo[x].split('WEAPON')[1].split(':')[1];
+										}
+									}
+								}
+								else if (combatInfo[x].match('STRENGTH') != null) {
+									newEnemyNumber = dojo.number.parse(combatInfo[x].split('STRENGTH')[1].split(':')[0]);
+									if (!isNaN(newEnemyNumber)) {
+										if (enemies.length < newEnemyNumber) {
+											console.log('Error: NAME' + newEnemyNumber + ': must be specified for this enemy.');
+										} else {
+											enemies[newEnemyNumber-1].str = combatInfo[x].split('STRENGTH')[1].split(':')[1];
+											if (isNaN(enemies[newEnemyNumber-1].str)) {
+												console.log('Error initializing strength for ' + enemies[newEnemyNumber-1].name + '. (Not a number)!');
+												enemies[newEnemyNumber-1].str = 10;
+											}
+										}
+									}
+								}
+								else if (combatInfo[x].match('DEFENSE') != null) {
+									newEnemyNumber = dojo.number.parse(combatInfo[x].split('DEFENSE')[1].split(':')[0]);
+									if (!isNaN(newEnemyNumber)) {
+										if (enemies.length < newEnemyNumber) {
+											console.log('Error: NAME' + newEnemyNumber + ': must be specified for this enemy.');
+										} else {
+											enemies[newEnemyNumber-1].def = combatInfo[x].split('DEFENSE')[1].split(':')[1];
+											if (isNaN(enemies[newEnemyNumber-1].def)) {
+												console.log('Error initializing defense for ' + enemies[newEnemyNumber-1].name + '. (Not a number)!');
+												enemies[newEnemyNumber-1].def = 0;
+											}
+										}
+									}
+								}
+								else if (combatInfo[x].match('ACCURACY') != null) {
+									newEnemyNumber = dojo.number.parse(combatInfo[x].split('ACCURACY')[1].split(':')[0]);
+									if (!isNaN(newEnemyNumber)) {
+										if (enemies.length < newEnemyNumber) {
+											console.log('Error: NAME' + newEnemyNumber + ': must be specified for this enemy.');
+										} else {
+											enemies[newEnemyNumber-1].acc = combatInfo[x].split('ACCURACY')[1].split(':')[1];
+											if (isNaN(enemies[newEnemyNumber-1].acc)) {
+												console.log('Error initializing accuracy for ' + enemies[newEnemyNumber-1].name + '. (Not a number)!');
+												enemies[newEnemyNumber-1].acc = 55;
+											}
+										}
+									}
+								}
+								else if (combatInfo[x].match('HEALTH') != null) {
+									newEnemyNumber = dojo.number.parse(combatInfo[x].split('HEALTH')[1].split(':')[0]);
+									if (!isNaN(newEnemyNumber)) {
+										if (enemies.length < newEnemyNumber) {
+											console.log('Error: NAME' + newEnemyNumber + ': must be specified for this enemy.');
+										} else {
+											enemies[newEnemyNumber-1].health = combatInfo[x].split('HEALTH')[1].split(':')[1];
+											if (isNaN(enemies[newEnemyNumber-1].health)) {
+												console.log('Error initializing health for ' + enemies[newEnemyNumber-1].name + '. (Not a number)!');
+												enemies[newEnemyNumber-1].health = 20;
+											}
+											enemies[newEnemyNumber-1].initialHealth = enemies[newEnemyNumber-1].health;
+										}
+									}
+								}
+								else if (combatInfo[x].match('HIT') != null) {
+									newEnemyNumber = dojo.number.parse(combatInfo[x].split('HIT')[1].split(':')[0]);
+									if (!isNaN(newEnemyNumber)) {
+										if (enemies.length < newEnemyNumber) {
+											console.log('Error: NAME' + newEnemyNumber + ': must be specified for this enemy.');
+										} else {
+											enemies[newEnemyNumber-1].hitmessages[enemies[newEnemyNumber-1].hitmessages.length] = combatInfo[x].split('HIT')[1].split(':')[1];
+										}
+									}
+								}
+								else if (combatInfo[x].match('MISS') != null) {
+									newEnemyNumber = dojo.number.parse(combatInfo[x].split('MISS')[1].split(':')[0]);
+									if (!isNaN(newEnemyNumber)) {
+										if (enemies.length < newEnemyNumber) {
+											console.log('Error: NAME' + newEnemyNumber + ': must be specified for this enemy.');
+										} else {
+											enemies[newEnemyNumber-1].missmessages[enemies[newEnemyNumber-1].missmessages.length] = combatInfo[x].split('MISS')[1].split(':')[1];
+										}
+									}
+								}
+							}
+							aliveEnemies = [];
+							for (e = 0; e < enemies.length; e++) {
+								if (enemies[e].health > 0) {
+									aliveEnemies[e] = enemies[e];
 								}
 							}
 							for (x = 0; x < this.possibleWeapons.length; x++) {
-								if (this.possibleWeapons[x].name == enemyWeaponName) {
-									enemyStr = dojo.number.parse(enemyStr) + dojo.number.parse(this.possibleWeapons[x].strengthbonus);
+								for (y = 0; y < enemies.length; y++) {
+									if (this.possibleWeapons[x].name == enemies[y].weapon) {
+										enemies[y].str = dojo.number.parse(enemies[y].str) + dojo.number.parse(this.possibleWeapons[x].strengthbonus);
+									}
 								}
 							}
 						}
@@ -1388,7 +1535,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						} else {
 							disableFight = false;
 						}
-						if (this.inCombat == 1 && choiceNum == 2 && this.chooseWeapon == 0) {
+						if (this.inCombat == 1 && choiceNum == aliveEnemies.length+1 && this.chooseWeapon == 0) {
 							//change weapon selected
 							this.chooseWeapon = 1;
 						} else {
@@ -1460,7 +1607,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.chooseWeapon = -1;
 							this.inCombat = 1;
 						} else {
-							//default for wonCombat is false, set to true if the enemy's health goes to zero
+							//default for wonCombat is false, set to true if the health of all enemies goes to zero
 							wonCombat = false;
 							if (currentShield != "None") {
 								this.message = combatInfo[0] + '.  You are using: ' + currentWeapon.name + ' and ' + currentShield.name + '. ';
@@ -1471,180 +1618,174 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								this.js.stop();
 								this.js.say({text : this.message, cache : true});
 							}
-							if (choiceNum == 1 && !disableFight) {
-								//Fight selected
-								strCompare = this.strength + currentWeapon.strengthbonus - enemyStr;
-								//k is randomly selected from 0-10.  A higher k value means that you deal more and take less damage.
-								k = Math.floor(Math.random()*(10));
-								//75% chance that enemy defense will reduce damage you deal
-								if (Math.random() <= 0.75) {
-									damageDealt = 4 + Math.round(strCompare/2) + k - enemyDef;
-								} else {
-									damageDealt = 4 + Math.round(strCompare/2) + k;
-								}
-								//if you are at low health, you will deal less damage
-								damageDealt = damageDealt - Math.round(Math.floor(damageDealt * (1 - this.health/this.STARTING_HEALTH))/2);
-								damageTaken = 4 - Math.round(strCompare/2) - Math.floor(k/2);
-								if (damageDealt <= 0) {
-									//always deal at least one damage, if you hit
-									damageDealt = 1;
-								}
-								if (damageTaken < 0) {
-									damageTaken = 0;
-								}
-								damageRatio = damageDealt/enemyHealth;
-								if (damageDealt == 1) {
-									damageMessage = ' and barely make a scratch,'
-								} else if (k < 5) {
-									damageMessage = ' and inflict a minor wound,'
-								} else if (k < 7) {
-									damageMessage = ' and inflict a large wound,'
-								} else if (k < 9) {
-									damageMessage = ' and inflict a deep wound,'
-								} else {
-									damageMessage = ' and inflict a grave wound,'
-								}
-								randomNum = Math.random();
-								if (randomNum <= currentWeapon.accuracy/100) {
-									youHit = true;
-								} else {
-									youHit = false;
-								}
-								randomNum = Math.random();
-								modifiedEnemyAcc = enemyAcc;
-								if (currentShield != "None") {
-									modifiedEnemyAcc -= 10;
-								}
-								if (currentArmor != "None") {
-									modifiedEnemyAcc -= 5;
-								}
-								if (randomNum <= modifiedEnemyAcc/100) {
-									enemyHit = true;
-								} else {
-									enemyHit = false;
-								}
-								for (t = 0; t < currentWeapon.hitMessages.length; t++) {
-									currentWeapon.hitMessages[t] = currentWeapon.hitMessages[t].replace('#enemy',enemyName);
-								}
-								for (t = 0; t < currentWeapon.missMessages.length; t++) {
-									currentWeapon.missMessages[t] = currentWeapon.missMessages[t].replace('#enemy',enemyName);
-								}
-								if (youHit) {
-									k = Math.floor(Math.random()*(currentWeapon.hitMessages.length));
-									combatString = combatString + ' <br>' + currentWeapon.hitMessages[k] + damageMessage + ' dealing ' + damageDealt + ' damage.';
-									//this.message = this.message + ' <br>' + currentWeapon.hitMessages[k] + damageMessage + ' dealing ' + damageDealt + ' damage.';
-									enemyHealth -= damageDealt;
-									enemyHealthFraction = enemyHealth/initialEnemyHealth;
-									if (enemyHealthFraction <= 0) {
-										combatString = combatString + ' <br>The ' + enemyName + ' collapses. '
-										//this.message = this.message + ' <br>The ' + enemyName + ' collapses. '
-									} else if (enemyHealthFraction < 0.1) {
-										combatString = combatString + ' <br>The ' + enemyName + ' looks nearly dead.'
-										//this.message = this.message + ' <br>The ' + enemyName + ' looks nearly dead.'
-									} else if (enemyHealthFraction < 0.2) {
-										combatString = combatString + ' <br>The ' + enemyName + ' looks severely wounded.'
-										//this.message = this.message + ' <br>The ' + enemyName + ' looks severely wounded.'
-									} else if (enemyHealthFraction < 0.3) {
-										combatString = combatString + ' <br>The ' + enemyName + ' looks weak.'
-										//this.message = this.message + ' <br>The ' + enemyName + ' looks weak.'
-									} else if (enemyHealthFraction < 0.4) {
-										combatString = combatString + ' <br>The ' + enemyName + ' looks quite wounded.'
-										//this.message = this.message + ' <br>The ' + enemyName + ' looks quite wounded.'
-									} else if (enemyHealthFraction < 0.5) {
-										combatString = combatString + ' <br>The ' + enemyName + ' looks hurt.'
-										//this.message = this.message + ' <br>The ' + enemyName + ' looks hurt.'
-									} else if (enemyHealthFraction < 0.6) {
-										combatString = combatString + ' <br>The ' + enemyName + ' looks somewhat wounded.'
-										//this.message = this.message + ' <br>The ' + enemyName + ' looks somewhat wounded.'
-									} else if (enemyHealthFraction < 0.8) {
-										combatString = combatString + ' <br>The ' + enemyName + ' looks a little wounded.'
-										//this.message = this.message + ' <br>The ' + enemyName + ' looks a little wounded.'
+							if (choiceNum <= enemies.length && !disableFight) {
+								for (f = 0; f < aliveEnemies.length; f++) {
+									//Fight selected
+									strCompare = this.strength + currentWeapon.strengthbonus - aliveEnemies[f].str;
+									//k is randomly selected from 0-10.  A higher k value means that you deal more and take less damage.
+									k = Math.floor(Math.random()*(10));
+									//75% chance that enemy defense will reduce damage you deal
+									if (Math.random() <= 0.75) {
+										damageDealt = 4 + Math.round(strCompare/2) + k - aliveEnemies[f].def;
 									} else {
-										combatString = combatString + ' <br>The ' + enemyName + ' looks mostly healthy.'
-										//this.message = this.message + ' <br>The ' + enemyName + ' looks mostly healthy.'
+										damageDealt = 4 + Math.round(strCompare/2) + k;
 									}
-									
-								} else {
-									if (Math.random() < 0.4) {
-										k = Math.floor(Math.random()*(currentWeapon.missMessages.length));
-										combatString = combatString + ' <br>' + currentWeapon.missMessages[k] + ' ';
-										//this.message = this.message + ' <br>' + currentWeapon.missMessages[k];
-									} else {
-										k = Math.floor(Math.random()*(enemyMissMessages.length));
-										combatString = combatString + ' <br>' + enemyMissMessages[k] + ' ';
-										//this.message = this.message + ' <br>' + enemyMissMessages[k];
-									}
-								}
-								if (enemyHit && enemyHealth > 0) {
-									k = Math.floor(Math.random()*(enemyHitMessages.length));
-									damageTaken = damageTaken - Math.round(Math.floor(damageTaken * (1 - enemyHealthFraction))/2);
-									if (damageTaken <= 0) {
-										//lose a minimum of 1 health if you are hit (unless you have armor)
-										damageTaken = 1;
-									}
-									combatString = combatString + ' <br>' + enemyHitMessages[k] + ', hitting you for ' + damageTaken + ' damage. ';
-									//this.message = this.message + ' <br>' + enemyHitMessages[k] + ', hitting you for ' + damageTaken + ' damage.';
-									//reduce damage from shield and armor
-									if (currentShield != "None") {
-										if (Math.random() <= currentShield.probability/100) {
-											damageTaken -= currentShield.defense;
-											if (damageTaken > 0) {
-												combatString = combatString + ' <br>Your ' + currentShield.name + ' protects you from some of the damage. ';
-											} else {
-												combatString = combatString + ' <br>Your ' + currentShield.name + ' protects you from all of the damage. ';
-											}
-											//this.message = this.message + ' <br>Your ' + currentShield.name + ' has protected you from some of the damage.';
-										}
-									}
-									if (currentArmor != "None" && damageTaken > 0) {
-										if (Math.random() <= currentArmor.probability/100) {
-											damageTaken -= currentArmor.defense;
-											if (damageTaken > 0) {
-												combatString = combatString + ' <br>Your ' + currentArmor.name + ' protects you from some of the damage. ';
-											} else {
-												combatString = combatString + ' <br>Your ' + currentArmor.name + ' protects you from all of the damage. ';
-											}
-											//this.message = this.message + ' <br>Your ' + currentShield.name + ' has protected you from some of the damage.';
-										}
+									//if you are at low health, you will deal less damage
+									damageDealt = damageDealt - Math.round(Math.floor(damageDealt * (1 - this.health/this.STARTING_HEALTH))/2);
+									damageTaken = 4 - Math.round(strCompare/2) - Math.floor(k/2);
+									if (damageDealt <= 0) {
+										//always deal at least one damage, if you hit
+										damageDealt = 1;
 									}
 									if (damageTaken < 0) {
 										damageTaken = 0;
 									}
-									this.health -= damageTaken;
-								} else if (enemyHealth > 0) {
-									//k = Math.floor(Math.random()*(enemyMissMessages.length+1));
-									if (currentShield != "None" && Math.random() < 0.5) {
-										combatString = combatString + ' <br>You block the ' + enemyName + ' with your shield. ';
-										//this.message = this.message + ' <br>You block the ' + enemyName + 'with your shield.';
+									if (damageDealt == 1) {
+										damageMessage = ' and barely make a scratch,'
+									} else if (k < 5) {
+										damageMessage = ' and inflict a minor wound,'
+									} else if (k < 7) {
+										damageMessage = ' and inflict a large wound,'
+									} else if (k < 9) {
+										damageMessage = ' and inflict a deep wound,'
 									} else {
-										combatString = combatString + ' <br>The ' + enemyName + ' misses. ';
-										//this.message = this.message + ' <br>The ' + enemyName + ' misses.';
+										damageMessage = ' and inflict a grave wound,'
+									}
+									randomNum = Math.random();
+									if (randomNum <= currentWeapon.accuracy/100) {
+										youHit = true;
+									} else {
+										youHit = false;
+									}
+									randomNum = Math.random();
+									modifiedEnemyAcc = aliveEnemies[f].acc;
+									if (currentShield != "None") {
+										modifiedEnemyAcc -= 10;
+									}
+									if (currentArmor != "None") {
+										modifiedEnemyAcc -= 5;
+									}
+									if (randomNum <= modifiedEnemyAcc/100) {
+										enemyHit = true;
+									} else {
+										enemyHit = false;
+									}
+									if (f == choiceNum - 1) {
+										if (youHit) {
+											k = Math.floor(Math.random()*(currentWeapon.hitMessages.length));
+											combatString = combatString + ' <br>' + currentWeapon.hitMessages[k].replace('#enemy',aliveEnemies[f].name) + damageMessage + ' dealing ' + damageDealt + ' damage.';
+											aliveEnemies[f].health -= damageDealt;
+											enemyHealthFraction = aliveEnemies[f].health/aliveEnemies[f].initialHealth;
+											if (enemyHealthFraction <= 0) {
+												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' collapses. '
+											} else if (enemyHealthFraction < 0.1) {
+												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' looks nearly dead.'
+											} else if (enemyHealthFraction < 0.2) {
+												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' looks severely wounded.'
+											} else if (enemyHealthFraction < 0.3) {
+												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' looks weak.'
+											} else if (enemyHealthFraction < 0.4) {
+												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' looks quite wounded.'
+											} else if (enemyHealthFraction < 0.5) {
+												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' looks hurt.'
+											} else if (enemyHealthFraction < 0.6) {
+												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' looks somewhat wounded.'
+											} else if (enemyHealthFraction < 0.8) {
+												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' looks a little wounded.'
+											} else {
+												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' looks mostly healthy.'
+											}
+										} else {
+											if (Math.random() < 0.4 || aliveEnemies[f].missmessages.length == 0) {
+												k = Math.floor(Math.random()*(currentWeapon.missMessages.length));
+												combatString = combatString + ' <br>' + currentWeapon.missMessages[k].replace('#enemy',aliveEnemies[f].name) + ' ';
+												//this.message = this.message + ' <br>' + currentWeapon.missMessages[k];
+											} else {
+												k = Math.floor(Math.random()*(aliveEnemies[f].missmessages.length));
+												combatString = combatString + ' <br>' + aliveEnemies[f].missmessages[k] + ' ';
+											}
+										}
+									}
+									if (enemyHit && aliveEnemies[f].health > 0) {
+										k = Math.floor(Math.random()*(aliveEnemies[f].hitmessages.length));
+										damageTaken = damageTaken - Math.round(Math.floor(damageTaken * (1 - enemyHealthFraction))/2);
+										if (damageTaken <= 0) {
+											//lose a minimum of 1 health if you are hit (unless you have armor)
+											damageTaken = 1;
+										}
+										combatString = combatString + ' <br>' + aliveEnemies[f].hitmessages[k] + ', hitting you for ' + damageTaken + ' damage. ';
+										//reduce damage from shield and armor
+										if (currentShield != "None") {
+											if (Math.random() <= currentShield.probability/100) {
+												damageTaken -= currentShield.defense;
+												if (damageTaken > 0) {
+													combatString = combatString + ' <br>Your ' + currentShield.name + ' protects you from some of the damage. ';
+												} else {
+													combatString = combatString + ' <br>Your ' + currentShield.name + ' protects you from all of the damage. ';
+												}
+												//this.message = this.message + ' <br>Your ' + currentShield.name + ' has protected you from some of the damage.';
+											}
+										}
+										if (currentArmor != "None" && damageTaken > 0) {
+											if (Math.random() <= currentArmor.probability/100) {
+												damageTaken -= currentArmor.defense;
+												if (damageTaken > 0) {
+													combatString = combatString + ' <br>Your ' + currentArmor.name + ' protects you from some of the damage. ';
+												} else {
+													combatString = combatString + ' <br>Your ' + currentArmor.name + ' protects you from all of the damage. ';
+												}
+											}
+										}
+										if (damageTaken < 0) {
+											damageTaken = 0;
+										}
+										this.health -= damageTaken;
+									} else if (aliveEnemies[f].health > 0) {
+										if (currentShield != "None" && Math.random() < 0.5) {
+											combatString = combatString + ' <br>You block the ' + aliveEnemies[f].name + ' with your shield. ';
+										} else {
+											combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' misses. ';
+										}
+									}
+
+									if (this.health < 0) {
+										this.health = 0;
+									}
+									if (f == aliveEnemies.length - 1 || this.health <= 0) {
+										combatString = combatString + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+									}
+									if (aliveEnemies[f].health > 0) {
+										combatminusbr = combatString.replace(new RegExp( '<br>', 'g' ),'');
+										this.js.stop();
+										this.js.say({text : combatminusbr, cache : true});
+									}
+									//this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
+									if (this.health <= 0) {
+										combatString = combatString + '<br>The ' + aliveEnemies[f].name + ' has killed you in combat. ';
+										f = aliveEnemies.length;
+										this.restart = 1;
 									}
 								}
-
-								if (this.health < 0) {
-									this.health = 0;
-								}
-								combatString = combatString + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
-								if (enemyHealth > 0) {
-									combatminusbr = combatString.replace(new RegExp( '<br>', 'g' ),'');
-									this.js.stop();
-									this.js.say({text : combatminusbr, cache : true});
-								}
-								//this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
-								if (this.health <= 0) {
-									combatString = combatString + '<br>The ' + enemyName + ' has killed you in combat. ';
-									//this.message = this.message + '<br>The ' + enemyName + ' has killed you in combat.';
-									this.restart = 1;
-								} else if (enemyHealth <= 0) {
+								if (this.health > 0) {
+									//the player has survived this round of combat
 									wonCombat = true;
-								}
+									aliveEnemies = [];
+									for (e = 0; e < enemies.length; e++) {
+										if (enemies[e].health > 0) {
+											//update which enemies are still alive
+											aliveEnemies[aliveEnemies.length] = enemies[e];
+											wonCombat = false;
+										}
+									}
+								}								
 							}
 							choicesArray = [];
-							choicesArray[0] = 'Fight';
-							choicesArray[1] = this.page;
-							choicesArray[2] = 'Change Weapon';
-							choicesArray[3] = this.page;
+							for (e = 0; e < aliveEnemies.length*2; e+=2) {
+								choicesArray[e] = 'Fight the ' + aliveEnemies[e/2].name;
+								choicesArray[e+1] = this.page;
+							}
+							choicesArray[aliveEnemies.length*2] = 'Change Weapon';
+							choicesArray[aliveEnemies.length*2 + 1] = this.page;
 							if (wonCombat) {
 								combatString = combatString + '<br>' + specialPageArray[p+1];
 								//this.message = this.message + '<br>' + specialPageArray[p+1];
