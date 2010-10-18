@@ -237,10 +237,18 @@ ARMOR:Chainmail armor^*2^*75
 102:Pull yourself up the grapple^*104^*Abandon your grappling hook and go back around to the front of the castle^*105
 103:LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.
 103:Try the Eastern tower^*102^*Go back to the castle entrance^*4
-104:Pull yourself up the grapple
-104:Content not added^*999^*Go back to the castle entrance^*4
+104:You slowly scale the castle wall being careful to stay quiet and not bring any attention to yourself.  You finally reach the ledge of the window and you pull yourself inside.  You hear some faint talking coming from the hallway.  The room you are now in is mostly empty just a desk for a gaurd to sit at and watch out the window.
+104:Search the room^*106^*Quietly move out into the hallway^*107
 105:INVREMOVE:Grappling hook^*The grapple is firmly attached the window ledge, but you do not want to risk the long climb up the castle wall, since you know that a fall from that height would likely be fatal.  You decide to leave the grapple attached to the window and return to the front of the castle.  What do you try next?
 105:DISPLAYIFVAR:turnedAway,0,Try the front gate^*5^*Swim the moat^*200^*DISPLAYIF:Crossbow,Attack the guards with a crossbow^*7
+106:INVSPLIT:First aid kit^*108^*109
+106:null^*1
+107:LOCKPICK:100^*You creep into the hallway and the sounds of voices seem to be coming from a room at the end of the hall.  It sounds like at least three distinct voices, one of which is very angry.  
+107:Content not added^*999
+108:You look around and find nothing of particular use to you, just lots of gaurd notes and old games of tic tac toe scribbled out on parchment.  You decide to head out into the hallway.
+108:Continue^*107
+109:INVADD:First aid kit^*After rifling through the papers that are on the desk and going through the drawers, you find a First aid kit and place it in your pocket, just incase you might need it later.  You now decide to continue out into the hall
+109:Continue^*107
 200:VARSET:unwashed,1^*Making sure that none of the patrolling castle guards can see you, you make your way over to the side of the castle and search for entrances near the moat.  You see a 3 foot by 3 foot square tunnel in the side of the castle that is covered by a rusty metal grate with a large lock on it.  You see a small, slime covered waste disposal hole that you could try to squeeze through, but you do not relish the thought.  You see a patch of uneven bricks that you could attempt to scale, but the nearest window that you could enter is 40 feet from the ground.
 200:Swim towards the tunnel with the grating^*201^*Swim towards the small hole^*202^*Swim towards the uneven bricks and try to scale the wall^*203
 201:LOSEHEALTH:5^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to the grate, where you spend a few minutes choking and retching.  Swallowing the disgusting moat water has caused you to lose 5 health. 
