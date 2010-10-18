@@ -360,6 +360,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	_settings: function(event) {
 		//"Settings" or "Go back" was selected
 		if (this.menuLevel == -1 || this.menuLevel == 1) {
+			if (this.menuLevel == -1) {
+				tempPageText = this.message;
+				tempChoices = [];
+				for (i = 0; i < choicesArray.length; i++) {
+					tempChoices[i] = choicesArray[i];
+				}
+			}
 			this.menuLevel = 0;
 			this.menuCategory = "Settings";
 			//currently in the game, go to settings menu
@@ -376,7 +383,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//currently in main settings menu, go back to the game
 			this.menuLevel = -1;
 			this.settings.attr('label','Settings');
-			this.processChoice(this.page,0);
+			//this.processChoice(this.page,0);
+			this.message = tempPageText;
+			choicesArray = [];
+			for (i = 0; i < tempChoices.length; i++) {
+				choicesArray[i] = tempChoices[i];
+			}
 		} else {
 			this.menuLevel = this.menuLevel - 2;
 			this.navigateSettings(0);
