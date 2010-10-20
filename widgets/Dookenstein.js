@@ -1794,7 +1794,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							}
 							choicesArray = [];
 							for (e = 0; e < aliveEnemies.length*2; e+=2) {
-								choicesArray[e] = 'Fight the ' + aliveEnemies[e/2].name;
+								choicesArray[e] = 'Attack the ' + aliveEnemies[e/2].name;
 								choicesArray[e+1] = this.page;
 							}
 							choicesArray[aliveEnemies.length*2] = 'Change Weapon';
