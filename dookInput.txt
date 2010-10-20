@@ -567,13 +567,13 @@ ARMOR:Chainmail armor^*2^*75
 368:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 369:You look at the variety of available food stalls.  You see merchants selling fresh bread, cheeses, vegetables, and roast meat.  You also see many jugs of ale and mead on display.  The food looks delicious, but you aren't very hungry. 
 369:Look at the other stalls^*352^*Return to the courtyard^*300
-370:INVREMOVE:Merchant Disguise,false^*INVBUY:Mercenary Disguise,3^*To get a better price on the clothing necessary make the mercenary disguise, you remove your merchant disguise in order to trade it to the vendor.  You then pay 3 gold pieces and put on the mercenary disguise.  What do you do next?^*371
+370:INVREMOVE:Merchant Disguise^*INVBUY:Mercenary Disguise,3^*To get a better price on the clothing necessary make the mercenary disguise, you remove your merchant disguise in order to trade it to the vendor.  You then pay 3 gold pieces and put on the mercenary disguise.  What do you do next?^*371
 370:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 371:INVADD:Merchant Disguise^*You can't afford the clothing needed for the mercenary disguise.
 371:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 372:What stall do you want to look at?
 372:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the weapons^*323^*Try to sell something^*512^*Return to the courtyard^*300
-373:INVREMOVE:Mercenary Disguise,false^*INVBUY:Merchant Disguise,2^*To get a better price on the clothing necessary make the merchant disguise, you remove your mercenary disguise in order to trade it to the vendor.  You then pay 2 gold pieces and put on the merchant disguise.  What do you do next?^*374
+373:INVREMOVE:Mercenary Disguise^*INVBUY:Merchant Disguise,2^*To get a better price on the clothing necessary make the merchant disguise, you remove your mercenary disguise in order to trade it to the vendor.  You then pay 2 gold pieces and put on the merchant disguise.  What do you do next?^*374
 373:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 374:INVADD:Mercenary Disguise^*You can't afford the clothing needed for the merchant disguise.
 374:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
