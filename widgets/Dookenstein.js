@@ -1068,10 +1068,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							}
 						}
 						if (removedArray.length == 1) {
-							//this.message = specialPageArray[p+1];
 						} else {
 							//display what items have been removed (if any)
-							//this.message = specialPageArray[p+1];
 							if ('false' in this.oc(inventoryRemoveArray)) {
 								//do not show a "you are no longer carrying" message
 							} else {
@@ -2139,6 +2137,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			this.inventory[i] = '';
 		}*/
 		this.inventory = [];
+		this.inventory[0] = 'Inventory';
 		for (i = 0; i < this.initVariableList.length; i++) {
 			//reset all external variables
 			this.variableList[i].value = this.initVariableList[i].value;
