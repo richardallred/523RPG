@@ -9,10 +9,12 @@ INITIALIZE:turnedAway,0
 INITIALIZE:turretLockPicked,0
 INITIALIZE:storeroomVisited,0
 INITIALIZE:guardroomVisited,0
+INITIALIZE:barracksVisited,0
 INITIALIZE:dungeonVisited,0
 INITIALIZE:kitchenVisited,0
 INITIALIZE:killedArchers,0
 INITIALIZE:killedColonel,0
+INITIALIZE:rammedDoor,0
 INITIALIZE:unwashed,0
 INITALIZE:lostPack,0
 INITWEAPON:Sword^*4^*90^*HIT:You swing your blade at the #enemy^*HIT:You lunge at the #enemy with your sword^*HIT:You quickly strike the #enemy^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage to the #enemy.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked by the #enemy.
@@ -27,7 +29,7 @@ ARMOR:Guard Disguise^*1^*75
 ARMOR:Soldier's Uniform^*1^*75
 ARMOR:Chainmail armor^*2^*75
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
-0:Play the game^*1
+0:Play the game^*577
 0:images/castle_test.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
@@ -139,8 +141,8 @@ ARMOR:Chainmail armor^*2^*75
 53:Attack them^*38^*Leave and try to find another way in^*31
 54:DISPLAYGOLD:^*"If that delivery is so important to you," says one of the guards, "then it must be worth something for us to let you in.  10 gold pieces for each of us should be sufficient." 
 54:Give the guards 20 gold^*55^*Say that you only have 10 gold^*94^*Attack the guards^*38^*Leave and try to find another way in^*31
-55:LOSEGOLD:20^*The guards take your gold coins and call for the gate to be opened.  "Make your delivery quickly and stay out of trouble," says one of them.
-55:Enter the Castle^*300
+55:LOSEGOLD:20^*The guards take your gold coins and call for the gate to be opened.  "Make your delivery quickly and stay out of trouble," says one of them.  You enter the castle and emerge in the castle courtyard.
+55:Continue^*300
 56:"I was not aware that his Excellency was residing in the castle," the guard says, "Which one of his children are you?"  You realize that you don't know the names of the Duke's children but you blurt out the first name that comes to mind. <br>You say that you are...
 56:Frank^*59^*Brian^*61^*Thomas^*61^*Leroy^*61^*Bob^*61^*Ernest^*60^*Ned^*61^*Kyle^*61
 57:"You will have to visit your parents another time," says one of the guards, "Everyone in the castle is preparing for the upcoming invasion."  The guard gestures for you to leave.
@@ -153,8 +155,8 @@ ARMOR:Chainmail armor^*2^*75
 60:null^*1
 61:LOSEHEALTH:5^*"The Duke has no son by that name," says one of the guards, "You are a spy."  The other guard draws a mace and clubs you on the head before you can react, causing you to lose 5 health.  While you are still dazed from the blow, the guards seize you. 
 61:Continue^*42
-62:INVREMOVESELECT:1^*When the guard asks you who you want to delivery made to, you make up a Dookian sounding name, Norman Orwell.  Which item do you give the guard to deliver?
-62:Continue^*95
+62:INVREMOVESELECT:1,Merchant Disguise,Mercenary Disguise,Assassin Garb^*When the guard asks you who you want to delivery made to, you make up a Dookian sounding name, Norman Orwell.  Which item do you give the guard to deliver?
+62:Continue^*95^*Decide not to give the guard an item^*47
 63:"You will have to make your delivery next week", says one of the guards, "Everyone in the castle is preparing for the upcoming invasion."  The guard gestures for you to leave.
 63:Say that the delivery must be made today^*54^*Leave and try to find another way in^*31^*Try to bribe the guards^*52^*Forget talking and fight your way in^*38
 64:DISPLAYGOLD:^*You tell the guards that you will make it worth their while if they allow you an audience with the king.  The guards agree to do it, but only if they are each paid 10 gold pieces.  You try to negotiate with them, but they say that their jobs are at stake and refuse to take any less money. 
@@ -217,7 +219,7 @@ ARMOR:Chainmail armor^*2^*75
 92:null^*1
 93:The guards do not believe you. "I think that the grappling hook is the tool of a spy, not a merchant," declares one of them.  Before you can react, the guards seize you.  "We will find out soon enough."
 93:Continue^*42
-94:"If you don't have enough gold, then you aren't getting into the castle," replies the guard.
+94:DISPLAYGOLD:^*"If you don't have enough gold, then you aren't getting into the castle," replies the guard.
 94:Say that you must have counted wrong and <br>you actually have 20 gold pieces^*55^*Attack the guards^*38^*Leave and find another way in^*31
 95:LOSEGOLD:5^*The guard takes your delivery and 5 gold pieces and calls for the gate to be opened. The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The delivery will be made."
 95:Insist that you come with the guard to make sure^*96^*Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31
@@ -447,8 +449,8 @@ ARMOR:Chainmail armor^*2^*75
 309:Go back to the courtyard^*300
 310:VARSPLIT:Horse and cart,1^*341^*342
 310:null^*1
-311:The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  Inside the main entrance of the barracks, you see a large chamber where a huge man with scars crossing his face is writing something on a piece of parchment.  You walk up to the barracks entrance and the man turns and looks at you.  "I don't recognize you," he growls, "Are you one of the new recruits?"
-311:Say that you are a new recruit^*441^*Content not added^*999^*Return to the courtyard^*300
+311:VARSPLIT:barracksVisited,1^*508^*509
+311:null^*1
 312:VARSET:Horse and cart,0^*You pay the stable boy one gold coin and he leads your horse into the stable.  The stable boy asks you what you want him to do with the goods in your cart and offers to buy them for 5 gold coins if you do not need them.  You don't actually have any need of the goods now that you have successfully entered the castle, but you know that they are worth more than 5 gold coins.
 312:Accept his offer^*332^*Demand a higher price^*333^*Insist on keeping the goods for yourself^*334
 313:VARSET:Horse and cart,0^*The stable boy accepts the offer and takes some food from your cart as payment before leading your horse inside.  He offers to buy the rest of your goods for 4 gold coins if you do not need them.  You don't actually have any need of the goods now that you have successfully entered the castle, but you know that they are worth more than 4 gold coins.
@@ -462,7 +464,7 @@ ARMOR:Chainmail armor^*2^*75
 317:VARSPLIT:Horse and cart,1^*319^*318
 317:null^*1
 318:As you approach the merchant stalls, you see several stalls of food, goods and equipment, clothing and armor, and weapons
-318:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
+318:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Try to sell something^*512^*Return to the courtyard^*300
 319:As you lead your horse and cart over to the merchant stalls, one of the guards standing near the stalls approaches you.  "If you want to sell your goods here, I will need to see your merchant's permit," he says.
 319:Say that you have lost your permit^*324^*Say that your permit has expired and you are about to buy a new one^*325^*Say that you are not planning on selling anything^*326^*Try to bribe the guard into letting you sell your goods^*327
 320:DISPLAYGOLD:^*You look at the variety of available food stalls.  You see merchants selling fresh bread, cheeses, vegetables, and roast meat.  You also see many jugs of ale and mead on display.  You are already carrying enough rations for your mission, but the food for sale looks delicious and you consider buying some for a meal. 
@@ -530,7 +532,7 @@ ARMOR:Chainmail armor^*2^*75
 351:VARSET:mealsEaten,1^*LOSEGOLD:2^*You pay two gold coins and purchase a jug of ale.  You drink a little of it, but the ale has gone bad and it has a terrible, sour taste.  You demand a refund from the vendor, but he just laughs out you.  You don't want any trouble with the guards, so you leave and throw away the bad ale.^*381
 351:Visit the other stalls^*352^*Return to the Courtyard^*300
 352:Which stall do you want to look at?
-352:Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
+352:Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Try to sell something^*512^*Return to the courtyard^*300
 353:INVCHECK:First aid kit^*You already have a first aid kit, and you do not need another one.^*358
 353:Go back^*321
 354:INVCHECK:Tinderbox and torch^*You already have a tinderbox and torch, and you do not need another one.^*359
@@ -552,7 +554,7 @@ ARMOR:Chainmail armor^*2^*75
 362:INVBUY:Rope,3^*You pay 3 gold coins and buy a length of rope.
 362:Return to the goods stall^*321^*Look at the other stalls^*363^*Return to the courtyard^*300
 363:What stall do you want to look at?
-363:Look at the food^*366^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Return to the courtyard^*300
+363:Look at the food^*366^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Try to sell something^*512^*Return to the courtyard^*300
 364:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent mercenary disguise, which you could exchange your merchant clothing for.  In the armor stand, you see a set of fine shields for purchase, as well as a suit of chainmail armor that would fit you. 
 364:Buy a mercenary disguise for 3 gold coins^*370^*Buy the chainmail armor for 10 gold coins^*367^*Buy a shield for 6 gold coins^*368^*Go back to the other stalls^*372
 365:INVSPLIT:Chainmail armor^*379^*380
@@ -570,7 +572,7 @@ ARMOR:Chainmail armor^*2^*75
 371:INVADD:Merchant Disguise^*You can't afford the clothing needed for the mercenary disguise.
 371:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 372:What stall do you want to look at?
-372:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the weapons^*323^*Return to the courtyard^*300
+372:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the weapons^*323^*Try to sell something^*512^*Return to the courtyard^*300
 373:INVREMOVE:Mercenary Disguise,false^*INVBUY:Merchant Disguise,2^*To get a better price on the clothing necessary make the merchant disguise, you remove your mercenary disguise in order to trade it to the vendor.  You then pay 2 gold pieces and put on the merchant disguise.  What do you do next?^*374
 373:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 374:INVADD:Mercenary Disguise^*You can't afford the clothing needed for the merchant disguise.
@@ -602,7 +604,7 @@ ARMOR:Chainmail armor^*2^*75
 387:INVBUY:Mace,8^*You pay 8 coins and buy a mace.
 387:Return to the weapon stalls^*323^*Look at the other stalls^*388^*Return to the courtyard^*300
 388:What stall do you want to look at?
-388:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Return to the courtyard^*300
+388:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Try to sell something^*512^*Return to the courtyard^*300
 389:INVSPLIT:Guard Disguise^*391^*392
 389:null^*1
 390:INVCHECK:Grappling hook^*You walk along the entire length of the wall, but there are no weaknesses and it is unclimbable.  The further away you get from the gate, the less guards you see patrolling.  Near the end of the wall, there is a portion where you cannot see any guards.  You look around and there are no people in sight.  You consider attempting to throw your grappling hook up to one of the crenellations in order to climb up.^*393
@@ -642,12 +644,12 @@ ARMOR:Chainmail armor^*2^*75
 407:Page not used
 407:null^*1
 408:You try shaking the door and the lock, but they are both sturdy and unyielding.  You try to kick the door open, but the wood is very solid and you are unable to have any effect on the door.  You are eventually forced to give up.
-408:Ram your shoulder into the door to try to break it down^*411^*DISPLAYIF:Lock picking kit,Try to pick the lock^*405^*Return to the courtyard^*300
+408:DISPLAYIFVAR:rammedDoor,0,Ram your shoulder into the door to try to break it down^*411^*DISPLAYIF:Lock picking kit,Try to pick the lock^*405^*Return to the courtyard^*300
 409:As you enter the turret, you see a small room enclosed by a circular wall of stone.  At the end of the room, you see a stone spiral staircase that is enclosed in a smaller circular wall. It leads both upwards and downwards, though you cannot see where it goes in either direction.
 409:Climb the spiral staircase up^*413^*Climb the spiral staircase down^*414^*Leave the turret and return to the courtyard^*300
 410:You knock on the door several times, but there is no answer.
 410:DISPLAYIF:Lock picking kit,Try to pick the lock^*405^*Try to force open the door^*408^*Return to the courtyard^*300
-411:LOSEHEALTH:2^*You back up several steps and then charge towards the door, running as fast as you can.  You slam into the door, but the only result is that your shoulder is badly bruised and you lose 2 health.  You curse the door and decide to return to the courtyard.
+411:VARSET:rammedDoor,1^*LOSEHEALTH:2^*You back up several steps and then charge towards the door, running as fast as you can.  You slam into the door, but the only result is that your shoulder is badly bruised and you lose 2 health.  You curse the door and decide to return to the courtyard.
 411:Continue^*300
 412:You go up to one of the large turrets in the corner of the courtyard.  The only entrance you can see from the ground level is a thick wooden door that is locked by a large metal padlock.  You look around and see that nobody is watching you, so now would be a good time to try to break in.
 412:Knock on the door^*410^*DISPLAYIF:Lock picking kit,Try to pick the lock^*405^*Try to force the door open^*408^*Return to the Courtyard^*300
@@ -833,6 +835,32 @@ ARMOR:Chainmail armor^*2^*75
 502:Content not added^*999
 503:Hide in an ornate tent
 503:Content not added^*999
+504:The man says that he is recruiting for an army to invade Carolinia within the week.  He says that the pay is good and that you will have a chance to pillage Carolinia once they have been crushed.
+504:Say that you would like to join^*510^*Say that you are not interested^*511
+505:"Visitors are not allowed in the barracks," says the man, "Get out of here."
+505:Attack him^*506^*Go back to the courtyard^*507
+506:RESTART:^*As you attack the scar-faced man, several guards hear you and converge on you.  You are quickly cut down by their swords.
+506:null^*1
+507:You walk away from the barracks and return to the courtyard.  Where do you go next?
+507:Go to the stable^*303^*Visit the merchant stalls^*304^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
+508:As you approach the barracks, you see the scar-faced man still inside the entrance.  You have already been turned away from him, and you do not want to risk another confrontation, so you decide not to try to enter the barracks right now.
+508:Return to the courtyard^*507
+509:VARSET:barracksVisited,1^*The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  Inside the main entrance of the barracks, you see a large chamber where a huge man with scars crossing his face is writing something on a piece of parchment.  You walk up to the barracks entrance and the man turns and looks at you.  "I don't recognize you," he growls, "Are you one of the new recruits?"
+509:Say that you are a new recruit^*441^*Ask him what he is recruiting for^*504^*Say that you were just visiting^*505
+510:You tell the scar-faced man that you would like to join the invading army.  "You will refer to me as Colonel Graywald," he says, "I am your commanding officer."  He leads you inside the barracks to an armory full of weapons and armor for the soldiers.  "Get in uniform and report to the training field immediately," he orders, before walking out of the room.
+510:Put on the Dookian soldier armor^*442^*Take some of the weapons in the armory^*443^*Leave the armory and explore the barracks^*444
+511:"Then get out of here and stop wasting my time," the scar-faced man demands.
+511:Attack him^*506^*Go back to the courtyard^*507
+512:Most of the vendors are not interested in buying anything from you, but you eventually find a dealer who tells you that he will pay a flat sum of 2 gold pieces for any items that he thinks are useful.
+512:Sell him an item^*513^*Go back to the other stalls^*514^*Go back to the courtyard^*300
+513:INVREMOVESELECT:1,Merchant Disguise,Mercenary Disguise,Assassin Garb,Compass^*What item do you want to sell for two gold coins?
+513:Continue^*515^*Decide not to sell an item^*516
+514:Which stall do you want to look at?
+514:Look at the food^*366^*Look at the goods and equipment^*321^*Look at the clothing and armor^*322^*Look at the weapons^*323
+515:GAINGOLD:2^*The vendor pays you two gold coins.  What do you do next?
+515:Sell something else^*513^*Go back to the other stalls^*514^*Go back to the courtyard^*300
+516:You end up not selling any of your items.  What do you do next?
+516:Go back to the other stalls^*514^*Go back to the courtyard^*300
 549:You are in a cold dungeon cell, surrounded by three stone walls and a study looking barred cell door.  Fortunately, the guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage after some struggling to reach the dagger and grasp the hilt.  If you cut the ropes binding your hands, you would be able to search for a way out, but the guards would probably be suspicious if they did not see your hands tied behind you.
 549:Cut the ropes binding your hands^*551^*Leave your hands bound and wait for a guard to approach^*555
 550:VARSET:dungeonVisited,1^*VARSET:lostPack,1^*INVSPLIT:Hidden dagger^*549^*552
@@ -925,7 +953,7 @@ ARMOR:Chainmail armor^*2^*75
 593:null^*1
 594:INVSPLIT:Assassin Garb^*702^*703
 594:null^*1
-595:"You're making a mistake," you gasp, "I'm an agent working undercover for King K.  I was returning from a mission in Carolinia to give my report to the King when the guards detained me."  The interrogator glares at you.  "If you are lying to me, I will make sure that your death is long and painful," he says.  He sends a guard to ask the King to verify your story.  After a while, the guard returns.  "The King wants to see him," announces the guard.
+595:"You're making a mistake," you gasp, "I'm an agent working undercover for King K.  I was returning from a mission in Carolinia to give my report to the King when the guards detained me."  The interrogator glares at you.  "If you are lying to me, I will make sure that your death is long and painful," he says.  He sends the guard who is watching to ask the King to verify your story.  After a while, the guard returns.  "The King wants to see him," announces the guard.
 595:Continue^*700
 596:LOSEHEALTH:15^*The interrogator presses the brand across your leg, badly burning you.  "Let me know when you are ready to talk," he growls.  He continues to press the brand against you as your scream in pain.  Soon the pain is so unbearable that you are forced to say something.  (You have lost another 15 health from the torture).
 596:Tell him the truth^*593^*Tell him that he's making a mistake and that you are innocent^*597^*Tell him that you are a fugitive trying to hide out in the castle^*599^*Tell him that you secretly work for King K^*595^*Tell him that you would sooner die then give him any information^*598
@@ -975,7 +1003,7 @@ ARMOR:Chainmail armor^*2^*75
 618:Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*616^*Say that... content not added^*999
 619:LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
 619:Say that the message is for the King's ear only^*616^*Say that... content not added^*999
-700:Lead out of the chamber
+700:Lead out of the chamber (to see the King)
 700:Content not added^*999
 701:Lead out of the chamber
 701:Content not added^*999
