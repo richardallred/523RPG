@@ -88,7 +88,7 @@ ARMOR:Chainmail armor^*2^*75
 28:Say that you were planning to sell it to someone inside the castle.^*73^*Say that you use it for recreational purposes^*93^*Say that someone must have planted it in your cart^*93^*Say that it was a gift from a friend^*73
 29:"The King has no time to waste with messages from common merchants," says one of the guards dismissively, "He is planning an important campaign and cannot be bothered right now."
 29:Try to bribe the guards^*64^*Attack the guards^*38^*Leave and try to find another way in^*31
-30:"There are no open positions in the castle guard," says one of the guards, "But Colonel Graywald is recruiting warriors for the upcoming invasion of Carolinia.  I hear the pay is decent."
+30:DISPLAYGOLD:^*"There are no open positions in the castle guard," says one of the guards, "But Colonel Graywald is recruiting warriors for the upcoming invasion of Carolinia.  I hear the pay is decent.  I could arrange for an introduction, for the small fee of 5 gold coins."
 30:Say that you would like to join the invasion force^*65^*Say that you aren't interested in joining the war^*66
 31:VARSET:turnedAway,1^*You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
 31:Swim the moat^*200^*Attack the guards with a crossbow^*34^*Grapple up the back wall^*32
@@ -159,7 +159,7 @@ ARMOR:Chainmail armor^*2^*75
 63:Say that the delivery must be made today^*54^*Leave and try to find another way in^*31^*Try to bribe the guards^*52^*Forget talking and fight your way in^*38
 64:DISPLAYGOLD:^*You tell the guards that you will make it worth their while if they allow you an audience with the king.  The guards agree to do it, but only if they are each paid 10 gold pieces.  You try to negotiate with them, but they say that their jobs are at stake and refuse to take any less money. 
 64:Pay them 20 gold^*619^*Attack the guards^*38^*Leave and try to find another way in^*31
-65:The guard leads you in through the gate and into the crowded castle courtyard.  "Colonel Graywald is in the barracks, over there," he says, pointing to a nearby building.  <br>You decide whether to follow the guard to the barracks or try to lose him in the courtyard crowd.
+65:LOSEGOLD:5^*The guard takes your gold and then leads you through the gate and into the crowded castle courtyard.  "Colonel Graywald is in the barracks, over there," he says, pointing to a nearby building.  <br>You decide whether to follow the guard to the barracks or try to lose him in the courtyard crowd.
 65:Follow the guard^*302^*Lose the guard in the crowd^*301
 66:You say that an invasion doesn't sound like the type of work you'd enjoy.  "With all the battle preparations going on in the castle, there's not much need of a mercenary’s services," says the guard, "Perhaps you should try somewhere else."
 66:Ask them if they could let you in so you can look for work anyway^*69^*Leave and find another way in^*31
@@ -167,7 +167,7 @@ ARMOR:Chainmail armor^*2^*75
 67:Leave and try to find another way in^*31^*Attack the guards^*38
 68:You tell the guard that the King's nephew has passed away.  "I will deliver that message to the King," says the guard.  The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The message will be delivered."
 68:Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31
-69:The guards say that they are under orders not to let outsiders into the castle at the moment, so they refuse your request.
+69:The guards say that they are under orders not to let outsiders into the castle at the moment, so they refuse your request to look for work.
 69:Try to bribe the guards^*52^*Try to fight your way in^*38^*Leave and find another way in^*31
 70:INVSPLIT:Lock picking kit^*71^*72
 70:null^*1
@@ -260,7 +260,7 @@ ARMOR:Chainmail armor^*2^*75
 203:Restart^*1
 204:INVSPLIT:Lock picking kit^*206^*207
 204:null^*1
-205:VARSET:vistedKitchen,1^*LOSEHEALTH:5^*The smell emerging from the hole that you have grabbed on to is even worse than that of the moat.  Grimacing, you pull yourself up to it and shove your pack inside.  As you try to struggle through headfirst, fetid water drips off of your clothing and you are coated with a layer of slime and rotten food.  On the other side, you see a large kitchen.  After several long minutes of struggling, you manage to get your bruised body through.  The painful struggle has cost you another 5 health.  You see an exit on the other side of the room and a basin of water nearby that looks like it is used to wash dishes.
+205:VARSET:visitedKitchen,1^*LOSEHEALTH:5^*The smell emerging from the hole that you have grabbed on to is even worse than that of the moat.  Grimacing, you pull yourself up to it and shove your pack inside.  As you try to struggle through headfirst, fetid water drips off of your clothing and you are coated with a layer of slime and rotten food.  On the other side, you see a large kitchen.  After several long minutes of struggling, you manage to get your bruised body through.  The painful struggle has cost you another 5 health.  You see an exit on the other side of the room and a basin of water nearby that looks like it is used to wash dishes.
 205:Wash yourself and your clothes off in the basin^*208^*Leave the room before someone arrives^*209
 206:You climb up the grate and pull your lock picking kit out of your pack.  The lock is rusted and very difficult to pick, but eventually you manage to get it open.  You let the lock fall into the moat and the grate swings open.  You climb in to what appears to be an exit tunnel from the castle.  There is not much light coming in from outside, and the tunnel descends into pitch darkness very quickly.
 206:Enter the tunnel^*210^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
@@ -384,7 +384,7 @@ ARMOR:Chainmail armor^*2^*75
 264:Finish searching the storeroom^*265^*Leave the room^*259
 265:Now that you don't have to worry about the guard, you are free to finish searching the storeroom.  You search through several more sacks before deciding that you probably won't find anything else useful.  You decide to leave the storeroom.
 265:Continue^*259
-266:VARSPLIT:unwashed,1^*278,279
+266:VARSPLIT:unwashed,1^*278^*279
 266:null^*1
 267:GAINGOLD:5^*You search the guard's body and find a pouch with 5 gold coins, which you take.  The guard has a sword and mace as weapons, but you already have both of those.  The guard is almost your size, so his uniform would probably fit you. 
 267:Take the guard's uniform^*268^*Keep your current clothes and finish searching the storeroom instead^*265
@@ -625,7 +625,7 @@ ARMOR:Chainmail armor^*2^*75
 398:Go back^*392
 399:You rush into the stables, past one of the stable boys who tries to talk to you.  You open one of the stalls and close it behind you, crouching next to one of the horses.  You wait for a while until you are sure nobody is looking for you and then you walk out into the courtyard.
 399:Continue^*300
-400:DISPLAYGOLD:^*You weave your way in between two merchants selling clothes, and duck behind one of the stalls.  The clothes seller sees you and asks you what on earth you are doing.  He then sees a group of guards searching the crowd.  "3 gold will buy my silence, friend," the merchant whispers to you. 
+400:DISPLAYGOLD:^*You weave your way in between two merchants selling clothes, and duck behind one of the stalls.  The clothes vendor sees you and asks you what on earth you are doing.  He then sees a group of guards searching the crowd.  "3 gold will buy my silence, friend," the merchant whispers to you. 
 400:Pay the merchant 3 gold to keep quiet^*401^*Refuse to pay the merchant^*402^*Threaten the merchant^*403^*Attack the merchant quickly to silence him^*404
 401:LOSEGOLD:3^*You quietly hand the merchant three gold coins and he acts as if nothing had happened.  Soon, the guards give up searching for you and disperse.  You thank the merchant and walk out into the courtyard.^*402
 401:Continue^*300
@@ -829,9 +829,15 @@ ARMOR:Chainmail armor^*2^*75
 500:Content not added^*999
 501:Jump down the pit
 501:Content not added^*999
-550:VARSET:dungeonVisited,1^*VARSET:lostPack,1^*INVSPLIT:Hidden dagger^*551^*552
+502:Hide in a white tent
+502:Content not added^*999
+503:Hide in an ornate tent
+503:Content not added^*999
+549:You are in a cold dungeon cell, surrounded by three stone walls and a study looking barred cell door.  Fortunately, the guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage after some struggling to reach the dagger and grasp the hilt.  If you cut the ropes binding your hands, you would be able to search for a way out, but the guards would probably be suspicious if they did not see your hands tied behind you.
+549:Cut the ropes binding your hands^*551^*Leave your hands bound and wait for a guard to approach^*555
+550:VARSET:dungeonVisited,1^*VARSET:lostPack,1^*INVSPLIT:Hidden dagger^*549^*552
 550:null^*1
-551:LOSEHEALTH:5^*The guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage to reach the dagger and use it to cut through your restraints.  Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.  You are surrounded by three stone cell walls and a study looking barred cell door.
+551:LOSEHEALTH:5^*Using the dagger with bound hands is difficult and you cut yourself several times before you manage to free yourself, causing a loss of 5 health.  This dagger and the clothes on your back are the only items you have left - the guards took everything else.
 551:Search for a way out of your cell^*553^*Save your strength and wait for a guard to approach^*554
 552:You struggle to free your bound hands from their restraints, but to no avail.  You are surrounded by three stone cell walls and a study looking barred cell door, and you can think of no way out of the cell.  The guards have taken everything but the clothes on your back. 
 552:Search the cell walls for weaknesses^*560^*Save your strength and wait to see what happens^*555
@@ -839,7 +845,7 @@ ARMOR:Chainmail armor^*2^*75
 553:Pick the lock with the dagger^*556^*Save your strength and wait for a guard to approach^*554
 554:You hide your dagger in your clothes and wait for a guard to approach.  After hours of waiting, you finally hear footsteps approaching your cell.  You know that you can't risk the guards seeing that you have cut the ropes tying your hands, so you come up with a plan to take them by surprise.
 554:Hide the dagger behind your back and prepare to attack^*566^*Lie down and pretend to be sick^*567
-555:LOSEHEALTH:3^*As you wait in the cell for hours, the ropes tying your hands cut into you, causing you to lose 3 health.  Soon you can no longer feel your arms, and the time passes in a haze of misery.  After a while, you hear footsteps approaching your cell.  In your condition, you don't have the strength to try to fight, but you consider feigning illness to get the guards to open the door. 
+555:LOSEHEALTH:3^*As you wait in the cell for hours, the ropes tying your hands cut into you, causing you to lose 3 health.  Soon you can no longer feel your arms, and the time passes in a haze of misery.  After a while, you hear footsteps approaching your cell.  In your condition and with your bound hands, you don't have the strength to try to fight, but you consider feigning illness to get the guards to open the door. 
 555:Pretend to be sick^*558^*Sit in the corner and wait to see what happens^*559
 556:Your arm barely fits through the bars on the door, so your lock picking attempt is very clumsy.  You move the dagger around in the keyhole until you hear a click as the dagger catches against something.
 556:Keep moving the dagger around in the lock^*557^*Pull the dagger out of the lock and wait for a guard instead^*554
@@ -847,7 +853,7 @@ ARMOR:Chainmail armor^*2^*75
 557:Continue^*569
 558:LOSEHEALTH:2^*You have very little pretending to do, as standing up after hours of cramped waiting causes a wave of nausea to overtake you.  You vomit onto the floor (causing a loss of 2 health), and then you lie down next to it and close your eyes as the guards approach.  You hear the cell door being unlocked, and then two hands on your shoulder roughly jerk you upwards. 
 558:Close your eyes and pretend to be unconscious^*561^*Lash out with your foot^*562
-559:Two armed guards approach the door, and one of them unlocks the door and opens it.  You are dragged upwards and marched out of the cell and down the hallway.
+559:Two armed guards approach you, and one of them unlocks the door and opens it.  You are dragged upwards and marched out of the cell and down the hallway.
 559:Continue^*572
 560:You painstakingly run your bound hands along the walls, but you can find no structural weaknesses anywhere.  Frustrated and exhausted, you give up your search and wait to see what happens.
 560:Continue^*555
@@ -869,20 +875,20 @@ ARMOR:Chainmail armor^*2^*75
 568:Content not added^*999
 569:You sit down and wait for hours before two guards finally arrive at your cell.  One of the guards takes out a key to unlock the cell, but sees the dagger blade jammed in the lock.  He gives a shout of surprise and orders you to stand with your face to the wall and your arms above your head.
 569:Obey the guard's order^*570^*Pretend that you did not hear him^*571
-570:You stand with your hands above your head while the guard tries to fix the lock.  He finally gets it unlocked, and the two guards come in and once again tie your hands behind your back.  You are then marched out of the cell and down a hallway.
-570:Content not added^*999
+570:You stand with your hands above your head while the guard tries to extract the blade and fix the lock.  He finally gets it unlocked, and the two guards come in and once again tie your hands behind your back.  You are then marched out of the cell.
+570:Continue^*572
 571:RESTART:^*The guard orders you to stand again, but you just ignore him.  "I don't trust this one," says the guard, "We shouldn't risk keeping him alive."  One of the guards stands outside the cell to watch you while the other one leaves.  The other guard soon returns with a crossbow and shoots you through the bars of the cell.  <br>Your life ends here.
 571:Restart^*1
 572:You are marched down the dungeon corridor past many empty cells.  At the end of the corridor, there is a solid metal door with a heavy bolt on it.  One of the guards opens the door and you are lead into a torture chamber full of grisly intruments of pain.  Inside, you can see a hooded torturer sharpening a knife on a grindstone.   You panic and try to struggle, but the guard holds you in a firm grip.  The other guard remains outside and bolts the door behind you.  The guard holding you leads you over to one of the walls and unties your hands, then forces them above your head and against the wall.  You are unable to move your hands, but the rest of your body is free.
 572:Try to kick the guard^*585^*Try to trip the guard^*586^*Try to headbutt the guard^*587^*Do nothing^*588
 573:LOSEHEALTH:6^*You instinctively turn your head away and put up your hands to protect yourself against the blow, but it does not help much as the guard hits you several times with the mace.  You lose 6 health.  The blows from the mace have knocked you out. 
-573:Content not added^*999
+573:Continue^*582
 574:INVSPLIT:Assassin Garb^*575^*576
 574:null^*1
 575:Your flexible assassin's clothing allows you to react instantly, and you roll off the table just in time to avoid the mace smashing into it.  You hit the ground to the right of the table and immediately spring up.  The guard who swung the mace kicks over the operating table and comes after you, while the other guard draws a sword.
-575:Grab a surgical knife from the doctor's belt and fight the guards^*577^*Sprint out of the room while you have the chance^*578
+575:DISPLAYIFNOT:Hidden dagger,Grab a surgical knife from the doctor's belt and fight the guards^*577^*DISPLAYIF:Hidden dagger,Whip out your hidden dagger and fight the guards^*583^*Sprint out of the room while you have the chance^*578
 576:LOSEHEALTH:2^*You quickly roll off of the table, but the blow from the mace catches you on the left arm, causing you to lose two health.  You crash to the ground, wincing, but you ignore the pain and quickly pull yourself up.  The guard who swung the mace kicks over the operating table and comes after you, while the other guard draws a sword.
-576:Grab a surgical knife from the doctor's belt and fight the guards^*577^*Sprint out of the room while you have the chance^*578
+576:DISPLAYIFNOT:Hidden dagger,Grab a surgical knife from the doctor's belt and fight the guards^*577^*DISPLAYIF:Hidden dagger,Whip out your hidden dagger and fight the guards^*583^*Sprint out of the room while you have the chance^*578
 577:INVADD:Surgical Knife^*COMBAT:You are fighting two guards.  One of them is armed with a mace and one of them is armed with a sword,NAME:first guard,WEAPON:Mace,STRENGTH:8,DEFENSE:1,ACCURACY:55,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:8,DEFENSE2:1,ACCURARCY2:55,HEALTH2:40,HIT:The first guard smashes you with his mace,HIT2:The second guard slashes you with his blade^*You manage to defeat the guards.
 577:Content not added^*999
 578:LOSEHEALTH:4^*You waste no time and immediately sprint towards the infirmary exit, weaving between the operating tables.  The guards run after you, but their armor slows them down.  One of the guards throws a knife at you, which grazes the side of your back, causing you to lose 4 health.  You eventually reach the exit and burst out of the infirmary, panting for breath. 
@@ -892,10 +898,10 @@ ARMOR:Chainmail armor^*2^*75
 580:RESTART:^*You run as fast as you can towards the keep, and when you look back over your shoulder you can see the guards run out of the infirmary and come after you, pointing and shouting.  As you get closer to the keep, you are suddenly brought down by a rain of arrows coming from the archers guarding the keep.  <br>Your life ends here.
 580:null^*1
 581:You run as fast as you can towards the tents, and when you look back over your shoulder you can see the guards run out of the infirmary and come after you.  You get there a good distance ahead of the guards, and you can see a large number of massive tents ranging from many plain while tents to a few ornately decorated tents.  The area looks deserted at the moment, but you decide to hide in one of the tents to avoid the guards.
-581:Hide in a plain white tent^*582^*Hide in an ornately decorated tent^*583
-582:Hide in a white tent
-582:Content not added^*999
-583:Hide in an ornate tent
+581:Hide in a plain white tent^*502^*Hide in an ornately decorated tent^*503
+582:You wake up with your head pounding and your arms aching painfully.  You slowly open your eyes, but the sight you see makes you wish that you had leaved them closed.  You are inside a torture chamber that is fully of grisly instruments of pain.  You are standing up, and you find that your arms are shacked above you.  A hooded torturer is heating a large iron brand at a furnace, and a guard is standing near a large iron door and watching you.  Upon seeing that you are awake, the torturer approaches you with with the red hot brand and gives you a menacing smile
+582:Beg for mercy^*591^*Say nothing^*592
+583:COMBAT:You are fighting two guards.  One of them is armed with a mace and one of them is armed with a sword,NAME:first guard,WEAPON:Mace,STRENGTH:8,DEFENSE:1,ACCURACY:55,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:8,DEFENSE2:1,ACCURARCY2:55,HEALTH2:40,HIT:The first guard smashes you with his mace,HIT2:The second guard slashes you with his blade^*You manage to defeat the guards.
 583:Content not added^*999
 584:RESTART:^*You lunge towards the guard and catch his hand, but not in time to stop the mace from smashing into your side.  You ignore the pain and try to wrest the mace out of the guard's hand, but the other guard draws his sword and runs you through.  <br>Your life ends here.
 584:null^*1
