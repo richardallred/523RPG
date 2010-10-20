@@ -1183,19 +1183,44 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						}
 					}
 					//choose a certain number of items to remove from inventory with INVREMOVESELECT.  INVREMOVESELECT:n, choose n items from the choices
+					//INVREMOVESELECT:n,item1,item2,... choose n items that are NOT any of the items listed
 					else if (specialPageArray[p].match('INVREMOVESELECT:') != null) {
-						inventoryRemoveNumber = specialPageArray[p].split('INVREMOVESELECT:');
+						if (specialPageArray[p].match(',') != null) {
+							inventoryRemoveExclude = specialPageArray[p].split('INVREMOVESELECT:')[1].split(',');
+							inventoryRemoveNumber = inventoryRemoveExclude[0];
+						} else {
+							inventoryRemoveNumber = specialPageArray[p].split('INVREMOVESELECT:')[1];
+						}
 						//choicesArray = this.choices[this.page].split('^*');
 						choicesArray = this.choices[this.page].split(this.DELIMITER);
-						choicesArray = [];
 						nextPageNum = choicesArray[1];
+						extraChoices = [];
+						for (c = 2; c < choicesArray.length; c++) {
+							extraChoices[c-2] = choicesArray[c];
+						}
+						choicesArray = [];
 						j = 0;
 						for (i = 1; i < this.inventory.length; i++) {
 							if (this.inventory[i] != '') {
-								choicesArray[j] = this.inventory[i];
-								choicesArray[j+1] = nextPageNum;
-								//j is needed because inventory might contain null items
-								j = j + 2;
+								exclude = false;
+								if (specialPageArray[p].match(',') != null) {
+									for (k = 0; k < inventoryRemoveExclude.length; k++) {
+										if (this.inventory[i] == inventoryRemoveExclude[k]) {
+											exclude = true;
+										}
+									}
+								}
+								if (!exclude) {
+									choicesArray[j] = this.inventory[i];
+									choicesArray[j+1] = nextPageNum;
+									//j is needed because inventory might contain null items
+									j = j + 2;
+								}
+							}
+						}
+						if (extraChoices.length > 0) {
+							for (c = 0; c < extraChoices.length; c++) {
+								choicesArray[choicesArray.length] = extraChoices[c];
 							}
 						}
 						if (this.invselect == 0) {
@@ -1203,6 +1228,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							lastRemovedNum = 100;
 						}
 						currentInventorySize = choicesArray.length/2;
+						leaveSelect = false;
 						if (this.invselect == 1) {
 							//remove chosen item from inventory
 							if (choiceNum * 2 - 2 > lastRemovedNum) {
@@ -1214,25 +1240,37 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									this.inventory[i] = '';
 								}
 							}
+							for (s = 0; s < extraChoices.length; s++) {
+								if (extraChoices[s] == choicesArray[choiceNum * 2 - 2]) {
+									//leave inventory selection and go to the page
+									leaveSelect = true;
+								}
+							}
 						}
 						alreadyRemovedCount = 0;
 						for (i = 0; i < choicesArray.length; i+=2) {
 							//remove all choices that have already been taken
-							if (!(choicesArray[i] in this.oc(this.inventory))) {
+							if (!(choicesArray[i] in this.oc(this.inventory)) && !(choicesArray[i] in this.oc(extraChoices))) {
 								choicesArray[i] = 'Removed ' + choicesArray[i];
 								if (this.invselect == 1) {
 									alreadyRemovedCount ++;
 								}
 							}
-							choicesArray[i+1] = this.page;
+							if (!(choicesArray[i] in this.oc(extraChoices)) || this.invselect == 0) {
+								choicesArray[i+1] = this.page;
+							}
 						}
 						//go to inventory selection mode (stay on this page until all items are taken)
 						this.invselect = 1;
-						if (alreadyRemovedCount >= inventoryRemoveNumber[1] || this.inventory.length == 1 || originalInventorySize - currentInventorySize + alreadyRemovedCount >= inventoryRemoveNumber[1]) {
+						if (alreadyRemovedCount >= inventoryRemoveNumber || this.inventory.length == 1 || originalInventorySize - currentInventorySize + alreadyRemovedCount >= inventoryRemoveNumber || leaveSelect) {
 							//the number of inventory items you can pick has been reached, move on to the next page
 							this.invselect = 0;
 							this.invselecting = 0;
-							this.page = nextPageNum;
+							if (leaveSelect) {
+								this.page = choicesArray[choiceNum * 2 - 1];
+							} else {
+								this.page = nextPageNum;
+							}
 							this.processChoice(this.page, choiceNum);
 							return;
 						}
@@ -1350,16 +1388,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if (this.inCombat == 0) {
 							//parse enemy info
 							combatInfo = specialPageArray[p].split('COMBAT:')[1].split(',');
-							//enemyName = 'enemy';
-							//enemyWeaponName = 'None';
-							//enemyStr = 10;
-							//enemyDef = 0;
-							//enemyHealth = 20;
-							//initialEnemyHealth = 20;
-							//enemyHealthFraction = enemyHealth/initialEnemyHealth;
-							//enemyAcc = 55;
-							//enemyHitMessages = [];
-							//enemyMissMessages = [];
+							autoFight = false;
 							enemies = [];
 							//default enemy values (if none specified)
 							var enemyVar = {
@@ -1549,6 +1578,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							disableFight = false;
 						}
 						if (this.inCombat == 1 && choiceNum == aliveEnemies.length+1 && this.chooseWeapon == 0) {
+							//automatically fight selected
+							autoFight = true;
+						}
+						if (this.inCombat == 1 && choiceNum == aliveEnemies.length+2 && this.chooseWeapon == 0) {
 							//change weapon selected
 							this.chooseWeapon = 1;
 						} else {
@@ -1790,19 +1823,25 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											wonCombat = false;
 										}
 									}
-								}								
+								}
 							}
 							choicesArray = [];
 							for (e = 0; e < aliveEnemies.length*2; e+=2) {
 								choicesArray[e] = 'Attack the ' + aliveEnemies[e/2].name;
 								choicesArray[e+1] = this.page;
 							}
-							choicesArray[aliveEnemies.length*2] = 'Change Weapon';
-							choicesArray[aliveEnemies.length*2 + 1] = this.page;
+							choicesArray[aliveEnemies.length*2] = 'Automatically fight (Skip the combat)';
+							choicesArray[aliveEnemies.length*2+1] = this.page;
+							choicesArray[aliveEnemies.length*2+2] = 'Change Weapon';
+							choicesArray[aliveEnemies.length*2+3] = this.page;
 							if (wonCombat) {
 								combatString = combatString + '<br>' + specialPageArray[p+1];
-								//this.message = this.message + '<br>' + specialPageArray[p+1];
 								this.inCombat = 0;
+								autoFight = false;
+								this.message = 'You have won the fight.';
+							} else if (autoFight && this.health > 0) {
+								this.processChoice(this.page, 1);
+								combatString = '';
 							}
 							this.message = this.message + combatString;
 						}
