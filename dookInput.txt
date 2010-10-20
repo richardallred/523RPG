@@ -29,7 +29,7 @@ ARMOR:Guard Disguise^*1^*75
 ARMOR:Soldier's Uniform^*1^*75
 ARMOR:Chainmail armor^*2^*75
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
-0:Play the game^*577
+0:Play the game^*1
 0:images/castle_test.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
@@ -521,8 +521,8 @@ ARMOR:Chainmail armor^*2^*75
 345:Continue^*300
 346:You say that you were just passing by, and you walk past the barracks and return to the courtyard.
 346:Continue^*300
-347:Tell him that you want to get a job as a guard
-347:Content not added^*999^*Return to the courtyard^*300
+347:"There aren't any spots open for new guards," the guard says, "But I know that Colonel Graywald is recruiting men for his army that's going to invade Carolinia.  I can introduce you, if you want."
+347:Ask the guard to introduce you^*517^*Refuse his offer and return to the courtyard^*300
 348:Tell him you need help
 348:Content not added^*999^*Return to the courtyard^*300
 349:VARSET:mealsEaten,1^*LOSEGOLD:2^*You pay two gold coins to the vendor and buy some hot, fresh bread and a slice of cheese.  You sit down and enjoy the delicious meal.  It is quite refreshing.^*381
@@ -861,6 +861,12 @@ ARMOR:Chainmail armor^*2^*75
 515:Sell something else^*513^*Go back to the other stalls^*514^*Go back to the courtyard^*300
 516:You end up not selling any of your items.  What do you do next?
 516:Go back to the other stalls^*514^*Go back to the courtyard^*300
+517:VARSPLIT:barracksVisited,1^*518^*519
+517:null^*1
+518:The guard leads you into the main entrance of the barracks, where the huge man with scars crossing his face is talking with a group of soldiers.  "This merchant wishes to join the invasion force," announces the guard, before leaving.  Fortunately, the man does not seem to recognize you from when you approached him earlier in a mercenary disguise.
+518:Continue^*441
+519:The guard leads you into the main entrance of the barracks, where the huge man with scars crossing his face is talking with a group of soldiers.  "This merchant wishes to join the invasion force," announces the guard, before leaving.
+519:Continue^*441
 549:You are in a cold dungeon cell, surrounded by three stone walls and a study looking barred cell door.  Fortunately, the guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage after some struggling to reach the dagger and grasp the hilt.  If you cut the ropes binding your hands, you would be able to search for a way out, but the guards would probably be suspicious if they did not see your hands tied behind you.
 549:Cut the ropes binding your hands^*551^*Leave your hands bound and wait for a guard to approach^*555
 550:VARSET:dungeonVisited,1^*VARSET:lostPack,1^*INVSPLIT:Hidden dagger^*549^*552
