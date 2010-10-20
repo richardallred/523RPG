@@ -1397,6 +1397,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								health: 20,
 								initialHealth: 20,
 								acc: 55,
+								accMod: 0,
 								hitmessages:[],
 								missmessages:[]
 							}
@@ -1459,6 +1460,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											health: 20,
 											initialHealth: 20,
 											acc: 55,
+											accMod: 0,
 											hitmessages:[],
 											missmessages:[]
 										}
@@ -1709,10 +1711,17 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									if (currentArmor != "None") {
 										modifiedEnemyAcc -= 5;
 									}
+									modifiedEnemyAcc += aliveEnemies[f].accMod;
 									if (randomNum <= modifiedEnemyAcc/100) {
 										enemyHit = true;
+										if (aliveEnemies[f].accMod <= 0) {
+											aliveEnemies[f].accMod -= 3;
+										} else {
+											aliveEnemies[f].accMod = 0;
+										}
 									} else {
 										enemyHit = false;
+										aliveEnemies[f].accMod += 3;
 									}
 									if (f == choiceNum - 1) {
 										if (youHit) {
