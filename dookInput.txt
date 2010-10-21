@@ -1,6 +1,6 @@
 DELIMITER:^*
 COMMENTDELIMITER://
-INITIALIZE:Health,50
+INITIALIZE:Health,100
 INITIALIZE:Strength,10
 INITIALIZE:Gold,20
 INITIALIZE:Horse and cart,0
@@ -405,7 +405,7 @@ ARMOR:Chainmail armor^*2^*75
 274:Continue^*281
 275:The guard sees you and draws his sword as he runs towards you.  You prepare to fight him.
 275:Continue^*276
-276:COMBAT:You are fighting an armed guard. The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:10,DEFENSE:2,ACCURACY:70,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor.,MISS:Your blow glances off the guard's armor.,MISS:The guard quickly parries your blow.,MISS:The guard evades you.^*The guard succumbs to his wounds and collapses to the ground.
+276:COMBAT:You are fighting an armed guard. The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:14,DEFENSE:2,ACCURACY:70,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor.,MISS:Your blow glances off the guard's armor.,MISS:The guard quickly parries your blow.,MISS:The guard evades you.^*The guard succumbs to his wounds and collapses to the ground.
 276:Continue^*258
 277:You exit and find yourself in a long dark hallway lined with doors.  Hanging on the wall is a torch that allows you to clearly see the closest door.  Suddenly, you hear a slow eerie creek comming from the end of the hallway.  You can hear a guard entering.  You can either prepare to fight the guard or dart into the closest door and remain unseen.
 277:Prepare for battle^*278^*Flee and enter the closest door^*279
@@ -415,7 +415,7 @@ ARMOR:Chainmail armor^*2^*75
 279:Finish searching the storeroom^*265^*Leave the room^*259
 280:You are finally greeted with a clear view of the basement of the castle.  You see doors to enter Servant housing, a washroom, the armory, the interrogation room, and finally an dark opening on the other end of the hall of whitch you can see very little.
 280:Peek into the servant housing BEWARE^*999^*Enter the washroom^*282^*Visit the armory^*286^*Try your hand at interrogation^*999^*Venture into the abyss at the opposite end of the hallway^*999
-281:COMBAT:You are fighting a wounded guard. The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:7,DEFENSE:2,HEALTH:25,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor,MISS:Your blow glances off the guard's armor,MISS:The guard quickly parries your blow,MISS:The guard evades you^*The guard succumbs to his wounds and collapses to the ground.
+281:COMBAT:You are fighting a wounded guard. The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:11,DEFENSE:2,HEALTH:25,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor,MISS:Your blow glances off the guard's armor,MISS:The guard quickly parries your blow,MISS:The guard evades you^*The guard succumbs to his wounds and collapses to the ground.
 281:Continue^*258
 282:You enter the washroom.  To your left you see a pile of old tattered clothing.  Overhead a dim light illuminates the room.  You see what looks like a pile of gold laying on the floor.  Additionally, you see the door slowly open.
 282:Pickup the gold^*282^*Protect yourself from the creature on the other side of the door^*283^*Slam the door shut^*284
@@ -427,8 +427,8 @@ ARMOR:Chainmail armor^*2^*75
 285:Leave the room^*280^*Pick up the gold^*282
 286:Opening the door to the armory carefully incase there are any of the Kings's men inside, you manage to luck out and it is empty.  A dragon scale lays on the counter. 
 286:Content not added^*999
-300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  Across the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep where the King resides is inside the inner bailey, but you know there is little chance of the guards letting you through.
-300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
+300:You look around the castle courtyard.  It is crowded with people and bustling with activity.  You can see a stable to the left and the stalls of several merchants to the right.  In the distance, you can see what looks like a barracks for the guards.  In the center of a the courtyard, you can see a well for drawing water.  Across the courtyard, there is a heavily guarded gate leading to the castle's inner bailey.  The castle keep where the King resides is inside the inner bailey, but you know there is little chance of the guards letting you through.
+300:Go to the stable^*303^*Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Go to the well^*520^*Examine the inner bailey gate^*307
 301:You wait until you and the guard are passing through a large crowd of people, then you dart into the crowd while he is not watching.  In a few moments, you hear him give a shout of surprise, but you are already a good distance away from him.  You can see a stable and some merchant stalls nearby.
 301:Try to hide in the stable^*399^*Try to hide in the merchant stalls^*400
 302:The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  The guard leads you into the main entrance of the barracks, and you see a large chamber where a huge man with scars crossing his face is talking with a group of soldiers.  "This mercenary wishes to join the invasion force," announces the guard, before leaving.
@@ -488,21 +488,21 @@ ARMOR:Chainmail armor^*2^*75
 329:You walk over to an empty part of the courtyard and abandon your horse.  Now that you no longer have your horse and cart, you can safely return to the merchant stalls.
 329:Continue^*318
 330:VARSET:Horse and cart,0^*You walk over to an empty part of the courtyard and abandon your horse and cart.  Where in the courtyard do you go next?
-330:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
+330:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Go to the well^*520^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
 331:LOSEGOLD:1^*You pay the stable boy a gold coin and he takes your horse inside.  "We will take good care of him for you," says the stable boy.  Now that you longer have your horse and cart, you can safely return to the merchant stalls.
 331:Continue^*318
 332:GAINGOLD:4^*The stable boy pays you and starts unloading the goods from your cart.  The goods were mostly food, and you already have ample provisions.  Where in the courtyard do you go next?
-332:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
+332:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Go to the well^*520^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
 333:LOSEGOLD:1^*The stable boy is insulted that you think his price is unfair and leaves you with all the goods.  There isn't anything that would be useful for your mission in your cart - it is mostly food, and you already have ample provisions.  The cart is too heavy to carry, so you take a little bit of the food and abandon the rest of the goods and the cart in front of the stable.   Where in the courtyard do you go next?
-333:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
+333:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Go to the well^*520^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
 334:LOSEGOLD:1^*You refuse the stable boy's offer and he leaves you with all the goods.  There isn't anything that would be useful for your mission in your cart - it is mostly food, and you already have ample provisions.  The cart is too heavy to carry, so you take a little bit of the food and abandon the rest of the goods and the cart in front of the stable.   Where in the courtyard do you go next?
-334:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
+334:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Go to the well^*520^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
 335:The stable boy is insulted that you think his price is unfair and leaves you with all the goods.  There isn't anything that would be useful for your mission in your cart - it is mostly food, and you already have ample provisions.  The cart is too heavy to carry, so you take a little bit of the food and abandon the rest of the goods and the cart in front of the stable.   Where in the courtyard do you go next?
-335:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
+335:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Go to the well^*520^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
 336:You refuse the stable boy's offer and he leaves you with all the goods.  There isn't anything that would be useful for your mission in your cart - it is mostly food, and you already have ample provisions.  The cart is too heavy to carry, so you take a little bit of the food and abandon the rest of the goods and the cart in front of the stable.   Where in the courtyard do you go next?
-336:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
+336:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Go to the well^*520^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
 337:GAINGOLD:10^*The stable master gives you 10 coins and takes your horse and cart inside.  You leave the stables and go back into the courtyard.  Where do you go next?
-337:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
+337:Visit the merchant stalls^*304^*Approach the barracks^*305^*Enter one of the castle turrets^*306^*Go to the well^*520^*Examine the inner bailey gate^*307^*Look around the courtyard again^*300
 338:You try to get a higher price for your horse and cart but the stable master is a shrewd negotiator.  You eventually are forced to settle for his original offer.
 338:Continue^*337
 339:GAINGOLD:7^*The stable boy runs in to fetch the owner of the stables, who offers you 7 gold coins for your horse.  Since you don't need the horse, you accept the offer and the stablemaster pays you.  Now that you longer have your horse and cart, you can safely return to the merchant stalls.
@@ -523,8 +523,8 @@ ARMOR:Chainmail armor^*2^*75
 346:Continue^*300
 347:"There aren't any spots open for new guards," the guard says, "But I know that Colonel Graywald is recruiting men for his army that's going to invade Carolinia.  I can introduce you, if you want."
 347:Ask the guard to introduce you^*517^*Refuse his offer and return to the courtyard^*300
-348:Tell him you need help
-348:Content not added^*999^*Return to the courtyard^*300
+348:You tell him that someone has stolen some of your goods and that you need the help of the guards.  The guard tells you to stop bothering him and to report your problem to the guard post near the trading district.
+348:Return to the courtyard^*300
 349:VARSET:mealsEaten,1^*LOSEGOLD:2^*You pay two gold coins to the vendor and buy some hot, fresh bread and a slice of cheese.  You sit down and enjoy the delicious meal.  It is quite refreshing.^*381
 349:Visit the other stalls^*352^*Return to the Courtyard^*300
 350:VARSET:mealsEaten,1^*LOSEGOLD:4^*You pay four gold coins for a large piece of roast oxen.  You sit down and enjoy the hot, delicious meat.  The meal is quite refreshing.^*381
@@ -587,7 +587,7 @@ ARMOR:Chainmail armor^*2^*75
 378:Return to the clothing and armor stalls^*322^*Look at the other stalls^*372^*Return to the courtyard^*300
 379:The only of interest in the clothing and armor stalls is a set of finely crafted shields for sale.
 379:Buy a shield for 6 gold coins^*368^*Go back to the other stalls^*372
-380:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent merchant disguise, which you could exchange your current clothing for.  In the armor stand, you see a set of finely shields for purchase, as well as a suit of chainmail armor that would fit you.
+380:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent merchant disguise, which you could exchange your current clothing for.  In the armor stand, you see a set of finely crafted shields for purchase, as well as a suit of chainmail armor that would fit you.
 380:Buy a merchant disguise for 2 gold coins^*373^*Buy the chainmail armor for 10 gold coins^*367^*Buy a shield for 6 gold coins^*368^*Go back to the other stalls^*372
 381:You do not have enough gold coins to afford that.
 381:Return to the food stalls^*366^*Visit the other stalls^*352^*Return to the Courtyard^*300
@@ -669,7 +669,7 @@ ARMOR:Chainmail armor^*2^*75
 419:null^*1
 420:VARSET:killedArchers,1^*From your hidden position in the stairwell, you pull out your crossbow and fire a bolt into one of the archers, who cries out and falls to the ground.  You immediately drop the crossbow and lunge towards the other archer, who whips around and tries to fire a shot at you from his bow.  You knock the bow out of his hands, causing his arrow to barely miss you.  He is forced to defend himself with his fists.
 420:Continue^*421
-421:COMBAT:You are fighting an archer,NAME:archer,WEAPON:Your bare hands,STRENGTH:9,DEFENSE:0,HEALTH:30,HIT:The archer punches you,HIT:The archer kicks you,MISS:The archer sidesteps.,MISS:The archer evades you.,MISS:The archer grabs your arm and stops you from hitting him.^*You manage to defeat the archer.  Now that both archers are down, you can search the room.
+421:COMBAT:You are fighting an archer,NAME:archer,WEAPON:Your bare hands,STRENGTH:7,DEFENSE:0,HEALTH:30,HIT:The archer punches you,HIT:The archer kicks you,MISS:The archer sidesteps.,MISS:The archer evades you.,MISS:The archer grabs your arm and stops you from hitting him.^*You manage to defeat the archer.  Now that both archers are down, you can search the room.
 421:Content not added^*999
 422:RESTART:^*You slowly try to pull the sword out, but the edge of the sword slides against the metal of the rack and one of the archers hears you pulling it out.  He gives a shout of warning and both archers quickly turn around and fire two arrows into your body.  As you slump to the ground the archers quickly reload their bows and fire two more arrows into you. <br>Your life ends here.
 422:null^*1
@@ -842,7 +842,7 @@ ARMOR:Chainmail armor^*2^*75
 506:RESTART:^*As you attack the scar-faced man, several guards hear you and converge on you.  You are quickly cut down by their swords.
 506:null^*1
 507:You walk away from the barracks and return to the courtyard.  Where do you go next?
-507:Go to the stable^*303^*Visit the merchant stalls^*304^*Enter one of the castle turrets^*306^*Examine the inner bailey gate^*307
+507:Go to the stable^*303^*Visit the merchant stalls^*304^*Enter one of the castle turrets^*306^*Go to the well^*520^*Examine the inner bailey gate^*307
 508:As you approach the barracks, you see the scar-faced man still inside the entrance.  You have already been turned away from him, and you do not want to risk another confrontation, so you decide not to try to enter the barracks right now.
 508:Return to the courtyard^*507
 509:VARSET:barracksVisited,1^*The barracks is a very wide building that is connected to part of the castle wall.  The barracks is very busy right now and guards are coming in and out of the entrance.  Behind the barracks, many soldiers are sparring with each other and with training dummies in a fenced off field.  Inside several windows of the barracks, you see an array of beds.  Inside the main entrance of the barracks, you see a large chamber where a huge man with scars crossing his face is writing something on a piece of parchment.  You walk up to the barracks entrance and the man turns and looks at you.  "I don't recognize you," he growls, "Are you one of the new recruits?"
@@ -867,6 +867,46 @@ ARMOR:Chainmail armor^*2^*75
 518:Continue^*441
 519:The guard leads you into the main entrance of the barracks, where the huge man with scars crossing his face is talking with a group of soldiers.  "This merchant wishes to join the invasion force," announces the guard, before leaving.
 519:Continue^*441
+520:The well in the center of the courtyard is a large with a stone base.  There is a tightly wound rope around the top that holds a large bucket for drawing water.  You peer down into the well, but you can see nothing but blackness.
+520:Draw some water from the well^*522^*Jump into the well^*521^*Return to the courtyard^*300
+521:RESTART:^*You figure that if you jump into the well, the water you hit will cushion your fall.  You make sure that nobody is watching you, then you climb onto the rim of the well and jump in.  Though you straighten your body to enter the water with minimal force, the well is far deeper than you expected and the shock of hitting the water knocks you unconscious, causing you to drown in a watery grave.  <br>Your life ends here.
+521:null^*1
+522:You use the handle on the side of the well to unwind the rope that is attached to the bucket.  It takes quite a while until the rope is completely unwound and the bucket hits water.  Seeing the unwound rope gives you the crazy idea of trying to climb down it.  The rope looks quite thick and would probably support your weight, but it is rotted and frayed in places.  If the rope broke, you might be trapped in the well forever.
+522:Climb down the rope attached to the bucket^*523^*DISPLAYIF:Rope,Tie your own length of rope to the well and climb down it instead^*524^*Pull the bucket back up and drink some water instead of climbing down^*525
+523:You slowly climb down the rope attached to the bucket.  The climb is long and arduous, and your arms are soon aching from the effort required to keep yourself from falling.  After a while, you are climbing downwards in pitch darkness.  Finally, you feel your feet hit water.  You let go of the rope, but you are forced to swim because the water is quite deep.  You have no sense of direction and must swim randomly.
+523:Swim to the north^*526^*Swim to the south^*526^*Swim to the east^*526^*Swim to the west^*526^*DISPLAYIF:Tinderbox and torch,Try to stand on the bucket and light your torch^*532^*Climb back up the rope^*528
+524:INVREMOVE:Rope^*You tie your length of rope to the top of the well and start climbing down it.  The climb is long and arduous, and your arms are soon aching from the effort required to keep yourself from falling.  After a while, you are climbing downwards in pitch darkness.  Finally, you feel your feet hit water.  You let go of the rope, but you are forced to swim because the water is quite deep.  You have no sense of direction and must swim randomly.
+524:Swim to the north^*526^*Swim to the south^*526^*Swim to the east^*526^*Swim to the west^*526^*DISPLAYIF:Tinderbox and torch,Try to light your torch^*533^*Climb back up the rope^*529
+525:You pull the bucket back up and drink some of the water.  It is cool and refreshing.  With your thirst quenched, you decide to go elsewhere in the courtyard.
+525:Continue^*300
+526:You swim a short distance until you feel yourself hit a rock wall.  What do you do next?
+526:Swim to the right along the wall^*531^*Swim to the left along the wall^*531^*Turn around and swim the way you came^*527
+527:You turn around and swim the way you came, but you must have changed direction slightly, because you do not feel the rope or the bucket.  You keep swimming until you hit another rock wall.
+527:Swim to the right along the wall^*531^*Swim to the left along the wall^*531^*Turn around and swim the way you came^*530
+528:RESTART:^*The thought of swimming randomly in a dark underground well does not appeal to you, so you start climbing back up the rope.  The climb up is even worse than the climb down, and you don't know if you can make it.  Unfortunately, the water-rotted rope has taken too much strain and it breaks when you have climbed halfway up.  You fall a good distance back down the well, and the shock of hitting the water knocks you unconscious, causing you to drown.  <br>Your life ends here.
+528:null^*1
+529:RESTART:^*The thought of swimming randomly in a dark underground well does not appeal to you, so you start climbing back up the rope.  The climb up is even worse than the climb down, and you don't know if you can make it.  About three quarters of the way up, your tired muscles give out, and you fall a good distance back down the well.  The shock of hitting the water knocks you unconscious, causing you to drown.  <br>Your life ends here.
+529:null^*1
+530:You turn around and swim for a while before hitting another rock wall.  What do you do next?
+530:Swim to the right along the wall^*531^*Swim to the left along the wall^*531^*Turn around and swim the way you came^*530
+531:You inch along the portion of wall that is above water until you feel a gap in it.  It feels like a tunnel in the rock wall that is mostly submerged but has a small portion of air in it.
+531:Swim into the tunnel^*534^*Swim away from the wall and try to find the rope^*535
+532:You try to stand on the submerged bucket to light your torch, but it is too small and slips out from under you when you try.  It is also impossible to light your torch while holding on to the rope or treading water, since you need both hands to do it.
+532:Swim to the north^*526^*Swim to the south^*526^*Swim to the east^*526^*Swim to the west^*526^*Climb back up the rope^*528
+533:It is impossible to use your tinderbox to light your torch while you are holding onto the rope, since you need both hands to do it.  It is also impossible while you are treading water, since there is no solid surface to stand on.
+533:Swim to the north^*526^*Swim to the south^*526^*Swim to the east^*526^*Swim to the west^*526^*Climb back up the rope^*529
+534:INVSPLIT:Tinderbox and torch^*536*^537.
+534:null^*1
+535:You swim away from the tunnel and paddle through the water randomly for a while until you finally find the rope.
+535:Climb back up the rope^*529^*Swim to the north^*526^*Swim to the south^*526^*Swim to the east^*526^*Swim to the west^*526
+536:You swim into the tunnel, hoping that it does not end up completely submerged.  Soon, you feel your hands touch solid rock under you.  You realize that you can finally stand up.  Fortunately, your pack kept your tinderbox and torch dry during the swim.  Now that you are standing on solid ground, you could light the torch, but you fear that the resulting fire could consume oxygen necessary for survival in this underground cave.
+536:Light the torch^*539^*Don't light it and feel your way around instead^*538
+537:You swim into the tunnel, hoping that it does not end up completely submerged.  Soon, you feel your hands touch solid rock under you.  You realize that you can finally stand up.
+537:Continue^*538
+538:You walk through the shallow water as you feel your way around the cave.  You seem to be in a narrow tunnel, where you could either go forwards or swim back through the tunnel.  You decide to proceed through the cave, and you walk forwards while feeling your way against the rock wall.
+538:Content not added^*999
+539:You use your tinderbox to light your torch, and you can see that you are in a narrow cave tunnel.  Behind you, you can see a pool of water than goes into the partially submerged underwater cave that you came through.  You decide to proceed through the cave, you and walk forwards through the narrow tunnel.
+539:Content not added^*999
 549:You are in a cold dungeon cell, surrounded by three stone walls and a study looking barred cell door.  Fortunately, the guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage after some struggling to reach the dagger and grasp the hilt.  If you cut the ropes binding your hands, you would be able to search for a way out, but the guards would probably be suspicious if they did not see your hands tied behind you.
 549:Cut the ropes binding your hands^*551^*Leave your hands bound and wait for a guard to approach^*555
 550:VARSET:dungeonVisited,1^*VARSET:lostPack,1^*INVSPLIT:Hidden dagger^*549^*552
@@ -905,7 +945,7 @@ ARMOR:Chainmail armor^*2^*75
 566:Continue^*568
 567:LOSEHEALTH:4^*You lie on the floor of the cell, pretending to groan in pain.  Two guards approach the cell, and you hear one of them unlock the door.  One of the guards roughly hoists you up by the shoulders, and at that moment you strike with your dagger, stabbing the guard in the chest.  The guard responds by kicking you viciously with an armored foot (causing you to lose 4 health), but it is too late.  He falls to the ground and you pull the dagger out of his chest and whirl around to face the second guard, who has drawn his sword. 
 567:Continue^*568
-568:COMBAT:You are fighting a dungeon guard.  The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:8,DEFENSE:2,ACCURACY:70,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your dagger glances off the guard's armor.,MISS:Your dagger glances off the guard's armor.,MISS:The guard quickly parries your dagger swing.,MISS:The guard evades you.^*You manage to defeat the second guard.  You are now free to leave your cell.
+568:COMBAT:You are fighting a dungeon guard.  The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:12,DEFENSE:2,ACCURACY:70,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your dagger glances off the guard's armor.,MISS:Your dagger glances off the guard's armor.,MISS:The guard quickly parries your dagger swing.,MISS:The guard evades you.^*You manage to defeat the second guard.  You are now free to leave your cell.
 568:Content not added^*999
 569:You sit down and wait for hours before two guards finally arrive at your cell.  One of the guards takes out a key to unlock the cell, but sees the dagger blade jammed in the lock.  He gives a shout of surprise and orders you to stand with your face to the wall and your arms above your head.
 569:Obey the guard's order^*570^*Pretend that you did not hear him^*571
@@ -923,7 +963,7 @@ ARMOR:Chainmail armor^*2^*75
 575:DISPLAYIFNOT:Hidden dagger,Grab a surgical knife from the doctor's belt and fight the guards^*577^*DISPLAYIF:Hidden dagger,Whip out your hidden dagger and fight the guards^*583^*Sprint out of the room while you have the chance^*578
 576:LOSEHEALTH:2^*You quickly roll off of the table, but the blow from the mace catches you on the left arm, causing you to lose two health.  You crash to the ground, wincing, but you ignore the pain and quickly pull yourself up.  The guard who swung the mace kicks over the operating table and comes after you, while the other guard draws a sword.
 576:DISPLAYIFNOT:Hidden dagger,Grab a surgical knife from the doctor's belt and fight the guards^*577^*DISPLAYIF:Hidden dagger,Whip out your hidden dagger and fight the guards^*583^*Sprint out of the room while you have the chance^*578
-577:INVADD:Surgical Knife^*COMBAT:You are fighting two guards.  One of them is armed with a mace and one of them is armed with a sword,NAME:first guard,WEAPON:Mace,STRENGTH:8,DEFENSE:1,ACCURACY:55,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:8,DEFENSE2:1,ACCURARCY2:55,HEALTH2:40,HIT:The first guard smashes you with his mace,HIT2:The second guard slashes you with his blade^*You manage to defeat the guards.
+577:INVADD:Surgical Knife^*COMBAT:You are fighting two guards.  One of them is armed with a mace and one of them is armed with a sword,NAME:first guard,WEAPON:Mace,STRENGTH:13,DEFENSE:1,ACCURACY:50,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:12,DEFENSE2:1,ACCURARCY2:55,HEALTH2:40,HIT:The first guard smashes you with his mace,HIT2:The second guard slashes you with his blade^*You manage to defeat the guards.
 577:Content not added^*999
 578:LOSEHEALTH:4^*You waste no time and immediately sprint towards the infirmary exit, weaving between the operating tables.  The guards run after you, but their armor slows them down.  One of the guards throws a knife at you, which grazes the side of your back, causing you to lose 4 health.  You eventually reach the exit and burst out of the infirmary, panting for breath. 
 578:Continue^*579
@@ -935,7 +975,7 @@ ARMOR:Chainmail armor^*2^*75
 581:Hide in a plain white tent^*502^*Hide in an ornately decorated tent^*503
 582:You wake up with your head pounding and your arms aching painfully.  You slowly open your eyes, but the sight you see makes you wish that you had leaved them closed.  You are inside a torture chamber that is fully of grisly instruments of pain.  You are standing up, and you find that your arms are shacked above you.  A hooded torturer is heating a large iron brand at a furnace, and a guard is standing near a large iron door and watching you.  Upon seeing that you are awake, the torturer approaches you with with the red hot brand and gives you a menacing smile
 582:Beg for mercy^*591^*Say nothing^*592
-583:COMBAT:You are fighting two guards.  One of them is armed with a mace and one of them is armed with a sword,NAME:first guard,WEAPON:Mace,STRENGTH:8,DEFENSE:1,ACCURACY:55,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:8,DEFENSE2:1,ACCURARCY2:55,HEALTH2:40,HIT:The first guard smashes you with his mace,HIT2:The second guard slashes you with his blade^*You manage to defeat the guards.
+583:COMBAT:You are fighting two guards.  One of them is armed with a mace and one of them is armed with a sword,NAME:first guard,WEAPON:Mace,STRENGTH:13,DEFENSE:1,ACCURACY:50,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:12,DEFENSE2:1,ACCURARCY2:55,HEALTH2:40,HIT:The first guard smashes you with his mace,HIT2:The second guard slashes you with his blade^*You manage to defeat the guards.
 583:Content not added^*999
 584:RESTART:^*You lunge towards the guard and catch his hand, but not in time to stop the mace from smashing into your side.  You ignore the pain and try to wrest the mace out of the guard's hand, but the other guard draws his sword and runs you through.  <br>Your life ends here.
 584:null^*1
@@ -947,7 +987,7 @@ ARMOR:Chainmail armor^*2^*75
 587:Beg for mercy^*591^*Say nothing^*592
 588:The guard shackles your hands to the wall and backs away.  You are helpless as you watch the interrogator heat a large iron brand in a furnace.  He approaches you with with the red hot brand and gives you a menacing smile.
 588:Beg for mercy^*591^*Say nothing^*592
-589:COMBAT:You are fighting an interrogator. He is using a sharp torturing knife,NAME:interrogator,WEAPON:Knife,STRENGTH:19,DEFENSE:0,ACCURACY:75,HEALTH:50,HIT:The interrogator stabs you with his knife,HIT:The interrogator cuts you deeply,HIT:The interrogator slashes you,MISS:The interrogator parries your sword.,MISS:The interrogator dodges your sword thrust.,MISS:The interrogator evades you.,MISS:The interrogator grabs your arm and pushes your sword out of the way.^*You cut down the interrogator with your sword and he falls to the ground with a crash.
+589:COMBAT:You are fighting an interrogator. He is using a sharp torturing knife,NAME:interrogator,WEAPON:Knife,STRENGTH:20,DEFENSE:0,ACCURACY:75,HEALTH:50,HIT:The interrogator stabs you with his knife,HIT:The interrogator cuts you deeply,HIT:The interrogator slashes you,MISS:The interrogator parries your sword.,MISS:The interrogator dodges your sword thrust.,MISS:The interrogator evades you.,MISS:The interrogator grabs your arm and pushes your sword out of the way.^*You cut down the interrogator with your sword and he falls to the ground with a crash.
 589:Continue^*590
 590:Defeated interrogator
 590:Content not added^*999
