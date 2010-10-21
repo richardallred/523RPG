@@ -1565,7 +1565,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							for (x = 0; x < this.possibleWeapons.length; x++) {
 								for (y = 0; y < enemies.length; y++) {
 									if (this.possibleWeapons[x].name == enemies[y].weapon) {
-										enemies[y].str = dojo.number.parse(enemies[y].str) + dojo.number.parse(this.possibleWeapons[x].strengthbonus);
+										//enemies[y].str = dojo.number.parse(enemies[y].str) + dojo.number.parse(this.possibleWeapons[x].strengthbonus);
 									}
 								}
 							}
