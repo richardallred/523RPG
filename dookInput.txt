@@ -30,7 +30,7 @@ ARMOR:Soldier's Uniform^*1^*75
 ARMOR:Chainmail armor^*2^*75
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
 0:Play the game^*1
-0:images/castle_test.jpg
+0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
 2:INVSELECT:1^*In order to pass through Dookia without arousing suspicion, you selected a disguise to enter the country with.  If you take the clothes of a Dookian merchant, you can talk your way through situations by pretending to be a harmless trader.  If you take the clothes of a Dookian mercenary, you can pretend to be looking for work while being constantly ready for combat.  If you take the stealthy dark garb of an assassin, you would arouse more suspicion but easily blend into dark areas. <br>Which clothes did you pick?
@@ -39,7 +39,7 @@ ARMOR:Chainmail armor^*2^*75
 3:Sword^*4^*Crossbow^*4^*Hidden dagger^*4^*Grappling hook^*4^*Lock picking kit^*4^*First aid kit^*4^*Tinderbox and torch^*4^*Shield^*4
 4:You manage to arrive at Castle Dookenstein without incident.  The castle is a towering fortress of stone that looms over the countryside, surrounded by a deep moat.  An ancient forest is to the right of the castle.  There is a path that leads to the castle drawbridge and the main gate, which is closed.  Across the drawbridge, there are two guards in full Dookian armor standing by the gate.  On the top of the castle, there are several more guards facing the front of the castle and holding crossbows.  You come up with several ideas to enter the castle, but all of them are risky. <br>  You could try to talk your way past the guards and enter the front gate. <br> You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
 4:Try the front gate^*5^*Swim the moat^*200^*Attack the guards with a crossbow^*7^*Grapple up the back wall^*8
-4:images/castle_test.jpg
+4:images/castle_final.jpg
 5:INVSPLIT:Merchant Disguise^*6^*26
 5:null^*1
 6:VARSET:Horse and cart,1^*As part of your merchant disguise, you brought a horse and cart full of goods.  You ride the horse across the drawbridge and approach the guards.  One of them asks you to state your business.
@@ -94,7 +94,7 @@ ARMOR:Chainmail armor^*2^*75
 30:Say that you would like to join the invasion force^*65^*Say that you aren't interested in joining the war^*66
 31:VARSET:turnedAway,1^*You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
 31:Swim the moat^*200^*Attack the guards with a crossbow^*34^*Grapple up the back wall^*32
-31:images/castle_test.jpg
+31:images/castle_final.jpg
 32:INVSPLIT:Grappling hook^*100^*33
 32:null^*1
 33:Since you did not bring a grappling hook, your plan to grapple up the back wall does not get very far.
@@ -609,18 +609,18 @@ ARMOR:Chainmail armor^*2^*75
 389:null^*1
 390:INVCHECK:Grappling hook^*You walk along the entire length of the wall, but there are no weaknesses and it is unclimbable.  The further away you get from the gate, the less guards you see patrolling.  Near the end of the wall, there is a portion where you cannot see any guards.  You look around and there are no people in sight.  You consider attempting to throw your grappling hook up to one of the crenellations in order to climb up.^*393
 390:Try to grapple up the wall^*394^*Return to the inner bailey gate instead^*307^*Go back to the central courtyard^*300
-391:Inner bailey gate (guard disguise)
-391:Content not added^*999
+391:You approach the inner bailey gate in your guard disguise, and one of the gate guards calls for the gate to be opened.  The guards wave you by and you walk through.
+391:Continue^*500
 392:As you walk up to the gate, one of the guards informs you that civilians are not allowed into the inner bailey.
 392:Say that you were given permission to enter the gate^*395^*Say that you have an important message for the King^*396^*Try to bribe your way in^*397^*Try to fight your way in^*398^*Return to the central courtyard^*300
 393:You walk along the entire length of the wall, but there are no weaknesses in it and it is unclimbable.
 393:Go back to the inner bailey gate^*307^*Go back to the central courtyard^*300
 394:You throw your grappling hook and it catches on one of the wall crenellations and holds firm.  You pull yourself up the rope and scale the wall, hoping that nobody sees you.  You manage to climb onto the wall sucessfully, and you crouch down to avoid being seen.  In the distance, you can see several patrolling guards walking along the top of the wall.  On the other side of the wall, you can see the inner bailey.  The first thing you notice in that courtyard is the towering castle keep.  You know that the King is somewhere in the keep, and you vow to somehow get inside.  You also see a huge group of white tents to the left of the keep, and a large building in front of you.
 394:Continue^*406
-395:You were given permission to enter the gate
-395:Content not added^*999^*Return to the courtyard^*300
-396:Important message for the King
-396:Content not added^*999^*Return to the courtyard^*300
+395:The guards do not believe you.  "We will need to see some proof of that, before we let you in," one of them says.
+395:Try to bribe your way in^*397^*Try to fight your way in^*398^*Return to the central courtyard^*300
+396:"The King is a busy man, and I'm not going to bother him with a message from the likes of you," says one of the guards shortly.  "If you really must give a message, you can tell it to Colonel Graywald in the barracks and it will get to the King eventually."
+396:Try to bribe your way in^*397^*Try to fight your way in^*398^*Return to the central courtyard^*300
 397:You hint to one of the guards that you would make it worth his while if he were to let you into the gate.  Upon hearing this, the guard grabs you and calls for help.  Soon, you are surrounded by guards, who draw weapons and point them at you.  "You are under arrest for trying to bribe the royal guard," one of them says.  You are outnumbered and have no choice but to surrender.
 397:Continue^*42
 398:Even if you could defeat the guards at the gate and somehow avoid the crossbow bolts from the guards on the wall, there would be no way for you to get the gate open.  You quickly reconsider your decision.
@@ -641,8 +641,8 @@ ARMOR:Chainmail armor^*2^*75
 405:Continue^*409
 406:You know that you need to continue into the inner bailey to get to the castle keep, but you somehow need to get off the wall first.  <br>You could attach your grappling hook to the wall and use its rope to climb down the other side, but that would mean that you would have to abandon the grapple.  <br>You could jump down and hope that you do not injure yourself in the fall.  <br>You could walk along the top of the wall and hope that you can find one of the rope ladders the guards use to get up and down the wall.
 406:Use the grappling hook to climb down^*488^*DISPLAYIF:Rope,Use the length of rope you bought to climb down^*497^*Jump down^*489^*Walk along the top of the wall^*490
-407:Page not used
-407:null^*1
+407:You decide that attacking would be too risky, so you decide to find another way down the wall.
+407:Use the grappling hook to climb down^*488^*DISPLAYIF:Rope,Use the length of rope you bought to climb down^*497^*Jump down^*489
 408:You try shaking the door and the lock, but they are both sturdy and unyielding.  You try to kick the door open, but the wood is very solid and you are unable to have any effect on the door.  You are eventually forced to give up.
 408:DISPLAYIFVAR:rammedDoor,0,Ram your shoulder into the door to try to break it down^*411^*DISPLAYIF:Lock picking kit,Try to pick the lock^*405^*Return to the courtyard^*300
 409:As you enter the turret, you see a small room enclosed by a circular wall of stone.  At the end of the room, you see a stone spiral staircase that is enclosed in a smaller circular wall. It leads both upwards and downwards, though you cannot see where it goes in either direction.
@@ -807,30 +807,30 @@ ARMOR:Chainmail armor^*2^*75
 488:Continue^*500
 489:LOSEHEALTH:15^*Your Carolinian warrior training has taught you how to fall long distances without harm by dissipating the force of the fall through your entire body.  You steel yourself and leap from the wall.  You hit the ground and roll, but the fall is severe and your body is jolted with pain from the impact.  You lose 15 health from the fall, but you check yourself and find that you did not break any bones.
 489:Continue^*500
-490:Walk along the wall
-490:Content not added^*999
+490:You walk along the wall until you can see a guard in the distance.  He is crouched near one of the crenellations and holding a crossbow.  He is looking out towards the outer bailey at the moment, but if he turned towards you, he would see you.
+490:DISPLAYIF:Crossbow,Use your crossbow to shoot the guard^*900^*Try to sneak up on the guard^*901^*Turn around and try to find a different way down the wall^*407
 491:You light your torch with your tinderbox and continue down the stairs.  Soon, you reach the bottom of the staircase and you can see a large underground storeroom in front of you.  It is clear that this storeroom has not been used in a while, since there are sacks strewn across the floor and cobwebs stretch across the corners of the room.  On the far wall of the room, you can see a gaping hole surrounded by many cracks in the stone.
 491:Search the sacks^*494^*Examine the gaping hole^*495^*Leave and climb back up the stairs^*415
 492:You feel your way along the stone walls as you slowly make your way down the staircase.  Soon, you reach the bottom of the stairs.  The area is pitch dark, but you can feel a chill in the air and you sense that there is a room in front of you.
 492:Feel your way along the walls of the room^*493^*Blindly walk through the center of the room^*496^*Climb back up the stairs^*415
-493:Feel your way into the room
-493:Content not added^*999
+493:You feel your way along one of the walls in the room, until you feel a gap in the wall.  In this gap, there is a deep pit, above which the air is warm and humid.  When you smell the air near the pit, your nose is assaulted by a terrible, rotten stench.
+493:DISPLAYIF:Grappling hook,Use your grappling hook to try to climb down the pit^*498^*Jump into the pit^*501^*Walk through the rest of the room^*545^*Leave the room and climb back up the stairs^*415
 494:You search through the sacks, but only food several non-perishable food items.  You already have enough rations for yourself, so you do not take anything.
 494:Examine the gaping hole^*495^*Leave and climb back up the stairs^*415
 495:You see that the gaping hole in the wall leads downwards into a dark pit.  Even with the light from your torch, you cannot see the bottom of the pit.  You get a whiff of air from the pit and you cringe as you receive a terrible, rotten scent.
 495:DISPLAYIF:Grappling hook,Use your grappling hook to try to climb down the pit^*498^*DISPLAYIF:Rope,Use your length of rope to try to climb down the pit^*499^*Jump down the pit^*501^*Search through the sacks in the room^*494^*Leave the room and climb back up the stairs^*415
-496:Walk through the center of the room
-496:Content not added^*999
+496:You carefully walk forwards into the open space.  After a few steps, you almost trip over a sack on the ground.  You feel that there are several sacks scattered around you.
+496:Search through the sacks^*542^*Keep walking forwards^*543
 497:INVREMOVE:Rope^*Using the length of rope you bought at the merchant stalls, you tie one of the ends around one of the crenellations and rappel down the wall with the rest of the rope.  Since the rope is tied to the wall, there is no way to retrieve it and you leave it behind.
 497:Continue^*500
-498:Climb down with grappling hook
-498:Content not added^*999
+498:INVREMOVE:Grappling hook^*You hook your grappling hook to one of the broken sections of the wall, making sure that it stays firm.  Since you need both hands to climb down the rope, you extinguish your torch and put it back into your pack.  As you climb down, you feel a rush of hot air and the smell becomes almost unbearable.  After a while, you feel your feet hit something soft and slimy, almost like mud.
+498:Continue^*750
 499:Climb down with rope
 499:Content not added^*999
-500:You are now in the inner bailey courtyard.  You look around and recognize the building closest to you as an infirmary.  Some distance across the courtyard is the castle keep.  Also some distance away is the group of tents that you saw earlier.
+500:You are now in the inner bailey courtyard.  You look around and recognize the building closest to you as an infirmary.  Some distance across the courtyard is the castle keep.  Also some distance away is large group of tents.
 500:Content not added^*999
-501:Jump down the pit
-501:Content not added^*999
+501:RESTART:^*You blindly jump into the pit, but it is quite deep and your fall ends abruptly on solid ground far below.  It is a fall you do not survive.
+501:null^*1
 502:Hide in a white tent
 502:Content not added^*999
 503:Hide in an ornate tent
@@ -879,8 +879,8 @@ ARMOR:Chainmail armor^*2^*75
 524:Swim to the north^*526^*Swim to the south^*526^*Swim to the east^*526^*Swim to the west^*526^*DISPLAYIF:Tinderbox and torch,Try to light your torch^*533^*Climb back up the rope^*529
 525:You pull the bucket back up and drink some of the water.  It is cool and refreshing.  With your thirst quenched, you decide to go elsewhere in the courtyard.
 525:Continue^*300
-526:You swim a short distance until you feel yourself hit a rock wall.  What do you do next?
-526:Swim to the right along the wall^*531^*Swim to the left along the wall^*531^*Turn around and swim the way you came^*527
+526:INVSPLIT:Chainmail armor^*540^*541
+526:null^*1
 527:You turn around and swim the way you came, but you must have changed direction slightly, because you do not feel the rope or the bucket.  You keep swimming until you hit another rock wall.
 527:Swim to the right along the wall^*531^*Swim to the left along the wall^*531^*Turn around and swim the way you came^*530
 528:RESTART:^*The thought of swimming randomly in a dark underground well does not appeal to you, so you start climbing back up the rope.  The climb up is even worse than the climb down, and you don't know if you can make it.  Unfortunately, the water-rotted rope has taken too much strain and it breaks when you have climbed halfway up.  You fall a good distance back down the well, and the shock of hitting the water knocks you unconscious, causing you to drown.  <br>Your life ends here.
@@ -895,7 +895,7 @@ ARMOR:Chainmail armor^*2^*75
 532:Swim to the north^*526^*Swim to the south^*526^*Swim to the east^*526^*Swim to the west^*526^*Climb back up the rope^*528
 533:It is impossible to use your tinderbox to light your torch while you are holding onto the rope, since you need both hands to do it.  It is also impossible while you are treading water, since there is no solid surface to stand on.
 533:Swim to the north^*526^*Swim to the south^*526^*Swim to the east^*526^*Swim to the west^*526^*Climb back up the rope^*529
-534:INVSPLIT:Tinderbox and torch^*536*^537.
+534:INVSPLIT:Tinderbox and torch^*536^*537
 534:null^*1
 535:You swim away from the tunnel and paddle through the water randomly for a while until you finally find the rope.
 535:Climb back up the rope^*529^*Swim to the north^*526^*Swim to the south^*526^*Swim to the east^*526^*Swim to the west^*526
@@ -907,6 +907,24 @@ ARMOR:Chainmail armor^*2^*75
 538:Content not added^*999
 539:You use your tinderbox to light your torch, and you can see that you are in a narrow cave tunnel.  Behind you, you can see a pool of water than goes into the partially submerged underwater cave that you came through.  You decide to proceed through the cave, you and walk forwards through the narrow tunnel.
 539:Content not added^*999
+540:INVREMOVE:Chainmail armor^*As you try to swim through the dark well, you realize that your suit of chainmail armor is weighing you down and making it almost impossible to keep your head above water.  You are forced to discard it to avoid drowning.
+540:Continue^*541
+541:You swim a short distance until you feel yourself hit a rock wall.  What do you do next?
+541:Swim to the right along the wall^*531^*Swim to the left along the wall^*531^*Turn around and swim the way you came^*527
+542:You feel through the sacks with your hands, but it feels like the sacks just contain food, which you do not need right now.  You decide to continue walking through the room.
+542:Continue^*543
+543:You continue walking forwards through the room, occasionally stepping over sacks lying on the ground.  After a little bit, you feel the air grow slightly warmer in front of you.  You walk towards the warmth, but you suddenly get a whiff of a terrible, rotten stench.
+543:Keep walking forwards^*544^*Leave the room and climb back up the stairs^*415
+544:As you continue to slowly walk forwards, you narrowly avoid stepping off a ledge into a deep pit.  As you feel your surroundings, you find that this drop corresponds with a hole in the wall.  The air above the pit feels warm and humid, and its smell is quite foul.
+544:DISPLAYIF:Grappling hook,Use your grappling hook to try to climb down the pit^*498^*Jump into the pit^*501^*Walk through the rest of the room^*545^*Leave the room and climb back up the stairs^*415
+545:You randomly walk through the rest of the room, but all you can feel are sacks scattered all over the ground.
+545:Search the sacks^*548^*Walk towards the pit^*546^*Leave the room and climb back up the stairs^*415
+546:You walk back towards the pit.  What do you do next?
+546:DISPLAYIF:Grappling hook,Use your grappling hook to try to climb down the pit^*498^*Jump into the pit^*501^*Leave the room and climb back up the stairs^*415
+547:INVREMOVE:Grappling hook^*You hook your grappling hook to one of the broken sections of the wall, making sure that it stays firm.  As you climb down, you feel a rush of hot air and the smell becomes almost unbearable.  After a while, you feel your feet hit something soft and slimy, almost like mud.
+547:Continue^*750
+548:You feel through the sacks with your hands, but it feels like the sacks just contain food, which you do not need right now.
+548:Walk towards the pit^*546^*Leave the room and climb back up the stairs^*415
 549:You are in a cold dungeon cell, surrounded by three stone walls and a study looking barred cell door.  Fortunately, the guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage after some struggling to reach the dagger and grasp the hilt.  If you cut the ropes binding your hands, you would be able to search for a way out, but the guards would probably be suspicious if they did not see your hands tied behind you.
 549:Cut the ropes binding your hands^*551^*Leave your hands bound and wait for a guard to approach^*555
 550:VARSET:dungeonVisited,1^*VARSET:lostPack,1^*INVSPLIT:Hidden dagger^*549^*552
@@ -1057,6 +1075,8 @@ ARMOR:Chainmail armor^*2^*75
 702:null^*1
 703:Tell him you are innocent
 703:Content not added^*999
+750:In a deep pit
+750:Content not added^*999
 800:Chase him out of the room
 800:Content not added^*999
 801:You quickly glance around the kitchen, but there aren't very many good hiding places.  You eventually settle for crouching behind a cluster of barrels.  Soon, you hear several people enter the kitchen.  You wait nervously as they walk around the kitchen for a few moments.  Eventually, they leave the room and you decide to leave your hiding place.
@@ -1117,5 +1137,31 @@ ARMOR:Chainmail armor^*2^*75
 828:Fight the guards^*803^*Run past the guards^*821^*DISPLAYIFVAR:dungeonVisited,0,Surrender to the guards^*804
 829:VARSET:guardroomVisited,2^*Say that you are lost.
 829:Content not added^*999
+900:GAINGOLD:3^*INVADD:Sword^*You move a little closer the guard, then carefully aim your crossbow and fire it.  The bolt hits the guard's head, causing him to drop instantly.  You search the guard's body and find a sword and 3 gold coins.  You take everything that you need.  The guard is larger than you are, so his armor would not fit you.  You decide whether to risk continuing across the wall or whether to descend now.
+900:Continue across the wall^*904^*Use the grappling hook to climb down^*488^*DISPLAYIF:Rope,Use the length of rope you bought to climb down^*497^*Jump down^*489
+901:LOSEHEALTH:12^*You successfully sneak up most of the way to the guard, but he hears you when you are close to him, and he quickly turns and fires his loaded crossbow at you, hitting you in the thigh and causing you to lose 12 health.  He then draws his sword and prepares to fight you.
+901:Continue^*902
+902:COMBAT:You are fighting a guard. The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:17,DEFENSE:2,ACCURACY:75,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor.,MISS:Your blow glances off the guard's armor.,MISS:The guard quickly parries your blow.,MISS:The guard evades you.^*The guard succumbs to his wounds and collapses to the ground.
+902:Continue^*903
+903:GAINGOLD:3^*INVADD:Crossbow,Sword^*You look around, but none of the other guards on the wall heard the sounds of the fight.  You search the guard's body and find that he has a crossbow and a sword that you can take, as well as 3 gold coins.  You take everything that you need.  The guard is larger than you are, so his armor would not fit you.  You decide whether to risk continuing across the wall or whether to descend now.
+903:Continue across the wall^*904^*Use the grappling hook to climb down^*488^*DISPLAYIF:Rope,Use the length of rope you bought to climb down^*497^*Jump down^*489
+904:You continue walking across the wall until you can see a group of three guards in close conversation in the distance.  They are engrossed in their conversation and have not seen you.
+904:Attack the guards^*905^*Find another way down the wall^*407
+905:You shoot one of the guards in the back with a bolt from your crossbow.  He cries out and falls, and the other two guards pull out crossbows and fire them at you.  You leap out of the way just in time and narrowly avoid the bolts.
+905:Reload your crossbow and fire again^*906^*Run towards the guards and engage them in close combat^*907
+906:LOSEHEALTH:30^*You quickly reload your crossbow as the two guards do the same.  You fire a bolt at one of the guards and hit him in the arm.  The guards fire back, and their bolts hit you in the chest and shoulder, causing you to lose 30 health.
+906:Reload your crossbow and fire again^*908^*Run towards the guards and engage them in close combat^*907
+907:As the two guards reload their crossbows, you sprint towards them and draw your sword.  The guards both draw their swords and prepare to fight you.
+907:Continue^*909
+908:You reload your crossbow again, but the pain in your chest from the crossbow bolt slows you down.  The guards manage to reload first, and they fire their bolts, hitting you in the head and in the leg.  The deadly bolts in your body are more that you can handle, and you collapse to the ground.  <br>Your life ends here.
+908:null^*1
+909:COMBAT:You are fighting two guards.  They are both armed with swords,NAME:first guard,WEAPON:Sword,STRENGTH:15,DEFENSE:2,ACCURACY:70,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:15,DEFENSE2:2,ACCURARCY2:70,HEALTH2:40,HIT:The first guard slashes you with his blade,HIT2:The second guard slashes you with his blade^*You manage to defeat the guards.
+909:Continue^*910
+910:INVSPLIT:First aid kit^*911^*912
+901:null^*1
+911:GAINGOLD:9^*GAINHEALTH:10^*You use your first aid kit to bandage your wounds and regain 10 of your lost health.  You search the bodies of the three guards and find 9 gold coins between them, which you take.  In a bundle next to the guards, there is a rope ladder with hooks on the end.  You attach it to the wall and use it to climb down to the inner bailey.
+911:Continue^*500
+912:GAINGOLD:9^*You search the bodies of the three guards and find 9 gold coins between them, which you take.  In a bundle next to the guards, there is a rope ladder with hooks on the end.  You attach it to the wall and use it to climb down to the inner bailey.
+912:Continue^*500
 999:RESTART:^*Content not added: As you try to go to a place that does not yet exist, you fall through a rip in the space-time continuum.  <br>Your life ends here.
 999:null^*1
