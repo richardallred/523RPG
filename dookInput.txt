@@ -29,7 +29,7 @@ ARMOR:Guard Disguise^*1^*75
 ARMOR:Soldier's Uniform^*1^*75
 ARMOR:Chainmail armor^*2^*75
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
-0:Play the game^*1
+0:Play the game^*1^*Demo^*1000
 0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
@@ -694,21 +694,21 @@ ARMOR:Chainmail armor^*2^*75
 432:INVSPLIT:First aid kit^*433^*434
 432:null^*1
 433:VARSET:killedArchers,1^*LOSEHEALTH:10^*You toss one of the knives at an archer, who goes down as your knife buries into his back.  The other archer hears his companion hit the ground and whips around, firing a shot at you from his bow as you throw another knife at him.  You knife hits the archer in the chest and his arrow hits you in the thigh.  The archer falls down, grasping at the knife in his chest.  You wince as you pull the arrow out of your thigh and bandage the heavily bleeding wound with supplies from your first aid kit.  You have lost 10 health from the arrow.
-433:Search the body of the guards^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
+433:Search the bodies of the archers^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 434:VARSET:killedArchers,1^*LOSEHEALTH:20^*You toss one of the knives at an archer, who goes down as your knife buries into his back.  The other archer hears his companion hit the ground and whips around, firing a shot at you from his bow as you throw another knife at him.  You knife hits the archer in the chest and his arrow hits you in the thigh.  The archer falls down, grasping at the knife in his chest.  You wince as you pull the arrow out of your thigh and blood flows freely from the wound.  You limp over to one of the archers and rip some cloth from his clothing and create a makeshift bandage for your leg.  You have lost 20 health from the arrow and from blood loss.
-434:Search the body of the guards^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
-435:Search the body
-435:Content not added^*999
-436:Search the room
-436:Content not added^*999
+434:Search the bodies of the archers^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
+435:You search the bodies of the archers and find that they are carrying longbows and quivers of arrows.  You decide not to take them since you are not good with a longbow.
+435:Search the guard post for useful items^*704^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
+436:GAINGOLD:10^*INVADD:Sword,Mace,Throwing knives^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take.
+436:Search the bodies of the archers^*705^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 437:You climb down the stairs and return to the ground level of the turret.
 437:Climb back up the staircase^*413^*Climb down the staircase^*414^*Return the courtyard^*300
 438:You walk up several winding stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.
 438:Climb back down the staircase^*416^*Keep climbing up the staircase^*417^*Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419^*DISPLAYIF:Crossbow,Shoot one of the archers with your crossbow and try to take the other one by surprise^*420
 439:You walk up the winding several stairs until you reach the next level.  You see a guard post with a weapons rack and some supplies, as well as the bodies of two archers on the ground.
 439:Climb back down the staircase^*437^*Keep climbing up the staircase^*417^*Search the room^*440
-440:Search the room.
-440:Content not added^*999
+440:INVADD:Sword,Mace,Throwing knives^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  You don't find anything else useful.
+440:Climb back down the staircase^*437^*Keep climbing up the staircase^*417
 441:"So you are a new recruit for the invasion force?" says the scar-faced man.  "You will refer to me as Colonel Graywald.  I am your commanding officer."  He leads you inside the barracks to an armory full of weapons and armor for the soldiers.  "Get in uniform and report to the training field immediately," he orders, before walking out of the room.
 441:Put on the Dookian soldier armor^*442^*Take some of the weapons in the armory^*443^*Leave the armory and explore the barracks^*444
 442:INVREMOVE:Mercenary Disguise^*INVADD:Soldier's Uniform^*You search the racks of armor until you find a suit that fits you.  You remove your mercenary disguise and put on the plated armor of a Dookian soldier.  What do you do next?
@@ -1075,6 +1075,10 @@ ARMOR:Chainmail armor^*2^*75
 702:null^*1
 703:Tell him you are innocent
 703:Content not added^*999
+704:GAINGOLD:10^*INVADD:Sword,Mace,Throwing knives^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take.
+704:Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
+705:You search the bodies of the archers and find that they are carrying longbows and quivers of arrows.  You decide not to take them since you are not good with a longbow.
+705:Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 750:In a deep pit
 750:Content not added^*999
 800:Chase him out of the room
@@ -1165,3 +1169,9 @@ ARMOR:Chainmail armor^*2^*75
 912:Continue^*500
 999:RESTART:^*Content not added: As you try to go to a place that does not yet exist, you fall through a rip in the space-time continuum.  <br>Your life ends here.
 999:null^*1
+1000:INVADD:Sword,Mace,Knife,Shield,Chainmail armor^*Choose a combat scenario
+1000:Fight a single enemy^*1001^*Fight multiple enemies^*1002
+1001:COMBAT:You are fighting an armed guard. The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:20,DEFENSE:2,ACCURACY:70,HEALTH:50,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor.,MISS:Your blow glances off the guard's armor.,MISS:The guard quickly parries your blow.,MISS:The guard evades you.^*The guard succumbs to his wounds and collapses to the ground.
+1001:Done^*1000
+1002:COMBAT:You are fighting a group of three bandits. The bandits are using daggers,NAME:first bandit,WEAPON:Dagger,STRENGTH:20,DEFENSE:2,ACCURACY:70,HEALTH:40,NAME2:second bandit,WEAPON2:Dagger,STRENGTH2:20,DEFENSE2:2,ACCURARCY2:70,HEALTH2:40,NAME3:second bandit,WEAPON3:Dagger,STRENGTH3:20,DEFENSE3:2,ACCURARCY3:70,HEALTH3:40,HIT:The first bandit stabs you,HIT2:The second bandit stabs you,HIT3:The second bandit stabs you^*You manage to defeat the bandits.
+1002:null^*1
