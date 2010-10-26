@@ -1174,4 +1174,4 @@ ARMOR:Chainmail armor^*2^*75
 1001:COMBAT:You are fighting an armed guard. The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:20,DEFENSE:2,ACCURACY:70,HEALTH:50,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor.,MISS:Your blow glances off the guard's armor.,MISS:The guard quickly parries your blow.,MISS:The guard evades you.^*The guard succumbs to his wounds and collapses to the ground.
 1001:Done^*1000
 1002:COMBAT:You are fighting a group of three bandits. The bandits are using daggers,NAME:first bandit,WEAPON:Dagger,STRENGTH:20,DEFENSE:2,ACCURACY:70,HEALTH:40,NAME2:second bandit,WEAPON2:Dagger,STRENGTH2:20,DEFENSE2:2,ACCURARCY2:70,HEALTH2:40,NAME3:second bandit,WEAPON3:Dagger,STRENGTH3:20,DEFENSE3:2,ACCURARCY3:70,HEALTH3:40,HIT:The first bandit stabs you,HIT2:The second bandit stabs you,HIT3:The second bandit stabs you^*You manage to defeat the bandits.
-1002:null^*1
+1002:Done^*1000
