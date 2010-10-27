@@ -964,7 +964,7 @@ ARMOR:Chainmail armor^*2^*75
 566:Continue^*568
 567:LOSEHEALTH:4^*You lie on the floor of the cell, pretending to groan in pain.  Two guards approach the cell, and you hear one of them unlock the door.  One of the guards roughly hoists you up by the shoulders, and at that moment you strike with your dagger, stabbing the guard in the chest.  The guard responds by kicking you viciously with an armored foot (causing you to lose 4 health), but it is too late.  He falls to the ground and you pull the dagger out of his chest and whirl around to face the second guard, who has drawn his sword. 
 567:Continue^*568
-568:COMBAT:You are fighting a dungeon guard.  The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:12,DEFENSE:2,ACCURACY:70,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your dagger glances off the guard's armor.,MISS:Your dagger glances off the guard's armor.,MISS:The guard quickly parries your dagger swing.,MISS:The guard evades you.^*You manage to defeat the second guard.  You are now free to leave your cell.
+568:COMBAT:You are fighting a dungeon guard.  The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:12,DEFENSE:2,ACCURACY:70,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your dagger glances off the guard's armor.,MISS:Your dagger glances off the guard's armor.,MISS:The guard quickly parries your dagger swing.,MISS:The guard evades you.^*You manage to defeat the guard.  You are now free to leave your cell.
 568:Content not added^*999
 569:You sit down and wait for hours before two guards finally arrive at your cell.  One of the guards takes out a key to unlock the cell, but sees the dagger blade jammed in the lock.  He gives a shout of surprise and orders you to stand with your face to the wall and your arms above your head.
 569:Obey the guard's order^*570^*Pretend that you did not hear him^*571
@@ -1090,8 +1090,8 @@ ARMOR:Chainmail armor^*2^*75
 802:Try to fight the guards^*803^*Surrender to the guards^*804
 803:RESTART:^*You try to fight the guards, but you are heavily outnumbered and they easily defeat you.  <br>Your life ends here.
 803:null^*1
-804:INVCLEAR:Assassin Garb,Merchant Disguise,Mercenary Disguise,Hidden dagger^*As the guards approach you, you raise your hands in surrender.  The guards roughly search you and remove all the items that you are carrying and all your gold coins.  They then bind your hands behind your back and lead you down several torch lit passageways.  You are lead into a dank dungeon corridor and thrown into a filthy cell.  "Our interrogators will soon find out what your true purpose here is," leers one of the guards as he walks away.
-804:Continue^*550
+804:VARSPLIT:dungeonVisited,0^*848^*849
+804:null^*1
 805:INVADD:Kitchen Knife^*You search through the kitchen for useful items.  You find several knives, and take one of them.  You see a large assortment of food and meat, but you do not need any right now.  You search through a few of the barrels in the kitchen, but they contain nothing useful.  After you are finished searching, you decide to leave the kitchen.
 805:Continue^*806
 806:You leave the room and enter a long, narrow hallway that is lined with torches.  There is an open door along the hallway to the right, though you cannot see what is inside.  To the left, there is a closed and locked door.  In both directions, the hallway turns off into a corner.
@@ -1102,16 +1102,16 @@ ARMOR:Chainmail armor^*2^*75
 808:null^*1
 809:You try to open the door but it is firmly locked and it is impossible to force open.
 809:DISPLAYIF:Lock picking kit,Pick the lock^*811^*Knock on the door^*812^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
-810:You walk down the hallway and walk around the corner.
-810:Content not added^*999
+810:You walk down the hallway and walk around the corner.  Around the corner, you see an open door and hear the sound of hammering.  You look inside and you are blasted by a wave of hot air.  You see a forge for making weapons complete with a raging furnace and several anvils.  Several weapons and pieces of armor are hanging around the room.  A gigantic and heavily muscled blacksmith is currently hammering a red-hot piece of metal on an anvil.  He is completely focused on his task and does not notice you.
+810:Enter the forge^*846^*Keep walking down the hallway^*847
 811:VARSET:storeroomVisited,1^*You use several picks from your lock picking kit and manage to get the door open.  Inside, you see a large underground storeroom that is dimly lit by several torches on the wall.  There are sacks scattered everywhere and many barrels of goods.  Most of the goods in the storeroom look like they contain food items and ingredients, but the room has so much stuff that you cannot tell.  You can see a large wine rack on the side of the room.
 811:Search the room for useful items^*243^*Leave the room^*244
 812:You knock on the door but there is no response.
 812:DISPLAYIF:Lock picking kit,Pick the lock^*811^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
 813:You walk down the hallway until you reach the locked door.
 813:Continue down the hallway and turn the corner^*810^*Try to open the door^*809
-814:You walk down the hallway past the door to the storeroom and turn around the corner. (same as 810)
-814:Content not added^*999
+814:You walk down the hallway past the door to the storeroom and turn around the corner.  Around the corner, you see an open door and hear the sound of hammering.  You look inside and you are blasted by a wave of hot air.  You see a forge for making weapons complete with a raging furnace and several anvils.  Several weapons and pieces of armor are hanging around the room.  A gigantic and heavily muscled blacksmith is currently hammering a red-hot piece of metal on an anvil.  He is completely focused on his task and does not notice you.
+814:Enter the forge^*846^*Keep walking down the hallway^*847
 815:VARSPLIT:guardroomVisited,0^*826^*827
 815:null^*1
 816:INVSPLIT:Assassin Garb^*817^*818
@@ -1120,8 +1120,8 @@ ARMOR:Chainmail armor^*2^*75
 817:null^*1
 818:ANYSPLIT:Guard Disguise,Servant Disguise,Soldier's Uniform^*819^*820
 818:null*^1
-819:VARSET:guardroomVisited,1^*Inside the door, you can see several guards playing a gambling game with dice.  One of them glances over at you and sees you.  He gives you a nod of acknowledgement.  You walk past the door and continue around the corner.
-819:Content not added^*999
+819:VARSET:guardroomVisited,1^*Inside the door, you can see several guards playing a gambling game with dice.  One of them glances over at you and sees you.  He gives you a nod of acknowledgement.  You walk past the door and continue around the corner.  Around the corner, you see a doorway that leads to an armory full of weapons and armor for the guards.
+819:Enter the armory^*850^*Walk past the armory^*851
 820:VARSPLIT:guardroomVisited,2^*828^*822
 820:null^*1
 821:RESTART:^*You dash past the guards and run around the corner, and you can hear several of them shouting at you as they give chase.  You have a good head start on them, but you run into another guard who is walking towards you.  The guard draws his sword and blocks your path.  The other guards catch up to you and cut you down with their swords.  <br>Your life ends here.
@@ -1174,6 +1174,18 @@ ARMOR:Chainmail armor^*2^*75
 844:null^*1
 845:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Guard Disguise^*INVADD:Servant Disguise^*You drag the servant's body down the hallway and into the kitchen.  Fortunately, nobody sees you doing this.  You then change into the servant's clothing and find that the clothes fit you well.  You decide that you have no further need for your old clothes, which are still damp from when you washed yourself off in the basin.
 845:Search the kitchen^*805^*Leave the kitchen^*806
+846:Enter the forge
+846:Content not added^*999
+847:Keep walking down the hallway
+847:Content not added^*999
+848:INVCLEAR:Assassin Garb,Merchant Disguise,Mercenary Disguise,Hidden dagger^*As the guards approach you, you raise your hands in surrender.  The guards roughly search you and remove all the items that you are carrying and all your gold coins.  They then bind your hands behind your back and lead you down several torch lit passageways.  You are lead into a dank dungeon corridor and thrown into a filthy cell.  "Our interrogators will soon find out what your true purpose here is," leers one of the guards as he walks away.
+848:Continue^*550
+849:RESTART^*As the guards approach you, you raise your hands in surrender.  The guards show you no mercy and cut you down with their swords.  <br>Your life ends here.
+849:null^*1
+850:Enter the amory
+850:Content not added^*999
+851:Walk past the armory
+851:Content not added^*999
 900:GAINGOLD:3^*INVADD:Sword^*You move a little closer the guard, then carefully aim your crossbow and fire it.  The bolt hits the guard's head, causing him to drop instantly.  You search the guard's body and find a sword and 3 gold coins.  You take everything that you need.  The guard is larger than you are, so his armor would not fit you.  You decide whether to risk continuing across the wall or whether to descend now.
 900:Continue across the wall^*904^*Use the grappling hook to climb down^*488^*DISPLAYIF:Rope,Use the length of rope you bought to climb down^*497^*Jump down^*489
 901:LOSEHEALTH:12^*You successfully sneak up most of the way to the guard, but he hears you when you are close to him, and he quickly turns and fires his loaded crossbow at you, hitting you in the thigh and causing you to lose 12 health.  He then draws his sword and prepares to fight you.
