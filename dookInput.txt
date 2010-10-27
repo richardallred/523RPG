@@ -33,6 +33,7 @@ ARMOR:Chainmail armor^*2^*75
 0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
+1:images/page1_map.jpg
 2:INVSELECT:1^*In order to pass through Dookia without arousing suspicion, you selected a disguise to enter the country with.  If you take the clothes of a Dookian merchant, you can talk your way through situations by pretending to be a harmless trader.  If you take the clothes of a Dookian mercenary, you can pretend to be looking for work while being constantly ready for combat.  If you take the stealthy dark garb of an assassin, you would arouse more suspicion but easily blend into dark areas. <br>Which clothes did you pick?
 2:Merchant Disguise^*3^*Mercenary Disguise^*3^*Assassin Garb^*3
 3:INVSELECT:4^*When you were leaving Carolinia, you were given a pouch of gold coins, provisions, and access to the royal armory to obtain items you needed for your quest.  In order to travel lightly for the long journey to the Dookian castle, you decided to take just four items from the store room. <br> Which items did you take?
@@ -1109,7 +1110,7 @@ ARMOR:Chainmail armor^*2^*75
 812:DISPLAYIF:Lock picking kit,Pick the lock^*811^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
 813:You walk down the hallway until you reach the locked door.
 813:Continue down the hallway and turn the corner^*810^*Try to open the door^*809
-814:You walk down the hallway past the door to the storeroom and turn around the corner.
+814:You walk down the hallway past the door to the storeroom and turn around the corner. (same as 810)
 814:Content not added^*999
 815:VARSPLIT:guardroomVisited,0^*826^*827
 815:null^*1
@@ -1127,9 +1128,9 @@ ARMOR:Chainmail armor^*2^*75
 821:null^*1
 822:Inside the door, you can see several guards playing a gambling game with dice.  One of them glances over at you and sees you.  He shouts in a drunken voice that only servants are allowed to be down here.
 822:Run past the guards^*821^*Say that you are lost^*829^*Back away from the room and try to hide in the kitchen^*830
-823:You leave the storeroom and go back to the hallway.  There is a corner to your left and the door to the kitchen to the right.
+823:You leave the storeroom and go back to the hallway.  There is a hallway corner to your left and the door to the kitchen to the right.
 823:Go to the left and turn the corner^*810^*Go to the right past the kitchen^*815
-824:You leave the storeroom and enter a torchlit hallway.  There is a corner to the left and two doors to the right.
+824:You leave the storeroom and enter a torchlit hallway.  There is a hallway corner to the left and two doors to the right.
 824:Go to the left^*810^*Go to the right^*825
 825:VARSET:kitchenVisited,1^*You walk down the hallway to the right until you can see inside one of the doors.  Inside, you see an unoccupied kitchen.  As you already have plenty of food, you doubt that you will find much of use inside it.
 825:Enter the kitchen and search it^*805^*Walk past the kitchen^*815
@@ -1143,10 +1144,36 @@ ARMOR:Chainmail armor^*2^*75
 829:Content not added^*999
 830:You quickly move out of sight of the guards and slip into the kitchen.  You can hear the guards get up from their game to come after you.  Before you can hide yourself, the guards rush into the room.  The guards draw weapons and approach you, quickly cornering you.
 830:Try to fight the guards^*803^*Surrender to the guards^*804
-831:As you rush out of the room after the servant, you pull out your crossbow from your pack.  You emerge from the kitchen into a hallway, and you can see the servant fleeing to the right.  You fire a bolt from your crossbow, and hit the servant in the middle of the back, causing him to fall to the ground.
-831:Content not added^*999
-832:You rush out of the room after the servant, and emerge from the kitchen into a hallway.  You can see the servant fleeing to your right, and you sprint after him.  He has almost reached a room in the hallway when you catch up to him and tackle him to the ground.
-832:Try to fight the guards^*803^*Run from the guards down the hallway^*833^*Surrender to the guards^*804
+831:As you rush out of the room after the servant, you pull out your crossbow from your pack.  You emerge from the kitchen into a hallway, and you can see the servant fleeing to the right towards an open room.  You fire a bolt from your crossbow and hit the servant in the middle of the back, causing him to fall to the ground.
+831:Go up to the body to see if the servant is dead^*834^*Abandon the body and slip back into the kitchen^*835^*Abandon the body and walk the other direction down the hallway^*836
+832:You rush out of the room after the servant, and emerge from the kitchen into a hallway.  You can see the servant fleeing to your right, and you sprint after him.  He has almost reached a room in the hallway when you catch up to him and tackle him to the ground.  He falls to the ground with a loud crashing noise, and the fall dazes him.  You are breathing a sigh of relief when you see a group of five guards emerge from the room that the servant was running towards.  They see you and draw their weapons.
+832:Try to fight the guards^*803^*Run from the guards^*833^*Surrender to the guards^*804
+833:RESTART^*You run away from the guards down the hallway, and you can hear them shouting at you as they give chase.  You have a good head start on them, but you run into another guard who is walking towards you.  The guard draws his sword and blocks your path.  The other guards catch up to you and cut you down with their swords.  <br>Your life ends here.
+833:null^*1
+834:You walk up to the body and see that the servant is dead.  You are tempted to search the body, but someone might see you in the middle of the hallway.
+834:Search the body^*840^*Drag the body into the kitchen^*841^*Leave the body and walk towards the open room to the right^*842
+835:You leave the body where it is and slip back into the kitchen.  After a few moments, you hear shouts from outside the room.  Someone must have found the servant's body.
+835:Try to hide somewhere in the kitchen^*801^*Leave the kitchen and investigate the shouts^*837
+836:You leave the servant's body where it is and casually walk the other direction down the hallway.  Near the end of the hallway, you see a locked door.  At the end of the hallway, there is a corner that goes to the right.
+836:Try to pick the lock on the door^*838^*Keep walking and turn the corner^*810
+837:You leave the kitchen and find several guards standing around the body of the servant down the hallway.  One of them sees you and shouts at you to halt.
+837:Try to run away from the guards^*833^*Stand still and let the guards approach you^*839^*Try to fight the guards^*803
+838:As you are examining the lock on the door, you hear a shout for behind you.  You see several guards standing around the body of the servant down the hallway.  One of them is pointing and shouting at you.
+838:Try to run away from the guards^*833^*Try to fight the guards^*803^*Walk towards the guards^*839^*Do nothing^*839
+839:RESTART:^*The guards search you and find your crossbow in your pack.  One of the guards accuses you of shooting the servant.  You try to protest your innocence, but you do not convince the guards and one of them executes you with his sword.  <br>Your life ends here.
+839:null^*1
+840:You search the body, but you don't find anything of value on the servant.  However, the servant's clothes look like they will fit you and you consider taking the clothing to disguise yourself.
+840:Exchange your current clothing for the servant's clothing^*844^*Drag the servant's body into the kitchen before taking the clothes^*845^*Leave the clothes and keep walking down the hallway^*842
+841:You drag the servant's body down the hallway and into the kitchen.  Fortunately, nobody sees you doing this.  You then search the body, but you don't find anything of value on the servant.  However, the servant's clothes look like they will fit you and you consider taking the clothing to disguise yourself.
+841:Exchange your current clothing for the servant's clothing^*843^*Search the kitchen instead^*805^*Leave the kitchen^*806
+842:As you continue down the hallway towards the open room to the right, you can hear voices coming from it.  Suddenly, you see a guard walk out of the room.  He looks at you and the body of the servant and calls for you to halt.  As he shouts at you, you can see several more guards walk out of the room.
+842:Try to fight the guards^*803^*Run from the guards^*833^*Surrender to the guards^*804
+843:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Guard Disguise^*INVADD:Servant Disguise^*You change into the servant's clothing and find that the clothes fit you well.  You decide that you have no further need for your old clothes, which are still damp from when you washed yourself off in the basin.
+843:Search the kitchen^*805^*Leave the kitchen^*806
+844:RESTART:^*As you are changing into the servant's clothing, you see a guard turn around the hallway corner and walk towards you.  As he sees what you are doing, he pulls out a crossbow.  You fumble for a weapon, but it is too late.  The deadly crossbow bolt hits you in the chest and lodges into your heart.  <br>Your life ends here.
+844:null^*1
+845:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Guard Disguise^*INVADD:Servant Disguise^*You drag the servant's body down the hallway and into the kitchen.  Fortunately, nobody sees you doing this.  You then change into the servant's clothing and find that the clothes fit you well.  You decide that you have no further need for your old clothes, which are still damp from when you washed yourself off in the basin.
+845:Search the kitchen^*805^*Leave the kitchen^*806
 900:GAINGOLD:3^*INVADD:Sword^*You move a little closer the guard, then carefully aim your crossbow and fire it.  The bolt hits the guard's head, causing him to drop instantly.  You search the guard's body and find a sword and 3 gold coins.  You take everything that you need.  The guard is larger than you are, so his armor would not fit you.  You decide whether to risk continuing across the wall or whether to descend now.
 900:Continue across the wall^*904^*Use the grappling hook to climb down^*488^*DISPLAYIF:Rope,Use the length of rope you bought to climb down^*497^*Jump down^*489
 901:LOSEHEALTH:12^*You successfully sneak up most of the way to the guard, but he hears you when you are close to him, and he quickly turns and fires his loaded crossbow at you, hitting you in the thigh and causing you to lose 12 health.  He then draws his sword and prepares to fight you.
