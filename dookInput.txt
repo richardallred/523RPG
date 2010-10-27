@@ -28,7 +28,7 @@ SHIELD:Shield^*2^*33
 ARMOR:Guard Disguise^*1^*75
 ARMOR:Soldier's Uniform^*1^*75
 ARMOR:Chainmail armor^*2^*75
-0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
+0:TEST PUSH You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
 0:Play the game^*1^*Demo^*1000
 0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
@@ -239,17 +239,17 @@ ARMOR:Chainmail armor^*2^*75
 102:Pull yourself up the grapple^*104^*Abandon your grappling hook and go back around to the front of the castle^*105
 103:LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.
 103:Try the Eastern tower^*102^*Go back to the castle entrance^*4
-104:You slowly scale the castle wall being careful to stay quiet and not bring any attention to yourself.  You finally reach the ledge of the window and you pull yourself inside.  You hear some faint talking coming from the hallway.  The room you are now in is mostly empty just a desk for a gaurd to sit at and watch out the window.
-104:Search the room^*106^*Quietly move out into the hallway^*107
+104:You slowly scale the castle wall while being careful to stay quiet and not bring any attention to yourself.  Your arms ache, but you finally reach the ledge of the window and you pull yourself inside.  You find yourself in a circular torchlit room that is empty except for a desk that is covered with several pieces of parchment.  There is a single door that leads out of the room, and you think that you can hear the faint sound of voices outside.
+104:Search the room^*106^*Quietly leave the room^*107
 105:INVREMOVE:Grappling hook^*The grapple is firmly attached the window ledge, but you do not want to risk the long climb up the castle wall, since you know that a fall from that height would likely be fatal.  You decide to leave the grapple attached to the window and return to the front of the castle.  What do you try next?
 105:DISPLAYIFVAR:turnedAway,0,Try the front gate^*5^*Swim the moat^*200^*DISPLAYIF:Crossbow,Attack the guards with a crossbow^*7
-106:INVSPLIT:First aid kit^*108^*109
+106:INVSPLIT:Tinderbox and torch^*108^*109
 106:null^*1
-107:LOCKPICK:100^*You creep into the hallway and the sounds of voices seem to be coming from a room at the end of the hall.  It sounds like at least three distinct voices, one of which is very angry.  
+107:You creep out of the room and emerge near a hallway corner. You hear the sound of voices coming from a room at the end of the hall to the right.  Down the hall to the left, you can see several doors.
 107:Content not added^*999
-108:You look around and find nothing of particular use to you, just lots of gaurd notes and old games of tic tac toe scribbled out on parchment.  You decide to head out into the hallway.
+108:You look around and find nothing particularly useful to you, just notes scribbled by a guard on the pieces of parchment.  You decide to leave the room.
 108:Continue^*107
-109:INVADD:First aid kit^*After rifling through the papers that are on the desk and going through the drawers, you find a First aid kit and place it in your pocket, just incase you might need it later.  You now decide to continue out into the hall
+109:You look around and find nothing particularly useful to you, just notes scribbled by a guard on the pieces of parchment.  You consider trying to take one of the torches in the room, but they are firmly attached to the wall, and you would have no way of lighting one.  You decide to leave the room.
 109:Continue^*107
 200:VARSET:unwashed,1^*Making sure that none of the patrolling castle guards can see you, you make your way over to the side of the castle and search for entrances near the moat.  You see a 3 foot by 3 foot square tunnel in the side of the castle that is covered by a rusty metal grate with a large lock on it.  You see a small, slime covered waste disposal hole that you could try to squeeze through, but you do not relish the thought.  You see a patch of uneven bricks that you could attempt to scale, but the nearest window that you could enter is 40 feet from the ground.
 200:Swim towards the tunnel with the grating^*201^*Swim towards the small hole^*202^*Swim towards the uneven bricks and try to scale the wall^*203
@@ -1081,11 +1081,11 @@ ARMOR:Chainmail armor^*2^*75
 705:Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 750:In a deep pit
 750:Content not added^*999
-800:Chase him out of the room
-800:Content not added^*999
+800:INVSPLIT:Crossbow^*831^*832
+800:null^*1
 801:You quickly glance around the kitchen, but there aren't very many good hiding places.  You eventually settle for crouching behind a cluster of barrels.  Soon, you hear several people enter the kitchen.  You wait nervously as they walk around the kitchen for a few moments.  Eventually, they leave the room and you decide to leave your hiding place.
 801:Search the kitchen^*805^*Leave the kitchen^*806
-802:INVADD:Knife^*You decide that the servant is not a threat and you start to search the kitchen for useful items.  You find several knives and a large assortment of food.  While you are searching, the servant comes back in to the room, flanked by several guards.  The guards draw weapons and come approach you, quickly cornering you.
+802:INVADD:Knife^*You decide that the servant is not a threat and you start to search the kitchen for useful items.  You find several knives and a large assortment of food.  While you are searching, the servant comes back in to the room, flanked by several guards.  The guards draw weapons and approach you, quickly cornering you.
 802:Try to fight the guards^*803^*Surrender to the guards^*804
 803:RESTART:^*You try to fight the guards, but you are heavily outnumbered and they easily defeat you.  <br>Your life ends here.
 803:null^*1
@@ -1102,7 +1102,7 @@ ARMOR:Chainmail armor^*2^*75
 809:You try to open the door but it is firmly locked and it is impossible to force open.
 809:DISPLAYIF:Lock picking kit,Pick the lock^*811^*Knock on the door^*812^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
 810:You walk down the hallway and walk around the corner.
-810:
+810:Content not added^*999
 811:VARSET:storeroomVisited,1^*You use several picks from your lock picking kit and manage to get the door open.  Inside, you see a large underground storeroom that is dimly lit by several torches on the wall.  There are sacks scattered everywhere and many barrels of goods.  Most of the goods in the storeroom look like they contain food items and ingredients, but the room has so much stuff that you cannot tell.  You can see a large wine rack on the side of the room.
 811:Search the room for useful items^*243^*Leave the room^*244
 812:You knock on the door but there is no response.
@@ -1126,7 +1126,7 @@ ARMOR:Chainmail armor^*2^*75
 821:RESTART:^*You dash past the guards and run around the corner, and you can hear several of them shouting at you as they give chase.  You have a good head start on them, but you run into another guard who is walking towards you.  The guard draws his sword and blocks your path.  The other guards catch up to you and cut you down with their swords.  <br>Your life ends here.
 821:null^*1
 822:Inside the door, you can see several guards playing a gambling game with dice.  One of them glances over at you and sees you.  He shouts in a drunken voice that only servants are allowed to be down here.
-822:Run past the guards^*821^*Say that you are lost^*829
+822:Run past the guards^*821^*Say that you are lost^*829^*Back away from the room and try to hide in the kitchen^*830
 823:You leave the storeroom and go back to the hallway.  There is a corner to your left and the door to the kitchen to the right.
 823:Go to the left and turn the corner^*810^*Go to the right past the kitchen^*815
 824:You leave the storeroom and enter a torchlit hallway.  There is a corner to the left and two doors to the right.
@@ -1141,6 +1141,12 @@ ARMOR:Chainmail armor^*2^*75
 828:Fight the guards^*803^*Run past the guards^*821^*DISPLAYIFVAR:dungeonVisited,0,Surrender to the guards^*804
 829:VARSET:guardroomVisited,2^*Say that you are lost.
 829:Content not added^*999
+830:You quickly move out of sight of the guards and slip into the kitchen.  You can hear the guards get up from their game to come after you.  Before you can hide yourself, the guards rush into the room.  The guards draw weapons and approach you, quickly cornering you.
+830:Try to fight the guards^*803^*Surrender to the guards^*804
+831:As you rush out of the room after the servant, you pull out your crossbow from your pack.  You emerge from the kitchen into a hallway, and you can see the servant fleeing to the right.  You fire a bolt from your crossbow, and hit the servant in the middle of the back, causing him to fall to the ground.
+831:Content not added^*999
+832:You rush out of the room after the servant, and emerge from the kitchen into a hallway.  You can see the servant fleeing to your right, and you sprint after him.  He has almost reached a room in the hallway when you catch up to him and tackle him to the ground.
+832:Try to fight the guards^*803^*Run from the guards down the hallway^*833^*Surrender to the guards^*804
 900:GAINGOLD:3^*INVADD:Sword^*You move a little closer the guard, then carefully aim your crossbow and fire it.  The bolt hits the guard's head, causing him to drop instantly.  You search the guard's body and find a sword and 3 gold coins.  You take everything that you need.  The guard is larger than you are, so his armor would not fit you.  You decide whether to risk continuing across the wall or whether to descend now.
 900:Continue across the wall^*904^*Use the grappling hook to climb down^*488^*DISPLAYIF:Rope,Use the length of rope you bought to climb down^*497^*Jump down^*489
 901:LOSEHEALTH:12^*You successfully sneak up most of the way to the guard, but he hears you when you are close to him, and he quickly turns and fires his loaded crossbow at you, hitting you in the thigh and causing you to lose 12 health.  He then draws his sword and prepares to fight you.
@@ -1162,7 +1168,7 @@ ARMOR:Chainmail armor^*2^*75
 909:COMBAT:You are fighting two guards.  They are both armed with swords,NAME:first guard,WEAPON:Sword,STRENGTH:15,DEFENSE:2,ACCURACY:70,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:15,DEFENSE2:2,ACCURARCY2:70,HEALTH2:40,HIT:The first guard slashes you with his blade,HIT2:The second guard slashes you with his blade^*You manage to defeat the guards.
 909:Continue^*910
 910:INVSPLIT:First aid kit^*911^*912
-901:null^*1
+910:null^*1
 911:GAINGOLD:9^*GAINHEALTH:10^*You use your first aid kit to bandage your wounds and regain 10 of your lost health.  You search the bodies of the three guards and find 9 gold coins between them, which you take.  In a bundle next to the guards, there is a rope ladder with hooks on the end.  You attach it to the wall and use it to climb down to the inner bailey.
 911:Continue^*500
 912:GAINGOLD:9^*You search the bodies of the three guards and find 9 gold coins between them, which you take.  In a bundle next to the guards, there is a rope ladder with hooks on the end.  You attach it to the wall and use it to climb down to the inner bailey.
