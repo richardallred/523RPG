@@ -1888,7 +1888,68 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								console.log(choicesArray[m]);
 						}
 						
+						
 					}
+					//Maze:
+					else if (specialPageArray[p].match('MAZE:') !=null) {
+						this.inMaze=1;
+						var MazeArray= new Array(10);
+						row=0;
+						col=0;
+						for(i=0; i<=10;i++){
+							MazeArray[i] = ["","","","","","","","","",""]; // Make the first element an array of two elements
+						}
+						while(row !=9 || col!=9)
+						//for(i=0;i<10; i++)
+						{
+							temp=Math.ceil(Math.random()*4);
+							console.log(temp);
+							if(temp==1){
+								if(row!=0){
+									if(MazeArray[row][col){
+										MazeArray[row][col]+='N';
+									}
+									row--;
+									MazeArray[row][col]+='S';
+								}
+							}
+							else if(temp==2){
+								if(col!=9){
+									MazeArray[row][col]+='E';
+									col++;
+									MazeArray[row][col]+='W';
+								}
+							}
+							else if(temp==3){
+								if(row!=9){
+								MazeArray[row][col]+='S';
+								row++;
+								MazeArray[row][col]+='N';
+								}
+							}
+							else if(temp==4){
+								if(col!=0){
+								MazeArray[row][col]+='W';
+								col--;
+								MazeArray[row][col]+='E';
+								}
+							}
+						//
+						}
+						for (m=0; m<MazeArray.length-1; m++){
+								console.log(MazeArray[m]);
+								//console.log(choicesArray[m][1]);
+								//console.log(choicesArray[m][2]);
+						}
+						//console.log(MazeArray[0]);
+						//console.log(MazeArray[1]);
+						//console.log(MazeArray[2]);
+						//console.log(MazeArray[3]);
+						//console.log(MazeArray);
+						}
+					
+					
+					
 					//restart the game on next button press with RESTART
 					else if (specialPageArray[p].match('RESTART:') != null) {
 						//this.message = specialPageArray[p+1];
