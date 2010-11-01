@@ -90,6 +90,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.inMaze=0;
 		//special mode for lock picking
 		this.inLockPicking = 0;
+		//special mode for safe cracking
 		this.inSafeCracking = 0;
 		//set jsonic reading rate - default for JSonic is 200
 		this.sonicRate = 250;
