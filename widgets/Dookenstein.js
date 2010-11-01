@@ -90,6 +90,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.inMaze=0;
 		//special mode for lock picking
 		this.inLockPicking = 0;
+		this.inSafeCracking = 0;
 		//set jsonic reading rate - default for JSonic is 200
 		this.sonicRate = 250;
 		this.sonicVolume = 1.0;
@@ -1898,6 +1899,24 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							}
 						}
 					}
+					//SAFECRACK:
+					else if(specialPageArray[p].match('SAFECRACK:') != null) {
+						this.inSafeCracking = 1;
+						var num = new Array(3);
+						for(i=0;i<3;i++){
+							if(this.difficulty=="Easy"){
+								num[i] = Math.floor(Math.random()*20);
+							}else{
+								if(this.difficulty=="Normal"){
+									num[i] = Math.floor(Math.random()*40);
+								}else{
+									num[i] = Math.floor(Math.random()*60);
+								}
+							}
+							
+							this.message= this.message+"Correct #"+(i+1)+" is "+ num[i]+".<br>";
+						}
+					}
 					//Maze:
 					else if (specialPageArray[p].match('MAZE:') !=null) {
 						this.inMaze=1;
@@ -1992,7 +2011,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//End special pages testing
 			if (this.restart == 0) {
 				//if you are in inventory selection mode or combat mode, you are overriding the choice selection
-				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0) {
+				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0 && this.inMaze == 0 && this.SafeCracking == 0) {
 					//Special commands for choices:
 					//DISPLAYIF:item1,item2,...,text  Only display this choice if all listed items are in inventory
 					//DISPLAYIFNOT:item1,item2,...,text  Only display this choice if none of the listed items are in the inventory
