@@ -86,10 +86,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.inCombat = 0;
 		this.chooseWeapon = 0;
 		this.invselecting = 0;
+		//special mode for Maze
+		this.inMaze=0;
 		//special mode for lock picking
 		this.inLockPicking = 0;
-		//special mode for safe cracking
-		this.inSafeCracking = 0;
 		//set jsonic reading rate - default for JSonic is 200
 		this.sonicRate = 250;
 		this.sonicVolume = 1.0;
@@ -1861,103 +1861,98 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					//LOCKPICK: num of tumblers
 					else if (specialPageArray[p].match('LOCKPICK:') !=null) {
-						var currentTumbler;
-						var currentPushes;
-						if(this.inLockPicking==0){
-							//Read # of tumblers as set by the call from the input file
-							numOfTumbler = specialPageArray[p].split('LOCKPICK:');
-							numOfTumblers=dojo.number.parse(numOfTumbler[1]);
-							console.log("There are " + numOfTumblers +" Tumblers in this lock");
-							var tumblers= new Array(numOfTumblers);
-							console.log("created tumbler array");
-							for(m=0; m<numOfTumblers; m++){
-								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
-								if(this.difficulty=="Easy"){
-									tumblers[m]=Math.ceil(Math.random()*3);
-								}else if(this.difficulty=="Normal"){
-									tumblers[m]=Math.ceil(Math.random()*6);
-								}else{
-									tumblers[m]=Math.ceil(Math.random()*10);
-								}								
-							}
-							this.inLockPicking=1;
-							choicesArray = [];
-							currentTumbler=1;
-							currentPushes=0;
-							this.message=this.message+"<br>You are currently picking Tumbler #"+(currentTumbler);
-							this.message=this.message+"<br>You have pushed this tumbler "+(currentPushes)+ " time(s)";
-							choicesArray[0]='Pick tumbler '+currentTumbler;
-							choicesArray[1]=this.page;
-							choicesArray[2]='Check tumbler '+currentTumbler;
-							choicesArray[3]=this.page;
-							
-						}else{
-							
-							if(choiceNum=1){
-								
-							}
-						}
-					}
-					//SAFECRACK:
-					else if(specialPageArray[p].match('SAFECRACK:') != null) {
-						this.inSafeCracking = 1;
-						var num = new Array(3);
-						for(i=0;i<3;i++){
+						this.inLockPicking=1;
+						//Read # of tumblers as set by the call from the input file
+						numOfTumbler = specialPageArray[p].split('LOCKPICK:');
+						numOfTumblers=dojo.number.parse(numOfTumbler[1]);
+						console.log("There are " + numOfTumblers +" Tumblers in this lock");
+						var tumblers= new Array(numOfTumblers);
+						console.log("created tumbler array");
+						for(m=0; m<numOfTumblers; m++){
+							//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
 							if(this.difficulty=="Easy"){
-								num[i] = Math.floor(Math.random()*20);
+								tumblers[m]=Math.ceil(Math.random()*3);
+							}else if(this.difficulty=="Normal"){
+								tumblers[m]=Math.ceil(Math.random()*6);
 							}else{
-								if(this.difficulty=="Normal"){
-									num[i] = Math.floor(Math.random()*40);
-								}else{
-									num[i] = Math.floor(Math.random()*60);
-								}
+								tumblers[m]=Math.ceil(Math.random()*10);
 							}
-							
-							this.message=this.message+"Correct #"+(i+1)+" is "+ num[i]+".<br>";
+								
+							this.message=this.message+"<br>Tumber #"+(m+1)+" requires "+ tumblers[m]+" key presses <br>"; 
+						
 						}
+						choicesArray = [];
+						choicesArray[0]='Pick tumbler 1';
+						choicesArray[1]=this.page;
+						choicesArray[2]='Check tumbler 1';
+						choicesArray[3]=this.page;
+						for (m=0; m<choicesArray.length; m++){
+								console.log(choicesArray[m]);
+						}
+						
+						
 					}
 					//Maze:
 					else if (specialPageArray[p].match('MAZE:') !=null) {
 						this.inMaze=1;
-						var MazeArray= new Array(10);
+						mazeSize=4;
+						var MazeArray= new Array(mazeSize);
 						row=0;
 						col=0;
-						for(i=0; i<=10;i++){
-							MazeArray[i] = ["","","","","","","","","",""]; // Make the first element an array of two elements
+						for(i=0; i<=mazeSize;i++){
+						MazeArray[i] =[];
+						for(p=0; p<=mazeSize;p++){
+							 // Make the first element an array of two elements
+							 MazeArray[i][p]="";
 						}
-						while(row !=9 || col!=9)
+						}
+						while(row !=mazeSize-1 || col!=mazeSize-1)
 						//for(i=0;i<10; i++)
 						{
 							temp=Math.ceil(Math.random()*4);
 							console.log(temp);
 							if(temp==1){
 								if(row!=0){
-									//if(MazeArray[row][col){
+									if(MazeArray[row][col].indexOf('N')==-1){
 										MazeArray[row][col]+='N';
-									//}
+									}
 									row--;
+									if(MazeArray[row][col].indexOf('S')==-1){
 									MazeArray[row][col]+='S';
+									}
 								}
 							}
 							else if(temp==2){
-								if(col!=9){
+								if(col!=mazeSize-1){
+								if(MazeArray[row][col].indexOf('E')==-1){
 									MazeArray[row][col]+='E';
+									}
 									col++;
+									if(MazeArray[row][col].indexOf('W')==-1){
 									MazeArray[row][col]+='W';
+									}
 								}
 							}
 							else if(temp==3){
-								if(row!=9){
+								if(row!=mazeSize-1){
+								if(MazeArray[row][col].indexOf('S')==-1){
 								MazeArray[row][col]+='S';
+								}
 								row++;
+								if(MazeArray[row][col].indexOf('N')==-1){
 								MazeArray[row][col]+='N';
+								}
 								}
 							}
 							else if(temp==4){
 								if(col!=0){
+								if(MazeArray[row][col].indexOf('W')==-1){
 								MazeArray[row][col]+='W';
+								}
 								col--;
+								if(MazeArray[row][col].indexOf('E')==-1){
 								MazeArray[row][col]+='E';
+								}
 								}
 							}
 						//
@@ -1967,6 +1962,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//console.log(choicesArray[m][1]);
 								//console.log(choicesArray[m][2]);
 						}
+						//console.log(MazeArray.length);
 						//console.log(MazeArray[0]);
 						//console.log(MazeArray[1]);
 						//console.log(MazeArray[2]);
@@ -1990,7 +1986,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//End special pages testing
 			if (this.restart == 0) {
 				//if you are in inventory selection mode or combat mode, you are overriding the choice selection
-				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0 this.inSafeCracking == 0) {
+				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0) {
 					//Special commands for choices:
 					//DISPLAYIF:item1,item2,...,text  Only display this choice if all listed items are in inventory
 					//DISPLAYIFNOT:item1,item2,...,text  Only display this choice if none of the listed items are in the inventory
