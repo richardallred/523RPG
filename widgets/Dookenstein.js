@@ -1859,36 +1859,42 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					//LOCKPICK: num of tumblers
 					else if (specialPageArray[p].match('LOCKPICK:') !=null) {
-						this.inLockPicking=1;
-						//Read # of tumblers as set by the call from the input file
-						numOfTumbler = specialPageArray[p].split('LOCKPICK:');
-						numOfTumblers=dojo.number.parse(numOfTumbler[1]);
-						console.log("There are " + numOfTumblers +" Tumblers in this lock");
-						var tumblers= new Array(numOfTumblers);
-						console.log("created tumbler array");
-						for(m=0; m<numOfTumblers; m++){
-							//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
-							if(this.difficulty=="Easy"){
-								tumblers[m]=Math.ceil(Math.random()*3);
-							}else if(this.difficulty=="Normal"){
-								tumblers[m]=Math.ceil(Math.random()*6);
-							}else{
-								tumblers[m]=Math.ceil(Math.random()*10);
+						var currentTumbler;
+						var currentPushes;
+						if(this.inLockPicking==0){
+							//Read # of tumblers as set by the call from the input file
+							numOfTumbler = specialPageArray[p].split('LOCKPICK:');
+							numOfTumblers=dojo.number.parse(numOfTumbler[1]);
+							console.log("There are " + numOfTumblers +" Tumblers in this lock");
+							var tumblers= new Array(numOfTumblers);
+							console.log("created tumbler array");
+							for(m=0; m<numOfTumblers; m++){
+								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
+								if(this.difficulty=="Easy"){
+									tumblers[m]=Math.ceil(Math.random()*3);
+								}else if(this.difficulty=="Normal"){
+									tumblers[m]=Math.ceil(Math.random()*6);
+								}else{
+									tumblers[m]=Math.ceil(Math.random()*10);
+								}								
 							}
+							this.inLockPicking=1;
+							choicesArray = [];
+							currentTumbler=1;
+							currentPushes=0;
+							this.message=this.message+"<br>You are currently picking Tumbler #"+(currentTumbler);
+							this.message=this.message+"<br>You have pushed this tumbler "+(currentPushes)+ " time(s)";
+							choicesArray[0]='Pick tumbler '+currentTumbler;
+							choicesArray[1]=this.page;
+							choicesArray[2]='Check tumbler '+currentTumbler;
+							choicesArray[3]=this.page;
+							
+						}else{
+							
+							if(choiceNum=1){
 								
-							this.message=this.message+"<br>Tumber #"+(m+1)+" requires "+ tumblers[m]+" key presses <br>"; 
-						
+							}
 						}
-						choicesArray = [];
-						choicesArray[0]='Pick tumbler 1';
-						choicesArray[1]=this.page;
-						choicesArray[2]='Check tumbler 1';
-						choicesArray[3]=this.page;
-						for (m=0; m<choicesArray.length; m++){
-								console.log(choicesArray[m]);
-						}
-						
-						
 					}
 					//Maze:
 					else if (specialPageArray[p].match('MAZE:') !=null) {
@@ -1906,9 +1912,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							console.log(temp);
 							if(temp==1){
 								if(row!=0){
-									if(MazeArray[row][col){
+									//if(MazeArray[row][col){
 										MazeArray[row][col]+='N';
-									}
+									//}
 									row--;
 									MazeArray[row][col]+='S';
 								}
