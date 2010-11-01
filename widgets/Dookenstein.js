@@ -86,6 +86,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.inCombat = 0;
 		this.chooseWeapon = 0;
 		this.invselecting = 0;
+		//special mode for lock picking
+		this.inLockPicking = 0;
 		//set jsonic reading rate - default for JSonic is 200
 		this.sonicRate = 250;
 		this.sonicVolume = 1.0;
@@ -863,6 +865,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	},
 	processChoice: function(pageNum, choiceNum) {
 		this.page = pageNum;
+		//console.log(choiceNum);
 		if (this.pageText.length <= this.page || this.choices.length <= this.page) {
 			this.message = 'ERROR: The specified page does not exist';
 		} else {
@@ -1841,6 +1844,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							choicesArray[aliveEnemies.length*2+1] = this.page;
 							choicesArray[aliveEnemies.length*2+2] = 'Change Weapon';
 							choicesArray[aliveEnemies.length*2+3] = this.page;
+							
 							if (wonCombat) {
 								combatString = combatString + '<br>' + specialPageArray[p+1];
 								this.inCombat = 0;
@@ -1855,6 +1859,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					//LOCKPICK: num of tumblers
 					else if (specialPageArray[p].match('LOCKPICK:') !=null) {
+						this.inLockPicking=1;
 						//Read # of tumblers as set by the call from the input file
 						numOfTumbler = specialPageArray[p].split('LOCKPICK:');
 						numOfTumblers=dojo.number.parse(numOfTumbler[1]);
@@ -1871,9 +1876,17 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								tumblers[m]=Math.ceil(Math.random()*10);
 							}
 								
-							console.log("Tumber #"+(m+1)+" requires "+ tumblers[m]+" key presses"); 
+							this.message=this.message+"<br>Tumber #"+(m+1)+" requires "+ tumblers[m]+" key presses <br>"; 
+						
 						}
-						//TODO: Add actual lock picking
+						choicesArray = [];
+						choicesArray[0]='Pick tumbler 1';
+						choicesArray[1]=this.page;
+						choicesArray[2]='Check tumbler 1';
+						choicesArray[3]=this.page;
+						for (m=0; m<choicesArray.length; m++){
+								console.log(choicesArray[m]);
+						}
 						
 					}
 					//restart the game on next button press with RESTART
@@ -1890,7 +1903,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//End special pages testing
 			if (this.restart == 0) {
 				//if you are in inventory selection mode or combat mode, you are overriding the choice selection
-				if (this.invselect == 0 && this.inCombat == 0) {
+				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0) {
 					//Special commands for choices:
 					//DISPLAYIF:item1,item2,...,text  Only display this choice if all listed items are in inventory
 					//DISPLAYIFNOT:item1,item2,...,text  Only display this choice if none of the listed items are in the inventory
