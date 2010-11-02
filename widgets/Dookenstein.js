@@ -90,6 +90,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.inMaze=0;
 		//special mode for lock picking
 		this.inLockPicking = 0;
+		this.currentTumbler = 1;
+		this.currentPushes = 0;
+		this.tumblers=[];
 		//set jsonic reading rate - default for JSonic is 200
 		this.sonicRate = 250;
 		this.sonicVolume = 1.0;
@@ -1861,41 +1864,45 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					//LOCKPICK: num of tumblers
 					else if (specialPageArray[p].match('LOCKPICK:') !=null) {
-						var currentTumbler;
-						var currentPushes;
 						if(this.inLockPicking==0){
 							//Read # of tumblers as set by the call from the input file
 							numOfTumbler = specialPageArray[p].split('LOCKPICK:');
 							numOfTumblers=dojo.number.parse(numOfTumbler[1]);
 							console.log("There are " + numOfTumblers +" Tumblers in this lock");
-							var tumblers= new Array(numOfTumblers);
+							this.tumblers= new Array(numOfTumblers);
 							console.log("created tumbler array");
 							for(m=0; m<numOfTumblers; m++){
 								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
 								if(this.difficulty=="Easy"){
-									tumblers[m]=Math.ceil(Math.random()*3);
+									this.tumblers[m]=Math.ceil(Math.random()*3);
 								}else if(this.difficulty=="Normal"){
-									tumblers[m]=Math.ceil(Math.random()*6);
+									this.tumblers[m]=Math.ceil(Math.random()*6);
 								}else{
-									tumblers[m]=Math.ceil(Math.random()*10);
+									this.tumblers[m]=Math.ceil(Math.random()*10);
 								}								
 							}
 							this.inLockPicking=1;
 							choicesArray = [];
-							currentTumbler=1;
-							currentPushes=0;
-							this.message=this.message+"<br>You are currently picking Tumbler #"+(currentTumbler);
-							this.message=this.message+"<br>You have pushed this tumbler "+(currentPushes)+ " time(s)";
-							choicesArray[0]='Pick tumbler '+currentTumbler;
+							this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler);
+							this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+							choicesArray[0]='Pick tumbler '+this.currentTumbler;
 							choicesArray[1]=this.page;
-							choicesArray[2]='Check tumbler '+currentTumbler;
+							choicesArray[2]='Check tumbler '+this.currentTumbler;
 							choicesArray[3]=this.page;
-							
 						}else{
 							
 							if(choiceNum=1){
-								
+								this.currentPushes+=1;
+								this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler);
+								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+							}else if(choiceNum=2){
+								if(currentPushes==tumblers[currentTumbler-1]){
+									this.message=this.message+"<br>You successfully opened this tumbler!";	
+								}else{
+									this.message=this.message+"<br>Please try again";
+								}
 							}
+							
 						}
 					}
 					//Maze:
@@ -1992,7 +1999,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//End special pages testing
 			if (this.restart == 0) {
 				//if you are in inventory selection mode or combat mode, you are overriding the choice selection
-				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0) {
+				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0 && this.inSafeCracking==0) {
 					//Special commands for choices:
 					//DISPLAYIF:item1,item2,...,text  Only display this choice if all listed items are in inventory
 					//DISPLAYIFNOT:item1,item2,...,text  Only display this choice if none of the listed items are in the inventory
