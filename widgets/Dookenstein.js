@@ -1891,13 +1891,19 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							choicesArray[3]=this.page;
 						}else{
 							
-							if(choiceNum=1){
+							if(choiceNum==1){
 								this.currentPushes+=1;
 								this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler);
 								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-							}else if(choiceNum=2){
-								if(currentPushes==tumblers[currentTumbler-1]){
+							}else if(choiceNum==2){
+								if(this.currentPushes==this.tumblers[this.currentTumbler-1]){
 									this.message=this.message+"<br>You successfully opened this tumbler!";	
+									this.currentTumbler++;
+									this.currentPushes=0;
+									choicesArray[0]='Pick tumbler '+this.currentTumbler;
+									choicesArray[1]=this.page;
+									choicesArray[2]='Check tumbler '+this.currentTumbler;
+									choicesArray[3]=this.page;
 								}else{
 									this.message=this.message+"<br>Please try again";
 								}
@@ -1999,7 +2005,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//End special pages testing
 			if (this.restart == 0) {
 				//if you are in inventory selection mode or combat mode, you are overriding the choice selection
-				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0 && this.inSafeCracking==0) {
+				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0) {
 					//Special commands for choices:
 					//DISPLAYIF:item1,item2,...,text  Only display this choice if all listed items are in inventory
 					//DISPLAYIFNOT:item1,item2,...,text  Only display this choice if none of the listed items are in the inventory
