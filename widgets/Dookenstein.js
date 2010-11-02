@@ -1913,6 +1913,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										this.message="Congratulations! You picked the lock!";
 									}
 								}else{
+									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler);
+									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 									this.message=this.message+"<br>Please try again";
 								}
 							}
