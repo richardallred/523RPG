@@ -1220,7 +1220,7 @@ ARMOR:Chainmail armor^*2^*75
 1001:Done^*1000
 1002:COMBAT:You are fighting a group of three bandits. The bandits are using daggers,NAME:first bandit,WEAPON:Dagger,STRENGTH:20,DEFENSE:2,ACCURACY:70,HEALTH:40,NAME2:second bandit,WEAPON2:Dagger,STRENGTH2:20,DEFENSE2:2,ACCURARCY2:70,HEALTH2:40,NAME3:third bandit,WEAPON3:Dagger,STRENGTH3:20,DEFENSE3:2,ACCURARCY3:70,HEALTH3:40,HIT:The first bandit stabs you,HIT2:The second bandit stabs you,HIT3:The third bandit stabs you^*You manage to defeat the bandits.
 1002:Done^*1000
-3000:LOCKPICK:5^*You are picking a lock
-3000:Done^*3000
+3000:LOCKPICK:3^*You are picking a lock
+3000:Done^*0
 3001:SAFECRACK:^*You are trying to crack a safe.  1 2 3 4 5 . 2. 12. 21. 131.<br>
 3001:Done^*3001

@@ -93,6 +93,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.currentTumbler = 1;
 		this.currentPushes = 0;
 		this.tumblers=[];
+		this.maxTumblers = 0;
 		//set jsonic reading rate - default for JSonic is 200
 		this.sonicRate = 250;
 		this.sonicVolume = 1.0;
@@ -1869,6 +1870,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							numOfTumbler = specialPageArray[p].split('LOCKPICK:');
 							numOfTumblers=dojo.number.parse(numOfTumbler[1]);
 							console.log("There are " + numOfTumblers +" Tumblers in this lock");
+							this.maxTumblers=numOfTumblers;
 							this.tumblers= new Array(numOfTumblers);
 							console.log("created tumbler array");
 							for(m=0; m<numOfTumblers; m++){
@@ -1899,11 +1901,17 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								if(this.currentPushes==this.tumblers[this.currentTumbler-1]){
 									this.message=this.message+"<br>You successfully opened this tumbler!";	
 									this.currentTumbler++;
-									this.currentPushes=0;
-									choicesArray[0]='Pick tumbler '+this.currentTumbler;
-									choicesArray[1]=this.page;
-									choicesArray[2]='Check tumbler '+this.currentTumbler;
-									choicesArray[3]=this.page;
+									if(this.currentTumbler!=this.maxTumblers){
+										this.currentPushes=0;
+										choicesArray[0]='Pick tumbler '+this.currentTumbler;
+										choicesArray[1]=this.page;
+										choicesArray[2]='Check tumbler '+this.currentTumbler;
+										choicesArray[3]=this.page;
+									}else{
+										this.currentPushes=0;
+										this.inLockPicking=0;
+										this.message="Congratulations! You picked the lock!";
+									}
 								}else{
 									this.message=this.message+"<br>Please try again";
 								}
