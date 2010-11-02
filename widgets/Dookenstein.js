@@ -94,6 +94,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.currentPushes = 0;
 		this.tumblers=[];
 		this.maxTumblers = 0;
+		//special mode for safe cracking
+		this.inSafeCracking =0;
+		this.currentNum =0;
+		this.rotations = 3;
+		this.num = new Array(this.rotations);
+		this.checked = 0;
+		this.maxNum = 0;
 		//set jsonic reading rate - default for JSonic is 200
 		this.sonicRate = 250;
 		this.sonicVolume = 1.0;
@@ -1999,7 +2006,88 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						//console.log(MazeArray);
 						}
 					
-					
+					else if(specialPageArray[p].match('SAFECRACK:') != null) {
+						if(this.inSafeCracking==0){
+							this.inSafeCracking = 1;
+							//num = new Array(3);
+							for(i=0;i<3;i++){
+								if(this.difficulty=="Easy"){
+									this.maxNum=20;
+									this.num[i] = Math.floor(Math.random()*this.maxNum);
+								}else{
+									if(this.difficulty=="Normal"){
+										this.maxNum = 40;
+										this.num[i] = Math.floor(Math.random()*this.maxNum);
+									}else{
+										this.maxNum = 60;
+										this.num[i] = Math.floor(Math.random()*this.maxNum);
+									}
+								}
+								
+							}
+							this.message+="The max number on this dial is " + this.maxNum + "<br>";
+							this.currentNum = 0;
+							choicesArray = [];
+							choicesArray[0]='Turn dial by 1';
+							choicesArray[1]=this.page;
+							choicesArray[2]='Turn dial by 3';
+							choicesArray[3]=this.page;
+							choicesArray[4]='Turn dial by 5';
+							choicesArray[5]=this.page;
+							choicesArray[6]='Turn dial by 10';
+							choicesArray[7]=this.page;
+							choicesArray[8]='Turn dial by 20';
+							choicesArray[9]=this.page;
+							choicesArray[10]='Check number ' + (this.checked+1);
+							choicesArray[11]=this.page;
+						}
+						else{
+							//this.message+=" " + choiceNum + " ";
+							if(choiceNum<=5)
+							{
+								if(choiceNum<3){
+									if(choiceNum<2){
+										this.currentNum = (this.currentNum+1)%this.maxNum;
+									}else{
+										this.currentNum = (this.currentNum+3)%this.maxNum;
+									}
+								}else{
+									if(choiceNum<4){
+										this.currentNum = (this.currentNum+5)%this.maxNum;
+									}else{
+										if(choiceNum<5){
+											this.currentNum = (this.currentNum+10)%this.maxNum;
+										}else{
+											this.currentNum = (this.currentNum+20)%this.maxNum;
+										}
+									}
+								}
+							}
+							else{
+								if(this.currentNum==this.num[this.checked]){
+									this.checked++;
+									this.message += "You have successfully cracked the number! <br>";
+									if(this.rotations==(this.checked)){
+										this.inSafeCracking = 0;
+										this.checked=0;
+										this.message += "You have successfully cracked the safe! <br>";
+									}
+									else
+									{
+										choicesArray[10]='Check number ' + (this.checked+1);
+										choicesArray[11]=this.page;
+									}
+								}else{
+									this.message += "Please try again.<br>";
+								}
+							}
+						}
+						this.message += "The dial is on " + this.currentNum + "<br>";
+						for(i=0;i<3;i++)
+						{
+							this.message= this.message+"Correct #"+(i+1)+" is "+ this.num[i]+".<br>";
+						}
+					}
 					
 					//restart the game on next button press with RESTART
 					else if (specialPageArray[p].match('RESTART:') != null) {
@@ -2015,7 +2103,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//End special pages testing
 			if (this.restart == 0) {
 				//if you are in inventory selection mode or combat mode, you are overriding the choice selection
-				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0) {
+				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0 && this.inSafeCracking==0) {
 					//Special commands for choices:
 					//DISPLAYIF:item1,item2,...,text  Only display this choice if all listed items are in inventory
 					//DISPLAYIFNOT:item1,item2,...,text  Only display this choice if none of the listed items are in the inventory
