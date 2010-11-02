@@ -1876,11 +1876,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							//Read # of tumblers as set by the call from the input file
 							numOfTumbler = specialPageArray[p].split('LOCKPICK:');
 							numOfTumblers=dojo.number.parse(numOfTumbler[1]);
-							console.log("There are " + numOfTumblers +" Tumblers in this lock");
+							//this.message=this.message+"<br>There are " + numOfTumblers +" Tumblers in this lock";
 							this.maxTumblers=numOfTumblers;
 							this.tumblers= new Array(numOfTumblers);
-							console.log("created tumbler array");
-							for(m=0; m<numOfTumblers; m++){
+							//console.log("created tumbler array");
+							for(m=0; m<=numOfTumblers; m++){
 								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
 								if(this.difficulty=="Easy"){
 									this.tumblers[m]=Math.ceil(Math.random()*3);
@@ -1892,8 +1892,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							}
 							this.inLockPicking=1;
 							choicesArray = [];
-							this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler);
+							this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+numOfTumblers;
 							this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+							this.message=this.message+"<br>Each tumbler can be pressed a maximum of times";
 							choicesArray[0]='Pick tumbler '+this.currentTumbler;
 							choicesArray[1]=this.page;
 							choicesArray[2]='Check tumbler '+this.currentTumbler;
@@ -1902,7 +1903,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							
 							if(choiceNum==1){
 								this.currentPushes+=1;
-								this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler);
+								this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
 								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 							}else if(choiceNum==2){
 								if(this.currentPushes==this.tumblers[this.currentTumbler-1]){
@@ -2102,7 +2103,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			}
 			//End special pages testing
 			if (this.restart == 0) {
-				//if you are in inventory selection mode or combat mode, you are overriding the choice selection
+				//if you are in inventory selection mode, a minigame or combat mode, you are overriding the choice selection
 				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0 && this.inSafeCracking==0) {
 					//Special commands for choices:
 					//DISPLAYIF:item1,item2,...,text  Only display this choice if all listed items are in inventory
