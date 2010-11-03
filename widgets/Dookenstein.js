@@ -2007,6 +2007,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						//console.log(MazeArray);
 						}
 					
+					//SAFECRACK:
 					else if(specialPageArray[p].match('SAFECRACK:') != null) {
 						if(this.inSafeCracking==0){
 							this.inSafeCracking = 1;
