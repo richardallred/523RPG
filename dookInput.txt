@@ -7,6 +7,7 @@ INITIALIZE:Horse and cart,0
 INITIALIZE:mealsEaten,0
 INITIALIZE:turnedAway,0
 INITIALIZE:turretLockPicked,0
+INITIALIZE:turretTopVisited,0
 INITIALIZE:storeroomVisited,0
 INITIALIZE:guardroomVisited,0
 INITIALIZE:barracksVisited,0
@@ -23,14 +24,15 @@ INITWEAPON:Hidden dagger^*2^*75^*HIT:You stab the #enemy with your dagger^*HIT:Y
 INITWEAPON:Knife^*1^*70^*HIT:You stab the #enemy with your knife^*HIT:You slash the #enemy with your knife^*HIT:You cut the #enemy with your knife^*MISS:You fail to do any damage to the #enemy.^*MISS:Your knife is blocked by the #enemy.^*MISS:You swing your knife, but miss.^*MISS:You stab the #enemy with your knife, but you are unable to do any damage.
 INITWEAPON:Kitchen Knife^*1^*70^*HIT:You stab the #enemy with your knife^*HIT:You slash the #enemy with your knife^*HIT:You cut the #enemy with your knife^*MISS:You fail to do any damage to the #enemy.^*MISS:Your knife is blocked by the #enemy.^*MISS:You swing your knife, but miss.^*MISS:You stab the #enemy with your knife, but you are unable to do any damage.
 INITWEAPON:Surgical Knife^*1^*70^*HIT:You stab the #enemy with your knife^*HIT:You slash the #enemy with your knife^*HIT:You cut the #enemy with your knife^*MISS:You fail to do any damage to the #enemy.^*MISS:Your knife is blocked by the #enemy.^*MISS:You swing your knife, but miss.^*MISS:You stab the #enemy with your knife, but you are unable to do any damage.
+INITWEAPON:Greatsword^*7^*50^*HIT:You swing your blade at the #enemy^*HIT:You lunge at the #enemy with your sword^*HIT:You quickly strike the #enemy^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage to the #enemy.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked by the #enemy.
 UNARMED:Your bare hands^*-3^*65^*HIT:You quickly punch the #enemy^*HIT:You lash out with your foot in a swift kick^*HIT:You throw the #enemy to the ground^*HIT:You fistcuff the #enemy^*MISS:Your fists fail to do any damage to the #enemy.^*MISS:You kick, but miss.^*MISS:You swing your fist, but miss.^*MISS:You fail to do any damage to the #enemy.
 SHIELD:Shield^*2^*33
 ARMOR:Guard Disguise^*1^*75
 ARMOR:Soldier's Uniform^*1^*75
 ARMOR:Chainmail armor^*2^*75
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
-0:Play the game^*1^*Demo^*1000^*Lockpicking^*3000^*Safecracking^*3001
-0:images/castle_final.jpg
+0:Play the game^*1^*Demo^*413^*Lockpicking^*3000^*Safecracking^*3001
+//0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
 1:images/page1_map.jpg
@@ -663,21 +665,21 @@ ARMOR:Chainmail armor^*2^*75
 415:Climb up the staircase^*413^*Climb back down the staircase^*414^*Return the courtyard^*300
 416:Taking care to make your steps silent so the archers do not hear you, you climb down the staircase and return to the ground level of the turret.
 416:Climb back up the staircase^*413^*Climb down the staircase^*414^*Return the courtyard^*300
-417:Keep climbing up
-417:Content not added^*999
+417:VARSPLIT:turretTopVisited,0^*706^*707
+417:null^*1
 418:You sneak across the room, trying to keep your steps silent on the stone floor so the archers do not hear you.  You manage to reach the weapons rack without them noticing.  You see a sword, a mace, and some throwing knives that you can take.
 418:Take the sword^*422^*Take the mace^*423^*Take the throwing knives^*424
 419:INVSPLIT:Mace^*425^*427
 419:null^*1
 420:VARSET:killedArchers,1^*From your hidden position in the stairwell, you pull out your crossbow and fire a bolt into one of the archers, who cries out and falls to the ground.  You immediately drop the crossbow and lunge towards the other archer, who whips around and tries to fire a shot at you from his bow.  You knock the bow out of his hands, causing his arrow to barely miss you.  He is forced to defend himself with his fists.
 420:Continue^*421
-421:COMBAT:You are fighting an archer,NAME:archer,WEAPON:Your bare hands,STRENGTH:7,DEFENSE:0,HEALTH:30,HIT:The archer punches you,HIT:The archer kicks you,MISS:The archer sidesteps.,MISS:The archer evades you.,MISS:The archer grabs your arm and stops you from hitting him.^*You manage to defeat the archer.  Now that both archers are down, you can search the room.
-421:Content not added^*999
+421:COMBAT:You are fighting an archer,NAME:archer,WEAPON:Your bare hands,STRENGTH:7,DEFENSE:0,HEALTH:30,HIT:The archer punches you,HIT:The archer kicks you,MISS:The archer sidesteps.,MISS:The archer evades you.,MISS:The archer grabs your arm and stops you from hitting him.^*You manage to defeat the archer.
+421:Search the bodies of the archers^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 422:RESTART:^*You slowly try to pull the sword out, but the edge of the sword slides against the metal of the rack and one of the archers hears you pulling it out.  He gives a shout of warning and both archers quickly turn around and fire two arrows into your body.  As you slump to the ground the archers quickly reload their bows and fire two more arrows into you. <br>Your life ends here.
 422:null^*1
 423:INVADD:Mace^*You slowly ease the mace out of the rack and into your hand.  You glance around nervously, but the archers still have their backs turned to you.
 423:Take the sword^*422^*Take the throwing knives^*424^*Sneak behind one of the archers and attack him^*419^*Sneak back out of the room^*426
-424:INVADD:Throwing knives^*You silently pick up the sheaf of throwing knives.  You glance backwards, but the archers have not noticed you.  One of the archers scratches his back and his head almost turns towards you.  You decide that you will have to act quickly.
+424:INVADD:Throwing Knives^*You silently pick up the sheaf of throwing knives.  You glance backwards, but the archers have not noticed you.  One of the archers scratches his back and his head almost turns towards you.  You decide that you will have to act quickly.
 424:Try to take out the archers with the throwing knives^*432^*Sneak back out of the room^*426
 425:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly bring your mace down, knocking him out with a single blow.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causes you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
 425:Continue^*421
@@ -696,21 +698,21 @@ ARMOR:Chainmail armor^*2^*75
 432:INVSPLIT:First aid kit^*433^*434
 432:null^*1
 433:VARSET:killedArchers,1^*LOSEHEALTH:10^*You toss one of the knives at an archer, who goes down as your knife buries into his back.  The other archer hears his companion hit the ground and whips around, firing a shot at you from his bow as you throw another knife at him.  You knife hits the archer in the chest and his arrow hits you in the thigh.  The archer falls down, grasping at the knife in his chest.  You wince as you pull the arrow out of your thigh and bandage the heavily bleeding wound with supplies from your first aid kit.  You have lost 10 health from the arrow.
-433:Search the bodies of the archers^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
+433:Search the bodies of the archers^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go down the stairs^*437
 434:VARSET:killedArchers,1^*LOSEHEALTH:20^*You toss one of the knives at an archer, who goes down as your knife buries into his back.  The other archer hears his companion hit the ground and whips around, firing a shot at you from his bow as you throw another knife at him.  You knife hits the archer in the chest and his arrow hits you in the thigh.  The archer falls down, grasping at the knife in his chest.  You wince as you pull the arrow out of your thigh and blood flows freely from the wound.  You limp over to one of the archers and rip some cloth from his clothing and create a makeshift bandage for your leg.  You have lost 20 health from the arrow and from blood loss.
 434:Search the bodies of the archers^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
-435:You search the bodies of the archers and find that they are carrying longbows and quivers of arrows.  You decide not to take them since you are not good with a longbow.
+435:You search the bodies of the archers and find that they are carrying longbows and quivers of arrows.  You decide not to take them since you are not skilled with a longbow.
 435:Search the guard post for useful items^*704^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
-436:GAINGOLD:10^*INVADD:Sword,Mace,Throwing knives^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take.
+436:GAINGOLD:10^*INVADD:Sword,Mace,Throwing Knives,false^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take.
 436:Search the bodies of the archers^*705^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 437:You climb down the stairs and return to the ground level of the turret.
-437:Climb back up the staircase^*413^*Climb down the staircase^*414^*Return the courtyard^*300
+437:Climb back up the staircase^*413^*Climb down the staircase^*414^*Leave the turret and return the courtyard^*300
 438:You walk up several winding stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.
-438:Climb back down the staircase^*416^*Keep climbing up the staircase^*417^*Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419^*DISPLAYIF:Crossbow,Shoot one of the archers with your crossbow and try to take the other one by surprise^*420
+438:Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419^*DISPLAYIF:Crossbow,Shoot one of the archers with your crossbow and try to take the other one by surprise^*420^*DISPLAYIF:Guard Disguise,Enter the room while pretending to be a guard^*710^*Climb up the staircase^*417^*Climb down the staircase to the ground level^*416
 439:You walk up the winding several stairs until you reach the next level.  You see a guard post with a weapons rack and some supplies, as well as the bodies of two archers on the ground.
-439:Climb back down the staircase^*437^*Keep climbing up the staircase^*417^*Search the room^*440
-440:INVADD:Sword,Mace,Throwing knives^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  You don't find anything else useful.
-440:Climb back down the staircase^*437^*Keep climbing up the staircase^*417
+439:Climb up the staircase^*417^*Climb down the staircase to the ground level^*437^*Search the room^*440
+440:INVADD:Sword,Mace,Throwing Knives,false^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  You don't find anything else useful.
+440:Climb up the staircase^*417^*Climb down the staircase^*437
 441:"So you are a new recruit for the invasion force?" says the scar-faced man.  "You will refer to me as Colonel Graywald.  I am your commanding officer."  He leads you inside the barracks to an armory full of weapons and armor for the soldiers.  "Get in uniform and report to the training field immediately," he orders, before walking out of the room.
 441:Put on the Dookian soldier armor^*442^*Take some of the weapons in the armory^*443^*Leave the armory and explore the barracks^*444
 442:INVREMOVE:Mercenary Disguise^*INVADD:Soldier's Uniform^*You search the racks of armor until you find a suit that fits you.  You remove your mercenary disguise and put on the plated armor of a Dookian soldier.  What do you do next?
@@ -755,10 +757,10 @@ ARMOR:Chainmail armor^*2^*75
 461:Continue^*463
 462:You close the door to the room behind you and walk over to the table to read the documents.  You see detailed military plans for the upcoming invasions of Carolinia.  While you are reading, you hear the door open and you see Colonel Graywald enter the room.  He roars with fury when he sees you and draws a massive sword.  You are trapped in the room and have no option but to fight him.
 462:Continue^*460
-463:COMBAT:You are fighting Colonel Graywald.  He is using a greatsword,NAME:colonel,WEAPON:None,STRENGTH:24,DEFENSE:1,ACCURACY:50,HEALTH:40,HIT:Colonel Graywald slashes you with his sword,HIT:Colonel Graywald swings his blade,HIT:The colonel lunges forwards and stabs you with his sword,MISS:The colonel sidesteps your blow.,MISS:The colonel blocks you with the hilt of his greatsword.,MISS:The colonel dodges your blow with lightning reflexes.^*You manage to defeat the colonel.
+463:COMBAT:You are fighting Colonel Graywald.  He is using a greatsword,NAME:colonel,WEAPON:None,STRENGTH:24,DEFENSE:1,ACCURACY:50,HEALTH:40,HIT:Colonel Graywald slashes you with his sword,HIT:Colonel Graywald swings his blade,HIT:The colonel lunges forwards and stabs you with his sword,MISS:The colonel sidesteps your blow.,MISS:The colonel blocks you with the hilt of his greatsword.,MISS:The colonel dodges your blow with lightning reflexes.^*The colonel lets out a loud death cry as he crashes to the ground.
 463:Continue^*464
-464:VARSET:killedColonel,1^*Defeated colonel
-464:Content not added^*999
+464:VARSET:killedColonel,1^*INVADD:Greatsword^*You take the colonel's greatsword and sheathe it.  It is powerful, but quite heavy.  Now that the colonel is dead, there are several things you can do in the room, although there is a chance that the other soldiers could have heard the sounds of the fight.
+464:Search the colonel's body^*712^*Try to open the safe^*713^*Take the papers on the table^*714^*Leave the room immediately^*715
 465:INVSPLIT:Crossbow^*467^*468
 465:null^*1
 466:INVSPLIT:Crossbow^*469^*470
@@ -1077,10 +1079,32 @@ ARMOR:Chainmail armor^*2^*75
 702:null^*1
 703:Tell him you are innocent
 703:Content not added^*999
-704:GAINGOLD:10^*INVADD:Sword,Mace,Throwing knives^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take.
+704:GAINGOLD:10^*INVADD:Sword,Mace,Throwing Knives^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take.
 704:Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
-705:You search the bodies of the archers and find that they are carrying longbows and quivers of arrows.  You decide not to take them since you are not good with a longbow.
+705:You search the bodies of the archers and find that they are carrying longbows and quivers of arrows.  You decide not to take them since you are not skilled with a longbow.
 705:Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
+706:You keep walking up the stairs until you reach the top of the turret.  You see a small, circular room with several simple beds set up.  A man is sleeping on one of the beds and there is a guard's uniform laid out on the ground next to him.  There are also several sacks next the to the beds.
+706:DISPLAYIF:Crossbow,Shoot the sleeping man with your crossbow^*708^*DISPLAYIF:Throwing Knives,Throw one of your throwing knives at the sleeping man^*711^*Sneak up on the sleeping man and attack him^*709^*Walk back down the stairs^*413
+707:There is nothing more of interest in the top of the turret.
+707:Walk back down the stairs^*413
+708:VARSET:turretTopVisited,1^*INVADD:Guard Disguise^*INVREMOVE:Merchant Disguise,Mercenary Disguise^*You fire a deadly crossbow bolt into the sleeping man's chest.  You see the man slump over and go limp.  You inspect the guard uniform next to the bed and find that it fits you.  You figure that it would make an extremely useful disguise, so you put on the guard's armor.  You leave behind your previous clothing, since you no longer need it.  You rummage through the sacks near the bed, but they do not contain anything useful.  There is nothing else of interest in the room.
+708:Walk back down the stairs^*413
+709:VARSET:turretTopVisited,1^*INVADD:Guard Disguise^*INVREMOVE:Merchant Disguise,Mercenary Disguise^*You sneak up to the man and manage to reach him without disturbing his sleep.  You then kick the man in the temple, knocking him out.  You inspect the guard uniform next to the bed and find that it fits you.  You figure that it would make an extremely useful disguise, so you put on the guard's armor.  You leave behind your previous clothing, since you no longer need it.  You rummage through the sacks near the bed, but they do not contain anything useful.  There is nothing else of interest in the room.
+709:Walk back down the stairs^*413
+710:RESTART:The archers turn to watch you as you enter the room.  "Why are you wearing Saul's uniform?" asks one of them.  You hesitate as you try to come up with an explanation, but you are too late.  The guards both loose arrows from their bows into you.  You do not survive the attack.
+710:null^*1
+711:VARSET:turretTopVisited,1^*INVADD:Guard Disguise^*INVREMOVE:Merchant Disguise,Mercenary Disguise^*You throw a knife and it buries itself into the sleeping man's chest.  You see the man slump over and go limp.  You inspect the guard uniform next to the bed and find that it fits you.  You figure that it would make an extremely useful disguise, so you put on the guard's armor.  You leave behind your previous clothing, since you no longer need it.  You rummage through the sacks near the bed, but they do not contain anything useful.  There is nothing else of interest in the room.
+711:Walk back down the stairs^*413
+712:As you are searching the colonel's body, a group of soldiers enter the room and immediately draw their weapons when they see you.  You are heavily outnumbered, but they have cornered you in the room and you must fight them.
+712:Continue^*716
+713:As you are trying to open the safe, a group of soldiers enter the room.  They see the colonel's body and draw their weapons.  You are heavily outnumbered, but they have cornered you in the room and you must fight them.
+713:Continue^*716
+714:INVADD:Military Documents^*You take the papers on the table, which are military plans for an upcoming invasion of Carolinia.  What do you do next?
+714:Search the colonel's body^*712^*Try to open the safe^*713^*Leave the room immediately^*715
+715:Leave the room
+715:Content not added^*999
+716:COMBAT:You are fighting a group of six soldiers,NAME:first soldier,WEAPON:Sword,STRENGTH:25,DEFENSE:2,ACCURACY:100,HEALTH:40,NAME2:second soldier,WEAPON2:Sword,STRENGTH2:25,DEFENSE2:2,ACCURARCY2:100,HEALTH2:40,NAME3:third soldier,WEAPON3:Sword,STRENGTH3:25,DEFENSE3:2,ACCURARCY3:100,HEALTH3:40,NAME4:fourth soldier,WEAPON4:Sword,STRENGTH4:25,DEFENSE4:2,ACCURARCY4:100,HEALTH4:40,NAME5:fifth soldier,WEAPON5:Sword,STRENGTH5:25,DEFENSE5:2,ACCURARCY5:100,HEALTH5:40,NAME6:sixth guard,WEAPON6:Sword,STRENGTH6:25,DEFENSE6:2,ACCURARCY6:100,HEALTH6:40,HIT:The first soldier hits you,HIT2:The second soldier hits you,HIT3:The third soldier hits you,HIT4:The fourth soldier hits you,HIT5:The fifth soldier hits you,HIT6:The sixth soldier hits you^*You manage to defeat the soldiers.
+716:Continue^*715
 750:In a deep pit
 750:Content not added^*999
 800:INVSPLIT:Crossbow^*831^*832
