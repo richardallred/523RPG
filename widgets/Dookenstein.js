@@ -2030,42 +2030,93 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.message+="The max number on this dial is " + this.maxNum + "<br>";
 							this.currentNum = 0;
 							choicesArray = [];
-							choicesArray[0]='Turn dial by 1';
+							choicesArray[0]='Turn dial right by 1';
 							choicesArray[1]=this.page;
-							choicesArray[2]='Turn dial by 3';
+							choicesArray[2]='Turn dial right by 3';
 							choicesArray[3]=this.page;
-							choicesArray[4]='Turn dial by 5';
+							choicesArray[4]='Turn dial right by 5';
 							choicesArray[5]=this.page;
-							choicesArray[6]='Turn dial by 10';
+							choicesArray[6]='Turn dial right by 10';
 							choicesArray[7]=this.page;
-							choicesArray[8]='Turn dial by 20';
+							choicesArray[8]='Turn dial right by 20';
 							choicesArray[9]=this.page;
 							choicesArray[10]='Check number ' + (this.checked+1);
 							choicesArray[11]=this.page;
 						}
 						else{
 							//this.message+=" " + choiceNum + " ";
-							if(choiceNum<=5)
-							{
-								if(choiceNum<3){
-									if(choiceNum<2){
-										this.currentNum = (this.currentNum+1)%this.maxNum;
-									}else{
-										this.currentNum = (this.currentNum+3)%this.maxNum;
-									}
-								}else{
-									if(choiceNum<4){
-										this.currentNum = (this.currentNum+5)%this.maxNum;
-									}else{
-										if(choiceNum<5){
-											this.currentNum = (this.currentNum+10)%this.maxNum;
+							if(this.checked==0 || this.checked==2){
+								choicesArray = [];
+								choicesArray[0]='Turn dial right by 1';
+								choicesArray[1]=this.page;
+								choicesArray[2]='Turn dial right by 3';
+								choicesArray[3]=this.page;
+								choicesArray[4]='Turn dial right by 5';
+								choicesArray[5]=this.page;
+								choicesArray[6]='Turn dial right by 10';
+								choicesArray[7]=this.page;
+								choicesArray[8]='Turn dial right by 20';
+								choicesArray[9]=this.page;
+								choicesArray[10]='Check number ' + (this.checked+1);
+								choicesArray[11]=this.page;
+								if(choiceNum<=5)
+								{
+									if(choiceNum<3){
+										if(choiceNum<2){
+											this.currentNum = (this.currentNum+1)%this.maxNum;
 										}else{
-											this.currentNum = (this.currentNum+20)%this.maxNum;
+											this.currentNum = (this.currentNum+3)%this.maxNum;
+										}
+									}else{
+										if(choiceNum<4){
+											this.currentNum = (this.currentNum+5)%this.maxNum;
+										}else{
+											if(choiceNum<5){
+												this.currentNum = (this.currentNum+10)%this.maxNum;
+											}else{
+												this.currentNum = (this.currentNum+20)%this.maxNum;
+											}
 										}
 									}
 								}
 							}
 							else{
+								choicesArray = [];
+								choicesArray[0]='Turn dial left by 1';
+								choicesArray[1]=this.page;
+								choicesArray[2]='Turn dial left by 3';
+								choicesArray[3]=this.page;
+								choicesArray[4]='Turn dial left by 5';
+								choicesArray[5]=this.page;
+								choicesArray[6]='Turn dial left by 10';
+								choicesArray[7]=this.page;
+								choicesArray[8]='Turn dial left by 20';
+								choicesArray[9]=this.page;
+								choicesArray[10]='Check number ' + (this.checked+1);
+								choicesArray[11]=this.page;
+								if(choiceNum<=5)
+								{
+									if(choiceNum<3){
+										if(choiceNum<2){
+											this.currentNum = Math.abs((this.currentNum-1+this.maxNum)%this.maxNum);
+										}else{
+											this.currentNum = Math.abs((this.currentNum-3+this.maxNum)%this.maxNum);
+										}
+									}else{
+										if(choiceNum<4){
+											this.currentNum = Math.abs((this.currentNum-5+this.maxNum)%this.maxNum);
+										}else{
+											if(choiceNum<5){
+												this.currentNum = Math.abs((this.currentNum-10+this.maxNum)%this.maxNum);
+											}else{
+												this.currentNum = Math.abs((this.currentNum-20+this.maxNum)%this.maxNum);
+											}
+										}
+									}
+								}
+							}
+							
+							if(choiceNum==6){
 								if(this.currentNum==this.num[this.checked]){
 									this.checked++;
 									this.message += "You have successfully cracked the number! <br>";
