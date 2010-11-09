@@ -1,4 +1,5 @@
 /**
+*
 * Dookenstein version 4
  */
 dojo.provide('myapp.Dookenstein');
@@ -320,7 +321,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.message = this.pageText[this.page];
 		//choicesArray = this.choices[this.page].split('^*');
 		choicesArray = this.choices[this.page].split(this.DELIMITER);
-		this.exportPageTextAndChoices();
+		//this.exportPageTextAndChoices();
 		//must call refreshAll in here because this method is dojo.deferred (will occur last)
 		this.refreshAll();
 	},
