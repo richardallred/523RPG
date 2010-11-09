@@ -674,6 +674,7 @@ ARMOR:Chainmail armor^*2^*75
 420:VARSET:killedArchers,1^*From your hidden position in the stairwell, you pull out your crossbow and fire a bolt into one of the archers, who cries out and falls to the ground.  You immediately drop the crossbow and lunge towards the other archer, who whips around and tries to fire a shot at you from his bow.  You knock the bow out of his hands, causing his arrow to barely miss you.  He is forced to defend himself with his fists.
 420:Continue^*421
 421:COMBAT:You are fighting an archer,NAME:archer,WEAPON:Your bare hands,STRENGTH:7,DEFENSE:0,HEALTH:30,HIT:The archer punches you,HIT:The archer kicks you,MISS:The archer sidesteps.,MISS:The archer evades you.,MISS:The archer grabs your arm and stops you from hitting him.^*You manage to defeat the archer.
+<<<<<<< HEAD
 421:Search the bodies of the archers^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 422:RESTART:^*You slowly try to pull the sword out, but the edge of the sword slides against the metal of the rack and one of the archers hears you pulling it out.  He gives a shout of warning and both archers quickly turn around and fire two arrows into your body.  As you slump to the ground the archers quickly reload their bows and fire two more arrows into you. <br>Your life ends here.
 422:null^*1
@@ -703,6 +704,7 @@ ARMOR:Chainmail armor^*2^*75
 434:Search the bodies of the archers^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 435:You search the bodies of the archers and find that they are carrying longbows and quivers of arrows.  You decide not to take them since you are not skilled with a longbow.
 435:Search the guard post for useful items^*704^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
+<<<<<<< HEAD
 436:GAINGOLD:10^*INVADD:Sword,Mace,Throwing Knives,false^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take.
 436:Search the bodies of the archers^*705^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 437:You climb down the stairs and return to the ground level of the turret.
