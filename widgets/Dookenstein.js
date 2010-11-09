@@ -1,5 +1,4 @@
 /**
-*
 * Dookenstein version 4
  */
 dojo.provide('myapp.Dookenstein');
