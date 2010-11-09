@@ -1992,7 +1992,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 								}
 							}
-						//
+						//asdf
 						}
 						for (m=0; m<MazeArray.length-1; m++){
 								console.log(MazeArray[m]);
