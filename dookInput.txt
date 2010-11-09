@@ -669,27 +669,27 @@ ARMOR:Chainmail armor^*2^*75
 418:Take the sword^*422^*Take the mace^*423^*Take the throwing knives^*424
 419:INVSPLIT:Mace^*425^*427
 419:null^*1
-420:VARSET:killedArchers,1^*From your hidden position in the stairwell, you pull out your crossbow and fire a bolt into one of the archers, who cries out and falls to the ground.  You immediately drop the crossbow and lunge towards the other archer, who whips around and tries to fire a shot at you from his bow.  You knock the bow out of his hands, causing his arrow to barely miss you.  He is forced to defend himself with his fists.
+420:VARSET:killedArchers,1^*From your hidden position in the stairwell, you pull out your crossbow and fire a bolt into one of the archers, who cries out and falls to the ground.  You immediately drop the crossbow and lunge towards the other archer, who whips around and tries to fire a shot at you from his bow.  You knock the bow out of his hands, causing his arrow to barely miss you.  He is forced to defend himself with his fists. 
 420:Continue^*421
-421:COMBAT:You are fighting an archer,NAME:archer,WEAPON:Your bare hands,STRENGTH:7,DEFENSE:0,HEALTH:30,HIT:The archer punches you,HIT:The archer kicks you,MISS:The archer sidesteps.,MISS:The archer evades you.,MISS:The archer grabs your arm and stops you from hitting him.^*You manage to defeat the archer.  Now that both archers are down, you can search the room.
-421:Content not added^*999
+421:COMBAT:You are fighting an archer,NAME:archer,WEAPON:Your bare hands,STRENGTH:7,DEFENSE:0,HEALTH:30,HIT:The archer punches you,HIT:The archer kicks you,MISS:The archer sidesteps.,MISS:The archer evades you.,MISS:The archer grabs your arm and stops you from hitting him.^*You manage to defeat the archer.
+421:Continue^*435
 422:RESTART:^*You slowly try to pull the sword out, but the edge of the sword slides against the metal of the rack and one of the archers hears you pulling it out.  He gives a shout of warning and both archers quickly turn around and fire two arrows into your body.  As you slump to the ground the archers quickly reload their bows and fire two more arrows into you. <br>Your life ends here.
 422:null^*1
 423:INVADD:Mace^*You slowly ease the mace out of the rack and into your hand.  You glance around nervously, but the archers still have their backs turned to you.
 423:Take the sword^*422^*Take the throwing knives^*424^*Sneak behind one of the archers and attack him^*419^*Sneak back out of the room^*426
 424:INVADD:Throwing knives^*You silently pick up the sheaf of throwing knives.  You glance backwards, but the archers have not noticed you.  One of the archers scratches his back and his head almost turns towards you.  You decide that you will have to act quickly.
 424:Try to take out the archers with the throwing knives^*432^*Sneak back out of the room^*426
-425:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly bring your mace down, knocking him out with a single blow.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causes you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
+425:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly bring your mace down, knocking him out with a single blow.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causes you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists. 
 425:Continue^*421
 426:RESTART:^*You try to sneak back out of the room, but your luck does not hold.  One of the archers turns around and sees you while you are in the middle of the room.  He gives a shout of warning and both archers quickly turn around and fire two arrows into your body.  As you slump to the ground the archers quickly reload their bows and fire two more arrows into you. <br>Your life ends here.
 426:null^*1
 427:INVSPLIT:Sword^*428^*429
 427:null^*1
-428:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You drive your sword forwards and run him through.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causes you to lose 5 health.  You pull your sword out of the first archer and knock the second archer's bow out of his hand before he can fire again. He is forced to defend himself with his fists.
+428:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You drive your sword forwards and run him through.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causes you to lose 5 health.  You pull your sword out of the first archer and knock the second archer's bow out of his hand before he can fire again. He is forced to defend himself with his fists. 
 428:Continue^*421
 429:INVSPLIT:Hidden dagger^*430^*431
 429:null^*1
-430:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly cut him down with your dagger before he can react.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causes you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists.
+430:VARSET:killedArchers,1^*LOSEHEALTH:5^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You swiftly cut him down with your dagger before he can react.  The other archer whips around in surprise and quickly fires an arrow at you that grazes your side and causes you to lose 5 health.  Before he can fire again, you knock his bow out of his hand and he is forced to defend himself with his fists. 
 430:Continue^*421
 431:RESTART:^*You sneak up to one of the archers, but as you get close to him he hears you and starts to turn his head.  You don't have any weapons, so you grab him before he can react and slam him to the ground.  Unfortunately, the other archer hears this and looses an arrow into your back.  As you fall forwards, the archer reloads and hits you with another arrow.  You are helpless as the archer continues pierce you with deadly arrows.  <br> Your life ends here.
 431:null^*1
@@ -701,7 +701,7 @@ ARMOR:Chainmail armor^*2^*75
 434:Search the bodies of the archers^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 435:You search the bodies of the archers and find that they are carrying longbows and quivers of arrows.  You decide not to take them since you are not good with a longbow.
 435:Search the guard post for useful items^*704^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
-436:GAINGOLD:10^*INVADD:Sword,Mace,Throwing knives^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take.
+436:GAINGOLD:10^*INVADD:Sword,Mace,Throwing knives^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take. 
 436:Search the bodies of the archers^*705^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 437:You climb down the stairs and return to the ground level of the turret.
 437:Climb back up the staircase^*413^*Climb down the staircase^*414^*Return the courtyard^*300
@@ -1077,7 +1077,7 @@ ARMOR:Chainmail armor^*2^*75
 702:null^*1
 703:Tell him you are innocent
 703:Content not added^*999
-704:GAINGOLD:10^*INVADD:Sword,Mace,Throwing knives^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take.
+704:GAINGOLD:10^*INVADD:Sword,Mace,Throwing knives^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take. 
 704:Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 705:You search the bodies of the archers and find that they are carrying longbows and quivers of arrows.  You decide not to take them since you are not good with a longbow.
 705:Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
