@@ -674,6 +674,7 @@ ARMOR:Chainmail armor^*2^*75
 420:VARSET:killedArchers,1^*From your hidden position in the stairwell, you pull out your crossbow and fire a bolt into one of the archers, who cries out and falls to the ground.  You immediately drop the crossbow and lunge towards the other archer, who whips around and tries to fire a shot at you from his bow.  You knock the bow out of his hands, causing his arrow to barely miss you.  He is forced to defend himself with his fists.
 420:Continue^*421
 421:COMBAT:You are fighting an archer,NAME:archer,WEAPON:Your bare hands,STRENGTH:7,DEFENSE:0,HEALTH:30,HIT:The archer punches you,HIT:The archer kicks you,MISS:The archer sidesteps.,MISS:The archer evades you.,MISS:The archer grabs your arm and stops you from hitting him.^*You manage to defeat the archer.
+<<<<<<< HEAD
 421:Search the bodies of the archers^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 422:RESTART:^*You slowly try to pull the sword out, but the edge of the sword slides against the metal of the rack and one of the archers hears you pulling it out.  He gives a shout of warning and both archers quickly turn around and fire two arrows into your body.  As you slump to the ground the archers quickly reload their bows and fire two more arrows into you. <br>Your life ends here.
 422:null^*1
@@ -703,13 +704,14 @@ ARMOR:Chainmail armor^*2^*75
 434:Search the bodies of the archers^*435^*Search the guard post for useful items^*436^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 435:You search the bodies of the archers and find that they are carrying longbows and quivers of arrows.  You decide not to take them since you are not skilled with a longbow.
 435:Search the guard post for useful items^*704^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
+<<<<<<< HEAD
 436:GAINGOLD:10^*INVADD:Sword,Mace,Throwing Knives,false^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take.
 436:Search the bodies of the archers^*705^*Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 437:You climb down the stairs and return to the ground level of the turret.
 437:Climb back up the staircase^*413^*Climb down the staircase^*414^*Leave the turret and return the courtyard^*300
 438:You walk up several winding stairs until you reach the next level.  As you look out, you see what looks like a guard post in the turret.  You can see a rack of weapons an armor in the room, as well as some food and supplies.  You can also see two archers looking out of arrow slits in the castle turret, but their backs are turned and they have not noticed you.
 438:Sneak across the room to the weapons rack^*418^*Sneak behind one of the archers and attack him^*419^*DISPLAYIF:Crossbow,Shoot one of the archers with your crossbow and try to take the other one by surprise^*420^*DISPLAYIF:Guard Disguise,Enter the room while pretending to be a guard^*710^*Climb up the staircase^*417^*Climb down the staircase to the ground level^*416
-439:You walk up the winding several stairs until you reach the next level.  You see a guard post with a weapons rack and some supplies, as well as the bodies of two archers on the ground.
+439:You climb several winding stairs until you reach the next level.  You see a guard post with a weapons rack and some supplies, as well as the bodies of two archers on the ground.
 439:Climb up the staircase^*417^*Climb down the staircase to the ground level^*437^*Search the room^*440
 440:INVADD:Sword,Mace,Throwing Knives,false^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  You don't find anything else useful.
 440:Climb up the staircase^*417^*Climb down the staircase^*437
@@ -818,7 +820,7 @@ ARMOR:Chainmail armor^*2^*75
 492:You feel your way along the stone walls as you slowly make your way down the staircase.  Soon, you reach the bottom of the stairs.  The area is pitch dark, but you can feel a chill in the air and you sense that there is a room in front of you.
 492:Feel your way along the walls of the room^*493^*Blindly walk through the center of the room^*496^*Climb back up the stairs^*415
 493:You feel your way along one of the walls in the room, until you feel a gap in the wall.  In this gap, there is a deep pit, above which the air is warm and humid.  When you smell the air near the pit, your nose is assaulted by a terrible, rotten stench.
-493:DISPLAYIF:Grappling hook,Use your grappling hook to try to climb down the pit^*498^*Jump into the pit^*501^*Walk through the rest of the room^*545^*Leave the room and climb back up the stairs^*415
+493:DISPLAYIF:Grappling hook,Use your grappling hook to try to climb down the pit^*547^*Jump into the pit^*501^*Walk through the rest of the room^*545^*Leave the room and climb back up the stairs^*415
 494:You search through the sacks, but only food several non-perishable food items.  You already have enough rations for yourself, so you do not take anything.
 494:Examine the gaping hole^*495^*Leave and climb back up the stairs^*415
 495:You see that the gaping hole in the wall leads downwards into a dark pit.  Even with the light from your torch, you cannot see the bottom of the pit.  You get a whiff of air from the pit and you cringe as you receive a terrible, rotten scent.
@@ -920,13 +922,13 @@ ARMOR:Chainmail armor^*2^*75
 543:You continue walking forwards through the room, occasionally stepping over sacks lying on the ground.  After a little bit, you feel the air grow slightly warmer in front of you.  You walk towards the warmth, but you suddenly get a whiff of a terrible, rotten stench.
 543:Keep walking forwards^*544^*Leave the room and climb back up the stairs^*415
 544:As you continue to slowly walk forwards, you narrowly avoid stepping off a ledge into a deep pit.  As you feel your surroundings, you find that this drop corresponds with a hole in the wall.  The air above the pit feels warm and humid, and its smell is quite foul.
-544:DISPLAYIF:Grappling hook,Use your grappling hook to try to climb down the pit^*498^*Jump into the pit^*501^*Walk through the rest of the room^*545^*Leave the room and climb back up the stairs^*415
+544:DISPLAYIF:Grappling hook,Use your grappling hook to try to climb down the pit^*547^*Jump into the pit^*501^*Walk through the rest of the room^*545^*Leave the room and climb back up the stairs^*415
 545:You randomly walk through the rest of the room, but all you can feel are sacks scattered all over the ground.
 545:Search the sacks^*548^*Walk towards the pit^*546^*Leave the room and climb back up the stairs^*415
 546:You walk back towards the pit.  What do you do next?
-546:DISPLAYIF:Grappling hook,Use your grappling hook to try to climb down the pit^*498^*Jump into the pit^*501^*Leave the room and climb back up the stairs^*415
-547:INVREMOVE:Grappling hook^*You hook your grappling hook to one of the broken sections of the wall, making sure that it stays firm.  As you climb down, you feel a rush of hot air and the smell becomes almost unbearable.  After a while, you feel your feet hit something soft and slimy, almost like mud.
-547:Continue^*750
+546:DISPLAYIF:Grappling hook,Use your grappling hook to try to climb down the pit^*547^*Jump into the pit^*501^*Leave the room and climb back up the stairs^*415
+547:RESTART:^*You feel around the edges of the hole in the wall until you find a broken part of the wall that you can attach your grappling hook to.  You attach the grapple and make sure it stays firm, then start climbing down the grappling hook rope.  As you are climbing, your weight pulling on the grapple causes the piece of wall that are you attached you to break, sending you plummeting down the pit.  You do not survive the fall.
+547:null^*1
 548:You feel through the sacks with your hands, but it feels like the sacks just contain food, which you do not need right now.
 548:Walk towards the pit^*546^*Leave the room and climb back up the stairs^*415
 549:You are in a cold dungeon cell, surrounded by three stone walls and a study looking barred cell door.  Fortunately, the guards did not manage to find the hidden dagger that you concealed on your person.  Though your hands are bound behind your back, you manage after some struggling to reach the dagger and grasp the hilt.  If you cut the ropes binding your hands, you would be able to search for a way out, but the guards would probably be suspicious if they did not see your hands tied behind you.
