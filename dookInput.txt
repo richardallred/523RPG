@@ -799,16 +799,16 @@ ARMOR:Chainmail armor^*2^*75
 481:null^*1
 482:You sip the black liquid.  It tastes surprisingly good, so you drink the entire vial.  You do not feel any effects other than a slight tingling in your stomach.  What do you do next?
 482:Open another locked chest^*481^*Search the sacks^*471^*Leave and go to the planning room^*476^*Leave and go to the training field^*445^*Leave and go to the courtyard^*473
-483:As you walk into the inner bailey with the group of soldiers, you can see the towering castle keep in front of you.  You know that the King is somewhere in the keep, and you vow to somehow get inside.  You walk past a building that looks like an infirmary and the group eventually reaches a large collection of tents.  There is a huge group of soldiers milling around the tents, and you guess that this is the invasion force that is going to attack Carolinia in a few days.  You are assigned to one of the tents, and each of the large tents has several straw beds inside.
+483:As you walk into the inner bailey with the group of soldiers, you can see the towering castle keep in front of you.  You know that the King is somewhere in the keep, and you vow to somehow get inside.  You walk past a building that looks like an infirmary and the group that you are walking with eventually reaches a large collection of tents.  There is a huge group of soldiers milling around the tents, and you guess that this is the invasion force that is going to attack Carolinia in a few days.  You are assigned to one of the tents, and each of the large tents has several straw beds inside.
 483:Go to sleep on one of the beds^*486^*Leave the tent and explore^*487
 484:INVADD:Vial of black liquid^*You take the vial of black liquid and put it into your pack.  What do you do next?
 484:Open another locked chest^*481^*Search the sacks^*471^*Leave and go to the planning room^*476^*Leave and go to the training field^*445^*Leave and go to the courtyard^*473
 485:Wanting nothing to do with the strange black liquid, you leave it in the chest with the diary.  What do you do next?
 485:Open another locked chest^*481^*Search the sacks^*471^*Leave and go to the planning room^*476^*Leave and go to the training field^*445^*Leave and go to the courtyard^*473
-486:Go to sleep
-486:Content not added^*999
-487:Explore the tents
-487:Content not added^*999
+486:GAINHEALTH:5^*You lie down on one of the straw beds and quickly fall asleep.  The refreshing sleep causes you to gain 5 health.  You sleep until you are jolted awake by the blasting of a horn.  The other soldiers in the tent grumble as they get up, and you get up with them and leave the tent.  It is early in the morning, and several soldiers are sitting down as servants serve them bowls of gruel.
+486:Sit and eat with the soldiers^*717^*Explore some of the tents^*718^*Leave the soldiers and walk towards the keep^*719
+487:You leave your tent and walk around the courtyard.  In the moonlight, you can see several soldiers standing around talking with each other.  Some of the soldiers are loudly carousing as they drink ale in small groups.  You see a cluster of plain white tents around you, and several more in the distance.
+487:Look at some of the tents^*720^*Join some of the soldiers who are drinking^*722^*Leave the soldiers and head towards the keep^*721^*Go back to your tent and go to sleep^*486
 488:INVREMOVE:Grappling hook^*You attach the grappling hook to one of the crenellations and use the rope to rappel down the wall.  Since the grappling hook is firmly attached to the wall, there is no way to retrieve it and you leave it behind.
 488:Continue^*500
 489:LOSEHEALTH:15^*Your Carolinian warrior training has taught you how to fall long distances without harm by dissipating the force of the fall through your entire body.  You steel yourself and leap from the wall.  You hit the ground and roll, but the fall is severe and your body is jolted with pain from the impact.  You lose 15 health from the fall, but you check yourself and find that you did not break any bones.
@@ -995,7 +995,7 @@ ARMOR:Chainmail armor^*2^*75
 579:Run towards the keep^*580^*Run towards the tents^*581
 580:RESTART:^*You run as fast as you can towards the keep, and when you look back over your shoulder you can see the guards run out of the infirmary and come after you, pointing and shouting.  As you get closer to the keep, you are suddenly brought down by a rain of arrows coming from the archers guarding the keep.  <br>Your life ends here.
 580:null^*1
-581:You run as fast as you can towards the tents, and when you look back over your shoulder you can see the guards run out of the infirmary and come after you.  You get there a good distance ahead of the guards, and you can see a large number of massive tents ranging from many plain while tents to a few ornately decorated tents.  The area looks deserted at the moment, but you decide to hide in one of the tents to avoid the guards.
+581:You run as fast as you can towards the tents, and when you look back over your shoulder you can see the guards run out of the infirmary and come after you.  You get there a good distance ahead of the guards, and you can see a large number of massive tents ranging from many plain white tents to a few ornately decorated tents.  The area looks deserted at the moment, but you decide to hide in one of the tents to avoid the guards.
 581:Hide in a plain white tent^*502^*Hide in an ornately decorated tent^*503
 582:You wake up with your head pounding and your arms aching painfully.  You slowly open your eyes, but the sight you see makes you wish that you had leaved them closed.  You are inside a torture chamber that is fully of grisly instruments of pain.  You are standing up, and you find that your arms are shacked above you.  A hooded torturer is heating a large iron brand at a furnace, and a guard is standing near a large iron door and watching you.  Upon seeing that you are awake, the torturer approaches you with with the red hot brand and gives you a menacing smile
 582:Beg for mercy^*591^*Say nothing^*592
@@ -1107,6 +1107,24 @@ ARMOR:Chainmail armor^*2^*75
 715:Content not added^*999
 716:COMBAT:You are fighting a group of six soldiers,NAME:first soldier,WEAPON:Sword,STRENGTH:25,DEFENSE:2,ACCURACY:100,HEALTH:40,NAME2:second soldier,WEAPON2:Sword,STRENGTH2:25,DEFENSE2:2,ACCURARCY2:100,HEALTH2:40,NAME3:third soldier,WEAPON3:Sword,STRENGTH3:25,DEFENSE3:2,ACCURARCY3:100,HEALTH3:40,NAME4:fourth soldier,WEAPON4:Sword,STRENGTH4:25,DEFENSE4:2,ACCURARCY4:100,HEALTH4:40,NAME5:fifth soldier,WEAPON5:Sword,STRENGTH5:25,DEFENSE5:2,ACCURARCY5:100,HEALTH5:40,NAME6:sixth guard,WEAPON6:Sword,STRENGTH6:25,DEFENSE6:2,ACCURARCY6:100,HEALTH6:40,HIT:The first soldier hits you,HIT2:The second soldier hits you,HIT3:The third soldier hits you,HIT4:The fourth soldier hits you,HIT5:The fifth soldier hits you,HIT6:The sixth soldier hits you^*You manage to defeat the soldiers.
 716:Continue^*715
+717:Sit and eat with the soldiers
+717:content not added^*999
+718:Explore the tents
+718:content not added^*999
+719:head towards the keep
+719:content not added^*999
+720:You peek into some of the white tents, but they are all filled with sleeping soldiers are soldiers getting ready for bed.  You wander further into the courtyard and see some larger, more ornately decorated tents.
+720:Look into one of the ornate tents^*724^*Keep walking down the courtyard^*725^*Leave the tents and head towards the keep^*721^*Go back to your tent and go to sleep^*486
+721:head towards keep (night)
+721:content not added^*999
+722:You try to join some of the revelling soldiers, but they rudely dismiss you.  One of them exclaims that he does not share drinks with strangers.  The others in the group point and laugh at you.
+722:Teach the soldier a lesson^*723^*Leave the group and go look at some of the tents^*720^*Leave the soldiers and head towards the keep^*721^*Go back to your tent and go to sleep^*486
+723:LOSEHEALTH:8^*You quickly punch the offending soldier in the face, giving him a black eye and causing him to stagger.  One of the other soldiers runs up towards you and smashes a bottle over your head.  Your soldier's uniform partially protects you from the blow, but you lose 8 health.  Before the brawl can continue much further, you are seperated by a group of soldiers, who discipline you and the other fighters and confiscate the ale.  You are sent back to your tent and ordered to go to sleep and keep out of trouble.
+723:Continue^*486
+724:ornate tent
+724:Content not added^*999
+725:keep walking down the courtyard
+725:Content not added^*999
 750:In a deep pit
 750:Content not added^*999
 800:INVSPLIT:Crossbow^*831^*832
