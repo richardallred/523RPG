@@ -94,6 +94,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.currentPushes = 0;
 		this.tumblers=[];
 		this.maxTumblers = 0;
+		//special mode for Maze
+		this.inMaze=0;
+		this.mazeRow=0;
+		this.mazeCol=0;
+		var MazeArray=[];
 		//special mode for safe cracking
 		this.inSafeCracking =0;
 		this.currentNum =0;
@@ -1929,25 +1934,36 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							
 						}
 					}
-					//Maze:
+					//Maze:  This implements a randomized maze
 					else if (specialPageArray[p].match('MAZE:') !=null) {
-						this.inMaze=1;
+					//
+					//Prelim and First Run, inMaze is default 0.
+					if(this.inMaze==0){
+						this.message=" ";
+						//set default maze size and adjust it according to game difficulty level.
 						mazeSize=4;
-						var MazeArray= new Array(mazeSize);
+						if(this.difficulty=='Easy')
+							{mazeSize=3;}
+						if(this.difficulty=='Normal')
+							{mazeSize=4;}
+						if(this.difficulty=='Hard')
+							{mazeSize=5;}
+
+						//Populate the 2D Array with doors ramdomly stripping out any repeats until it reaches bottol right cell of array.
+						MazeArray= new Array(mazeSize);
 						row=0;
 						col=0;
+						mazeRow=0;
+						mazeCol=0;
 						for(i=0; i<=mazeSize;i++){
-						MazeArray[i] =[];
-						for(p=0; p<=mazeSize;p++){
-							 // Make the first element an array of two elements
-							 MazeArray[i][p]="";
-						}
+							MazeArray[i] =[];
+							for(p=0; p<=mazeSize-1;p++){
+								MazeArray[i][p]="";
+							}
 						}
 						while(row !=mazeSize-1 || col!=mazeSize-1)
-						//for(i=0;i<10; i++)
 						{
 							temp=Math.ceil(Math.random()*4);
-							console.log(temp);
 							if(temp==1){
 								if(row!=0){
 									if(MazeArray[row][col].indexOf('N')==-1){
@@ -1992,20 +2008,99 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 								}
 							}
-						//asdf
 						}
-						for (m=0; m<MazeArray.length-1; m++){
-								console.log(MazeArray[m]);
-								//console.log(choicesArray[m][1]);
-								//console.log(choicesArray[m][2]);
+						//Sort the cells so that NESW appear in that order.
+						for(i=0; i<=mazeSize;i++){
+							for(p=0; p<=mazeSize-1;p++){
+							tempStr="";
+							if(MazeArray[i][p].indexOf('N')!=-1){
+								tempStr+='N'
+							}
+							if(MazeArray[i][p].indexOf('E')!=-1){
+								tempStr+='E'
+							}
+							if(MazeArray[i][p].indexOf('S')!=-1){
+								tempStr+='S'
+							}
+							if(MazeArray[i][p].indexOf('W')!=-1){
+								tempStr+='W'
+							}
+							MazeArray[i][p]=tempStr;
+							}
 						}
-						//console.log(MazeArray.length);
-						//console.log(MazeArray[0]);
-						//console.log(MazeArray[1]);
-						//console.log(MazeArray[2]);
-						//console.log(MazeArray[3]);
-						//console.log(MazeArray);
+						//Putting custom choices in the array for Maze navigation
+						choicesArray = [];
+							this.message=MazeArray[this.mazeRow][this.mazeCol]; 
+							if(this.mazeRow==mazeSize-1 && this.mazeCol==mazeSize-1)
+							{
+								this.message='YOU WIN';
+							}
+							for(i=0; i<MazeArray[this.mazeRow][this.mazeCol].length; i++)
+								{
+								dir='';
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='N')
+									{dir='North';}
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='E')
+									{dir='East';}
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='S')
+									{dir='South';}
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='W')
+									{dir='West';}
+								choicesArray[i*2] ='Enter the door to your ' + dir;
+								choicesArray[i*2+1] =this.page;
+								}
+						//Prints the Maze array
+						for (m=0; m<MazeArray.length-1; m++)
+							{
+							console.log(MazeArray[m]);
+							}
+						this.inMaze=1;
 						}
+						//Every subsequent run through the maze code
+						else
+						{	
+							//On Button press, update which cell of maze player is currently in
+							if(MazeArray[this.mazeRow][this.mazeCol].charAt(choiceNum-1)=='N')
+								{
+									this.mazeRow--;
+								}
+							else if(MazeArray[this.mazeRow][this.mazeCol].charAt(choiceNum-1)=='E')
+								{
+									this.mazeCol++;
+								}
+							else if(MazeArray[this.mazeRow][this.mazeCol].charAt(choiceNum-1)=='S')
+								{
+									this.mazeRow++;
+								}
+							else if(MazeArray[this.mazeRow][this.mazeCol].charAt(choiceNum-1)=='W')
+								{
+									this.mazeCol--;
+								}
+							//Putting custom choices in the array for Maze navigation
+							choicesArray = [];
+							this.message=MazeArray[this.mazeRow][this.mazeCol]; 
+							if(this.mazeRow==mazeSize-1 && this.mazeCol==mazeSize-1)
+							{
+								this.message='YOU WIN';
+								inMaze=0;
+							}
+							for(i=0; i<MazeArray[this.mazeRow][this.mazeCol].length; i++)
+								{
+								dir='';
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='N')
+									{dir='North';}
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='E')
+									{dir='East';}
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='S')
+									{dir='South';}
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='W')
+									{dir='West';}
+								choicesArray[i*2] ='Enter the door to your ' + dir;
+								choicesArray[i*2+1] =this.page;
+								}
+						}
+						
+					}
 					
 					//SAFECRACK:
 					else if(specialPageArray[p].match('SAFECRACK:') != null) {
@@ -2156,7 +2251,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//End special pages testing
 			if (this.restart == 0) {
 				//if you are in inventory selection mode, a minigame or combat mode, you are overriding the choice selection
-				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0 && this.inSafeCracking==0) {
+				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0 && this.inSafeCracking==0 && this.inMaze==0) {
 					//Special commands for choices:
 					//DISPLAYIF:item1,item2,...,text  Only display this choice if all listed items are in inventory
 					//DISPLAYIFNOT:item1,item2,...,text  Only display this choice if none of the listed items are in the inventory
