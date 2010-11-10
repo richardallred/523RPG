@@ -1590,7 +1590,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									}
 								}
 							}
-						}
+			e
+			}
 						if (this.chooseWeapon == -1) {
 							//just selected a weapon
 							currentWeapon = availableWeapons[choiceNum - 1];
@@ -1936,7 +1937,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					//Maze:  This implements a randomized maze
 					else if (specialPageArray[p].match('MAZE:') !=null) {
-					//
 					//Prelim and First Run, inMaze is default 0.
 					if(this.inMaze==0){
 						this.message=" ";
@@ -2082,7 +2082,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							if(this.mazeRow==mazeSize-1 && this.mazeCol==mazeSize-1)
 							{
 								this.message='YOU WIN';
-								inMaze=0;
+								this.inMaze=0;
 							}
 							for(i=0; i<MazeArray[this.mazeRow][this.mazeCol].length; i++)
 								{

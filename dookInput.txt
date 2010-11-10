@@ -34,7 +34,7 @@ ARMOR:Guard Disguise^*1^*75
 ARMOR:Soldier's Uniform^*1^*75
 ARMOR:Chainmail armor^*2^*75
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
-0:Play the game^*1^*Demo^*413^*Lockpicking^*3000^*Safecracking^*3001
+0:Play the game^*1^*Demo^*413^*Lockpicking^*3000^*Safecracking^*3001^*Maze^*3500
 //0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
@@ -1312,3 +1312,5 @@ ARMOR:Chainmail armor^*2^*75
 3000:Done^*0
 3001:SAFECRACK:^*You are trying to crack a safe.<br>
 3001:Done^*0
+3500:MAZE:^*Maze Test
+3500:Done^*0
