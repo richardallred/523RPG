@@ -18,6 +18,9 @@ INITIALIZE:killedColonel,0
 INITIALIZE:rammedDoor,0
 INITIALIZE:unwashed,0
 INITALIZE:lostPack,0
+INITALIZE:officerSearch,0
+INITALIZE:officerTent,0
+INITALIZE:officerChest,0
 INITWEAPON:Sword^*4^*90^*HIT:You swing your blade at the #enemy^*HIT:You lunge at the #enemy with your sword^*HIT:You quickly strike the #enemy^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage to the #enemy.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked by the #enemy.
 INITWEAPON:Mace^*5^*80^*HIT:You bring your mace downwards in a crushing blow^*HIT:You swing your mace in a wide arc^*HIT:You hit the #enemy with a stunning blow^*MISS:Your mace is blocked by the #enemy.^*MISS:You swing your mace, but miss.^*MISS:You fail to do any damage to the #enemy.
 INITWEAPON:Hidden dagger^*2^*75^*HIT:You stab the #enemy with your dagger^*HIT:You slash the #enemy with your dagger^*HIT:You cut the #enemy with your dagger^*MISS:You fail to do any damage to the #enemy.^*MISS:Your dagger is blocked by the #enemy.^*MISS:You swing your dagger, but miss.^*MISS:You stab the #enemy with your dagger, but you are unable to do any damage.
@@ -1105,7 +1108,7 @@ ARMOR:Chainmail armor^*2^*75
 714:Search the colonel's body^*712^*Try to open the safe^*713^*Leave the room immediately^*715
 715:Leave the room
 715:Content not added^*999
-716:COMBAT:You are fighting a group of six soldiers,NAME:first soldier,WEAPON:Sword,STRENGTH:25,DEFENSE:2,ACCURACY:100,HEALTH:40,NAME2:second soldier,WEAPON2:Sword,STRENGTH2:25,DEFENSE2:2,ACCURARCY2:100,HEALTH2:40,NAME3:third soldier,WEAPON3:Sword,STRENGTH3:25,DEFENSE3:2,ACCURARCY3:100,HEALTH3:40,NAME4:fourth soldier,WEAPON4:Sword,STRENGTH4:25,DEFENSE4:2,ACCURARCY4:100,HEALTH4:40,NAME5:fifth soldier,WEAPON5:Sword,STRENGTH5:25,DEFENSE5:2,ACCURARCY5:100,HEALTH5:40,NAME6:sixth guard,WEAPON6:Sword,STRENGTH6:25,DEFENSE6:2,ACCURARCY6:100,HEALTH6:40,HIT:The first soldier hits you,HIT2:The second soldier hits you,HIT3:The third soldier hits you,HIT4:The fourth soldier hits you,HIT5:The fifth soldier hits you,HIT6:The sixth soldier hits you^*You manage to defeat the soldiers.
+716:COMBAT:You are fighting a group of six soldiers,NAME:first soldier,WEAPON:Sword,STRENGTH:25,DEFENSE:2,ACCURACY:100,HEALTH:40,NAME2:second soldier,WEAPON2:Sword,STRENGTH2:25,DEFENSE2:2,ACCURARCY2:100,HEALTH2:40,NAME3:third soldier,WEAPON3:Sword,STRENGTH3:25,DEFENSE3:2,ACCURARCY3:100,HEALTH3:40,NAME4:fourth soldier,WEAPON4:Sword,STRENGTH4:25,DEFENSE4:2,ACCURARCY4:100,HEALTH4:40,NAME5:fifth soldier,WEAPON5:Sword,STRENGTH5:25,DEFENSE5:2,ACCURARCY5:100,HEALTH5:40,NAME6:sixth guard,WEAPON6:Sword,STRENGTH6:25,DEFENSE6:2,ACCURARCY6:100,HEALTH6:40,HIT:The first soldier hits you,HIT2:The second soldier hits you,HIT3:The third soldier hits you,HIT4:The fourth soldier hits you,HIT5:The fifth soldier hits you,HIT6:The sixth soldier hits you^*You manage to defeat the soldiers.  You are exhausted from the battle and decide to leave the room immediately before any more soldiers find you.
 716:Continue^*715
 717:Sit and eat with the soldiers
 717:content not added^*999
@@ -1123,8 +1126,48 @@ ARMOR:Chainmail armor^*2^*75
 723:Continue^*486
 724:ornate tent
 724:Content not added^*999
-725:keep walking down the courtyard
-725:Content not added^*999
+725:You start to walk by one of the ornate tents when you see a man come out of one of them.  He is wearing the decorative armor of an officer in the Dookian army.  He tells you that common soldiers are not allowed in the officer's quarters.
+725:Attack him^*726^*Tell him that you need to talk to the colonel^*727^*Go back to your tent and go to sleep^*486
+726:INVSPLIT:Crossbow^*728^*729
+726:null^*1
+727:The officer points you in the direction of the colonel's tent before going back inside his tent.
+727:Head towards the colonel's tent^*743^*Follow the officer into his tent^*744^*Leave the tents and head towards the keep^*721^*Go back to your tent and go to sleep^*486
+728:You whip out your crossbow and rapidly fire a bolt at the officer.  He draws his sword to defend himself, but the bolt hits his throat and he falls to the ground.
+728:Search the officer's body^*732^*Drag the officer's body into his tent^*733^*Leave the body and go back to the soldier's tents^*734^*Leave the body and head towards the keep^*734
+729:You walk forwards and shove the officer into the tent so no one will see you, then prepare to attack him.  He draws a sword to defend himself.
+729:Continue^*730
+730:COMBAT:You are fighting an officer. The officer is using a sword,NAME:officer,WEAPON:Sword,STRENGTH:20,DEFENSE:2,ACCURACY:75,HEALTH:45,HIT:The officer slashes you with his sword,HIT:The officer swings his blade,HIT:The officer stabs you with his sword,MISS:Your blow glances off the officer's armor.,MISS:The officer quickly parries your blow.,MISS:The officer evades you.^*The officer falls to the ground, dead.
+730:Continue^*731
+731:The interior of the ornate tent is luxurious in comparison with the soldiers' tents.  You see a single feather bed that has a locked chest next to it.  You also see a writing desk, an empty food plate, and several jugs of ale.
+731:Search the officer's body^*735^*Examine the locked chest^*736^*Search the rest of the tent^*737^*Leave the tent^*738
+732:RESTART:^*You are searching the officer's body when one of the other officers comes out of his tent and sees you.  He gives a shout and you are soon seized by many soldiers.  They find your crossbow and execute you on the spot.  <br>Your life ends here.
+732:null^*1
+733:You drag the officer's body into his tent and make sure the flap is closed behind you.  The interior of the ornate tent is luxurious in comparison with the soldiers' tents.  You see a single feather bed that has a locked chest next to it.  You also see a writing desk, an empty food plate, and several jugs of ale.
+733:Search the officer's body^*735^*Examine the locked chest^*736^*Search the rest of the tent^*737^*Leave the tent^*738
+734:RESTART:^*You start walking away from the body of the officer, hoping that nobody will see you.  However, one of the other officers comes out of his tent and sees the body.  He gives a shout and you are soon seized by many soldiers.  They find your crossbow and execute you on the spot.  <br>Your life ends here.
+734:null^*1
+735:VARSET:officerSearch,1^*GAINGOLD:10^*You search the officer's body and find 10 gold coins, which you take.  He isn't carrying anything else useful except for his decorative armor, which you decide could fit you.
+735:Put on the officer's armor^*739^*Keep your soldier's uniform instead^*742
+736:VARSET:officerChest,1^*You see a small, wooden chest with an iron lock attached to it that prevents you from opening it.
+736:DISPLAYIF:Lock picking kit,Try to pick the lock^*740^*DISPLAYIF:Mace,Smash open the chest with your mace,741^*Ignore the chest^*742
+737:VARSET:officerTent,1^*INVADD:Jug of ale^*You search through the rest of the tent, but you don't find anything useful except for the jugs of ale lying around.  You decide to take one of them.
+737:DISPLAYIFVAR:officerSearch,0,Search the officer's body^*735^*DISPLAYIFVAR:officerChest,0,Examine the locked chest^*736^*Leave the tent^*738
+738:Leave the tent
+738:Content not added^*999
+739:INVADD:Officer's Armor^*INVREMOVE:Soldier's Uniform^*You put on the officer's armor and remove your soldier's uniform.  What do you do next?
+739:DISPLAYIFVAR:officerChest,0,Examine the locked chest^*736^*DISPLAYIFVAR:officerTent,0,Search the rest of the tent^*737^*Leave the tent^*738
+740:GAINGOLD:8^*INVADD:Ruby^*You use your lock picking kit and manage to pick the lock easily.  The chest opens and you find a valuable ruby inside, as well as 10 gold coin.  You take everything inside.
+740:DISPLAYIFVAR:officerSearch,0,Search the officer's body^*735^*DISPLAYIFVAR:officerTent,0,Search the rest of the tent^*737^*Leave the tent^*738
+741:GAINGOLD:5^*You take your mace and smash the chest with a powerful downwards blow.  The wood is not very sturdy and the chest shatters with a single hit.  You search through the splinters of wood and manage to find 5 gold coins, but anything else the chest may have contained is wrecked beyond recognition.
+741:DISPLAYIFVAR:officerSearch,0,Search the officer's body^*735^*736^*DISPLAYIFVAR:officerTent,0,Search the rest of the tent^*737^*Leave the tent^*738
+742:What do you do next?
+742:DISPLAYIFVAR:officerSearch,0,Search the officer's body^*735^*DISPLAYIFVAR:officerChest,0,Examine the locked chest^*736^*DISPLAYIFVAR:officerTent,0,Search the rest of the tent^*737^*Leave the tent^*738
+743:Head towards colonel's tent
+743:Content not added^*999
+744:You follow the officer into his tent.  He sees you and whips around.  "How dare you follow an officer into his tent," he shouts, before drawing his sword.
+744:Fight him^*730^*Run out of the tent^*745
+745:You duck under the tent flap and sprint all the way back to the soldiers' tents.  The officer does not follow you, and you manage to reach your tent safely.  What do you do next?
+745:Leave the tents and head towards the keep^*721^*Go to sleep in your tent^*486
 750:In a deep pit
 750:Content not added^*999
 800:INVSPLIT:Crossbow^*831^*832
