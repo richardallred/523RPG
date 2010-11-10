@@ -8,6 +8,9 @@
       @import "http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dijit/themes/claro/claro.css";
       @import "css/application.css";
     </style>
+	<noscript>
+	<p>Sorry, your browser does not support JavaScript.</p>
+	</noscript>
     <script type="text/javascript">
         var djConfig = {
             isDebug: false,
@@ -15,6 +18,9 @@
             baseUrl: './',
             modulePaths: {'myapp' : 'widgets'}
         };
+		if(!(navigator.userAgent.indexOf("Firefox")>=0 ||navigator.userAgent.indexOf("Chrome")>=0)){
+			document.write("I see you aren't using Firefox or Google Chrome... tsk. To play this game you will need one of them. <br /><br /> Chrome: <a href = 'http://www.google.com/chrome/intl/en/landing_chrome.html?hl=en'>here</a> <br /><br /> or <br /><br /> Firefox: <a href='http://www.mozilla.com/en-US/firefox/firefox.html'>here</a>");
+		}
     </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dojo/dojo.xd.js"></script>
     <script type="text/javascript" src="/libs/uow/trace.js"></script>
