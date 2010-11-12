@@ -1124,8 +1124,8 @@ ARMOR:Chainmail armor^*2^*75
 722:Teach the soldier a lesson^*723^*Leave the group and go look at some of the tents^*720^*Leave the soldiers and head towards the keep^*721^*Go back to your tent and go to sleep^*486
 723:LOSEHEALTH:8^*You quickly punch the offending soldier in the face, giving him a black eye and causing him to stagger.  One of the other soldiers runs up towards you and smashes a bottle over your head.  Your soldier's uniform partially protects you from the blow, but you lose 8 health.  Before the brawl can continue much further, you are seperated by a group of soldiers, who discipline you and the other fighters and confiscate the ale.  You are sent back to your tent and ordered to go to sleep and keep out of trouble.
 723:Continue^*486
-724:ornate tent
-724:Content not added^*999
+724:You peek into one of the ornate tents and you see a man sitting at a desk inside.  He is wearing the decorative armor of an officer in the Dookian army.  As you look inside, you rustle one of the tent flaps and the man turns around and sees you.  "How dare a common soldier like you enter an officer's tent!" he exclaims, as he draws his sword.
+724:Fight him^*730^*Run out of the tent^*745
 725:You start to walk by one of the ornate tents when you see a man come out of one of them.  He is wearing the decorative armor of an officer in the Dookian army.  He tells you that common soldiers are not allowed in the officer's quarters.
 725:Attack him^*726^*Tell him that you need to talk to the colonel^*727^*Go back to your tent and go to sleep^*486
 726:INVSPLIT:Crossbow^*728^*729
@@ -1152,8 +1152,8 @@ ARMOR:Chainmail armor^*2^*75
 736:DISPLAYIF:Lock picking kit,Try to pick the lock^*740^*DISPLAYIF:Mace,Smash open the chest with your mace,741^*Ignore the chest^*742
 737:VARSET:officerTent,1^*INVADD:Jug of ale^*You search through the rest of the tent, but you don't find anything useful except for the jugs of ale lying around.  You decide to take one of them.
 737:DISPLAYIFVAR:officerSearch,0,Search the officer's body^*735^*DISPLAYIFVAR:officerChest,0,Examine the locked chest^*736^*Leave the tent^*738
-738:Leave the tent
-738:Content not added^*999
+738:INVSPLIT:Officer's Armor^*746^*747
+738:null^*1
 739:INVADD:Officer's Armor^*INVREMOVE:Soldier's Uniform^*You put on the officer's armor and remove your soldier's uniform.  What do you do next?
 739:DISPLAYIFVAR:officerChest,0,Examine the locked chest^*736^*DISPLAYIFVAR:officerTent,0,Search the rest of the tent^*737^*Leave the tent^*738
 740:GAINGOLD:8^*INVADD:Ruby^*You use your lock picking kit and manage to pick the lock easily.  The chest opens and you find a valuable ruby inside, as well as 10 gold coin.  You take everything inside.
@@ -1167,7 +1167,15 @@ ARMOR:Chainmail armor^*2^*75
 744:You follow the officer into his tent.  He sees you and whips around.  "How dare you follow an officer into his tent," he shouts, before drawing his sword.
 744:Fight him^*730^*Run out of the tent^*745
 745:You duck under the tent flap and sprint all the way back to the soldiers' tents.  The officer does not follow you, and you manage to reach your tent safely.  What do you do next?
-745:Leave the tents and head towards the keep^*721^*Go to sleep in your tent^*486
+745:Go back and search more of the officers' tents^*748^*Leave the tents and head towards the keep^*721^*Go to sleep in your tent^*486
+746:You leave the officer's tent and return to the courtyard.  What do you do next?
+746:Search more of the officers' tents^*749^*Leave the tents and head towards the keep^*749^*Go back to your tent and go to sleep^*749
+747:You leave the officer's tent and return to the courtyard.  What do you do next?
+747:Search more of the officers' tents^*748^*Leave the tents and head towards the keep^*721^*Go back to your tent and go to sleep^*486
+748:Explore more of the officers' tents
+748:Content not added^*999
+749:RESTART:^*As you are walking through the courtyard, one of the other officers sees you.  He starts to greet you, but pauses when he sees your face.  "I don't recognize you," he growls.  He calls out and you are soon surrounded by soldiers.  You are told that the penalty for impersonating an officer is death and you are executed.
+749:null^*1
 750:In a deep pit
 750:Content not added^*999
 800:INVSPLIT:Crossbow^*831^*832
