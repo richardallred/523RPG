@@ -1076,6 +1076,60 @@ ARMOR:Chainmail armor^*2^*75
 618:Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*616^*Say that... content not added^*999
 619:LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
 619:Say that the message is for the King's ear only^*616^*Say that... content not added^*999
+620:Go towards the front entrance
+620:Content not added^*999
+621:You walk towards the side wall of the keep so you can examine it more closely.  The door is plain and wooden, but it has a lock on it that prevents you from opening it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
+621:Go back around to the front entrance^*620^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows^*625^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
+622:Go towards the front entrance (morning)
+622:Content not added^*999
+623:Go towards the side (morning)
+623:Go back around to the front entrance^*622^*Content not added^*999
+624:Pick the lock on the door
+624:Content not added^*999
+625:You look at the cracks in the wall and the uneven stone, and you work out a path that you could climb to reach the stained glass window.  However, the climb would be quite difficult and you probably wouldn't be able to make it while carrying any armor, including your soldier's uniform.
+625:Discard your armor and attempt the climb^*627^*Attempt the climb while wearing your armor^*628^*Decide not to climb up the wall^*629
+626:You toss your grapple and it sails through one of the stained glass windows, shattering it.  Fortunately, the hook attaches to the window ledge and you are able to climb up.  When you reach the top, you pull yourself up to the window ledge and see a large cathedral on the other side.  The cathedral is quite tall, and you are standing in one of the stained glass windows near the top.  Rows of wooden chairs are laid out facing an altar.  The floor is a good distance below you and is covered with broken glass, and the wall inside the cathedral is unclimbable.  You could either try to jump down to the ground or use the rope from your grappling hook to climb down, though it would mean abandoning the grappling hook.
+626:Jump down^*631^*Use the grappling hook rope to climb down^*632
+627:LOSEHEALTH:2^*INVREMOVE:Soldier's Uniform,Chainmail armor^*You leave your armor on the ground and start to climb up the wall.  As you scale the rough stone with your hands, they start bleeding from the strain of your weight.  The fatigue from the climb causes you to lose 2 health.  Fortunately, you are a skilled climber, so you eventually make it to the window and pull yourself up on the ledge.  Unsurprisingly, the stained glass window was not designed to be opened.  You will have to break through it to gain entrance to the keep.
+627:DISPLAYIF:Mace,Smash open the window with your mace^*630^*DISPLAYIF:Sword,Break the glass on the window with your sword^*630^*Break the window with your fist^*630^*Break the window with your foot^*630
+628:LOSEHEALTH:3^*You strain against the weight of your armor as you struggle to find handholds in the rough stone.  As you are trying to find a handhold in one of the cracks, you lose your grip and fall to the ground.  Fortunately, you did not climb up very far before falling and you only lose 3 health from minor bruising.
+628:Try again after discarding your armor^*627^*Decide not to climb up the wall^*629
+629:You decide that you do not want to risk the precarious climb up the wall.  What do you do next?
+629:Go back around to the front entrance^*620^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
+630:You smash open the window you can hear the glass rain down onto the ground below.  Through the broken window, you can see a large cathedral.  The cathedral is quite tall, and you are standing in one of the stained glass windows near the top.  Rows of wooden chairs are laid out facing an altar.  The floor is a good distance below you and is covered with broken glass, but you don't have much choice but to jump down, as the wall inside the cathedral is unclimbable.
+630:Continue^*631
+631:INVSPLIT:First aid kit^*633^*634
+631:null^*1
+632:INVREMOVE:Grappling hook^*You attach the hook of the grapple to the other side of the window so that the rope hangs down into the cathedral.  You then climb down the rope until you reach the cathedral floor.  There is no way to recover the grapple, as it is secured to the window, so you must leave it behind.  The only things you can see of interest in the cathedral are a large, gilded altar and a small door in the back of the room.  There is also a large wooden door that exits the room.
+632:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
+633:LOSEHEALTH:6^*You leap through the cathedral window and dissipate the force of the fall through your body when you hit the ground and roll.  Pain shoots through you as you roll across several sharp pieces of glass, but you did not suffer any serious damage.  When you get up, you use some bandages from your first aid kit to treat the cuts from the glass.  You have lost 6 health from the fall.  You look around the cathedral.  The only thing you can see of interest are a large, gilded altar and a small door in the back of the room.  There is also a large wooden door that exits the room.
+633:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
+634:LOSEHEALTH:12^*You leap through the cathedral window and dissipate the force of the fall through your body when you hit the ground and roll.  Pain shoots through you as you roll across several sharp pieces of glass, but you did not suffer any serious damage.  You lose 12 health from the force of the fall and from the glass cutting you.  You get up and look around the cathedral.  The only thing you can see of interest are a large, gilded altar and a small door in the back of the room.  There is also a large wooden door that exits the room.
+634:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
+635:INVSPLIT:Golden cross^*638^*639
+635:null^*1
+636:Leave the cathedral
+636:Content not added^*999
+637:You open the small door and find that it leads into a flight of stairs that goes downwards into pitch blackness.
+637:DISPLAYIF:Tinderbox and torch,Use your torch for light and descend the stairs^*641^*DISPLAYIFNOT:Tinderbox and torch,Descend the stairs into the darkness^*642^*Examine the altar^*635^*Leave the cathedral^*636
+638:The altar is covered with candles and there is a red cloth draped over the center.  As you have no way of lighting the candles, there is nothing useful on the altar.
+638:Go to the small door in the back^*637^*Leave the cathedral^*636
+639:The altar is covered with candles and there is a small, golden cross in the middle.  The cross stands on top of a red cloth that is draped over the center.
+639:Take the cross^*640^*Go to the small door in the back^*637^*Leave the cathedral^*636
+640:INVADD:Golden cross^*You swipe the valuable looking golden cross and put it into your pack.  What do you do next?
+640:Go to the small door in the back^*637^*Leave the cathedral^*636
+641:Descend with torch
+641:Content not added^*999
+642:You carefully walk down the stairs in the darkness, feeling your way along the wall.  By the time you feel your foot hit the bottom of the stairs, the air has gotten cold and clammy.  You begin to get an extremely uneasy feeling.
+642:Keep walking forwards^*643^*Go back up the stairs^*644
+643:INVSPLIT:Golden cross^*645^*646
+643:null^*1
+644:You walk back up the stairs and return to the cathedral.  What do you do next?
+644:Examine the altar^*635^*Leave the cathedral^*636
+645:RESTART:^*As you walk forwards into the room, you hear a terrible grinding noise from all around you.  Suddenly, the eerily silent room seems to come to life as you can hear a clattering on all sides of you.  You try to head back towards the stairs, but you before you can reach them, you feel a cold, hard, grip around your neck.  You thrash out and struggle against the grip, but you are unable to escape it and you soon run out of air.  <br>Your life ends here.
+645:null^*1
+646:You feel your way around the room, but you all you can feel are several stone shelves, with cold blocks of stone between them.  The room goes on for a long time, until you eventually arrive at a fork to the left and the right.
+646:Content not added^*999
 700:Lead out of the chamber (to see the King)
 700:Content not added^*999
 701:Lead out of the chamber
@@ -1114,12 +1168,12 @@ ARMOR:Chainmail armor^*2^*75
 717:content not added^*999
 718:Explore the tents
 718:content not added^*999
-719:head towards the keep
-719:content not added^*999
+719:You walk away from the cluster of tents where the soldiers are eating and head towards the keep.  The keep is a towering stone fortress, and you can see two guards standing at the gated entrance.  On the side of the keep, you can see a small door in the wall.  You can see servants occasionally coming in and out of the door with food.  There is also a row of stained glass windows on a different section of the side wall.
+719:Go towards the front entrance^*622^*Go towards the side door^*623
 720:You peek into some of the white tents, but they are all filled with sleeping soldiers are soldiers getting ready for bed.  You wander further into the courtyard and see some larger, more ornately decorated tents.
 720:Look into one of the ornate tents^*724^*Keep walking down the courtyard^*725^*Leave the tents and head towards the keep^*721^*Go back to your tent and go to sleep^*486
-721:head towards keep (night)
-721:content not added^*999
+721:You walk away from the cluster of tents where the soldiers are sleeping and head towards the keep.  The keep is a towering stone fortress, and you can see two guards standing at the gated entrance.  On the side of the keep, you can see a small door in the wall.  There is also a row of stained glass windows on a different section of the side wall.
+721:Go towards the front entrance^*620^*Look at the side of the keep^*621
 722:You try to join some of the revelling soldiers, but they rudely dismiss you.  One of them exclaims that he does not share drinks with strangers.  The others in the group point and laugh at you.
 722:Teach the soldier a lesson^*723^*Leave the group and go look at some of the tents^*720^*Leave the soldiers and head towards the keep^*721^*Go back to your tent and go to sleep^*486
 723:LOSEHEALTH:8^*You quickly punch the offending soldier in the face, giving him a black eye and causing him to stagger.  One of the other soldiers runs up towards you and smashes a bottle over your head.  Your soldier's uniform partially protects you from the blow, but you lose 8 health.  Before the brawl can continue much further, you are seperated by a group of soldiers, who discipline you and the other fighters and confiscate the ale.  You are sent back to your tent and ordered to go to sleep and keep out of trouble.
