@@ -92,8 +92,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.inLockPicking = 0;
 		this.currentTumbler = 1;
 		this.currentPushes = 0;
+		this.maxPushes = 0;
 		this.tumblers=[];
 		this.maxTumblers = 0;
+		this.maxWrong=0;
 		//special mode for Maze
 		this.inMaze=0;
 		this.mazeRow=0;
@@ -1890,30 +1892,44 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
 								if(this.difficulty=="Easy"){
 									this.tumblers[m]=Math.ceil(Math.random()*3);
+									this.maxWrong=5;
+									this.maxPushes=3;
 								}else if(this.difficulty=="Normal"){
 									this.tumblers[m]=Math.ceil(Math.random()*6);
+									this.maxWrong=4;
+									this.maxPushes=6;
 								}else{
-									this.tumblers[m]=Math.ceil(Math.random()*10);
+									this.tumblers[m]=Math.ceil(Math.random()*9);
+									this.maxWrong=3;
+									this.maxPushes=9;
 								}								
 							}
 							this.inLockPicking=1;
 							choicesArray = [];
 							this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+numOfTumblers;
 							this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-							this.message=this.message+"<br>Each tumbler can be pressed a maximum of times";
+							this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 							choicesArray[0]='Pick tumbler '+this.currentTumbler;
 							choicesArray[1]=this.page;
 							choicesArray[2]='Check tumbler '+this.currentTumbler;
 							choicesArray[3]=this.page;
+							choicesArray[4]='Start this Tumbler over';
+							choicesArray[5]=this.page;
 						}else{
 							
 							if(choiceNum==1){
 								this.currentPushes+=1;
 								this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
 								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+								this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+
 							}else if(choiceNum==2){
 								if(this.currentPushes==this.tumblers[this.currentTumbler-1]){
 									this.message=this.message+"<br>You successfully opened this tumbler!";	
+									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
+									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+
+
 									this.currentTumbler++;
 									if(this.currentTumbler!=this.maxTumblers){
 										this.currentPushes=0;
@@ -1927,10 +1943,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										this.message="Congratulations! You picked the lock!";
 									}
 								}else{
-									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler);
+									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
 									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 									this.message=this.message+"<br>Please try again";
 								}
+							}else if(choiceNum==3){
+								this.currentPushes=0;
+								this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
+								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+								this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+								
 							}
 							
 						}
