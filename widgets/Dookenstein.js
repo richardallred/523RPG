@@ -1880,6 +1880,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					//LOCKPICK: num of tumblers
 					else if (specialPageArray[p].match('LOCKPICK:') !=null) {
+						//Check to see if I'm setting up everything for the first time
 						if(this.inLockPicking==0){
 							//Read # of tumblers as set by the call from the input file
 							numOfTumbler = specialPageArray[p].split('LOCKPICK:');
@@ -1892,15 +1893,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
 								if(this.difficulty=="Easy"){
 									this.tumblers[m]=Math.ceil(Math.random()*3);
-									this.maxWrong=5;
+									this.maxWrong=8;
 									this.maxPushes=3;
 								}else if(this.difficulty=="Normal"){
 									this.tumblers[m]=Math.ceil(Math.random()*6);
-									this.maxWrong=4;
+									this.maxWrong=15;
 									this.maxPushes=6;
 								}else{
 									this.tumblers[m]=Math.ceil(Math.random()*9);
-									this.maxWrong=3;
+									this.maxWrong=25;
 									this.maxPushes=9;
 								}								
 							}
@@ -1909,54 +1910,87 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+numOfTumblers;
 							this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 							this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+							this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
 							choicesArray[0]='Pick tumbler '+this.currentTumbler;
 							choicesArray[1]=this.page;
 							choicesArray[2]='Check tumbler '+this.currentTumbler;
 							choicesArray[3]=this.page;
 							choicesArray[4]='Start this Tumbler over';
 							choicesArray[5]=this.page;
+						//Return after button hit
 						}else{
-							
+							//Choose to pick the tumbler once
 							if(choiceNum==1){
-								this.currentPushes+=1;
-								this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
-								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-								this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-
+								//Check to make sure we haven't reached the max pushes
+								if(this.currentPushes!=this.maxPushes){
+									this.currentPushes+=1;
+									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
+									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+								//Circle back to 1 push after hitting max
+								}else{
+									this.currentPushes=1;
+									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
+									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+								}
+								
+							//Choose to check current pushes
 							}else if(choiceNum==2){
+								//Correct number of pushes for that tumbler
 								if(this.currentPushes==this.tumblers[this.currentTumbler-1]){
+									//Move to next tumbler
+									this.currentTumbler++;
 									this.message=this.message+"<br>You successfully opened this tumbler!";	
 									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
+									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-
-
-									this.currentTumbler++;
-									if(this.currentTumbler!=this.maxTumblers){
+									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									
+									//Check to see if we are done
+									if(this.currentTumbler<=this.maxTumblers){
 										this.currentPushes=0;
 										choicesArray[0]='Pick tumbler '+this.currentTumbler;
 										choicesArray[1]=this.page;
 										choicesArray[2]='Check tumbler '+this.currentTumbler;
 										choicesArray[3]=this.page;
+									//End case
 									}else{
 										this.currentPushes=0;
+										this.currentTumbler=0;
 										this.inLockPicking=0;
 										this.message="Congratulations! You picked the lock!";
 									}
+								//Incorrect Pushes for the that tumbler
 								}else{
-									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
-									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-									this.message=this.message+"<br>Please try again";
+									//Take away one of the attempts
+									this.maxWrong--;
+									//In this case, they have run out of attempts
+									if(this.maxWrong==0){
+										this.message=this.message+"You have failed at picking this lock";
+									//Otherwise tell them its wrong and try again
+									}else{
+										this.message=this.message+"<br>This is the incorrect number of pushes for this tumbler!  Please Try Again!"
+										this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
+										this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+										this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+										this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									}
 								}
+							//Choose to start the current tumbler over, does not reset max wrong
 							}else if(choiceNum==3){
 								this.currentPushes=0;
 								this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
 								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 								this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-								
+								this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
 							}
 							
 						}
 					}
+					
 					//Maze:  This implements a randomized maze
 					else if (specialPageArray[p].match('MAZE:') !=null) {
 					//Prelim and First Run, inMaze is default 0.
