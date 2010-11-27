@@ -903,7 +903,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				/*List of special commands:
 				INVSPLIT:item^*x^*y - Go to page x if item is in inventory, otherwise go to page y
 				ANYSPLIT:item1,item2^*x^*y - Go to page x if any of the listed items are in inventory, otherwise go to page y
+				ALLSPLIT:item1,item2^*x^*y - Go to page x if all of the listed items are in inventory, otherwise go to page y
 				GOLDSPLIT:n^*x^*y - If gold is at least n, go to page x, otherwise go to page y
+				HEALTHSPLIT:n^*x^*y - If gold is at least n, go to page x, otherwise go to page.  MAX can be used for n.
 				INVCHECK:item^*text^*x - If item is in inventory, display text.  Otherwise, redirect to page x
 				INVADD:item1,item2 - Add all listed items to inventory.  Add true as a parameter to allow duplicate adding.
 				INVBUY:item,n^*x - Add item to inventory, lose n gold.  Redirect to page x if gold is less than n
@@ -963,11 +965,54 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							return;
 						}
 					}
+					//ALLSPLIT:item,item2,...  If all of the items are in the inventory, go the first page, otherwise go to the second page
+					//ALLSPLIT does not work with multiple special commands unless it is last
+					if (specialPageArray[p].match('ALLSPLIT:') != null) {
+						inventoryCheckArray = specialPageArray[p].split('ALLSPLIT:')[1].split(',');
+						passedCheck = true;
+						for (q = 0; q < inventoryCheckArray.length; q++) {
+							if (!inventoryCheckArray[q] in this.oc(this.inventory)) {
+								passedCheck = false;
+							}
+						}
+						if (passedCheck) {
+							//passed inventory check, redirect to first page
+							this.page = specialPageArray[specialPageArray.length-2];
+							this.processChoice(this.page,0);
+							return;
+						} else {
+							//failed inventory check, redirect to second page
+							this.page = specialPageArray[specialPageArray.length-1];
+							this.processChoice(this.page,0);
+							return;
+						}
+					}
 					//GOLDSPLIT:n.  If current gold >= n, go to the first page, otherwise go to the second page
 					//GOLDSPLIT does not work with multiple special commands unless it is last
 					else if (specialPageArray[p].match('GOLDSPLIT:') != null) {
 						goldCheck = specialPageArray[p].split('GOLDSPLIT:');
 						if (this.gold >= goldCheck[1]) {
+							//passed gold check, redirect to first page
+							this.page = specialPageArray[specialPageArray.length-2];
+							this.processChoice(this.page,0);
+							return;
+						} else {
+							//failed gold check, redirect to second page
+							this.page = specialPageArray[specialPageArray.length-1];
+							this.processChoice(this.page,0);
+							return;
+						}
+					}
+					//HEALTHSPLIT:n^*x^*y - If gold is at least n, go to page x, otherwise go to page.  MAX can be used for n.
+					//HEALTHSPLIT does not work with multiple special commands unless it is last
+					else if (specialPageArray[p].match('HEALTHSPLIT:') != null) {
+						healthSplit = specialPageArray[p].split('HEALTHSPLIT:');
+						if (healthSplit[1].match('MAX') != null) {
+							healthCheck = this.MAX_HEALTH;
+						} else {
+							healthCheck = healthSplit[1];
+						}
+						if (this.health >= healthCheck) {
 							//passed gold check, redirect to first page
 							this.page = specialPageArray[specialPageArray.length-2];
 							this.processChoice(this.page,0);
@@ -1013,7 +1058,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									//only add something to the inventory if it is not already there
 									if (inventoryAddArray[i] in this.oc(this.inventory)) {
 										if (displayInvMessage) {
-											this.message = this.message + ' <br>You already have a ' + inventoryAddArray[i] + ' so you do not take another one.'
+											this.message = this.message + ' <br>You already have a ' + inventoryAddArray[i].toLowerCase() + ' so you do not take another one.'
 										}
 									} else if (inventoryAddArray[i] != 'true' && inventoryAddArray[i] != 'false') {
 										this.inventory[this.inventory.length] = inventoryAddArray[i];
