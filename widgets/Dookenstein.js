@@ -1805,7 +1805,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										}
 										if (currentArmor != "None" && damageTaken > 0) {
 											if (Math.random() <= currentArmor.probability/100) {
-												damageTaken -= currentArmor.defense;
+												damageReduced = Math.floor(Math.random()*(currentArmor.defense))
+												if (damageReduced == 0) {
+													damageReduced = 1;
+												}
+												damageTaken -= damageReduced;
 												if (damageTaken > 0) {
 													combatString = combatString + ' <br>Your ' + currentArmor.name + ' protects you from some of the damage. ';
 												} else {
