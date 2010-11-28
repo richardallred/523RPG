@@ -53,6 +53,7 @@ INITWEAPON:Hammer^*5^*70^*SPECIAL:Blunt^*HIT:You bring your hammer downwards in 
 INITWEAPON:Sword^*4^*90^*SPECIAL:Cut^*HIT:You swing your blade at the #enemy^*HIT:You lunge at the #enemy with your sword^*HIT:You quickly strike the #enemy^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage to the #enemy.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked by the #enemy.
 INITWEAPON:Mace^*4^*80^*SPECIAL:Blunt^*HIT:You bring your mace downwards in a crushing blow^*HIT:You swing your mace in a wide arc^*HIT:You hit the #enemy with a stunning blow^*MISS:Your mace is blocked by the #enemy.^*MISS:You swing your mace, but miss.^*MISS:You fail to do any damage to the #enemy.
 INITWEAPON:Fire Poker^*3^*70^*SPECIAL:Blunt^*HIT:You smash the #enemy with your fire poker^*HIT:You swing your poker^*MISS:Your swing your poker, but miss.^*MISS:Your fire poker is blocked by the #enemy.
+INITWEAPON:Sacrificial dagger^*3^*75^*SPECIAL:Cut^*HIT:You stab the #enemy with your dagger^*HIT:You slash the #enemy with your dagger^*HIT:You cut the #enemy with your dagger^*MISS:You fail to do any damage to the #enemy.^*MISS:Your dagger is blocked by the #enemy.^*MISS:You swing your dagger, but miss.^*MISS:You stab the #enemy with your dagger, but you are unable to do any damage.
 INITWEAPON:Hidden dagger^*2^*75^*SPECIAL:Cut^*HIT:You stab the #enemy with your dagger^*HIT:You slash the #enemy with your dagger^*HIT:You cut the #enemy with your dagger^*MISS:You fail to do any damage to the #enemy.^*MISS:Your dagger is blocked by the #enemy.^*MISS:You swing your dagger, but miss.^*MISS:You stab the #enemy with your dagger, but you are unable to do any damage.
 INITWEAPON:Knife^*1^*70^*SPECIAL:Cut^*HIT:You stab the #enemy with your knife^*HIT:You slash the #enemy with your knife^*HIT:You cut the #enemy with your knife^*MISS:You fail to do any damage to the #enemy.^*MISS:Your knife is blocked by the #enemy.^*MISS:You swing your knife, but miss.^*MISS:You stab the #enemy with your knife, but you are unable to do any damage.
 INITWEAPON:Kitchen Knife^*1^*70^*SPECIAL:Cut^*HIT:You stab the #enemy with your knife^*HIT:You slash the #enemy with your knife^*HIT:You cut the #enemy with your knife^*MISS:You fail to do any damage to the #enemy.^*MISS:Your knife is blocked by the #enemy.^*MISS:You swing your knife, but miss.^*MISS:You stab the #enemy with your knife, but you are unable to do any damage.
@@ -63,6 +64,7 @@ ARMOR:Guard Disguise^*1^*60
 ARMOR:Soldier's Uniform^*1^*70
 ARMOR:Chainmail Armor^*2^*75
 ARMOR:Platemail Armor^*5^*80
+HEALING:First aid kit^*0.2
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
 0:Play the game^*1^*Lockpicking^*3000^*Safecracking^*3001
 0:images/castle_final.jpg
@@ -1162,8 +1164,8 @@ ARMOR:Platemail Armor^*5^*80
 634:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
 635:INVSPLIT:Golden cross^*638^*639
 635:null^*1
-636:Leave the cathedral
-636:Content not added^*999
+636:VARSPLIT:catacombsVisited,1^*1247^*1248
+636:null^*1
 637:You open the small door and find that it leads into a flight of stairs that goes downwards into pitch blackness.
 637:DISPLAYIF:Tinderbox and torch,Use your torch for light and descend the stairs^*651^*DISPLAYIFNOT:Tinderbox and torch,Descend the stairs into the darkness^*642^*Examine the altar^*635^*Leave the cathedral^*636
 638:The altar is covered with candles and there is a red cloth draped over the center.  As you have no way of lighting the candles, there is nothing useful on the altar.
@@ -1190,16 +1192,16 @@ ARMOR:Platemail Armor^*5^*80
 648:null^*1
 649:VARSET:catacombsVisited,1^*You only manage to take a few steps into the catacombs before you hear a terrible grinding noise from all around you as the stone coffins surrounding you slide open.  A chorus of clattering bones sound as skeletons magically assemble and climb out of the coffins and down the shelves.
 649:Prepare to fight the skeletons^*657^*Try to escape by running towards the stairs^*658^*Try to escape by running deeper into the catacombs^*661^*Try to fend the skeletons off with your torch^*659^*Hold up your golden cross and hope it wards off the skeletons^*660
-650:You walk through the room until you reach the end, where it forks to the left and right.  In the light of the torch, you cannot see very far in either direction to the left or the right.  You are standing next to the large pile of assorted bones that you saw earlier.
+650:You walk through the room until you reach the end, where it forks to the left and right.  In the light of the torch, you cannot see very far in either direction.  You are standing next to the large pile of assorted bones that you saw earlier.
 650:Go to the left^*653^*Go to the right^*654^*Take one of the bones from the pile^*655^*Open one of the stone coffins^*656^*Leave and go back up the stairs^*644
 651:VARSPLIT:catacombsVisited,0^*641^*652
 651:null^*1
 652:When you reach the bottom of the stairs, you are surprised to see no sign of the skeletons.  The stone coffins are all closed and the room looks undisturbed.
 652:Enter the catacombs^*649^*Leave and go back up the stairs^*644
-653:Go to the left
-653:Content not added^*999
-654:Go to the right
-654:Content not added^*999
+653:You walk a good distance among the catacombs, but it seems like the catacombs continue endlessly.  As you see the catacombs corridor split off into another fork, you begin to give up hope of finding anything in this massive tomb.  Soon, the pervasive feeling of death and decay becomes unbearable, and you decide to return to the cathedral.
+653:Leave and go back up the stairs^*644
+654:You walk a good distance among the catacombs before the corridor ends and you see a winding downward staircase.  You climb down the stairs, but there is just another endless row of catacombs at the bottom.  As you walk down the second catacombs corridor, you begin to give up hope of finding anything in this massive tomb.  Soon, the pervasive feeling of death and decay becomes unbearable, and you decide to return to the cathedral.
+654:Leave and go back up to the cathedral^*644
 655:RESTART^*You take one of the bones from the pile and put it into your pack.  Suddenly, the pile of bones start to shift in front of you, and you gasp in horror as the bones in the pile magically assemble themselves into skeletons in front of you.  You hear a terrible grinding noise as all of the stone coffins in the room slide open and skeletons start to climb out.  The skeletons advance towards you and quickly surround you.  You try to fight them off, but there are too many of them and you are torn apart.  <br>Your life ends here.
 655:null^*1
 656:RESTART^*You slide open one of the stone coffins, revealing a skeleton inside.  To your shock, the skeleton reaches out and grabs your throat with its strong, skeletal fingers.  You hear a terrible grinding noise as the other stone coffins slide open and skeletons climb out of them and approach you.  You manage to free your neck from the skeleton's grip, but you are soon surrounded by a horde of walking bones.  Thought you try to fight them off, there are too many of them and you are torn apart.  <br>Your life ends here.
@@ -1272,6 +1274,20 @@ ARMOR:Platemail Armor^*5^*80
 691:Go back down the stairs^*1023^*Call for help^*1187
 692:COMBAT:You are fighting two guards.  They are both armed with swords,NAME:first guard,WEAPON:Sword,STRENGTH:16,DEFENSE:2,ACCURACY:70,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:16,DEFENSE2:2,ACCURARCY2:70,HEALTH2:40,HIT:The first guard slashes you with his blade,HIT2:The second guard slashes you with his blade^*You manage to defeat the guards.
 692:Continue^*691
+693:You show them the greatsword you took and say that Colonel Graywald wanted you to deliver his sword to one of his servants in the inner bailey.  The guards nod and call for the gate to be opened.  You walk through to the inner bailey.
+693:Continue^*500
+694:As you get closer to the tents, you see men in Dookian soldier armor milling around the courtyard and moving in and out of the tents.  You approach and look inside one of the large, white tents.  It is sparsely furnished, with little inside but three unoccupied straw beds.  The tents appear to be sleeping quarters for the Dookian soldiers.  You decide that the tents probably don't contain anything useful, so you head towards the keep.
+694:Continue^*767
+695:As you get closer to the tents, you see men in Dookian soldier armor milling around the courtyard and moving in and out of the tents.  You decide to avoid the soldiers and head towards the castle keep instead.
+695:Continue^*767
+696:RESTART:^*You tell the guard that you need to get supplies from the keep.  "Supplies?" says the guard, "You soldiers already got your shipment of supplies.  I thought you were all supposed to be training right now."  As you argue for several more minutes with the guard, a group of soldiers comes up from behind you.  "Sorry to interrupt," says one of the soldiers, "But someone has killed Colonel Graywald and we are searching all the new recruits for evidence."  The soldiers search you and find the colonel's greatsword.  You are arrested and given a brief trial, after which you are hung, drawn, and quartered.
+696:null^*1
+697:RESTART:^*You tell the guard that you have been assigned to guard the keep, so he must let you through the gate.  "Are you joking?" says the guard, "Soldiers like you don't do any guard work around here."  As you argue for several more minutes with the guard, a group of soldiers comes up from behind you.  "Sorry to interrupt," says one of the soldiers, "But someone has killed Colonel Graywald and we are searching all the new recruits for evidence."  The soldiers search you and find the colonel's greatsword.  You are arrested and given a brief trial, after which you are hung, drawn, and quartered.
+697:null^*1
+698:RESTART:^*You tell the guard that as a Dookian soldier, you are authorized to enter the inner bailey.  "I'll decide who's authorized and who isn't," says the guard.  As you argue for several more minutes with the guard, a group of soldiers comes up from behind you.  "Sorry to interrupt," says one of the soldiers, "But someone has killed Colonel Graywald and we are searching all the new recruits for evidence."  The soldiers search you and find the colonel's greatsword.  You are arrested and given a brief trial, after which you are hung, drawn, and quartered.
+698:null^*1
+699:RESTART:^*You draw your greatsword and hew through the surprised guard with a single swing.  The guards watching you from the top of the gate respond by filling you with crossbow bolts.  <br>Your life ends here.
+699:null^*1
 700:The guard unshackles you from the wall and knocks on the large iron door that leads out of the torture chamber.  All the while, you can see the interrogator seething at you.  The guard waiting outside opens the door, and you are led out of the chamber.  Mercifully, the guards have not tied your hands behind your back.
 700:Follow the guards^*686^*Attack the guards^*687
 701:RESTART:^*The guard leads you out of the torture chamber and the guard that was waiting outside joins him.  The two guards lead you outside the castle and a regiment of soldiers escorts you to the province of Devion.  You spend the next few days stuck in a Devion prison cell as the authorities there work out what to do with you.  As you languish in your cell, you know that King K is successfully leading his army to crush the Carolinian forces.  <br>You have failed your mission.
@@ -1302,8 +1318,8 @@ ARMOR:Platemail Armor^*5^*80
 713:Continue^*716
 714:INVADD:Military Documents^*You take the papers on the table, which are military plans for an upcoming invasion of Carolinia.  What do you do next?
 714:Search the colonel's body^*712^*Try to open the safe^*713^*Leave the room immediately^*715
-715:Leave the room
-715:Content not added^*999
+715:You leave the room and walk as quickly as you can out of the barracks.  As you walk out into the courtyard, you hear cries of alarm from behind you.  You look back and you see groups of soldiers spreading out of the barracks into the courtyard.  You know that you will have to get out of the courtyard immediately, so you walk over to the inner bailey gate.  One of the guards there asks you to state your business.
+715:Tell him that you want to get some supplies from the keep^*696^*Tell him that you are here on Colonel Graywald's orders^*693^*Tell him that you have been assigned to guard the keep^*697^*Tell him that you are one of the king's soldiers and that you are authorized to enter^*698^*Attack the guard^*699
 716:COMBAT:You are fighting a group of six soldiers,NAME:first soldier,WEAPON:Sword,STRENGTH:25,DEFENSE:2,ACCURACY:100,HEALTH:40,NAME2:second soldier,WEAPON2:Sword,STRENGTH2:25,DEFENSE2:2,ACCURARCY2:100,HEALTH2:40,NAME3:third soldier,WEAPON3:Sword,STRENGTH3:25,DEFENSE3:2,ACCURARCY3:100,HEALTH3:40,NAME4:fourth soldier,WEAPON4:Sword,STRENGTH4:25,DEFENSE4:2,ACCURARCY4:100,HEALTH4:40,NAME5:fifth soldier,WEAPON5:Sword,STRENGTH5:25,DEFENSE5:2,ACCURARCY5:100,HEALTH5:40,NAME6:sixth guard,WEAPON6:Sword,STRENGTH6:25,DEFENSE6:2,ACCURARCY6:100,HEALTH6:40,HIT:The first soldier hits you,HIT2:The second soldier hits you,HIT3:The third soldier hits you,HIT4:The fourth soldier hits you,HIT5:The fifth soldier hits you,HIT6:The sixth soldier hits you^*You manage to defeat the soldiers.  You are exhausted from the battle and decide to leave the room immediately before any more soldiers find you.
 716:Continue^*715
 717:RESTART:^*You sit near some of the other soldiers and a servant hands you a bowl of gruel.  Before you have a chance to finish eating, a group of officers herds all the soldiers to the middle of the courtyard.  Colonel Graywald makes an announcement that the King's army is about to start its march towards Carolinia.  One of the soldiers protests that he thought the invasion would happen two days from now.  "The King has changed his plans," announces the Colonel, "We are going to take the Carolinians by surprise and defeat them swiftly and decisively."  You don't get a chance to slip away and you soon find yourself marching with the Dookian forces in a full-scale invasion.  King K leads his army and devestates the Carolinian troops with blasts of magic from his ring.  You are forced to watch as the Dookian troops pillage and conquer Carolinia.  <br>You have failed your mission.
@@ -1404,8 +1420,8 @@ ARMOR:Platemail Armor^*5^*80
 764:null^*1
 765:You leave the infirmary and emerge in the inner bailey courtyard.  In the distance to your left, you see a large group of tents.  In front of you, you can see the towering castle keep.
 765:Head towards the tents^*766^*Head towards the keep^*767
-766:As you get closer to the tents, you see men in Dookian soldier armor milling around the courtyard and moving in and out of the tents.  You decide to avoid the soldiers and head towards the castle keep instead.
-766:Continue^*767
+766:VARSPLIT:Soldier's Uniform^*694^*695
+766:null^*1
 767:You walk over to the castle keep.  The keep is a towering stone fortress, and you can see two guards standing at the gated entrance.  On the side of the keep, you can see a small door in the wall.  There is also a row of stained glass windows on a different section of the side wall.
 767:Go towards the front entrance^*789^*Look around the side of the keep^*790
 768:Inside the infirmary, you see several rows of operating tables.  Most of them are unoccupied, though you do see a doctor treating a wounded person on one of them.
@@ -1924,7 +1940,7 @@ ARMOR:Platemail Armor^*5^*80
 1027:VARSPLIT:killedDungeonGuard,0^*1028^*1029
 1027:null^*1
 1028:You walk down the hallway until you can see a large metal grate blocking the path to a downward staircase.  To the left of the grate is a small lever, and there is a guard dozing against the wall next to it.
-1028:Attack the guard^*1032^*Sneak around the guard and pull the lever^*1033^*Walk past the staircase^*1034^*DISPLAYIFVAR:wellVisited,1,Turn around and go back to the well^*1024^*DISPLAYIFVAR:wellVisited,0,Turn around and go back to the small wooden door^*1024
+1028:Attack the guard^*1031^*Sneak around the guard and pull the lever^*1033^*Walk past the staircase^*1034^*DISPLAYIFVAR:wellVisited,1,Turn around and go back to the well^*1024^*DISPLAYIFVAR:wellVisited,0,Turn around and go back to the small wooden door^*1024
 1029:You walk down the hallway until you can see an open metal grate in front of a downward staircase.  To the left of the grate is a small lever, and below the lever is the body of a guard.
 1029:Go down the staircase^*1023^*Walk past the staircase^*1030^*DISPLAYIFVAR:wellVisited,1,Turn around and go back to the well^*1024^*DISPLAYIFVAR:wellVisited,0,Turn around and go back to the small wooden door^*1024
 1030:VARSET:apothecaryVisited,1^*You walk down the hallway until you reach the next room, which is open.  Inside, you see an apothecary with a wide array of potions and alchemy equipment.
@@ -2315,6 +2331,30 @@ ARMOR:Platemail Armor^*5^*80
 1245:Go down the stairs^*991^*Go to the great hall^*1197^*Walk down the hallway in front of you^*1198^*Walk down the hallway on the right of you^*1199
 1246:As you are walking out to the courtyard, you remember that your mission is to acquire King K's ring, and that you won't find him outside of the keep.  You decide to focus on your mission and not risk leaving the castle.
 1246:Return to the hall^*1245
+1247:As you walk towards the doors leading out of the chapel, you see the doors open.  A group of five priests approach you.  They are dressed in dark blue floor-length robes, and their eyes are concealed by the hoods on the robes.  They seem to chant in unison as they speak to you.  "We have felt you take our sacred cross and awaken the dead.  You do not know the dark magic that you dabble in.  Return our cross at once."
+1247:Give them the cross^*1250^*Refuse to give them the cross^*1251^*Attack them^*1252
+1248:You leave the cathedral and emerge in a large hallway.  In front of you, you see an entrance to the great hall.
+1248:Go to the great hall^*1197^*Walk left down the hallway^*1236^*Walk right down the hallway^*1249
+1249:Walk to the keep entrance
+1249:Content not added
+1250:INVSPLIT:Shield^*1255^*1256
+1250:null^*1
+1251:You refuse the give them the cross.  The five priests simultaneously pull sacrificial daggers out of their robes and lunge at you.
+1251:Continue^*1253
+1252:Almost as if they sensed your attack, the five priests simultaneously pull sacrificial daggers out of their robes and lunge at you.
+1252:Continue^*1253
+1253:COMBAT:You are fighting five priests.  They are all using sacrificial daggers,NAME:first priest,WEAPON:Sacrificial Dagger,STRENGTH:11,DEFENSE:0,ACCURACY:90,HEALTH:30,NAME2:second priest,WEAPON2:Sacrificial Dagger,STRENGTH2:11,DEFENSE2:0,ACCURACY2:90,HEALTH2:30,NAME3:third priest,WEAPON3:Sacrificial Dagger,STRENGTH3:11,DEFENSE3:0,ACCURACY3:90,HEALTH3:30,NAME4:fourth priest,WEAPON4:Sacrificial Dagger,STRENGTH4:11,DEFENSE4:0,ACCURACY4:90,HEALTH4:30,NAME5:fifth priest,WEAPON5:Sacrificial Dagger,STRENGTH5:11,DEFENSE5:0,ACCURACY5:90,HEALTH5:30,HIT:The first priest stabs you,HIT2:The second priest stabs you,HIT3:The third priest stabs you,HIT4:The fourth priest stabs you,HIT5:The fifth priest stabs you^*You manage to kill all the priests.
+1253:Continue^*1254
+1254:INVADD:Sacrificial Dagger^*You search the bodies, but the priests are not carrying anything other than the sacrificial daggers.  As you are searching, you see strange occult tattoos crossing the priests' bodies.  You take one of the daggers and leave the cathedral.
+1254:Continue^*1248
+1255:You hand one of the priests the golden cross.  He raises it in the air and the group of priests start chanting in a strange language.  As they chant, you see the cross turn a crimson red color and start to glow with power.  Reflexively, you ready your shield to defend yourself.  A bolt of power jumps at you from the cross, but the metal from the shield reflects it and bolt hits the group of priests.  The bolt explodes, instantly killing the priests.
+1255:Continue^*1257
+1256:RESTART:^*You hand one of the priests the golden cross.  He raises it in the air and the group of priests start chanting in a strange language.  As they chant, you see the cross turn a crimson red color and start to glow with power.  You lunge towards the priests, but it is too late.  A bolt of power jumps from the cross and strikes you down, rendering you helpless.  As you lay on the ground, paralyzed and in pain, you see one of the priests draw a sacrificial dagger and plunge it into your heart.  <br>Your life ends here.
+1256:null^*1
+1257:INVADD:Sacrificial Dagger^*You search the charred bodies of the priests, but they are not carrying anything other than a set of sacrificial daggers.  As you are searching, you see strange occult tattoos crossing the priests' bodies.  You take one of the sacrificial daggers.  Clenched in one of the priests' hands, you see the golden cross, which has returned to its normal color.
+1257:Take the cross^*1258^*Leave the cathedral instead^*1248
+1258:INVADD:Golden cross^*You take the cross and continue towards the cathedral exit.
+1258:Continue^*1248
 
 3000:LOCKPICK:3^*You are picking a lock
 3000:Done^*0
