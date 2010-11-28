@@ -64,6 +64,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.unarmed = defaultWeapon;
 		//initialize weapons array (does not include unarmed)
 		this.possibleWeapons = new Array();
+		//initialize healing items array
+		this.healingItems = new Array();
 		//initialize external variables array
 		this.initVariableList = new Array();
 		this.variableList = new Array();
@@ -223,7 +225,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//console.log('Added Unarmed.  Name: ' + added.name + ', Strength bonus: ' + added.strengthbonus + ', Accuracy: ' + added.accuracy + ', Hit message 1: ' + added.hitMessages[0] + ', Miss message 1:' + added.missMessages[0]);
 			}
 			else if (dataSplit[i].indexOf('SHIELD:') != -1) {
-				//Parse weapon information for the case where you must fight unarmed (default:bare hands)
+				//Parse shield information
 				var added = {
 					name: 'Error with shield initialization - no name specified',
 					type: 'shield',
@@ -245,7 +247,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				this.possibleWeapons[this.possibleWeapons.length] = added;
 			}
 			else if (dataSplit[i].indexOf('ARMOR:') != -1) {
-				//Parse weapon information for the case where you must fight unarmed (default:bare hands)
+				//Parse armor information
 				var added = {
 					name: 'Error with armor initialization - no name specified',
 					type: 'armor',
@@ -265,6 +267,21 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					added.probability = 0;
 				}
 				this.possibleWeapons[this.possibleWeapons.length] = added;
+			}
+			else if (dataSplit[i].indexOf('HEALING:') != -1) {
+				//Parse a healing item (such as a first aid kit) for automatic healing after combat
+				var added = {
+					name: 'Error with healing item initialization - no name specified',
+					amount: 0.5
+				}
+				splitResult = dataSplit[i].split('HEALING:')[1].split(this.DELIMITER);
+				added.name = splitResult[0];
+				added.amount = dojo.number.parse(splitResult[1]);
+				if (isNaN(added.amount)) {
+					console.log('Error healing item amount (Not a number)!');
+					added.amount = 0.5;
+				}
+				this.healingItems[this.healingItems.length] = added;
 			}
 			else if (dataSplit[i].indexOf('INITIALIZE:') != -1) {
 				//Initialize variables - default is 50 health, 10 strength, and 0 gold
@@ -1081,7 +1098,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						} else {
 							//only one parameter specified
 							if (inventoryAdd[1] in this.oc(this.inventory)) {
-								this.message = this.message + ' <br>You already have a ' + inventoryAdd[1] + ' so you do not take another one.'
+								this.message = this.message + ' <br>You already have a ' + inventoryAdd[1].toLowerCase() + ' so you do not take another one.'
 							} else {
 								this.inventory[this.inventory.length] = inventoryAdd[1];
 							}
@@ -1470,6 +1487,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							autoFight = false;
 							stunned = false;
 							enemies = [];
+							totalHealthLost = 0;
 							//default enemy values (if none specified)
 							var enemyVar = {
 								name: 'enemy',
@@ -1915,6 +1933,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 												if (k < 5 && Math.random() < 0.5) {
 													cutDamage = Math.floor(Math.random()*(4))+1;
 													this.health -= cutDamage;
+													totalHealthLost += cutDamage;
 													combatString = combatString + ' <br>You lose an additional ' + cutDamage + ' health from blood loss.';
 												}
 											}
@@ -1927,6 +1946,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											}
 										}
 										this.health -= damageTaken;
+										totalHealthLost += damageTaken;
 									} else if (aliveEnemies[f].health > 0 && !aliveEnemies[f].stunned) {
 										if (currentShield != "None" && Math.random() < 0.5) {
 											combatString = combatString + ' <br>You block the ' + aliveEnemies[f].name + ' with your shield. ';
@@ -1978,6 +1998,25 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							
 							if (wonCombat) {
 								combatString = combatString + '<br>' + specialPageArray[p+1];
+								//see if there are any healing items
+								if (this.healingItems.length > 0) {
+									maxAmount = 0;
+									healed = 0;
+									itemName = '';
+									for (h = 0; h < this.healingItems.length; h++) {
+										if (this.healingItems[h].name in this.oc(this.inventory)) {
+											if (this.healingItems[h].amount > maxAmount) {
+												maxAmount = this.healingItems[h].amount;
+												itemName = this.healingItems[h].name;
+											}
+										}
+									}
+									healed = Math.floor(totalHealthLost * maxAmount);
+									if (healed > 0) {
+										combatString = combatString + '<br>You use your ' + itemName.toLowerCase() + ' to recover ' + healed + ' of your lost health.'
+										this.health += healed;
+									}
+								}
 								this.inCombat = 0;
 								autoFight = false;
 								this.message = 'You have won the fight.';
