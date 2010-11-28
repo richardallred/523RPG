@@ -7,6 +7,7 @@ INITIALIZE:Horse and cart,0
 INITIALIZE:mealsEaten,0
 INITIALIZE:turnedAway,0
 INITIALIZE:freedPrisoner,0
+INITIALIZE:passagewayLockPicked,0
 INITIALIZE:turretLockPicked,0
 INITIALIZE:turretTopVisited,0
 INITIALIZE:turretBottomVisited,0
@@ -24,6 +25,8 @@ INITIALIZE:movedRocks,0
 INITIALIZE:killedArchers,0
 INITIALIZE:killedColonel,0
 INITIALIZE:killedInterrogator,0
+INITIALIZE:killedStairwayGuards,0
+INITIALIZE:killedDoctor,0
 INITIALIZE:killedStoreroomGuard,0
 INITIALIZE:killedDungeonGuard,0
 INITIALIZE:killedServant,0
@@ -40,6 +43,7 @@ INITIALIZE:addedDrink,0
 INITIALIZE:rammedDoor,0
 INITIALIZE:unwashed,0
 INITIALIZE:lostPack,0
+INITIALIZE:audience,0
 INITIALIZE:officerSearch,0
 INITIALIZE:officerTent,0
 INITIALIZE:officerChest,0
@@ -60,7 +64,7 @@ ARMOR:Soldier's Uniform^*1^*70
 ARMOR:Chainmail Armor^*2^*75
 ARMOR:Platemail Armor^*5^*80
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
-0:Play the game^*1^*Lockpicking^*3000^*Safecracking^*3001^*Maze^*1500
+0:Play the game^*1^*Lockpicking^*3000^*Safecracking^*3001
 0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
@@ -161,7 +165,7 @@ ARMOR:Platemail Armor^*5^*80
 47:DISPLAYGOLD:^*"Very well," says one of the guards, "Give me the item to deliver and the name of the person, and I will make sure that the item is delivered - for a small fee of five gold pieces, of course." 
 47:Give the guards one of your items and the gold^*62^*Say that the delivery must be made in person^*63
 48:"Very well," says one of the guards, "Give me the message and I will ensure that it is delivered to the King."
-48:Say that the message must be delivered in person^*617^*Tell him that there is a plot to overthrow the King^*618^*Tell him that the Carolinians plan to attack the castle^*67^*Tell him that one of the King's relatives has died^*68
+48:Say that the message must be delivered in person^*617^*Tell him that there is a plot to overthrow the King^*618^*Tell him that the Carolinians plan to attack the castle^*67^*Tell him that one of the King's relatives has died^*68^*Tell him that the peasents are revolting^*667
 49:"If you are telling the truth," says the guard, "Then you will surrender your weapons immediately and come with us."
 49:Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41
 50:"The Duke's youngest son Ernest is not a merchant," says one of the guards, "And you look nothing like him."  The guards seize you and place you under arrest.
@@ -198,7 +202,7 @@ ARMOR:Platemail Armor^*5^*80
 65:Follow the guard^*302^*Lose the guard in the crowd^*301
 66:You say that an invasion doesn't sound like the type of work you'd enjoy.  "With all the battle preparations going on in the castle, there's not much need of a mercenary’s services," says the guard, "Perhaps you should try somewhere else."
 66:Ask them if they could let you in so you can look for work anyway^*69^*Leave and find another way in^*31
-67:The guards laugh at you. "The King doesn't care if those pathetic Carolinians attack the castle.  Castle Dookenstein is too well defended and the King has a weapon that will crush any opposing force.  Stop wasting our time with useless information."  The guard who spoke, gestures for you to leave.
+67:The guards laugh at you. "The King doesn't care if those pathetic Carolinians attack the castle.  Castle Dookenstein is too well defended and the King has a weapon that will crush any opposing force.  Stop wasting our time with useless information."  The guard who spoke gestures for you to leave.
 67:Leave and try to find another way in^*31^*Attack the guards^*38
 68:You tell the guard that the King's nephew has passed away.  "I will deliver that message to the King," says the guard.  The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The message will be delivered."
 68:Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31
@@ -887,7 +891,7 @@ ARMOR:Platemail Armor^*5^*80
 499:INVREMOVE:Rope^*You tie your rope to one of the broken sections of the wall, making sure that it stays firm.  Since you need both hands to climb down the rope, you extinguish your torch and put it back into your pack.  As you climb down, you feel a rush of hot air and the smell becomes almost unbearable.  After a while, you feel your feet hit something soft and slimy, almost like mud.
 499:Continue^*750
 500:You are now in the inner bailey courtyard.  You look around and recognize the building closest to you as an infirmary.  Some distance across the courtyard is the castle keep.  Also some distance away is large group of tents.
-500:Content not added^*999
+500:Head towards the infirmary^*768^*Head towards the keep^*767^*Head towards the tents^*766
 501:RESTART:^*You blindly jump into the pit, but it is quite deep and your fall ends abruptly on solid ground far below.  It is a fall you do not survive.
 501:null^*1
 502:You duck into one of the white tents, startling awake three men who were sleeping on straw beds inside.  The inside of the tent is very sparse, and next to the three beds are sets of Dookian soldier armor.  The three soldiers that you startled awake grab swords and move to attack you.
@@ -997,7 +1001,7 @@ ARMOR:Platemail Armor^*5^*80
 554:You hide your dagger in your clothes and wait for a guard to approach.  After hours of waiting, you finally hear footsteps approaching your cell.  You know that you can't risk the guards seeing that you have cut the ropes tying your hands, so you come up with a plan to take them by surprise.
 554:Hide the dagger behind your back and prepare to attack^*566^*Lie down and pretend to be sick^*567
 555:LOSEHEALTH:3^*As you wait in the cell for hours, the ropes tying your hands cut into you, causing you to lose 3 health.  Soon you can no longer feel your arms, and the time passes in a haze of misery.  After a while, you hear footsteps approaching your cell.  In your condition and with your bound hands, you don't have the strength to try to fight, but you consider feigning illness to get the guards to open the door. 
-555:Pretend to be sick^*558^*Sit in the corner and wait to see what happens^*559
+555:Sit in the corner and wait to see what happens^*559^*Pretend to be sick^*558
 556:Your arm barely fits through the bars on the door, so your lock picking attempt is very clumsy.  You move the dagger around in the keyhole until you hear a click as the dagger catches against something.
 556:Keep moving the dagger around in the lock^*557^*Pull the dagger out of the lock and wait for a guard instead^*554
 557:INVREMOVE:Hidden dagger^*You keep forcing the dagger in the lock, hoping that the clicking sound you heard was the sound of the lock mechanism.  Unfortunately, this gets the dagger jammed in the lock, and when you try to pull the dagger out it snaps at the hilt.  You reach around and try to pull the broken blade out of the lock, knowing that the guards would be suspicious otherwise, but the blade is hopelessly stuck. Cursing, you discard the useless dagger handle.  You have no choice now but to wait for a guard to arrive.
@@ -1041,7 +1045,7 @@ ARMOR:Platemail Armor^*5^*80
 576:LOSEHEALTH:2^*You quickly roll off of the table, but the blow from the mace catches you on the left arm, causing you to lose two health.  You crash to the ground, wincing, but you ignore the pain and quickly pull yourself up.  The guard who swung the mace kicks over the operating table and comes after you, while the other guard draws a sword.
 576:DISPLAYIFNOT:Hidden dagger,Grab a surgical knife from the doctor's belt and fight the guards^*577^*DISPLAYIF:Hidden dagger,Whip out your hidden dagger and fight the guards^*583^*Sprint out of the room while you have the chance^*578
 577:INVADD:Surgical Knife^*COMBAT:You are fighting two guards.  One of them is armed with a mace and one of them is armed with a sword,NAME:first guard,WEAPON:Mace,STRENGTH:13,DEFENSE:1,ACCURACY:50,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:12,DEFENSE2:1,ACCURARCY2:55,HEALTH2:40,HIT:The first guard smashes you with his mace,HIT2:The second guard slashes you with his blade^*You manage to defeat the guards.
-577:Content not added^*999
+577:Continue^*762
 578:INVADD:Knife^*LOSEHEALTH:4^*You waste no time and immediately sprint towards the infirmary exit, weaving between the operating tables.  The guards run after you, but their armor slows them down.  One of the guards throws a knife at you that grazes your side, causing you to lose 4 health.  The knife clatters to the ground in front of you.  As you run, you grab it from the ground.  You eventually reach the exit and burst out of the infirmary, panting for breath. 
 578:Continue^*579
 579:You emerge in a large courtyard, which you recognize as the inner bailey of the castle.  Due to the hours you spent waiting in the dungeon, it is now close to midnight.  In the distance is the towering castle keep, where you were previously imprisoned.  To the right is a guarded gate that leads to the outer bailey, and to the left you see a large array of tents.  You know that the guards in the infirmary will catch up to you quickly, but it doesn't look like there are many places to hide.
@@ -1050,10 +1054,10 @@ ARMOR:Platemail Armor^*5^*80
 580:null^*1
 581:You run as fast as you can towards the tents, and when you look back over your shoulder you can see the guards run out of the infirmary and come after you.  You get there a good distance ahead of the guards, and you can see a large number of massive tents ranging from many plain white tents to a few ornately decorated tents.  The area looks deserted at the moment, but you decide to hide in one of the tents to avoid the guards.
 581:Hide in a plain white tent^*502^*Hide in an ornately decorated tent^*503
-582:You wake up with your head pounding and your arms aching painfully.  You slowly open your eyes, but the sight you see makes you wish that you had leaved them closed.  You are inside a torture chamber that is fully of grisly instruments of pain.  You are standing up, and you find that your arms are shacked above you.  A hooded torturer is heating a large iron brand at a furnace, and a guard is standing near a large iron door and watching you.  Upon seeing that you are awake, the torturer approaches you with with the red hot brand and gives you a menacing smile
+582:You wake up with your head pounding and your arms aching painfully.  You slowly open your eyes, but the sight you see makes you wish that you had leaved them closed.  You are inside a torture chamber that is fully of grisly instruments of pain.  You are standing up, and you find that your arms are shacked above you.  A hooded torturer is heating a large iron brand at a furnace, and a guard is standing near a large iron door and watching you.  Upon seeing that you are awake, the torturer approaches you with with the red hot brand and gives you a menacing smile.
 582:Beg for mercy^*591^*Say nothing^*592
 583:COMBAT:You are fighting two guards.  One of them is armed with a mace and one of them is armed with a sword,NAME:first guard,WEAPON:Mace,STRENGTH:13,DEFENSE:1,ACCURACY:50,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:12,DEFENSE2:1,ACCURARCY2:55,HEALTH2:40,HIT:The first guard smashes you with his mace,HIT2:The second guard slashes you with his blade^*You manage to defeat the guards.
-583:Content not added^*999
+583:Continue^*762
 584:RESTART:^*You lunge towards the guard and catch his hand, but not in time to stop the mace from smashing into your side.  You ignore the pain and try to wrest the mace out of the guard's hand, but the other guard draws his sword and runs you through.  <br>Your life ends here.
 584:null^*1
 585:You try to kick the guard to get him to let you go, but he is protected by his armor and your struggles do not faze him.  The guard quickly shackles your hands against the wall and backs away.  You are helpless as you watch the interrogator heat a large iron brand in a furnace.  He approaches you with with the red hot brand and gives you a menacing smile.
@@ -1076,15 +1080,15 @@ ARMOR:Platemail Armor^*5^*80
 593:null^*1
 594:INVSPLIT:Assassin Garb^*702^*703
 594:null^*1
-595:"You're making a mistake," you gasp, "I'm an agent working undercover for King K.  I was returning from a mission in Carolinia to give my report to the King when the guards detained me."  The interrogator glares at you.  "If you are lying to me, I will make sure that your death is long and painful," he says.  He sends the guard who is watching to ask the King to verify your story.  After a while, the guard returns.  "The King wants to see him," announces the guard.
-595:Continue^*700
+595:VARSPLIT:audience,0^*684^*685
+595:null^*1
 596:LOSEHEALTH:15^*The interrogator presses the brand across your leg, badly burning you.  "Let me know when you are ready to talk," he growls.  He continues to press the brand against you as your scream in pain.  Soon the pain is so unbearable that you are forced to say something.  (You have lost another 15 health from the torture).
 596:Tell him the truth^*593^*Tell him that he's making a mistake and that you are innocent^*597^*Tell him that you are a fugitive trying to hide out in the castle^*599^*Tell him that you secretly work for King K^*595^*Tell him that you would sooner die then give him any information^*598
 597:RESTART:^*"You're making a terrible mistake," you gasp, "I have done no wrong."  The interrogator just ignores you and continues to torture you with the hot iron.  Soon, he forces the truth out of you and proceeds to torture you to death.  <br>Your life ends here. 
 597:null^*1
 598:RESTART:^*You grit your teeth against the pain and growl that you would sooner die than give him any information.  You follow that statement up by dramatically spitting in the interrogator's face.  "Everyone talks, eventually," says the interrogator, as he continues to torture you with the hot iron.  Soon, he forces the truth out of you and proceeds to torture you to death.  <br>Your life ends here. 
 598:null^*1
-599:"Stop! I'll talk!" you gasp, "The truth is that I ran into trouble from the law in the province of Devion.  I was trying to hide out in the castle, and the guards arrested me."  The torturer is about to press the iron against you again when the guard who is watching intervenes.  "You've gotten the information we need," he says to the torturer, "We will have to turn him in the Devion militia."  You see the interrogator glaring at you through his hood as the guard unshackles you and leads you from the room.
+599:"Stop! I'll talk!" you gasp, "The truth is that I ran into trouble from the law in the province of Devion.  I was trying to hide out in the castle, and the guards arrested me."  The torturer is about to press the iron against you again when the guard who is watching intervenes.  "You've gotten the information we need," he says to the torturer, "We will have to turn him in the Devion militia."  You see the interrogator glaring at you through his hood as the guard unshackles you, ties your hands behind your back, and leads you from the room.
 599:Continue^*701
 600:What weapon do you attack the King with?
 600:DISPLAYIF:Sword,Sword^*612^*DISPLAYIF:Crossbow,Crossbow^*613^*DISPLAYIF:Hidden dagger,Hidden dagger^*614^*DISPLAYIFNOT:Sword,Crossbow,Hidden dagger,Your bare hands^*615
@@ -1119,23 +1123,23 @@ ARMOR:Platemail Armor^*5^*80
 615:RESTART:^*Now that the King is alone, it is the perfect time to attack him.  You don't have any weapons, but you lunge towards the King anyway, hoping to choke the life out of him before the guards realize that anything is wrong.  However, the King sees you lunge and sends a powerful blast of magic from his ring, which instantly ends your life.
 615:null^*1
 616:The guards start to protest but the King brushes aside their concern.  "This man can do me no harm," he announces, "Leave my presence so he can tell me his information."  The soldiers disperse, grumbling to themselves.  "Now what is it you wanted to tell me?" asks King K.
-616:Attack the King now that he is alone^*600^*Tell him that ... content not added^*999^*Run out of the throne room^*601
-617:The urgency of your tone convinces the guards and they reluctantly decide to allow you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
-617:Say that the message is for the King's ear only^*616^*Say that... content not added^*999
-618:"A plot to overthrow the King?" says one of the guards, "King K must hear of this immediately!" The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. "This mercenary says that he knows of a plot to overthrow you," announces one of the soldiers.  King K demands that you tell him the details immediately.
-618:Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*616^*Say that... content not added^*999
-619:LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
-619:Say that the message is for the King's ear only^*616^*Say that... content not added^*999
+616:Attack the King now that he is alone^*600^*Say that several of the King's generals are plotting to overthrow him^*671^*Say that the servants are plotting to poison the king^*683^*Say that you have uncovered several spies in the castle^*672^*Run out of the throne room^*601
+617:VARSET:audience,1^*The urgency of your tone convinces the guards and they reluctantly decide to allow you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
+617:Say that the message is for the King's ear only^*616^*Say that the Carolinians are plotting to attack the castle^*668^*Say that the peasants in the province of Hurdam are revolting^*669^*Say that several of the King's generals are plotting to overthrow him^*671^*Say that you have uncovered a spy in the castle^*672
+618:VARSET:audience,1^*"A plot to overthrow the King?" says one of the guards, "King K must hear of this immediately!" The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. "This mercenary says that he knows of a plot to overthrow you," announces one of the soldiers.  King K demands that you tell him the details immediately.
+618:Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*616^*Say that several of the King's generals are plotting to overthrow him^*671^*Say that the servants are plotting to poison the king^*673^*Say that you have uncovered several spies in the castle^*672
+619:VARSET:audience,1^*LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
+619:Say that the message is for the King's ear only^*616^*Say that the Carolinians are plotting to attack the castle^*668^*Say that the peasants in the province of Hurdam are revolting^*669^*Say that several of the King's generals are plotting to overthrow him^*671^*Say that you have uncovered a spy in the castle^*672
 620:Go towards the front entrance
 620:Content not added^*999
 621:You walk towards the side wall of the keep so you can examine it more closely.  The door is plain and wooden, but it has a lock on it that prevents you from opening it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
 621:Go back around to the front entrance^*620^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows^*625^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
 622:Go towards the front entrance (morning)
 622:Content not added^*999
-623:Go towards the side (morning)
-623:Go back around to the front entrance^*622^*Content not added^*999
-624:Pick the lock on the door
-624:Content not added^*999
+623:You walk towards the side wall of the keep so you can examine it more closely.  The door on the wall is plain and wooden, and you can see an open lock on it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
+623:Go back around to the front entrance^*622^*Enter the wooden door^*662^*Wait for one of the servants to come out of the door^*663^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
+624:You pick the lock on the door and enter the keep.  Inside, you see a small, narrow passageway with another wooden door at the end.  Near the end of the passageway, you see a small lever.
+624:Pull the lever^*793^*Leave the passageway^*794
 625:You look at the cracks in the wall and the uneven stone, and you work out a path that you could climb to reach the stained glass window.  However, the climb would be quite difficult and you probably wouldn't be able to make it while carrying any armor, including your soldier's uniform.
 625:Discard your armor and attempt the climb^*627^*Attempt the climb while wearing your armor^*628^*Decide not to climb up the wall^*629
 626:You toss your grapple and it sails through one of the stained glass windows, shattering it.  Fortunately, the hook attaches to the window ledge and you are able to climb up.  When you reach the top, you pull yourself up to the window ledge and see a large cathedral on the other side.  The cathedral is quite tall, and you are standing in one of the stained glass windows near the top.  Rows of wooden chairs are laid out facing an altar.  The floor is a good distance below you and is covered with broken glass, and the wall inside the cathedral is unclimbable.  You could either try to jump down to the ground or use the rope from your grappling hook to climb down, though it would mean abandoning the grappling hook.
@@ -1210,15 +1214,72 @@ ARMOR:Platemail Armor^*5^*80
 660:Content not added^*999
 661:Run deeper into catacombs
 661:Content not added^*999
-
-700:Lead out of the chamber (to see the King)
-700:Content not added^*999
-701:Lead out of the chamber
-701:Content not added^*999
-702:RESTART:^*"You're making a terrible mistake," you gasp, "I have done no wrong."  The interrogator laughs.  "An assassin comes into this castle and claims to be innocent?" he says, "You make a terrible liar."  He continues to torture you with the hot iron until he forces the truth out of you.  He then tortures you to death.  <br>Your life ends here. 
+662:You enter the door and see a long, narrow passageway with another wooden door on the end.  You see a servant walking through the passage carrying a large bowl of gruel.  "You aren't allowed over here," he says, "Go back to your tent."
+662:Do as the servant says and follow him back to the tents^*677^*Attack the servant^*675^*Run past the servant^*676
+663:You wait by the door until you see a servant come out carrying a large bowl of gruel.
+663:Attack him^*^*Follow him towards the tents^*
+664:VARSET:killedStairwayGuards,1^*You are afraid that someone may have heard the noise of the fight and call more guards to attack you.  You quickly run down the stairs, hoping to escape detection.  As you are running down the stairs, you hear shouts behind you.  You emerge in a narrow hallway at the bottom of the stairs.
+664:DISPLAYIFVAR:armoryVisited,1,Run to the left towards the armory^*1213^*DISPLAYIFVAR:armoryVisited,1,Run to the left^*1213^*DISPLAYIFVAR:apothecaryVisited,1,Run to the right towards the apothecary^*1214^*DISPLAYIFVAR:apothecaryVisited,0,Run to the right^*1214
+665:After a while, you hear the bodies being carried away, followed by a period of silence.  You quickly pick the lock on the passageway door again and leave through it.
+665:Continue^*1196
+666:INVADD:Sword^*You pick up one of the swords.  What do you do next?
+666:Search the guards' bodies^*798^*Drag the bodies down the stairs^*797^*Drag the bodies into the passageway^*797^*Duck back into the passageway^*799^*Run into the great hall^*1212^*Run down the stairs^*664
+667:The guards laugh at you. "The King doesn't care if the peasants are revolting.  The King's soldiers will crush them anyway.  Stop wasting our time with useless information."  The guard who spoke gestures for you to leave.
+667:Leave and try to find another way in^*31^*Attack the guards^*38
+668:"I already know that," says the King, "Ever since they found out about this ring, the Carolinians have been trying to get their greedy hands on it.  In fact, you look like you want this ring for yourself.  I can see that greedy look in your eyes."  He orders one of the guards to take you to the interrogation room and get you out of his sights.
+668:Continue^*670
+669:"Another revolt?" says the King, "Those troublesome peasants never learn."  He orders one of the soldiers to send a regiment over to crush the revolt.  The King then dismisses you with a wave of his hand.
+669:Continue^*674
+670:INVCLEAR:Assassin Garb,Merchant Disguise,Mercenary Disguise,Hidden dagger^*The guards roughly search you and remove all the items that you are carrying and all your gold coins.  They then bind your hands behind your back and lead you out of the throne room.  You are lead downwards into a dank dungeon and thrown into a filthy cell.  "Our interrogators will soon find out what your true purpose here is," leers one of the guards as he walks away.
+670:Continue^*550
+671:RESTART:^*"You walk in here and expect me to believe some ridiculous stories about my generals betraying me?  I'll bet you can't even name a single one of them!"  You stammer as you try to come up with a name.  The King waves his finger and you are blasted by a deadly burst of magic.  <br>Your life ends here.
+671:null^*1
+672:"Is that so?" says the King, "That's very interesting.  You know, I believe that I have uncovered a spy in the castle myself."  He casually orders the guards to take you to the interrogation room and get you out of his sight.
+672:Continue^*670
+673:You make up a story about a plot by the servants to poison the King.  The King orders that the servants in charge of the night's meal be questioned.  He then dismisses you with a wave of his hand.
+673:Continue^*674
+674:The guards escort you out of the throne room and leave you.  You find yourself in a large hallway.  In front of you, there are several entrances to the great hall.
+674:Enter the great hall^*1197^*Walk down the hallway to the left^*1204^*Walk down the hallway to the right^*1205
+677:The servant watches you suspiciously as you follow him back towards the group of tents.
+677:Keep following him^*678^*Attack him before you reach the tents^*679
+678:You follow the servant back to the tents, where most of the soldiers are sitting and eating.  Not wanting you look out of place, you look for a group of soldiers to eat breakfast with.
+678:Continue^*717
+679:You look around to make sure that nobody is watching, then you viciously attack the servant.  The servant is unable to fight back and you cut him down easily.  You search his body, but he isn't carrying anything.  However, you see that his outfit would probably fit you.
+679:Exchange your soldier's uniform the servant's clothes^*680^*Leave the servant's body and go back to the small door^*623
+680:INVREMOVE:Soldier's Uniform^*INVADD:Servant Disguise^*You quickly take off your soldier's armor and put on the servant's outfit.
+680:Go back and enter the small door^*681
+681:You enter the door and see a long, narrow passageway with another wooden door on the end.  Near the end of the passageway, you see a small lever in the wall.
+681:Pull the lever^*793^*Go through the door^*682
+682:VARSET:passagewayLockPicked,1^*You leave the passageway through the door at the end and you emerge in a large hallway.  To the left, you can see stairway leading downwards with two bored looking guards standing in front of it.  In front of you, you can see several entrances to what looks like a great hall.
+682:Go down the stairs^*991^*Go to the great hall^*1197^*Walk down the hallway in front of you^*1198^*Walk to the hallway on the right of you^*1199
+683:RESTART:^*You make up a story about a plot by the servants to poison the King.  "I have reason to trust my servants," say the King, "because they know what I would do to their families for attempting such a harebrained, poorly conceived plot.  I have no reason, however, to trust anything you say."  The King waves his finger and you are incinerated by a deadly burst of magic.  <br>Your life ends here.
+683:null^*1
+684:"You're making a mistake," you gasp, "I'm an agent working undercover for King K.  I was returning from a mission in Carolinia to give my report to the King when the guards detained me."  The interrogator glares at you.  "If you are lying to me, I will make sure that your death is long and painful," he says.  He sends the guard who is watching to ask the King to verify your story.  After a while, the guard returns.  "The King wants to see him," announces the guard.
+684:Continue^*700
+685:RESTART:^*"You're making a mistake," you gasp, "I'm an agent working undercover for King K.  I was returning from a mission in Carolinia to give my report to the King when the guards detained me."  The interrogator glares at you.  "If you are lying to me, I will make sure that your death is long and painful," he says.  He sends the guard who is watching to ask the King to verify your story.  After a while, the guard returns.  "The King says that he personally ordered that this one be sent to the dungeon.  The King also added that his death should be excruciatingly painful for wasting his time."  The torturer does as he is ordered.
+685:null^*1
+686:RESTART:^*The guards lead you out of the dungeon and up to the throne room, where you are joined by several members of the royal guard.  In the throne room, you can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand.  He fixes you with a piercing gaze.  "This is the man who claims to be a spy for me?" he booms, "I would never hire a spy who is as worthless and incompetent as this."  King K flicks his finger, and you are incinerated by a burst of deadly magic.  <br>Your life ends here.
+686:null^*1
+687:INVSPLIT:Hidden dagger^*688^*689
+687:null^*1
+688:As one of the guard bolts shut the iron door, you make your move.  You whip out your hidden dagger that you had been concealing all this time and stab the guard in the back through a weak point in his armor.  The guard makes a terrible groan as he slumps to the ground and you pull the dagger out of his back.  You barely pull the dagger out in time to parry a thrust from the second guard, who has drawn his sword to attack you.
+688:Continue^*690
+689:As one of the guard bolts shut the iron door, you make your move.  You lash out with your fist, slamming his head against the door and temporarily stunning him.  As the second guard draws his sword, you uppercut him, causing him to stagger backwards.  Unfortunately, the guards recover quickly, and you are soon facing down two sword blades with nothing to defend yourself with except your bare hands.  Though you are a skilled hand to hand fighter, the situation looks grim.
+689:Continue^*692
+690:You are fighting a dungeon guard.  The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:15,DEFENSE:2,ACCURACY:70,HEALTH:45,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your dagger glances off the guard's armor.,MISS:Your dagger glances off the guard's armor.,MISS:The guard quickly parries your dagger swing.,MISS:The guard evades you.^*You manage to defeat the guard.
+690:Continue^*691
+691:INVADD:Sword^*You take one of the swords that have fallen to the ground.  You search the bodies of the guards, but they not carrying anything else.  You walk past the bodies back down the dungeon corridor.  To the left, you see the staircase that you remember leads to the dungeon exit.  You climb the stairs and see that the top of the stairs is blocked by a closed grate.  Outside the grate, you can see a hallway, but your visibility is limited.  You try to lift the grate, but it is impossible.
+691:Go back down the stairs^*1023^*Call for help^*1187
+692:COMBAT:You are fighting two guards.  They are both armed with swords,NAME:first guard,WEAPON:Sword,STRENGTH:16,DEFENSE:2,ACCURACY:70,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:16,DEFENSE2:2,ACCURARCY2:70,HEALTH2:40,HIT:The first guard slashes you with his blade,HIT2:The second guard slashes you with his blade^*You manage to defeat the guards.
+692:Continue^*691
+700:The guard unshackles you from the wall and knocks on the large iron door that leads out of the torture chamber.  All the while, you can see the interrogator seething at you.  The guard waiting outside opens the door, and you are led out of the chamber.  Mercifully, the guards have not tied your hands behind your back.
+700:Follow the guards^*686^*Attack the guards^*687
+701:RESTART:^*The guard leads you out of the torture chamber and the guard that was waiting outside joins him.  The two guards lead you outside the castle and a regiment of soldiers escorts you to the province of Devion.  You spend the next few days stuck in a Devion prison cell as the authorities there work out what to do with you.  As you languish in your cell, you know that King K is successfully leading his army to crush the Carolinian forces.  <br>You have failed your mission.
+701:null^*1
+702:RESTART:^*"You're making a terrible mistake," you gasp, "I have done no wrong."  The interrogator laughs.  "An assassin comes into this castle and claims to be innocent?" he says, "You make a terrible liar."  He continues to torture you with the hot iron until he forces the truth out of you.  He then tortures you to death.
 702:null^*1
-703:Tell him you are innocent
-703:Content not added^*999
+703:RESTART:^*"You're making a terrible mistake," you gasp, "I just came here to do business... I have done no wrong."  The interrogator laughs cruelly.  "Whether you've done something wrong or not, I'll get something out of you."  He continues to torture you with the hot iron until he forces the truth out of you.  He then tortures you to death.
+703:null^*1
 704:GAINGOLD:10^*INVADD:Sword,Mace,Throwing Knives^*You search the guard post for useful items.  The weapon rack in the room contains swords, maces, and throwing knives, and you take everything you need from there.  Buried under the guards' supplies, you find a pouch of 10 gold coins, which you take.
 704:Leave the room and go up the stairs^*417^*Leave the room and go back down the stairs^*437
 705:You search the bodies of the archers and find that they are carrying longbows and quivers of arrows.  You decide not to take them since you are not skilled with a longbow.
@@ -1333,9 +1394,83 @@ ARMOR:Platemail Armor^*5^*80
 759:null^*1
 760:COMBAT:You are fighting a dungeon guard.  The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:14,DEFENSE:2,ACCURACY:70,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your dagger glances off the guard's armor.,MISS:Your dagger glances off the guard's armor.,MISS:The guard quickly parries your dagger swing.,MISS:The guard evades you.^*You manage to defeat the guard.
 760:Continue^*761
-761:You search the guard's body, but he is not carrying anything.  You walk past him back into the dungeon corridor.  To the left, you see the staircase that you remember leads to the dungeon exit.  You climb the stairs and see that the top of the stairs is blocked by a closed grate.  Outside the grate, you can see a hallway, but your visibility is limited.  You try to life the grate, but it is impossible.
+761:You search the guard's body, but he is not carrying anything.  You walk past him back into the dungeon corridor.  To the left, you see the staircase that you remember leads to the dungeon exit.  You climb the stairs and see that the top of the stairs is blocked by a closed grate.  Outside the grate, you can see a hallway, but your visibility is limited.  You try to lift the grate, but it is impossible.
 761:Go back down the stairs^*1023^*Call for help^*1187
-
+762:INVADD:Sword,Mace^*As the guards fall to the ground bleeding, you take the sword and the mace that they were using.  You look around, but there is no sign of the infirmary doctor.  You figure that he must have run away while you were fighting and you hope that he does not return with more guards.
+762:Search the bodies of the guards^*763^*Search the infirmary for useful items^*786^*Leave the infirmary^*765
+763:GAINGOLD:9^*You find 9 gold coins among the two guards, which you take.  The guards are not carrying anything else useful.
+763:Search the infirmary for useful items^*764^*Leave the infirmary^*765
+764:RESTART:^*As you are searching through the infirmary, you see the doctor come back inside the entrance, flanked by a group of soldiers with crossbows.  He points at you and the soldiers shoot you full of bolts.  <br>Your life ends here.
+764:null^*1
+765:You leave the infirmary and emerge in the inner bailey courtyard.  In the distance to your left, you see a large group of tents.  In front of you, you can see the towering castle keep.
+765:Head towards the tents^*766^*Head towards the keep^*767
+766:As you get closer to the tents, you see men in Dookian soldier armor milling around the courtyard and moving in and out of the tents.  You decide to avoid the soldiers and head towards the castle keep instead.
+766:Continue^*767
+767:You walk over to the castle keep.  The keep is a towering stone fortress, and you can see two guards standing at the gated entrance.  On the side of the keep, you can see a small door in the wall.  There is also a row of stained glass windows on a different section of the side wall.
+767:Go towards the front entrance^*789^*Look around the side of the keep^*790
+768:Inside the infirmary, you see several rows of operating tables.  Most of them are unoccupied, though you do see a doctor treating a wounded person on one of them.
+768:Talk to the doctor^*769^*Attack the doctor^*770^*Search the infirmary for useful items^*771^*DISPLAYIF:Crossbow,Shoot the doctor with your crossbow^*772^*Leave the infirmary^*765
+769:You call out a greeting to the doctor.  He turns around and looks at you.  "If you are wounded, I can treat you for 6 gold coins," he says, "Otherwise, don't waste my time."
+769:Ask the doctor for treatment^*773^*Tell the doctor you need treatment but don't have enough money^*776^*Search the infirmary for useful items^*771^*Leave the infirmary^*765
+770:As you attack the doctor, he pulls out a surgical knife to defend himself.
+770:Continue^*774
+771:INVSPLIT:First aid kit^*781^*782
+771:null^*1
+772:VARSET:killedDoctor,1^*INVADD:Surgical Knife^*GAINGOLD:8^*The doctor doesn't even see your crossbow bolt coming.  The bolt hits him in the back and he slumps over.  You search the doctor's body and find 8 gold coins and a surgical knife, which you take.
+772:Search the infirmary for useful items^*771^*Leave the infirmary^*765
+773:HEALTHSPLIT:MAX^*777^*778
+773:null^*1
+774:COMBAT:You are fighting a doctor. The doctor is using a surgical knife,NAME:doctor,WEAPON:Surgical Knife,STRENGTH:12,DEFENSE:0,ACCURACY:65,HEALTH:40,HIT:The doctor stabs you,HIT:The doctor cuts you,MISS:The doctor dodges you.^*The doctor falls to the ground, dead.
+774:Continue^*775
+775:VARSET:killedDoctor,1^*INVADD:Surgical Knife^*GAINGOLD:8^*You search the doctor's body and find 8 gold coins and a surgical knife, which you take.
+775:Search the infirmary for useful items^*771^*Leave the infirmary^*765
+776:HEALTHSPLIT:MAX^*777^*779
+776:null^*1
+777:You are already at full health, so you do not need any treatment from the doctor.
+777:Go back^*769
+778:GOLDSPLIT:6^*780^*779
+779:GAINHEALTH:5^*You tell the doctor that you are wounded, but that you don't have six gold coins.  "Fine," says the doctor, "I'll treat you for free.  But don't expect more than a couple of bandages."  The doctor bandages your wounds, causing you to gain 5 health.
+779:Search the infirmary for useful items^*771^*Leave the infirmary^*765
+780:GAINHEALTH:100^*LOSEGOLD:6^*You give the doctor six gold coins, and he tells you to lay on an operating table.  He dresses your wounds and gives you a bitter tasting medicine.  When he is finished treating you, you feel renewed.
+780:Search the infirmary for useful items^*771^*Attack the doctor^*774^*Leave the infirmary^*765
+781:You look around the infirmary, hoping to find useful medical supplies.  You find a couple of first aid kits, but you already have a first aid kit and do not need another one.  You don't find anything else that you need.
+781:DISPLAYIFVAR:killedDoctor,0,Talk to the doctor^*769^*DISPLAYIFVAR:killedDoctor,0,Attack the doctor^*770^*Leave the infirmary^*765
+782:VARSPLIT:killedDoctor,0^*785^*786
+782:null^*1
+783:INVADD:First aid kit^*You ignore the doctor and take the first aid kit anyway.  The doctor shouts at you and calls you a filthy thief, ranting that he will call the guards on you.  Eventually, he runs out of steam and returns to his work, grumbling.  You look around the rest of the infirmary, but you do not find anything else useful.
+783:Talk to the doctor^*788^*Attack the doctor^*770^*DISPLAYIF:Crossbow,Shoot the doctor with your crossbow^*772^*Leave the infirmary^*765
+784:You walk away from the first aid kit, and the doctor calms down and returns to his work.
+784:Talk to the doctor^*769^*Attack the doctor^*770^*DISPLAYIF:Crossbow,Shoot the doctor with your crossbow^*772^*Leave the infirmary^*765
+785:You look around the infirmary, hoping to find useful medical supplies.  You find a first kit and you are about to take it when you hear the doctor's voice behind you.  "Don't even think about stealing that," he says.
+785:Take the first aid kit anyway^*783^*Don't take the first aid kit^*784^*Attack the doctor^*770
+786:INVADD:First aid kit^*You look around the infirmary, hoping to find useful medical supplies.  You find a couple of first aid kits, but not much else.
+786:DISPLAYIFVAR:dungeonVisited,1,Search the bodies of the guards^*787^*Leave the infirmary^*765
+787:RESTART:^*As you are searching the guards' bodies, you see the doctor come back inside the infirmary entrance, flanked by a group of soldiers with crossbows.  He points at you and the soldiers shoot you full of bolts.  <br>Your life ends here.
+787:null^*1
+788:"I have nothing to say to you, thief," says the doctor.
+788:Attack the doctor^*770^*Leave the infirmary^*765
+789:Front entrance (day)
+789:Content not added^*999
+790:You walk towards the side wall of the keep so you can examine it more closely.  The door is plain and wooden, but it has a lock on it that prevents you from opening it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
+790:Go back around to the front entrance^*789^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
+791:RESTART:^*You throw your grappling hook through one of the stained glass windows, shattering it with a loud crash.  As you are climbing up the rope, you see several guards running around from the front of the castle.  They easily pick you off with crossbow bolts.
+791:null^*1
+792:RESTART:^*You make the difficult climb up to one of the stained glass windows, and pull yourself up onto the window ledge.  Unsurprisingly, the window is not meant to be opened, so you must break it to climb through.  You viciously kick the window, sending shards of glass raining down inside the keep.  You look through the broken window and see the horrified gazes of several people inside a chapel.  It is not long before a group of guards with crossbows pick you off from the windowsill.  <br>Your life ends here.
+792:null^*1
+793:RESTART:^*You pull the lever, and you hear a grinding sound as some sort of mechanism is activated.  Suddenly, the top of the passageway caves in and you hear a thundering crash as a mass of stone falls to the ground, permanently sealing off the passageway.  You cough violently as you breathe in dust from the falling rock.  You figure that you must have inadvertantly activated one of the castle defenses that was put in place to protect it in case of a siege.  Suddenly, the door at the end of the passageway opens and you see a group of guards that have come to investigate the noise.  They don't take long to figure out that you are an intruder and they cut you down with their swords.
+793:null^*1
+794:VARSET:passagewayLockPicked,1^*The door at the end of the passageway is locked as well, but it doesn't take you long to open it with one of your lockpicks.  You emerge in a large hallway.  To the left, you can see stairway leading downwards with two bored looking guards standing in front of it.  In front of you, you can see several entrances to what looks like a great hall.
+794:Go down the stairs^*795^*Go to the great hall^*795^*Walk down the hallway in front of you^*795^*Walk to the hallway on the right of you^*795
+795:VARSET:killedStairwayGuards,1^*As soon as you leave the passageway, one of the guards standing in front of the stairway accosts you.  "What are you doing coming through the servant's entrance?" he demands, "You don't look like a servant to me."  The two guards draw swords and attack you.
+795:Continue^*796
+796:COMBAT:You are fighting two guards.  They are both armed with swords,NAME:first guard,WEAPON:Sword,STRENGTH:15,DEFENSE:2,ACCURACY:70,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:15,DEFENSE2:2,ACCURARCY2:70,HEALTH2:40,HIT:The first guard slashes you with his blade,HIT2:The second guard slashes you with his blade^*You have killed the guards.
+796:DISPLAYIFNOT:Sword,Pick up one of the guards' swords from the ground^*666^*Search the guards' bodies^*798^*Drag the bodies down the stairs^*797^*Drag the bodies into the passageway^*797^*Duck back into the passageway^*799^*Run down the stairs^*664
+797:RESTART:^*As you are dragging one the bodies, a servant walks out of the great hall and sees you.  He raises an alarm and you are soon surrounded by guards.  You try to fight them, but you are heavily outnumbered and you don't stand a chance.  <br>Your life ends here.
+797:null^*1
+798:RESTART:^*As you are searching through the bodies, a servant walks out of the great hall and sees you.  He raises an alarm and you are soon surrounded by guards.  You try to fight them, but you are heavily outnumbered and you don't stand a chance.  <br>Your life ends here.
+798:null^*1
+799:You are afraid that someone may have heard the noise of the fight and called more guards to attack you.  You duck back into the passageway and lock the door, hoping to escape detection.  It is not long before you hear shouting on the other end of the door, followed by a large commotion.  Someone tries to open the passageway door, but gives up after finding that it is locked.
+799:Pull the lever in the passageway^*793^*Wait out the commotion^*665
 800:INVSPLIT:Crossbow^*831^*832
 800:null^*1
 801:You quickly glance around the kitchen, but there aren't very many good hiding places.  You eventually settle for crouching behind a cluster of barrels.  Soon, you hear several people enter the kitchen.  You wait nervously as they walk around the kitchen for a few moments.  Eventually, they leave the room and you decide to leave your hiding place.
@@ -1394,8 +1529,8 @@ ARMOR:Platemail Armor^*5^*80
 827:Enter the armory^*850^*Walk past the armory^*851
 828:You try to sneak by the door where you saw the guards playing a gambling game earlier.  One of the guards sees you and shouts to the others.  They draw their swords and approach.  "I find it hard to believe that you could get lost down here twice," says one of them.
 828:Fight the guards^*803^*Run past the guards^*821^*DISPLAYIFVAR:dungeonVisited,0,Surrender to the guards^*804
-829:VARSET:guardroomVisited,2^*Say that you are lost.
-829:Content not added^*999
+829:VARSET:guardroomVisited,2^*You tell the guards that you are lost and wandered here by accident.  One of the guards sighs and tells you to follow him.  He leads you out of the room and down a hallway until he reaches a large, winding stairway.
+829:Keep following the guard^*992^*Attack the guard^*993
 830:You quickly move out of sight of the guards and slip into the kitchen.  You can hear the guards get up from their game to come after you.  Before you can hide yourself, the guards rush into the room.  The guards draw weapons and approach you, quickly cornering you.
 830:Try to fight the guards^*803^*Surrender to the guards^*804
 831:As you rush out of the room after the servant, you pull out your crossbow from your pack.  You emerge from the kitchen into a hallway, and you can see the servant fleeing to the right towards an open room.  You fire a bolt from your crossbow and hit the servant in the middle of the back, causing him to fall to the ground.
@@ -1718,10 +1853,22 @@ ARMOR:Platemail Armor^*5^*80
 989:Greet the servant^*281^*DISPLAYIF:Crossbow,Shoot the servant with your crossbow^*282^*DISPLAYIFNOT:Guard Disguise,Sneak up behind the servant and attack him^*283^*Ignore the servant and take some of the weapons in the room^*284^*Step out of the armory before he sees you^*1049
 990:You walk into the armory and look around.  You see an assortment of swords, maces, and sets of uniforms for the guards.  You also see the body of a servant on the ground.
 990:Take the weapons^*290^*DISPLAYIFNOT:Guard Disguise,Take a guard uniform^*291^*Leave the armory^*1049
+991:At the bottom of the stairs, you emerge in a narrow, torchlit hallway.  To the right, the hallway turns around a corner.  To the left, you can see an open doorway.
+991:Go right^*1001^*Go left^*1002
+992:The guard leads you up the stairway and into a large hallway corner.  There are two guards standing on either side of the stairway, but they ignore you.  In the middle of the room, you can see many entrances to what looks like a great hall.  The guard leads you into the great hall.  He tells you not to go into the basement again before leaving and walking back down the stairs.
+992:Continue^*1197
+993:You follow the guard partway up the staircase, then grab him and throw him down the stairs in a surprise attack.  The guard lets out a shout as he tumbles down the stairs.  When he hits the bottom, he is clearly dazed, but he draws his sword and runs to attack you.
+993:Continue^*994
+994:COMBAT:You are fighting a guard.  The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:11,DEFENSE:2,ACCURACY:70,HEALTH:35,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your blow glances off the guard's armor.,MISS:Your blow glances off the guard's armor.,MISS:The guard quickly parries your blow.,MISS:The guard evades you.^*You kill the guard.
+994:Continue^*995
+995:GAINGOLD:2^*INVADD:Sword^*You search the guard's body, but he is not carrying anything other than a sword and 2 gold coins.  What do you do next?
+995:Go up the stairway^*1000^*Walk back down the hallway the way you came^*1002^*Keep walking down the hallway^*1001
+996:Inside the door, you can see several guards playing a gambling game with dice.  One of them glances over at you and sees you.  He shouts in a drunken voice that only servants are allowed to be down here.
+996:Run past the guards^*1016^*Say that you are lost^*829^*Attack the guards^*803
 999:RESTART:^*As you try to go to a place that does not yet exist, you fall through a rip in the space-time continuum.  <br>Your life ends here.
 999:null^*1
-1000:Go up the stairs
-1000:Content not added^*999
+1000:VARSPLIT:killedStairwayGuards,1^*1201^*1200
+1000:null^*1
 1001:VARSET:apothecaryVisited,1^*You turn the corner and walk to the next room, which is open.  Inside, you see an apothecary with a wide array of potions and alchemy equipment.
 1001:Enter the apothecary^*1017^*Walk past the apothecary^*1018^*Turn around and go to the stairs^*1019
 1002:You walk down the hallway until you see a doorway that leads to an armory full of weapons and armor for the guards.
@@ -1748,8 +1895,8 @@ ARMOR:Platemail Armor^*5^*80
 1012:Enter the armory^*850^*Walk past the armory^*851
 1013:VARSET:guardroomVisited,1^*Inside the door, you can see several guards playing a gambling game with dice.  One of them glances over at you and sees you.  He gives you a nod of acknowledgement.  You walk past the door and continue to the next room.  Inside, you see an unoccupied kitchen.
 1013:DISPLAYIFVAR:kitchenVisited,0,Enter the kitchen and search it^*805^*Walk past the kitchen^*1007^*Turn around and go to the armory^*827
-1014:Inside the door, you can see several guards playing a gambling game with dice.  One of them glances over at you and sees you.  He shouts in a drunken voice that only servants are allowed to be down here.
-1014:Run past the guards^*1016^*Say that you are lost^*829^*Attack the guards^*803
+1014:VARSPLIT:guardroomVisited,2^*828^*996
+1014:null^*1
 1015:You walk down the hallway until you reach the locked door.
 1015:Continue down the hallway and turn the corner^*810^*Try to open the door^*809^*Turn around and walk towards the armory^*827
 1016:RESTART:^*You dash past the guards and run down the hallway, and you can hear several of them shouting at you as they give chase.  You have a good head start on them, but you run into another guard who is walking towards you.  The guard draws his sword and blocks your path.  The other guards catch up to you and cut you down with their swords.  <br>Your life ends here.
@@ -1960,17 +2107,20 @@ ARMOR:Platemail Armor^*5^*80
 1118:null^*1
 1119:VARSPLIT:addedClear,1^*1094^*1120
 1119:null^*1
-1120:VARSPLIT:freedPrisoner,4^*1121^*1122
+1120:VARSPLIT:freedPrisoner,4^*1125^*1122
 1120:null^*1
 1121:INVADD:Explosive potion^*VARSET:addedRed,0^*VARSET:addedBlue,0^*VARSET:addedGreen,0^*VARSET:addedBrown,0^*VARSET:addedOrange,0^*VARSET:addedClear,0^*VARSET:addedBlack,0^*VARSET:addedDrink,0^*VARSET:addedPoison,0^*You mix together the blue, brown and orange potions into what you hope will make an explosive mixture.  As the potions mix together, the solution turns a pale green and starts bubbling.  You put the resulting potion into a vial and carefully put it into your pack.
 1121:Leave the apothecary^*1060^*Do something else in the apothecary^*1017
 1122:VARSET:addedRed,0^*VARSET:addedBlue,0^*VARSET:addedGreen,0^*VARSET:addedBrown,0^*VARSET:addedOrange,0^*VARSET:addedClear,0^*VARSET:addedBlack,0^*VARSET:addedDrink,0^*VARSET:addedPoison,0^*You use the alchemy equipment to mix together all the potions you added and you produce a vial of solution.  The solution is pale green color and you can see it bubbling.
 1122:Drink the mixture^*1123^*Take the mixture^*1124^*Discard the mixture and try something else^*1017
-1123:RESTART:^*You drink the vial of liquid.  Unfortunately, the mixture reacts badly with your stomach acids, causing your stomach to burst.  You die painfully as the acid eats away at the rest of your body.
+1123:RESTART:^*You drink the vial of liquid.  Unfortunately, the mixture reacts badly with your stomach acids, causing your stomach to burst.  You die painfully as the acid eats away at your vital organs.
 1123:null^*1
 1124:INVADD:Pale green mixture^*You take the pale green mixture and put it into your pack.
 1124:Continue^*1017
-
+1125:VARSPLIT:movedRocks,0^*1121^*1126
+1125:null^*1
+1126:VARSET:addedRed,0^*VARSET:addedBlue,0^*VARSET:addedGreen,0^*VARSET:addedBrown,0^*VARSET:addedOrange,0^*VARSET:addedClear,0^*VARSET:addedBlack,0^*VARSET:addedDrink,0^*VARSET:addedPoison,0^*You mix together another explosive potion and put it into a vial.  You are about to put the vial in your pack, but you remember the violent reaction the potion had with the wall of rocks.  You decide that it would be far too dangerous to carry the potion with you, so you leave it behind.
+1126:Leave the apothecary^*1060^*Do something else in the apothecary^*1017^*Try drinking the explosive potion you mixed^*1123
 1150:VARSPLIT:killedDungeonGuard,0^*1184^*1185
 1150:null^*1
 1151:VARSPLIT:freedPrisoner,2^*1163^*1164
@@ -2037,13 +2187,13 @@ ARMOR:Platemail Armor^*5^*80
 1181:Content not added^*999
 1182:INVSPLIT:Sword^*1183^*1186
 1182:null^*1
-1183:GAINGOLD:8^*You search the bodies of the dungeon guards and find 8 gold coins between them, which you take.  The guards are not carrying anything else useful.  You leave your cell and find yourself in a cell corridor.  You head towards a set of stairs to your left that you remember lead to the dungeon exit.  You climb the stairs and see that the top of the stairs is blocked by a closed grate.  Outside the grate, you can see a hallway, but your visibility is limited.  You try to life the grate, but it is impossible.
+1183:GAINGOLD:8^*You search the bodies of the dungeon guards and find 8 gold coins between them, which you take.  The guards are not carrying anything else useful.  You leave your cell and find yourself in a cell corridor.  You head towards a set of stairs to your left that you remember lead to the dungeon exit.  You climb the stairs and see that the top of the stairs is blocked by a closed grate.  Outside the grate, you can see a hallway, but your visibility is limited.  You try to lift the grate, but it is impossible.
 1183:Go back down the stairs^*1023^*Call for help^*1187
 1184:You climb up to the stairs that lead out of the dungeon, but you are blocked by the closed grate at the top.
 1184:Go back down the stairs^*1023^*Call for help^*1187
 1185:You climb up the stairs out of the dungeon and return to the hallway.  What do you do next?
 1185:DISPLAYIFVAR:wellVisited,1,Go to the left towards the well^*1024^*DISPLAYIFVAR:wellVisited,0,Go to the left towards a small wooden door^*1024^*DISPLAYIFVAR:apothecaryVisited,1,Go to the right towards the apothecary^*1030^*DISPLAYIFVAR:apothecaryVisited,0,Go to the right towards an open door^*1030
-1186:INVADD:Sword^*GAINGOLD:8^*You search the bodies of the dungeon guards and find 8 gold coins between them, which you take.  The guards are not carrying anything else useful.  You leave your cell and find yourself in a cell corridor.  You head towards a set of stairs to your left that you remember lead to the dungeon exit.  You climb the stairs and see that the top of the stairs is blocked by a closed grate.  Outside the grate, you can see a hallway, but your visibility is limited.  You try to life the grate, but it is impossible.
+1186:INVADD:Sword^*GAINGOLD:8^*You search the bodies of the dungeon guards and find 8 gold coins between them, which you take.  The guards are not carrying anything else useful.  You leave your cell and find yourself in a cell corridor.  You head towards a set of stairs to your left that you remember lead to the dungeon exit.  You climb the stairs and see that the top of the stairs is blocked by a closed grate.  Outside the grate, you can see a hallway, but your visibility is limited.  You try to lift the grate, but it is impossible.
 1186:Go back down the stairs^*1023^*Call for help^*1187
 1187:You stand next to the grate and shout that you are trapped in the dungeon.  You see a guard emerge on the other side of the gate.  He looks nonplussed.  "Who are you?" he asks, "And where are the guards that went down to interrogate the prisoner?"
 1187:Tell him that the guards released you^*1188^*Tell him that you killed the guards^*1189^*Tell him that you are holding the guards hostage until you are let out^*1191^*Tell him that the prisoner has gone crazy and you need help subduing him^*1195
@@ -2063,9 +2213,109 @@ ARMOR:Platemail Armor^*5^*80
 1194:Go to the cell area^*1179^*Leave the dungeon^*1150
 1195:RESTART:^*You can tell that the guard outside the grate does not believe you.  "If that is the case," he says, "Then where are the two guards now?"  He disappears down the hallway, leaving you trapped behind the door.  He returns several minutes later with several crossbow laden guards, who waste no time in shooting you through the grate.  <br>Your life ends here.
 1195:null^*1
+1196:You emerge from the passageway, bracing yourself for a fight, but there is nobody out there.  What do you do next?
+1196:Go down the stairs^*991^*Go to the great hall^*1197^*Walk down the hallway in front of you^*1198^*Walk down the hallway on the right of you^*1199
+1197:You look around the great hall.
+1197:Go to the stairs down^*1236
+1198:Go to the throne room
+1198:Content not added
+1199:Go to Chapel
+1199:Content not added
+1200:ANYSPLIT:Servant Disguise,Guard Disguise^*1202^*1203
+1200:null^*1
+1201:You walk up the stairs and find that there is no sign of the stairway guards that you fought earlier.  You can see the great hall in the center of the room, as well as a small wooden door on your immediate right.
+1201:Open the small wooden door^*1238^*Go to the great hall^*1197^*Walk down the hallway in front of you^*1198^*Walk down the hallway on the right of you^*1199^*Go back down the stairs^*991
+1202:You walk up the stairs and emerge in a large hallway corner.  There are two guards standing on either side of the stairway, but they ignore you.  In the middle of the room, you can see many entrances to what looks like a great hall.
+1202:Go to the great hall^*1197^*Walk down the hallway in front of you^*1198^*Walk down the hallway on the right of you^*1199^*Go back down the stairs^*991
+1203:You walk up the stairs and emerge in a large hallway corner.  To your immediate right, you can see a small wooden door.  In the middle of the room, you can see many entrances to what looks like a great hall.  There are two guards standing on either side of the stairway, and one of them sees you coming up the stairs.  "How did you get down there?" he demands, "I don't remember letting you in."
+1203:Attack the guards^*1208^*Tell them that they must have forgotten letting you in^*1228^*Tell him that someone else let you in a few hours ago^*1227^*DISPLAYIF:Healing Elixir,Say that you just went down to get some healing elixir^*1230^*DISPLAYIF:Platemail Armor,Say that you just went down to get a suit of platemail armor^*1229^*DISPLAYIFVAR:kitchenVisited,1,Say that you just went down to get some food from the kitchen^*1232^*DISPLAYIFVAR:armoryVisited,1,Say that you just went down to get some weapons from the armory^*1233
+1204:You walk down the hallway until you reach... the war room
+1204:Content not added
+1205:You walk down the hallway until you see a set of stairs leading downwards in the hallway corner.  There are two guards standing on either side of the stairway, but they seem to be ignoring you.  There is also a small wooden door in front of you.
+1205:Go down the stairs^*1206^*Open the small wooden door^*1207^*Turn the corner and continue down the hallway^*1199^*Go to the great hall^*1197^*Walk back towards the throne room^*1198
+1206:ANYSPLIT:Servant Disguise,Guard Disguise^*991^*1234
+1206:null^*1
+1207:As you go to open the door, one of the guards tells you that you are not allowed to enter it.
+1207:Open the door anyway^*1209^*Attack the guards^*1208^*Go down the stairs^*1206^*Go to the great hall^*1197^*Walk down the hallway to the right^*1199^*Walk down the hallway towards the left^*1198
+1208:COMBAT:You are fighting two guards.  They are both armed with swords,NAME:first guard,WEAPON:Sword,STRENGTH:15,DEFENSE:2,ACCURACY:70,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:15,DEFENSE2:2,ACCURARCY2:70,HEALTH2:40,HIT:The first guard slashes you with his blade,HIT2:The second guard slashes you with his blade^*You have killed the guards.
+1208:DISPLAYIFNOT:Sword,Pick up one of the guards' swords from the ground^*1211^*Search the guards' bodies^*798^*Drag the bodies down the stairs^*797^*Run into the great hall^*1212^*Run down the stairs^*664
+1209:You ignore the guard and reach to open the door, only to find that it is locked.  The guard glares at you but does nothing.  You decide that it would be a bad idea to try to break in with the guards watching you.
+1209:Attack the guards^*1208^*Go down the stairs^*1206^*Go to the great hall^*1197^*Walk down the hallway to the right^*1199^*Walk down the hallway towards the left^*1198
+1210:You walk up to the downward leading stairs.  There are two guards standing on either side of the stairway, but they seem to be ignoring you.  There is also a small wooden door near the staircase.
+1210:Go down the stairs^*1206^*Open the small wooden door^*1207^*Go to the great hall^*1197^*Walk down the hallway to the right^*1199^*Walk down the hallway towards the left^*1198
+1211:INVADD:Sword^*You pick up one of the swords.  What do you do next?
+1211:Search the guards' bodies^*798^*Drag the bodies down the stairs^*797^*Run into the great hall^*1212^*Run down the stairs^*664
+1212:RESTART:^*You are afraid that someone may have heard the noise of the fight and call more guards to attack you.  You leave the bodies behind and quickly run into the great hall, hoping to escape detection.  Soon afterwards, you hear a shout as one of the servants comes out of the great hall and sees the body.  Several guards converge on the location and spread out to search for the killer.  One of them sees that you have blood on your clothing, and the guards attack you.  You try to fight, but you are hopelessly outnumbered.  <br>Your life ends here.
+1212:null^*1
+1213:You run to the left until you can see an open door leading to an armory full of weapons and armor for the guards.
+1213:Try to hide in the armory^*1215^*Keep running past the armory^*1216
+1214:VARSET:apothecaryVisited,1^*You run to the right until you can see an open door leading to an apothecary full of rows of potions.
+1214:Try to hide in the apothecary^*1218^*Keep running past the apothecary^*1219
+1215:RESTART:^*You enter the armory and look around for a place to hide, but all you can see are rows of weapons and armor.  You look down and see that there is blood on your clothing, so you take a guard uniform from the rack and try to put it on.  While you are trying to put on the armor, several guards enter the armory.  They see you and waste no time unloading several crossbow bolts into you.  <br>Your life ends here.
+1215:null^*1
+1216:You run past the armory and turn around a hallway corner.  The next room you see is full of guards and they call at you to halt.
+1216:Stop running^*1217^*Keep running past the guards^*1016
+1217:RESTART:^*You come to a stop in front of the guard room.  The guards approach you and ask you why there is blood on your clothing.  Before you can answer them, several more guards come running down the hallway behind you and announce that they are looking for someone who has killed two guards.  The group of guards accuses you of doing it and they execute you with their swords.
+1217:null^*1
+1218:You look for a place to hide in the apothecary, but all you can see are rows of potions and alchemy equipment.  You are forced to run out of the room and continue down the hallway.
+1218:Continue^*1219
+1219:VARSPLIT:killedDungeonGuard,0^*1222^*1223
+1219:null^*1
+1220:VARSET:wellVisited,1^*You open the door and run into a room containing a large well.  The well is a large circular pit with several coils of rope staked to the ground around it, all attached to buckets.  There is only one place you can think of to hide.  You toss one of the buckets into the pit, waiting until it falls to the water below.  Then, you climb down onto the rope over the edge of the pit until you are out of sight.  Your hands ache as you hang precariously on the rope.  If you were to lose your grip, you would fall to your death in the deep well.  You wait until you hear the door to the well room open, then shut again a few seconds later.  You remain dangling on the rope for several agonizing minutes before you climb out of the well and leave the room.
+1220:Continue^*882
+1221:RESTART:^*You run around the hallway corner and continue running, until you run into a group of guards coming the other direction.  The guards raise crossbows and fill you full of bolts.  <br>Your life ends here.
+1221:null^*1
+1222:You run past a sleeping guard and continue around the hallway corner until you can see a small wooden door.
+1222:DISPLAYIFVAR:wellVisited,1,Try to hide inside the well^*1220^*DISPLAYIFVAR:wellVisited,0,Try to hide inside the door^*1220^*Run past the door and around the hallway corner^*1221
+1223:VARSPLIT:wellVisited,1^*1224^*1225
+1223:null^*1
+1224:As you run down the hallway, a plan forms in your mind.  You run past the stairs to the dungeon and continue around the hallway corner until you reach the door to the well.
+1224:Continue^*1226
+1225:You run past the stairs to the dungeon and continue around the hallway corner until you can see a small wooden door.
+1225:Try to hide inside the door^*1220^*Run past the door and around the hallway corner^*1221
+1226:You open the door and run towards the well.  You toss one of the buckets into the pit, waiting until it falls to the water below.  Then, you climb down onto the rope over the edge of the pit until you are out of sight.  Your hands ache as you hang precariously on the rope.  If you were to lose your grip, you would fall to your death in the deep well.  You wait until you hear the door to the well room open, then shut again a few seconds later.  You remain dangling on the rope for several agonizing minutes before you climb out of the well and leave the room.
+1226:Continue^*882
+1227:"Liar!" says the guard, "I've been standing here all day."  The guards draw swords and attack you.
+1227:Continue^*1208
+1228:The guard pauses for a moment.  "Did we let him in?" he asks the other guard.  The other guard shakes his head.  "I think you're a liar," the guard says as he draws his sword to attack you.
+1228:Continue^*1208
+1229:You tell the guard that he doesn't recognize you because you went down to the forge to get the set of platemail armor that you are wearing.  "I suppose that sounds reasonable," says the guard.  He lets you walk through to the hallway.
+1229:Go to the great hall^*1197^*Open the small wooden door beside you^*1207^*Walk down the hallway in front of you^*1198^*Walk down the hallway on the right of you^*1199^*Go back down the stairs^*1231
+1230:You show the guard your vial of healing elixir.  "You let me go down earlier to get some healing elixir from the apothecary, remember?"  The guard looks confused for a moment.  "I suppose I forgot about that," says the guard slowly.  He lets you walk through to the hallway.
+1230:Go to the great hall^*1197^*Open the small wooden door beside you^*1207^*Walk down the hallway in front of you^*1198^*Walk down the hallway on the right of you^*1199^*Go back down the stairs^*1231
+1231:The guard stops you as you try to go down the stairs.  "You've already gotten what you need from the basement," he says, "You aren't allowed down there anymore."
+1231:Attack the guards^*1208^*Open the small wooden door beside you^*1207^*Go to the great hall^*1197^*Walk down the hallway to the right^*1199^*Walk down the hallway towards the left^*1198
+1232:You tell the guard that you went down earlier to get some food from the kitchen.  The guard pauses for a moment.  "Did we let him in?" he asks the other guard.  The other guard shakes his head.  "I think you're a liar," the guard says as he draws his sword to attack you.
+1232:Continue^*1208
+1233:You tell the guard that you went down earlier to get some weapons from the armory.  The guard pauses for a moment.  "Did we let him in?" he asks the other guard.  The other guard shakes his head.  "I think you're a liar," the guard says as he draws his sword to attack you.
+1233:Continue^*1208
+1234:VARSPLIT:killedStairwayGuards,1^*991^*1235
+1234:null^*1
+1235:You walk towards the stairs leading downwards, but one of the guards puts a restraining hand in front of you and says that you are not allowed down there.
+1235:Attack the guards^*1208^*Open the small wooden door^*1207^*Go to the great hall^*1197^*Walk down the hallway to the right^*1199^*Walk down the hallway towards the left^*1198
+1236:VARSPLIT:killedStairwayGuards,1^*1210^*1237
+1236:null^*1
+1237:You walk up to the downward leading stairs.  Near the staircase, there is a small wooden door.
+1237:Go down the stairs^*1206^*Open the small wooden door^*1238^*Go to the great hall^*1197^*Walk down the hallway to the right^*1199^*Walk down the hallway towards the left^*1198
+1238:VARSPLIT:passagewayLockPicked^*1239^*1240
+1238:null^*1
+1239:You open the door and enter the passageway.
+1239:Pull the lever^*793^*Walk out into the inner bailey^*1244^*Return to the hall^*1245
+1240:You try to open the door, but it is locked.
+1240:DISPLAYIF:Lock picking kit,Pick the lock^*1241^*DISPLAYIF:Key Ring,Try to open it with a key from your key ring^*1242^*Go down the stairs^*1206^*Go to the great hall^*1197^*Walk down the hallway to the right^*1199^*Walk down the hallway towards the left^*1198
+1241:You pick the lock on the door and open it.  You enter a narrow passageway with a wooden door on the other end.  You can also see a small lever on your left.
+1241:Pull the lever^*793^*Walk to the other end of the passageway^*1243
+1242:None of your keys work on the door.
+1242:DISPLAYIF:Lock picking kit,Pick the lock^*1241^*Go down the stairs^*1206^*Go to the great hall^*1197^*Walk down the hallway to the right^*1199^*Walk down the hallway towards the left^*1198
+1243:VARSET:passagewayLockPicked,1^*You walk to the other end of the passageway and find that the door there is locked as well.  You pick that lock and open the door.  It leads outside the keep into the castle's inner bailey courtyard.
+1243:Go out into the inner bailey^*1246^*Go back and pull the lever^*793^*Go back and return to the hall^*1245
+1244:You walk through the passageway and open the door out to the inner bailey.  As you are leaving, you remember that your mission is to acquire King K's ring, and that you won't find him outside of the keep.  You decide to focus on your mission and not risk leaving the castle.
+1244:Return to the hall^*1245
+1245:You leave the passageway and return to the hall.  What do you do next?
+1245:Go down the stairs^*991^*Go to the great hall^*1197^*Walk down the hallway in front of you^*1198^*Walk down the hallway on the right of you^*1199
+1246:As you are walking out to the courtyard, you remember that your mission is to acquire King K's ring, and that you won't find him outside of the keep.  You decide to focus on your mission and not risk leaving the castle.
+1246:Return to the hall^*1245
 
-1500:MAZE:^*adsflakn
-1500:Done^*1500
 3000:LOCKPICK:3^*You are picking a lock
 3000:Done^*0
 3000:images/lock_pick.jpg
