@@ -57,6 +57,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			type: 'unarmed',
 			strengthbonus: '-3',
 			accuracy: '55',
+			special: [],
 			hitMessages: ['You hit your enemy'],
 			missMessages: ['You miss.']
 		}
@@ -143,6 +144,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					type: 'weapon',
 					strengthbonus: 'NaN',
 					accuracy: 'NaN',
+					special: [],
 					hitMessages: [],
 					missMessages: []
 				}
@@ -159,6 +161,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					added.accuracy = 55;
 				}
 				for (y = 0; y < splitResult.length; y++) {
+					if (splitResult[y].indexOf('SPECIAL:') != -1) {
+						added.special[added.special.length] = splitResult[y].split('SPECIAL:')[1];
+					}
 					if (splitResult[y].indexOf('HIT:') != -1) {
 						added.hitMessages[added.hitMessages.length] = splitResult[y].split('HIT:')[1];
 					}
@@ -181,6 +186,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					name: 'Error with unarmed initialization - no name specified',
 					strengthbonus: 'NaN',
 					accuracy: 'NaN',
+					special: [],
 					hitMessages: [],
 					missMessages: []
 				}
@@ -197,6 +203,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					added.accuracy = 55;
 				}
 				for (y = 0; y < splitResult.length; y++) {
+						if (splitResult[y].indexOf('SPECIAL:') != -1) {
+						added.special[added.special.length] = splitResult[y].split('SPECIAL:')[1];
+					}
 					if (splitResult[y].indexOf('HIT:') != -1) {
 						added.hitMessages[added.hitMessages.length] = splitResult[y].split('HIT:')[1];
 					}
@@ -971,10 +980,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						inventoryCheckArray = specialPageArray[p].split('ALLSPLIT:')[1].split(',');
 						passedCheck = true;
 						for (q = 0; q < inventoryCheckArray.length; q++) {
-							if (!inventoryCheckArray[q] in this.oc(this.inventory)) {
+							console.log(inventoryCheckArray[q]);
+							if (inventoryCheckArray[q] in this.oc(this.inventory)) {
+								//the specified item is in the inventory
+							} else {
 								passedCheck = false;
 							}
 						}
+						console.log(passedCheck);
 						if (passedCheck) {
 							//passed inventory check, redirect to first page
 							this.page = specialPageArray[specialPageArray.length-2];
@@ -1455,6 +1468,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							//parse enemy info
 							combatInfo = specialPageArray[p].split('COMBAT:')[1].split(',');
 							autoFight = false;
+							stunned = false;
 							enemies = [];
 							//default enemy values (if none specified)
 							var enemyVar = {
@@ -1466,6 +1480,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								initialHealth: 20,
 								acc: 55,
 								accMod: 0,
+								stunned: false,
+								special:[],
 								hitmessages:[],
 								missmessages:[]
 							}
@@ -1529,6 +1545,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											initialHealth: 20,
 											acc: 55,
 											accMod: 0,
+											stunned: false,
+											special:[],
 											hitmessages:[],
 											missmessages:[]
 										}
@@ -1634,11 +1652,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								for (y = 0; y < enemies.length; y++) {
 									if (this.possibleWeapons[x].name == enemies[y].weapon) {
 										//enemies[y].str = dojo.number.parse(enemies[y].str) + dojo.number.parse(this.possibleWeapons[x].strengthbonus);
+										if (this.possibleWeapons[x].special.length != 0) {
+											for (s = 0; s < this.possibleWeapons[x].special.length; s++) {
+												enemies[y].special[enemies[y].special.length] = this.possibleWeapons[x].special[s];
+											}
+										}
 									}
 								}
 							}
-			e
-			}
+						}
 						if (this.chooseWeapon == -1) {
 							//just selected a weapon
 							currentWeapon = availableWeapons[choiceNum - 1];
@@ -1793,10 +1815,31 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										aliveEnemies[f].accMod += 3;
 									}
 									if (f == choiceNum - 1) {
-										if (youHit) {
-											k = Math.floor(Math.random()*(currentWeapon.hitMessages.length));
-											combatString = combatString + ' <br>' + currentWeapon.hitMessages[k].replace('#enemy',aliveEnemies[f].name) + damageMessage + ' dealing ' + damageDealt + ' damage.';
+										aliveEnemies[f].stunned = false;
+										if (stunned) {
+											combatString = combatString + ' <br>You are stunned and cannot attack.'
+											stunned = false;
+										}
+										else if (youHit) {
+											j = Math.floor(Math.random()*(currentWeapon.hitMessages.length));
+											combatString = combatString + ' <br>' + currentWeapon.hitMessages[j].replace('#enemy',aliveEnemies[f].name) + damageMessage + ' dealing ' + damageDealt + ' damage.';
 											aliveEnemies[f].health -= damageDealt;
+											if ('Cut' in this.oc(currentWeapon.special)) {
+												//if you inflicted more than a minor wound, enemy will take bleeding damage
+												if (k >= 5) {
+													cutDamage = Math.floor(Math.random()*(4))+1;
+													aliveEnemies[f].health -= cutDamage;
+													combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' loses an additional ' + cutDamage + ' health from blood loss.';
+												}
+											}
+											if ('Blunt' in this.oc(currentWeapon.special)) {
+												//if you inflicted more than a minor wound, 40% chance to stun the enemy
+												if (k >= 5) {
+													if (Math.random() < 0.4) {
+														aliveEnemies[f].stunned = true;
+													}
+												}
+											}
 											enemyHealthFraction = aliveEnemies[f].health/aliveEnemies[f].initialHealth;
 											if (enemyHealthFraction <= 0) {
 												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' collapses. '
@@ -1817,25 +1860,27 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											} else {
 												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' looks mostly healthy.'
 											}
+											if (aliveEnemies[f].stunned) {
+												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' is stunned from your blow and cannot attack.';
+											}
 										} else {
 											if (Math.random() < 0.4 || aliveEnemies[f].missmessages.length == 0) {
-												k = Math.floor(Math.random()*(currentWeapon.missMessages.length));
-												combatString = combatString + ' <br>' + currentWeapon.missMessages[k].replace('#enemy',aliveEnemies[f].name) + ' ';
-												//this.message = this.message + ' <br>' + currentWeapon.missMessages[k];
+												j = Math.floor(Math.random()*(currentWeapon.missMessages.length));
+												combatString = combatString + ' <br>' + currentWeapon.missMessages[j].replace('#enemy',aliveEnemies[f].name) + ' ';
 											} else {
-												k = Math.floor(Math.random()*(aliveEnemies[f].missmessages.length));
-												combatString = combatString + ' <br>' + aliveEnemies[f].missmessages[k] + ' ';
+												j = Math.floor(Math.random()*(aliveEnemies[f].missmessages.length));
+												combatString = combatString + ' <br>' + aliveEnemies[f].missmessages[j] + ' ';
 											}
 										}
 									}
-									if (enemyHit && aliveEnemies[f].health > 0) {
-										k = Math.floor(Math.random()*(aliveEnemies[f].hitmessages.length));
+									if (enemyHit && aliveEnemies[f].health > 0 && !aliveEnemies[f].stunned) {
+										j = Math.floor(Math.random()*(aliveEnemies[f].hitmessages.length));
 										damageTaken = damageTaken - Math.round(Math.floor(damageTaken * (1 - enemyHealthFraction))/2);
 										if (damageTaken <= 0) {
 											//lose a minimum of 1 health if you are hit (unless you have armor)
 											damageTaken = 1;
 										}
-										combatString = combatString + ' <br>' + aliveEnemies[f].hitmessages[k] + ', hitting you for ' + damageTaken + ' damage. ';
+										combatString = combatString + ' <br>' + aliveEnemies[f].hitmessages[j] + ', hitting you for ' + damageTaken + ' damage. ';
 										//reduce damage from shield and armor
 										if (currentShield != "None") {
 											if (Math.random() <= currentShield.probability/100) {
@@ -1862,11 +1907,27 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 												}
 											}
 										}
-										if (damageTaken < 0) {
+										if (damageTaken <= 0) {
 											damageTaken = 0;
+										} else {
+											if ('Cut' in this.oc(aliveEnemies[f].special)) {
+												//if you were damaged by a sharp weapon, you may take bleeding damage
+												if (k < 5 && Math.random() < 0.5) {
+													cutDamage = Math.floor(Math.random()*(4))+1;
+													this.health -= cutDamage;
+													combatString = combatString + ' <br>You lose an additional ' + cutDamage + ' health from blood loss.';
+												}
+											}
+											if ('Blunt' in this.oc(aliveEnemies[f].special)) {
+												//if you were damaged by a sharp weapon, you may be stunned
+												if (k < 5 && Math.random() < 0.4) {
+													combatString = combatString + ' <br>The blow stuns you.';
+													stunned = true;
+												}
+											}
 										}
 										this.health -= damageTaken;
-									} else if (aliveEnemies[f].health > 0) {
+									} else if (aliveEnemies[f].health > 0 && !aliveEnemies[f].stunned) {
 										if (currentShield != "None" && Math.random() < 0.5) {
 											combatString = combatString + ' <br>You block the ' + aliveEnemies[f].name + ' with your shield. ';
 										} else {
