@@ -92,8 +92,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.inLockPicking = 0;
 		this.currentTumbler = 1;
 		this.currentPushes = 0;
+		this.maxPushes = 0;
 		this.tumblers=[];
 		this.maxTumblers = 0;
+		this.maxWrong=0;
+		//special mode for Maze
+		this.inMaze=0;
+		this.mazeRow=0;
+		this.mazeCol=0;
+		var MazeArray=[];
 		//special mode for safe cracking
 		this.inSafeCracking =0;
 		this.hasCombo = 0;
@@ -322,7 +329,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.message = this.pageText[this.page];
 		//choicesArray = this.choices[this.page].split('^*');
 		choicesArray = this.choices[this.page].split(this.DELIMITER);
-		this.exportPageTextAndChoices();
+		//this.exportPageTextAndChoices();
 		//must call refreshAll in here because this method is dojo.deferred (will occur last)
 		this.refreshAll();
 	},
@@ -1588,7 +1595,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									}
 								}
 							}
-						}
+			e
+			}
 						if (this.chooseWeapon == -1) {
 							//just selected a weapon
 							currentWeapon = availableWeapons[choiceNum - 1];
@@ -1875,6 +1883,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					//LOCKPICK: num of tumblers
 					else if (specialPageArray[p].match('LOCKPICK:') !=null) {
+						//Check to see if I'm setting up everything for the first time
 						if(this.inLockPicking==0){
 							//Read # of tumblers as set by the call from the input file
 							numOfTumbler = specialPageArray[p].split('LOCKPICK:');
@@ -1887,70 +1896,133 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
 								if(this.difficulty=="Easy"){
 									this.tumblers[m]=Math.ceil(Math.random()*3);
+									this.maxWrong=8;
+									this.maxPushes=3;
 								}else if(this.difficulty=="Normal"){
 									this.tumblers[m]=Math.ceil(Math.random()*6);
+									this.maxWrong=15;
+									this.maxPushes=6;
 								}else{
-									this.tumblers[m]=Math.ceil(Math.random()*10);
+									this.tumblers[m]=Math.ceil(Math.random()*9);
+									this.maxWrong=25;
+									this.maxPushes=9;
 								}								
 							}
 							this.inLockPicking=1;
 							choicesArray = [];
 							this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+numOfTumblers;
 							this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-							this.message=this.message+"<br>Each tumbler can be pressed a maximum of times";
+							this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+							this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
 							choicesArray[0]='Pick tumbler '+this.currentTumbler;
 							choicesArray[1]=this.page;
 							choicesArray[2]='Check tumbler '+this.currentTumbler;
 							choicesArray[3]=this.page;
+							choicesArray[4]='Start this Tumbler over';
+							choicesArray[5]=this.page;
+						//Return after button hit
 						}else{
-							
+							//Choose to pick the tumbler once
 							if(choiceNum==1){
-								this.currentPushes+=1;
-								this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
-								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+								//Check to make sure we haven't reached the max pushes
+								if(this.currentPushes!=this.maxPushes){
+									this.currentPushes+=1;
+									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
+									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+								//Circle back to 1 push after hitting max
+								}else{
+									this.currentPushes=1;
+									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
+									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+								}
+								
+							//Choose to check current pushes
 							}else if(choiceNum==2){
+								//Correct number of pushes for that tumbler
 								if(this.currentPushes==this.tumblers[this.currentTumbler-1]){
-									this.message=this.message+"<br>You successfully opened this tumbler!";	
+									//Move to next tumbler
 									this.currentTumbler++;
-									if(this.currentTumbler!=this.maxTumblers){
+									this.message=this.message+"<br>You successfully opened this tumbler!";	
+									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
+									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									
+									//Check to see if we are done
+									if(this.currentTumbler<=this.maxTumblers){
 										this.currentPushes=0;
 										choicesArray[0]='Pick tumbler '+this.currentTumbler;
 										choicesArray[1]=this.page;
 										choicesArray[2]='Check tumbler '+this.currentTumbler;
 										choicesArray[3]=this.page;
+									//End case
 									}else{
 										this.currentPushes=0;
+										this.currentTumbler=0;
 										this.inLockPicking=0;
 										this.message="Congratulations! You picked the lock!";
 									}
+								//Incorrect Pushes for the that tumbler
 								}else{
-									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler);
-									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-									this.message=this.message+"<br>Please try again";
+									//Take away one of the attempts
+									this.maxWrong--;
+									//In this case, they have run out of attempts
+									if(this.maxWrong==0){
+										this.message=this.message+"You have failed at picking this lock";
+									//Otherwise tell them its wrong and try again
+									}else{
+										this.message=this.message+"<br>This is the incorrect number of pushes for this tumbler!  Please Try Again!"
+										this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
+										this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+										this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+										this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									}
 								}
+							//Choose to start the current tumbler over, does not reset max wrong
+							}else if(choiceNum==3){
+								this.currentPushes=0;
+								this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
+								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
+								this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+								this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
 							}
 							
 						}
 					}
-					//Maze:
+					
+					//Maze:  This implements a randomized maze
 					else if (specialPageArray[p].match('MAZE:') !=null) {
-						this.inMaze=1;
+					//Prelim and First Run, inMaze is default 0.
+					if(this.inMaze==0){
+						this.message=" ";
+						//set default maze size and adjust it according to game difficulty level.
 						mazeSize=4;
-						var MazeArray= new Array(mazeSize);
+						if(this.difficulty=='Easy')
+							{mazeSize=3;}
+						if(this.difficulty=='Normal')
+							{mazeSize=4;}
+						if(this.difficulty=='Hard')
+							{mazeSize=5;}
+
+						//Populate the 2D Array with doors ramdomly stripping out any repeats until it reaches bottol right cell of array.
+						MazeArray= new Array(mazeSize);
 						row=0;
 						col=0;
+						mazeRow=0;
+						mazeCol=0;
 						for(i=0; i<=mazeSize;i++){
-						MazeArray[i] =[];
-						for(p=0; p<=mazeSize;p++){
-							 // Make the first element an array of two elements
-							 MazeArray[i][p]="";
-						}
+							MazeArray[i] =[];
+							for(p=0; p<=mazeSize-1;p++){
+								MazeArray[i][p]="";
+							}
 						}
 						while(row !=mazeSize-1 || col!=mazeSize-1)
-						//for(i=0;i<10; i++)
 						{
 							temp=Math.ceil(Math.random()*4);
-							console.log(temp);
 							if(temp==1){
 								if(row!=0){
 									if(MazeArray[row][col].indexOf('N')==-1){
@@ -1995,20 +2067,99 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 								}
 							}
-						//asdf
 						}
-						for (m=0; m<MazeArray.length-1; m++){
-								console.log(MazeArray[m]);
-								//console.log(choicesArray[m][1]);
-								//console.log(choicesArray[m][2]);
+						//Sort the cells so that NESW appear in that order.
+						for(i=0; i<=mazeSize;i++){
+							for(p=0; p<=mazeSize-1;p++){
+							tempStr="";
+							if(MazeArray[i][p].indexOf('N')!=-1){
+								tempStr+='N'
+							}
+							if(MazeArray[i][p].indexOf('E')!=-1){
+								tempStr+='E'
+							}
+							if(MazeArray[i][p].indexOf('S')!=-1){
+								tempStr+='S'
+							}
+							if(MazeArray[i][p].indexOf('W')!=-1){
+								tempStr+='W'
+							}
+							MazeArray[i][p]=tempStr;
+							}
 						}
-						//console.log(MazeArray.length);
-						//console.log(MazeArray[0]);
-						//console.log(MazeArray[1]);
-						//console.log(MazeArray[2]);
-						//console.log(MazeArray[3]);
-						//console.log(MazeArray);
+						//Putting custom choices in the array for Maze navigation
+						choicesArray = [];
+							this.message=MazeArray[this.mazeRow][this.mazeCol]; 
+							if(this.mazeRow==mazeSize-1 && this.mazeCol==mazeSize-1)
+							{
+								this.message='YOU WIN';
+							}
+							for(i=0; i<MazeArray[this.mazeRow][this.mazeCol].length; i++)
+								{
+								dir='';
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='N')
+									{dir='North';}
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='E')
+									{dir='East';}
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='S')
+									{dir='South';}
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='W')
+									{dir='West';}
+								choicesArray[i*2] ='Enter the door to your ' + dir;
+								choicesArray[i*2+1] =this.page;
+								}
+						//Prints the Maze array
+						for (m=0; m<MazeArray.length-1; m++)
+							{
+							console.log(MazeArray[m]);
+							}
+						this.inMaze=1;
 						}
+						//Every subsequent run through the maze code
+						else
+						{	
+							//On Button press, update which cell of maze player is currently in
+							if(MazeArray[this.mazeRow][this.mazeCol].charAt(choiceNum-1)=='N')
+								{
+									this.mazeRow--;
+								}
+							else if(MazeArray[this.mazeRow][this.mazeCol].charAt(choiceNum-1)=='E')
+								{
+									this.mazeCol++;
+								}
+							else if(MazeArray[this.mazeRow][this.mazeCol].charAt(choiceNum-1)=='S')
+								{
+									this.mazeRow++;
+								}
+							else if(MazeArray[this.mazeRow][this.mazeCol].charAt(choiceNum-1)=='W')
+								{
+									this.mazeCol--;
+								}
+							//Putting custom choices in the array for Maze navigation
+							choicesArray = [];
+							this.message=MazeArray[this.mazeRow][this.mazeCol]; 
+							if(this.mazeRow==mazeSize-1 && this.mazeCol==mazeSize-1)
+							{
+								this.message='YOU WIN';
+								this.inMaze=0;
+							}
+							for(i=0; i<MazeArray[this.mazeRow][this.mazeCol].length; i++)
+								{
+								dir='';
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='N')
+									{dir='North';}
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='E')
+									{dir='East';}
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='S')
+									{dir='South';}
+								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='W')
+									{dir='West';}
+								choicesArray[i*2] ='Enter the door to your ' + dir;
+								choicesArray[i*2+1] =this.page;
+								}
+						}
+						
+					}
 					
 					//SAFECRACK:
 					else if(specialPageArray[p].match('SAFECRACK:') != null) {
@@ -2206,7 +2357,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//End special pages testing
 			if (this.restart == 0) {
 				//if you are in inventory selection mode, a minigame or combat mode, you are overriding the choice selection
-				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0 && this.inSafeCracking==0) {
+				if (this.invselect == 0 && this.inCombat == 0 && this.inLockPicking==0 && this.inSafeCracking==0 && this.inMaze==0) {
 					//Special commands for choices:
 					//DISPLAYIF:item1,item2,...,text  Only display this choice if all listed items are in inventory
 					//DISPLAYIFNOT:item1,item2,...,text  Only display this choice if none of the listed items are in the inventory
