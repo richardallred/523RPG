@@ -951,7 +951,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				VARDISPLAY:var - Display the value of var in a message
 				COMBAT: - Special command to start combat
 				LOCKPICK:var - Creates a lock picking game with var number of tumblers
-				SAFECRACK: - Creates a safe cracking game, if Combination is in the inventory it is displayed
+				SAFECRACK:boolean - Creates a safe cracking game, if Combination is in the inventory it is displayed - boolean is whether or Combination is in the inventory
 				RESTART: - The story has reached some sort of end, so restart from page 1
 				*/
 				
