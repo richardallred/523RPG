@@ -1824,13 +1824,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									if (randomNum <= modifiedEnemyAcc/100) {
 										enemyHit = true;
 										if (aliveEnemies[f].accMod <= 0) {
-											aliveEnemies[f].accMod -= 3;
+											aliveEnemies[f].accMod -= 1;
 										} else {
 											aliveEnemies[f].accMod = 0;
 										}
 									} else {
 										enemyHit = false;
-										aliveEnemies[f].accMod += 3;
+										aliveEnemies[f].accMod += 1;
 									}
 									if (f == choiceNum - 1) {
 										aliveEnemies[f].stunned = false;
