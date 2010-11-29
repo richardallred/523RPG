@@ -61,7 +61,6 @@ INITWEAPON:Fire Poker^*3^*70^*SPECIAL:Blunt^*HIT:You smash the #enemy with your 
 INITWEAPON:Sacrificial Dagger^*3^*75^*SPECIAL:Cut^*HIT:You stab the #enemy with your dagger^*HIT:You slash the #enemy with your dagger^*HIT:You cut the #enemy with your dagger^*MISS:You fail to do any damage to the #enemy.^*MISS:Your dagger is blocked by the #enemy.^*MISS:You swing your dagger, but miss.^*MISS:You stab the #enemy with your dagger, but you are unable to do any damage.
 INITWEAPON:Hidden dagger^*2^*75^*SPECIAL:Cut^*HIT:You stab the #enemy with your dagger^*HIT:You slash the #enemy with your dagger^*HIT:You cut the #enemy with your dagger^*MISS:You fail to do any damage to the #enemy.^*MISS:Your dagger is blocked by the #enemy.^*MISS:You swing your dagger, but miss.^*MISS:You stab the #enemy with your dagger, but you are unable to do any damage.
 INITWEAPON:Knife^*1^*70^*SPECIAL:Cut^*HIT:You stab the #enemy with your knife^*HIT:You slash the #enemy with your knife^*HIT:You cut the #enemy with your knife^*MISS:You fail to do any damage to the #enemy.^*MISS:Your knife is blocked by the #enemy.^*MISS:You swing your knife, but miss.^*MISS:You stab the #enemy with your knife, but you are unable to do any damage.
-INITWEAPON:Kitchen Knife^*1^*70^*SPECIAL:Cut^*HIT:You stab the #enemy with your knife^*HIT:You slash the #enemy with your knife^*HIT:You cut the #enemy with your knife^*MISS:You fail to do any damage to the #enemy.^*MISS:Your knife is blocked by the #enemy.^*MISS:You swing your knife, but miss.^*MISS:You stab the #enemy with your knife, but you are unable to do any damage.
 INITWEAPON:Surgical Knife^*1^*70^*SPECIAL:Cut^*HIT:You stab the #enemy with your knife^*HIT:You slash the #enemy with your knife^*HIT:You cut the #enemy with your knife^*MISS:You fail to do any damage to the #enemy.^*MISS:Your knife is blocked by the #enemy.^*MISS:You swing your knife, but miss.^*MISS:You stab the #enemy with your knife, but you are unable to do any damage.
 UNARMED:Your bare hands^*-3^*65^*HIT:You quickly punch the #enemy^*HIT:You lash out with your foot in a swift kick^*HIT:You throw the #enemy to the ground^*HIT:You fistcuff the #enemy^*MISS:Your fists fail to do any damage to the #enemy.^*MISS:You kick, but miss.^*MISS:You swing your fist, but miss.^*MISS:You fail to do any damage to the #enemy.
 SHIELD:Shield^*2^*33
@@ -335,6 +334,32 @@ HEALING:First aid kit^*0.2
 128:Continue^*129
 129:VARSPLIT:wellVisited,1^*You look around the room and see that you have climbed up into a well.  There is not much in the room other than a large circular pit in the center.  Next to the pit, there are several coils of rope staked to the ground, all attached to buckets.  You see a single exit on the other side of the room.
 129:DISPLAYIFNOT:Rope,Steal one of the coils of rope^*878^*Leave the room^*882
+130:RESTART:^*You go on the offensive, swinging your sword at the skeletons.  Unfortunately, you find it far more difficult than expected to hack the skeletons apart, as the bones are a challenge to cut through.  You manage to slice apart several skeletons, but you are soon overwhelmed by the pure number of undead and they rip you apart.
+130:null^*1
+131:You go on the offensive, swinging your mace at the skeletons.  The skeletons are quite brittle and easily shattered by the powerful blows from the mace.  You are able to smash your way forwards through the mass of undead, under you see the catacombs split off in a fork to the left and right.  In front of you, the coffins continue to slide open, and you see a seemlingly endless sea of skeletons in front of you in either direction.  To the left, you can see a large bright light illuminating the corridor in the distance.  To the right, the catacombs trails off into the darkness.
+131:Fight your way to the left^*138^*Fight your way to the right^*139^*Fight your way out of the catacombs^*137
+132:RESTART:^*You go on the offensive, swinging your axe at the skeletons.  Unfortunately, you find it far more difficult than expected to hack the skeletons apart, as the bones are a challenge to cut through.  You manage to slice apart several skeletons, but you are soon overwhelmed by the pure number of undead and they rip you apart.
+132:null^*1
+133:You go on the offensive, swinging your hammer at the skeletons.  The skeletons are quite brittle and easily shattered by the powerful blows from the mace.  You are able to smash your way forwards through the mass of undead, under you see the catacombs split off in a fork to the left and right.  In front of you, the coffins continue to slide open, and you see a seemlingly endless sea of skeletons in front of you in either direction.  To the left, you can see a large bright light in the distance.  To the right, the catacombs trails off into the darkness.
+133:Fight your way to the left^*140^*Fight your way to the right^*139^*Fight your way back out of the catacombs^*137
+134:RESTART:^*You go on the offensive, swinging your dagger at the skeletons.  Unfortunately, the skeleton's exposed ribs mean that most of your attempts at stabbing them pass right through them, and the dagger is not very effective at cutting apart bones.  You only manage to slice apart two or three of them before you are overwhelmed and the skeletons rip you apart.
+134:null^*1
+135:RESTART:^*You go on the offensive, swinging your knife at the skeletons.  Unfortunately, the skeleton's exposed ribs mean that most of your attempts at stabbing them pass right through them, and the dagger is not very effective at cutting apart bones.  You only manage to slice apart two or three of them before you are overwhelmed and the skeletons rip you apart.
+135:null^*1
+136:RESTART:^*You go on the offensive, meting out powerful punches with your fists.  While your punches are somewhat effective at breaking apart the skeletons, you are unable to fight them all off at once.  The horde of skeletons soon overwhelms you and rips you apart.
+136:null^*1
+137:As you fight your way back out of the catacombs, you feel your arms getting tired.  Fortunately, you manage to succesfully smash your way back to the stairs.  You run up the stairs, go out the door, and slam it behind you.  It does not seem like any of the skeletons have followed you.
+137:Examine the altar^*635^*Leave the cathedral^*636
+138:You battle your way through the corridor as you approach the source of the bright light.  Your arms begin to get tired as you are forced to constantly smash the unceasing waves of incoming skeletons.  Eventually you reach the source of the light and find that it is coming from a wide crevasse in the middle of the floor.  Large flames are leap out of the crevasse periodically.  As you approach it, the skeletons back away from you.  The skeletons stand in a wide circle around you, but do not walk any closer to the chasm.  You set your mace down and rest your arms for a few moments as the skeletons stand and stare at you with lifless eyes.
+138:Look into the crevasse^*141^*Fight your way back through the skeletons^*142
+139:RESTART:^*As you continue to fight your way deeper into the catacombs, you can feel your arms getting tired.  The catacombs continue seemingly endlessly, and the waves of skeletons never cease.  Eventually, your strength flags and you are unable to hold off the skeletons swarming around you.  They close in and rip you apart.
+139:null^*1
+140:You battle your way through the corridor as you approach the source of the bright light.  Your arms begin to get tired as you are forced to constantly smash the unceasing waves of incoming skeletons.  Eventually you reach the source of the light and find that it is coming from a wide crevasse in the middle of the floor.  Large flames are leap out of the crevasse periodically.  As you approach it, the skeletons back away from you.  The skeletons stand in a wide circle around you, but do not walk any closer to the chasm.  You set your hammer down and rest your arms for a few moments as the skeletons stand and stare at you with lifless eyes.
+140:Look into the crevasse^*141^*Fight your way back through the skeletons^*142
+141:Look into the chasm
+141:Content not added^*999
+142:As you were resting, hundreds of skeletons formed a mass behind you.  The skeletons are so thickly packed that you cannot even see through them.  You realize that it would be impossible to fight your way back through them and survive.  You are trapped between them and the chasm.
+142:Continue^*141
 196:VARSET:killedServant,1^*Your assassin's garb allows you to sneak up behind the servant and take him out quickly and silently.  You search his body, but he is not carrying anything useful.  You look around the armory and see an assortment of swords, maces, and sets of uniforms for the guards.
 196:Take the weapons^*290^*DISPLAYIFNOT:Guard Disguise,Take a guard uniform^*291^*Leave the armory^*1049
 197:RESTART:^*The servant hears you behind him and turns to look at you.  Upon seeing you, he shouts that there is an intruder in the armory.  You hear the sound of running feet, and five guards burst into the armory with their weapons drawn.  You try to fight them, the guards heavily outnumber you and you are slain.
@@ -1244,7 +1269,7 @@ HEALING:First aid kit^*0.2
 648:INVSPLIT:Golden cross^*649^*650
 648:null^*1
 649:VARSET:catacombsVisited,1^*You only manage to take a few steps into the catacombs before you hear a terrible grinding noise from all around you as the stone coffins surrounding you slide open.  A chorus of clattering bones sound as skeletons magically assemble and climb out of the coffins and down the shelves.
-649:Prepare to fight the skeletons^*657^*Try to escape by running towards the stairs^*658^*Try to escape by running deeper into the catacombs^*661^*Try to fend the skeletons off with your torch^*659^*Hold up your golden cross and hope it wards off the skeletons^*660
+649:Fight the skeletons^*657^*Try to escape by running towards the stairs^*658^*Try to escape by running deeper into the catacombs^*661^*Try to fend the skeletons off with your torch^*659^*Hold up your golden cross and hope it wards off the skeletons^*660
 650:You walk through the room until you reach the end, where it forks to the left and right.  In the light of the torch, you cannot see very far in either direction.  You are standing next to the large pile of assorted bones that you saw earlier.
 650:Go to the left^*653^*Go to the right^*654^*Take one of the bones from the pile^*655^*Open one of the stone coffins^*656^*Leave and go back up the stairs^*644
 651:VARSPLIT:catacombsVisited,0^*641^*652
@@ -1259,16 +1284,16 @@ HEALING:First aid kit^*0.2
 655:null^*1
 656:RESTART^*You slide open one of the stone coffins, revealing a skeleton inside.  To your shock, the skeleton reaches out and grabs your throat with its strong, skeletal fingers.  You hear a terrible grinding noise as the other stone coffins slide open and skeletons climb out of them and approach you.  You manage to free your neck from the skeleton's grip, but you are soon surrounded by a horde of walking bones.  Thought you try to fight them off, there are too many of them and you are torn apart.  <br>Your life ends here.
 656:null^*1
-657:Fight the skeletons
-657:Content not added^*999
+657:What weapon do you attack the skeletons with?
+657:DISPLAYIF:Greatsword,Your greatsword^*130^*DISLAYIF:Sword,Your sword^*130^*DISPLAYIF:Mace,Your mace^*131^*DISPLAYIF:Axe,Your axe^*132^*DISPLAYIF:Hammer,Your hammer^*133^*DISPLAYIF:Hidden dagger,Your hidden dagger^*134^*DISPLAYIF:Sacrificial Dagger,Your sacrificial dagger^*134^*DISPLAYIF:Knife,Your knife^*135^*DISPLAYIF:Surgical Knife,Your surgical knife^*135^*Your fists^*136
 658:As the magically animated skeletons approach you, you run towards the stairs and barely manage to avoid the grasping, bony arms.  You sprint up the stairs, go out the door, and slam it behind you.  Fortunately, there is no sign that the skeletons followed you.  What do you do next?
 658:Examine the altar^*635^*Leave the cathedral^*636
-659:Fend off with torch
-659:Content not added^*999
-660:Hold up cross
-660:Content not added^*999
-661:Run deeper into catacombs
-661:Content not added^*999
+659:LOSEHEALTH:7^*You wave your torch at the skeletons, hoping to scare them off.  However, the torch doesn't have any effect, and a bony hand grabs your arm and almost wrenches it out of its socket, causing you to lose 7 health.  You barely manage to wrest yourself free and run up the stairs as the mass of magically animated skeletons grasps at you.  You sprint up the stairs, go out the door, and slam it behind you.  Fortunately, there is no sign that the skeletons followed you.  What do you do next?
+659:Examine the altar^*635^*Leave the cathedral^*636
+660:RESTART:^*As you take the cross out of your pack and hold it up, you are shocked to see that it has turned a crimson red color.  Rather than warding them off, the sight of the cross seems to excite the skeletons into a frenzy.  A group of them leap onto you and rip you apart with surprising strength.
+660:null^*1
+661:RESTART:^*You dart through the skeleton horde and run deeper into the catacombs, but you soon run into a thick mass of more than fourty skeletons.  It seems that the entire catacombs has come alive and you are soon unable to escape the surge of undead.  The skeletons rip you apart.
+661:null^*1
 662:You enter the door and see a long, narrow passageway with another wooden door on the end.  You see a servant walking through the passage carrying a large bowl of gruel.  "You aren't allowed over here," he says, "Go back to your tent."
 662:Do as the servant says and follow him back to the tents^*677^*Attack the servant^*675^*Run past the servant^*676
 663:You wait by the door until you see a servant come out carrying a large bowl of gruel.
@@ -1550,7 +1575,7 @@ HEALING:First aid kit^*0.2
 803:null^*1
 804:VARSPLIT:dungeonVisited,0^*848^*849
 804:null^*1
-805:VARSET:kitchenVisited,1^*INVADD:Kitchen Knife^*You search through the kitchen for useful items.  You find several knives, and take one of them.  You see a large assortment of food and meat, but you do not need any right now.  You search through a few of the barrels in the kitchen, but they contain nothing useful.  After you are finished searching, you decide to leave the kitchen.
+805:VARSET:kitchenVisited,1^*INVADD:Knife^*You search through the kitchen for useful items.  You find several knives used for preparing food.  You see a large assortment of food and meat, but you do not need any right now.  You search through a few of the barrels in the kitchen, but they contain nothing useful.  After you are finished searching, you decide to leave the kitchen.
 805:Continue^*806
 806:VARSPLIT:storeroomVisited,0^*220^*221
 806:null^*1
@@ -1696,7 +1721,7 @@ HEALING:First aid kit^*0.2
 876:Try to open the safe^*971^*Search through the pile of scrap metal^*969^*DISPLAYIFNOT:Sword,Take one of the swords^*965^*DISPLAYIFNOT:Axe,Take one of the axes^*966^*DISPLAYIFNOT:Chainmail Armor,Take a suit of chainmail armor^*967^*DISPLAYIFNOT:Platemail Armor,Take a suit of platemail armor^*968^*DISPLAYIFNOT:Pliers,Take one of the pliers^*970^*Leave the forge^*1038
 877:VARSET:wellVisited,1^*Inside the door, you see a room with a large circular pit in the center of it.  Next to the pit, there are several coils of rope staked to the ground, all attached to buckets.  You recognize the pit as a large well for providing water to the keep in the event of a siege.
 877:DISPLAYIFVAR:cavesVisited,0,Look down into the well^*879^*DISPLAYIFNOT:Rope,Steal one of the coils of rope^*878^*Leave the room^*882
-878:ANYSPLIT:Sword,Hidden dagger,Knife,Surgical Knife,Kitchen Knife,Greatsword,Throwing Knives^*880^*881
+878:ANYSPLIT:Sword,Hidden dagger,Knife,Surgical Knife,Greatsword,Throwing Knives^*880^*881
 878:null^*1
 879:You peer down into the well, but it is quite deep and you cannot see anything but blackness.  Judging from the length of the ropes attached to the buckets, the water is a good distance down.
 879:Throw a bucket into the well and climb down the rope^*883^*DISPLAYIFNOT:Rope,Steal one of the coils of rope^*878^*Leave the room^*882
@@ -2251,7 +2276,7 @@ HEALING:First aid kit^*0.2
 1177:INVREMOVE:Explosive potion^*LOSEHEALTH:20^*You stand as far back as possible and toss the vial of potion at the rocks.  As soon as the glass vial hits the rocks, the potion explodes in a massive blast, sending rocks flying everywhere.  A flurry of high speed flying rocks hits you, badly bruising you in many places and causing you to lose 20 health.  When the dust has settled, you see large pieces of rock scattered all across the floor and a hole in the pile of rock that you can climb through.  You dig through some of the rocks and see the crushed body of the prisoner buried under them.
 1177:Climb through the hole in the rock^*1181^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
 1178:INVREMOVE:Murky black mixture^*You throw your vial of murky black potion at the rocks.  The glass shatters and nothing happens.
-1178:DISPLAYIF:Explosive potion,Throw the explosive potion you mixed at the pile of rocks^*1286^*DISPLAYIF:Murky black mixture,Throw the murky black mixture you made at the pile of rocks^*1178^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
+1178:DISPLAYIF:Explosive potion,Throw the explosive potion you mixed at the pile of rocks^*1286^*DISPLAYIF:Pale green mixture,Throw the pale green mixture you made at the pile of rocks^*1286^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
 1179:VARSPLIT:movedRocks,0^*1151^*1180
 1179:null^*1
 1180:You walk past the corridor of cells until you reach the pile of rock at the end.  The floor is covered in rubble from the recent explosion.
@@ -2468,7 +2493,7 @@ HEALING:First aid kit^*0.2
 1285:Try to find a way to attack the King^*1286^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
 1286:You are about to throw the potion when you realize that the prisoner is still in front of you trying moving the rocks.
 1286:Yell to the prisoner to move out of the way^*1287^*Throw the potion anyway^*1175
-1287:You yell to the prisoner and he backs up several feet.  You figure that he is probably safe.
+1287:You yell to the prisoner and he backs up several feet.  You figure that he is probably safe from any explosion that you would cause.
 1287:Continue^*1175
 3000:LOCKPICK:3^*You are picking a lock
 3000:Done^*0
