@@ -2486,7 +2486,7 @@ HEALING:First aid kit^*0.2
 1282:RESTART:^*As you walk into the throne room, a hush falls over the court.  Several guards draw weapons and surround you.  "An assassin in the throne room?" says one of them, "What is the meaning of this?"  You try to charge past them and reach the King, but you are quickly cut down.
 1282:null^*1
 1283:You enter the throne room and look around.  Most of the court is ignoring you, as they are focused on a group of visiting ambassadors from Statia who are currently talking to the King.  You can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand.
-1283:DISPLAYIFVAR:throneVisited,0^*Listen to the ambassadors^*1285^*Try to find a way to attack the King^*1286^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1283:DISPLAYIFVAR:throneVisited,0^*Listen to the ambassadors^*1285^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
 1284:RESTART:^*As you walk into the center of the room, a hush falls over the court.  One of the ambassadors stops talking in mid-sentence.  "What insolence is this, to interrupt my meeting?" roars King K.  He flicks his ring finger, causing a deadly bolt of magic to disintegrate you.  <br>Your life ends here.
 1284:null^*1
 1285:VARSET:throneVisited,1^*You find a spot in the throne room where you can clearly hear the Statian ambassadors.  It seems that they are negotiation a peace treaty with Dookia, but you can tell that the King's powerful ring gives him a lot of leverage in the negotiations.  You learn that there is going to be a feast held in the great hall when the negotiations are complete.
@@ -2495,6 +2495,8 @@ HEALING:First aid kit^*0.2
 1286:Yell to the prisoner to move out of the way^*1287^*Throw the potion anyway^*1175
 1287:You yell to the prisoner and he backs up several feet.  You figure that he is probably safe from any explosion that you would cause.
 1287:Continue^*1175
+1288:Try to find a way to attack
+1288:Content not added^*999
 3000:LOCKPICK:3^*You are picking a lock
 3000:Done^*0
 3000:images/lock_pick.jpg
