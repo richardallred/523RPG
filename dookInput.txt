@@ -1638,7 +1638,7 @@ HEALING:First aid kit^*0.2
 835:You leave the body where it is and slip back into the kitchen.  After a few moments, you hear shouts from outside the room.  Someone must have found the servant's body.
 835:Try to hide somewhere in the kitchen^*801^*Leave the kitchen and investigate the shouts^*837
 836:You leave the servant's body where it is and casually walk the other direction down the hallway.  Near the end of the hallway, you see a locked door.  At the end of the hallway, there is a corner that goes to the right.
-836:Try to pick the lock on the door^*838^*Keep walking and turn the corner^*810
+836:DISPLAYIF:Lock picking kit,Try to pick the lock on the door^*838^*DISPLAYIFNOT:Lock picking kit,Examine the lock on the door^*838^*Keep walking and turn the corner^*810
 837:You leave the kitchen and find several guards standing around the body of the servant down the hallway.  One of them sees you and shouts at you to halt.
 837:Try to run away from the guards^*833^*Stand still and let the guards approach you^*839^*Try to fight the guards^*803
 838:As you are examining the lock on the door, you hear a shout for behind you.  You see several guards standing around the body of the servant down the hallway.  One of them is pointing and shouting at you.
