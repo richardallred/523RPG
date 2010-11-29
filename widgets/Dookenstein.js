@@ -106,10 +106,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		var MazeArray=[];
 		//special mode for safe cracking
 		this.inSafeCracking =0;
+		this.hasCombo = 0;
 		this.currentNum =0;
 		this.rotations = 3;
 		this.num = new Array(this.rotations);
 		this.checked = 0;
+		this.tries = 0;
 		this.maxNum = 0;
 		//set jsonic reading rate - default for JSonic is 200
 		this.sonicRate = 250;
@@ -949,6 +951,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				VARDISPLAY:var - Display the value of var in a message
 				COMBAT: - Special command to start combat
 				LOCKPICK:var - Creates a lock picking game with var number of tumblers
+				SAFECRACK: - Creates a safe cracking game, if Combination is in the inventory it is displayed
 				RESTART: - The story has reached some sort of end, so restart from page 1
 				*/
 				
@@ -2309,25 +2312,35 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					
 					//SAFECRACK:
 					else if(specialPageArray[p].match('SAFECRACK:') != null) {
+						
 						if(this.inSafeCracking==0){
+							this.hasCombo = specialPageArray[p].split('SAFECRACK:');
+							//this.hasCombo2 = dojo.number.parse(this.hasCombo[1]);
+							if(this.hasCombo[1]=="true")
+								this.hasCombo = 1;
+							
 							this.inSafeCracking = 1;
 							//num = new Array(3);
+							
 							for(i=0;i<3;i++){
 								if(this.difficulty=="Easy"){
 									this.maxNum=20;
 									this.num[i] = Math.floor(Math.random()*this.maxNum);
+									this.tries = 20;
 								}else{
 									if(this.difficulty=="Normal"){
 										this.maxNum = 40;
 										this.num[i] = Math.floor(Math.random()*this.maxNum);
+										this.tries = 15;
 									}else{
 										this.maxNum = 60;
 										this.num[i] = Math.floor(Math.random()*this.maxNum);
+										this.tries = 10;
 									}
 								}
 								
 							}
-							this.message+="The max number on this dial is " + this.maxNum + "<br>";
+							
 							this.currentNum = 0;
 							choicesArray = [];
 							choicesArray[0]='Turn dial right by 1';
@@ -2417,6 +2430,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							}
 							
 							if(choiceNum==6){
+								this.tries--;
 								if(this.currentNum==this.num[this.checked]){
 									this.checked++;
 									this.message += "You have successfully cracked the number! <br>";
@@ -2427,6 +2441,32 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									}
 									else
 									{
+										if(this.checked == 1){
+											choicesArray = [];
+											choicesArray[0]='Turn dial left by 1';
+											choicesArray[1]=this.page;
+											choicesArray[2]='Turn dial left by 3';
+											choicesArray[3]=this.page;
+											choicesArray[4]='Turn dial left by 5';
+											choicesArray[5]=this.page;
+											choicesArray[6]='Turn dial left by 10';
+											choicesArray[7]=this.page;
+											choicesArray[8]='Turn dial left by 20';
+											choicesArray[9]=this.page;
+										}else
+										{
+											choicesArray = [];
+											choicesArray[0]='Turn dial right by 1';
+											choicesArray[1]=this.page;
+											choicesArray[2]='Turn dial right by 3';
+											choicesArray[3]=this.page;
+											choicesArray[4]='Turn dial right by 5';
+											choicesArray[5]=this.page;
+											choicesArray[6]='Turn dial right by 10';
+											choicesArray[7]=this.page;
+											choicesArray[8]='Turn dial right by 20';
+											choicesArray[9]=this.page;
+										}
 										choicesArray[10]='Check number ' + (this.checked+1);
 										choicesArray[11]=this.page;
 									}
@@ -2435,10 +2475,20 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 							}
 						}
+						this.message+= "You can check the safe " + this.tries + " more times.<br>";
+						this.message+="The max number on this dial is " + this.maxNum + "<br>";
 						this.message += "The dial is on " + this.currentNum + "<br>";
-						for(i=0;i<3;i++)
-						{
-							this.message= this.message+"Correct #"+(i+1)+" is "+ this.num[i]+".<br>";
+						if(this.hasCombo == 1){
+							this.message += "You have the combination to the safe. The combo is: <br>" 
+							for(i=0;i<3;i++)
+							{	
+								this.message= this.message+"#"+(i+1)+" is "+ this.num[i]+".<br>";	
+							}
+						}
+						if(this.tries==0 || this.tries < (this.num.length-this.checked)){
+							this.inSafeCracking = 0;
+							this.checked=0;
+							this.message += "You have failed cracked the safe! <br>";
 						}
 					}
 					
