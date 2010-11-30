@@ -99,6 +99,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.tumblers=[];
 		this.maxTumblers = 0;
 		this.maxWrong=0;
+		this.hint='';
 		//special mode for Maze
 		this.inMaze=0;
 		this.mazeRow=0;
@@ -2042,30 +2043,133 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
 								if(this.difficulty=="Easy"){
 									this.tumblers[m]=Math.ceil(Math.random()*3);
-									this.maxWrong=8;
+									this.maxWrong=5;
 									this.maxPushes=3;
 								}else if(this.difficulty=="Normal"){
 									this.tumblers[m]=Math.ceil(Math.random()*6);
-									this.maxWrong=15;
+									this.maxWrong=10;
 									this.maxPushes=6;
 								}else{
 									this.tumblers[m]=Math.ceil(Math.random()*9);
-									this.maxWrong=25;
+									this.maxWrong=15;
 									this.maxPushes=9;
 								}								
 							}
+							
+							hintsArray = [];
+							hintsArray1= [];
+							hintsArray2= [];
+							hintsArray3= [];
+							hintsArray4= [];
+							hintsArray5= [];
+							hintsArray6= [];
+							hintsArray7= [];
+							hintsArray8= [];
+							hintsArray9= [];
+							
+							hintsArray[1]=hintsArray1;
+							hintsArray[2]=hintsArray2;
+							hintsArray[3]=hintsArray3;
+							hintsArray[4]=hintsArray4;
+							hintsArray[5]=hintsArray5;
+							hintsArray[6]=hintsArray6;
+							hintsArray[7]=hintsArray7;
+							hintsArray[8]=hintsArray8;
+							hintsArray[9]=hintsArray9;
+
+							
+							hintsArray1[1]='Marcus Ginyard\'s number while playing basketball for the Tar Heels';
+							hintsArray1[2]='Number of NCAA women\'s basketball championships won by the lady Tar Heels';
+							hintsArray1[3]='The number of All-Americans on the 2007 Carolina basketball team';
+							hintsArray1[4]='Number of years Marvin Williams was a Tar Heel before leaving for the NBA';
+							hintsArray1[5]='The margin of victory for the Tar Heels men\'s basketball team in the 1982 championship game.';
+							hintsArray1[6]='The lonliest number';
+							hintsArray1[7]='Margin of victory during Dean Smith\'s first NCAA title in 1982';
+							
+							hintsArray2[1]='Number of national championships won under UNC men\'s basketball coach Roy Williams';
+							hintsArray2[2]='Raymond Felton\'s number while playing for the Tar Heel men\'s basketball team';
+							hintsArray2[3]='Number of times coach Dean Smith won national coach of the year';
+							hintsArray2[4]='Number of times UNC men\'s basketball team has gone undefeated for an entire season';
+							hintsArray2[5]='Number of losses for the 1982 UNC mens basketball team';
+							hintsArray2[6]='2';
+							hintsArray2[7]='2';
+							
+							hintsArray3[1]='Number of Tar Heels that were drafted in the first round of the 2009 NBA draft';
+							hintsArray3[2]='Number of years Ty Lawson was a Tar Heel before leaving for the NBA';
+							hintsArray3[3]='Number of years Michael Jordan was a Tar Heel before leaving for the NBA';
+							hintsArray3[4]='Number of movies in the Matrix series';
+							hintsArray3[5]='Number of Tar Heel men\'s basketball players chosen as All-Americans in 1998';
+							hintsArray3[6]='Number of overtimes that it took for Carolina to win its first NCAA title in 1954';
+							hintsArray3[7]='Number of losses for the 2009 UNC men\'s basketball team';
+							
+							hintsArray4[1]='Number of Tar Heels that were drafted in the first round of the 2007 NBA draft';
+							hintsArray4[2]='Number of years Phil Ford was a Tar Heel before leaving for the NBA';
+							hintsArray4[3]='The number that was in the name of UNC a very famous offense ran by UNC and Phil Ford that dealt with holding the ball until the opposing defense conceeded an easy basketball';
+							hintsArray4[4]='Average number of conference losses per year for men\'s basketball coach Dean Smith.';
+							hintsArray4[5]='Number of losses for the 2005 UNC men\'s basketball team';
+							hintsArray4[6]='Number of times UNC men\'s lacrosse team has won the NCAA national championship';
+							hintsArray4[7]='4';
+							
+							hintsArray5[1]='Total number of NCAA national championships won by the UNC men\'s basketball team';
+							hintsArray5[2]='Ty Lawson\'s average number of assists per game over his career as a Tar Heel';
+							hintsArray5[3]='Number of times the UNC men\'s basketball team has finished 1st in both the AP and Coaches poll';
+							hintsArray5[4]='The margin of victory for the UNC men\'s basketball team in the 2005 national championship game';
+							hintsArray5[5]='Number of UNC wrestlers that have been crowned national champions in their weight class';
+							hintsArray5[6]='5';
+							hintsArray5[7]='5';
+							
+							hintsArray6[1]='Number of times the UNC basketball team has been crowned champions of men\'s basketball';
+							hintsArray6[2]='Ty Lawson\'s average number assists per game over his career as a Tar Heel';
+							hintsArray6[3]='Number of movies in the Star Wars saga.';
+							hintsArray6[4]='Margin of victory for UNC men\'s basketball team during the 1993 NCAA championship game';
+							hintsArray6[5]='Number of times the UNC women\'s field hockey team has won the NCAA national championship';
+							hintsArray6[6]='The number of strings on a standard guitar';
+							hintsArray6[7]='The number of points recieved for a touchdown in american football';
+							
+							
+							hintsArray7[1]='Average number of losses per year for men\'s basketball coach Dean Smith';
+							hintsArray7[2]='The number of deadly sins';
+							hintsArray7[3]='Record for the highest number of steals in ACC tournament game by a Tar Heel, set by Dudley Bradley in 1979, against Duke';
+							hintsArray7[4]='Number of years in which the UNC women\'s soccer team did NOT win the national championship';
+							hintsArray7[5]='Number of years a typical student attends Hogwarts in the book series Harry Potter';
+							hintsArray7[6]='7';
+							hintsArray7[7]='7';
+							
+							hintsArray8[1]='The number of wins(in hundreds i.e. 235->2, 656->6, etc.) that Dean Smith had before retiring in 1998';
+							hintsArray8[2]='The number of points scored in the final 17 seconds of the game to send the game to overtime against Duke in 1979';
+							hintsArray8[3]='Number of UNC men\'s basketball players that have been named ACC Rookie of the Year.';
+							hintsArray8[4]='Number of times coach Dean Smith won ACC coach of the year';
+							hintsArray8[5]='Record for the fewest points scored in a single game by a Tar Heel men\'s basketball team';
+							hintsArray8[6]='8';
+							hintsArray8[7]='8';
+							
+							hintsArray9[1]='Tyler Hansborough\'s average number of rebounds per game ove rhis career as a Tar Heel';
+							hintsArray9[2]='Number of UNC basketball players/coaches who have been inducted in the basketball hall of fame';
+							hintsArray9[3]='Highest number of steals in a single game ever for a Tar Heel, set by Derrick Phelps in 1992, against Georgia Tech';
+							hintsArray9[4]='Number of UNC women swimmers that won national championships in at least one event';
+							hintsArray9[5]='The number of innings in a typical baseball game';
+							hintsArray9[6]='The square root of 144 divided by 4 and then multiplied by 3';
+							hintsArray9[7]='9';
+							
 							this.inLockPicking=1;
 							choicesArray = [];
 							this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+numOfTumblers;
 							this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 							this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 							this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+							//Find a hint for the current tumbler						
+							curhintArray=hintsArray[this.tumblers[this.currentTumbler-1]];
+							this.hint=curhintArray[Math.ceil(Math.random()*7)];
+							//Add it to the message
+							this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
+							
 							choicesArray[0]='Pick tumbler '+this.currentTumbler;
 							choicesArray[1]=this.page;
 							choicesArray[2]='Check tumbler '+this.currentTumbler;
 							choicesArray[3]=this.page;
 							choicesArray[4]='Start this Tumbler over';
 							choicesArray[5]=this.page;
+						
 						//Return after button hit
 						}else{
 							//Choose to pick the tumbler once
@@ -2077,6 +2181,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 								//Circle back to 1 push after hitting max
 								}else{
 									this.currentPushes=1;
@@ -2084,6 +2189,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 								}
 								
 							//Choose to check current pushes
@@ -2097,6 +2203,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									curhintArray=hintsArray[this.tumblers[this.currentTumbler-1]];
+									this.hint=curhintArray[Math.ceil(Math.random()*7)];
+									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 									
 									//Check to see if we are done
 									if(this.currentTumbler<=this.maxTumblers){
@@ -2118,7 +2227,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									this.maxWrong--;
 									//In this case, they have run out of attempts
 									if(this.maxWrong==0){
-										this.message=this.message+"You have failed at picking this lock";
+										this.message="You have failed at picking this lock";
+										this.inLockPicking=0;
 									//Otherwise tell them its wrong and try again
 									}else{
 										this.message=this.message+"<br>This is the incorrect number of pushes for this tumbler!  Please Try Again!"
@@ -2126,6 +2236,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 										this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 										this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+										this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 									}
 								}
 							//Choose to start the current tumbler over, does not reset max wrong
@@ -2135,6 +2246,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 								this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 								this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+								this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 							}
 							
 						}
