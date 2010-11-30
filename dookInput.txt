@@ -358,10 +358,16 @@ HEALING:First aid kit^*0.2
 139:null^*1
 140:You battle your way through the corridor as you approach the source of the bright light.  Your arms begin to get tired as you are forced to constantly smash the unceasing waves of incoming skeletons.  Eventually you reach the source of the light and find that it is coming from a wide crevasse in the middle of the floor.  Large flames are leap out of the crevasse periodically.  As you approach it, the skeletons back away from you.  The skeletons stand in a wide circle around you, but do not walk any closer to the chasm.  You set your hammer down and rest your arms for a few moments as the skeletons stand and stare at you with lifless eyes.
 140:Look into the crevasse^*141^*Fight your way back through the skeletons^*142
-141:Look into the chasm
-141:Content not added^*999
+141:You look down into the chasm and see a flaming, bone-filled wasteland.  Massive piles of bones lie on the scorched ground, and giant flames flare up in various locations.  Suddenly, you feel a force pull you forwards that sends you tumbling into the crevasse.  You don't fall far before you land in a large pile of bones.  You feel a blast of heat as a circle of searing blue flames rises around you.  As you struggle to get up from the pile of bones that you are lying on, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a vicious grin on its face and a thick, pointy mustache on its chin.
+141:Continue^*143
 142:As you were resting, hundreds of skeletons formed a mass behind you.  The skeletons are so thickly packed that you cannot even see through them.  You realize that it would be impossible to fight your way back through them and survive.  You are trapped between them and the chasm.
 142:Continue^*141
+143:VARSPLIT:killedPriests,0^*144^*145
+143:null^*1
+144:The blue devil
+144:Content not added^*999
+145:The blue devil
+145:Content not added^*999
 190:You enter the door and see a long, narrow passageway with another wooden door on the end.  You see a servant walking through the passage carrying a large bowl of gruel.  "You aren't allowed over here," he says, "Go back to your tent."
 190:Do as the servant says and follow him back to the tents^*677^*Attack the servant^*675^*Run past the servant^*676
 191:You enter the door and see a long, narrow passageway with another wooden door on the end.  Near the end of the passageway, you see a small lever in the wall.
@@ -1299,7 +1305,7 @@ HEALING:First aid kit^*0.2
 656:RESTART^*You slide open one of the stone coffins, revealing a skeleton inside.  To your shock, the skeleton reaches out and grabs your throat with its strong, skeletal fingers.  You hear a terrible grinding noise as the other stone coffins slide open and skeletons climb out of them and approach you.  You manage to free your neck from the skeleton's grip, but you are soon surrounded by a horde of walking bones.  Thought you try to fight them off, there are too many of them and you are torn apart.  <br>Your life ends here.
 656:null^*1
 657:What weapon do you attack the skeletons with?
-657:DISPLAYIF:Greatsword,Your greatsword^*130^*DISLAYIF:Sword,Your sword^*130^*DISPLAYIF:Mace,Your mace^*131^*DISPLAYIF:Axe,Your axe^*132^*DISPLAYIF:Hammer,Your hammer^*133^*DISPLAYIF:Hidden dagger,Your hidden dagger^*134^*DISPLAYIF:Sacrificial Dagger,Your sacrificial dagger^*134^*DISPLAYIF:Knife,Your knife^*135^*DISPLAYIF:Surgical Knife,Your surgical knife^*135^*Your fists^*136
+657:DISPLAYIF:Greatsword,Your greatsword^*130^*DISPLAYIF:Sword,Your sword^*130^*DISPLAYIF:Mace,Your mace^*131^*DISPLAYIF:Axe,Your axe^*132^*DISPLAYIF:Hammer,Your hammer^*133^*DISPLAYIF:Hidden dagger,Your hidden dagger^*134^*DISPLAYIF:Sacrificial Dagger,Your sacrificial dagger^*134^*DISPLAYIF:Knife,Your knife^*135^*DISPLAYIF:Surgical Knife,Your surgical knife^*135^*Your fists^*136
 658:As the magically animated skeletons approach you, you run towards the stairs and barely manage to avoid the grasping, bony arms.  You sprint up the stairs, go out the door, and slam it behind you.  Fortunately, there is no sign that the skeletons followed you.  What do you do next?
 658:Examine the altar^*635^*Leave the cathedral^*636
 659:LOSEHEALTH:7^*You wave your torch at the skeletons, hoping to scare them off.  However, the torch doesn't have any effect, and a bony hand grabs your arm and almost wrenches it out of its socket, causing you to lose 7 health.  You barely manage to wrest yourself free and run up the stairs as the mass of magically animated skeletons grasps at you.  You sprint up the stairs, go out the door, and slam it behind you.  Fortunately, there is no sign that the skeletons followed you.  What do you do next?
@@ -1754,7 +1760,7 @@ HEALING:First aid kit^*0.2
 884:"What do you mean you don't know what I'm talking about?" he shouts.  He takes a closer look at you.  "Wait a minute," he says, "I don't recognize you.  And I know all of the servants in this castle."  He raises his hammer and advances towards you.  You see the apprentice take a fire poker from the furnace and brandish it.
 884:Fight the blacksmith and his apprentice^*856^*Run out of the room^*859
 885:"I'm going to make those lazy servants hurry up," he says, "I need that iron now!"  He sets his hammer down and walks over to the door.
-885:Attack the blacksmith now that his back is turned^*890^*DISPLAYIF:Crossbow^*Shoot the blacksmith in the back^*888^*Grab the blacksmith's hammer and attack him^*889^*Do nothing^*891
+885:Attack the blacksmith now that his back is turned^*890^*DISPLAYIF:Crossbow,Shoot the blacksmith in the back^*888^*Grab the blacksmith's hammer and attack him^*889^*Do nothing^*891
 886:"Payment?" he shouts, "I don't give servants payment!"  He advances towards you with his hammer.  "I don't recognize you," he growls, "and I don't think you work here."  His apprentice grabs a fire poker from the furnace and heads towards you as well.
 886:Fight the blacksmith and his apprentice^*856^*Run out of the room^*859
 887:As you attack the blacksmith, he raises his hammer to defend himself.  His apprentice takes a fire poker from the furnace and joins the fray.
