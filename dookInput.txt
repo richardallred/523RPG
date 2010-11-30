@@ -25,6 +25,7 @@ INITIALIZE:kitchenVisited,0
 INITIALIZE:apothecaryVisited,0
 INITIALIZE:movedRocks,0
 INITIALIZE:guardDisguise,0
+INITIALIZE:followedServant,0
 INITIALIZE:killedArchers,0
 INITIALIZE:killedColonel,0
 INITIALIZE:killedInterrogator,0
@@ -52,6 +53,7 @@ INITIALIZE:officerSearch,0
 INITIALIZE:officerTent,0
 INITIALIZE:officerChest,0
 INITIALIZE:timeOfDay,day
+INITIALIZE:slept,0
 INITWEAPON:Greatsword^*7^*50^*SPECIAL:Cut^*HIT:You swing your blade at the #enemy^*HIT:You lunge at the #enemy with your sword^*HIT:You quickly strike the #enemy^*MISS:You swing your sword, but miss.^*MISS:You fail to do any damage to the #enemy.^*MISS:You perform a mighty blow, but hit nothing but air.^*MISS:Your thrust is blocked by the #enemy.
 INITWEAPON:Axe^*6^*60^*SPECIAL:Cut^*HIT:You swing your axe at the #enemy^*HIT:You hack the #enemy with your axe^*HIT:You quickly strike the #enemy^*MISS:You swing your axe, but miss.^*MISS:You fail to do any damage to the #enemy.^*MISS:You swing and hit nothing but air.^*MISS:Your blow is blocked by the #enemy.
 INITWEAPON:Hammer^*5^*70^*SPECIAL:Blunt^*HIT:You bring your hammer downwards in a crushing blow^*HIT:You swing your hammer in a wide arc^*HIT:You hit the #enemy with a stunning blow^*MISS:Your hammer is blocked by the #enemy.^*MISS:You swing your hammer, but miss.^*MISS:You fail to do any damage to the #enemy.
@@ -360,6 +362,18 @@ HEALING:First aid kit^*0.2
 141:Content not added^*999
 142:As you were resting, hundreds of skeletons formed a mass behind you.  The skeletons are so thickly packed that you cannot even see through them.  You realize that it would be impossible to fight your way back through them and survive.  You are trapped between them and the chasm.
 142:Continue^*141
+190:You enter the door and see a long, narrow passageway with another wooden door on the end.  You see a servant walking through the passage carrying a large bowl of gruel.  "You aren't allowed over here," he says, "Go back to your tent."
+190:Do as the servant says and follow him back to the tents^*677^*Attack the servant^*675^*Run past the servant^*676
+191:You enter the door and see a long, narrow passageway with another wooden door on the end.  Near the end of the passageway, you see a small lever in the wall.
+191:Walk through the passageway and pull the lever^*793^*Walk through the passageway and go through the door^*195
+192:The surprised servant doesn't resist as you swiftly strike him down.  You enter the door that he came through and see a long, narrow passageway with another wooden door at the end.  You hurry through the passageway towards the door.  To your left, you can see a small lever in the wall.
+192:Pull the lever^*793^*Leave the passageway^*195
+193:VARSET:killedStairwayGuards,1^*As you slay the guards, you can see the servant you ran past earlier dodge past you and run down the hallway, screaming for help.  You quickly look around and see that you are in a hallway corner.  In front of you, you see many entrances to a large great hall.  Next to you is set of downward leading stairs and and you dash down the stairs, hoping to find a place to hide before the group of guards the servant brings finds you.  As you are running down the stairs, you hear shouts behind you.  You emerge in a narrow hallway at the bottom of the stairs.
+193:Run to the left^*1213^*Run to the right^*1214
+194:COMBAT:You are fighting two guards.  They are both armed with swords,NAME:first guard,WEAPON:Sword,STRENGTH:15,DEFENSE:2,ACCURACY:70,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:15,DEFENSE2:2,ACCURARCY2:70,HEALTH2:40,HIT:The first guard slashes you with his blade,HIT2:The second guard slashes you with his blade^*You have killed the guards.
+194:Continue^*193
+195:VARSET:passagewayLockPicked,1^*Outside the passageway door, you see a large hallway.  To the left, you can see stairway leading downwards with two bored looking guards standing in front of it.  In front of you, you can see several entrances to a large great hall.
+195:Go down the stairs^*795^*Go to the great hall^*795^*Walk down the hallway in front of you^*795^*Walk to the hallway on the right of you^*795
 196:VARSET:killedServant,1^*Your assassin's garb allows you to sneak up behind the servant and take him out quickly and silently.  You search his body, but he is not carrying anything useful.  You look around the armory and see an assortment of swords, maces, and sets of uniforms for the guards.
 196:Take the weapons^*290^*DISPLAYIFNOT:Guard Disguise,Take a guard uniform^*291^*Leave the armory^*1049
 197:RESTART:^*The servant hears you behind him and turns to look at you.  Upon seeing you, he shouts that there is an intruder in the armory.  You hear the sound of running feet, and five guards burst into the armory with their weapons drawn.  You try to fight them, the guards heavily outnumber you and you are slain.
@@ -508,9 +522,9 @@ HEALING:First aid kit^*0.2
 267:GAINGOLD:5^*You search the guard's body and find a pouch with 5 gold coins, which you take.  The guard has a sword and mace as weapons, but you already have both of those.  The guard is almost your size, so his uniform would probably fit you. 
 267:Exchange your current clothes for the guard's uniform^*268^*Leave the uniform and finish searching the storeroom instead^*265
 268:VARSPLIT:unwashed,1^*269^*270
-269:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise,Soldier's Uniform^*INVADD:Guard Disguise^*You are happy to discard your current outfit, which is filthy and has been covered in muck from swimming in the moat.  You try on the guard's armor and it fits you quite well.
+269:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise,Soldier's Uniform,Platemail Armor^*INVADD:Guard Disguise^*You are happy to discard your current outfit, which is filthy and has been covered in muck from swimming in the moat.  You try on the guard's armor and it fits you quite well.
 269:Finish searching the storeroom^*265^*Leave the room^*259
-270:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise,Soldier's Uniform^*INVADD:Guard Disguise^*You discard your current outfit and try on the guard's armor.  It fits you quite well and you decide to keep it.
+270:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise,Soldier's Uniform,Platemail Armor^*INVADD:Guard Disguise^*You discard your current outfit and try on the guard's armor.  It fits you quite well and you decide to keep it.
 270:Finish searching the storeroom^*265^*Leave the room^*259
 271:VARSPLIT:unwashed,1^*272^*273
 271:null^*1
@@ -1211,13 +1225,13 @@ HEALING:First aid kit^*0.2
 619:VARSET:audience,1^*LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
 619:Say that the message is for the King's ear only^*616^*Say that the Carolinians are plotting to attack the castle^*668^*Say that the peasants in the province of Hurdam are revolting^*669^*Say that several of the King's generals are plotting to overthrow him^*671^*Say that you have uncovered a spy in the castle^*672
 620:Go towards the front entrance
-620:Content not added^*999
+620:Content not added^*999^*Go around to the side wall^*621
 621:You walk towards the side wall of the keep so you can examine it more closely.  The door is plain and wooden, but it has a lock on it that prevents you from opening it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
 621:Go back around to the front entrance^*620^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows^*625^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
 622:Go towards the front entrance (morning)
-622:Content not added^*999
+622:Content not added^*999^*Go around to the side wall^*623
 623:You walk towards the side wall of the keep so you can examine it more closely.  The door on the wall is plain and wooden, and you can see an open lock on it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
-623:Go back around to the front entrance^*622^*Enter the wooden door^*662^*Wait for one of the servants to come out of the door^*663^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
+623:Go back around to the front entrance^*622^*Enter the wooden door^*662^*DISPLAYIFVAR:followedServant,0,Wait for one of the servants to come out of the door^*663^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
 624:You pick the lock on the door and enter the keep.  Inside, you see a small, narrow passageway with another wooden door at the end.  Near the end of the passageway, you see a small lever.
 624:Pull the lever^*793^*Leave the passageway^*794
 625:You look at the cracks in the wall and the uneven stone, and you work out a path that you could climb to reach the stained glass window.  However, the climb would be quite difficult and you probably wouldn't be able to make it while carrying any armor, including your soldier's uniform.
@@ -1294,11 +1308,11 @@ HEALING:First aid kit^*0.2
 660:null^*1
 661:RESTART:^*You dart through the skeleton horde and run deeper into the catacombs, but you soon run into a thick mass of more than fourty skeletons.  It seems that the entire catacombs has come alive and you are soon unable to escape the surge of undead.  The skeletons rip you apart.
 661:null^*1
-662:You enter the door and see a long, narrow passageway with another wooden door on the end.  You see a servant walking through the passage carrying a large bowl of gruel.  "You aren't allowed over here," he says, "Go back to your tent."
-662:Do as the servant says and follow him back to the tents^*677^*Attack the servant^*675^*Run past the servant^*676
+662:VARSPLIT:followedServant,0^*190^*191
+662:null^*1
 663:You wait by the door until you see a servant come out carrying a large bowl of gruel.
-663:Attack him^*^*Follow him towards the tents^*
-664:VARSET:killedStairwayGuards,1^*You are afraid that someone may have heard the noise of the fight and call more guards to attack you.  You quickly run down the stairs, hoping to escape detection.  As you are running down the stairs, you hear shouts behind you.  You emerge in a narrow hallway at the bottom of the stairs.
+663:Attack him^*192^*Follow him towards the tents^*677
+664:VARSET:killedStairwayGuards,1^*You are afraid that someone may have heard the noise of the fight and call more guards to attack you.  You quickly run down the stairs, hoping to escape detection.  As you are running down the stairs, you hear shouts behind you, followed by footsteps running down the steps.  You emerge in a narrow hallway at the bottom of the stairs.
 664:DISPLAYIFVAR:armoryVisited,1,Run to the left towards the armory^*1213^*DISPLAYIFVAR:armoryVisited,0,Run to the left^*1213^*DISPLAYIFVAR:apothecaryVisited,1,Run to the right towards the apothecary^*1214^*DISPLAYIFVAR:apothecaryVisited,0,Run to the right^*1214
 665:After a while, you hear the bodies being carried away, followed by a period of silence.  You quickly pick the lock on the passageway door again and leave through it.
 665:Continue^*1196
@@ -1320,7 +1334,11 @@ HEALING:First aid kit^*0.2
 673:Continue^*674
 674:The guards escort you out of the throne room and leave you in the great hall.
 674:Continue^*1197
-677:The servant watches you suspiciously as you follow him back towards the group of tents.
+675:The surprised servant doesn't resist as you swiftly strike him down.  You hurry through the rest of the passageway towards the door at the end.  To your left, you can see a small lever in the wall.
+675:Pull the lever^*793^*Leave the passageway^*195
+676:VARSET:passagewayLockPicked,1^*You run past the surprised servant towards the other end of the passageway.  He runs after you and shouts at you to stop.  You rush out the passageway door and run into two guards, who draw swords to attack you.
+676:Continue^*194
+677:VARSET:followedServant,1^*The servant watches you suspiciously as you follow him back towards the group of tents.
 677:Keep following him^*678^*Attack him before you reach the tents^*679
 678:You follow the servant back to the tents, where most of the soldiers are sitting and eating.  Not wanting you look out of place, you look for a group of soldiers to eat breakfast with.
 678:Continue^*717
@@ -1330,7 +1348,7 @@ HEALING:First aid kit^*0.2
 680:Go back and enter the small door^*681
 681:You enter the door and see a long, narrow passageway with another wooden door on the end.  Near the end of the passageway, you see a small lever in the wall.
 681:Pull the lever^*793^*Go through the door^*682
-682:VARSET:passagewayLockPicked,1^*You leave the passageway through the door at the end and you emerge in a large hallway.  To the left, you can see stairway leading downwards with two bored looking guards standing in front of it.  In front of you, you can see several entrances to what looks like a great hall.  You walk forwards into the great hall and look around.
+682:VARSET:passagewayLockPicked,1^*You leave the passageway through the door at the end and you emerge in a large hallway.  To the left, you can see stairway leading downwards with two bored looking guards standing in front of it.  In front of you, you can see several entrances to a large a great hall.  You walk forwards into the great hall and look around.
 682:Continue^*1197
 683:RESTART:^*You make up a story about a plot by the servants to poison the King.  "I have reason to trust my servants," say the King, "because they know what I would do to their families for attempting such a harebrained, poorly conceived plot.  I have no reason, however, to trust anything you say."  The King waves his finger and you are incinerated by a deadly burst of magic.  <br>Your life ends here.
 683:null^*1
@@ -1544,7 +1562,7 @@ HEALING:First aid kit^*0.2
 788:"I have nothing to say to you, thief," says the doctor.
 788:Attack the doctor^*770^*Leave the infirmary^*765
 789:Front entrance (day)
-789:Content not added^*999
+789:Content not added^*999^*Go around to the side wall^*790
 790:You walk towards the side wall of the keep so you can examine it more closely.  The door is plain and wooden, but it has a lock on it that prevents you from opening it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
 790:Go back around to the front entrance^*789^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
 791:RESTART:^*You throw your grappling hook through one of the stained glass windows, shattering it with a loud crash.  As you are climbing up the rope, you see several guards running around from the front of the castle.  They easily pick you off with crossbow bolts.
@@ -1553,7 +1571,7 @@ HEALING:First aid kit^*0.2
 792:null^*1
 793:RESTART:^*You pull the lever, and you hear a grinding sound as some sort of mechanism is activated.  Suddenly, the top of the passageway caves in and you hear a thundering crash as a mass of stone falls to the ground, permanently sealing off the passageway.  You cough violently as you breathe in dust from the falling rock.  You figure that you must have inadvertantly activated one of the castle defenses that was put in place to protect it in case of a siege.  Suddenly, the door at the end of the passageway opens and you see a group of guards that have come to investigate the noise.  They don't take long to figure out that you are an intruder and they cut you down with their swords.
 793:null^*1
-794:VARSET:passagewayLockPicked,1^*The door at the end of the passageway is locked as well, but it doesn't take you long to open it with one of your lockpicks.  You emerge in a large hallway.  To the left, you can see stairway leading downwards with two bored looking guards standing in front of it.  In front of you, you can see several entrances to what looks like a great hall.
+794:VARSET:passagewayLockPicked,1^*The door at the end of the passageway is locked as well, but it doesn't take you long to open it with one of your lockpicks.  Outside the passageway door, you see a large hallway.  To the left, you can see stairway leading downwards with two bored looking guards standing in front of it.  In front of you, you can see several entrances to a large great hall.
 794:Go down the stairs^*795^*Go to the great hall^*795^*Walk down the hallway in front of you^*795^*Walk to the hallway on the right of you^*795
 795:VARSET:killedStairwayGuards,1^*As soon as you leave the passageway, one of the guards standing in front of the stairway accosts you.  "What are you doing coming through the servant's entrance?" he demands, "You don't look like a servant to me."  The two guards draw swords and attack you.
 795:Continue^*796
@@ -1939,7 +1957,7 @@ HEALING:First aid kit^*0.2
 985:null^*1
 986:As you take one of the sets of guard armor off of the rack, you hear the servant's voice from behind you.  "What are you doing?  Those uniforms are only for the castle guards!"
 986:Put the armor back on the rack^*988^*Attack the servant^*297^*Drop the armor and run out of the room^*299
-987:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise,Soldier's Uniform^*INVADD:Guard Disguise^*You exchange your current set of clothing for a guard's uniform.
+987:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise,Soldier's Uniform,Platemail Armor^*INVADD:Guard Disguise^*You exchange your current set of clothing for a guard's uniform.
 987:Take the weapons in the armory^*290^*Leave the armory^*1049
 988:RESTART:^*You return the uniform to the rack, but it doesn't stop the servant from crying out that there is an intruder in the armory.  You hear the sound of running feet, and five guards burst into the armory with their weapons drawn.  You try to fight them, the guards heavily outnumber you and you are slain.
 988:null^*1
@@ -1949,7 +1967,7 @@ HEALING:First aid kit^*0.2
 990:Take the weapons^*290^*DISPLAYIFNOT:Guard Disguise,Take a guard uniform^*291^*Leave the armory^*1049
 991:At the bottom of the stairs, you emerge in a narrow, torchlit hallway.  To the right, the hallway turns around a corner.  To the left, you can see an open doorway.
 991:Go right^*1001^*Go left^*1002
-992:The guard leads you up the stairway and into a large hallway corner.  There are two guards standing on either side of the stairway, but they ignore you.  In the middle of the room, you can see many entrances to what looks like a great hall.  The guard leads you into the great hall.  He tells you not to go into the basement again before leaving and walking back down the stairs.
+992:The guard leads you up the stairway and into a large hallway corner.  There are two guards standing on either side of the stairway, but they ignore you.  In the middle of the room, you can see many entrances to a large great hall.  The guard leads you into the great hall.  He tells you not to go into the basement again before leaving and walking back down the stairs.
 992:Continue^*1197
 993:You follow the guard partway up the staircase, then grab him and throw him down the stairs in a surprise attack.  The guard lets out a shout as he tumbles down the stairs.  When he hits the bottom, he is clearly dazed, but he draws his sword and runs to attack you.
 993:Continue^*994
@@ -2049,7 +2067,7 @@ HEALING:First aid kit^*0.2
 1040:Exchange your current clothes for the guard's armor^*1042^*Search through some of the sacks^*1041^*Leave the storeroom^*259
 1041:You search through some of the sacks, but you do not find anything useful.
 1041:DISPLAYIFNOT:Guard Disguise,Exchange your current clothes for the guard's armor^*1043^*Leave the storeroom^*259
-1042:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise,Soldier's Uniform^*INVADD:Guard Disguise^*You try on the guard's armor and it fits you quite well.  With the guard's uniform as a disguise, you hope that you can pass through the castle without any more trouble.
+1042:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise,Soldier's Uniform,Platemail Armor^*INVADD:Guard Disguise^*You try on the guard's armor and it fits you quite well.  With the guard's uniform as a disguise, you hope that you can pass through the castle without any more trouble.
 1042:Search through some of the sacks^*1041^*Leave the storeroom^*259
 1043:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb^*INVADD:Mace,Guard Disguise^*You try on the guard's armor and it fits you quite well.  With the guard's uniform as a disguise, you hope that you can pass through the castle without any more trouble.
 1043:Leave the storeroom^*259
@@ -2226,7 +2244,7 @@ HEALING:First aid kit^*0.2
 1152:VARSPLIT:killedInterrogator,1^*610^*611
 1152:null^*1
 1153:You try to talk to the prisoner, but he ignores your greeting.  From the glassy look in his eyes, you think that he might be insane.
-1153:Tell him that you are going to free him^*1155^*Ask him what his name is^*1155^*Tell him that you are going to hurt him if he doesn't speak to you^*1155^*Tell him that you are going to give him some food^*1155^*Tell him that you are on a mission from Carolinia^*1158^*Ask him if there are any other prisoners in the dungeon^*1155^*Tell him that King K has pardoned his crime^*1155^*Ask him where King K is^*1155
+1153:Tell him that you are going to free him^*1155^*Ask him what his name is^*1155^*Tell him that you are going to hurt him if he doesn't speak to you^*1155^*Tell him that you were another prisoner but you escaped^*1155^*Tell him that you are going to give him some food^*1155^*Tell him that you are on a mission from Carolinia^*1158^*Ask him if there are any other prisoners in the dungeon^*1155^*Tell him that King K has pardoned his crime^*1155^*Ask him where King K is^*1155
 1154:VARSET:freedPrisoner,1^*One of the keys on the ring fits in the lock, and you are able to unlock the cell.  As the door swings open, the prisoner slowly looks up at you.  You tell him that he is free.  The prisoner just stares at you vacantly and doesn't move.
 1154:Say something to the prisoner^*1159^*Kill the prisoner^*1162^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
 1155:The prisoner sits stock still and seems to ignore everything you say.
@@ -2234,11 +2252,11 @@ HEALING:First aid kit^*0.2
 1156:You take some of the food in your pack and slide it between the bars of the cell door.  The prisoner ignores it.
 1156:Talk to the prisoner^*1153^*DISPLAYIF:Key Ring,Try to unlock the cell with your key ring^*1154^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
 1157:What do you say to the prisoner?
-1157:Tell him that you are going to free him^*1155^*Ask him what his name is^*1155^*Tell him that you are going to hurt him if he doesn't speak to you^*1155^*Tell him that you are going to give him some food^*1155^*Tell him that you are on a mission from Carolinia^*1158^*Ask him if there are any other prisoners in the dungeon^*1155^*Tell him that King K has pardoned his crime^*1155^*Ask him where King K is^*1155
+1157:Tell him that you are going to free him^*1155^*Ask him what his name is^*1155^*Tell him that you are going to hurt him if he doesn't speak to you^*1155^*Tell him that you were another prisoner but you escaped^*1155^*Tell him that you are going to give him some food^*1155^*Tell him that you are on a mission from Carolinia^*1158^*Ask him if there are any other prisoners in the dungeon^*1155^*Tell him that King K has pardoned his crime^*1155^*Ask him where King K is^*1155
 1158:When you mention that you are from Carolina, the prisoner's eyes seem to light up and he suddenly starts babbling.  "Carolinia... You've got to warn Carolinia... The King's workers were expanding these dungeons... Found a source of terrible magic... There are artifacts down there... King K will be unstopabble."  He suddenly gets up and starts pounding on the bars of the cell door.  "I'll show you where it is!" he shouts, "You've got to get me out of here."  After a moment, he collapses to the ground.
 1158:DISPLAYIF:Key Ring,Try to unlock the cell with your key ring^*1167^*Tell him that you'll find a way to get him out of there^*1168^*Ask him what he meant by all his babbling^*1171
 1159:What do you say to the prisoner?
-1159:Tell him that he should get out of here^*1160^*Offer to give him a weapon^*1160^*Ask him what his name is^*1160^*Tell him that you are going to hurt him if he doesn't speak to you^*1160^*Tell him that you are going to give him some food^*1160^*Tell him that you are on a mission from Carolinia^*1161^*Ask him if there are any other prisoners in the dungeon^*1160^*Tell him that King K has pardoned his crime^*1160^*Ask him where King K is^*1160
+1159:Tell him that he should get out of here^*1160^*Offer to give him a weapon^*1160^*Ask him what his name is^*1160^*Tell him that you are going to hurt him if he doesn't speak to you^*1160^*Tell him that you were another prisoner but you escaped^*1160^*Tell him that you are going to give him some food^*1160^*Tell him that you are on a mission from Carolinia^*1161^*Ask him if there are any other prisoners in the dungeon^*1160^*Tell him that King K has pardoned his crime^*1160^*Ask him where King K is^*1160
 1160:The prisoner sits stock still and seems to ignore everything you say.
 1160:Say something else to the prisoner^*1159^*Kill the prisoner^*1162^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
 1161:VARSET:freedPrisoner,4^*When you mention that you are from Carolina, the prisoner's eyes seem to light up and he suddenly starts babbling.  "Carolinia... You've got to warn Carolinia... The King's workers were expanding these dungeons... Found a source of terrible magic... There are artifacts down there... King K will be unstopabble."  He suddenly stands up.  "I'll show you where it is!" he shouts.  He steps out of the cell and points a shaky finger to the pile of rocks blocking the end of the dungeon corridor.  "There... The workers caved it in so noone could go back... But you have to go in there and find more artifacts."  You walk over to the pile of rocks and try to move one of them, but the rocks are far too heavy.  The prisoner walks up to you and whispers in your ear.  "Make an explosive," he tells you, "Blue, brown, and orange."  He starts laughing hysterically.  You try to ask him for an explanation, but everything else he says is random nonsense.
@@ -2313,23 +2331,23 @@ HEALING:First aid kit^*0.2
 1195:null^*1
 1196:You emerge from the passageway, bracing yourself for a fight, but there is nobody out there.  You walk forwards into the great hall and look around.
 1196:Continue^*1197
-1197:The hall is gigantic and you can see insignias, pieces of armor, and other decorations lining the walls.  In the middle, there is a huge table set up, and you can see a few servants cleaning it.  The great hall has exits into a large hallway on all sides, from which you can see most of the rooms on the floor.  You can see an open set of large wooden doors that leads to a cathedral, an archway that leads into the throne room, a door with a sword inscribed on it, a barracks for the guards, and two sets of stairs that lead up and down.
-1197:Go to the cathedral^*1199^*Go to the throne room^*1198^*Go to the inscribed door^*1265^*Go to the guard barracks^*1266^*Go to the stairs leading down^*1236^*Go to the stairs leading up^*1267
-1198:You walk down the hallway until you reach the archway leading to the throne room.  Inside the busy throne room, you can see King K's court receiving a group of ambassadors.
-1198:Enter the throne room^*1281^*Go to the great hall^*1197^*Walk through the hallway to the inscribed door^*1265^*Walk through the hallway to the downward stairs^*1236
+1197:VARSPLIT:timeOfDay,night^*1292^*1293
+1197:null^*1
+1198:VARSPLIT:timeOfDay,night^*1310^*1311
+1198:null^*1
 1199:You walk down the hallway until you reach two large wooden doors.  The doors are open and you can see that they lead to a cathedral.
 1199:Enter the cathedral^*1268^*Go to the great hall^*1197^*Walk through the hallway to the downward stairs^*1236^*Walk around the hallway corner to the upward stairs^*1279
 1200:ANYSPLIT:Servant Disguise,Guard Disguise^*1202^*1203
 1200:null^*1
 1201:You walk up the stairs and find that there is no sign of the stairway guards that you fought earlier.  You can see the great hall in the center of the room, as well as a small wooden door on your immediate right.  You walk up to the great hall and look around.
 1201:Continue^*1197
-1202:You walk up the stairs and emerge in a large hallway corner.  There are two guards standing on either side of the stairway, but they ignore you.  In the middle of the room, you can see many entrances to what looks like a great hall.  You walk into the great hall and look around.
+1202:You walk up the stairs and emerge in a large hallway corner.  There are two guards standing on either side of the stairway, but they ignore you.  In the middle of the room, you can see many entrances to a large great hall.  You walk into the great hall and look around.
 1202:Continue^*1197
 1203:INVSPLIT:Assassin Garb^*1204^*1205
 1203:null^*1
-1204:You walk up the stairs and emerge in a large hallway corner.  To your immediate right, you can see a small wooden door.  In the middle of the room, you can see many entrances to what looks like a great hall.  There are two guards standing on either side of the stairway, and one of them sees you coming up the stairs.  "How did an assassin get down here?" he gasps.  The guards draw their swords and attack you.
+1204:You walk up the stairs and emerge in a large hallway corner.  To your immediate right, you can see a small wooden door.  In the middle of the room, you can see many entrances to a large a great hall.  There are two guards standing on either side of the stairway, and one of them sees you coming up the stairs.  "How did an assassin get down here?" he gasps.  The guards draw their swords and attack you.
 1204:Continue^*1208
-1205:You walk up the stairs and emerge in a large hallway corner.  To your immediate right, you can see a small wooden door.  In the middle of the room, you can see many entrances to what looks like a great hall.  There are two guards standing on either side of the stairway, and one of them sees you coming up the stairs.  "How did you get down there?" he demands, "I don't remember letting you in."
+1205:You walk up the stairs and emerge in a large hallway corner.  To your immediate right, you can see a small wooden door.  In the middle of the room, you can see many entrances to a large great hall.  There are two guards standing on either side of the stairway, and one of them sees you coming up the stairs.  "How did you get down there?" he demands, "I don't remember letting you in."
 1205:Attack the guards^*1208^*Tell them that they must have forgotten letting you in^*1228^*Tell him that someone else let you in a few hours ago^*1227^*DISPLAYIF:Healing Elixir,Say that you just went down to get some healing elixir^*1230^*DISPLAYIF:Platemail Armor,Say that you just went down to get a suit of platemail armor^*1229^*DISPLAYIFVAR:kitchenVisited,1,Say that you just went down to get some food from the kitchen^*1232^*DISPLAYIFVAR:armoryVisited,1,Say that you just went down to get some weapons from the armory^*1233
 1206:ANYSPLIT:Servant Disguise,Guard Disguise^*991^*1234
 1206:null^*1
@@ -2349,7 +2367,7 @@ HEALING:First aid kit^*0.2
 1213:Try to hide in the armory^*1215^*Keep running past the armory^*1216
 1214:VARSET:apothecaryVisited,1^*You run to the right until you can see an open door leading to an apothecary full of rows of potions.
 1214:Try to hide in the apothecary^*1218^*Keep running past the apothecary^*1219
-1215:RESTART:^*You enter the armory and look around for a place to hide, but all you can see are rows of weapons and armor.  You look down and see that there is blood on your clothing, so you take a guard uniform from the rack and try to put it on.  While you are trying to put on the armor, several guards enter the armory.  They see you and waste no time unloading several crossbow bolts into you.  <br>Your life ends here.
+1215:RESTART:^*You enter the armory and look around for a place to hide, but all you can see are rows of weapons and armor.  You look down and see that there is blood on your clothing, so you take a guard uniform from the rack and try to put it on in a desperate attempt to disguise yourself.  While you are trying to put on the armor, several guards enter the armory.  They see you and waste no time unloading several crossbow bolts into you.  <br>Your life ends here.
 1215:null^*1
 1216:You run past the armory and turn around a hallway corner.  The next room you see is full of guards and they call at you to halt.
 1216:Stop running^*1217^*Keep running past the guards^*1016
@@ -2447,20 +2465,20 @@ HEALING:First aid kit^*0.2
 1262:Give them the cross^*1250^*Refuse to give them the cross^*1251^*Attack them^*1252^*Threaten to report them to the guards^*1249
 1263:VARSET:killedPriests,2^*As you enter the cathedral, you are surprised to see that the bodies of the priests that attacked you have vanished.
 1263:Examine the altar^*635^*Go down the to catacombs^*652^*Leave the cathedral^*636
-1264:You enter a large cathedral.  There are stained glass windows high above you to your left, and you can see rows of wooden chairs that are laid out facing a large, gilded altar.  There is a small door at the back of the room.
-1264:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
+1264:VARSPLIT:timeOfDay,night^*1294^*1295
+1264:null^*1
 1265:You walk down the hallway until you can see a door with a sword inscribed on it.  The rest of the hallway is deserted.
 1265:Open the door^*1269^*Go to the great hall^*1197^*Walk around the hallway corner to the guard barracks^*1266^*Walk down the hallway to the throne room^*1198
 1266:You walk down the hallway until you see a closed door.  Above the door, you see an inscription that tells you that the door leads to a guard's barracks.  To the right of the barracks, you can see a spiral staircase leading up.
-1266:Enter the barracks^*1270^*Walk down the hallway to the upward stairs^*1267^*Walk around the hallway corner to the inscribed door^*1265
+1266:Enter the barracks^*1270^*Go to the great hall^*1197^*Walk down the hallway to the upward stairs^*1267^*Walk around the hallway corner to the inscribed door^*1265
 1267:INVSPLIT:Assassin Garb^*1279^*1280
 1267:null^*1
 1268:VARSPLIT:killedPriests,1^*1263^*1264
 1268:null^*1
-1269:You enter the inscribed door and see a room filled with maps and pieces of parchment.
-1269:Content not added^*999
-1270:Enter barracks
-1270:Content not added^*999
+1269:ANYSPLIT:Military Plans,Invasion Plans^*1317^*1318
+1269:null^*1
+1270:INVSPLIT:timeOfDay,night^*1296^*1297
+1270:null^*1
 1271:ANYSPLIT:Servant Disguise,Guard Disguise^*1274^*1275
 1271:null^*1
 1272:VARSET:guardDisguise,1^*INVSPLIT:Hammer^*875^*876
@@ -2475,7 +2493,7 @@ HEALING:First aid kit^*0.2
 1276:DISPLAYIFNOT:Sword,Take one of the swords^*965^*DISPLAYIFNOT:Axe,Take one of the axes^*966^*DISPLAYIFNOT:Chainmail Armor,Take a suit of chainmail armor^*967^*DISPLAYIFNOT:Pliers,Take one of the pliers^*970^*Try to open the safe^*971^*Search through the pile of scrap metal^*969^*Leave the forge^*1038
 1277:INVREMOVE:Servant Disguise,Mercenary Disguise,Merchant Disguise,Assassin Garb,Chainmail Armor^*INVADD:Platemail Armor^*You put on a suit of platemail armor.  It is extremely heavy and cumbersome, but it provides you with excellent protection.
 1277:DISPLAYIFNOT:Sword,Take one of the swords^*965^*DISPLAYIFNOT:Axe,Take one of the axes^*966^*DISPLAYIFNOT:Chainmail Armor,Take a suit of chainmail armor^*967^*DISPLAYIFNOT:Pliers,Take one of the pliers^*970^*Try to open the safe^*971^*Search through the pile of scrap metal^*969^*Leave the forge^*1038
-1278:RESTART:^*You attack the stairway guards, but the noise from the fight brings several guards running out of the barracks.  You are soon overwhelmed by the sheer number of guards and killed.
+1278:RESTART:^*You attack the stairway guards, but the noise from the fight brings several more guards running out of the barracks.  You are soon overwhelmed by the sheer number of guards and killed.
 1278:null^*1
 1279:You walk towards the staircase that spirals upwards.  To the left of the staircase, you can see the guard barracks.  You can see two guards on either side of the staircase.  The guards stare at your assassin's clothing suspiciously.
 1279:Go up the stairs^*1271^*Go to the great hall^*1197^*Walk around the hallway corner to the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
@@ -2495,8 +2513,70 @@ HEALING:First aid kit^*0.2
 1286:Yell to the prisoner to move out of the way^*1287^*Throw the potion anyway^*1175
 1287:You yell to the prisoner and he backs up several feet.  You figure that he is probably safe from any explosion that you would cause.
 1287:Continue^*1175
-1288:Try to find a way to attack
-1288:Content not added^*999
+1288:INVSPLIT:Crossbow^*1289^*1290
+1288:null^*1
+1289:You look around the room, trying to find a way to attack the King by surprise.  You see several armed guards placed in key locations throughout the room, who would see you and attack you if you tried anything.  You decide that the only approach that would not be immediately suicidal is to fire a crossbow bolt at the King, though the chances of success are slim. 
+1289:Attack the King with your crossbow^*1291^*DISPLAYIFVAR:throneVisited,0^*Listen to the ambassadors^*1285^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1290:You look around the room, trying to find a way to attack the King by surprise.  You see several armed guards placed in key locations throughout the room, who would see you and attack you if you tried anything.  You are unable to find a way to attack the King that would not be immediately suicidal.  You are going to have to try to get the King alone if you want to try anything.
+1290:DISPLAYIFVAR:throneVisited,0^*Listen to the ambassadors^*1285^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1291:RESTART:^*You pull out your crossbow to attack the King, but one of the members of the court sees you and leaps at you, knocking the crossbow out of your hands.  You are soon tackled by several of the throne room guards, who drag you out of the room before executing you.
+1291:null^*1
+1292:The hall is gigantic and you can see insignias, pieces of armor, and other decorations lining the walls.  Since it is currently in the middle of the night, the great hall is deserted except for a huge table set up in the middle.  The great hall has exits into a large hallway on all sides, from which you can see most of the rooms on the floor.  You can see an open set of large wooden doors that leads to a cathedral, an archway that leads into the throne room, a door with a sword inscribed on it, a barracks for the guards, and two sets of stairs that lead up and down.
+1292:Go to the cathedral^*1199^*Go to the throne room^*1198^*Go to the inscribed door^*1265^*Go to the guard barracks^*1266^*Go to the stairs leading down^*1236^*Go to the stairs leading up^*1267
+1293:The hall is gigantic and you can see insignias, pieces of armor, and other decorations lining the walls.  In the middle, there is a huge table set up, and you can see a few servants cleaning it.  The great hall has exits into a large hallway on all sides, from which you can see most of the rooms on the floor.  You can see an open set of large wooden doors that leads to a cathedral, an archway that leads into the throne room, a door with a sword inscribed on it, a barracks for the guards, and two sets of stairs that lead up and down.
+1293:Go to the cathedral^*1199^*Go to the throne room^*1198^*Go to the inscribed door^*1265^*Go to the guard barracks^*1266^*Go to the stairs leading down^*1236^*Go to the stairs leading up^*1267
+1294:You enter a large cathedral.  There are stained glass windows high above you to your left, and you can see rows of wooden chairs that are laid out facing a large, gilded altar.  Since most of the occupants of the castle are asleep right now, it is unsurprising that the cathedral is deserted.  There is a small door at the back of the room.
+1294:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
+1295:You enter a large cathedral.  There are stained glass windows high above you to your left, and you can see rows of wooden chairs that are laid out facing a large, gilded altar.  There is a small door at the back of the room.  The cathedral is currently deserted.
+1295:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
+1296:You enter the door to the guards' barracks.  Inside, you see a large array of straw beds set up, on which there are many sleeping guards.  Next to the beds, you see many sacks full of the guards' possessions.
+1296:Search through the sacks^*1302^*DISPLAYIFVAR:slept,0,Go to sleep on one of the beds^*1304^*Go deeper into the barracks^*1305^*Leave the barracks^*1300
+1297:INVSPLIT:Guard Disguise^*1298^*1299
+1297:null^*1
+1298:You enter the door to the guards' barracks.  Inside, you see a large array of straw beds set up and several guards milling around the room.  The guards do not pay you any attention.  You see several cloth sacks near the beds holding some of the guards' possessions, but you don't dare search any of them with all the guards walking around.
+1298:DISPLAYIFVAR:slept,0,Take a nap on one of the beds^*1301^*Walk deeper into the barracks^*1303^*Leave the barracks^*1300
+1299:You enter the door to the guards' barracks.  Inside, you see a large array of straw beds set up and several guards milling around the room.  "This is the guards' barracks," one of them says to you, "You are not permitted to be in here."  There are too many guards to fight and you don't want to cause any trouble, so you leave the room.
+1299:Continue^*1300
+1300:You exit the barracks and return to the hallway.  What do you do next?
+1300:Go to the great hall^*1197^*Walk down the hallway to the upward stairs^*1267^*Walk around the hallway corner to the inscribed door^*1265
+1301:VARSET:slept,1^*VARSET:timeOfDay,night^*GAINHEALTH:5^*You decide to take a short nap to rest your body from the day's trials.  You find a straw bed that doesn't have a sack of possessions next to it and fall asleep on it.  You are more exhausted than you had thought and you fall into a deep sleep that lasts for many hours.  The refreshing sleep causes you to recover 5 health.  By the time you finally wake up, you see that it is now the middle of the night and many of the beds around you are occupied by sleeping guards.
+1301:Leave the barracks^*1300^*Search through the sacks^*1302^*DISPLAYIFVAR:slept,0,Go to sleep on one of the beds^*1304^*Go deeper into the barracks^*1305
+1302:RESTART:^*As you are rummaging through one of the sacks, you accidently wake up one of the guards.  He sees you going through his stuff and cries out in alarm.  Several of the guards in the room wake up and grab you.  They soon find out that you are an intruder to the castle and you are executed.
+1302:null^*1
+1303:Deeper into the barracks, you can see several tables set up with food, as well as several sets of guard uniforms lying around.  You don't need any of those, so you go back to the main room of the barracks.
+1303:DISPLAYIFVAR:slept,0,Take a nap on one of the beds^*1301^*Leave the barracks^*1300
+1304:VARSPLIT:Guard Disguise^*1307^*1308
+1304:null^*1
+1305:Deeper into the barracks, you can see several tables set up with food, as well as several sets of guard uniforms lying around.
+1305:DISPLAYIFNOT:Guard Disguise,Exhange your current clothing for one of the guard uniforms^*1306^*Search through the sacks^*1302^*DISPLAYIFVAR:slept,0,Go to sleep on one of the beds^*1304^*Leave the barracks^*1300
+1306:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise,Soldier's Uniform,Platemail Armor^*INVADD:Guard Disguise^*You take one of the guard uniforms that looks like it would fit you and put it on.  You go back to the beds and see that all the guards are still sleeping.
+1306:Search through the sacks^*1302^*DISPLAYIFVAR:slept,0,Go to sleep on one of the beds^*1304^*Leave the barracks^*1300
+1307:VARSET:slept,1^*VARSET:timeOfDay,day^*GAINHEALTH:5^*As you look at all the beds in the barracks, you realize how exhausted you are.  You find an unoccupied straw bed and fall asleep on it.  You fall into a deep, dreamless sleep that lasts for many hours.  The refreshing sleep causes you to recover 5 health.  By the time you finally wake up, it is close to the middle of the day and you see that the other guards in the room had woken up long before.
+1307:Leave the barracks^*1300
+1308:VARSET:timeOfDay,night^*LOSEHEALTH:5^*As you look at all the beds in the barracks, you realize how exhausted you are.  You find an unoccupied straw bed and fall asleep on it.  Your deep sleep is interrupted when you are jerked awake the next morning.  You see several angry looking guards standing around you.  "You have some nerve to walk in here and use one of our beds," says one of the guards, "What on earth were you thinking?"  The guards practically drag you out of the room and throw you out into the hallway.  The rude awakening you got has left you still exhausted, and you lose 5 health from fatigue.
+1308:Continue^*1309
+1309:You are standing outside the guards' barracks.  What do you do next?
+1309:Go to the great hall^*1197^*Walk down the hallway to the upward stairs^*1267^*Walk around the hallway corner to the inscribed door^*1265
+1310:You walk down the hallway until you reach the archway leading to the throne room.  Unsurprisingly, the throne room is deserted right now.
+1310:Enter the throne room^*1312
+1311:You walk down the hallway until you reach the archway leading to the throne room.  Inside the busy throne room, you can see King K's court receiving a group of ambassadors.
+1311:Enter the throne room^*1281^*Go to the great hall^*1197^*Walk through the hallway to the inscribed door^*1265^*Walk through the hallway to the downward stairs^*1236
+1312:You enter the throne room and look around.  Since there is nobody else in the throne room, the only thing of interest that you can see is a golden throne that is draped with dark blue tapestries.  You examine the throne, but there is nothing unusual about it and it is far too heavy for you to take.
+1312:Sit on the throne^*1313^*Leave the throne room and go back to the great hall^*1197
+1313:You sit on the throne and cackle wickedly as you pretend to be the King.  After a few seconds, you get bored and decide to leave.
+1313:Leave the throne room and go back to the great hall^*1197
+1314:INVADD:Invasion Plans^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see a set of military plans for the upcoming invasion of Carolinia.  Together with the military documents you took from the outer bailey barracks, you now have a complete set of invasion plans, which could prove extremely valuable to a defense against the Dookian invasion.  You search through some of the other documents, but there is nothing else of interest to you.
+1314:Leave the room^*1319
+1315:INVADD:Military Plans^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see detailed military plans for the upcoming invasion of Carolinia.  You decide to take the military plans, as they may be useful in defending against a Dookian invasion.    You search through some of the other documents, but there is nothing else of interest to you.
+1315:Leave the room^*1319
+1316:INVSPLIT:Military Documents^*1314^*1315
+1316:null^*1
+1317:You enter the inscribed door and see a room filled with maps and pieces of parchment.  However, none of the documents are particularly interesting to you.
+1317:Leave the room^*1319
+1318:You enter the inscribed door and see a room filled with maps and pieces of parchment.  A closer inspection reveals that the room is used for planning battle campaigns as well keeping records of the affairs of the Kingdom.  There are several tables in the room that are covered in documents.
+1318:Read the documents on the tables^*1316^*Leave the room before someone sees you^*1319
+1319:You leave the room and return to the hallway.  What do you do next?
+1319:Go to the great hall^*1197^*Walk around the hallway corner to the guard barracks^*1266^*Walk down the hallway to the throne room^*1198
 3000:LOCKPICK:3^*You are picking a lock
 3000:Done^*0
 3000:images/lock_pick.jpg
