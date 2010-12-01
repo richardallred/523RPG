@@ -46,6 +46,7 @@ INITIALIZE:addedClear,0
 INITIALIZE:addedBlack,0
 INITIALIZE:addedDrink,0
 INITIALIZE:rammedDoor,0
+INITIALIZE:bribedGuards,0
 INITIALIZE:unwashed,0
 INITIALIZE:lostPack,0
 INITIALIZE:audience,0
@@ -75,7 +76,7 @@ HEALING:First aid kit^*0.2
 0:Play the game^*1^*Lockpicking^*3000^*Safecracking^*3001
 0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
-1:Continue^*2
+1:Continue^*1328
 1:images/page1_map.jpg
 2:INVSELECT:1^*In order to pass through Dookia without arousing suspicion, you selected a disguise to enter the country with.  If you take the clothes of a Dookian merchant, you can talk your way through situations by pretending to be a harmless trader.  If you take the clothes of a Dookian mercenary, you can pretend to be looking for work while being constantly ready for combat.  If you take the stealthy dark garb of an assassin, you would arouse more suspicion but easily blend into dark areas. <br>Which clothes did you pick?
 2:Merchant Disguise^*3^*Mercenary Disguise^*3^*Assassin Garb^*3
@@ -2414,7 +2415,7 @@ HEALING:First aid kit^*0.2
 1234:VARSPLIT:killedStairwayGuards,1^*991^*1235
 1234:null^*1
 1235:You walk towards the stairs leading downwards, but one of the guards puts a restraining hand in front of you and says that you are not allowed down there.
-1235:Attack the guards^*1208^*Open the small wooden door^*1207^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the throne room^*1198
+1235:Attack the guards^*1208^*Try to bribe the guards^*1333^*Open the small wooden door^*1207^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the throne room^*1198
 1236:VARSPLIT:killedStairwayGuards,0^*1210^*1237
 1236:null^*1
 1237:You walk up to the downward leading stairs.  Near the staircase, there is a small wooden door.
@@ -2491,10 +2492,10 @@ HEALING:First aid kit^*0.2
 1272:null^*1
 1273:INVSPLIT:Hammer^*875^*876
 1273:null^*1
-1274:You go up the stairs
+1274:The guards ignore you as you walk up the stairs to the top level of the keep.  Here, you can see several rooms that are used as sleeping quarters for all the keep's residents, including King K himself.
 1274:Content not added^*999
-1275:One of the guards stops your as you try to go up the stairs.  "You're not allowed up there," he says.
-1275:Attack the guards^*1278^*Content not added^*999^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
+1275:VARSPLIT:bribedGuards,0^*1325^*1274
+1275:null^*1
 1276:INVREMOVE:Guard Disguise,Chainmail Armor^*INVADD:Platemail Armor^*You remove your guard uniform and put on a suit of platemail armor.  It is extremely heavy and cumbersome, but it provides you with excellent protection.
 1276:DISPLAYIFNOT:Sword,Take one of the swords^*965^*DISPLAYIFNOT:Axe,Take one of the axes^*966^*DISPLAYIFNOT:Chainmail Armor,Take a suit of chainmail armor^*967^*DISPLAYIFNOT:Pliers,Take one of the pliers^*970^*Try to open the safe^*971^*Search through the pile of scrap metal^*969^*Leave the forge^*1038
 1277:INVREMOVE:Servant Disguise,Mercenary Disguise,Merchant Disguise,Assassin Garb,Chainmail Armor^*INVADD:Platemail Armor^*You put on a suit of platemail armor.  It is extremely heavy and cumbersome, but it provides you with excellent protection.
@@ -2502,19 +2503,19 @@ HEALING:First aid kit^*0.2
 1278:RESTART:^*You attack the stairway guards, but the noise from the fight brings several more guards running out of the barracks.  You are soon overwhelmed by the sheer number of guards and killed.
 1278:null^*1
 1279:You walk towards the staircase that spirals upwards.  To the left of the staircase, you can see the guard barracks.  You can see two guards on either side of the staircase.  The guards stare at your assassin's clothing suspiciously.
-1279:Go up the stairs^*1271^*Go to the great hall^*1197^*Walk around the hallway corner to the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
+1279:Go up the stairs^*1326^*Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner to the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1280:You walk up to the staircase that spirals upwards.  To the left of the staircase, you can see the guard barracks.  You can see two guards on either side of the staircase.  The guards don't pay you much attention.
-1280:Go up the stairs^*1271^*Go to the great hall^*1197^*Walk around the hallway corner to the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
+1280:Go up the stairs^*1271^*Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner to the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1281:INVSPLIT:Assassin Garb^*1282^*1283
 1281:null^*1
 1282:RESTART:^*As you walk into the throne room, a hush falls over the court.  Several guards draw weapons and surround you.  "An assassin in the throne room?" says one of them, "What is the meaning of this?"  You try to charge past them and reach the King, but you are quickly cut down.
 1282:null^*1
 1283:You enter the throne room and look around.  Most of the court is ignoring you, as they are focused on a group of visiting ambassadors from Statia who are currently talking to the King.  You can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand.
-1283:DISPLAYIFVAR:throneVisited,0^*Listen to the ambassadors^*1285^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1283:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Pickpocket some of the members of the court^*1328^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
 1284:RESTART:^*As you walk into the center of the room, a hush falls over the court.  One of the ambassadors stops talking in mid-sentence.  "What insolence is this, to interrupt my meeting?" roars King K.  He flicks his ring finger, causing a deadly bolt of magic to disintegrate you.  <br>Your life ends here.
 1284:null^*1
 1285:VARSET:throneVisited,1^*You find a spot in the throne room where you can clearly hear the Statian ambassadors.  It seems that they are negotiation a peace treaty with Dookia, but you can tell that the King's powerful ring gives him a lot of leverage in the negotiations.  You learn that there is going to be a feast held in the great hall when the negotiations are complete.
-1285:Try to find a way to attack the King^*1286^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1285:Try to find a way to attack the King^*1286^*Pickpocket some of the members of the court^*1328^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
 1286:You are about to throw the potion when you realize that the prisoner is still in front of you trying moving the rocks.
 1286:Yell to the prisoner to move out of the way^*1287^*Throw the potion anyway^*1175
 1287:You yell to the prisoner and he backs up several feet.  You figure that he is probably safe from any explosion that you would cause.
@@ -2522,9 +2523,9 @@ HEALING:First aid kit^*0.2
 1288:INVSPLIT:Crossbow^*1289^*1290
 1288:null^*1
 1289:You look around the room, trying to find a way to attack the King by surprise.  You see several armed guards placed in key locations throughout the room, who would see you and attack you if you tried anything.  You decide that the only approach that would not be immediately suicidal is to fire a crossbow bolt at the King, though the chances of success are slim. 
-1289:Attack the King with your crossbow^*1291^*DISPLAYIFVAR:throneVisited,0^*Listen to the ambassadors^*1285^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1289:Attack the King with your crossbow^*1291^*DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Pickpocket some of the members of the court^*1328^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
 1290:You look around the room, trying to find a way to attack the King by surprise.  You see several armed guards placed in key locations throughout the room, who would see you and attack you if you tried anything.  You are unable to find a way to attack the King that would not be immediately suicidal.  You are going to have to try to get the King alone if you want to try anything.
-1290:DISPLAYIFVAR:throneVisited,0^*Listen to the ambassadors^*1285^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1290:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Pickpocket some of the members of the court^*1328^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
 1291:RESTART:^*You pull out your crossbow to attack the King, but one of the members of the court sees you and leaps at you, knocking the crossbow out of your hands.  You are soon tackled by several of the throne room guards, who drag you out of the room before executing you.
 1291:null^*1
 1292:The hall is gigantic and you can see insignias, pieces of armor, and other decorations lining the walls.  Since it is currently in the middle of the night, the great hall is deserted except for a huge table set up in the middle.  The great hall has exits into a large hallway on all sides, from which you can see most of the rooms on the floor.  You can see an open set of large wooden doors that leads to a cathedral, an archway that leads into the throne room, a door with a sword inscribed on it, a barracks for the guards, and two sets of stairs that lead up and down.
@@ -2583,6 +2584,40 @@ HEALING:First aid kit^*0.2
 1318:Read the documents on the tables^*1316^*Leave the room before someone sees you^*1319
 1319:You leave the room and return to the hallway.  What do you do next?
 1319:Go to the great hall^*1197^*Walk around the hallway corner to the guard barracks^*1266^*Walk down the hallway to the throne room^*1198
+1320:GOLDCHECK:30^*1321^*1322
+1320:null^*1
+1321:DISPLAYGOLD:^*You hint to the guards that perhaps a few gold coins could convince them to look the other way.  The guard whispers that they would need 15 gold coins each to do something like that for you.  Unfortunately, you do not have enough gold, and the guards refuse to take any less.
+1321:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
+1322:DISPLAYGOLD:^*You hint to the guards that perhaps a few gold coins could convince them to look the other way.  The guard whispers that they would need 15 gold coins each to do something like that for you.
+1322:Give them 30 gold^*1323^*Attack the guards instead^*1278^*Tell them that you changed your mind^*1324
+1323:LOSEGOLD:30^*VARSET:bribedGuards,1^*The guards pocket your gold and tell you that you are free to walk up the stairs.
+1323:Go up the stairs^*1271^*Go to the great hall^*1197^*Walk around the hallway corner to the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
+1324:You decide not to bribe the guards at the moment.  What do you do next?
+1324:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
+1325:One of the guards stops your as you try to go up the stairs.  "You're not allowed up there," he says.
+1325:Attack the guards^*1278^*Try to bribe the guards^*1320^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
+1326:One of the guards stops your as you try to go up the stairs.  "You're not allowed up there," he says.
+1326:Attack the guards^*1278^*Try to bribe the guards^*1327^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
+1327:"I don't care how much gold you give me," says one of the guards, "I won't have to on my conscience that I let an assassin upstairs."  The guards refuse to take your bribe.
+1327:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
+1328:RANDSPLIT:^*1329^*1330^*1331^*1332
+1328:null^*1
+1329:GAINGOLD:5-8^*You sidle through the crowd, casually lifting the possessions of the distracted court members.  You find several small pouches of gold, and you end up stealing a total of #gold gold coins.
+1329:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1334^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1330:GAINGOLD:2-4^*You sidle through the crowd, casually digging your hands through the pockets of the distracted court members.  You only manage to steal a pouch of gold from one person, but you find that it contains #gold gold coins.
+1330:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1335^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1331:You sidle through the crowd, casually rifling through the pockets of the people in the court.  Unfortunately, you do not manage to steal anything.
+1331:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1336^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1332:RESTART:^*You sidle through the crowd, casually sifting your hands through the pockets of the distracted courtiers.  As you are lifting a pouch of gold, one of the guards standing in the room sees you.  "Thief!" he shouts, and soon the throne room is in an uproar.  You try to escape in the chaos, but several of the guards grab you.  The King orders you executed on the spot for daring to steal in his presence.
+1332:null^*1
+1333:The guards refuse to take any of your gold.
+1333:Attack the guards^*1208^*Open the small wooden door^*1207^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the throne room^*1198
+1334:RANDSPLIT:^*1330^*1331^*1332
+1334:null^*1
+1335:RANDSPLIT:^*1329^*1331^*1332
+1335:null^*1
+1336:RANDSPLIT:^*1329^*1330^*1332
+1336:null^*1
 3000:LOCKPICK:3^*You are picking a lock
 3000:Done^*0
 3000:images/lock_pick.jpg
