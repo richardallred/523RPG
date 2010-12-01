@@ -934,6 +934,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				ANYSPLIT:item1,item2^*x^*y - Go to page x if any of the listed items are in inventory, otherwise go to page y
 				ALLSPLIT:item1,item2^*x^*y - Go to page x if all of the listed items are in inventory, otherwise go to page y
 				GOLDSPLIT:n^*x^*y - If gold is at least n, go to page x, otherwise go to page y
+				HEALTHSPLIT:n^*x^*y - If health is at least n, go to page x, otherwise go to page.  MAX can be used for n.
+				RANDSPLIT:^*x^*y^*z^*... Randomly go to any of the listed pages, all with equal probability
 				HEALTHSPLIT:n^*x^*y - If gold is at least n, go to page x, otherwise go to page.  MAX can be used for n.
 				INVCHECK:item^*text^*x - If item is in inventory, display text.  Otherwise, redirect to page x
 				INVADD:item1,item2 - Add all listed items to inventory.  Add true as a parameter to allow duplicate adding.
@@ -945,7 +947,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				LOSEHEALTH:n - Lose n health.  If resulting health is 0 or less, the character dies
 				GAINHEALTH:n - Gain n health.  Cannot exceed the maximum health
 				LOSEGOLD:n^*x - Lose n gold.  Redirect to page x if gold is less than n (optional)
-				GAINGOLD:n - Gain n gold
+				GAINGOLD:n - Gain n gold.  Use GAINGOLD:x-y to gain a random amount of gold between x and y
 				DISPLAYGOLD - Display a message saying how much gold the character has
 				VARSPLIT:var,value^*x^*y - Go to page x if external variable var = value, otherwise go to page y
 				VARSET:var,value - Set the value of external variable var to value
@@ -1037,7 +1039,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							return;
 						}
 					}
-					//HEALTHSPLIT:n^*x^*y - If gold is at least n, go to page x, otherwise go to page.  MAX can be used for n.
+					//HEALTHSPLIT:n^*x^*y - If health is at least n, go to page x, otherwise go to page.  MAX can be used for n.
 					//HEALTHSPLIT does not work with multiple special commands unless it is last
 					else if (specialPageArray[p].match('HEALTHSPLIT:') != null) {
 						healthSplit = specialPageArray[p].split('HEALTHSPLIT:');
@@ -1056,6 +1058,23 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.page = specialPageArray[specialPageArray.length-1];
 							this.processChoice(this.page,0);
 							return;
+						}
+					}
+					//RANDSPLIT:^*x^*y^*z^*... Randomly go to any of the listed pages, all with equal probability
+					//RANDSPLIT only works with mutiple commands if it is last
+					else if (specialPageArray[p].match('RANDSPLIT:') != null) {
+						randSplit = [];
+						numPossiblePages = (specialPageArray.length-1) - p;
+						if (numPossiblePages > 0) {
+							for (r = 0; r < numPossiblePages; r++) {
+								randSplit[r] = specialPageArray[p+r+1];
+							}
+							rand = Math.round(Math.random()*(numPossiblePages-1));
+							//redirect to the randomly chosen page
+							console.log(rand);
+							console.log(randSplit[rand]);
+							this.page = randSplit[rand];
+							this.processChoice(this.page,0);
 						}
 					}
 					//INVCHECK:item.  If the item is in the inventory, display the page, otherwise redirect to another page
@@ -1421,10 +1440,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
 						this.message = specialPageArray[p+1];
 					}
-					//GAINGOLD: n, gain n gold
+					//GAINGOLD: n, gain n gold.  Use GAINGOLD:x-y to gain a random amount of gold between x and y
 					else if (specialPageArray[p].match('GAINGOLD:') != null) {
 						goldGain = specialPageArray[p].split('GAINGOLD:');
-						this.gold = dojo.number.parse(this.gold) + dojo.number.parse(goldGain[1]);
+						if (goldGain[1].match('-') != null) {
+							randomGain = goldGain[1].split('-');
+							rand = Math.random()*(dojo.number.parse(randomGain[1]) - dojo.number.parse(randomGain[0]));
+							goldGained = Math.round(rand) + dojo.number.parse(randomGain[0]);
+							this.gold = dojo.number.parse(this.gold) + dojo.number.parse(goldGained);
+							this.message = this.message.replace('#gold',goldGained);
+						} else {
+							this.gold = dojo.number.parse(this.gold) + dojo.number.parse(goldGain[1]);
+						}
 						//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
 						this.message = this.message + '<br>You have ' + this.gold + ' gold coins.';
 
