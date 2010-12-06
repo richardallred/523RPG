@@ -76,7 +76,7 @@ HEALING:First aid kit^*0.2
 0:Play the game^*1^*Lockpicking^*3000^*Safecracking^*3001
 0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
-1:Continue^*1328
+1:Continue^*2
 1:images/page1_map.jpg
 2:INVSELECT:1^*In order to pass through Dookia without arousing suspicion, you selected a disguise to enter the country with.  If you take the clothes of a Dookian merchant, you can talk your way through situations by pretending to be a harmless trader.  If you take the clothes of a Dookian mercenary, you can pretend to be looking for work while being constantly ready for combat.  If you take the stealthy dark garb of an assassin, you would arouse more suspicion but easily blend into dark areas. <br>Which clothes did you pick?
 2:Merchant Disguise^*3^*Mercenary Disguise^*3^*Assassin Garb^*3
@@ -359,16 +359,26 @@ HEALING:First aid kit^*0.2
 139:null^*1
 140:You battle your way through the corridor as you approach the source of the bright light.  Your arms begin to get tired as you are forced to constantly smash the unceasing waves of incoming skeletons.  Eventually you reach the source of the light and find that it is coming from a wide crevasse in the middle of the floor.  Large flames are leap out of the crevasse periodically.  As you approach it, the skeletons back away from you.  The skeletons stand in a wide circle around you, but do not walk any closer to the chasm.  You set your hammer down and rest your arms for a few moments as the skeletons stand and stare at you with lifless eyes.
 140:Look into the crevasse^*141^*Fight your way back through the skeletons^*142
-141:You look down into the chasm and see a flaming, bone-filled wasteland.  Massive piles of bones lie on the scorched ground, and giant flames flare up in various locations.  Suddenly, you feel a force pull you forwards that sends you tumbling into the crevasse.  You don't fall far before you land in a large pile of bones.  You feel a blast of heat as a circle of searing blue flames rises around you.  As you struggle to get up from the pile of bones that you are lying on, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a vicious grin on its face and a thick, pointy mustache on its chin.
+141:You look down into the chasm and see a flaming, bone-filled wasteland.  Massive piles of bones lie on the scorched ground, and giant flames flare up in various locations.  Suddenly, you feel a force pull you forwards that sends you tumbling into the crevasse.  You don't fall far before you land in a large pile of bones.  You feel a blast of heat as a circle of searing blue flames rises around you.  As you struggle to get up from the pile of bones that you are lying on, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a vicious grin on its face and a thick mustache on its pointed chin.
 141:Continue^*143
 142:As you were resting, hundreds of skeletons formed a mass behind you.  The skeletons are so thickly packed that you cannot even see through them.  You realize that it would be impossible to fight your way back through them and survive.  You are trapped between them and the chasm.
 142:Continue^*141
 143:VARSPLIT:killedPriests,0^*144^*145
 143:null^*1
-144:The blue devil
-144:Content not added^*999
-145:The blue devil
-145:Content not added^*999
+144:"You dare to enter my lair," booms the demon, "No doubt you are a fool in search of treasure.  Another greedy mortal looking for power who will end up lost among my piles of bones."
+144:Tell the demon you are looking for treasure^*150^*Challenge the demon to a fight^*146^*DISPLAYIF:Crossbow,Shoot the demon with your crossbow^*149^*Content not added^*999
+145:"You dare to enter my lair," booms the demon, "Especially after you slaughtered my priests.  Are you after my treasue or are you just here to anger me?  Either way, I intend to see you lost among my piles of bones."
+145:Challenge the demon to a fight^*146^*DISPLAYIF:Crossbow,Shoot the demon with your crossbow^*149^*Content not added^*999
+146:Ignoring the fact that the demon is several times as tall as you are, you challenge it to fight you fairly.  The demon laughs loudly, but you see the flames around you rescind, allowing you to attack at close range.  "You really think you stand a chance against me?" it roars.  It suddenly launches a ball of fire at you, which you narrowly dodge.
+146:Continue^*147
+147:COMBAT:You are fighting a blue demon,NAME:demon,WEAPON:None,STRENGTH:30,DEFENSE:0,ACCURACY:70,HEALTH:100,HIT:The demon blasts you with flame,HIT:The demon kicks you with massive force,HIT:The demon stabs you with its pointed chin,MISS:Your demon is unaffected by your attack.^*The demon roars with fury as you strike a killing blow.
+147:Continue^*148
+148:Killed demon
+148:Content not added^*999
+149:INVREMOVE:Crossbow^*LOSEHEALTH:10^*You pull out your crossbow to fire it at the demon, but the demon points at it and it bursts into flame in front of you, causing you to lose 10 health.  "That," says the demon, "Was not very wise."
+149:Challenge the demon to a fight^*146^*Content not added^*999
+150:Looking for treasure
+150:
 190:You enter the door and see a long, narrow passageway with another wooden door on the end.  You see a servant walking through the passage carrying a large bowl of gruel.  "You aren't allowed over here," he says, "Go back to your tent."
 190:Do as the servant says and follow him back to the tents^*677^*Attack the servant^*675^*Run past the servant^*676
 191:You enter the door and see a long, narrow passageway with another wooden door on the end.  Near the end of the passageway, you see a small lever in the wall.
@@ -989,8 +999,8 @@ HEALING:First aid kit^*0.2
 497:Continue^*500
 498:INVREMOVE:Grappling hook^*You hook your grappling hook to one of the broken sections of the wall, making sure that it stays firm.  Since you need both hands to climb down the rope, you extinguish your torch and put it back into your pack.  As you climb down, you feel a rush of hot air and the smell becomes almost unbearable.  After a while, you feel your feet hit something soft and slimy, almost like mud.
 498:Continue^*750
-499:INVREMOVE:Rope^*You tie your rope to one of the broken sections of the wall, making sure that it stays firm.  Since you need both hands to climb down the rope, you extinguish your torch and put it back into your pack.  As you climb down, you feel a rush of hot air and the smell becomes almost unbearable.  After a while, you feel your feet hit something soft and slimy, almost like mud.
-499:Continue^*750
+499:RESTART:^*You tie your rope to one of the broken sections of the wall, making sure that it stays firm.  Since you need both hands to climb down the rope, you extinguish your torch and put it back into your pack.  As you are climbing, your weight pulling on the rope breaks the piece of wall that it is attached to, sending you plummeting down the pit.  You do not survive the fall.
+499:null^*1
 500:You are now in the inner bailey courtyard.  You look around and recognize the building closest to you as an infirmary.  Some distance across the courtyard is the castle keep.  Also some distance away is large group of tents.
 500:Head towards the infirmary^*768^*Head towards the keep^*767^*Head towards the tents^*766
 501:RESTART:^*You blindly jump into the pit, but it is quite deep and your fall ends abruptly on solid ground far below.  It is a fall you do not survive.
@@ -1228,17 +1238,17 @@ HEALING:First aid kit^*0.2
 617:VARSET:audience,1^*The urgency of your tone convinces the guards and they reluctantly decide to allow you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
 617:Say that the message is for the King's ear only^*616^*Say that the Carolinians are plotting to attack the castle^*668^*Say that the peasants in the province of Hurdam are revolting^*669^*Say that several of the King's generals are plotting to overthrow him^*671^*Say that you have uncovered a spy in the castle^*672
 618:VARSET:audience,1^*"A plot to overthrow the King?" says one of the guards, "King K must hear of this immediately!" The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. "This mercenary says that he knows of a plot to overthrow you," announces one of the soldiers.  King K demands that you tell him the details immediately.
-618:Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*616^*Say that several of the King's generals are plotting to overthrow him^*671^*Say that the servants are plotting to poison the King^*673^*Say that you have uncovered several spies in the castle^*672
+618:Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*616^*Say that several of the King's generals are plotting to overthrow him^*671^*Say that the servants are plotting to poison the King^*673^*Say that you have uncovered a spy in the castle^*672
 619:VARSET:audience,1^*LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
 619:Say that the message is for the King's ear only^*616^*Say that the Carolinians are plotting to attack the castle^*668^*Say that the peasants in the province of Hurdam are revolting^*669^*Say that several of the King's generals are plotting to overthrow him^*671^*Say that you have uncovered a spy in the castle^*672
 620:Go towards the front entrance
 620:Content not added^*999^*Go around to the side wall^*621
 621:You walk towards the side wall of the keep so you can examine it more closely.  The door is plain and wooden, but it has a lock on it that prevents you from opening it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
-621:Go back around to the front entrance^*620^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows^*625^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
-622:Go towards the front entrance (morning)
-622:Content not added^*999^*Go around to the side wall^*623
+621:Go around to the front entrance^*620^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows^*625^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
+622:As you walk up to the large gate in front of the castle keep, one of the guards looks at you strangely.  "We have no need of soldiers in the keep right now," he says curtly.
+622:Tell him that the keep is under attack^*1338^*Offer him a bribe to let you in^*1339^*Content not added^*999^*Go around to the side wall^*623
 623:You walk towards the side wall of the keep so you can examine it more closely.  The door on the wall is plain and wooden, and you can see an open lock on it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
-623:Go back around to the front entrance^*622^*Enter the wooden door^*662^*DISPLAYIFVAR:followedServant,0,Wait for one of the servants to come out of the door^*663^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
+623:Go around to the front entrance^*622^*Enter the wooden door^*662^*DISPLAYIFVAR:followedServant,0,Wait for one of the servants to come out of the door^*663^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
 624:You pick the lock on the door and enter the keep.  Inside, you see a small, narrow passageway with another wooden door at the end.  Near the end of the passageway, you see a small lever.
 624:Pull the lever^*793^*Leave the passageway^*794
 625:You look at the cracks in the wall and the uneven stone, and you work out a path that you could climb to reach the stained glass window.  However, the climb would be quite difficult and you probably wouldn't be able to make it while carrying any armor, including your soldier's uniform.
@@ -1250,7 +1260,7 @@ HEALING:First aid kit^*0.2
 628:LOSEHEALTH:3^*You strain against the weight of your armor as you struggle to find handholds in the rough stone.  As you are trying to find a handhold in one of the cracks, you lose your grip and fall to the ground.  Fortunately, you did not climb up very far before falling and you only lose 3 health from minor bruising.
 628:Try again after discarding your armor^*627^*Decide not to climb up the wall^*629
 629:You decide that you do not want to risk the precarious climb up the wall.  What do you do next?
-629:Go back around to the front entrance^*620^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
+629:Go around to the front entrance^*620^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
 630:You smash open the window you can hear the glass rain down onto the ground below.  Through the broken window, you can see a large cathedral.  The cathedral is quite tall, and you are standing in one of the stained glass windows near the top.  Rows of wooden chairs are laid out facing an altar.  The floor is a good distance below you and is covered with broken glass, but you don't have much choice but to jump down, as the wall inside the cathedral is unclimbable.
 630:Continue^*631
 631:INVSPLIT:First aid kit^*633^*634
@@ -1335,7 +1345,7 @@ HEALING:First aid kit^*0.2
 670:Continue^*550
 671:RESTART:^*"You walk in here and expect me to believe some ridiculous stories about my generals betraying me?  I'll bet you can't even name a single one of them!"  You stammer as you try to come up with a name.  The King waves his finger and you are blasted by a deadly burst of magic.  <br>Your life ends here.
 671:null^*1
-672:"Is that so?" says the King, "That's very interesting.  You know, I believe that I have uncovered a spy in the castle myself."  He casually orders the guards to take you to the interrogation room and get you out of his sight.
+672:You make up what you hope is a credible sounding story about uncovering a spy in the castle.  "Is that so?" says the King, "That's very interesting.  You know, I believe that I have uncovered a spy in the castle myself."  He casually orders the guards to take you to the interrogation room and get you out of his sight.
 672:Continue^*670
 673:You make up a story about a plot by the servants to poison the King.  The King orders that the servants in charge of the night's meal be questioned.  He then dismisses you with a wave of his hand.
 673:Continue^*674
@@ -1491,8 +1501,8 @@ HEALING:First aid kit^*0.2
 748:null^*1
 749:RESTART:^*As you are walking through the courtyard, one of the other officers sees you.  He starts to greet you, but pauses when he sees your face.  "I don't recognize you," he growls.  He calls out and you are soon surrounded by soldiers.  You are told that the penalty for impersonating an officer is death and you are executed.
 749:null^*1
-750:In a deep pit
-750:Content not added^*999
+750:You light your torch again and look around.  You see what looks like an expansive wasteland around you, populated by massive piles of bones.  You realize that the ground under you is spongy because it is a combination of blood mixed with ash.  You walk forwards through the wasteland in horrified fascination.  In the distance, you see a gigantic bone pile that is taller than all of the others.
+750:Continue^*1337
 751:You leave the officer's tent and return to the courtyard.  What do you do next?
 751:Search more of the officers' tents^*748^*Leave the tents and head towards the keep^*721^*Go back to your tent and go to sleep^*486
 752:You leave the officer's tent and look around.  The courtyard and the surrounding tents are completely silent.  There is no sign of the two guards who were chasing you.  What do you do next?
@@ -1571,7 +1581,7 @@ HEALING:First aid kit^*0.2
 789:Front entrance (day)
 789:Content not added^*999^*Go around to the side wall^*790
 790:You walk towards the side wall of the keep so you can examine it more closely.  The door is plain and wooden, but it has a lock on it that prevents you from opening it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
-790:Go back around to the front entrance^*789^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
+790:Go around to the front entrance^*789^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
 791:RESTART:^*You throw your grappling hook through one of the stained glass windows, shattering it with a loud crash.  As you are climbing up the rope, you see several guards running around from the front of the castle.  They easily pick you off with crossbow bolts.
 791:null^*1
 792:RESTART:^*You make the difficult climb up to one of the stained glass windows, and pull yourself up onto the window ledge.  Unsurprisingly, the window is not meant to be opened, so you must break it to climb through.  You viciously kick the window, sending shards of glass raining down inside the keep.  You look through the broken window and see the horrified gazes of several people inside a cathedral.  It is not long before a group of guards with crossbows pick you off from the windowsill.  <br>Your life ends here.
@@ -2306,8 +2316,8 @@ HEALING:First aid kit^*0.2
 1179:null^*1
 1180:You walk past the corridor of cells until you reach the pile of rock at the end.  The floor is covered in rubble from the recent explosion.
 1180:Climb through the hole in the rock^*1181^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
-1181:Climb through a hole in the rock
-1181:Content not added^*999
+1181:You climb through the hole in the rocks and emerge in a narrow cave tunnel.  The tunnel soon takes a sharp downward decline.  You being to see black burn marks on the walls of the tunnel, and you see a trail of dried blood on the groun.  As you follow the trail, the line of blood grows thicker.  The tunnel abruptly emerges into what looks like an expansive wasteland.  You see massive piles of bones scattered about and the ground looks scorched and bloody.  As you walk forwards through the wasteland in horrified fascination, the ground squishes beneath you and a terrible rotting stench assaults your nostrils.  In the distance, you see a gigantic bone pile that is taller than all of the others.
+1181:Continue^*1337
 1182:INVSPLIT:Sword^*1183^*1186
 1182:null^*1
 1183:GAINGOLD:8^*You search the bodies of the dungeon guards and find 8 gold coins between them, which you take.  The guards are not carrying anything else useful.  You leave your cell and find yourself in a cell corridor.  You head towards a set of stairs to your left that you remember lead to the dungeon exit.  You climb the stairs and see that the top of the stairs is blocked by a closed grate.  Outside the grate, you can see a hallway, but your visibility is limited.  You try to lift the grate, but it is impossible.
@@ -2618,6 +2628,13 @@ HEALING:First aid kit^*0.2
 1335:null^*1
 1336:RANDSPLIT:^*1329^*1330^*1332
 1336:null^*1
+1337:You walk up to the largest pile of bones.  As you get close to it, the wasteland around you suddenly bursts into flame.  Huge jets of fire burst through the ground and rise up several stories.  You scramble onto the pile of bones and barely avoid getting scorched by several flames jetting up underneath you.  You feel a blast of heat as a circle of searing blue flames rises around you, forcing you to climb to the top of the bone pile.  Suddenly, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a vicious grin on its face and a thick mustache on its pointed chin.
+1337:Continue^*143
+1338:"Don't play games with me, soldier," snaps the guard.  "If the keep were under attack, the enemy would be streaming through the inner bailey gate right now."
+1338:Content not added^*999^*Go around to the side wall^*623
+1339:RESTART:^*"A soldier trying to bribe his way into the keep," says one of the guards, "Now that's a new one."  The guards draw their swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
+1339:null^*1
+
 3000:LOCKPICK:3^*You are picking a lock
 3000:Done^*0
 3000:images/lock_pick.jpg
