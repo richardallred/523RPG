@@ -2115,6 +2115,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							hintsArray1[5]='The margin of victory for the Tar Heels men\'s basketball team in the 1982 championship game.';
 							hintsArray1[6]='The lonliest number';
 							hintsArray1[7]='Margin of victory during Dean Smith\'s first NCAA title in 1982';
+						
 							
 							hintsArray2[1]='Number of national championships won under UNC men\'s basketball coach Roy Williams';
 							hintsArray2[2]='Raymond Felton\'s number while playing for the Tar Heel men\'s basketball team';
@@ -2123,7 +2124,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							hintsArray2[5]='Number of losses for the 1982 UNC mens basketball team';
 							hintsArray2[6]='2';
 							hintsArray2[7]='2';
-							
+														
 							hintsArray3[1]='Number of Tar Heels that were drafted in the first round of the 2009 NBA draft';
 							hintsArray3[2]='Number of years Ty Lawson was a Tar Heel before leaving for the NBA';
 							hintsArray3[3]='Number of years Michael Jordan was a Tar Heel before leaving for the NBA';
@@ -2131,6 +2132,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							hintsArray3[5]='Number of Tar Heel men\'s basketball players chosen as All-Americans in 1998';
 							hintsArray3[6]='Number of overtimes that it took for Carolina to win its first NCAA title in 1954';
 							hintsArray3[7]='Number of losses for the 2009 UNC men\'s basketball team';
+							
 							
 							hintsArray4[1]='Number of Tar Heels that were drafted in the first round of the 2007 NBA draft';
 							hintsArray4[2]='Number of years Phil Ford was a Tar Heel before leaving for the NBA';
@@ -2147,7 +2149,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							hintsArray5[5]='Number of UNC wrestlers that have been crowned national champions in their weight class';
 							hintsArray5[6]='5';
 							hintsArray5[7]='5';
-							
+														
 							hintsArray6[1]='Number of times the UNC basketball team has been crowned champions of men\'s basketball';
 							hintsArray6[2]='Ty Lawson\'s average number assists per game over his career as a Tar Heel';
 							hintsArray6[3]='Number of movies in the Star Wars saga.';
@@ -2164,7 +2166,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							hintsArray7[5]='Number of years a typical student attends Hogwarts in the book series Harry Potter';
 							hintsArray7[6]='7';
 							hintsArray7[7]='7';
-							
+														
 							hintsArray8[1]='The number of wins(in hundreds i.e. 235->2, 656->6, etc.) that Dean Smith had before retiring in 1998';
 							hintsArray8[2]='The number of points scored in the final 17 seconds of the game to send the game to overtime against Duke in 1979';
 							hintsArray8[3]='Number of UNC men\'s basketball players that have been named ACC Rookie of the Year.';
@@ -2173,6 +2175,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							hintsArray8[6]='8';
 							hintsArray8[7]='8';
 							
+							
 							hintsArray9[1]='Tyler Hansborough\'s average number of rebounds per game ove rhis career as a Tar Heel';
 							hintsArray9[2]='Number of UNC basketball players/coaches who have been inducted in the basketball hall of fame';
 							hintsArray9[3]='Highest number of steals in a single game ever for a Tar Heel, set by Derrick Phelps in 1992, against Georgia Tech';
@@ -2180,7 +2183,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							hintsArray9[5]='The number of innings in a typical baseball game';
 							hintsArray9[6]='The square root of 144 divided by 4 and then multiplied by 3';
 							hintsArray9[7]='9';
-							
+														
 							this.inLockPicking=1;
 							choicesArray = [];
 							this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+numOfTumblers;
@@ -2199,6 +2202,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							choicesArray[3]=this.page;
 							choicesArray[4]='Start this Tumbler over';
 							choicesArray[5]=this.page;
+							choicesArray[6]='Skip Lock-picking Game';
+							choicesArray[7]=this.page;
 						
 						//Return after button hit
 						}else{
@@ -2277,6 +2282,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 								this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
 								this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
+							}else if(choiceNum==4){
+								this.currentPushes=0;
+								this.currentTumbler=0;
+								this.inLockPicking=0;
+								this.message="Congratulations! You picked the lock!";
 							}
 							
 						}

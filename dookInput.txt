@@ -73,7 +73,7 @@ ARMOR:Chainmail Armor^*2^*75
 ARMOR:Platemail Armor^*5^*85
 HEALING:First aid kit^*0.2
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.
-0:Play the game^*1^*Lockpicking^*3000^*Safecracking^*3001
+0:Play the game^*1^*Lockpicking^*3005^*Safecracking^*3001
 0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
@@ -444,7 +444,7 @@ HEALING:First aid kit^*0.2
 219:DISPLAYIF,Hidden dagger,Your hidden dagger^*223^*Your bare hands^*224
 220:You leave the kitchen and enter a long, narrow hallway that is lined with torches.  There is an open door along the hallway to the right.  The storeroom you were in earlier is to the left.  In both directions, the hallway turns off into a corner.
 220:Go to the right^*807^*Go to the left^*808
-221:220:You leave the room and enter a long, narrow hallway that is lined with torches.  There is an open door along the hallway to the right, though you cannot see what is inside.  To the left, there is a closed and locked door.  In both directions, the hallway turns off into a corner.
+221:You leave the room and enter a long, narrow hallway that is lined with torches.  There is an open door along the hallway to the right, though you cannot see what is inside.  To the left, there is a closed and locked door.  In both directions, the hallway turns off into a corner.
 221:Go to the right^*807^*Go to the left towards the storeroom^*808
 222:INVSPLIT:Tinderbox and torch^*235^*228
 222:null^*1
@@ -2662,12 +2662,12 @@ HEALING:First aid kit^*0.2
 1352:Continue^*1197
 1353:front entrance (day)
 1353:Content not added^*999^*Go around to the side wall^*790
-3000:LOCKPICK:3^*You are picking a lock
-3000:Done^*0
-3000:images/lock_pick.jpg
 3001:INVADD:Combination^*INVSPLIT:Combination^*3002^*3003
 3001:Done^*0
 3002:SAFECRACK:true^*You are trying to crack a safe.1<br>
 3002:Done^*0
 3003:SAFECRACK:false^*You are trying to crack a safe.2<br>
 3003:Done^*0
+3005:LOCKPICK:3^*You are picking a lock
+3005:Done^*0
+3005:images/lock_pick.jpg
