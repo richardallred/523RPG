@@ -1241,12 +1241,12 @@ HEALING:First aid kit^*0.2
 618:Say that the plot involves people in the throne room and <br>only the King himself can hear the details^*616^*Say that several of the King's generals are plotting to overthrow him^*671^*Say that the servants are plotting to poison the King^*673^*Say that you have uncovered a spy in the castle^*672
 619:VARSET:audience,1^*LOSEGOLD:20^*You pay the guards 10 coins each and they pocket it and agree to give you an audience with the King.  "You had better not be wasting his time," says one of the guards, "Or he will execute you on the spot."  The castle gate is opened and a regiment of soldiers leads you to the throne room.  You enter the throne room, and can see King K sitting on a golden throne that is draped with dark blue tapestries.  The King has an ornate golden ring upon his finger and carries a scepter in his hand. One of the soldiers announces that you have a message for the King.  "What message is that?" demands King K.
 619:Say that the message is for the King's ear only^*616^*Say that the Carolinians are plotting to attack the castle^*668^*Say that the peasants in the province of Hurdam are revolting^*669^*Say that several of the King's generals are plotting to overthrow him^*671^*Say that you have uncovered a spy in the castle^*672
-620:Go towards the front entrance
-620:Content not added^*999^*Go around to the side wall^*621
+620:RESTART:^*The guard does not believe you.  "We just sent supplies over to the soldiers," he says, "You are clearly trying to gain unauthorized access to the keep."  The guards draw their swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
+620:null^*1
 621:You walk towards the side wall of the keep so you can examine it more closely.  The door is plain and wooden, but it has a lock on it that prevents you from opening it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
-621:Go around to the front entrance^*620^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows^*625^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
-622:As you walk up to the large gate in front of the castle keep, one of the guards looks at you strangely.  "We have no need of soldiers in the keep right now," he says curtly.
-622:Tell him that the keep is under attack^*1338^*Offer him a bribe to let you in^*1339^*Content not added^*999^*Go around to the side wall^*623
+621:Go around to the front entrance^*622^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows^*625^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
+622:As you walk up to the large gate in front of the castle keep, one of the guards gives you a perplexed look.  "We have no need of soldiers in the keep right now," he says curtly.
+622:Tell him that the keep is under attack^*1338^*Offer him a bribe to let you in^*1339^*Tell him that you have orders from Colonel Graywald to enter^*1340^*Tell him the soldiers need more supplies from the keep^*1342^*Attack the guards^*1341^*Go around to the side wall^*1347
 623:You walk towards the side wall of the keep so you can examine it more closely.  The door on the wall is plain and wooden, and you can see an open lock on it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
 623:Go around to the front entrance^*622^*Enter the wooden door^*662^*DISPLAYIFVAR:followedServant,0,Wait for one of the servants to come out of the door^*663^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
 624:You pick the lock on the door and enter the keep.  Inside, you see a small, narrow passageway with another wooden door at the end.  Near the end of the passageway, you see a small lever.
@@ -1260,7 +1260,7 @@ HEALING:First aid kit^*0.2
 628:LOSEHEALTH:3^*You strain against the weight of your armor as you struggle to find handholds in the rough stone.  As you are trying to find a handhold in one of the cracks, you lose your grip and fall to the ground.  Fortunately, you did not climb up very far before falling and you only lose 3 health from minor bruising.
 628:Try again after discarding your armor^*627^*Decide not to climb up the wall^*629
 629:You decide that you do not want to risk the precarious climb up the wall.  What do you do next?
-629:Go around to the front entrance^*620^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
+629:Go around to the front entrance^*622^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
 630:You smash open the window you can hear the glass rain down onto the ground below.  Through the broken window, you can see a large cathedral.  The cathedral is quite tall, and you are standing in one of the stained glass windows near the top.  Rows of wooden chairs are laid out facing an altar.  The floor is a good distance below you and is covered with broken glass, but you don't have much choice but to jump down, as the wall inside the cathedral is unclimbable.
 630:Continue^*631
 631:INVSPLIT:First aid kit^*633^*634
@@ -1360,7 +1360,7 @@ HEALING:First aid kit^*0.2
 678:You follow the servant back to the tents, where most of the soldiers are sitting and eating.  Not wanting you look out of place, you look for a group of soldiers to eat breakfast with.
 678:Continue^*717
 679:You look around to make sure that nobody is watching, then you viciously attack the servant.  The servant is unable to fight back and you cut him down easily.  You search his body, but he isn't carrying anything.  However, you see that his outfit would probably fit you.
-679:Exchange your soldier's uniform the servant's clothes^*680^*Leave the servant's body and go back to the small door^*623
+679:Exchange your soldier's uniform the servant's clothes^*680^*Leave the servant's body and go back to the small door^*1347
 680:INVREMOVE:Soldier's Uniform^*INVADD:Servant Disguise^*You quickly take off your soldier's armor and put on the servant's outfit.
 680:Go back and enter the small door^*681
 681:You enter the door and see a long, narrow passageway with another wooden door on the end.  Near the end of the passageway, you see a small lever in the wall.
@@ -1440,11 +1440,11 @@ HEALING:First aid kit^*0.2
 718:RESTART:^*You wander around the tents, looking for anything that might be interesting.  Before you have a chance to do much exploring, you see several officers herding all the soldiers to the middle of the courtyard.  Colonel Graywald makes an announcement that the King's army is about to start its march towards Carolinia.  One of the soldiers protests that he thought the invasion would happen two days from now.  "The King has changed his plans," announces the Colonel, "We are going to take the Carolinians by surprise and defeat them swiftly and decisively."  You don't get a chance to slip away and you soon find yourself marching with the Dookian forces in a full-scale invasion.  King K leads his army and devestates the Carolinian troops with blasts of magic from his ring.  You are forced to watch as the Dookian troops pillage and conquer Carolinia.  <br>You have failed your mission.
 718:null^*1
 719:You walk away from the cluster of tents where the soldiers are eating and head towards the keep.  The keep is a towering stone fortress, and you can see two guards standing at the gated entrance.  On the side of the keep, you can see a small door in the wall.  You can see servants occasionally coming in and out of the door with food.  There is also a row of stained glass windows on a different section of the side wall.
-719:Go towards the front entrance^*622^*Go towards the side door^*623
+719:Go towards the front entrance^*622^*Go towards the side door^*1347
 720:You peek into some of the white tents, but they are all filled with sleeping soldiers are soldiers getting ready for bed.  You wander further into the courtyard and see some larger, more ornately decorated tents.
 720:Look into one of the ornate tents^*724^*Keep walking down the courtyard^*725^*Leave the tents and head towards the keep^*721^*Go back to your tent and go to sleep^*486
 721:You walk away from the cluster of tents where the soldiers are sleeping and head towards the keep.  The keep is a towering stone fortress, and you can see two guards standing at the gated entrance.  On the side of the keep, you can see a small door in the wall.  There is also a row of stained glass windows on a different section of the side wall.
-721:Go towards the front entrance^*620^*Look at the side of the keep^*621
+721:Go towards the front entrance^*622^*Look at the side of the keep^*1347
 722:You try to join some of the revelling soldiers, but they rudely dismiss you.  One of them exclaims that he does not share drinks with strangers.  The others in the group point and laugh at you.
 722:Teach the soldier a lesson^*723^*Leave the group and go look at some of the tents^*720^*Leave the soldiers and head towards the keep^*721^*Go back to your tent and go to sleep^*486
 723:LOSEHEALTH:8^*You quickly punch the offending soldier in the face, giving him a black eye and causing him to stagger.  One of the other soldiers runs up towards you and smashes a bottle over your head.  Your soldier's uniform partially protects you from the blow, but you lose 8 health.  Before the brawl can continue much further, you are seperated by a group of soldiers, who discipline you and the other fighters and confiscate the ale.  You are sent back to your tent and ordered to go to sleep and keep out of trouble.
@@ -1578,8 +1578,8 @@ HEALING:First aid kit^*0.2
 787:null^*1
 788:"I have nothing to say to you, thief," says the doctor.
 788:Attack the doctor^*770^*Leave the infirmary^*765
-789:Front entrance (day)
-789:Content not added^*999^*Go around to the side wall^*790
+789:INVSPLIT:Soldier's Uniform^*1349^*1350
+789:null^*1
 790:You walk towards the side wall of the keep so you can examine it more closely.  The door is plain and wooden, but it has a lock on it that prevents you from opening it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
 790:Go around to the front entrance^*789^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
 791:RESTART:^*You throw your grappling hook through one of the stained glass windows, shattering it with a loud crash.  As you are climbing up the rope, you see several guards running around from the front of the castle.  They easily pick you off with crossbow bolts.
@@ -2631,10 +2631,37 @@ HEALING:First aid kit^*0.2
 1337:You walk up to the largest pile of bones.  As you get close to it, the wasteland around you suddenly bursts into flame.  Huge jets of fire burst through the ground and rise up several stories.  You scramble onto the pile of bones and barely avoid getting scorched by several flames jetting up underneath you.  You feel a blast of heat as a circle of searing blue flames rises around you, forcing you to climb to the top of the bone pile.  Suddenly, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a vicious grin on its face and a thick mustache on its pointed chin.
 1337:Continue^*143
 1338:"Don't play games with me, soldier," snaps the guard.  "If the keep were under attack, the enemy would be streaming through the inner bailey gate right now."
-1338:Content not added^*999^*Go around to the side wall^*623
+1338:Offer him a bribe to let you in^*1339^*Tell him that you have orders from Colonel Graywald to enter^*1340^*Attack the guards^*1341^*Go around to the side wall^*1347
 1339:RESTART:^*"A soldier trying to bribe his way into the keep," says one of the guards, "Now that's a new one."  The guards draw their swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
 1339:null^*1
-
+1340:You tell the guard the you have orders from the colonel to enter the castle.  He stares at you suspiciously.  "And what orders are those?" he asks.
+1340:Say that you need to make sure that the soldiers get enough food^*1343^*Say that you were ordered to get more weapons from the keep^*1343^*Say that there is a mutiny that requires the King's attention^*1344^*Say that the colonel has given you a message for the King^*1345^*Say that the orders are secret^*1346^*Attack the guards^*1341
+1341:RESTART:^*The guards draw their swords to defend themselves.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
+1341:null^*1
+1342:VARSPLIT:timeOfDay,night^*620^*1348
+1342:null^*1
+1343:RESTART:^*"The colonel would never order one of his hired soldiers into the keep for something as trivial as that," says one of the guards.  The guards draw their swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
+1343:null^*1
+1344:"There's a large mutiny among the soldiers," you say, "All of the officers are busy trying to contain it.  I must be able to warn the King immediately."  The guard buys your story and calls for the gate to be opened.  He tells you to head straight through the great hall to reach the throne room.  You walk through the entrance gate and past a wide hallway.  As you enter the great hall, you hear the gate close behind you.
+1344:Continue^*1197
+1345:RESTART:^*The guard does not believe you.  "If the colonel had a message for the King, he would have delivered it in person.  I don't think you joined the army with the Dookia's best interests in mind."  The guards draw their swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
+1345:null^*1
+1346:RESTART:^*The guard does not believe you.  "A soldier wanting to enter the keep with 'secret' orders?  You sound more like a spy to me."  The guards draw their swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
+1346:null^*1
+1347:VARSPLIT:timeOfDay,night^*621^*623
+1347:null^*1
+1348:You tell the guard that the soldiers need more supplies from the keep.  "Very well," says the guard, "I will have the servants bring out more food to the tents."  He waves you off dismissively.
+1348:Tell the guard that you have orders from Colonel Graywald to enter^*1340^*Offer the guards a bribe to let you in^*1339^*Attack the guards^*1341^*Go around to the side of the keep^*1347
+1349:As you walk up to the large gate in front of the castle keep, one of the guards gives you a perplexed look.  "We have no need of soldiers in the keep right now," he says curtly.
+1349:Tell him that the keep is under attack^*1351^*Offer him a bribe to let you in^*1339^*Tell him that you have orders from Colonel Graywald to enter^*1340^*Tell him the soldiers need more supplies from the keep^*620^*Attack the guards^*1341^*Go around to the side wall^*790
+1350:INVSPLIT:Guard Disguise^*1352^*1353
+1350:null
+1351:"Don't play games with me, soldier," snaps the guard.  "If the keep were under attack, the enemy would be streaming through the inner bailey gate right now."
+1351:Offer him a bribe to let you in^*1339^*Tell him that you have orders from Colonel Graywald to enter^*1340^*Attack the guards^*1341^*Go around to the side wall^*790
+1352:You walk up to the castle keep entrance gate and one of the guards calls for the gate to be opened.  You enter the keep and emerge in a wide hallway.  Straight in front of you, you see an entrance to a large great hall.  You walk into the great hall and look around.
+1352:Continue^*1197
+1353:front entrance (day)
+1353:Content not added^*999^*Go around to the side wall^*790
 3000:LOCKPICK:3^*You are picking a lock
 3000:Done^*0
 3000:images/lock_pick.jpg
