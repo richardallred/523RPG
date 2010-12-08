@@ -335,7 +335,7 @@ HEALING:First aid kit^*0.2
 127:null^*1
 128:LOSEHEALTH:6^*You start swimming in the pool of water while feeling your way against one of the cave walls.  Unbelievably, you run into a rope and a bucket.  You feel like you are going insane, but you grab the rope and pull yourself up out of the water with it.  Your arms ache as you make a long upwards climb (You lose 6 health from fatigue).  Eventually, you once again see light, and you pull yourself over a ledge and into a torchlit room.
 128:Continue^*129
-129:VARSPLIT:wellVisited,1^*You look around the room and see that you have climbed up into a well.  There is not much in the room other than a large circular pit in the center.  Next to the pit, there are several coils of rope staked to the ground, all attached to buckets.  You see a single exit on the other side of the room.
+129:VARSET:wellVisited,1^*You look around the room and see that you have climbed up into a well.  There is not much in the room other than a large circular pit in the center.  Next to the pit, there are several coils of rope staked to the ground, all attached to buckets.  You see a single exit on the other side of the room.
 129:DISPLAYIFNOT:Rope,Steal one of the coils of rope^*878^*Leave the room^*882
 130:RESTART:^*You go on the offensive, swinging your sword at the skeletons.  Unfortunately, you find it far more difficult than expected to hack the skeletons apart, as the bones are a challenge to cut through.  You manage to slice apart several skeletons, but you are soon overwhelmed by the pure number of undead and they rip you apart.
 130:null^*1
@@ -1181,7 +1181,7 @@ HEALING:First aid kit^*0.2
 588:Beg for mercy^*591^*Say nothing^*592
 589:COMBAT:You are fighting an interrogator. He is using a sharp torturing knife,NAME:interrogator,WEAPON:Knife,STRENGTH:20,DEFENSE:0,ACCURACY:75,HEALTH:50,HIT:The interrogator stabs you with his knife,HIT:The interrogator cuts you deeply,HIT:The interrogator slashes you,MISS:The interrogator parries your sword.,MISS:The interrogator dodges your sword thrust.,MISS:The interrogator evades you.,MISS:The interrogator grabs your arm and pushes your sword out of the way.^*You cut down the interrogator with your sword and he falls to the ground with a crash.
 589:Continue^*590
-590:GAINGOLD:5^*VARSET:killedInterrogator,1^*INVADD:Knife^*You search the body of the interrogator.  Other than a knife, he is not carrying anything useful.  You search around the rest of the torture chamber, but there is not much there other than implements of pain.  You find 5 gold coins on the guard that you tripped, which you take.  You walk over to the iron door leading out of the torture chamber, but you are unable to open it.
+590:GAINGOLD:5^*VARSET:killedInterrogator,1^*INVADD:Knife,Silver cross^*You search the body of the interrogator.  Other than a knife, he is not carrying anything useful.  You find 5 gold coins on the guard that you tripped, which you take.  You search around the rest of the torture chamber, but there is not much there other than implements of pain.  You are about to give up the search when you see silver cross lying among a group of thumbscrews.  The cross looks valuable, so you decide to take it.  After you are finished searching, you walk over to the iron door leading out of the torture chamber, but you are unable to open it.
 590:Knock on the door^*758^*Call out to the guard on the other side^*759
 591:LOSEHEALTH:10^*The interrogator laughs at your pleas and presses the hot brand against your chest, causing you to cry out and your body to convulse with pain (You lose 10 health).  When he removes the brand, your flesh is singed and you are gasping with pain.  "If you want any mercy, you will tell me why you are here, intruder," he whispers to you.
 591:Tell him the truth^*593^*Tell him that he's making a mistake and that you are innocent^*594^*Tell him that you are a fugitive trying to hide out in the castle^*599^*Tell him that you secretly work for King K^*595^*Tell him that you won't give him any information^*596^*Say nothing^*596
@@ -1271,7 +1271,7 @@ HEALING:First aid kit^*0.2
 633:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
 634:LOSEHEALTH:12^*You leap through the cathedral window and dissipate the force of the fall through your body when you hit the ground and roll.  Pain shoots through you as you roll across several sharp pieces of glass, but you did not suffer any serious damage.  You lose 12 health from the force of the fall and from the glass cutting you.  You get up and look around the cathedral.  The only thing you can see of interest are a large, gilded altar and a small door in the back of the room.  There is also a large wooden door that exits the room.
 634:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
-635:INVSPLIT:Golden cross^*638^*1259
+635:ANYSPLIT:Golden cross^*638^*1259
 635:null^*1
 636:VARSPLIT:catacombsVisited,1^*1247^*1248
 636:null^*1
@@ -2047,7 +2047,7 @@ HEALING:First aid kit^*0.2
 1022:You turn around and walk back to the apothecary.  Inside, you see a wide array of potions and alchemy equipment.
 1022:Enter the apothecary^*1017^*Walk past the apothecary^*1019^*Turn around and go back the way you came^*1018
 1023:You reach the bottom of the staircase and emerge in a dank underground corridor.  To the left, you can see many rows of dungeon cells.  To the right, you can see a solid metal door with a large bolt on it.
-1023:Go back up the stairs^*1150^*Go to the left^*1179^*Go to the right^*1152
+1023:Go to the left towards the dungeon cells^*1179^*Go to the right towards the solid metal door^*1152^*Go back up the stairs out of the dungeon^*1150
 1024:VARSPLIT:wellVisited,1^*1025^*1026
 1024:null^*1
 1025:You walk down the hallway until you reach the next corner.  Near the corner, there is the small wooden door that leads to the well.
@@ -2258,8 +2258,8 @@ HEALING:First aid kit^*0.2
 1150:null^*1
 1151:VARSPLIT:freedPrisoner,2^*1163^*1164
 1151:null^*1
-1152:VARSPLIT:killedInterrogator,1^*610^*611
-1152:null^*1
+1152:You walk down the corridor until you see a large, intimidating iron door at the end.  The door is currently sealed shut with a large iron bar across it.
+1152:Lift the bar and open the door^*1354^*Turn around and walk towards the cells^*1179^*Leave the dungeon^*1150
 1153:You try to talk to the prisoner, but he ignores your greeting.  From the glassy look in his eyes, you think that he might be insane.
 1153:Tell him that you are going to free him^*1155^*Ask him what his name is^*1155^*Tell him that you are going to hurt him if he doesn't speak to you^*1155^*Tell him that you were another prisoner but you escaped^*1155^*Tell him that you are going to give him some food^*1155^*Tell him that you are on a mission from Carolinia^*1158^*Ask him if there are any other prisoners in the dungeon^*1155^*Tell him that King K has pardoned his crime^*1155^*Ask him where King K is^*1155
 1154:VARSET:freedPrisoner,1^*One of the keys on the ring fits in the lock, and you are able to unlock the cell.  As the door swings open, the prisoner slowly looks up at you.  You tell him that he is free.  The prisoner just stares at you vacantly and doesn't move.
@@ -2326,7 +2326,7 @@ HEALING:First aid kit^*0.2
 1184:Go back down the stairs^*1023^*Call for help^*1187
 1185:You climb up the stairs out of the dungeon and return to the hallway.  What do you do next?
 1185:DISPLAYIFVAR:wellVisited,1,Go to the left towards the well^*1024^*DISPLAYIFVAR:wellVisited,0,Go to the left towards a small wooden door^*1024^*DISPLAYIFVAR:apothecaryVisited,1,Go to the right towards the apothecary^*1030^*DISPLAYIFVAR:apothecaryVisited,0,Go to the right towards an open door^*1030
-1186:INVADD:Sword^*GAINGOLD:8^*You search the bodies of the dungeon guards and find 8 gold coins between them, which you take.  The guards are not carrying anything else useful.  You leave your cell and find yourself in a cell corridor.  You head towards a set of stairs to your left that you remember lead to the dungeon exit.  You climb the stairs and see that the top of the stairs is blocked by a closed grate.  Outside the grate, you can see a hallway, but your visibility is limited.  You try to lift the grate, but it is impossible.
+1186:INVADD:Sword^*GAINGOLD:8^*You search the bodies of the dungeon guards and find 8 gold coins between them, which you take.  You also take one of the guards' swords.  The guards are not carrying anything else useful.  You leave your cell and find yourself in a cell corridor.  You head towards a set of stairs to your left that you remember lead to the dungeon exit.  You climb the stairs and see that the top of the stairs is blocked by a closed grate.  Outside the grate, you can see a hallway, but your visibility is limited.  You try to lift the grate, but it is impossible.
 1186:Go back down the stairs^*1023^*Call for help^*1187
 1187:You stand next to the grate and shout that you are trapped in the dungeon.  You see a guard emerge on the other side of the gate.  He looks nonplussed.  "Who are you?" he asks, "And where are the guards that went down to interrogate the prisoner?"
 1187:Tell him that the guards released you^*1188^*Tell him that you killed the guards^*1189^*Tell him that you are holding the guards hostage until you are let out^*1191^*Tell him that the prisoner has gone crazy and you need help subduing him^*1195
@@ -2342,7 +2342,7 @@ HEALING:First aid kit^*0.2
 1192:Continue^*1193
 1193:VARSET:killedDungeonGuard,1^*INVADD:Key Ring^*After you defeat the guard, you look around.  You are in the middle of a long, narrow hallway that is lined with torches.  Behind you, there is an open grate that is in front of a staircase leading down into the dungeon.  Above the body of the guard, you see a small lever that you assume controls the grate.  A quick search of the guard's body reveals a key ring full of keys, which you take.  To the left, you can see a small wooden door at the end of the hall.  To the right, you can see an open door.
 1193:Go to the left^*1024^*Go to the right^*1030
-1194:GAINGOLD:5^*VARSET:killedInterrogator,1^*INVADD:Knife^*You search the body of the interrogator.  Other than a knife, he is not carrying anything useful.  You search around the rest of the torture chamber, but there is not much there other than implements of pain.
+1194:GAINGOLD:5^*VARSET:killedInterrogator,1^*INVADD:Knife,Silver cross^*You search the body of the interrogator.  Other than a knife, he is not carrying anything useful.  You search around the rest of the torture chamber, but there is not much there other than implements of pain.    You are about to give up the search when you see silver cross lying among a group of thumbscrews.  The cross looks valuable, so you decide to take it.
 1194:Go to the cell area^*1179^*Leave the dungeon^*1150
 1195:RESTART:^*You can tell that the guard outside the grate does not believe you.  "If that is the case," he says, "Then where are the two guards now?"  He disappears down the hallway, leaving you trapped behind the door.  He returns several minutes later with several crossbow laden guards, who waste no time in shooting you through the grate.  <br>Your life ends here.
 1195:null^*1
@@ -2662,6 +2662,8 @@ HEALING:First aid kit^*0.2
 1352:Continue^*1197
 1353:front entrance (day)
 1353:Content not added^*999^*Go around to the side wall^*790
+1354:VARSPLIT:killedInterrogator,1^*610^*611
+1354:null^*1
 3001:INVADD:Combination^*INVSPLIT:Combination^*3002^*3003
 3001:Done^*0
 3002:SAFECRACK:true^*You are trying to crack a safe.1<br>
