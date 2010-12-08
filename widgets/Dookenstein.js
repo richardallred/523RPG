@@ -801,6 +801,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				if (this.inCombat == 0 && this.inMaze == 0 && this.inLockPicking == 0 && this.inSafeCracking == 0 && this.invselect == 0 && this.restart == 0) {
 					this.updateHash();
 					this.message = "Game saved successfully.";
+				} else if (this.invselect == 1) {
+					this.message = "You cannot save the game during inventory selection.";
+				} else if (this.inCombat == 1) {
+					this.message = "You cannot save the game during combat.";
 				} else {
 					this.message = "You cannot save the game right now.";
 				}
@@ -850,7 +854,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				this.message = "Game options";
 				this.menuCategory = "Game options";
 				choicesArray = [];
-				choicesArray[0] = "Set difficultly level";
+				choicesArray[0] = "Set difficulty level";
 				choicesArray[1] = 1;
 				choicesArray[2] = "Manage Inventory";
 				choicesArray[3] = 2;
@@ -936,7 +940,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		}
 	},
 	choose: function(choiceNum) {
-		if (this.restart == 1) {
+		if (this.restart == 1 && this.menuLevel == -1) {
 			if (choiceNum == 1) {
 				//'Restart' button pressed
 				this.restartGame();
