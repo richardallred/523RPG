@@ -431,12 +431,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//currently in the game, go to settings menu
 			this.message = "Settings";
 			choicesArray = [];
-			choicesArray[0] = "Sound Options";
+			choicesArray[0] = "Save Game"
 			choicesArray[1] = 1;
-			choicesArray[2] = "Display Options";
+			choicesArray[2] = "Load Game"
 			choicesArray[3] = 2;
-			choicesArray[4] = "Game Options";
+			choicesArray[4] = "Sound Options";
 			choicesArray[5] = 3;
+			choicesArray[6] = "Display Options";
+			choicesArray[7] = 4;
+			choicesArray[8] = "Game Options";
+			choicesArray[9] = 5;
 			this.settings.attr('label','Go back');
 		} else if (this.menuLevel == 0) {
 			//currently in main settings menu, go back to the game
@@ -793,7 +797,34 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			
 		}
 		else if (this.menuLevel == 1) {
-			if (choiceNum == 1 || this.menuCategory == "Audio settings") {
+			if (choiceNum == 1) {
+				if (this.inCombat == 0 && this.inMaze == 0 && this.inLockPicking == 0 && this.inSafeCracking == 0 && this.invselect == 0 && this.restart == 0) {
+					this.updateHash();
+					this.message = "Game saved successfully.";
+				} else {
+					this.message = "You cannot save the game right now.";
+				}
+				this.menuLevel --;
+			}
+			else if (choiceNum == 2) {
+				if (dojo.hash() != '') {
+					this.loadHash();
+					this.message = "Game loaded successfully.";
+					this.settings.attr('label','Settings');
+					this.inCombat = 0;
+					this.restart = 0;
+					this.invselect = 0;
+					this.inLockPicking = 0;
+					this.inSafeCracking = 0;
+					this.inMaze = 0;
+					this.processChoice(this.page,0);
+					this.menuLevel --;
+				} else {
+					this.message = "You do not have a saved game.";
+				}
+				this.menuLevel --;
+			}
+			else if (choiceNum == 3 || this.menuCategory == "Audio settings") {
 				this.message = "Audio settings";
 				this.menuCategory = "Audio settings";
 				choicesArray = [];
@@ -804,7 +835,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				choicesArray[4] = "Slow down reading";
 				choicesArray[5] = 3;
 			}
-			else if (choiceNum == 2 || this.menuCategory == "Font settings" || this.menuCategory == "Font color" || this.menuCategory == "Background color") {
+			else if (choiceNum == 4 || this.menuCategory == "Font settings" || this.menuCategory == "Font color" || this.menuCategory == "Background color") {
 				this.message = "Display settings";
 				this.menuCategory = "Display settings";
 				choicesArray = [];
@@ -815,7 +846,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				choicesArray[4] = "Change background color";
 				choicesArray[5] = 3;
 			}
-			else if (choiceNum == 3 || this.menuCategory == "Game options" || this.menuCategory == "Difficulty options" || this.menuCategory == "Inventory options") {
+			else if (choiceNum == 5 || this.menuCategory == "Game options" || this.menuCategory == "Difficulty options" || this.menuCategory == "Inventory options") {
 				this.message = "Game options";
 				this.menuCategory = "Game options";
 				choicesArray = [];
@@ -912,6 +943,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			} else if (choiceNum == 2) {
 				this.loadHash();
 				this.restart = 0;
+				this.inCombat = 0;
+				this.restart = 0;
+				this.invselect = 0;
+				this.inLockPicking = 0;
+				this.inSafeCracking = 0;
+				this.inMaze = 0;
 				choicesArray[choiceNum * 2 - 1] = this.page;
 			}
 		}
@@ -2765,11 +2802,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				}
 			} else {
 				//only possible choice is to restart the game
-				if (this.inCombat == 1 || this.inSafeCracking == 1) {
+				//if (this.inCombat == 1 || this.inSafeCracking == 1) {
+				if (dojo.hash() == '') {
 					choicesArray = ['Restart',1];
 				} else {
-				//if the choice caused instant death, give the player an option to go back
-					choicesArray = ['Restart',1,'Go back one choice'];
+				//if there is a saved game, there is an option to load it
+					choicesArray = ['Restart',1,'Load Game'];
 				}
 				this.health = 0;
 				this.drawHealthBar(this.health);
@@ -2810,9 +2848,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		}
 		this.displayMessage.innerHTML = this.message;
 		//update URL bar with the dojo hash function
-		if (this.inCombat == 0 && this.inMaze == 0 && this.inLockPicking == 0 && this.invselect == 0 && this.restart == 0) {
-			this.updateHash();
-		}
+		//if (this.inCombat == 0 && this.inMaze == 0 && this.inLockPicking == 0 && this.invselect == 0 && this.restart == 0) {
+			//this.updateHash();
+		//}
 		this.drawAll();
 	},
 	runJSonic: function() {
