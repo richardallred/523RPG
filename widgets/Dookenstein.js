@@ -2976,8 +2976,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	//load data from the URL bar
 	loadHash: function() {
 		hashValue = dojo.hash();
-		//converted value for the string 'EndInventory'
-		endInventory = '216252256270536268636673';
 		hashSplit = hashValue.split('&');
 		converted = '';
 		for (i = 0; i < hashSplit.length; i++) {
