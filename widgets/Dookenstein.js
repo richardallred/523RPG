@@ -6,6 +6,7 @@ dojo.require('dijit._Widget');
 dojo.require('dijit._Templated');
 dojo.require('dojo.i18n');
 dojo.require('dojo.number');
+dojo.require('dojo.hash');
 dojo.require('uow.audio.JSonic');
 dojo.requireLocalization('myapp', 'Dookenstein');
 
@@ -42,8 +43,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.DELIMITER = '^*';
 		//Set comment delimiter (//, for example) - default is that comments are not allowed in the file
 		this.COMMENTDELIMITER = "";
-		//set starting health and gold.  Health can never go above MAX_HEALTH (default max health is 50)
-		this.STARTING_HEALTH = 50;
+		//set starting health and gold.  Health can never go above MAX_HEALTH (default max health is 100)
+		this.STARTING_HEALTH = 100;
 		this.MAX_HEALTH = this.STARTING_HEALTH;
 		this.health = this.MAX_HEALTH;
 		this.STARTING_GOLD = 0;
@@ -87,6 +88,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.invselect = 0;
 		//special mode for combat
 		this.inCombat = 0;
+		this.ignoreEffect = false;
+		this.loadHashIgnore = false;
 		this.chooseWeapon = 0;
 		this.invselecting = 0;
 		//special mode for Maze
@@ -287,13 +290,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				this.healingItems[this.healingItems.length] = added;
 			}
 			else if (dataSplit[i].indexOf('INITIALIZE:') != -1) {
-				//Initialize variables - default is 50 health, 10 strength, and 0 gold
+				//Initialize variables - default is 100 health, 10 strength, and 0 gold
 				initialSplit = dataSplit[i].split('INITIALIZE:')[1].split(',');
 				if (initialSplit[0] == 'Health') {
 					this.STARTING_HEALTH = dojo.number.parse(initialSplit[1]);
 					if (isNaN(this.STARTING_HEALTH)) {
-						console.log('Failed to initialize Health (Error - Not a number).  Health set to default of 50.');
-						this.STARTING_HEALTH = 50;
+						console.log('Failed to initialize Health (Error - Not a number).  Health set to default of 100.');
+						this.STARTING_HEALTH = 100;
 					}
 					//Max health is the value that your health cannot exceed.  This could change in-game if you get stronger
 					//Starting health is initialized in the game file and will not change.  When game is reset, max health returns to starting health
@@ -353,11 +356,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		}
 		
 		this.page = 0;
+		if (dojo.hash() != '') {
+			this.loadHash();
+			this.processChoice(this.page,0);
+		} else {
 		this.message = this.pageText[this.page];
 		//choicesArray = this.choices[this.page].split('^*');
 		choicesArray = this.choices[this.page].split(this.DELIMITER);
 		//this.exportPageTextAndChoices();
 		//must call refreshAll in here because this method is dojo.deferred (will occur last)
+		}
 		this.refreshAll();
 	},
 
@@ -898,7 +906,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	},
 	choose: function(choiceNum) {
 		if (this.restart == 1) {
-			this.restartGame();
+			if (choiceNum == 1) {
+				//'Restart' button pressed
+				this.restartGame();
+			} else if (choiceNum == 2) {
+				this.loadHash();
+				this.restart = 0;
+				choicesArray[choiceNum * 2 - 1] = this.page;
+			}
 		}
 		if (choicesArray.length < choiceNum * 2) {
 			this.message = 'ERROR: The previous choice did not link to a page';
@@ -922,12 +937,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//specialPageArray = this.pageText[this.page].split('^*');
 			specialPageArray = this.pageText[this.page].split(this.DELIMITER);
 
-			if (specialPageArray.length == 1) {
+			if (specialPageArray.length == 1 || this.loadHashIgnore) {
 				//no special commands, just display the text
-				this.message = specialPageArray[0];
+				this.message = specialPageArray[specialPageArray.length-1];
+				this.loadHashIgnore = false;
 			} else {
 				//the last thing in the array should be the actual page text (except in special circumstances)
 				this.message = specialPageArray[specialPageArray.length-1];
+				this.ignoreEffect = true;
 				//loop through all special commands and run them if found
 				/*List of special commands:
 				INVSPLIT:item^*x^*y - Go to page x if item is in inventory, otherwise go to page y
@@ -1003,14 +1020,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						inventoryCheckArray = specialPageArray[p].split('ALLSPLIT:')[1].split(',');
 						passedCheck = true;
 						for (q = 0; q < inventoryCheckArray.length; q++) {
-							console.log(inventoryCheckArray[q]);
 							if (inventoryCheckArray[q] in this.oc(this.inventory)) {
 								//the specified item is in the inventory
 							} else {
 								passedCheck = false;
 							}
 						}
-						console.log(passedCheck);
 						if (passedCheck) {
 							//passed inventory check, redirect to first page
 							this.page = specialPageArray[specialPageArray.length-2];
@@ -1071,8 +1086,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							}
 							rand = Math.round(Math.random()*(numPossiblePages-1));
 							//redirect to the randomly chosen page
-							console.log(rand);
-							console.log(randSplit[rand]);
 							this.page = randSplit[rand];
 							this.processChoice(this.page,0);
 						}
@@ -2051,6 +2064,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								this.inCombat = 0;
 								autoFight = false;
 								this.message = 'You have won the fight.';
+								this.ignoreEffect = true;
 							} else if (autoFight && this.health > 0) {
 								this.processChoice(this.page, 1);
 								combatString = '';
@@ -2751,7 +2765,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				}
 			} else {
 				//only possible choice is to restart the game
-				choicesArray = ['Restart',1];
+				if (this.inCombat == 1 || this.inSafeCracking == 1) {
+					choicesArray = ['Restart',1];
+				} else {
+				//if the choice caused instant death, give the player an option to go back
+					choicesArray = ['Restart',1,'Go back one choice'];
+				}
 				this.health = 0;
 				this.drawHealthBar(this.health);
 			}
@@ -2790,6 +2809,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			this.runJSonic();
 		}
 		this.displayMessage.innerHTML = this.message;
+		//update URL bar with the dojo hash function
+		if (this.inCombat == 0 && this.inMaze == 0 && this.inLockPicking == 0 && this.invselect == 0 && this.restart == 0) {
+			this.updateHash();
+		}
 		this.drawAll();
 	},
 	runJSonic: function() {
@@ -2836,6 +2859,82 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	slowDownJSonic: function() {
 		this.sonicRate -= 50;
 		this.runJSonic();
+	},
+	//save all data to the URL bar with dojo.hash
+	updateHash: function() {
+		HASHDELIM = '%&';
+		hashString = '';
+		if (this.ignoreEffect) {
+			hashString = hashString + 'ignoreEffect';
+			this.ignoreEffect = false;
+		} else {
+			hashString = hashString + Math.random();
+		}
+		hashString = hashString + HASHDELIM;
+		for (i = 1; i < this.inventory.length; i++) {
+			//hash all inventory items
+			hashString = hashString + this.inventory[i];
+			hashString = hashString + HASHDELIM;
+		}
+		hashString = hashString + 'EndInventory';
+		hashString = hashString + HASHDELIM;
+		hashString = hashString + this.page;
+		hashString = hashString + HASHDELIM;
+		hashString = hashString + this.health;
+		hashString = hashString + HASHDELIM;
+		hashString = hashString + this.strength;
+		hashString = hashString + HASHDELIM;
+		hashString = hashString + this.gold;
+		hashString = hashString + HASHDELIM;
+		hashString = hashString + this.MAX_HEALTH;
+		hashString = hashString + HASHDELIM;		
+		for (i = 0; i < this.variableList.length; i++) {
+			//hash all external variables
+			hashString = hashString + this.variableList[i].value;
+			hashString = hashString + HASHDELIM;
+		}
+		converted = '';
+		for (i = 0; i < hashString.length; i++) {
+			converted = converted + (hashString.charCodeAt(i)) + '&';
+		}
+		dojo.hash(converted);
+	},
+	//load data from the URL bar
+	loadHash: function() {
+		hashValue = dojo.hash();
+		//converted value for the string 'EndInventory'
+		endInventory = '216252256270536268636673';
+		hashSplit = hashValue.split('&');
+		converted = '';
+		for (i = 0; i < hashSplit.length; i++) {
+			converted = converted + String.fromCharCode(hashSplit[i]);
+		}
+		
+		HASHDELIM = '%&';
+		hashInvSplit = converted.split('EndInventory')[0].split(HASHDELIM);
+		hashVarSplit = converted.split('EndInventory')[1].split(HASHDELIM);
+		if (hashInvSplit[0] == 'ignoreEffect') {
+			this.loadHashIgnore = true;
+		}
+		//unconvert inventory items (if any)
+		this.inventory = [];
+		this.inventory[0] = 'Inventory';
+		if (hashInvSplit.length > 2) {
+			//i = 0 is a random number and i = hashSplitOne.length - 1 is a null string, so discard those
+			for (i = 1; i < hashInvSplit.length-1; i++) {
+				if (hashInvSplit != '') {
+					this.inventory[this.inventory.length] = hashInvSplit[i];
+				}
+			}
+		}
+		this.page = hashVarSplit[1];
+		this.health = dojo.number.parse(hashVarSplit[2]);
+		this.strength = dojo.number.parse(hashVarSplit[3]);
+		this.gold = dojo.number.parse(hashVarSplit[4]);
+		this.MAX_HEALTH = dojo.number.parse(hashVarSplit[5]);
+		for (i = 6; i < hashVarSplit.length-1; i++) {
+			this.variableList[i-6].value = hashVarSplit[i];
+		}
 	},
 	//create buttons and place them.  Parameter inputArray: array of choices for this page
 	createButtons: function(inputArray) {
@@ -2906,10 +3005,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		
 		this.inCombat = 0;
 		
-		/*for (i = 1; i < this.inventory.length; i++) {
-			//clear whole inventory except for the never used 0th element
-			this.inventory[i] = '';
-		}*/
 		this.inventory = [];
 		this.inventory[0] = 'Inventory';
 		for (i = 0; i < this.initVariableList.length; i++) {
