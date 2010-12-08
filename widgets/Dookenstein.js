@@ -780,11 +780,39 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					choicesArray[3] = 2;
 				}
 				else if (choiceNum == 3) {
+					//Display inventory
+					inventoryArray = [];
+					for (b = 0; b < this.inventory.length; b++) {
+						if (this.inventory[b] == "undefined") {
+							this.inventory[b] = "";
+						}
+						if (this.inventory[b] != "") {
+							inventoryArray[inventoryArray.length] = this.inventory[b];
+						}
+					}
+					if (inventoryArray.length == 1) {
+						this.message = "There are no items in your inventory.";
+					} else {
+						this.message = inventoryArray[0] + ": ";
+						for (b = 1; b < inventoryArray.length; b++) {
+							if (inventoryArray[b] != "undefined") {
+								this.message = this.message + inventoryArray[b];
+							}
+							if (b < inventoryArray.length - 1) {
+								this.message = this.message + ", ";
+							} else {
+								this.message = this.message + ". ";
+							}
+						}
+					}
+					this.menuLevel --;
+				}
+				else if (choiceNum == 4) {
 					//Display health
 					this.message = 'Health Left: ' + this.health + '/' + this.MAX_HEALTH;
 					this.menuLevel --;
 				}
-				else if (choiceNum == 4) {
+				else if (choiceNum == 5) {
 					//Display gold
 					this.message = 'You have ' + this.gold + ' gold.';
 					this.menuLevel --;
@@ -858,10 +886,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				choicesArray[1] = 1;
 				choicesArray[2] = "Manage Inventory";
 				choicesArray[3] = 2;
-				choicesArray[4] = "Display Health Left";
+				choicesArray[4] = "Display Inventory";
 				choicesArray[5] = 3;
-				choicesArray[6] = "Display Gold Left";
+				choicesArray[6] = "Display Health Left";
 				choicesArray[7] = 4;
+				choicesArray[8] = "Display Gold Left";
+				choicesArray[9] = 5;
 			} else {
 				this._settings();
 			}
@@ -1300,7 +1330,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						alreadyTakenCount = 0;
 						if (this.invselect == 1) {
 							//add chosen item to inventory
-							this.inventory[this.inventory.length] = choicesArray[choiceNum * 2 - 2];
+							if (!(choicesArray[choiceNum * 2 - 2] in this.oc(this.inventory))) {
+								this.inventory[this.inventory.length] = choicesArray[choiceNum * 2 - 2];
+							}
 						}
 						for (i = 0; i < choicesArray.length; i+=2) {
 							//remove all choices that have already been taken
