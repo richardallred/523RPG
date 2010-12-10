@@ -35,6 +35,7 @@ INITIALIZE:killedStoreroomGuard,0
 INITIALIZE:killedDungeonGuard,0
 INITIALIZE:killedPriests,0
 INITIALIZE:killedServant,0
+INITIALIZE:killedDemon,0
 INITIALIZE:healingElixir,0
 INITIALIZE:addedElixir,0
 INITIALIZE:addedRed,0
@@ -359,26 +360,70 @@ HEALING:First aid kit^*0.2
 139:null^*1
 140:You battle your way through the corridor as you approach the source of the bright light.  Your arms begin to get tired as you are forced to constantly smash the unceasing waves of incoming skeletons.  Eventually you reach the source of the light and find that it is coming from a wide crevasse in the middle of the floor.  Large flames are leap out of the crevasse periodically.  As you approach it, the skeletons back away from you.  The skeletons stand in a wide circle around you, but do not walk any closer to the chasm.  You set your hammer down and rest your arms for a few moments as the skeletons stand and stare at you with lifless eyes.
 140:Look into the crevasse^*141^*Fight your way back through the skeletons^*142
-141:You look down into the chasm and see a flaming, bone-filled wasteland.  Massive piles of bones lie on the scorched ground, and giant flames flare up in various locations.  Suddenly, you feel a force pull you forwards that sends you tumbling into the crevasse.  You don't fall far before you land in a large pile of bones.  You feel a blast of heat as a circle of searing blue flames rises around you.  As you struggle to get up from the pile of bones that you are lying on, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a vicious grin on its face and a thick mustache on its pointed chin.
-141:Continue^*143
+141:INVSPLIT:Platemail Armor^*158^*159
+141:null^*1
 142:As you were resting, hundreds of skeletons formed a mass behind you.  The skeletons are so thickly packed that you cannot even see through them.  You realize that it would be impossible to fight your way back through them and survive.  You are trapped between them and the chasm.
 142:Continue^*141
-143:VARSPLIT:killedPriests,0^*144^*145
+143:VARSET:killedDemon,1^*VARSPLIT:killedPriests,0^*144^*145
 143:null^*1
 144:"You dare to enter my lair," booms the demon, "No doubt you are a fool in search of treasure.  Another greedy mortal looking for power who will end up lost among my piles of bones."
-144:Tell the demon you are looking for treasure^*150^*Challenge the demon to a fight^*146^*DISPLAYIF:Crossbow,Shoot the demon with your crossbow^*149^*Content not added^*999
+144:Tell the demon you are looking for treasure^*150^*Say that you wandered into the lair by accident^*151^*Tell the demon you entered its lair to slay it^*171^*Challenge the demon to a fight^*146^*DISPLAYIF:Crossbow,Shoot the demon with your crossbow^*149^*DISPLAYIF:Throwing Knives,Attack the demon with your throwing knives^*157^*DISPLAYIF:Golden cross,Hold up your golden cross to try to ward off the demon^*152^*DISPLAYIF:Silver cross,Hold up your silver cross to try to ward off the demon^*152^*Do nothing^*172
 145:"You dare to enter my lair," booms the demon, "Especially after you slaughtered my priests.  Are you after my treasue or are you just here to anger me?  Either way, I intend to see you lost among my piles of bones."
-145:Challenge the demon to a fight^*146^*DISPLAYIF:Crossbow,Shoot the demon with your crossbow^*149^*Content not added^*999
-146:Ignoring the fact that the demon is several times as tall as you are, you challenge it to fight you fairly.  The demon laughs loudly, but you see the flames around you rescind, allowing you to attack at close range.  "You really think you stand a chance against me?" it roars.  It suddenly launches a ball of fire at you, which you narrowly dodge.
+145:Tell the demon you are looking for treasure^*150^*Say that you wandered into the lair by accident^*151^*Tell the demon you entered its lair to slay it^*171^*Challenge the demon to a fight^*146^*DISPLAYIF:Crossbow,Shoot the demon with your crossbow^*149^*DISPLAYIF:Throwing Knives,Attack the demon with your throwing knives^*157^*DISPLAYIF:Golden cross,Hold up your golden cross to try to ward off the demon^*152^*DISPLAYIF:Silver cross,Hold up your silver cross to try to ward off the demon^*152^*Do nothing^*172
+146:Ignoring the fact that the demon is several times taller than you are, you challenge it to fight you.  The demon laughs loudly, but you see the flames around you rescind, allowing you to attack the demon at close range.  "You really think you stand a chance against me?" it roars.  It suddenly launches a ball of fire at you, which you narrowly dodge.
 146:Continue^*147
-147:COMBAT:You are fighting a blue demon,NAME:demon,WEAPON:None,STRENGTH:30,DEFENSE:0,ACCURACY:70,HEALTH:100,HIT:The demon blasts you with flame,HIT:The demon kicks you with massive force,HIT:The demon stabs you with its pointed chin,MISS:Your demon is unaffected by your attack.^*The demon roars with fury as you strike a killing blow.
+147:COMBAT:You are fighting a blue demon,NAME:demon,WEAPON:None,STRENGTH:30,DEFENSE:0,ACCURACY:70,HEALTH:100,HIT:The demon blasts you with flame,HIT:The demon scorches you,HIT:The demon kicks you with massive force,HIT:The demon stabs you with its pointed chin,MISS:Your demon is unaffected by your attack.^*The demon roars with fury as you strike a killing blow.
 147:Continue^*148
-148:Killed demon
-148:Content not added^*999
+148:As the blue demon falls the ground with a crash, the wasteland begins to shake as if from an earthquake.  You see the corpse of the demon being sucked back into the rip in the ground.  The rumbling of the wasteland intensifies, and the ground splits into thousands of cracks below you.  A powerful jet of steam bursts from the cracks in the ground, and the force of it causes you to fly upwards towards a large stone ceiling above the wasteland.  You tumble upwards through a fissure in the ceiling that was directly above the large bone pile, and you land in a heap next to the fissure.
+148:Continue^*166
 149:INVREMOVE:Crossbow^*LOSEHEALTH:10^*You pull out your crossbow to fire it at the demon, but the demon points at it and it bursts into flame in front of you, causing you to lose 10 health.  "That," says the demon, "Was not very wise."
-149:Challenge the demon to a fight^*146^*Content not added^*999
+149:Tell the demon you are looking for treasure^*150^*Say that you wandered into the lair by accident^*151^*Tell the demon you entered its lair to slay it^*171^*Challenge the demon to a fight^*146^*DISPLAYIF:Throwing Knives,Attack the demon with your throwing knives^*157^*DISPLAYIF:Golden cross,Hold up your golden cross to try to ward off the demon^*152^*DISPLAYIF:Silver cross,Hold up your silver cross to try to ward off the demon^*152^*Do nothing^*172
 150:Looking for treasure
-150:
+150:Content not added
+151:RESTART:^*"I'm not looking for treasure," you stammer, "I wandered into this lair by accident.  I'm actually on a mission from Carolinia..."  The demon cuts you off with a wave of its large clawed hand that nearly beheads you.  "I don't care," booms the demon, "All you are to me is a few more bones to add to my pile."  The demon breathes out a jet of flame that scorches the flesh off of your bones.  Your skeleton crumbles apart and you join the large pile of bones forever.
+151:null^*1
+152:As you take the cross out of your pack and hold it up, you are shocked to see that it has transformed into a crimson red color.  The cross feels warm and seems to pulse in your hand with raw power.  As the demon sees it, the smile on its face turns into a menacing snarl.  "That cross is mine," growls the demon, "You have no right to hold it like that."  The flames circling around you suddenly grow higher and more intense.  The demon holds out a large, gnarled hand.  "Throw me the cross," says the demon, "Or I will roast you slowly before I take it myself."  The cross seems to pulse in your hand with protest and you can feel it building up energy.
+152:Throw the cross to the demon^*153^*Throw the cross into the fire instead^*154^*Try to use the power of the cross to attack the demon^*155^*Offer to trade the cross for one of the demon's treasures^*156
+153:RESTART:^*You throw the cross over the circle of flames around you towards the demon.  The demon quickly catches it and grips the cross tightly, absorbing it into its body.  Its face once again breaks into an infernal smile.  "As your reward, I will roast you quickly instead of slowly," says the demon as it sweeps both of its hands upwards.  A gigantic jet of flame bursts through the pile of bones under you and incinerates you on the spot.  <br>Your life ends here.
+153:null^*1
+154:You pretend to start to throw the cross towards the demon's outstretched hand, but you quickly change your aim and toss it into the circle of blue flames around you.  The demon roars with fury as it watches the cross melt into liquid.  The demon swipes a clawed hand at you and you duck just in time to avoid being beheaded.  As the liquid metal seeps into the ground, the wasteland begins to shake as if from an earthquake.  You lose your balance and start tumbling down the pile of bones.  Fortunately, the blues flames circling you rescind back into the ground before you are burnt.  As the rumbling intensifies, you see the blue demon being sucked back into the rip in the ground.  It howls and claws at you before it disappears underground.  The rumbling of the wasteland intensifies, and the ground splits into thousands of cracks below you.  A powerful jet of steam bursts from the cracks in the ground, and the force of it causes you to fly upwards towards a large stone ceiling above the wasteland.  You tumble upwards through a fissure in the ceiling that was directly above the large bone pile, and you land in a heap next to the fissure.
+154:Continue^*166
+155:RESTART:^*You feel the cross surging with power, and you almost unconsciously channel it and launch a deadly bolt of magic towards the demon.  The bolt hits the demon directly in the chest, but it doesn't seem to have any effect.  "You seek to use my own power against me?" roars the demon.  Using the cross has drained your energy, and you are unable to avoid the demon's furious retaliation.  It reaches through the flames and rips your head off with its clawed hand.
+155:null^*1
+156:Offer to trade
+156:Content not added
+157:RESTART:^*You quickly throw several knives at the demon, piercing its chest.  The demon roars with fury and sweeps both of its hands upwards.  A gigantic jet of flame bursts through the pile of bones under you and incinerates you on the spot.  <br>Your life ends here.
+157:null^*1
+158:You look down into the chasm and see a flaming, bone-filled wasteland.  Massive piles of bones lie on the scorched ground, and giant flames flare up in various locations.  Suddenly, you feel a force pull you forwards that sends you tumbling into the crevasse.  You don't fall far before you land in a large pile of bones.  As you hit the pile, your heavy platemail armor protects you from the several of the sharp bones cutting into you.  You feel a blast of heat as a circle of searing blue flames rises around you.  As you struggle to get up from the pile of bones that you are lying on, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered, scaly skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a diabolical grin on its face and a thick mustache on its pointed chin.
+158:Continue^*143
+159:INVSPLIT:Chainmail Armor^*160^*161
+159:null^*1
+160:LOSEHEALTH:5^*You look down into the chasm and see a flaming, bone-filled wasteland.  Massive piles of bones lie on the scorched ground, and giant flames flare up in various locations.  Suddenly, you feel a force pull you forwards that sends you tumbling into the crevasse.  You don't fall far before you land in a large pile of bones.  As you hit the pile, several of the sharp bones cut into you.  Your chainmail armor partially protects you, but you still lose 5 health.  You feel a blast of heat as a circle of searing blue flames rises around you.  As you struggle to get up from the pile of bones that you are lying on, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered, scaly skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a diabolical grin on its face and a thick mustache on its pointed chin.
+160:Continue^*143
+161:INVSPLIT:Soldier's Uniform^*162^*163
+161:null^*1
+162:LOSEHEALTH:8^*You look down into the chasm and see a flaming, bone-filled wasteland.  Massive piles of bones lie on the scorched ground, and giant flames flare up in various locations.  Suddenly, you feel a force pull you forwards that sends you tumbling into the crevasse.  You don't fall far before you land in a large pile of bones.  As you hit the pile, several of the sharp bones cut into you.  Your soldier's armor partially protects you, but you still lose 8 health.  You feel a blast of heat as a circle of searing blue flames rises around you.  As you struggle to get up from the pile of bones that you are lying on, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered, scaly skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a diabolical grin on its face and a thick mustache on its pointed chin.
+162:Continue^*143
+163:INVSPLIT:Guard Disguise^*164^*165
+163:null^*1
+164:LOSEHEALTH:10^*You look down into the chasm and see a flaming, bone-filled wasteland.  Massive piles of bones lie on the scorched ground, and giant flames flare up in various locations.  Suddenly, you feel a force pull you forwards that sends you tumbling into the crevasse.  You don't fall far before you land in a large pile of bones.  As you hit the pile, several of the sharp bones cut into you.  Your guard armor partially protects you, but you still lose 10 health.  You feel a blast of heat as a circle of searing blue flames rises around you.  As you struggle to get up from the pile of bones that you are lying on, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered, scaly skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a vicious grin on its face and a thick mustache on its pointed chin.
+164:Continue^*143
+165:LOSEHEALTH:15^*You look down into the chasm and see a flaming, bone-filled wasteland.  Massive piles of bones lie on the scorched ground, and giant flames flare up in various locations.  Suddenly, you feel a force pull you forwards that sends you tumbling into the crevasse.  You don't fall far before you land in a large pile of bones.  As you hit the pile, several of the sharp bones cut into you, causing you to lose 15 health.  You feel a blast of heat as a circle of searing blue flames rises around you.  As you struggle to get up from the pile of bones that you are lying on, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered, scaly skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a vicious grin on its face and a thick mustache on its pointed chin.
+165:Continue^*143
+166:The burst of steam has brought you into a catacombs corridor.  Behind you, you can see a large fissure in the catacombs floor that would be impossible to jump over or otherwise cross.  On either side of you, you can see rows of shelves containing stone coffins.  The corridor in front of you is littered with bones that seem to be scattered haphazardly across the ground.  You have nowhere else to go, so you walk forwards, picking your way among the bones.  Eventually the catacombs splits off and you see a short hallway that leads to a set of upwards stairs.  You climb the stairs and exit through a door at the top.  You emerge in a large cathedral.
+166:Look around the cathedral^*167^*Leave the cathedral^*636
+167:You look around the cathedral.  There are stained glass windows high above you to your right, and you can see rows of wooden chairs in front of you that are laid out facing a large, gilded altar.  Behind you, there is a small door to the catacombs that you just walked out of.
+167:Examine the altar^*168^*Leave the cathedral^*636
+168:The altar is covered with candles and there is a red cloth draped over the center.  As you have no way of lighting the candles, there is nothing useful on the altar.
+168:Leave the cathedral^*636
+169:You open the small door and find that it leads into a flight of stairs that goes downwards into pitch blackness.
+169:DISPLAYIF:Tinderbox and torch,Use your torch for light and descend the stairs^*651^*DISPLAYIFNOT:Tinderbox and torch,Descend the stairs into the darkness^*642^*Examine the altar^*635^*Leave the cathedral^*636
+170:The small door leads downwards into the catacombs, and there is nothing of interest to you down there.
+170:Examine the altar^*168^*Leave the cathedral^*636
+171:"Slay me?" taunts the demon, "A pathetic mortal like you?  I'd like to see you try."  The flames around you rescind, allowing you to attack the demon.
+171:Continue^*147
+172:RESTART:^*The demon sweeps both of its clawed hands upwards.  A gigantic jet of flame bursts through the pile of bones under you and incinerates you on the spot.  The last thing you see before the fire completely consumes you is the infernal smile on the blue demon's face.
+172:null^*1
 190:You enter the door and see a long, narrow passageway with another wooden door on the end.  You see a servant walking through the passage carrying a large bowl of gruel.  "You aren't allowed over here," he says, "Go back to your tent."
 190:Do as the servant says and follow him back to the tents^*677^*Attack the servant^*675^*Run past the servant^*676
 191:You enter the door and see a long, narrow passageway with another wooden door on the end.  Near the end of the passageway, you see a small lever in the wall.
@@ -830,7 +875,7 @@ HEALING:First aid kit^*0.2
 413:VARSPLIT:killedArchers,1^*439^*438
 413:null^*1
 414:You climb down the winding staircase, but after a little while, it becomes too dark to see.
-414:Climb back up to the ground level^*415^*DISPLAYIF:Tinderbox and torch,Light your torch and continue down^*491^*DISPLAYIFNOT:Tinderbox and torch,Keep climbing down in the dark^*492
+414:DISPLAYIF:Tinderbox and torch,Light your torch and continue down^*491^*DISPLAYIFNOT:Tinderbox and torch,Keep climbing down in the dark^*492^*Climb back up to the ground level^*415
 415:You climb back up the staircase and return to the ground level of the turret.
 415:Climb up the staircase^*413^*Climb back down the staircase^*414^*Return the courtyard^*300
 416:Taking care to make your steps silent so the archers do not hear you, you climb down the staircase and return to the ground level of the turret.
@@ -997,8 +1042,8 @@ HEALING:First aid kit^*0.2
 496:Search through the sacks^*542^*Keep walking forwards^*543
 497:INVREMOVE:Rope^*Using the length of rope you bought at the merchant stalls, you tie one of the ends around one of the crenellations and rappel down the wall with the rest of the rope.  Since the rope is tied to the wall, there is no way to retrieve it and you leave it behind.
 497:Continue^*500
-498:INVREMOVE:Grappling hook^*You hook your grappling hook to one of the broken sections of the wall, making sure that it stays firm.  Since you need both hands to climb down the rope, you extinguish your torch and put it back into your pack.  As you climb down, you feel a rush of hot air and the smell becomes almost unbearable.  After a while, you feel your feet hit something soft and slimy, almost like mud.
-498:Continue^*750
+498:You hook your grappling hook to one of the broken sections of the wall, making sure that it stays firm.  Since you need both hands to climb down the rope, you extinguish your torch and put it back into your pack.  As you climb down, you feel a rush of hot air and the smell becomes almost unbearable.  After a while, you reach the end of the grappling rope.
+498:Let go of the rope and drop to the ground^*750^*Climb back up the rope^*1369
 499:RESTART:^*You tie your rope to one of the broken sections of the wall, making sure that it stays firm.  Since you need both hands to climb down the rope, you extinguish your torch and put it back into your pack.  As you are climbing, your weight pulling on the rope breaks the piece of wall that it is attached to, sending you plummeting down the pit.  You do not survive the fall.
 499:null^*1
 500:You are now in the inner bailey courtyard.  You look around and recognize the building closest to you as an infirmary.  Some distance across the courtyard is the castle keep.  Also some distance away is large group of tents.
@@ -1119,8 +1164,8 @@ HEALING:First aid kit^*0.2
 557:Continue^*569
 558:LOSEHEALTH:2^*You have very little pretending to do, as standing up after hours of cramped waiting causes a wave of nausea to overtake you.  You vomit onto the floor (causing a loss of 2 health), and then you lie down next to it and close your eyes as the guards approach.  You hear the cell door being unlocked, and then two hands on your shoulder roughly jerk you upwards. 
 558:Close your eyes and pretend to be unconscious^*561^*Lash out with your foot^*562
-559:Two armed guards approach you, and one of them unlocks the door and opens it.  You are dragged upwards and marched out of the cell and down the hallway.
-559:Continue^*572
+559:Two armed guards approach you, and one of them unlocks the door and opens it.  You are dragged upwards and marched out of the cell.  The guards march you down the dungeon corridor until you reach a solid metal door with a heavy bolt on it.  One of the guards opens the door and you are lead into a torture chamber full of grisly intruments of pain.  Inside, you can see a hooded torturer sharpening a knife on a grindstone.   You panic and try to struggle, but the guard holds you in a firm grip.  The other guard remains outside and bolts the door behind you.  The guard holding you leads you over to one of the walls and unties your hands, then forces them above your head and against the wall.  You are unable to move your hands, but the rest of your body is free.
+559:Try to kick the guard^*585^*Try to trip the guard^*586^*Try to headbutt the guard^*587^*Do nothing^*588
 560:You painstakingly run your bound hands along the walls, but you can find no structural weaknesses anywhere.  Frustrated and exhausted, you give up your search and wait to see what happens.
 560:Continue^*555
 561:You are roughly shaken, but you let your body go limp and show no reaction.  You feel yourself being carried over a shoulder for some distance, before your hands are untied and you are set down on a flat surface.  A strange, bitter liquid is forced into your mouth, and you feel a hand pinch your nose, which would force you to swallow it.
@@ -1271,16 +1316,16 @@ HEALING:First aid kit^*0.2
 633:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
 634:LOSEHEALTH:12^*You leap through the cathedral window and dissipate the force of the fall through your body when you hit the ground and roll.  Pain shoots through you as you roll across several sharp pieces of glass, but you did not suffer any serious damage.  You lose 12 health from the force of the fall and from the glass cutting you.  You get up and look around the cathedral.  The only thing you can see of interest are a large, gilded altar and a small door in the back of the room.  There is also a large wooden door that exits the room.
 634:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
-635:ANYSPLIT:Golden cross^*638^*1259
+635:INVSPLIT:Golden cross^*638^*1259
 635:null^*1
 636:VARSPLIT:catacombsVisited,1^*1247^*1248
 636:null^*1
-637:You open the small door and find that it leads into a flight of stairs that goes downwards into pitch blackness.
-637:DISPLAYIF:Tinderbox and torch,Use your torch for light and descend the stairs^*651^*DISPLAYIFNOT:Tinderbox and torch,Descend the stairs into the darkness^*642^*Examine the altar^*635^*Leave the cathedral^*636
+637:VARSPLIT:killedDemon,0^*169^*170
+637:null^*1
 638:The altar is covered with candles and there is a red cloth draped over the center.  As you have no way of lighting the candles, there is nothing useful on the altar.
 638:Go to the small door in the back^*637^*Leave the cathedral^*636
-639:The altar is covered with candles and there is a small golden cross in the middle.  The cross stands on top of a red cloth that is draped over the center.
-639:Take the cross^*640^*Go to the small door in the back^*637^*Leave the cathedral^*636
+639:VARSPLIT:killedDemon,0^*1368^*168
+639:null^*1
 640:INVADD:Golden cross^*You swipe the valuable looking golden cross and put it into your pack.  What do you do next?
 640:Go to the small door in the back^*637^*Leave the cathedral^*636
 641:When you reach the bottom of the stairs, you find yourself in a catacombs.  In the torchlight, you can see several rows of stone shelves on each side of you, all lined with stone coffins that likely contain corpses.  Near the corner of the room, there is a large pile of randomly assorted bones.  At the end of the room, you can see that the catacombs continue in a fork to the left and right.
@@ -1501,7 +1546,7 @@ HEALING:First aid kit^*0.2
 748:null^*1
 749:RESTART:^*As you are walking through the courtyard, one of the other officers sees you.  He starts to greet you, but pauses when he sees your face.  "I don't recognize you," he growls.  He calls out and you are soon surrounded by soldiers.  You are told that the penalty for impersonating an officer is death and you are executed.
 749:null^*1
-750:You light your torch again and look around.  You see what looks like an expansive wasteland around you, populated by massive piles of bones.  You realize that the ground under you is spongy because it is a combination of blood mixed with ash.  You walk forwards through the wasteland in horrified fascination.  In the distance, you see a gigantic bone pile that is taller than all of the others.
+750:INVREMOVE:Grappling hook^*You let go of the rope and fall to the ground.  Fortunately, you only fall a very short distance before you feel your feet hit something soft and slimy, almost like mud.  You light your torch again and look around.  You see what looks like an expansive wasteland around you, populated by massive piles of bones.  You realize that the ground under you is spongy because it is a combination of blood mixed with ash.  You walk forwards through the wasteland in horrified fascination.  In the distance, you see a gigantic bone pile that is taller than all of the others.
 750:Continue^*1337
 751:You leave the officer's tent and return to the courtyard.  What do you do next?
 751:Search more of the officers' tents^*748^*Leave the tents and head towards the keep^*721^*Go back to your tent and go to sleep^*486
@@ -2041,7 +2086,7 @@ HEALING:First aid kit^*0.2
 1019:You walk down the hallway and turn the corner.  Around the corner, you see a wide set of stairs spiralling upwards.
 1019:Go up the stairs^*1000^*Walk past the stairs^*1002^*Turn around and go to the apothecary^*1001
 1020:You walk down the hallway until you can see a large metal grate blocking the path to a downward staircase.  To the left of the grate is a small lever, and there is a guard dozing against the wall next to it.
-1020:Attack the guard^*1031^*Sneak around the guard and pull the lever^*1033^*Walk past the staircase^*1035^*Turn around and go to the apothecary^*1022
+1020:Attack the guard while he is dozing^*1031^*Sneak around the guard and pull the lever^*1033^*Wake up the guard^*1370^*Walk past the staircase^*1035^*Turn around and go to the apothecary^*1022
 1021:You walk down the hallway until you can see an open metal grate in front of a downward staircase.  To the left of the grate is a small lever, and below the lever is the body of a guard.
 1021:Go down the staircase^*1023^*Walk past the staircase^*1024^*Turn around and go to the apothecary^*1022
 1022:You turn around and walk back to the apothecary.  Inside, you see a wide array of potions and alchemy equipment.
@@ -2057,7 +2102,7 @@ HEALING:First aid kit^*0.2
 1027:VARSPLIT:killedDungeonGuard,0^*1028^*1029
 1027:null^*1
 1028:You walk down the hallway until you can see a large metal grate blocking the path to a downward staircase.  To the left of the grate is a small lever, and there is a guard dozing against the wall next to it.
-1028:Attack the guard^*1031^*Sneak around the guard and pull the lever^*1033^*Walk past the staircase^*1034^*DISPLAYIFVAR:wellVisited,1,Turn around and go back to the well^*1024^*DISPLAYIFVAR:wellVisited,0,Turn around and go back to the small wooden door^*1024
+1028:Attack the guard while he is dozing^*1031^*Sneak around the guard and pull the lever^*1033^*Wake up the guard^*1370^*Walk past the staircase^*1034^*DISPLAYIFVAR:wellVisited,1,Turn around and go back to the well^*1024^*DISPLAYIFVAR:wellVisited,0,Turn around and go back to the small wooden door^*1024
 1029:You walk down the hallway until you can see an open metal grate in front of a downward staircase.  To the left of the grate is a small lever, and below the lever is the body of a guard.
 1029:Go down the staircase^*1023^*Walk past the staircase^*1030^*DISPLAYIFVAR:wellVisited,1,Turn around and go back to the well^*1024^*DISPLAYIFVAR:wellVisited,0,Turn around and go back to the small wooden door^*1024
 1030:VARSET:apothecaryVisited,1^*You walk down the hallway until you reach the next room, which is open.  Inside, you see an apothecary with a wide array of potions and alchemy equipment.
@@ -2107,11 +2152,11 @@ HEALING:First aid kit^*0.2
 1052:VARSPLIT:healingElixir,0^*1053^*1054
 1052:null^*1
 1053:VARSET:healingElixir,1^*GAINHEALTH:10^*You drink the healing elixir, and feel a cold sensation flow through your body.  Your wounds itch as the elixir speeds up the healing process and they scab over.  (You have recovered 10 health).
-1053:Drink another healing elixir^*1050^*Take a different potion^*1057^*Drink one of your potions^*1058^*Mix some of your potions^*1059^*Leave the apothecary^*1060
+1053:Drink another healing elixir^*1050^*Take one of the potions^*1057^*Drink one of your potions^*1058^*Mix some of your potions^*1059^*Leave the apothecary^*1060
 1054:VARSPLIT:healingElixir,1^*1055^*1056
 1054:null^*1
 1055:VARSET:healingElixir,2^*GAINHEALTH:10^*You drink the healing elixir, and feel a cold sensation flow through your body.  Your wounds itch as the elixir speeds up the healing process and they scab over.  (You have recovered 10 health).
-1055:Drink another healing elixir^*1050^*Take a different potion^*1057^*Drink one of your potions^*1058^*Mix some of your potions^*1059^*Leave the apothecary^*1060
+1055:Drink another healing elixir^*1050^*Take one of the potions^*1057^*Drink one of your potions^*1058^*Mix some of your potions^*1059^*Leave the apothecary^*1060
 1056:RESTART:^*Too late, you remember the warning you were taught to not drink too much of the healing elixir.  As the cold sensation from the potion flows through your body, you feel a terrible pain as your platelets go into overdrive.  Your entire body swells up, and you suffocate as the swelling in your neck cuts off your breathing.
 1056:null^*1
 1057:ALLSPLIT:Healing Elixir,Vial of red liquid,Vial of blue liquid,Vial of green liquid,Vial of brown liquid,Vial of orange liquid,Vial of clear liquid^*1069^*1070
@@ -2143,7 +2188,7 @@ HEALING:First aid kit^*0.2
 1070:What potion do you take?
 1070:DISPLAYIFNOT:Healing Elixir,Take a healing elixir^*1063^*DISPLAYIFNOT:Vial of red liquid,Take a red potion^*1064^*DISPLAYIFNOT:Vial of blue liquid,Take a blue potion^*1065^*DISPLAYIFNOT:Vial of green liquid,Take a green potion^*1066^*DISPLAYIFNOT:Vial of brown liquid,Take a brown potion^*1067^*DISPLAYIFNOT:Vial of orange liquid,Take an orange potion^*1068^*DISPLAYIFNOT:Vial of clear liquid,Take a clear potion^*1109^*Don't take any potions^*1017
 1071:What potion do you drink?
-1071:DISPLAYIF:Healing Elixir,Drink some healing elixir^*1050^*DISPLAYIF:Vial of red liquid,Drink your red potion^*1073^*DISPLAYIF:Vial of blue liquid,Drink your blue potion^*1074^*DISPLAYIF:Vial of green liquid,Drink your green potion^*1075^*DISPLAYIF:Vial of brown liquid,Drink your brown potion^*1076^*DISPLAYIF:Vial of orange liquid,Drink your orange potion^*1077^*DISPLAYIF:Vial of clear liquid,Drink your clear potion^*1110^*DISPLAYIF:Vial of black liquid,Drink your black potion that you found in the barracks^*1078^*DISPLAYIF:Murky black mixture,Drink the murky black potion that you mixed^*1108^*Don't take any potions^*1017
+1071:DISPLAYIF:Healing Elixir,Drink some healing elixir^*1050^*DISPLAYIF:Vial of red liquid,Drink your red potion^*1073^*DISPLAYIF:Vial of blue liquid,Drink your blue potion^*1074^*DISPLAYIF:Vial of green liquid,Drink your green potion^*1075^*DISPLAYIF:Vial of brown liquid,Drink your brown potion^*1076^*DISPLAYIF:Vial of orange liquid,Drink your orange potion^*1077^*DISPLAYIF:Vial of clear liquid,Drink your clear potion^*1110^*DISPLAYIF:Vial of black liquid,Drink your black potion that you found in the barracks^*1078^*DISPLAYIF:Murky black mixture,Drink the murky black potion that you mixed^*1108^*Don't drink any potions^*1017
 1072:You aren't carrying any potions that you can drink.  You should take one of the potions in the apothecary first.
 1072:Take a potion^*1070^*Leave the apothecary^*1060
 1073:INVREMOVE:Vial of red liquid^*You drink the vial of red liquid.  It tastes like water.
@@ -2242,7 +2287,7 @@ HEALING:First aid kit^*0.2
 1119:null^*1
 1120:VARSPLIT:freedPrisoner,4^*1125^*1122
 1120:null^*1
-1121:INVADD:Explosive potion^*VARSET:addedRed,0^*VARSET:addedBlue,0^*VARSET:addedGreen,0^*VARSET:addedBrown,0^*VARSET:addedOrange,0^*VARSET:addedClear,0^*VARSET:addedBlack,0^*VARSET:addedDrink,0^*VARSET:addedPoison,0^*You mix together the blue, brown and orange potions into what you hope will make an explosive mixture.  As the potions mix together, the solution turns a pale green and starts bubbling.  You put the resulting potion into a vial and carefully put it into your pack.
+1121:INVADD:Explosive potion^*VARSET:addedRed,0^*VARSET:addedBlue,0^*VARSET:addedGreen,0^*VARSET:addedBrown,0^*VARSET:addedOrange,0^*VARSET:addedClear,0^*VARSET:addedBlack,0^*VARSET:addedDrink,0^*VARSET:addedPoison,0^*You mix together the blue, brown and orange potions into what you hope will make an explosive mixture.  As the potions mix together, the solution turns a pale green and starts bubbling.  You pour the resulting potion into a vial and carefully put it into your pack.
 1121:Leave the apothecary^*1060^*Do something else in the apothecary^*1017
 1122:VARSET:addedRed,0^*VARSET:addedBlue,0^*VARSET:addedGreen,0^*VARSET:addedBrown,0^*VARSET:addedOrange,0^*VARSET:addedClear,0^*VARSET:addedBlack,0^*VARSET:addedDrink,0^*VARSET:addedPoison,0^*You use the alchemy equipment to mix together all the potions you added and you produce a vial of solution.  The solution is pale green color and you can see it bubbling.
 1122:Drink the mixture^*1123^*Take the mixture^*1124^*Discard the mixture and try something else^*1017
@@ -2277,7 +2322,7 @@ HEALING:First aid kit^*0.2
 1160:The prisoner sits stock still and seems to ignore everything you say.
 1160:Say something else to the prisoner^*1159^*Kill the prisoner^*1162^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
 1161:VARSET:freedPrisoner,4^*When you mention that you are from Carolina, the prisoner's eyes seem to light up and he suddenly starts babbling.  "Carolinia... You've got to warn Carolinia... The King's workers were expanding these dungeons... Found a source of terrible magic... There are artifacts down there... King K will be unstopabble."  He suddenly stands up.  "I'll show you where it is!" he shouts.  He steps out of the cell and points a shaky finger to the pile of rocks blocking the end of the dungeon corridor.  "There... The workers caved it in so noone could go back... But you have to go in there and find more artifacts."  You walk over to the pile of rocks and try to move one of them, but the rocks are far too heavy.  The prisoner walks up to you and whispers in your ear.  "Make an explosive," he tells you, "Blue, brown, and orange."  He starts laughing hysterically.  You try to ask him for an explanation, but everything else he says is random nonsense.
-1161:Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
+1161:DISPLAYIF:Pale green mixture,Throw the pale green mixture you made at the pile of rocks^*1175^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
 1162:VARSET:freedPrisoner,2^*The prisoner doesn't even try to defend himself and you easily kill him.  You search his body, but he is carrying nothing.
 1162:Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
 1163:You look around the cell corridor, but there is nothing useful inside any of the cells.  A large pile of rocks blocks the the end of the corridor.
@@ -2289,7 +2334,7 @@ HEALING:First aid kit^*0.2
 1166:You walk through the cell corridor until you reach the cell with the prisoner inside it.  Though his cell door is open, he is sitting in the corner and staring blankly forward.
 1166:Say something to the prisoner^*1159^*Kill the prisoner^*1162^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
 1167:VARSET:freedPrisoner,4^*You find that one of the keys on your key ring fits in the lock, and you unlock the cell and swing it open.  You tell the prisoner that he is free, and he slowly gets up.  He steps out of the cell and points a shaky finger to the pile of rocks blocking the end of the dungeon corridor.  "There... The workers caved it in so noone could go back... But you have to go in there and find more artifacts."  You walk over to the pile of rocks and try to move one of them, but the rocks are far too heavy.  The prisoner walks up to you and whispers in your ear.  "Make an explosive," he tells you, "Blue, brown, and orange."  He starts laughing hysterically.  You try to ask him for an explanation, but everything else he says is random nonsense.
-1167:Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
+1167:DISPLAYIF:Pale green mixture,Throw the pale green mixture you made at the pile of rocks^*1175^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
 1168:VARSET:freedPrisoner,3^*You tell the prisoner that you'll find a way to get him out of there.  He remains in a heap on the ground and does not respond.
 1168:DISPLAYIF:Key Ring,Try to unlock the cell with your key ring^*1167^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
 1169:You walk through the cell corridor until you reach the cell with the prisoner inside it.  The prisoner is still in a heap on the ground.
@@ -2316,8 +2361,8 @@ HEALING:First aid kit^*0.2
 1179:null^*1
 1180:You walk past the corridor of cells until you reach the pile of rock at the end.  The floor is covered in rubble from the recent explosion.
 1180:Climb through the hole in the rock^*1181^*Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
-1181:You climb through the hole in the rocks and emerge in a narrow cave tunnel.  The tunnel soon takes a sharp downward decline.  You being to see black burn marks on the walls of the tunnel, and you see a trail of dried blood on the groun.  As you follow the trail, the line of blood grows thicker.  The tunnel abruptly emerges into what looks like an expansive wasteland.  You see massive piles of bones scattered about and the ground looks scorched and bloody.  As you walk forwards through the wasteland in horrified fascination, the ground squishes beneath you and a terrible rotting stench assaults your nostrils.  In the distance, you see a gigantic bone pile that is taller than all of the others.
-1181:Continue^*1337
+1181:VARSPLIT:killedDemon,0^*1357^*1358
+1181:null^*1
 1182:INVSPLIT:Sword^*1183^*1186
 1182:null^*1
 1183:GAINGOLD:8^*You search the bodies of the dungeon guards and find 8 gold coins between them, which you take.  The guards are not carrying anything else useful.  You leave your cell and find yourself in a cell corridor.  You head towards a set of stairs to your left that you remember lead to the dungeon exit.  You climb the stairs and see that the top of the stairs is blocked by a closed grate.  Outside the grate, you can see a hallway, but your visibility is limited.  You try to lift the grate, but it is impossible.
@@ -2342,7 +2387,7 @@ HEALING:First aid kit^*0.2
 1192:Continue^*1193
 1193:VARSET:killedDungeonGuard,1^*INVADD:Key Ring^*After you defeat the guard, you look around.  You are in the middle of a long, narrow hallway that is lined with torches.  Behind you, there is an open grate that is in front of a staircase leading down into the dungeon.  Above the body of the guard, you see a small lever that you assume controls the grate.  A quick search of the guard's body reveals a key ring full of keys, which you take.  To the left, you can see a small wooden door at the end of the hall.  To the right, you can see an open door.
 1193:Go to the left^*1024^*Go to the right^*1030
-1194:GAINGOLD:5^*VARSET:killedInterrogator,1^*INVADD:Knife,Silver cross^*You search the body of the interrogator.  Other than a knife, he is not carrying anything useful.  You search around the rest of the torture chamber, but there is not much there other than implements of pain.    You are about to give up the search when you see silver cross lying among a group of thumbscrews.  The cross looks valuable, so you decide to take it.
+1194:VARSET:killedInterrogator,1^*INVADD:Knife,Silver cross^*You search the body of the interrogator.  Other than a knife, he is not carrying anything useful.  You search around the rest of the torture chamber, but there is not much there other than implements of pain.    You are about to give up the search when you see silver cross lying among a group of thumbscrews.  The cross looks valuable, so you decide to take it.
 1194:Go to the cell area^*1179^*Leave the dungeon^*1150
 1195:RESTART:^*You can tell that the guard outside the grate does not believe you.  "If that is the case," he says, "Then where are the two guards now?"  He disappears down the hallway, leaving you trapped behind the door.  He returns several minutes later with several crossbow laden guards, who waste no time in shooting you through the grate.  <br>Your life ends here.
 1195:null^*1
@@ -2353,7 +2398,7 @@ HEALING:First aid kit^*0.2
 1198:VARSPLIT:timeOfDay,night^*1310^*1311
 1198:null^*1
 1199:You walk down the hallway until you reach two large wooden doors.  The doors are open and you can see that they lead to a cathedral.
-1199:Enter the cathedral^*1268^*Go to the great hall^*1197^*Walk through the hallway to the downward stairs^*1236^*Walk around the hallway corner to the upward stairs^*1279
+1199:Enter the cathedral^*1268^*Go to the great hall^*1197^*Walk through the hallway to the downward stairs^*1236^*Walk around the hallway corner to the upward stairs^*1267
 1200:ANYSPLIT:Servant Disguise,Guard Disguise^*1202^*1203
 1200:null^*1
 1201:You walk up the stairs and find that there is no sign of the stairway guards that you fought earlier.  You can see the great hall in the center of the room, as well as a small wooden door on your immediate right.  You walk up to the great hall and look around.
@@ -2451,7 +2496,7 @@ HEALING:First aid kit^*0.2
 1247:VARSPLIT:killedPriests,0^*1262^*1248
 1247:null^*1
 1248:You leave the cathedral and emerge in a large hallway.  In front of you, you see an entrance to the great hall.
-1248:Go to the great hall^*1197^*Walk through the hallway towards the stairs down^*1236^*Walk around the hallway corner to the stairs up^*1279
+1248:Go to the great hall^*1197^*Walk through the hallway towards the stairs down^*1236^*Walk around the hallway corner to the stairs up^*1267
 1249:You tell the priests that they should leave immediately or you will report them to the guards.  One of the priests laughs at you.  "The guards do everything we tell them to," he rasps, "Now hand over the cross or you will be sorry."
 1249:Give them the cross^*1250^*Refuse to give them the cross^*1251^*Attack them^*1252
 1250:INVSPLIT:Shield^*1255^*1256
@@ -2503,7 +2548,7 @@ HEALING:First aid kit^*0.2
 1273:INVSPLIT:Hammer^*875^*876
 1273:null^*1
 1274:The guards ignore you as you walk up the stairs to the top level of the keep.  Here, you can see several rooms that are used as sleeping quarters for all the keep's residents, including King K himself.
-1274:Content not added^*999
+1274:Content not added^*999^*Walk back down the stairs^*1365
 1275:VARSPLIT:bribedGuards,0^*1325^*1274
 1275:null^*1
 1276:INVREMOVE:Guard Disguise,Chainmail Armor^*INVADD:Platemail Armor^*You remove your guard uniform and put on a suit of platemail armor.  It is extremely heavy and cumbersome, but it provides you with excellent protection.
@@ -2582,15 +2627,15 @@ HEALING:First aid kit^*0.2
 1312:Sit on the throne^*1313^*Leave the throne room and go back to the great hall^*1197
 1313:You sit on the throne and cackle wickedly as you pretend to be the King.  After a few seconds, you get bored and decide to leave.
 1313:Leave the throne room and go back to the great hall^*1197
-1314:INVADD:Invasion Plans^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see a set of military plans for the upcoming invasion of Carolinia.  Together with the military documents you took from the outer bailey barracks, you now have a complete set of invasion plans, which could prove extremely valuable to a defense against the Dookian invasion.  You search through some of the other documents, but there is nothing else of interest to you.
+1314:INVADD:Invasion Plans,Torn scrap of paper^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see a set of military plans for the upcoming invasion of Carolinia.  Together with the military documents you took from the outer bailey barracks, you now have a complete set of invasion plans, which could prove extremely valuable to a defense against the Dookian invasion.  You search through some of the other documents, but the only thing you find is a torn scrap of paper with the number 18 on it buried among a pile of treaties.  The scrap of paper looks very out of place, so you do decide to take it.  There is nothing else of interest to you in the room.
 1314:Leave the room^*1319
-1315:INVADD:Military Plans^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see detailed military plans for the upcoming invasion of Carolinia.  You decide to take the military plans, as they may be useful in defending against a Dookian invasion.    You search through some of the other documents, but there is nothing else of interest to you.
+1315:INVADD:Military Plans,Torn scrap of paper^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see detailed military plans for the upcoming invasion of Carolinia.  You decide to take the military plans, as they may be useful in defending against a Dookian invasion.  You search through some of the other documents, but the only thing you find is a torn scrap of paper with the number 18 on it buried among a pile of treaties.  The scrap of paper looks very out of place, so you do decide to take it.  There is nothing else of interest to you in the room., but there is nothing else of interest to you.
 1315:Leave the room^*1319
 1316:INVSPLIT:Military Documents^*1314^*1315
 1316:null^*1
-1317:You enter the inscribed door and see a room filled with maps and pieces of parchment.  However, none of the documents are particularly interesting to you.
+1317:You enter the inscribed door and see a room filled with maps and piles of documents.  However, none of the documents are particularly interesting to you.
 1317:Leave the room^*1319
-1318:You enter the inscribed door and see a room filled with maps and pieces of parchment.  A closer inspection reveals that the room is used for planning battle campaigns as well keeping records of the affairs of the Kingdom.  There are several tables in the room that are covered in documents.
+1318:You enter the inscribed door and see a room filled with maps and piles of paper and parchment.  A closer inspection reveals that the room is used for planning battle campaigns as well keeping records of the affairs of the Kingdom.  There are several tables in the room that are covered in documents.
 1318:Read the documents on the tables^*1316^*Leave the room before someone sees you^*1319
 1319:You leave the room and return to the hallway.  What do you do next?
 1319:Go to the great hall^*1197^*Walk around the hallway corner to the guard barracks^*1266^*Walk down the hallway to the throne room^*1198
@@ -2612,10 +2657,10 @@ HEALING:First aid kit^*0.2
 1327:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1328:RANDSPLIT:^*1329^*1330^*1331^*1332
 1328:null^*1
-1329:GAINGOLD:5-8^*You sidle through the crowd, casually lifting the possessions of the distracted court members.  You find several small pouches of gold, and you end up stealing a total of #gold gold coins.
-1329:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1334^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
-1330:GAINGOLD:2-4^*You sidle through the crowd, casually digging your hands through the pockets of the distracted court members.  You only manage to steal a pouch of gold from one person, but you find that it contains #gold gold coins.
-1330:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1335^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1329:GOLDSPLIT:40^*1355^*1330
+1329:null^*1
+1330:GOLDSPLIT:40^*1356^*1330
+1330:null^*1
 1331:You sidle through the crowd, casually rifling through the pockets of the people in the court.  Unfortunately, you do not manage to steal anything.
 1331:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1336^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
 1332:RESTART:^*You sidle through the crowd, casually sifting your hands through the pockets of the distracted courtiers.  As you are lifting a pouch of gold, one of the guards standing in the room sees you.  "Thief!" he shouts, and soon the throne room is in an uproar.  You try to escape in the chaos, but several of the guards grab you.  The King orders you executed on the spot for daring to steal in his presence.
@@ -2628,7 +2673,7 @@ HEALING:First aid kit^*0.2
 1335:null^*1
 1336:RANDSPLIT:^*1329^*1330^*1332
 1336:null^*1
-1337:You walk up to the largest pile of bones.  As you get close to it, the wasteland around you suddenly bursts into flame.  Huge jets of fire burst through the ground and rise up several stories.  You scramble onto the pile of bones and barely avoid getting scorched by several flames jetting up underneath you.  You feel a blast of heat as a circle of searing blue flames rises around you, forcing you to climb to the top of the bone pile.  Suddenly, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a vicious grin on its face and a thick mustache on its pointed chin.
+1337:You walk up to the largest pile of bones.  As you get close to it, the wasteland around you suddenly bursts into flame.  Huge jets of fire burst through the ground and rise up several stories.  You scramble onto the pile of bones and barely avoid getting scorched by several flames jetting up underneath you.  You feel a blast of heat as a circle of searing blue flames rises around you, forcing you to climb to the top of the bone pile.  Suddenly, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered, scaly skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a diabolical grin on its face and a thick mustache on its pointed chin.
 1337:Continue^*143
 1338:"Don't play games with me, soldier," snaps the guard.  "If the keep were under attack, the enemy would be streaming through the inner bailey gate right now."
 1338:Offer him a bribe to let you in^*1339^*Tell him that you have orders from Colonel Graywald to enter^*1340^*Attack the guards^*1341^*Go around to the side wall^*1347
@@ -2664,6 +2709,38 @@ HEALING:First aid kit^*0.2
 1353:Content not added^*999^*Go around to the side wall^*790
 1354:VARSPLIT:killedInterrogator,1^*610^*611
 1354:null^*1
+1355:GAINGOLD:5-8^*You sidle through the crowd, casually lifting the possessions of the distracted court members.  You find several small pouches of gold, and you end up stealing a total of #gold gold coins.
+1355:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1334^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1356:GAINGOLD:2-4^*You sidle through the crowd, casually digging your hands through the pockets of the distracted court members.  You only manage to steal a pouch of gold from one person, but you find that it contains #gold gold coins.
+1356:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1335^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1357:You climb through the hole in the rocks and emerge in a narrow cave tunnel.  The tunnel soon takes a sharp downward decline and you can see it split off into a complicated looking maze of tunnels going in many different directions.  As there are no torches lining the tunnels, they rapidly descend into darkness.
+1357:DISPLAYIF:Tinderbox and torch,Light your torch and enter the maze of tunnels^*1362^*DISPLAYIFNOT:Tinderbox and torch,Enter the pitch black maze of tunnels^*1363^*Go back and leave the dungeon^*1150
+1358:You climb through the hole in the rocks, but there is an even larger pile of rocks beyond it that is impossible to pass through.  As using more explosive potions to blast through would be far too risky and ineffective, you are forced to give up and climb back out.
+1358:Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
+1359:After wandering aimlessly through a maze of cave passageways, you find a tunnel with a strange light in the distance.  You extinguish your torch and cautiously walk towards it.  As the mysterious light grows brighter, you can see black burn marks on the walls of the tunnel and a trail of dried blood on the ground.  The line of blood grows thicker as you continue to walk forwards.  The tunnel abruptly emerges into what looks like an expansive wasteland.  You see massive piles of bones scattered about and the ground looks scorched and bloody.  As you walk forwards through the wasteland in horrified fascination, the ground squishes beneath you and a terrible rotting stench assaults your nostrils.  In the distance, you see a gigantic bone pile that is taller than all of the others.
+1359:Continue^*1337
+1362:MAZE:^*You use your tinderbox to light your torch and descend into the maze of tunnels.
+1362:Continue^*1359
+1363:MAZE:^*As the maze of tunnels descends into complete darkness, you are forced to feel your way around the cave walls.
+1363:Continue^*1364
+1364:After wandering aimlessly through a maze of cave passageways, you find a tunnel with a strange light in the distance.  You are elated to finally be out of the darkness and you quickly walk towards it.  As the mysterious light grows brighter, you can see black burn marks on the walls of the tunnel and a trail of dried blood on the ground.  The line of blood grows thicker as you continue to walk forwards.  The tunnel abruptly emerges into what looks like an expansive wasteland.  You see massive piles of bones scattered about and the ground looks scorched and bloody.  As you walk forwards through the wasteland in horrified fascination, the ground squishes beneath you and a terrible rotting stench assaults your nostrils.  In the distance, you see a gigantic bone pile that is taller than all of the others.
+1364:Continue^*1337
+1365:INVSPLIT:Assassin Garb^*1366^*1367
+1365:null^*1
+1366:You walk down the stairs to the ground level of the keep.  At the bottom of the staircase, there are two guards who stare suspiciously at your assassin garb as you walk past them.  You emerge into a large hallway adjoining a large great hall.  You walk into the great hall and look around.
+1366:Continue^*1197
+1367:You walk down the stairs to the ground level of the keep.  At the bottom of the staircase, there are two guards who ignore you as you walk past them.  You emerge into a large hallway adjoining a large great hall.  You walk into the great hall and look around.
+1367:Continue^*1197
+1368:The altar is covered with candles and there is a small golden cross in the middle.  The cross stands on top of a red cloth that is draped over the center.
+1368:Take the cross^*640^*Go to the small door in the back^*637^*Leave the cathedral^*636
+1369:INVREMOVE:Grappling hook^*You try to climb back up the rope, but you don't manage to climb far before you lose your grip and fall to the ground.  Fortunately, you only fall a very short distance before you feel your feet hit something soft and slimy, almost like mud.  You light your torch again and look around.  You see what looks like an expansive wasteland around you, populated by massive piles of bones.  You realize that the ground under you is spongy because it is a combination of blood mixed with ash.  You walk forwards through the wasteland in horrified fascination.  In the distance, you see a gigantic bone pile that is taller than all of the others.
+1369:Continue^*1337
+1370:You wake up the guard and he starts with surprise.  "You're not supposed to be near the dungeon level," he says, as he draws his sword.  The guard attacks you and you are forced to fight him.
+1370:Continue^*1371
+1371:COMBAT:You are fighting a guard.  The guard is using a sword,NAME:guard,WEAPON:Sword,STRENGTH:16,DEFENSE:2,ACCURACY:70,HEALTH:40,HIT:The guard slashes you with his sword,HIT:The guard swings his blade,HIT:The guard stabs you with his sword,MISS:Your sword glances off the guard's armor.,MISS:Your sword glances off the guard's armor.,MISS:The guard quickly parries your sword swing.,MISS:The guard evades you.^*You slay the guard.
+1371:Continue^*1372
+1372:VARSET:killedDungeonGuard,1^*INVADD:Key Ring^*INVADD:Sword^*A quick search of the guard's body reveals a key ring with several keys on it, which you take.  You also find a sword, but nothing else useful.  You pull the lever and the grate grinds open, allowing you to descend the staircase.
+1372:Continue^*1023
 3001:INVADD:Combination^*INVSPLIT:Combination^*3002^*3003
 3001:Done^*0
 3002:SAFECRACK:true^*You are trying to crack a safe.1<br>
