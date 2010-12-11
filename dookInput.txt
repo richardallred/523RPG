@@ -2786,7 +2786,7 @@ COMBINATION:Crumpled scrap of paper,12
 1388:LOCKPICK:3^*You are picking the lock
 1388:Done^*1241
 1389:LOCKPICK:3^*You are picking the lock
-1389:Done^*480
+1389:Done^*206
 3001:INVADD:true,Combination,Combination,Combination^*SAFECRACK:3002^*You are trying to crack a safe.<br>
 3001:Done^*0
 3002:ABORT!
