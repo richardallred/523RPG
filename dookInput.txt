@@ -1993,7 +1993,7 @@ COMBINATION:Crumpled scrap of paper,12
 969:INVSPLIT:Pliers^*972^*973
 969:null^*1
 970:INVADD:Pliers^*You take a pair of pliers used for bending metal.
-970:DISPLAYIFNOT:Sword,Take one of the swords^*965^*DISPLAYIFNOT:Axe,Take one of the axes^*966^*DISPLAYIFNOT:Chainmail Armor,Take a suit of chainmail armor^*967^*DISPLAYIFNOT:Platemail Armor,Take a suit of platemail armor^*968^*Try to open the safe^*971^*Leave the forge^*1038
+970:DISPLAYIFNOT:Sword,Take one of the swords^*965^*DISPLAYIFNOT:Axe,Take one of the axes^*966^*DISPLAYIFNOT:Chainmail Armor,Take a suit of chainmail armor^*967^*DISPLAYIFNOT:Platemail Armor,Take a suit of platemail armor^*968^*Try to open the safe^*971^*Search through the pile of scrap metal^*969^*Leave the forge^*1038
 971:You try to open the safe, but you do not know the combination.  You try to figure out the combination by listening to the dial, but you find that it is impossible to hear anything.
 971:Search through the pile of scrap metal^*969^*DISPLAYIFNOT:Sword,Take one of the swords^*965^*DISPLAYIFNOT:Axe,Take one of the axes^*966^*DISPLAYIFNOT:Chainmail Armor,Take a suit of chainmail armor^*967^*DISPLAYIFNOT:Platemail Armor,Take a suit of platemail armor^*968^*DISPLAYIFNOT:Pliers,Take one of the pliers^*970^*Leave the forge^*1038
 972:INVSPLIT:Lock picking kit^*973^*974
@@ -2211,29 +2211,29 @@ COMBINATION:Crumpled scrap of paper,12
 1078:INVREMOVE:Vial of black liquid^*You drink the vial of black liquid.  It tastes delicious.
 1078:Drink another potion^*1058^*Take a potion^*1057^*Mix some of your potions^*1059^*Leave the apothecary^*1060
 1079:You can use the alchemy equipment to mix two or more potions together.  What potion do you add to the mix?
-1079:DISPLAYIF:Healing Elixir,Add some healing elixir^*1081^*DISPLAYIF:Vial of red liquid,Add the red potion^*1082^*DISPLAYIF:Vial of blue liquid,Add the blue potion^*1083^*DISPLAYIF:Vial of green liquid,Add the green potion^*1084^*DISPLAYIF:Vial of brown liquid,Add the brown potion^*1085^*DISPLAYIF:Vial of orange liquid,Add the orange potion^*1086^*DISPLAYIF:Vial of clear liquid,Add the clear potion^*1113^*DISPLAYIF:Vial of black liquid,Add the black potion that you found in the barracks^*1087^*DISPLAYIF:Bottle of wine,Add some wine^*1088^*DISPLAYIF:Jug of ale,Add some ale^*1089^*DISPLAYIF:Rat poison,Add a little bit of rat poison^*1090^*Don't add any potions^*1017
+1079:DISPLAYIF:Healing Elixir,Add some healing elixir^*1081^*DISPLAYIF:Vial of red liquid,Add the red potion^*1082^*DISPLAYIF:Vial of blue liquid,Add the blue potion^*1083^*DISPLAYIF:Vial of green liquid,Add the green potion^*1084^*DISPLAYIF:Vial of brown liquid,Add the brown potion^*1085^*DISPLAYIF:Vial of orange liquid,Add the orange potion^*1086^*DISPLAYIF:Vial of clear liquid,Add the clear potion^*1113^*DISPLAYIF:Vial of black liquid,Add the black potion that you found in the barracks^*1087^*DISPLAYIF:Bottle of wine,Add some wine^*1088^*DISPLAYIF:Jug of ale,Add some ale^*1089^*DISPLAYIF:Rat poison,Add a little bit of rat poison^*1090^*Mix the potions you have poured in together^*1091^*Don't add any potions^*1017
 1080:You aren't carrying any potions that you can mix.  You should take one of the potions in the apothecary first.
 1080:Take a potion^*1070^*Mix the potions that you have already poured in together^*1091^*Leave the apothecary^*1060
 1081:VARSET:addedElixir,1^*You pour in some healing elixir.
-1081:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1081:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1082:VARSET:addedRed,1^*INVREMOVE:Vial of red liquid^*You pour in your vial of red potion.
-1082:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1082:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1083:VARSET:addedBlue,1^*INVREMOVE:Vial of blue liquid^*You pour in your vial of blue potion.
-1083:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1083:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1084:VARSET:addedGreen,1^*INVREMOVE:Vial of green liquid^*You pour in your vial of green potion.
-1084:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1084:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1085:VARSET:addedBrown,1^*INVREMOVE:Vial of brown liquid^*You pour in your vial of brown potion.
-1085:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1085:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1086:VARSET:addedOrange,1^*INVREMOVE:Vial of orange liquid^*You pour in your vial of orange potion.
-1086:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1086:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1087:VARSET:addedBlack,1^*INVREMOVE:Vial of black liquid^*You pour in your vial of black potion.
-1087:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1087:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1088:VARSET:addedDrink,1^*You pour in a little bit of wine from your bottle.
-1088:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1088:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1089:VARSET:addedDrink,1^*You pour in a little bit of ale from your jug.
-1089:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1089:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1090:VARSET:addedPoison,1^*You add a little bit of rat poison to the mix.
-1090:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1090:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1091:VARSPLIT:addedRed,1^*1092^*1093
 1091:null^*1
 1092:VARSPLIT:addedBlue,1^*1094^*1095
@@ -2306,6 +2306,7 @@ COMBINATION:Crumpled scrap of paper,12
 1125:null^*1
 1126:VARSET:addedRed,0^*VARSET:addedBlue,0^*VARSET:addedGreen,0^*VARSET:addedBrown,0^*VARSET:addedOrange,0^*VARSET:addedClear,0^*VARSET:addedBlack,0^*VARSET:addedDrink,0^*VARSET:addedPoison,0^*You mix together another explosive potion and put it into a vial.  You are about to put the vial in your pack, but you remember the violent reaction the potion had with the wall of rocks.  You decide that it would be far too dangerous to carry the potion with you, so you leave it behind.
 1126:Leave the apothecary^*1060^*Do something else in the apothecary^*1017^*Try drinking the explosive potion you mixed^*1123
+
 1150:VARSPLIT:killedDungeonGuard,0^*1184^*1185
 1150:null^*1
 1151:VARSPLIT:freedPrisoner,2^*1163^*1164
@@ -2724,17 +2725,17 @@ COMBINATION:Crumpled scrap of paper,12
 1357:DISPLAYIF:Tinderbox and torch,Light your torch and enter the maze of tunnels^*1362^*DISPLAYIFNOT:Tinderbox and torch,Enter the pitch black maze of tunnels^*1363^*Go back and leave the dungeon^*1150
 1358:You climb through the hole in the rocks, but there is an even larger pile of rocks beyond it that is impossible to pass through.  The larger pile of rocks looks like it is the result of a recent cave in.  As using more explosive potions to blast through would be far too risky and ineffective, you are forced to give up and climb back out.
 1358:Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
-1359:After wandering aimlessly through a maze of cave passageways, you find a tunnel with a strange light in the distance.  You extinguish your torch and cautiously walk towards it.  As the mysterious light grows brighter, you can see black burn marks on the walls of the tunnel and a trail of dried blood on the ground.  The line of blood grows thicker as you continue to walk forwards.  The tunnel abruptly emerges into what looks like an expansive wasteland.  You see massive piles of bones scattered about and the ground looks scorched and bloody.  As you walk forwards through the wasteland in horrified fascination, the ground squishes beneath you and a terrible rotting stench assaults your nostrils.  In the distance, you see a gigantic bone pile that is taller than all of the others.
+1359:After wandering aimlessly through the maze of cave passageways, you find a tunnel with a strange light in the distance.  You extinguish your torch and cautiously walk towards it.  As the mysterious light grows brighter, you can see black burn marks on the walls of the tunnel and a trail of dried blood on the ground.  The line of blood grows thicker as you continue to walk forwards.  The tunnel abruptly emerges into what looks like an expansive wasteland.  You see massive piles of bones scattered about and the ground looks scorched and bloody.  As you walk forwards through the wasteland in horrified fascination, the ground squishes beneath you and a terrible rotting stench assaults your nostrils.  In the distance, you see a gigantic bone pile that is taller than all of the others.
 1359:Continue^*1337
 1360:INVSPLIT:Assassin Garb^*1376^*1361
 1360:null^*1
 1361:VARSPLIT:dungeonVisited,0^*1353^*1382
 1361:null^*1
-1362:MAZE:^*You use your tinderbox to light your torch and descend into the maze of tunnels.
+1362:MAZE:You are in a maze of tunnels.^*You use your tinderbox to light your torch and descend into the maze of tunnels.
 1362:Continue^*1359
-1363:MAZE:^*As the maze of tunnels descends into complete darkness, you are forced to feel your way around the cave walls.
+1363:MAZE:You are in a maze of tunnels.^*As the maze of tunnels descends into complete darkness, you are forced to feel your way around the cave walls.
 1363:Continue^*1364
-1364:After wandering aimlessly through a maze of cave passageways, you find a tunnel with a strange light in the distance.  You are elated to finally be out of the darkness and you quickly walk towards it.  As the mysterious light grows brighter, you can see black burn marks on the walls of the tunnel and a trail of dried blood on the ground.  The line of blood grows thicker as you continue to walk forwards.  The tunnel abruptly emerges into what looks like an expansive wasteland.  You see massive piles of bones scattered about and the ground looks scorched and bloody.  As you walk forwards through the wasteland in horrified fascination, the ground squishes beneath you and a terrible rotting stench assaults your nostrils.  In the distance, you see a gigantic bone pile that is taller than all of the others.
+1364:After wandering aimlessly through the maze of cave passageways, you find a tunnel with a strange light in the distance.  You are elated to finally be out of the darkness and you quickly walk towards it.  As the mysterious light grows brighter, you can see black burn marks on the walls of the tunnel and a trail of dried blood on the ground.  The line of blood grows thicker as you continue to walk forwards.  The tunnel abruptly emerges into what looks like an expansive wasteland.  You see massive piles of bones scattered about and the ground looks scorched and bloody.  As you walk forwards through the wasteland in horrified fascination, the ground squishes beneath you and a terrible rotting stench assaults your nostrils.  In the distance, you see a gigantic bone pile that is taller than all of the others.
 1364:Continue^*1337
 1365:INVSPLIT:Assassin Garb^*1366^*1367
 1365:null^*1
@@ -2791,7 +2792,7 @@ COMBINATION:Crumpled scrap of paper,12
 3005:LOCKPICK:3^*You are picking a lock
 3005:Done^*0
 3005:images/lock_pick.jpg
-3006:MAZE:There is nothing interesting hereMESSAGE:A rat scurries across the floorMESSAGE:You run into a decomposed skeleton against the wall.  Chills run down your backMESSAGE:You step on something. It makes a loud crunch underfoot, better get goingMESSAGE:A trail of cochroaches crosses the floor and climbs up the wallsMESSAGE:You start to think that you are lostMESSAGE:You start to feel very alone. You wonder if this maze ever endsMESSAGE:You stumble upon a great sword smashed to piecesMESSAGE:Above you hang what seems like an endless amount of bodies.  I wonder if anyone has ever made it out aliveMESSAGE:You feel a cold drip of water on your headMESSAGE:You shiver from the cold^*THIS IS A TEST.THE CAKE IS A LIE!
+3006:MAZE:There is nothing interesting here,MESSAGE:A rat scurries across the floor,MESSAGE:You run into a decomposed skeleton against the wall.  Chills run down your back,MESSAGE:You step on something. It makes a loud crunch underfoot, better get going,MESSAGE:A trail of cochroaches crosses the floor and climbs up the walls,MESSAGE:You start to think that you are lost,MESSAGE:You start to feel very alone. You wonder if this maze ever ends,MESSAGE:You stumble upon a great sword smashed to pieces,MESSAGE:Above you hang what seems like an endless amount of bodies.  I wonder if anyone has ever made it out alive,MESSAGE:You feel a cold drip of water on your head,MESSAGE:You shiver from the cold^*THIS IS A TEST.THE CAKE IS A LIE!
 3006:Done^*3007
 3007:TEST
 3007:GO BACK!!!!^*0

@@ -105,9 +105,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.hint='';
 		//special mode for Maze
 		this.inMaze=0;
-		this.mazeRow=0;
-		this.mazeCol=0;
-		var MazeArray=[];
 		//special mode for safe cracking
 		this.inSafeCracking =0;
 		this.hasCombo = 0;
@@ -2393,7 +2390,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					else if (specialPageArray[p].match('MAZE:') !=null) {
 					//Prelim and First Run, inMaze is default 0.
 					if(this.inMaze==0){
-						MazeText=specialPageArray[p].split('MAZE:')[1].split('MESSAGE:');
+						//Parse messages for maze rooms
+						MazeText=specialPageArray[p].split('MAZE:')[1].split(',MESSAGE:');
 						this.message=specialPageArray[specialPageArray.length-1];
 						//set default maze size and adjust it according to game difficulty level.
 						mazeSize=4;
@@ -2404,8 +2402,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if(this.difficulty=='Hard')
 							{mazeSize=5;}
 
-						//Populate the 2D Array with doors ramdomly stripping out any repeats until it reaches bottol right cell of array.
-						MazeArray= new Array(mazeSize);
+						//Populate the 2D Array with doors ramdomly stripping out any repeats until it reaches bottom right cell of array.
+						MazeArray = [];
 						row=0;
 						col=0;
 						mazeRow=0;
@@ -2485,50 +2483,46 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						}
 						//Putting custom choices in the array for Maze navigation
 						choicesArray = [];
-							if(this.mazeRow==mazeSize-1 && this.mazeCol==mazeSize-1)
+						for(i=0; i<MazeArray[mazeRow][mazeCol].length; i++)
 							{
-								this.message='YOU WIN';
+							dir='';
+							if(MazeArray[mazeRow][mazeCol].charAt(i)=='N')
+								{dir='North';}
+							if(MazeArray[mazeRow][mazeCol].charAt(i)=='E')
+								{dir='East';}
+							if(MazeArray[mazeRow][mazeCol].charAt(i)=='S')
+								{dir='South';}
+							if(MazeArray[mazeRow][mazeCol].charAt(i)=='W')
+								{dir='West';}
+							choicesArray[i*2] ='Go ' + dir;
+							choicesArray[i*2+1] =this.page;
 							}
-							for(i=0; i<MazeArray[this.mazeRow][this.mazeCol].length; i++)
-								{
-								dir='';
-								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='N')
-									{dir='North';}
-								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='E')
-									{dir='East';}
-								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='S')
-									{dir='South';}
-								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='W')
-									{dir='West';}
-								choicesArray[i*2] ='Go to your ' + dir;
-								choicesArray[i*2+1] =this.page;
-								}
 						//Prints the Maze array to the Console
-						for (m=0; m<MazeArray.length-1; m++)
+						/*for (m=0; m<MazeArray.length-1; m++)
 							{
 							console.log(MazeArray[m]);
-							}
+							}*/
 						this.inMaze=1;
-						}
-						//Every subsequent run through the maze code
-						else
-						{	
+					}
+					//Every subsequent run through the maze code
+					else
+					{	
 							//On Button press, update which cell of maze player is currently in
-							if(MazeArray[this.mazeRow][this.mazeCol].charAt(choiceNum-1)=='N')
+							if(MazeArray[mazeRow][mazeCol].charAt(choiceNum-1)=='N')
 								{
-									this.mazeRow--;
+									mazeRow--;
 								}
-							else if(MazeArray[this.mazeRow][this.mazeCol].charAt(choiceNum-1)=='E')
+							else if(MazeArray[mazeRow][mazeCol].charAt(choiceNum-1)=='E')
 								{
-									this.mazeCol++;
+									mazeCol++;
 								}
-							else if(MazeArray[this.mazeRow][this.mazeCol].charAt(choiceNum-1)=='S')
+							else if(MazeArray[mazeRow][mazeCol].charAt(choiceNum-1)=='S')
 								{
-									this.mazeRow++;
+									mazeRow++;
 								}
-							else if(MazeArray[this.mazeRow][this.mazeCol].charAt(choiceNum-1)=='W')
+							else if(MazeArray[mazeRow][mazeCol].charAt(choiceNum-1)=='W')
 								{
-									this.mazeCol--;
+									mazeCol--;
 								}
 							//Putting custom choices in the array for Maze navigation
 							choicesArray = [];
@@ -2536,26 +2530,30 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							temp=Math.ceil(Math.random()*MazeText.length-1);
 							this.message=MazeText[temp];
 
-							if(this.mazeRow==mazeSize-1 && this.mazeCol==mazeSize-1)
+							if(mazeRow==mazeSize-1 && mazeCol==mazeSize-1)
 							{
-								this.message='YOU WIN';
+								//Maze successfully completed
 								this.inMaze=0;
-							}
-							//poulate the array of choices with the correct direction options
-							for(i=0; i<MazeArray[this.mazeRow][this.mazeCol].length; i++)
+								choicesArray = this.choices[this.page].split(this.DELIMITER);
+								this.page = choicesArray[1];
+								this.processChoice(this.page, choiceNum);
+							} else {
+							//populate the array of choices with the correct direction options
+							for(i=0; i<MazeArray[mazeRow][mazeCol].length; i++)
 								{
 								dir='';
-								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='N')
+								if(MazeArray[mazeRow][mazeCol].charAt(i)=='N')
 									{dir='North';}
-								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='E')
+								if(MazeArray[mazeRow][mazeCol].charAt(i)=='E')
 									{dir='East';}
-								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='S')
+								if(MazeArray[mazeRow][mazeCol].charAt(i)=='S')
 									{dir='South';}
-								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='W')
+								if(MazeArray[mazeRow][mazeCol].charAt(i)=='W')
 									{dir='West';}
-								choicesArray[i*2] ='Go to your ' + dir;
+								choicesArray[i*2] ='Go to the ' + dir;
 								choicesArray[i*2+1] =this.page;
 								}
+							}
 						}
 						
 					}
