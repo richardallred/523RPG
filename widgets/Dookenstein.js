@@ -2483,34 +2483,30 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						}
 						//Putting custom choices in the array for Maze navigation
 						choicesArray = [];
-							if(mazeRow==mazeSize-1 && mazeCol==mazeSize-1)
+						for(i=0; i<MazeArray[mazeRow][mazeCol].length; i++)
 							{
-								this.message='YOU WIN';
+							dir='';
+							if(MazeArray[mazeRow][mazeCol].charAt(i)=='N')
+								{dir='North';}
+							if(MazeArray[mazeRow][mazeCol].charAt(i)=='E')
+								{dir='East';}
+							if(MazeArray[mazeRow][mazeCol].charAt(i)=='S')
+								{dir='South';}
+							if(MazeArray[mazeRow][mazeCol].charAt(i)=='W')
+								{dir='West';}
+							choicesArray[i*2] ='Go ' + dir;
+							choicesArray[i*2+1] =this.page;
 							}
-							for(i=0; i<MazeArray[mazeRow][mazeCol].length; i++)
-								{
-								dir='';
-								if(MazeArray[mazeRow][mazeCol].charAt(i)=='N')
-									{dir='North';}
-								if(MazeArray[mazeRow][mazeCol].charAt(i)=='E')
-									{dir='East';}
-								if(MazeArray[mazeRow][mazeCol].charAt(i)=='S')
-									{dir='South';}
-								if(MazeArray[mazeRow][mazeCol].charAt(i)=='W')
-									{dir='West';}
-								choicesArray[i*2] ='Go to your ' + dir;
-								choicesArray[i*2+1] =this.page;
-								}
 						//Prints the Maze array to the Console
 						/*for (m=0; m<MazeArray.length-1; m++)
 							{
 							console.log(MazeArray[m]);
 							}*/
 						this.inMaze=1;
-						}
-						//Every subsequent run through the maze code
-						else
-						{	
+					}
+					//Every subsequent run through the maze code
+					else
+					{	
 							//On Button press, update which cell of maze player is currently in
 							if(MazeArray[mazeRow][mazeCol].charAt(choiceNum-1)=='N')
 								{
@@ -2536,10 +2532,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 
 							if(mazeRow==mazeSize-1 && mazeCol==mazeSize-1)
 							{
-								this.message='YOU WIN';
+								//Maze successfully completed
 								this.inMaze=0;
-							}
-							//poulate the array of choices with the correct direction options
+								choicesArray = this.choices[this.page].split(this.DELIMITER);
+								this.page = choicesArray[1];
+								this.processChoice(this.page, choiceNum);
+							} else {
+							//populate the array of choices with the correct direction options
 							for(i=0; i<MazeArray[mazeRow][mazeCol].length; i++)
 								{
 								dir='';
@@ -2551,9 +2550,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									{dir='South';}
 								if(MazeArray[mazeRow][mazeCol].charAt(i)=='W')
 									{dir='West';}
-								choicesArray[i*2] ='Go to your ' + dir;
+								choicesArray[i*2] ='Go to the ' + dir;
 								choicesArray[i*2+1] =this.page;
 								}
+							}
 						}
 						
 					}
