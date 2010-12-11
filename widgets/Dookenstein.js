@@ -2348,7 +2348,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										this.currentPushes=0;
 										this.currentTumbler=0;
 										this.inLockPicking=0;
-										this.message="Congratulations! You picked the lock!";
+										//this.message="Congratulations! You picked the lock!";
+										//redirect the player out of the game
+										choicesArray = this.choices[this.page].split(this.DELIMITER);
+										this.page = choicesArray[1];
+										this.processChoice(this.page, choiceNum);
 									}
 								//Incorrect Pushes for the that tumbler
 								}else{
@@ -2377,10 +2381,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock.<br>";
 								this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 							}else if(choiceNum==4){
+								//Skip the game
 								this.currentPushes=0;
 								this.currentTumbler=0;
 								this.inLockPicking=0;
-								this.message="Congratulations! You picked the lock!";
+								//this.message="Congratulations! You picked the lock!";
+								//redirect the player out of the game
+								choicesArray = this.choices[this.page].split(this.DELIMITER);
+								this.page = choicesArray[1];
+								this.processChoice(this.page, choiceNum);
 							}
 							
 						}
@@ -2534,6 +2543,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							{
 								//Maze successfully completed
 								this.inMaze=0;
+								//redirect the player out of the maze
 								choicesArray = this.choices[this.page].split(this.DELIMITER);
 								this.page = choicesArray[1];
 								this.processChoice(this.page, choiceNum);
