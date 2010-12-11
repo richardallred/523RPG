@@ -2705,7 +2705,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										}
 									}
 								}
-							}
 							else{
 								choicesArray = [];
 								choicesArray[0]='Turn dial left by 1';
@@ -2772,6 +2771,20 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											choicesArray[9]=this.page;
 										}else
 										{
+											if(this.checked == 1){
+												choicesArray = [];
+												choicesArray[0]='Turn dial left by 1';
+												choicesArray[1]=this.page;
+												choicesArray[2]='Turn dial left by 3';
+												choicesArray[3]=this.page;
+												choicesArray[4]='Turn dial left by 5';
+												choicesArray[5]=this.page;
+												choicesArray[6]='Turn dial left by 10';
+												choicesArray[7]=this.page;
+												choicesArray[8]='Turn dial left by 20';
+												choicesArray[9]=this.page;
+											}else
+											{
 											choicesArray = [];
 											choicesArray[0]='Turn dial right by 1';
 											choicesArray[1]=this.page;
@@ -2783,6 +2796,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											choicesArray[7]=this.page;
 											choicesArray[8]='Turn dial right by 20';
 											choicesArray[9]=this.page;
+										}
+											choicesArray[10]='Check number ' + (this.checked+1);
+											choicesArray[11]=this.page;
+											choicesArray[12]='Abort';
+											choicesArray[13]=this.page;
 										}
 										//choicesArray[10]='Check number ' + (this.checked+1);
 										choicesArray[10]='Change dial direction';
