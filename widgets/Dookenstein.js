@@ -112,11 +112,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.inSafeCracking =0;
 		this.hasCombo = 0;
 		this.currentNum =0;
-		this.rotations = 3;
-		this.num = new Array(this.rotations);
+		this.num = new Array(3);
 		this.checked = 0;
-		this.tries = 0;
 		this.maxNum = 0;
+		this.display = new Array(3);
+		this.damage=0;
 		//set jsonic reading rate - default for JSonic is 200
 		this.sonicRate = 250;
 		this.sonicVolume = 1.0;
@@ -1052,7 +1052,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				VARDISPLAY:var - Display the value of var in a message
 				COMBAT: - Special command to start combat
 				LOCKPICK:var - Creates a lock picking game with var number of tumblers
-				SAFECRACK:boolean - Creates a safe cracking game, if Combination is in the inventory it is displayed - boolean is whether or Combination is in the inventory
+				SAFECRACK:abortPage - Creates a safe cracking game and shows parts of the combination based off how many "Combination" are found in the inventory. go to abortPage if abort.
 				RESTART: - The story has reached some sort of end, so restart from page 1
 				*/
 				
@@ -2283,10 +2283,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 														
 							this.inLockPicking=1;
 							choicesArray = [];
-							this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+numOfTumblers;
-							this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-							this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-							this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+							this.message=this.message+"<br><br>You are currently picking Tumbler #<b>"+(this.currentTumbler) +"</b> of <b>"+numOfTumblers;
+							this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
+							this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times.<br>";
+							this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
 							//Find a hint for the current tumbler						
 							curhintArray=hintsArray[this.tumblers[this.currentTumbler-1]];
 							this.hint=curhintArray[Math.ceil(Math.random()*7)];
@@ -2309,18 +2309,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//Check to make sure we haven't reached the max pushes
 								if(this.currentPushes!=this.maxPushes){
 									this.currentPushes+=1;
-									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
-									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									this.message=this.message+"<br><br>You are currently picking Tumbler #<b>"+(this.currentTumbler) +"</b> of <b>"+this.maxTumblers;
+									this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
+									this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times.<br>";
+									this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
 									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 								//Circle back to 1 push after hitting max
 								}else{
 									this.currentPushes=1;
-									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
-									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									this.message=this.message+"<br><br>You are currently picking Tumbler #<b>"+(this.currentTumbler) +"</b> of <b>"+this.maxTumblers;
+									this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
+									this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times.<br>";
+									this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
 									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 								}
 								
@@ -2330,11 +2330,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								if(this.currentPushes==this.tumblers[this.currentTumbler-1]){
 									//Move to next tumbler
 									this.currentTumbler++;
-									this.message=this.message+"<br>You successfully opened this tumbler!";	
-									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
-									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									this.message=this.message+"<br><br>You successfully opened this tumbler!<br>";	
+									this.message=this.message+"<br>You are currently picking Tumbler #<b>"+(this.currentTumbler) +"</b> of <b>"+this.maxTumblers;
+									this.message=this.message+".</b>  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
+									this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times<br>";
+									this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
 									curhintArray=hintsArray[this.tumblers[this.currentTumbler-1]];
 									this.hint=curhintArray[Math.ceil(Math.random()*7)];
 									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
@@ -2363,21 +2363,21 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										this.inLockPicking=0;
 									//Otherwise tell them its wrong and try again
 									}else{
-										this.message=this.message+"<br>This is the incorrect number of pushes for this tumbler!  Please Try Again!"
-										this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
-										this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-										this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-										this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+										this.message=this.message+"<br><br>This is the incorrect number of pushes for this tumbler!  Please Try Again!<br>"
+										this.message=this.message+"<br>You are currently picking Tumbler #<b>"+(this.currentTumbler)+"</b> of <b>"+this.maxTumblers;
+										this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
+										this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times<br>";
+										this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
 										this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 									}
 								}
 							//Choose to start the current tumbler over, does not reset max wrong
 							}else if(choiceNum==3){
 								this.currentPushes=0;
-								this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
-								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-								this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-								this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+								this.message=this.message+"<br><br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
+								this.message=this.message+".  You have pushed this tumbler "+(this.currentPushes)+ " time(s).  ";
+								this.message=this.message+"Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+								this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock.<br>";
 								this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 							}else if(choiceNum==4){
 								this.currentPushes=0;
@@ -2567,14 +2567,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						
 					}
 					
-					//SAFECRACK:
+					//SAFECRACK:abortPage
 					else if(specialPageArray[p].match('SAFECRACK:') != null) {
 						
 						if(this.inSafeCracking==0){
-							this.hasCombo = specialPageArray[p].split('SAFECRACK:');
+							//this.hasCombo = specialPageArray[p].split('SAFECRACK:');
 							//this.hasCombo2 = dojo.number.parse(this.hasCombo[1]);
-							if(this.hasCombo[1]=="true")
-								this.hasCombo = 1;
+							//if(this.hasCombo[1]=="true")
+							//	this.hasCombo = 1;
 							
 							this.inSafeCracking = 1;
 							//num = new Array(3);
@@ -2583,19 +2583,40 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								if(this.difficulty=="Easy"){
 									this.maxNum=20;
 									this.num[i] = Math.floor(Math.random()*this.maxNum);
-									this.tries = 20;
+									this.damage = 5;
 								}else{
 									if(this.difficulty=="Normal"){
 										this.maxNum = 40;
 										this.num[i] = Math.floor(Math.random()*this.maxNum);
-										this.tries = 15;
+										this.damage = 10;
 									}else{
 										this.maxNum = 60;
 										this.num[i] = Math.floor(Math.random()*this.maxNum);
-										this.tries = 10;
+										this.damage = 15;
 									}
 								}
 								
+							}
+							
+							for(i=0;i<this.inventory.length;i++){
+								if(this.inventory[i]=="Combination"){
+									this.hasCombo++;
+								}
+							}
+							if(this.hasCombo>0){
+								this.message += "You have " + this.hasCombo + " combination(s) to the safe.<br>" 
+								this.display[0] = Math.floor(Math.random()*3);
+								this.display[1]=Math.floor(Math.random()*3);
+								this.display[2]=Math.floor(Math.random()*3);
+								while(this.display[1] == this.display[0])
+									this.display[1]=Math.floor(Math.random()*3);
+								while(this.display[2] == this.display[0] || this.display[2] == this.display[1])
+									this.display[2]=Math.floor(Math.random()*3);
+								this.message= this.message+this.num[this.display[0]]+" is one part of the combination<br>";
+								if(this.hasCombo>1)
+									this.message= this.message+this.num[this.display[1]]+" is another<br>";
+								if(this.hasCombo>2)
+									this.message= this.message+this.num[this.display[2]]+" is another<br>";
 							}
 							
 							this.currentNum = 0;
@@ -2612,9 +2633,19 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							choicesArray[9]=this.page;
 							choicesArray[10]='Check number ' + (this.checked+1);
 							choicesArray[11]=this.page;
+							choicesArray[12]='Abort';
+							choicesArray[13]=this.page;
 						}
 						else{
 							//this.message+=" " + choiceNum + " ";
+							if(this.hasCombo>0){
+								this.message += "You have " + this.hasCombo + " combination(s) to the safe.<br>"
+								this.message= this.message+this.num[this.display[0]]+" is one part of the combination<br>";
+								if(this.hasCombo>1)
+									this.message= this.message+this.num[this.display[1]]+" is another<br>";
+								if(this.hasCombo>2)
+									this.message= this.message+this.num[this.display[2]]+" is another<br>";
+							}
 							if(this.checked==0 || this.checked==2){
 								choicesArray = [];
 								choicesArray[0]='Turn dial right by 1';
@@ -2629,6 +2660,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								choicesArray[9]=this.page;
 								choicesArray[10]='Check number ' + (this.checked+1);
 								choicesArray[11]=this.page;
+								choicesArray[12]='Abort';
+								choicesArray[13]=this.page;
 								if(choiceNum<=5)
 								{
 									if(choiceNum<3){
@@ -2664,6 +2697,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								choicesArray[9]=this.page;
 								choicesArray[10]='Check number ' + (this.checked+1);
 								choicesArray[11]=this.page;
+								choicesArray[12]='Abort';
+								choicesArray[13]=this.page;
 								if(choiceNum<=5)
 								{
 									if(choiceNum<3){
@@ -2687,14 +2722,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							}
 							
 							if(choiceNum==6){
-								this.tries--;
 								if(this.currentNum==this.num[this.checked]){
 									this.checked++;
 									this.message += "You have successfully cracked the number! <br>";
-									if(this.rotations==(this.checked)){
+									if(this.checked==this.num.length){
 										this.inSafeCracking = 0;
 										this.checked=0;
-										this.message += "You have successfully cracked the safe! <br>";
+										this.message = "You have successfully cracked the safe! <br>";
 									}
 									else
 									{
@@ -2726,26 +2760,39 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										}
 										choicesArray[10]='Check number ' + (this.checked+1);
 										choicesArray[11]=this.page;
+										choicesArray[12]='Abort';
+										choicesArray[13]=this.page;
 									}
 								}else{
+									this.health -= this.damage;
 									this.message += "Please try again.<br>";
 								}
 							}
+							
 						}
-						this.message+= "You can check the safe " + this.tries + " more times.<br>";
-						this.message+="The max number on this dial is " + this.maxNum + "<br>";
-						this.message += "The dial is on " + this.currentNum + "<br>";
-						if(this.hasCombo == 1){
-							this.message += "You have the combination to the safe. The combo is: <br>" 
-							for(i=0;i<3;i++)
-							{	
-								this.message= this.message+"#"+(i+1)+" is "+ this.num[i]+".<br>";	
-							}
+						passedCheck = false;
+						if(choiceNum==7){
+							passedCheck = true;
 						}
-						if(this.tries==0 || this.tries < (this.num.length-this.checked)){
+						if (passedCheck) {
+							// abort safecracking, redirect to first page
+							var abortPage = specialPageArray[p].split('SAFECRACK:');
 							this.inSafeCracking = 0;
 							this.checked=0;
-							this.message += "You have failed cracked the safe! <br>";
+							this.page = abortPage[1];
+							this.processChoice(this.page,0);
+							return;
+						}
+						if(this.inSafeCracking != 0){
+							this.message+="The max number on this dial is " + this.maxNum + "<br>";
+							this.message += "The dial is on " + this.currentNum + "<br>";
+						}
+						
+						if(this.health<= 0){
+							this.inSafeCracking = 0;
+							this.checked=0;
+							this.message = "You have failed cracked the safe! <br>";
+							this.restart = 1;
 						}
 					}
 					
