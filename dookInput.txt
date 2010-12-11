@@ -2741,12 +2741,10 @@ HEALING:First aid kit^*0.2
 1371:Continue^*1372
 1372:VARSET:killedDungeonGuard,1^*INVADD:Key Ring^*INVADD:Sword^*A quick search of the guard's body reveals a key ring with several keys on it, which you take.  You also find a sword, but nothing else useful.  You pull the lever and the grate grinds open, allowing you to descend the staircase.
 1372:Continue^*1023
-3001:INVADD:Combination^*INVSPLIT:Combination^*3002^*3003
+3001:INVADD:true,Combination,Combination,Combination^*SAFECRACK:3002^*You are trying to crack a safe.<br>
 3001:Done^*0
-3002:SAFECRACK:true^*You are trying to crack a safe.1<br>
+3002:ABORT!
 3002:Done^*0
-3003:SAFECRACK:false^*You are trying to crack a safe.2<br>
-3003:Done^*0
 3005:LOCKPICK:3^*You are picking a lock
 3005:Done^*0
 3005:images/lock_pick.jpg
