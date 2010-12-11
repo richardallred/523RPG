@@ -2777,7 +2777,7 @@ COMBINATION:Crumpled scrap of paper,12
 1383:Done^*405
 1384:LOCKPICK:3^*You are picking the lock
 1384:Done^*624
-1385:LOCKPICK:3^*You are picking the lock
+1385:LOCKPICK:3^*You are picking the lock on a chest
 1385:Done^*740
 1386:LOCKPICK:3^*You are picking the lock
 1386:Done^*811
