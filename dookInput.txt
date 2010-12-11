@@ -414,8 +414,8 @@ HEALING:First aid kit^*0.2
 166:Look around the cathedral^*167^*Leave the cathedral^*636
 167:You look around the cathedral.  There are stained glass windows high above you to your right, and you can see rows of wooden chairs in front of you that are laid out facing a large, gilded altar.  Behind you, there is a small door to the catacombs that you just walked out of.
 167:Examine the altar^*168^*Leave the cathedral^*636
-168:The altar is covered with candles and there is a red cloth draped over the center.  As you have no way of lighting the candles, there is nothing useful on the altar.
-168:Leave the cathedral^*636
+168:INVSPLIT:Ripped scrap of paper^*173^*174
+168:null^*1
 169:You open the small door and find that it leads into a flight of stairs that goes downwards into pitch blackness.
 169:DISPLAYIF:Tinderbox and torch,Use your torch for light and descend the stairs^*651^*DISPLAYIFNOT:Tinderbox and torch,Descend the stairs into the darkness^*642^*Examine the altar^*635^*Leave the cathedral^*636
 170:The small door leads downwards into the catacombs, and there is nothing of interest to you down there.
@@ -424,6 +424,10 @@ HEALING:First aid kit^*0.2
 171:Continue^*147
 172:RESTART:^*The demon sweeps both of its clawed hands upwards.  A gigantic jet of flame bursts through the pile of bones under you and incinerates you on the spot.  The last thing you see before the fire completely consumes you is the infernal smile on the blue demon's face.
 172:null^*1
+173:The altar is covered with candles and there is a red cloth draped over the center.  As you have no way of lighting the candles, there is nothing useful on the altar.
+173:Leave the cathedral^*636
+174:INVADD:Ripped scrap of paper^*The altar is covered with candles and there is a red cloth draped over the center.  Under the red cloth, you find a ripped scrap of paper with the number 4 on it, which you take.  As you have no way of lighting the candles, there is nothing else useful on the altar.
+174:Leave the cathedral^*636
 190:You enter the door and see a long, narrow passageway with another wooden door on the end.  You see a servant walking through the passage carrying a large bowl of gruel.  "You aren't allowed over here," he says, "Go back to your tent."
 190:Do as the servant says and follow him back to the tents^*677^*Attack the servant^*675^*Run past the servant^*676
 191:You enter the door and see a long, narrow passageway with another wooden door on the end.  Near the end of the passageway, you see a small lever in the wall.
@@ -632,7 +636,7 @@ HEALING:First aid kit^*0.2
 291:null^*1
 292:You already have a sword and a mace, so you do not need any of the weapons in the armory.
 292:DISPLAYIFNOT:Guard Disguise,Take a guard uniform^*291^*Leave the armory^*1049
-293:VARSPLIT:killedServant^*984^*985
+293:VARSPLIT:killedServant,1^*984^*985
 293:null^*1
 294:As you are taking a sword from the weapons rack, you hear the servant's voice from behind you.  "What are you thinking?  You know we aren't allowed to take weapons from here!"
 294:Put the sword back^*296^*Attack the servant^*297^*Grab the sword and run out of the room^*299
@@ -1290,14 +1294,14 @@ HEALING:First aid kit^*0.2
 620:null^*1
 621:You walk towards the side wall of the keep so you can examine it more closely.  The door is plain and wooden, but it has a lock on it that prevents you from opening it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
 621:Go around to the front entrance^*622^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows^*625^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
-622:As you walk up to the large gate in front of the castle keep, one of the guards gives you a perplexed look.  "We have no need of soldiers in the keep right now," he says curtly.
-622:Tell him that the keep is under attack^*1338^*Offer him a bribe to let you in^*1339^*Tell him that you have orders from Colonel Graywald to enter^*1340^*Tell him the soldiers need more supplies from the keep^*1342^*Attack the guards^*1341^*Go around to the side wall^*1347
+622:INVSPLIT:Soldier's Uniform^*1375^*1360
+622:null^*1
 623:You walk towards the side wall of the keep so you can examine it more closely.  The door on the wall is plain and wooden, and you can see an open lock on it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
 623:Go around to the front entrance^*622^*Enter the wooden door^*662^*DISPLAYIFVAR:followedServant,0,Wait for one of the servants to come out of the door^*663^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
 624:You pick the lock on the door and enter the keep.  Inside, you see a small, narrow passageway with another wooden door at the end.  Near the end of the passageway, you see a small lever.
 624:Pull the lever^*793^*Leave the passageway^*794
-625:You look at the cracks in the wall and the uneven stone, and you work out a path that you could climb to reach the stained glass window.  However, the climb would be quite difficult and you probably wouldn't be able to make it while carrying any armor, including your soldier's uniform.
-625:Discard your armor and attempt the climb^*627^*Attempt the climb while wearing your armor^*628^*Decide not to climb up the wall^*629
+625:INVSPLIT:Soldier's Uniform^*1378^*1379
+625:null^*1
 626:You toss your grapple and it sails through one of the stained glass windows, shattering it.  Fortunately, the hook attaches to the window ledge and you are able to climb up.  When you reach the top, you pull yourself up to the window ledge and see a large cathedral on the other side.  The cathedral is quite tall, and you are standing in one of the stained glass windows near the top.  Rows of wooden chairs are laid out facing an altar.  The floor is a good distance below you and is covered with broken glass, and the wall inside the cathedral is unclimbable.  You could either try to jump down to the ground or use the rope from your grappling hook to climb down, though it would mean abandoning the grappling hook.
 626:Jump down^*631^*Use the grappling hook rope to climb down^*632
 627:LOSEHEALTH:2^*INVREMOVE:Soldier's Uniform,Chainmail Armor^*You leave your armor on the ground and start to climb up the wall.  As you scale the rough stone with your hands, they start bleeding from the strain of your weight.  The fatigue from the climb causes you to lose 2 health.  Fortunately, you are a skilled climber, so you eventually make it to the window and pull yourself up on the ledge.  Unsurprisingly, the stained glass window was not designed to be opened.  You will have to break through it to gain entrance to the keep.
@@ -1314,8 +1318,8 @@ HEALING:First aid kit^*0.2
 632:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
 633:LOSEHEALTH:6^*You leap through the cathedral window and dissipate the force of the fall through your body when you hit the ground and roll.  Pain shoots through you as you roll across several sharp pieces of glass, but you did not suffer any serious damage.  When you get up, you use some bandages from your first aid kit to treat the cuts from the glass.  You have lost 6 health from the fall.  You look around the cathedral.  The only thing you can see of interest are a large, gilded altar and a small door in the back of the room.  There is also a large wooden door that exits the room.
 633:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
-634:LOSEHEALTH:12^*You leap through the cathedral window and dissipate the force of the fall through your body when you hit the ground and roll.  Pain shoots through you as you roll across several sharp pieces of glass, but you did not suffer any serious damage.  You lose 12 health from the force of the fall and from the glass cutting you.  You get up and look around the cathedral.  The only thing you can see of interest are a large, gilded altar and a small door in the back of the room.  There is also a large wooden door that exits the room.
-634:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
+634:VARSPLIT:dungeonVisited,0^*1380^*1381
+634:null^*1
 635:INVSPLIT:Golden cross^*638^*1259
 635:null^*1
 636:VARSPLIT:catacombsVisited,1^*1247^*1248
@@ -1326,7 +1330,7 @@ HEALING:First aid kit^*0.2
 638:Go to the small door in the back^*637^*Leave the cathedral^*636
 639:VARSPLIT:killedDemon,0^*1368^*168
 639:null^*1
-640:INVADD:Golden cross^*You swipe the valuable looking golden cross and put it into your pack.  What do you do next?
+640:INVADD:Golden cross,Ripped scrap of paper^*You swipe the valuable looking golden cross and put it into your pack.  You look under the red cloth on the altar and you find a ripped scrap of paper with the number 4 on it, which you take as well.  There is nothing else useful on the altar.
 640:Go to the small door in the back^*637^*Leave the cathedral^*636
 641:When you reach the bottom of the stairs, you find yourself in a catacombs.  In the torchlight, you can see several rows of stone shelves on each side of you, all lined with stone coffins that likely contain corpses.  Near the corner of the room, there is a large pile of randomly assorted bones.  At the end of the room, you can see that the catacombs continue in a fork to the left and right.
 641:Enter the catacombs^*648^*Leave and go back up the stairs^*644
@@ -1973,7 +1977,7 @@ HEALING:First aid kit^*0.2
 962:Yes, buy the platemail armor^*964^*No, go back^*950
 963:You do not have enough gold coins.
 963:Buy something else^*961^*Say you don't want anything else and leave the forge^*1038^*Attack the apprentice^*959^*Attack the blacksmith^*887^*DISPLAYIF:Crossbow,Shoot the blacksmith with your crossbow^*857
-964:INVREMOVE:Guard Uniform,Chainmail Armor^*LOSEGOLD:30^*INVADD:Platemail Armor^*You pay 30 gold coins and the apprentice puts the gold into a safe in the wall.  He then struggles to take a suit of platemail armor off of a rack and hands it to you.  You remove your guard uniform and put on the platemail armor.  It is extremely heavy and cumbersome, but it provides you with excellent protection.
+964:INVADD:Platemail Armor^*INVREMOVE:Guard Disguise,Chainmail Armor^*LOSEGOLD:30^*You pay 30 gold coins and the apprentice puts the gold into a safe in the wall.  He then struggles to take a suit of platemail armor off of a rack and hands it to you.  You remove your guard uniform and put on the platemail armor.  It is extremely heavy and cumbersome, but it provides you with excellent protection.
 964:Buy something else^*961^*Say you don't want anything else and leave the forge^*1038^*Attack the apprentice^*959^*Attack the blacksmith^*887^*DISPLAYIF:Crossbow,Shoot the blacksmith with your crossbow^*857
 965:INVADD:Sword^*You take one of the finely crafted swords.  What do you do next?
 965:DISPLAYIFNOT:Axe,Take one of the axes^*966^*DISPLAYIFNOT:Chainmail Armor,Take a suit of chainmail armor^*967^*DISPLAYIFNOT:Platemail Armor,Take a suit of platemail armor^*968^*DISPLAYIFNOT:Pliers,Take one of the pliers^*970^*Try to open the safe^*971^*Search through the pile of scrap metal^*969^*Leave the forge^*1038
@@ -2020,7 +2024,7 @@ HEALING:First aid kit^*0.2
 986:As you take one of the sets of guard armor off of the rack, you hear the servant's voice from behind you.  "What are you doing?  Those uniforms are only for the castle guards!"
 986:Put the armor back on the rack^*988^*Attack the servant^*297^*Drop the armor and run out of the room^*299
 987:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise,Soldier's Uniform,Platemail Armor^*INVADD:Guard Disguise^*You exchange your current set of clothing for a guard's uniform.
-987:Take the weapons in the armory^*290^*Leave the armory^*1049
+987:DISPLAYIFNOT:Sword,Mace,Take the weapons in the armory^*290^*Leave the armory^*1049
 988:RESTART:^*You return the uniform to the rack, but it doesn't stop the servant from crying out that there is an intruder in the armory.  You hear the sound of running feet, and five guards burst into the armory with their weapons drawn.  You try to fight them, the guards heavily outnumber you and you are slain.
 988:null^*1
 989:As you start to walk into the armory, you see a servant polishing one of the pieces of armor.  He is absorbed in his task and does not hear you walk in.
@@ -2028,7 +2032,7 @@ HEALING:First aid kit^*0.2
 990:You walk into the armory and look around.  You see an assortment of swords, maces, and sets of uniforms for the guards.  You also see the body of a servant on the ground.
 990:Take the weapons^*290^*DISPLAYIFNOT:Guard Disguise,Take a guard uniform^*291^*Leave the armory^*1049
 991:At the bottom of the stairs, you emerge in a narrow, torchlit hallway.  To the right, the hallway turns around a corner.  To the left, you can see an open doorway.
-991:Go right^*1001^*Go left^*1002
+991:DISPLAYIFVAR:apothecaryVisited,0,Go right^*1001^*DISPLAYIFVAR:apothecaryVisited,1,Go right towards the apothecary^*1001^*DISPLAYIFVAR:armoryVisited,0,Go left^*1002^*DISPLAYIFVAR:armoryVisited,1,Go left towards the armory^*1002
 992:The guard leads you up the stairway and into a large hallway corner.  There are two guards standing on either side of the stairway, but they ignore you.  In the middle of the room, you can see many entrances to a large great hall.  The guard leads you into the great hall.  He tells you not to go into the basement again before leaving and walking back down the stairs.
 992:Continue^*1197
 993:You follow the guard partway up the staircase, then grab him and throw him down the stairs in a surprise attack.  The guard lets out a shout as he tumbles down the stairs.  When he hits the bottom, he is clearly dazed, but he draws his sword and runs to attack you.
@@ -2128,7 +2132,7 @@ HEALING:First aid kit^*0.2
 1040:You enter the storeroom.  You see the body of the guard lying among the sacks, still wearing his uniform.
 1040:Exchange your current clothes for the guard's armor^*1042^*Search through some of the sacks^*1041^*Leave the storeroom^*259
 1041:You search through some of the sacks, but you do not find anything useful.
-1041:DISPLAYIFNOT:Guard Disguise,Exchange your current clothes for the guard's armor^*1043^*Leave the storeroom^*259
+1041:DISPLAYIFNOT:Guard Disguise,Exchange your current clothes for the guard's armor^*1042^*Leave the storeroom^*259
 1042:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb,Servant Disguise,Soldier's Uniform,Platemail Armor^*INVADD:Guard Disguise^*You try on the guard's armor and it fits you quite well.  With the guard's uniform as a disguise, you hope that you can pass through the castle without any more trouble.
 1042:Search through some of the sacks^*1041^*Leave the storeroom^*259
 1043:INVREMOVE:Merchant Disguise,Mercenary Disguise,Assassin Garb^*INVADD:Mace,Guard Disguise^*You try on the guard's armor and it fits you quite well.  With the guard's uniform as a disguise, you hope that you can pass through the castle without any more trouble.
@@ -2570,7 +2574,7 @@ HEALING:First aid kit^*0.2
 1284:RESTART:^*As you walk into the center of the room, a hush falls over the court.  One of the ambassadors stops talking in mid-sentence.  "What insolence is this, to interrupt my meeting?" roars King K.  He flicks his ring finger, causing a deadly bolt of magic to disintegrate you.  <br>Your life ends here.
 1284:null^*1
 1285:VARSET:throneVisited,1^*You find a spot in the throne room where you can clearly hear the Statian ambassadors.  It seems that they are negotiation a peace treaty with Dookia, but you can tell that the King's powerful ring gives him a lot of leverage in the negotiations.  You learn that there is going to be a feast held in the great hall when the negotiations are complete.
-1285:Try to find a way to attack the King^*1286^*Pickpocket some of the members of the court^*1328^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1285:Try to find a way to attack the King^*1288^*Pickpocket some of the members of the court^*1328^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
 1286:You are about to throw the potion when you realize that the prisoner is still in front of you trying moving the rocks.
 1286:Yell to the prisoner to move out of the way^*1287^*Throw the potion anyway^*1175
 1287:You yell to the prisoner and he backs up several feet.  You figure that he is probably safe from any explosion that you would cause.
@@ -2639,7 +2643,7 @@ HEALING:First aid kit^*0.2
 1318:Read the documents on the tables^*1316^*Leave the room before someone sees you^*1319
 1319:You leave the room and return to the hallway.  What do you do next?
 1319:Go to the great hall^*1197^*Walk around the hallway corner to the guard barracks^*1266^*Walk down the hallway to the throne room^*1198
-1320:GOLDCHECK:30^*1321^*1322
+1320:GOLDSPLIT:30^*1322^*1321
 1320:null^*1
 1321:DISPLAYGOLD:^*You hint to the guards that perhaps a few gold coins could convince them to look the other way.  The guard whispers that they would need 15 gold coins each to do something like that for you.  Unfortunately, you do not have enough gold, and the guards refuse to take any less.
 1321:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
@@ -2657,9 +2661,9 @@ HEALING:First aid kit^*0.2
 1327:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1328:RANDSPLIT:^*1329^*1330^*1331^*1332
 1328:null^*1
-1329:GOLDSPLIT:40^*1355^*1330
+1329:GOLDSPLIT:40^*1331^*1355
 1329:null^*1
-1330:GOLDSPLIT:40^*1356^*1330
+1330:GOLDSPLIT:40^*1331^*1356
 1330:null^*1
 1331:You sidle through the crowd, casually rifling through the pockets of the people in the court.  Unfortunately, you do not manage to steal anything.
 1331:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1336^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
@@ -2705,8 +2709,8 @@ HEALING:First aid kit^*0.2
 1351:Offer him a bribe to let you in^*1339^*Tell him that you have orders from Colonel Graywald to enter^*1340^*Attack the guards^*1341^*Go around to the side wall^*790
 1352:You walk up to the castle keep entrance gate and one of the guards calls for the gate to be opened.  You enter the keep and emerge in a wide hallway.  Straight in front of you, you see an entrance to a large great hall.  You walk into the great hall and look around.
 1352:Continue^*1197
-1353:front entrance (day)
-1353:Content not added^*999^*Go around to the side wall^*790
+1353:INVSPLIT:Merchant Disguise^*1373^*1374
+1353:null^*1
 1354:VARSPLIT:killedInterrogator,1^*610^*611
 1354:null^*1
 1355:GAINGOLD:5-8^*You sidle through the crowd, casually lifting the possessions of the distracted court members.  You find several small pouches of gold, and you end up stealing a total of #gold gold coins.
@@ -2715,10 +2719,14 @@ HEALING:First aid kit^*0.2
 1356:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1335^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
 1357:You climb through the hole in the rocks and emerge in a narrow cave tunnel.  The tunnel soon takes a sharp downward decline and you can see it split off into a complicated looking maze of tunnels going in many different directions.  As there are no torches lining the tunnels, they rapidly descend into darkness.
 1357:DISPLAYIF:Tinderbox and torch,Light your torch and enter the maze of tunnels^*1362^*DISPLAYIFNOT:Tinderbox and torch,Enter the pitch black maze of tunnels^*1363^*Go back and leave the dungeon^*1150
-1358:You climb through the hole in the rocks, but there is an even larger pile of rocks beyond it that is impossible to pass through.  As using more explosive potions to blast through would be far too risky and ineffective, you are forced to give up and climb back out.
+1358:You climb through the hole in the rocks, but there is an even larger pile of rocks beyond it that is impossible to pass through.  The larger pile of rocks looks like it is the result of a recent cave in.  As using more explosive potions to blast through would be far too risky and ineffective, you are forced to give up and climb back out.
 1358:Leave the cell area and go towards the metal door^*1152^*Leave the dungeon^*1150
 1359:After wandering aimlessly through a maze of cave passageways, you find a tunnel with a strange light in the distance.  You extinguish your torch and cautiously walk towards it.  As the mysterious light grows brighter, you can see black burn marks on the walls of the tunnel and a trail of dried blood on the ground.  The line of blood grows thicker as you continue to walk forwards.  The tunnel abruptly emerges into what looks like an expansive wasteland.  You see massive piles of bones scattered about and the ground looks scorched and bloody.  As you walk forwards through the wasteland in horrified fascination, the ground squishes beneath you and a terrible rotting stench assaults your nostrils.  In the distance, you see a gigantic bone pile that is taller than all of the others.
 1359:Continue^*1337
+1360:INVSPLIT:Assassin Garb^*1376^*1361
+1360:null^*1
+1361:VARSPLIT:dungeonVisited,0^*1353^*1382
+1361:null^*1
 1362:MAZE:^*You use your tinderbox to light your torch and descend into the maze of tunnels.
 1362:Continue^*1359
 1363:MAZE:^*As the maze of tunnels descends into complete darkness, you are forced to feel your way around the cave walls.
@@ -2741,6 +2749,26 @@ HEALING:First aid kit^*0.2
 1371:Continue^*1372
 1372:VARSET:killedDungeonGuard,1^*INVADD:Key Ring^*INVADD:Sword^*A quick search of the guard's body reveals a key ring with several keys on it, which you take.  You also find a sword, but nothing else useful.  You pull the lever and the grate grinds open, allowing you to descend the staircase.
 1372:Continue^*1023
+1373:As you walk up to the large gate in front of the castle keep, one of the guards gives you a perplexed look.  "I didn't think merchants were allowed in the inner bailey," he says.
+1373:Content not added
+1374:INVSPLIT:Assassin Garb^*1376^*1377
+1374:null^*1
+1375:As you walk up to the large gate in front of the castle keep, one of the guards gives you a perplexed look.  "We have no need of soldiers in the keep right now," he says curtly.
+1375:Tell him that the keep is under attack^*1338^*Offer him a bribe to let you in^*1339^*Tell him that you have orders from Colonel Graywald to enter^*1340^*Tell him the soldiers need more supplies from the keep^*1342^*Attack the guards^*1341^*Go around to the side wall^*1347
+1376:RESTART:^*As you walk up to the large gate in front of the keep, the two guards draw their swords to attack you.  "You will not pass through here, assassin!" shouts one of them.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
+1376:null^*1
+1377:As you walk up to the large gate in front of the castle keep, one of the guards gives you a perplexed look.  "What is your business here?" he asks.
+1377:Content not added^*999^*Go around to the side wall^*790
+1378:You look at the cracks in the wall and the uneven stone, and you work out a path that you could climb to reach the stained glass window.  However, the climb would be quite difficult and you probably wouldn't be able to make it while carrying any armor, including your soldier's uniform.
+1378:Discard your armor and attempt the climb^*627^*Attempt the climb while wearing your armor^*628^*Decide not to climb up the wall^*629
+1379:LOSEHEALTH:2^*You look at the cracks in the wall and the uneven stone, and you work out a path that you could climb to reach the stained glass window.  As you scale the rough stone with your hands, they start bleeding from the strain of your weight.  The fatigue from the climb causes you to lose 2 health.  Fortunately, you are a skilled climber, so you eventually make it to the window and pull yourself up on the ledge.  Unsurprisingly, the stained glass window was not designed to be opened.  You will have to break through it to gain entrance to the keep.
+1379:DISPLAYIF:Mace,Smash open the window with your mace^*630^*DISPLAYIF:Sword,Break the glass on the window with your sword^*630^*Break the window with your fist^*630^*Break the window with your foot^*630
+1380:LOSEHEALTH:12^*You leap through the cathedral window and dissipate the force of the fall through your body when you hit the ground and roll.  Pain shoots through you as you roll across several sharp pieces of glass, but you did not suffer any serious damage.  You lose 12 health from the force of the fall and from the glass cutting you.  You get up and look around the cathedral.  The only thing you can see of interest are a large, gilded altar and a small door in the back of the room.  There is also a large wooden door that exits the room.
+1380:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
+1381:LOSEHEALTH:6^*You leap through the cathedral window and dissipate the force of the fall through your body when you hit the ground and roll.  Pain shoots through you as you roll across several sharp pieces of glass, but you did not suffer any serious damage.  You lose 6 health from the force of the fall and from the glass cutting you.  You get up and look around the cathedral.  The only thing you can see of interest are a large, gilded altar and a small door in the back of the room.  There is also a large wooden door that exits the room.
+1381:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
+1382:RESTART:^*As you walk up to the large gate in front of the castle keep, one of the guards looks at you with a shocked expression.  "That's the prisoner the guards brought to the dungeon earlier today!" he gasps.  The guards draw swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
+1382:null^*1
 3001:INVADD:Combination^*INVSPLIT:Combination^*3002^*3003
 3001:Done^*0
 3002:SAFECRACK:true^*You are trying to crack a safe.1<br>
