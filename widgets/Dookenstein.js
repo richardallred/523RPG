@@ -2283,10 +2283,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 														
 							this.inLockPicking=1;
 							choicesArray = [];
-							this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+numOfTumblers;
-							this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-							this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-							this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+							this.message=this.message+"<br><br>You are currently picking Tumbler #<b>"+(this.currentTumbler) +"</b> of <b>"+numOfTumblers;
+							this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
+							this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times.<br>";
+							this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
 							//Find a hint for the current tumbler						
 							curhintArray=hintsArray[this.tumblers[this.currentTumbler-1]];
 							this.hint=curhintArray[Math.ceil(Math.random()*7)];
@@ -2309,18 +2309,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//Check to make sure we haven't reached the max pushes
 								if(this.currentPushes!=this.maxPushes){
 									this.currentPushes+=1;
-									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
-									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									this.message=this.message+"<br><br>You are currently picking Tumbler #<b>"+(this.currentTumbler) +"</b> of <b>"+this.maxTumblers;
+									this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
+									this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times.<br>";
+									this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
 									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 								//Circle back to 1 push after hitting max
 								}else{
 									this.currentPushes=1;
-									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
-									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									this.message=this.message+"<br><br>You are currently picking Tumbler #<b>"+(this.currentTumbler) +"</b> of <b>"+this.maxTumblers;
+									this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
+									this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times.<br>";
+									this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
 									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 								}
 								
@@ -2330,11 +2330,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								if(this.currentPushes==this.tumblers[this.currentTumbler-1]){
 									//Move to next tumbler
 									this.currentTumbler++;
-									this.message=this.message+"<br>You successfully opened this tumbler!";	
-									this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+this.maxTumblers;
-									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									this.message=this.message+"<br><br>You successfully opened this tumbler!<br>";	
+									this.message=this.message+"<br>You are currently picking Tumbler #<b>"+(this.currentTumbler) +"</b> of <b>"+this.maxTumblers;
+									this.message=this.message+".</b>  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
+									this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times<br>";
+									this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
 									curhintArray=hintsArray[this.tumblers[this.currentTumbler-1]];
 									this.hint=curhintArray[Math.ceil(Math.random()*7)];
 									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
@@ -2363,21 +2363,21 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										this.inLockPicking=0;
 									//Otherwise tell them its wrong and try again
 									}else{
-										this.message=this.message+"<br>This is the incorrect number of pushes for this tumbler!  Please Try Again!"
-										this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
-										this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-										this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-										this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+										this.message=this.message+"<br><br>This is the incorrect number of pushes for this tumbler!  Please Try Again!<br>"
+										this.message=this.message+"<br>You are currently picking Tumbler #<b>"+(this.currentTumbler)+"</b> of <b>"+this.maxTumblers;
+										this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
+										this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times<br>";
+										this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
 										this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 									}
 								}
 							//Choose to start the current tumbler over, does not reset max wrong
 							}else if(choiceNum==3){
 								this.currentPushes=0;
-								this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
-								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
-								this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
-								this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+								this.message=this.message+"<br><br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
+								this.message=this.message+".  You have pushed this tumbler "+(this.currentPushes)+ " time(s).  ";
+								this.message=this.message+"Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+								this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock.<br>";
 								this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 							}else if(choiceNum==4){
 								this.currentPushes=0;
