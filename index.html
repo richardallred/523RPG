@@ -3,11 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <title>Comp 523 Game</title>
-    <style type="text/css">
-      @import "http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dojo/resources/dojo.css";
-      @import "http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dijit/themes/claro/claro.css";
-      @import "css/application.css";
-    </style>
 	<noscript>
 	<p>Sorry, your browser does not support JavaScript.</p>
 	</noscript>
@@ -22,21 +17,11 @@
 			document.write("I see you aren't using Firefox or Google Chrome... tsk. To play this game you will need one of them. <br /><br /> Chrome: <a href = 'http://www.google.com/chrome/intl/en/landing_chrome.html?hl=en'>here</a> <br /><br /> or <br /><br /> Firefox: <a href='http://www.mozilla.com/en-US/firefox/firefox.html'>here</a>");
 		}
     </script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dojo/dojo.xd.js"></script>
-    <script type="text/javascript" src="/libs/uow/trace.js"></script>
-    <script type="text/javascript" src="/libs/uow.js"></script>
-    <script type="text/javascript" src="application.js"></script>
   </head>
-  <body class="claro">
-    <div dojoType="dijit.layout.BorderContainer" liveSplitters="true">
-      <div dojoType="dijit.layout.ContentPane" region="top" splitter="false">
-        <h1>Return to Castle Dookenstein</h1>
-      </div>
-      <div dojoType="dijit.layout.TabContainer" id="tabs" region="center" splitter="true">
-        <div dojoType="dijit.layout.ContentPane" title="Dookenstein">
-		  <div dojoType="myapp.Dookenstein"></div>
-        </div>
-      </div>
-    </div>
+  <body>
+	<h1>Return to Castle Dookenstein</h1>
+	This game is intended to be used on Chrome or Firefox browsers, other browsers may work with the game, but it is not guaranteed.  This game uses a built in text-to-speech function that is designed for this game, so using other screen readers may misinterpret the site so please use the one provided in the game.  Accessibility options can be reached through the settings menu to adjust the speed or volume of the text-to-speech and the size or color of the text.
+	<br><br>
+	<a href="game.html">Click here to continue to the game</a>
   </body>
 </html>
