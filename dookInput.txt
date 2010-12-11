@@ -464,7 +464,7 @@ COMBINATION:Crumpled scrap of paper,12
 204:null^*1
 205:VARSET:kitchenVisited,1^*LOSEHEALTH:5^*The smell emerging from the hole that you have grabbed on to is even worse than that of the moat.  Grimacing, you pull yourself up to it and shove your pack inside.  As you try to struggle through headfirst, fetid water drips off of your clothing and you are coated with a layer of slime and rotten food.  On the other side, you see a large kitchen.  After several long minutes of struggling, you manage to get your bruised body through.  The painful struggle has cost you another 5 health.  You see an exit on the other side of the room and a basin of water nearby that looks like it is used to wash dishes.
 205:Wash yourself and your clothes off in the basin^*208^*Leave the room before someone arrives^*209
-206:You climb up the grate and pull your lock picking kit out of your pack.  The lock is rusted and very difficult to pick, but eventually you manage to get it open.  You let the lock fall into the moat and the grate swings open.  You climb in to what appears to be an exit tunnel from the castle.  There is not much light coming in from outside, and the tunnel descends into pitch darkness very quickly.
+206:The lock is rusted and very difficult to pick, but eventually you manage to get it open.  You let the lock fall into the moat and the grate swings open.  You climb in to what appears to be an exit tunnel from the castle.  There is not much light coming in from outside, and the tunnel descends into pitch darkness very quickly.
 206:Enter the tunnel^*210^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
 206:images/grate_test.jpg
 207:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.  You try to force the lock, but to no avail.  The lock and the grate are both made of solid metal and there is no way past them.  You have no choice but to abandon the tunnel.
@@ -2785,10 +2785,14 @@ COMBINATION:Crumpled scrap of paper,12
 1387:Done^*838
 1388:LOCKPICK:3^*You are picking the lock
 1388:Done^*1241
-1389:LOCKPICK:3^*You are picking the lock
-1389:Done^*206
+1389:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.
+1389:Try to pick the lock^*1391^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
+1389:images/locked_test.jpg
 1390:LOCKPICK:3^*You are picking the lock
 1390:Done^*480
+1391:LOCKPICK:4^*You pull your lockpicking kit out of your pack and try to pick the lock while holding onto the grate.
+1391:Done^*206
+1391:images/locked_test.jpg
 3001:INVADD:true,Combination,Combination,Combination^*SAFECRACK:3002^*You are trying to crack a safe.<br>
 3001:Done^*0
 3002:ABORT!
