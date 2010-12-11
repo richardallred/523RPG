@@ -2503,7 +2503,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								choicesArray[i*2] ='Go to your ' + dir;
 								choicesArray[i*2+1] =this.page;
 								}
-						//Prints the Maze array
+						//Prints the Maze array to the Console
 						for (m=0; m<MazeArray.length-1; m++)
 							{
 							console.log(MazeArray[m]);
@@ -2532,23 +2532,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 							//Putting custom choices in the array for Maze navigation
 							choicesArray = [];
-							
-							//Make random maze text to display on the page
-							
-							
-							//console.log(specialPageArray[p].split('MAZE:')[1].split('MESSAGE:'));
+							//Randomly choose one of the messages read in from the input file and put it on the page
 							temp=Math.ceil(Math.random()*MazeText.length-1);
 							this.message=MazeText[temp];
-							
-							
-							//this.message=MazeArray[this.mazeRow][this.mazeCol]; 
-							//Put more meaningful stuff here
-							
+
 							if(this.mazeRow==mazeSize-1 && this.mazeCol==mazeSize-1)
 							{
 								this.message='YOU WIN';
 								this.inMaze=0;
 							}
+							//poulate the array of choices with the correct direction options
 							for(i=0; i<MazeArray[this.mazeRow][this.mazeCol].length; i++)
 								{
 								dir='';
@@ -2560,7 +2553,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									{dir='South';}
 								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='W')
 									{dir='West';}
-								choicesArray[i*2] ='Enter the door to your ' + dir;
+								choicesArray[i*2] ='Go to your ' + dir;
 								choicesArray[i*2+1] =this.page;
 								}
 						}
