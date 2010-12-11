@@ -1993,7 +1993,7 @@ COMBINATION:Crumpled scrap of paper,12
 969:INVSPLIT:Pliers^*972^*973
 969:null^*1
 970:INVADD:Pliers^*You take a pair of pliers used for bending metal.
-970:DISPLAYIFNOT:Sword,Take one of the swords^*965^*DISPLAYIFNOT:Axe,Take one of the axes^*966^*DISPLAYIFNOT:Chainmail Armor,Take a suit of chainmail armor^*967^*DISPLAYIFNOT:Platemail Armor,Take a suit of platemail armor^*968^*Try to open the safe^*971^*Leave the forge^*1038
+970:DISPLAYIFNOT:Sword,Take one of the swords^*965^*DISPLAYIFNOT:Axe,Take one of the axes^*966^*DISPLAYIFNOT:Chainmail Armor,Take a suit of chainmail armor^*967^*DISPLAYIFNOT:Platemail Armor,Take a suit of platemail armor^*968^*Try to open the safe^*971^*Search through the pile of scrap metal^*969^*Leave the forge^*1038
 971:You try to open the safe, but you do not know the combination.  You try to figure out the combination by listening to the dial, but you find that it is impossible to hear anything.
 971:Search through the pile of scrap metal^*969^*DISPLAYIFNOT:Sword,Take one of the swords^*965^*DISPLAYIFNOT:Axe,Take one of the axes^*966^*DISPLAYIFNOT:Chainmail Armor,Take a suit of chainmail armor^*967^*DISPLAYIFNOT:Platemail Armor,Take a suit of platemail armor^*968^*DISPLAYIFNOT:Pliers,Take one of the pliers^*970^*Leave the forge^*1038
 972:INVSPLIT:Lock picking kit^*973^*974
@@ -2211,7 +2211,7 @@ COMBINATION:Crumpled scrap of paper,12
 1078:INVREMOVE:Vial of black liquid^*You drink the vial of black liquid.  It tastes delicious.
 1078:Drink another potion^*1058^*Take a potion^*1057^*Mix some of your potions^*1059^*Leave the apothecary^*1060
 1079:You can use the alchemy equipment to mix two or more potions together.  What potion do you add to the mix?
-1079:DISPLAYIF:Healing Elixir,Add some healing elixir^*1081^*DISPLAYIF:Vial of red liquid,Add the red potion^*1082^*DISPLAYIF:Vial of blue liquid,Add the blue potion^*1083^*DISPLAYIF:Vial of green liquid,Add the green potion^*1084^*DISPLAYIF:Vial of brown liquid,Add the brown potion^*1085^*DISPLAYIF:Vial of orange liquid,Add the orange potion^*1086^*DISPLAYIF:Vial of clear liquid,Add the clear potion^*1113^*DISPLAYIF:Vial of black liquid,Add the black potion that you found in the barracks^*1087^*DISPLAYIF:Bottle of wine,Add some wine^*1088^*DISPLAYIF:Jug of ale,Add some ale^*1089^*DISPLAYIF:Rat poison,Add a little bit of rat poison^*1090^*Don't add any potions^*1017
+1079:DISPLAYIF:Healing Elixir,Add some healing elixir^*1081^*DISPLAYIF:Vial of red liquid,Add the red potion^*1082^*DISPLAYIF:Vial of blue liquid,Add the blue potion^*1083^*DISPLAYIF:Vial of green liquid,Add the green potion^*1084^*DISPLAYIF:Vial of brown liquid,Add the brown potion^*1085^*DISPLAYIF:Vial of orange liquid,Add the orange potion^*1086^*DISPLAYIF:Vial of clear liquid,Add the clear potion^*1113^*DISPLAYIF:Vial of black liquid,Add the black potion that you found in the barracks^*1087^*DISPLAYIF:Bottle of wine,Add some wine^*1088^*DISPLAYIF:Jug of ale,Add some ale^*1089^*DISPLAYIF:Rat poison,Add a little bit of rat poison^*1090^*Mix the potions you have poured in together^*1091^*Don't add any potions^*1017
 1080:You aren't carrying any potions that you can mix.  You should take one of the potions in the apothecary first.
 1080:Take a potion^*1070^*Mix the potions that you have already poured in together^*1091^*Leave the apothecary^*1060
 1081:VARSET:addedElixir,1^*You pour in some healing elixir.
@@ -2306,6 +2306,7 @@ COMBINATION:Crumpled scrap of paper,12
 1125:null^*1
 1126:VARSET:addedRed,0^*VARSET:addedBlue,0^*VARSET:addedGreen,0^*VARSET:addedBrown,0^*VARSET:addedOrange,0^*VARSET:addedClear,0^*VARSET:addedBlack,0^*VARSET:addedDrink,0^*VARSET:addedPoison,0^*You mix together another explosive potion and put it into a vial.  You are about to put the vial in your pack, but you remember the violent reaction the potion had with the wall of rocks.  You decide that it would be far too dangerous to carry the potion with you, so you leave it behind.
 1126:Leave the apothecary^*1060^*Do something else in the apothecary^*1017^*Try drinking the explosive potion you mixed^*1123
+
 1150:VARSPLIT:killedDungeonGuard,0^*1184^*1185
 1150:null^*1
 1151:VARSPLIT:freedPrisoner,2^*1163^*1164
