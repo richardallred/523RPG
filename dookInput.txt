@@ -2772,12 +2772,10 @@ COMBINATION:Crumpled scrap of paper,12
 1381:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
 1382:RESTART:^*As you walk up to the large gate in front of the castle keep, one of the guards looks at you with a shocked expression.  "That's the prisoner the guards brought to the dungeon earlier today!" he gasps.  The guards draw swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
 1382:null^*1
-3001:INVADD:Combination^*INVSPLIT:Combination^*3002^*3003
+3001:INVADD:true,Combination,Combination,Combination^*SAFECRACK:3002^*You are trying to crack a safe.<br>
 3001:Done^*0
-3002:SAFECRACK:true^*You are trying to crack a safe.1<br>
+3002:ABORT!
 3002:Done^*0
-3003:SAFECRACK:false^*You are trying to crack a safe.2<br>
-3003:Done^*0
 3005:LOCKPICK:3^*You are picking a lock
 3005:Done^*0
 3005:images/lock_pick.jpg
