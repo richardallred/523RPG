@@ -2502,10 +2502,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								choicesArray[i*2+1] =this.page;
 								}
 						//Prints the Maze array to the Console
-						for (m=0; m<MazeArray.length-1; m++)
+						/*for (m=0; m<MazeArray.length-1; m++)
 							{
 							console.log(MazeArray[m]);
-							}
+							}*/
 						this.inMaze=1;
 						}
 						//Every subsequent run through the maze code
