@@ -460,7 +460,7 @@ COMBINATION:Crumpled scrap of paper,12
 202:Continue^*205
 203:RESTART:^*As you prepare to jump into the moat, your nose is greeted by a truly foul stench.  The moat water is the filthiest water you've ever seen, and you almost vomit at the thought of trying to swim through it.  Eventually, you muster the courage to hold your breath and dive into the moat.  As you swim, you accidently get some of the water in your mouth, which makes you instantly gag.  You struggle across the moat and are barely able to grab on to one of the bricks on the other side.  You slowly and painfully pull yourself up the bricks, which cut into your hands as you try to climb them.  You manage to make it up a good distance before your aching hands lose their grip, causing you to plummet into the moat below.  You hit the moat with such force that it knocks you out, and you end up floating facedown in it. <br>Your life ends here.
 203:Restart^*1
-204:INVSPLIT:Lock picking kit^*206^*207
+204:INVSPLIT:Lock picking kit^*1389^*207
 204:null^*1
 205:VARSET:kitchenVisited,1^*LOSEHEALTH:5^*The smell emerging from the hole that you have grabbed on to is even worse than that of the moat.  Grimacing, you pull yourself up to it and shove your pack inside.  As you try to struggle through headfirst, fetid water drips off of your clothing and you are coated with a layer of slime and rotten food.  On the other side, you see a large kitchen.  After several long minutes of struggling, you manage to get your bruised body through.  The painful struggle has cost you another 5 health.  You see an exit on the other side of the room and a basin of water nearby that looks like it is used to wash dishes.
 205:Wash yourself and your clothes off in the basin^*208^*Leave the room before someone arrives^*209
@@ -1010,7 +1010,7 @@ COMBINATION:Crumpled scrap of paper,12
 477:RESTART:^*As you are examining the lock on one of the chests, you hear a group of soldiers enter the room behind you.  "I saw you rummaging through our supplies," says one of the soldiers, "We don't take kindly to thieves around here."  The soldiers draw their swords and advance towards you.  You try to fight them off, but you are hopelessly outnumbered. <br>Your life ends here.
 477:null^*1
 478:You examine the lock on one of the chests, and you determine that you could probably pick it fairly quickly and easily with the tools from your lock picking kit.
-478:Pick the lock^*1389^*Search the sacks^*471^*Leave the room^*459
+478:Pick the lock^*1390^*Search the sacks^*471^*Leave the room^*459
 479:You examine the lock on one of the chests, and you determine that it would be impossible to force it open.  Since you do not have anything to pick the lock with and you do not have a key, you are not able to get any of the chests open.
 479:Search the sacks^*471^*Leave the room^*459
 480:GAINGOLD:10^*You successfully pick the lock and open the chest to find a pouch of 10 gold coins, a diary, and a vial of scentless black liquid.  You take the pouch of gold and flip through the diary, but the diary does not contain anything useful so you put it back in the chest.
@@ -2787,6 +2787,8 @@ COMBINATION:Crumpled scrap of paper,12
 1388:Done^*1241
 1389:LOCKPICK:3^*You are picking the lock
 1389:Done^*206
+1390:LOCKPICK:3^*You are picking the lock
+1390:Done^*480
 3001:INVADD:true,Combination,Combination,Combination^*SAFECRACK:3002^*You are trying to crack a safe.<br>
 3001:Done^*0
 3002:ABORT!
