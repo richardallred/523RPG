@@ -1011,6 +1011,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			if (specialPageArray.length == 1 || this.loadHashIgnore) {
 				//no special commands, just display the text
 				this.message = specialPageArray[specialPageArray.length-1];
+				if (this.loadHashIgnore && specialPageArray[0].match('GAINGOLD:') != null) {
+					//fix bug with gold gain and loading the page
+					goldGain = specialPageArray[0].split('GAINGOLD:');
+					if (goldGain[1].match('-') != null) {
+						randomGain = goldGain[1].split('-');
+						rand = Math.random()*(dojo.number.parse(randomGain[1]) - dojo.number.parse(randomGain[0]));
+						goldGained = Math.round(rand) + dojo.number.parse(randomGain[0]);
+						this.message = this.message.replace('#gold',goldGained);
+					}
+				}
 				this.loadHashIgnore = false;
 			} else {
 				//the last thing in the array should be the actual page text (except in special circumstances)
