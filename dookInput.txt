@@ -2215,25 +2215,25 @@ COMBINATION:Crumpled scrap of paper,12
 1080:You aren't carrying any potions that you can mix.  You should take one of the potions in the apothecary first.
 1080:Take a potion^*1070^*Mix the potions that you have already poured in together^*1091^*Leave the apothecary^*1060
 1081:VARSET:addedElixir,1^*You pour in some healing elixir.
-1081:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1081:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1082:VARSET:addedRed,1^*INVREMOVE:Vial of red liquid^*You pour in your vial of red potion.
-1082:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1082:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1083:VARSET:addedBlue,1^*INVREMOVE:Vial of blue liquid^*You pour in your vial of blue potion.
-1083:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1083:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1084:VARSET:addedGreen,1^*INVREMOVE:Vial of green liquid^*You pour in your vial of green potion.
-1084:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1084:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1085:VARSET:addedBrown,1^*INVREMOVE:Vial of brown liquid^*You pour in your vial of brown potion.
-1085:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1085:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1086:VARSET:addedOrange,1^*INVREMOVE:Vial of orange liquid^*You pour in your vial of orange potion.
-1086:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1086:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1087:VARSET:addedBlack,1^*INVREMOVE:Vial of black liquid^*You pour in your vial of black potion.
-1087:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1087:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1088:VARSET:addedDrink,1^*You pour in a little bit of wine from your bottle.
-1088:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1088:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1089:VARSET:addedDrink,1^*You pour in a little bit of ale from your jug.
-1089:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1089:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1090:VARSET:addedPoison,1^*You add a little bit of rat poison to the mix.
-1090:Mix the potions you have poured in together^*1091^*Add another potion to the mix^*1059^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
+1090:Add another potion to the mix^*1059^*Mix the potions you have poured in together^*1091^*Take a potion^*1057^*Drink a potion^*1058^*Leave the apothecary^*1060
 1091:VARSPLIT:addedRed,1^*1092^*1093
 1091:null^*1
 1092:VARSPLIT:addedBlue,1^*1094^*1095
@@ -2779,7 +2779,7 @@ COMBINATION:Crumpled scrap of paper,12
 3005:LOCKPICK:3^*You are picking a lock
 3005:Done^*0
 3005:images/lock_pick.jpg
-3006:MAZE:There is nothing interesting hereMESSAGE:A rat scurries across the floorMESSAGE:You run into a decomposed skeleton against the wall.  Chills run down your backMESSAGE:You step on something. It makes a loud crunch underfoot, better get goingMESSAGE:A trail of cochroaches crosses the floor and climbs up the wallsMESSAGE:You start to think that you are lostMESSAGE:You start to feel very alone. You wonder if this maze ever endsMESSAGE:You stumble upon a great sword smashed to piecesMESSAGE:Above you hang what seems like an endless amount of bodies.  I wonder if anyone has ever made it out aliveMESSAGE:You feel a cold drip of water on your headMESSAGE:You shiver from the cold^*THIS IS A TEST.THE CAKE IS A LIE!
+3006:MAZE:There is nothing interesting here,MESSAGE:A rat scurries across the floor,MESSAGE:You run into a decomposed skeleton against the wall.  Chills run down your back,MESSAGE:You step on something. It makes a loud crunch underfoot, better get going,MESSAGE:A trail of cochroaches crosses the floor and climbs up the walls,MESSAGE:You start to think that you are lost,MESSAGE:You start to feel very alone. You wonder if this maze ever ends,MESSAGE:You stumble upon a great sword smashed to pieces,MESSAGE:Above you hang what seems like an endless amount of bodies.  I wonder if anyone has ever made it out alive,MESSAGE:You feel a cold drip of water on your head,MESSAGE:You shiver from the cold^*THIS IS A TEST.THE CAKE IS A LIE!
 3006:Done^*3007
 3007:TEST
 3007:GO BACK!!!!^*0
