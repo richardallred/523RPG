@@ -6,6 +6,7 @@ dojo.require('dijit._Widget');
 dojo.require('dijit._Templated');
 dojo.require('dojo.i18n');
 dojo.require('dojo.number');
+dojo.require('dojo.hash');
 dojo.require('uow.audio.JSonic');
 dojo.requireLocalization('myapp', 'Dookenstein');
 
@@ -42,8 +43,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.DELIMITER = '^*';
 		//Set comment delimiter (//, for example) - default is that comments are not allowed in the file
 		this.COMMENTDELIMITER = "";
-		//set starting health and gold.  Health can never go above MAX_HEALTH (default max health is 50)
-		this.STARTING_HEALTH = 50;
+		//set starting health and gold.  Health can never go above MAX_HEALTH (default max health is 100)
+		this.STARTING_HEALTH = 100;
 		this.MAX_HEALTH = this.STARTING_HEALTH;
 		this.health = this.MAX_HEALTH;
 		this.STARTING_GOLD = 0;
@@ -57,12 +58,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			type: 'unarmed',
 			strengthbonus: '-3',
 			accuracy: '55',
+			special: [],
 			hitMessages: ['You hit your enemy'],
 			missMessages: ['You miss.']
 		}
 		this.unarmed = defaultWeapon;
 		//initialize weapons array (does not include unarmed)
 		this.possibleWeapons = new Array();
+		//initialize healing items array
+		this.healingItems = new Array();
 		//initialize external variables array
 		this.initVariableList = new Array();
 		this.variableList = new Array();
@@ -84,6 +88,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.invselect = 0;
 		//special mode for combat
 		this.inCombat = 0;
+		this.ignoreEffect = false;
+		this.loadHashIgnore = false;
 		this.chooseWeapon = 0;
 		this.invselecting = 0;
 		//special mode for Maze
@@ -96,6 +102,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.tumblers=[];
 		this.maxTumblers = 0;
 		this.maxWrong=0;
+		this.hint='';
 		//special mode for Maze
 		this.inMaze=0;
 		this.mazeRow=0;
@@ -145,6 +152,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					type: 'weapon',
 					strengthbonus: 'NaN',
 					accuracy: 'NaN',
+					special: [],
 					hitMessages: [],
 					missMessages: []
 				}
@@ -161,6 +169,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					added.accuracy = 55;
 				}
 				for (y = 0; y < splitResult.length; y++) {
+					if (splitResult[y].indexOf('SPECIAL:') != -1) {
+						added.special[added.special.length] = splitResult[y].split('SPECIAL:')[1];
+					}
 					if (splitResult[y].indexOf('HIT:') != -1) {
 						added.hitMessages[added.hitMessages.length] = splitResult[y].split('HIT:')[1];
 					}
@@ -183,6 +194,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					name: 'Error with unarmed initialization - no name specified',
 					strengthbonus: 'NaN',
 					accuracy: 'NaN',
+					special: [],
 					hitMessages: [],
 					missMessages: []
 				}
@@ -199,6 +211,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					added.accuracy = 55;
 				}
 				for (y = 0; y < splitResult.length; y++) {
+						if (splitResult[y].indexOf('SPECIAL:') != -1) {
+						added.special[added.special.length] = splitResult[y].split('SPECIAL:')[1];
+					}
 					if (splitResult[y].indexOf('HIT:') != -1) {
 						added.hitMessages[added.hitMessages.length] = splitResult[y].split('HIT:')[1];
 					}
@@ -216,7 +231,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//console.log('Added Unarmed.  Name: ' + added.name + ', Strength bonus: ' + added.strengthbonus + ', Accuracy: ' + added.accuracy + ', Hit message 1: ' + added.hitMessages[0] + ', Miss message 1:' + added.missMessages[0]);
 			}
 			else if (dataSplit[i].indexOf('SHIELD:') != -1) {
-				//Parse weapon information for the case where you must fight unarmed (default:bare hands)
+				//Parse shield information
 				var added = {
 					name: 'Error with shield initialization - no name specified',
 					type: 'shield',
@@ -238,7 +253,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				this.possibleWeapons[this.possibleWeapons.length] = added;
 			}
 			else if (dataSplit[i].indexOf('ARMOR:') != -1) {
-				//Parse weapon information for the case where you must fight unarmed (default:bare hands)
+				//Parse armor information
 				var added = {
 					name: 'Error with armor initialization - no name specified',
 					type: 'armor',
@@ -259,14 +274,29 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				}
 				this.possibleWeapons[this.possibleWeapons.length] = added;
 			}
+			else if (dataSplit[i].indexOf('HEALING:') != -1) {
+				//Parse a healing item (such as a first aid kit) for automatic healing after combat
+				var added = {
+					name: 'Error with healing item initialization - no name specified',
+					amount: 0.5
+				}
+				splitResult = dataSplit[i].split('HEALING:')[1].split(this.DELIMITER);
+				added.name = splitResult[0];
+				added.amount = dojo.number.parse(splitResult[1]);
+				if (isNaN(added.amount)) {
+					console.log('Error healing item amount (Not a number)!');
+					added.amount = 0.5;
+				}
+				this.healingItems[this.healingItems.length] = added;
+			}
 			else if (dataSplit[i].indexOf('INITIALIZE:') != -1) {
-				//Initialize variables - default is 50 health, 10 strength, and 0 gold
+				//Initialize variables - default is 100 health, 10 strength, and 0 gold
 				initialSplit = dataSplit[i].split('INITIALIZE:')[1].split(',');
 				if (initialSplit[0] == 'Health') {
 					this.STARTING_HEALTH = dojo.number.parse(initialSplit[1]);
 					if (isNaN(this.STARTING_HEALTH)) {
-						console.log('Failed to initialize Health (Error - Not a number).  Health set to default of 50.');
-						this.STARTING_HEALTH = 50;
+						console.log('Failed to initialize Health (Error - Not a number).  Health set to default of 100.');
+						this.STARTING_HEALTH = 100;
 					}
 					//Max health is the value that your health cannot exceed.  This could change in-game if you get stronger
 					//Starting health is initialized in the game file and will not change.  When game is reset, max health returns to starting health
@@ -326,11 +356,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		}
 		
 		this.page = 0;
+		if (dojo.hash() != '') {
+			this.loadHash();
+			this.processChoice(this.page,0);
+		} else {
 		this.message = this.pageText[this.page];
 		//choicesArray = this.choices[this.page].split('^*');
 		choicesArray = this.choices[this.page].split(this.DELIMITER);
 		//this.exportPageTextAndChoices();
 		//must call refreshAll in here because this method is dojo.deferred (will occur last)
+		}
 		this.refreshAll();
 	},
 
@@ -396,12 +431,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//currently in the game, go to settings menu
 			this.message = "Settings";
 			choicesArray = [];
-			choicesArray[0] = "Sound Options";
+			choicesArray[0] = "Save Game"
 			choicesArray[1] = 1;
-			choicesArray[2] = "Display Options";
+			choicesArray[2] = "Load Game"
 			choicesArray[3] = 2;
-			choicesArray[4] = "Game Options";
+			choicesArray[4] = "Sound Options";
 			choicesArray[5] = 3;
+			choicesArray[6] = "Display Options";
+			choicesArray[7] = 4;
+			choicesArray[8] = "Game Options";
+			choicesArray[9] = 5;
 			this.settings.attr('label','Go back');
 		} else if (this.menuLevel == 0) {
 			//currently in main settings menu, go back to the game
@@ -741,11 +780,39 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					choicesArray[3] = 2;
 				}
 				else if (choiceNum == 3) {
+					//Display inventory
+					inventoryArray = [];
+					for (b = 0; b < this.inventory.length; b++) {
+						if (this.inventory[b] == "undefined") {
+							this.inventory[b] = "";
+						}
+						if (this.inventory[b] != "") {
+							inventoryArray[inventoryArray.length] = this.inventory[b];
+						}
+					}
+					if (inventoryArray.length == 1) {
+						this.message = "There are no items in your inventory.";
+					} else {
+						this.message = inventoryArray[0] + ": ";
+						for (b = 1; b < inventoryArray.length; b++) {
+							if (inventoryArray[b] != "undefined") {
+								this.message = this.message + inventoryArray[b];
+							}
+							if (b < inventoryArray.length - 1) {
+								this.message = this.message + ", ";
+							} else {
+								this.message = this.message + ". ";
+							}
+						}
+					}
+					this.menuLevel --;
+				}
+				else if (choiceNum == 4) {
 					//Display health
 					this.message = 'Health Left: ' + this.health + '/' + this.MAX_HEALTH;
 					this.menuLevel --;
 				}
-				else if (choiceNum == 4) {
+				else if (choiceNum == 5) {
 					//Display gold
 					this.message = 'You have ' + this.gold + ' gold.';
 					this.menuLevel --;
@@ -758,7 +825,38 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			
 		}
 		else if (this.menuLevel == 1) {
-			if (choiceNum == 1 || this.menuCategory == "Audio settings") {
+			if (choiceNum == 1) {
+				if (this.inCombat == 0 && this.inMaze == 0 && this.inLockPicking == 0 && this.inSafeCracking == 0 && this.invselect == 0 && this.restart == 0) {
+					this.updateHash();
+					this.message = "Game saved successfully.";
+				} else if (this.invselect == 1) {
+					this.message = "You cannot save the game during inventory selection.";
+				} else if (this.inCombat == 1) {
+					this.message = "You cannot save the game during combat.";
+				} else {
+					this.message = "You cannot save the game right now.";
+				}
+				this.menuLevel --;
+			}
+			else if (choiceNum == 2) {
+				if (dojo.hash() != '') {
+					this.loadHash();
+					this.message = "Game loaded successfully.";
+					this.settings.attr('label','Settings');
+					this.inCombat = 0;
+					this.restart = 0;
+					this.invselect = 0;
+					this.inLockPicking = 0;
+					this.inSafeCracking = 0;
+					this.inMaze = 0;
+					this.processChoice(this.page,0);
+					this.menuLevel --;
+				} else {
+					this.message = "You do not have a saved game.";
+				}
+				this.menuLevel --;
+			}
+			else if (choiceNum == 3 || this.menuCategory == "Audio settings") {
 				this.message = "Audio settings";
 				this.menuCategory = "Audio settings";
 				choicesArray = [];
@@ -769,7 +867,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				choicesArray[4] = "Slow down reading";
 				choicesArray[5] = 3;
 			}
-			else if (choiceNum == 2 || this.menuCategory == "Font settings" || this.menuCategory == "Font color" || this.menuCategory == "Background color") {
+			else if (choiceNum == 4 || this.menuCategory == "Font settings" || this.menuCategory == "Font color" || this.menuCategory == "Background color") {
 				this.message = "Display settings";
 				this.menuCategory = "Display settings";
 				choicesArray = [];
@@ -780,18 +878,20 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				choicesArray[4] = "Change background color";
 				choicesArray[5] = 3;
 			}
-			else if (choiceNum == 3 || this.menuCategory == "Game options" || this.menuCategory == "Difficulty options" || this.menuCategory == "Inventory options") {
+			else if (choiceNum == 5 || this.menuCategory == "Game options" || this.menuCategory == "Difficulty options" || this.menuCategory == "Inventory options") {
 				this.message = "Game options";
 				this.menuCategory = "Game options";
 				choicesArray = [];
-				choicesArray[0] = "Set difficultly level";
+				choicesArray[0] = "Set difficulty level";
 				choicesArray[1] = 1;
 				choicesArray[2] = "Manage Inventory";
 				choicesArray[3] = 2;
-				choicesArray[4] = "Display Health Left";
+				choicesArray[4] = "Display Inventory";
 				choicesArray[5] = 3;
-				choicesArray[6] = "Display Gold Left";
+				choicesArray[6] = "Display Health Left";
 				choicesArray[7] = 4;
+				choicesArray[8] = "Display Gold Left";
+				choicesArray[9] = 5;
 			} else {
 				this._settings();
 			}
@@ -870,8 +970,21 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		}
 	},
 	choose: function(choiceNum) {
-		if (this.restart == 1) {
-			this.restartGame();
+		if (this.restart == 1 && this.menuLevel == -1) {
+			if (choiceNum == 1) {
+				//'Restart' button pressed
+				this.restartGame();
+			} else if (choiceNum == 2) {
+				this.loadHash();
+				this.restart = 0;
+				this.inCombat = 0;
+				this.restart = 0;
+				this.invselect = 0;
+				this.inLockPicking = 0;
+				this.inSafeCracking = 0;
+				this.inMaze = 0;
+				choicesArray[choiceNum * 2 - 1] = this.page;
+			}
 		}
 		if (choicesArray.length < choiceNum * 2) {
 			this.message = 'ERROR: The previous choice did not link to a page';
@@ -895,17 +1008,23 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			//specialPageArray = this.pageText[this.page].split('^*');
 			specialPageArray = this.pageText[this.page].split(this.DELIMITER);
 
-			if (specialPageArray.length == 1) {
+			if (specialPageArray.length == 1 || this.loadHashIgnore) {
 				//no special commands, just display the text
-				this.message = specialPageArray[0];
+				this.message = specialPageArray[specialPageArray.length-1];
+				this.loadHashIgnore = false;
 			} else {
 				//the last thing in the array should be the actual page text (except in special circumstances)
 				this.message = specialPageArray[specialPageArray.length-1];
+				this.ignoreEffect = true;
 				//loop through all special commands and run them if found
 				/*List of special commands:
 				INVSPLIT:item^*x^*y - Go to page x if item is in inventory, otherwise go to page y
 				ANYSPLIT:item1,item2^*x^*y - Go to page x if any of the listed items are in inventory, otherwise go to page y
+				ALLSPLIT:item1,item2^*x^*y - Go to page x if all of the listed items are in inventory, otherwise go to page y
 				GOLDSPLIT:n^*x^*y - If gold is at least n, go to page x, otherwise go to page y
+				HEALTHSPLIT:n^*x^*y - If health is at least n, go to page x, otherwise go to page.  MAX can be used for n.
+				RANDSPLIT:^*x^*y^*z^*... Randomly go to any of the listed pages, all with equal probability
+				HEALTHSPLIT:n^*x^*y - If gold is at least n, go to page x, otherwise go to page.  MAX can be used for n.
 				INVCHECK:item^*text^*x - If item is in inventory, display text.  Otherwise, redirect to page x
 				INVADD:item1,item2 - Add all listed items to inventory.  Add true as a parameter to allow duplicate adding.
 				INVBUY:item,n^*x - Add item to inventory, lose n gold.  Redirect to page x if gold is less than n
@@ -916,7 +1035,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				LOSEHEALTH:n - Lose n health.  If resulting health is 0 or less, the character dies
 				GAINHEALTH:n - Gain n health.  Cannot exceed the maximum health
 				LOSEGOLD:n^*x - Lose n gold.  Redirect to page x if gold is less than n (optional)
-				GAINGOLD:n - Gain n gold
+				GAINGOLD:n - Gain n gold.  Use GAINGOLD:x-y to gain a random amount of gold between x and y
 				DISPLAYGOLD - Display a message saying how much gold the character has
 				VARSPLIT:var,value^*x^*y - Go to page x if external variable var = value, otherwise go to page y
 				VARSET:var,value - Set the value of external variable var to value
@@ -966,6 +1085,30 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							return;
 						}
 					}
+					//ALLSPLIT:item,item2,...  If all of the items are in the inventory, go the first page, otherwise go to the second page
+					//ALLSPLIT does not work with multiple special commands unless it is last
+					if (specialPageArray[p].match('ALLSPLIT:') != null) {
+						inventoryCheckArray = specialPageArray[p].split('ALLSPLIT:')[1].split(',');
+						passedCheck = true;
+						for (q = 0; q < inventoryCheckArray.length; q++) {
+							if (inventoryCheckArray[q] in this.oc(this.inventory)) {
+								//the specified item is in the inventory
+							} else {
+								passedCheck = false;
+							}
+						}
+						if (passedCheck) {
+							//passed inventory check, redirect to first page
+							this.page = specialPageArray[specialPageArray.length-2];
+							this.processChoice(this.page,0);
+							return;
+						} else {
+							//failed inventory check, redirect to second page
+							this.page = specialPageArray[specialPageArray.length-1];
+							this.processChoice(this.page,0);
+							return;
+						}
+					}
 					//GOLDSPLIT:n.  If current gold >= n, go to the first page, otherwise go to the second page
 					//GOLDSPLIT does not work with multiple special commands unless it is last
 					else if (specialPageArray[p].match('GOLDSPLIT:') != null) {
@@ -980,6 +1123,42 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.page = specialPageArray[specialPageArray.length-1];
 							this.processChoice(this.page,0);
 							return;
+						}
+					}
+					//HEALTHSPLIT:n^*x^*y - If health is at least n, go to page x, otherwise go to page.  MAX can be used for n.
+					//HEALTHSPLIT does not work with multiple special commands unless it is last
+					else if (specialPageArray[p].match('HEALTHSPLIT:') != null) {
+						healthSplit = specialPageArray[p].split('HEALTHSPLIT:');
+						if (healthSplit[1].match('MAX') != null) {
+							healthCheck = this.MAX_HEALTH;
+						} else {
+							healthCheck = healthSplit[1];
+						}
+						if (this.health >= healthCheck) {
+							//passed gold check, redirect to first page
+							this.page = specialPageArray[specialPageArray.length-2];
+							this.processChoice(this.page,0);
+							return;
+						} else {
+							//failed gold check, redirect to second page
+							this.page = specialPageArray[specialPageArray.length-1];
+							this.processChoice(this.page,0);
+							return;
+						}
+					}
+					//RANDSPLIT:^*x^*y^*z^*... Randomly go to any of the listed pages, all with equal probability
+					//RANDSPLIT only works with mutiple commands if it is last
+					else if (specialPageArray[p].match('RANDSPLIT:') != null) {
+						randSplit = [];
+						numPossiblePages = (specialPageArray.length-1) - p;
+						if (numPossiblePages > 0) {
+							for (r = 0; r < numPossiblePages; r++) {
+								randSplit[r] = specialPageArray[p+r+1];
+							}
+							rand = Math.round(Math.random()*(numPossiblePages-1));
+							//redirect to the randomly chosen page
+							this.page = randSplit[rand];
+							this.processChoice(this.page,0);
 						}
 					}
 					//INVCHECK:item.  If the item is in the inventory, display the page, otherwise redirect to another page
@@ -1016,7 +1195,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									//only add something to the inventory if it is not already there
 									if (inventoryAddArray[i] in this.oc(this.inventory)) {
 										if (displayInvMessage) {
-											this.message = this.message + ' <br>You already have a ' + inventoryAddArray[i] + ' so you do not take another one.'
+											this.message = this.message + ' <br>You already have a ' + inventoryAddArray[i].toLowerCase() + ' so you do not take another one.'
 										}
 									} else if (inventoryAddArray[i] != 'true' && inventoryAddArray[i] != 'false') {
 										this.inventory[this.inventory.length] = inventoryAddArray[i];
@@ -1026,7 +1205,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						} else {
 							//only one parameter specified
 							if (inventoryAdd[1] in this.oc(this.inventory)) {
-								this.message = this.message + ' <br>You already have a ' + inventoryAdd[1] + ' so you do not take another one.'
+								this.message = this.message + ' <br>You already have a ' + inventoryAdd[1].toLowerCase() + ' so you do not take another one.'
 							} else {
 								this.inventory[this.inventory.length] = inventoryAdd[1];
 							}
@@ -1151,7 +1330,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						alreadyTakenCount = 0;
 						if (this.invselect == 1) {
 							//add chosen item to inventory
-							this.inventory[this.inventory.length] = choicesArray[choiceNum * 2 - 2];
+							if (!(choicesArray[choiceNum * 2 - 2] in this.oc(this.inventory))) {
+								this.inventory[this.inventory.length] = choicesArray[choiceNum * 2 - 2];
+							}
 						}
 						for (i = 0; i < choicesArray.length; i+=2) {
 							//remove all choices that have already been taken
@@ -1345,10 +1526,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
 						this.message = specialPageArray[p+1];
 					}
-					//GAINGOLD: n, gain n gold
+					//GAINGOLD: n, gain n gold.  Use GAINGOLD:x-y to gain a random amount of gold between x and y
 					else if (specialPageArray[p].match('GAINGOLD:') != null) {
 						goldGain = specialPageArray[p].split('GAINGOLD:');
-						this.gold = dojo.number.parse(this.gold) + dojo.number.parse(goldGain[1]);
+						if (goldGain[1].match('-') != null) {
+							randomGain = goldGain[1].split('-');
+							rand = Math.random()*(dojo.number.parse(randomGain[1]) - dojo.number.parse(randomGain[0]));
+							goldGained = Math.round(rand) + dojo.number.parse(randomGain[0]);
+							this.gold = dojo.number.parse(this.gold) + dojo.number.parse(goldGained);
+							this.message = this.message.replace('#gold',goldGained);
+						} else {
+							this.gold = dojo.number.parse(this.gold) + dojo.number.parse(goldGain[1]);
+						}
 						//this.message = specialPageArray[p+1] + '<br>You have ' + this.gold + ' gold coins.';
 						this.message = this.message + '<br>You have ' + this.gold + ' gold coins.';
 
@@ -1413,7 +1602,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							//parse enemy info
 							combatInfo = specialPageArray[p].split('COMBAT:')[1].split(',');
 							autoFight = false;
+							stunned = false;
 							enemies = [];
+							totalHealthLost = 0;
 							//default enemy values (if none specified)
 							var enemyVar = {
 								name: 'enemy',
@@ -1424,6 +1615,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								initialHealth: 20,
 								acc: 55,
 								accMod: 0,
+								stunned: false,
+								special:[],
 								hitmessages:[],
 								missmessages:[]
 							}
@@ -1487,6 +1680,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											initialHealth: 20,
 											acc: 55,
 											accMod: 0,
+											stunned: false,
+											special:[],
 											hitmessages:[],
 											missmessages:[]
 										}
@@ -1592,11 +1787,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								for (y = 0; y < enemies.length; y++) {
 									if (this.possibleWeapons[x].name == enemies[y].weapon) {
 										//enemies[y].str = dojo.number.parse(enemies[y].str) + dojo.number.parse(this.possibleWeapons[x].strengthbonus);
+										if (this.possibleWeapons[x].special.length != 0) {
+											for (s = 0; s < this.possibleWeapons[x].special.length; s++) {
+												enemies[y].special[enemies[y].special.length] = this.possibleWeapons[x].special[s];
+											}
+										}
 									}
 								}
 							}
-			e
-			}
+						}
 						if (this.chooseWeapon == -1) {
 							//just selected a weapon
 							currentWeapon = availableWeapons[choiceNum - 1];
@@ -1742,19 +1941,40 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									if (randomNum <= modifiedEnemyAcc/100) {
 										enemyHit = true;
 										if (aliveEnemies[f].accMod <= 0) {
-											aliveEnemies[f].accMod -= 3;
+											aliveEnemies[f].accMod -= 1;
 										} else {
 											aliveEnemies[f].accMod = 0;
 										}
 									} else {
 										enemyHit = false;
-										aliveEnemies[f].accMod += 3;
+										aliveEnemies[f].accMod += 1;
 									}
 									if (f == choiceNum - 1) {
-										if (youHit) {
-											k = Math.floor(Math.random()*(currentWeapon.hitMessages.length));
-											combatString = combatString + ' <br>' + currentWeapon.hitMessages[k].replace('#enemy',aliveEnemies[f].name) + damageMessage + ' dealing ' + damageDealt + ' damage.';
+										aliveEnemies[f].stunned = false;
+										if (stunned) {
+											combatString = combatString + ' <br>You are stunned and cannot attack.'
+											stunned = false;
+										}
+										else if (youHit) {
+											j = Math.floor(Math.random()*(currentWeapon.hitMessages.length));
+											combatString = combatString + ' <br>' + currentWeapon.hitMessages[j].replace('#enemy',aliveEnemies[f].name) + damageMessage + ' dealing ' + damageDealt + ' damage.';
 											aliveEnemies[f].health -= damageDealt;
+											if ('Cut' in this.oc(currentWeapon.special)) {
+												//if you inflicted more than a minor wound, enemy will take bleeding damage
+												if (k >= 5) {
+													cutDamage = Math.floor(Math.random()*(4))+1;
+													aliveEnemies[f].health -= cutDamage;
+													combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' loses an additional ' + cutDamage + ' health from blood loss.';
+												}
+											}
+											if ('Blunt' in this.oc(currentWeapon.special)) {
+												//if you inflicted more than a minor wound, 40% chance to stun the enemy
+												if (k >= 5) {
+													if (Math.random() < 0.4) {
+														aliveEnemies[f].stunned = true;
+													}
+												}
+											}
 											enemyHealthFraction = aliveEnemies[f].health/aliveEnemies[f].initialHealth;
 											if (enemyHealthFraction <= 0) {
 												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' collapses. '
@@ -1775,25 +1995,27 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											} else {
 												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' looks mostly healthy.'
 											}
+											if (aliveEnemies[f].stunned) {
+												combatString = combatString + ' <br>The ' + aliveEnemies[f].name + ' is stunned from your blow and cannot attack.';
+											}
 										} else {
 											if (Math.random() < 0.4 || aliveEnemies[f].missmessages.length == 0) {
-												k = Math.floor(Math.random()*(currentWeapon.missMessages.length));
-												combatString = combatString + ' <br>' + currentWeapon.missMessages[k].replace('#enemy',aliveEnemies[f].name) + ' ';
-												//this.message = this.message + ' <br>' + currentWeapon.missMessages[k];
+												j = Math.floor(Math.random()*(currentWeapon.missMessages.length));
+												combatString = combatString + ' <br>' + currentWeapon.missMessages[j].replace('#enemy',aliveEnemies[f].name) + ' ';
 											} else {
-												k = Math.floor(Math.random()*(aliveEnemies[f].missmessages.length));
-												combatString = combatString + ' <br>' + aliveEnemies[f].missmessages[k] + ' ';
+												j = Math.floor(Math.random()*(aliveEnemies[f].missmessages.length));
+												combatString = combatString + ' <br>' + aliveEnemies[f].missmessages[j] + ' ';
 											}
 										}
 									}
-									if (enemyHit && aliveEnemies[f].health > 0) {
-										k = Math.floor(Math.random()*(aliveEnemies[f].hitmessages.length));
+									if (enemyHit && aliveEnemies[f].health > 0 && !aliveEnemies[f].stunned) {
+										j = Math.floor(Math.random()*(aliveEnemies[f].hitmessages.length));
 										damageTaken = damageTaken - Math.round(Math.floor(damageTaken * (1 - enemyHealthFraction))/2);
 										if (damageTaken <= 0) {
 											//lose a minimum of 1 health if you are hit (unless you have armor)
 											damageTaken = 1;
 										}
-										combatString = combatString + ' <br>' + aliveEnemies[f].hitmessages[k] + ', hitting you for ' + damageTaken + ' damage. ';
+										combatString = combatString + ' <br>' + aliveEnemies[f].hitmessages[j] + ', hitting you for ' + damageTaken + ' damage. ';
 										//reduce damage from shield and armor
 										if (currentShield != "None") {
 											if (Math.random() <= currentShield.probability/100) {
@@ -1808,7 +2030,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										}
 										if (currentArmor != "None" && damageTaken > 0) {
 											if (Math.random() <= currentArmor.probability/100) {
-												damageTaken -= currentArmor.defense;
+												damageReduced = Math.floor(Math.random()*(currentArmor.defense))
+												if (damageReduced == 0) {
+													damageReduced = 1;
+												}
+												damageTaken -= damageReduced;
 												if (damageTaken > 0) {
 													combatString = combatString + ' <br>Your ' + currentArmor.name + ' protects you from some of the damage. ';
 												} else {
@@ -1816,11 +2042,29 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 												}
 											}
 										}
-										if (damageTaken < 0) {
+										if (damageTaken <= 0) {
 											damageTaken = 0;
+										} else {
+											if ('Cut' in this.oc(aliveEnemies[f].special)) {
+												//if you were damaged by a sharp weapon, you may take bleeding damage
+												if (k < 5 && Math.random() < 0.5) {
+													cutDamage = Math.floor(Math.random()*(4))+1;
+													this.health -= cutDamage;
+													totalHealthLost += cutDamage;
+													combatString = combatString + ' <br>You lose an additional ' + cutDamage + ' health from blood loss.';
+												}
+											}
+											if ('Blunt' in this.oc(aliveEnemies[f].special)) {
+												//if you were damaged by a sharp weapon, you may be stunned
+												if (k < 5 && Math.random() < 0.4) {
+													combatString = combatString + ' <br>The blow stuns you.';
+													stunned = true;
+												}
+											}
 										}
 										this.health -= damageTaken;
-									} else if (aliveEnemies[f].health > 0) {
+										totalHealthLost += damageTaken;
+									} else if (aliveEnemies[f].health > 0 && !aliveEnemies[f].stunned) {
 										if (currentShield != "None" && Math.random() < 0.5) {
 											combatString = combatString + ' <br>You block the ' + aliveEnemies[f].name + ' with your shield. ';
 										} else {
@@ -1871,9 +2115,29 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							
 							if (wonCombat) {
 								combatString = combatString + '<br>' + specialPageArray[p+1];
+								//see if there are any healing items
+								if (this.healingItems.length > 0) {
+									maxAmount = 0;
+									healed = 0;
+									itemName = '';
+									for (h = 0; h < this.healingItems.length; h++) {
+										if (this.healingItems[h].name in this.oc(this.inventory)) {
+											if (this.healingItems[h].amount > maxAmount) {
+												maxAmount = this.healingItems[h].amount;
+												itemName = this.healingItems[h].name;
+											}
+										}
+									}
+									healed = Math.floor(totalHealthLost * maxAmount);
+									if (healed > 0) {
+										combatString = combatString + '<br>You use your ' + itemName.toLowerCase() + ' to recover ' + healed + ' of your lost health.'
+										this.health += healed;
+									}
+								}
 								this.inCombat = 0;
 								autoFight = false;
 								this.message = 'You have won the fight.';
+								this.ignoreEffect = true;
 							} else if (autoFight && this.health > 0) {
 								this.processChoice(this.page, 1);
 								combatString = '';
@@ -1896,30 +2160,138 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
 								if(this.difficulty=="Easy"){
 									this.tumblers[m]=Math.ceil(Math.random()*3);
-									this.maxWrong=8;
+									this.maxWrong=5;
 									this.maxPushes=3;
 								}else if(this.difficulty=="Normal"){
 									this.tumblers[m]=Math.ceil(Math.random()*6);
-									this.maxWrong=15;
+									this.maxWrong=10;
 									this.maxPushes=6;
 								}else{
 									this.tumblers[m]=Math.ceil(Math.random()*9);
-									this.maxWrong=25;
+									this.maxWrong=15;
 									this.maxPushes=9;
 								}								
 							}
+							
+							hintsArray = [];
+							hintsArray1= [];
+							hintsArray2= [];
+							hintsArray3= [];
+							hintsArray4= [];
+							hintsArray5= [];
+							hintsArray6= [];
+							hintsArray7= [];
+							hintsArray8= [];
+							hintsArray9= [];
+							
+							hintsArray[1]=hintsArray1;
+							hintsArray[2]=hintsArray2;
+							hintsArray[3]=hintsArray3;
+							hintsArray[4]=hintsArray4;
+							hintsArray[5]=hintsArray5;
+							hintsArray[6]=hintsArray6;
+							hintsArray[7]=hintsArray7;
+							hintsArray[8]=hintsArray8;
+							hintsArray[9]=hintsArray9;
+
+							
+							hintsArray1[1]='Marcus Ginyard\'s number while playing basketball for the Tar Heels';
+							hintsArray1[2]='Number of NCAA women\'s basketball championships won by the lady Tar Heels';
+							hintsArray1[3]='The number of All-Americans on the 2007 Carolina basketball team';
+							hintsArray1[4]='Number of years Marvin Williams was a Tar Heel before leaving for the NBA';
+							hintsArray1[5]='The margin of victory for the Tar Heels men\'s basketball team in the 1982 championship game.';
+							hintsArray1[6]='The lonliest number';
+							hintsArray1[7]='Margin of victory during Dean Smith\'s first NCAA title in 1982';
+						
+							
+							hintsArray2[1]='Number of national championships won under UNC men\'s basketball coach Roy Williams';
+							hintsArray2[2]='Raymond Felton\'s number while playing for the Tar Heel men\'s basketball team';
+							hintsArray2[3]='Number of times coach Dean Smith won national coach of the year';
+							hintsArray2[4]='Number of times UNC men\'s basketball team has gone undefeated for an entire season';
+							hintsArray2[5]='Number of losses for the 1982 UNC mens basketball team';
+							hintsArray2[6]='2';
+							hintsArray2[7]='2';
+														
+							hintsArray3[1]='Number of Tar Heels that were drafted in the first round of the 2009 NBA draft';
+							hintsArray3[2]='Number of years Ty Lawson was a Tar Heel before leaving for the NBA';
+							hintsArray3[3]='Number of years Michael Jordan was a Tar Heel before leaving for the NBA';
+							hintsArray3[4]='Number of movies in the Matrix series';
+							hintsArray3[5]='Number of Tar Heel men\'s basketball players chosen as All-Americans in 1998';
+							hintsArray3[6]='Number of overtimes that it took for Carolina to win its first NCAA title in 1954';
+							hintsArray3[7]='Number of losses for the 2009 UNC men\'s basketball team';
+							
+							
+							hintsArray4[1]='Number of Tar Heels that were drafted in the first round of the 2007 NBA draft';
+							hintsArray4[2]='Number of years Phil Ford was a Tar Heel before leaving for the NBA';
+							hintsArray4[3]='The number that was in the name of UNC a very famous offense ran by UNC and Phil Ford that dealt with holding the ball until the opposing defense conceeded an easy basketball';
+							hintsArray4[4]='Average number of conference losses per year for men\'s basketball coach Dean Smith.';
+							hintsArray4[5]='Number of losses for the 2005 UNC men\'s basketball team';
+							hintsArray4[6]='Number of times UNC men\'s lacrosse team has won the NCAA national championship';
+							hintsArray4[7]='4';
+							
+							hintsArray5[1]='Total number of NCAA national championships won by the UNC men\'s basketball team';
+							hintsArray5[2]='Ty Lawson\'s average number of assists per game over his career as a Tar Heel';
+							hintsArray5[3]='Number of times the UNC men\'s basketball team has finished 1st in both the AP and Coaches poll';
+							hintsArray5[4]='The margin of victory for the UNC men\'s basketball team in the 2005 national championship game';
+							hintsArray5[5]='Number of UNC wrestlers that have been crowned national champions in their weight class';
+							hintsArray5[6]='5';
+							hintsArray5[7]='5';
+														
+							hintsArray6[1]='Number of times the UNC basketball team has been crowned champions of men\'s basketball';
+							hintsArray6[2]='Ty Lawson\'s average number assists per game over his career as a Tar Heel';
+							hintsArray6[3]='Number of movies in the Star Wars saga.';
+							hintsArray6[4]='Margin of victory for UNC men\'s basketball team during the 1993 NCAA championship game';
+							hintsArray6[5]='Number of times the UNC women\'s field hockey team has won the NCAA national championship';
+							hintsArray6[6]='The number of strings on a standard guitar';
+							hintsArray6[7]='The number of points recieved for a touchdown in american football';
+							
+							
+							hintsArray7[1]='Average number of losses per year for men\'s basketball coach Dean Smith';
+							hintsArray7[2]='The number of deadly sins';
+							hintsArray7[3]='Record for the highest number of steals in ACC tournament game by a Tar Heel, set by Dudley Bradley in 1979, against Duke';
+							hintsArray7[4]='Number of years in which the UNC women\'s soccer team did NOT win the national championship';
+							hintsArray7[5]='Number of years a typical student attends Hogwarts in the book series Harry Potter';
+							hintsArray7[6]='7';
+							hintsArray7[7]='7';
+														
+							hintsArray8[1]='The number of wins(in hundreds i.e. 235->2, 656->6, etc.) that Dean Smith had before retiring in 1998';
+							hintsArray8[2]='The number of points scored in the final 17 seconds of the game to send the game to overtime against Duke in 1979';
+							hintsArray8[3]='Number of UNC men\'s basketball players that have been named ACC Rookie of the Year.';
+							hintsArray8[4]='Number of times coach Dean Smith won ACC coach of the year';
+							hintsArray8[5]='Record for the fewest points scored in a single game by a Tar Heel men\'s basketball team';
+							hintsArray8[6]='8';
+							hintsArray8[7]='8';
+							
+							
+							hintsArray9[1]='Tyler Hansborough\'s average number of rebounds per game ove rhis career as a Tar Heel';
+							hintsArray9[2]='Number of UNC basketball players/coaches who have been inducted in the basketball hall of fame';
+							hintsArray9[3]='Highest number of steals in a single game ever for a Tar Heel, set by Derrick Phelps in 1992, against Georgia Tech';
+							hintsArray9[4]='Number of UNC women swimmers that won national championships in at least one event';
+							hintsArray9[5]='The number of innings in a typical baseball game';
+							hintsArray9[6]='The square root of 144 divided by 4 and then multiplied by 3';
+							hintsArray9[7]='9';
+														
 							this.inLockPicking=1;
 							choicesArray = [];
 							this.message=this.message+"<br>You are currently picking Tumbler #"+(this.currentTumbler) +" of "+numOfTumblers;
 							this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 							this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 							this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+							//Find a hint for the current tumbler						
+							curhintArray=hintsArray[this.tumblers[this.currentTumbler-1]];
+							this.hint=curhintArray[Math.ceil(Math.random()*7)];
+							//Add it to the message
+							this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
+							
 							choicesArray[0]='Pick tumbler '+this.currentTumbler;
 							choicesArray[1]=this.page;
 							choicesArray[2]='Check tumbler '+this.currentTumbler;
 							choicesArray[3]=this.page;
 							choicesArray[4]='Start this Tumbler over';
 							choicesArray[5]=this.page;
+							choicesArray[6]='Skip Lock-picking Game';
+							choicesArray[7]=this.page;
+						
 						//Return after button hit
 						}else{
 							//Choose to pick the tumbler once
@@ -1931,6 +2303,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 								//Circle back to 1 push after hitting max
 								}else{
 									this.currentPushes=1;
@@ -1938,6 +2311,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 								}
 								
 							//Choose to check current pushes
@@ -1951,6 +2325,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 									this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+									curhintArray=hintsArray[this.tumblers[this.currentTumbler-1]];
+									this.hint=curhintArray[Math.ceil(Math.random()*7)];
+									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 									
 									//Check to see if we are done
 									if(this.currentTumbler<=this.maxTumblers){
@@ -1972,7 +2349,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									this.maxWrong--;
 									//In this case, they have run out of attempts
 									if(this.maxWrong==0){
-										this.message=this.message+"You have failed at picking this lock";
+										this.message="You have failed at picking this lock";
+										this.inLockPicking=0;
 									//Otherwise tell them its wrong and try again
 									}else{
 										this.message=this.message+"<br>This is the incorrect number of pushes for this tumbler!  Please Try Again!"
@@ -1980,6 +2358,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 										this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 										this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+										this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
 									}
 								}
 							//Choose to start the current tumbler over, does not reset max wrong
@@ -1989,6 +2368,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								this.message=this.message+"<br>You have pushed this tumbler "+(this.currentPushes)+ " time(s)";
 								this.message=this.message+"<br>Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
 								this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock";
+								this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
+							}else if(choiceNum==4){
+								this.currentPushes=0;
+								this.currentTumbler=0;
+								this.inLockPicking=0;
+								this.message="Congratulations! You picked the lock!";
 							}
 							
 						}
@@ -2500,7 +2885,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				}
 			} else {
 				//only possible choice is to restart the game
-				choicesArray = ['Restart',1];
+				//if (this.inCombat == 1 || this.inSafeCracking == 1) {
+				if (dojo.hash() == '') {
+					choicesArray = ['Restart',1];
+				} else {
+				//if there is a saved game, there is an option to load it
+					choicesArray = ['Restart',1,'Load Game'];
+				}
 				this.health = 0;
 				this.drawHealthBar(this.health);
 			}
@@ -2539,6 +2930,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			this.runJSonic();
 		}
 		this.displayMessage.innerHTML = this.message;
+		//update URL bar with the dojo hash function
+		//if (this.inCombat == 0 && this.inMaze == 0 && this.inLockPicking == 0 && this.invselect == 0 && this.restart == 0) {
+			//this.updateHash();
+		//}
 		this.drawAll();
 	},
 	runJSonic: function() {
@@ -2585,6 +2980,80 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	slowDownJSonic: function() {
 		this.sonicRate -= 50;
 		this.runJSonic();
+	},
+	//save all data to the URL bar with dojo.hash
+	updateHash: function() {
+		HASHDELIM = '%&';
+		hashString = '';
+		if (this.ignoreEffect) {
+			hashString = hashString + 'ignoreEffect';
+			this.ignoreEffect = false;
+		} else {
+			hashString = hashString + Math.random();
+		}
+		hashString = hashString + HASHDELIM;
+		for (i = 1; i < this.inventory.length; i++) {
+			//hash all inventory items
+			hashString = hashString + this.inventory[i];
+			hashString = hashString + HASHDELIM;
+		}
+		hashString = hashString + 'EndInventory';
+		hashString = hashString + HASHDELIM;
+		hashString = hashString + this.page;
+		hashString = hashString + HASHDELIM;
+		hashString = hashString + this.health;
+		hashString = hashString + HASHDELIM;
+		hashString = hashString + this.strength;
+		hashString = hashString + HASHDELIM;
+		hashString = hashString + this.gold;
+		hashString = hashString + HASHDELIM;
+		hashString = hashString + this.MAX_HEALTH;
+		hashString = hashString + HASHDELIM;		
+		for (i = 0; i < this.variableList.length; i++) {
+			//hash all external variables
+			hashString = hashString + this.variableList[i].value;
+			hashString = hashString + HASHDELIM;
+		}
+		converted = '';
+		for (i = 0; i < hashString.length; i++) {
+			converted = converted + (hashString.charCodeAt(i)) + '&';
+		}
+		dojo.hash(converted);
+	},
+	//load data from the URL bar
+	loadHash: function() {
+		hashValue = dojo.hash();
+		hashSplit = hashValue.split('&');
+		converted = '';
+		for (i = 0; i < hashSplit.length; i++) {
+			converted = converted + String.fromCharCode(hashSplit[i]);
+		}
+		
+		HASHDELIM = '%&';
+		hashInvSplit = converted.split('EndInventory')[0].split(HASHDELIM);
+		hashVarSplit = converted.split('EndInventory')[1].split(HASHDELIM);
+		if (hashInvSplit[0] == 'ignoreEffect') {
+			this.loadHashIgnore = true;
+		}
+		//unconvert inventory items (if any)
+		this.inventory = [];
+		this.inventory[0] = 'Inventory';
+		if (hashInvSplit.length > 2) {
+			//i = 0 is a random number and i = hashSplitOne.length - 1 is a null string, so discard those
+			for (i = 1; i < hashInvSplit.length-1; i++) {
+				if (hashInvSplit != '') {
+					this.inventory[this.inventory.length] = hashInvSplit[i];
+				}
+			}
+		}
+		this.page = hashVarSplit[1];
+		this.health = dojo.number.parse(hashVarSplit[2]);
+		this.strength = dojo.number.parse(hashVarSplit[3]);
+		this.gold = dojo.number.parse(hashVarSplit[4]);
+		this.MAX_HEALTH = dojo.number.parse(hashVarSplit[5]);
+		for (i = 6; i < hashVarSplit.length-1; i++) {
+			this.variableList[i-6].value = hashVarSplit[i];
+		}
 	},
 	//create buttons and place them.  Parameter inputArray: array of choices for this page
 	createButtons: function(inputArray) {
@@ -2655,10 +3124,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		
 		this.inCombat = 0;
 		
-		/*for (i = 1; i < this.inventory.length; i++) {
-			//clear whole inventory except for the never used 0th element
-			this.inventory[i] = '';
-		}*/
 		this.inventory = [];
 		this.inventory[0] = 'Inventory';
 		for (i = 0; i < this.initVariableList.length; i++) {
