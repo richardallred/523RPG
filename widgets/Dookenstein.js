@@ -2393,7 +2393,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					else if (specialPageArray[p].match('MAZE:') !=null) {
 					//Prelim and First Run, inMaze is default 0.
 					if(this.inMaze==0){
-						this.message=" ";
+						MazeText=specialPageArray[p].split('MAZE:')[1].split('MESSAGE:');
+						this.message=specialPageArray[specialPageArray.length-1];
 						//set default maze size and adjust it according to game difficulty level.
 						mazeSize=4;
 						if(this.difficulty=='Easy')
@@ -2484,7 +2485,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						}
 						//Putting custom choices in the array for Maze navigation
 						choicesArray = [];
-							this.message=MazeArray[this.mazeRow][this.mazeCol]; 
 							if(this.mazeRow==mazeSize-1 && this.mazeCol==mazeSize-1)
 							{
 								this.message='YOU WIN';
@@ -2500,7 +2500,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									{dir='South';}
 								if(MazeArray[this.mazeRow][this.mazeCol].charAt(i)=='W')
 									{dir='West';}
-								choicesArray[i*2] ='Enter the door to your ' + dir;
+								choicesArray[i*2] ='Go to your ' + dir;
 								choicesArray[i*2+1] =this.page;
 								}
 						//Prints the Maze array
@@ -2532,7 +2532,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 							//Putting custom choices in the array for Maze navigation
 							choicesArray = [];
-							this.message=MazeArray[this.mazeRow][this.mazeCol]; 
+							
+							//Make random maze text to display on the page
+							
+							
+							//console.log(specialPageArray[p].split('MAZE:')[1].split('MESSAGE:'));
+							temp=Math.ceil(Math.random()*MazeText.length-1);
+							this.message=MazeText[temp];
+							
+							
+							//this.message=MazeArray[this.mazeRow][this.mazeCol]; 
+							//Put more meaningful stuff here
+							
 							if(this.mazeRow==mazeSize-1 && this.mazeCol==mazeSize-1)
 							{
 								this.message='YOU WIN';

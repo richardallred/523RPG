@@ -74,7 +74,7 @@ ARMOR:Chainmail Armor^*2^*75
 ARMOR:Platemail Armor^*5^*85
 HEALING:First aid kit^*0.2
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.  <br>You can save and load the game from the settings menu.
-0:Play the game^*1^*Lockpicking^*3005^*Safecracking^*3001
+0:Play the game^*1^*Lockpicking^*3005^*Safecracking^*3001^*Maze^*3006
 0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
@@ -2778,3 +2778,7 @@ HEALING:First aid kit^*0.2
 3005:LOCKPICK:3^*You are picking a lock
 3005:Done^*0
 3005:images/lock_pick.jpg
+3006:MAZE:There is nothing interesting hereMESSAGE:A rat scurries across the floorMESSAGE:You run into a decomposed skeleton against the wall.  Chills run down your backMESSAGE:You step on something. It makes a loud crunch underfoot, better get goingMESSAGE:A trail of cochroaches crosses the floor and climbs up the wallsMESSAGE:You start to think that you are lostMESSAGE:You start to feel very alone. You wonder if this maze ever endsMESSAGE:You stumble upon a great sword smashed to piecesMESSAGE:Above you hang what seems like an endless amount of bodies.  I wonder if anyone has ever made it out aliveMESSAGE:You feel a cold drip of water on your headMESSAGE:You shiver from the cold^*THIS IS A TEST.THE CAKE IS A LIE!
+3006:Done^*3007
+3007:TEST
+3007:GO BACK!!!!^*0
