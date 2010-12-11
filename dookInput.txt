@@ -77,7 +77,7 @@ COMBINATION:Torn scrap of paper,18
 COMBINATION:Ripped scrap of paper,4
 COMBINATION:Crumpled scrap of paper,12
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.  <br>You can save and load the game from the settings menu.
-0:Play the game^*1^*Lockpicking^*3005^*Safecracking^*3001^*Maze^*3006
+0:Play the game^*1^*Safecracking^*3001^*Maze^*3006
 0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
@@ -870,11 +870,11 @@ COMBINATION:Crumpled scrap of paper,12
 407:You decide that attacking would be too risky, so you decide to find another way down the wall.
 407:Use the grappling hook to climb down^*488^*DISPLAYIF:Rope,Use the length of rope you bought to climb down^*497^*Jump down^*489
 408:You try shaking the door and the lock, but they are both sturdy and unyielding.  You try to kick the door open, but the wood is very solid and you are unable to have any effect on the door.  You are eventually forced to give up.
-408:DISPLAYIFVAR:rammedDoor,0,Ram your shoulder into the door to try to break it down^*411^*DISPLAYIF:Lock picking kit,Try to pick the lock^*405^*DISPLAYIFNOT:Lock picking kit,Enter a different castle turret^*913^*Return to the courtyard^*300
+408:DISPLAYIFVAR:rammedDoor,0,Ram your shoulder into the door to try to break it down^*411^*DISPLAYIF:Lock picking kit,Try to pick the lock^*1383^*DISPLAYIFNOT:Lock picking kit,Enter a different castle turret^*913^*Return to the courtyard^*300
 409:As you enter the turret, you see a small room enclosed by a circular wall of stone.  At the end of the room, you see a stone spiral staircase that is enclosed in a smaller circular wall. It leads both upwards and downwards, though you cannot see where it goes in either direction.
 409:Climb the spiral staircase up^*413^*Climb the spiral staircase down^*414^*Leave the turret and return to the courtyard^*300
 410:You knock on the door several times, but there is no answer.
-410:DISPLAYIF:Lock picking kit,Try to pick the lock^*405^*Try to force open the door^*408^*DISPLAYIFNOT:Lock picking kit,Enter a different castle turret^*913^*Return to the courtyard^*300
+410:DISPLAYIF:Lock picking kit,Try to pick the lock^*1383^*Try to force open the door^*408^*DISPLAYIFNOT:Lock picking kit,Enter a different castle turret^*913^*Return to the courtyard^*300
 411:VARSET:rammedDoor,1^*LOSEHEALTH:2^*You back up several steps and then charge towards the door, running as fast as you can.  You slam into the door, but the only result is that your shoulder is badly bruised and you lose 2 health.  You curse the door and decide to return to the courtyard.
 411:Continue^*300
 412:VARSPLIT:turretLockPicked,2^*917^*918
@@ -1296,7 +1296,7 @@ COMBINATION:Crumpled scrap of paper,12
 620:RESTART:^*The guard does not believe you.  "We just sent supplies over to the soldiers," he says, "You are clearly trying to gain unauthorized access to the keep."  The guards draw their swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
 620:null^*1
 621:You walk towards the side wall of the keep so you can examine it more closely.  The door is plain and wooden, but it has a lock on it that prevents you from opening it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
-621:Go around to the front entrance^*622^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows^*625^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
+621:Go around to the front entrance^*622^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*1384^*Climb up to one of the stained glass windows^*625^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
 622:INVSPLIT:Soldier's Uniform^*1375^*1360
 622:null^*1
 623:You walk towards the side wall of the keep so you can examine it more closely.  The door on the wall is plain and wooden, and you can see an open lock on it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
@@ -1312,7 +1312,7 @@ COMBINATION:Crumpled scrap of paper,12
 628:LOSEHEALTH:3^*You strain against the weight of your armor as you struggle to find handholds in the rough stone.  As you are trying to find a handhold in one of the cracks, you lose your grip and fall to the ground.  Fortunately, you did not climb up very far before falling and you only lose 3 health from minor bruising.
 628:Try again after discarding your armor^*627^*Decide not to climb up the wall^*629
 629:You decide that you do not want to risk the precarious climb up the wall.  What do you do next?
-629:Go around to the front entrance^*622^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
+629:Go around to the front entrance^*622^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*1384^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*626
 630:You smash open the window you can hear the glass rain down onto the ground below.  Through the broken window, you can see a large cathedral.  The cathedral is quite tall, and you are standing in one of the stained glass windows near the top.  Rows of wooden chairs are laid out facing an altar.  The floor is a good distance below you and is covered with broken glass, but you don't have much choice but to jump down, as the wall inside the cathedral is unclimbable.
 630:Continue^*631
 631:INVSPLIT:First aid kit^*633^*634
@@ -1526,7 +1526,7 @@ COMBINATION:Crumpled scrap of paper,12
 735:VARSET:officerSearch,1^*GAINGOLD:10^*You search the officer's body and find 10 gold coins, which you take.  He isn't carrying anything else useful except for his decorative armor, which you decide could fit you.
 735:Put on the officer's armor^*756^*DISPLAYIFVAR:dungeonVisited,0,Keep your soldier's uniform instead^*742^*DISPLAYIFVAR:dungeonVisited,1,Leave the officer's armor^*742
 736:VARSET:officerChest,1^*You see a small, wooden chest with an iron lock attached to it that prevents you from opening it.
-736:DISPLAYIF:Lock picking kit,Try to pick the lock^*740^*DISPLAYIF:Mace,Smash open the chest with your mace^*741^*Leave the chest^*742
+736:DISPLAYIF:Lock picking kit,Try to pick the lock^*1385^*DISPLAYIF:Mace,Smash open the chest with your mace^*741^*Leave the chest^*742
 737:VARSET:officerTent,1^*INVADD:Jug of ale^*You search through the rest of the tent, but you don't find anything useful except for the jugs of ale lying around.  You decide to take one of them.
 737:DISPLAYIFVAR:officerSearch,0,Search the officer's body^*735^*DISPLAYIFVAR:officerChest,0,Examine the locked chest^*736^*Leave the tent^*738
 738:INVSPLIT:Officer's Armor^*746^*747
@@ -1633,7 +1633,7 @@ COMBINATION:Crumpled scrap of paper,12
 789:INVSPLIT:Soldier's Uniform^*1349^*1350
 789:null^*1
 790:You walk towards the side wall of the keep so you can examine it more closely.  The door is plain and wooden, but it has a lock on it that prevents you from opening it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
-790:Go around to the front entrance^*789^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*624^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
+790:Go around to the front entrance^*789^*DISPLAYIF:Lock picking kit,Pick the lock on the door^*1384^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
 791:RESTART:^*You throw your grappling hook through one of the stained glass windows, shattering it with a loud crash.  As you are climbing up the rope, you see several guards running around from the front of the castle.  They easily pick you off with crossbow bolts.
 791:null^*1
 792:RESTART:^*You make the difficult climb up to one of the stained glass windows, and pull yourself up onto the window ledge.  Unsurprisingly, the window is not meant to be opened, so you must break it to climb through.  You viciously kick the window, sending shards of glass raining down inside the keep.  You look through the broken window and see the horrified gazes of several people inside a cathedral.  It is not long before a group of guards with crossbows pick you off from the windowsill.  <br>Your life ends here.
@@ -1671,13 +1671,13 @@ COMBINATION:Crumpled scrap of paper,12
 808:VARSPLIT:storeroomVisited,0^*813^*814
 808:null^*1
 809:You try to open the door but it is firmly locked and it is impossible to force open.
-809:DISPLAYIF:Lock picking kit,Pick the lock^*811^*DISPLAYIF:Key Ring,Try to unlock the door with the keys on your key ring^*1045^*Knock on the door^*812^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
+809:DISPLAYIF:Lock picking kit,Pick the lock^*1386^*DISPLAYIF:Key Ring,Try to unlock the door with the keys on your key ring^*1045^*Knock on the door^*812^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
 810:VARSPLIT:forgeVisited,0^*977^*978
 810:null^*1
 811:VARSET:storeroomVisited,1^*You use several picks from your lock picking kit and manage to get the door open.  Inside, you see a large underground storeroom that is dimly lit by several torches on the wall.  There are sacks scattered everywhere and many barrels of goods.  Most of the goods in the storeroom look like they contain food items and ingredients, but the room has so much stuff that you cannot tell.  You can see a large wine rack on the side of the room.
 811:Search the room for useful items^*243^*Leave the room^*244
 812:You knock on the door but there is no response.
-812:DISPLAYIF:Lock picking kit,Pick the lock^*811^*DISPLAYIF:Key Ring,Try to unlock the door with the keys on your key ring^*1046^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
+812:DISPLAYIF:Lock picking kit,Pick the lock^*1386^*DISPLAYIF:Key Ring,Try to unlock the door with the keys on your key ring^*1046^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
 813:You walk down the hallway until you reach the locked door.
 813:Continue down the hallway and turn the corner^*810^*Try to open the door^*809
 814:VARSPLIT:forgeVisited,0^*979^*980
@@ -1725,7 +1725,7 @@ COMBINATION:Crumpled scrap of paper,12
 835:You leave the body where it is and slip back into the kitchen.  After a few moments, you hear shouts from outside the room.  Someone must have found the servant's body.
 835:Try to hide somewhere in the kitchen^*801^*Leave the kitchen and investigate the shouts^*837
 836:You leave the servant's body where it is and casually walk the other direction down the hallway.  Near the end of the hallway, you see a locked door.  At the end of the hallway, there is a corner that goes to the right.
-836:DISPLAYIF:Lock picking kit,Try to pick the lock on the door^*838^*DISPLAYIFNOT:Lock picking kit,Examine the lock on the door^*838^*Keep walking and turn the corner^*810
+836:DISPLAYIF:Lock picking kit,Try to pick the lock on the door^*1387^*DISPLAYIFNOT:Lock picking kit,Examine the lock on the door^*838^*Keep walking and turn the corner^*810
 837:You leave the kitchen and find several guards standing around the body of the servant down the hallway.  One of them sees you and shouts at you to halt.
 837:Try to run away from the guards^*833^*Stand still and let the guards approach you^*839^*Try to fight the guards^*803
 838:As you are examining the lock on the door, you hear a shout for behind you.  You see several guards standing around the body of the servant down the hallway.  One of them is pointing and shouting at you.
@@ -1785,9 +1785,9 @@ COMBINATION:Crumpled scrap of paper,12
 865:VARSPLIT:kitchenVisited,1^*868^*869
 865:null^*1
 866:You try to open the door but it is firmly locked and it is impossible to force open.
-866:DISPLAYIF:Lock picking kit,Pick the lock^*811^*DISPLAYIF:Key Ring,Try to unlock the door with the keys on your key ring^*1047^*Knock on the door^*867^*DISPLAYIFVAR:kitchenVisited,1,Keep walking past the kitchen^*815^*DISPLAYIFVAR:kitchenVisited,0,Keep walking past the door^*825^*Go back towards the forge^*810
+866:DISPLAYIF:Lock picking kit,Pick the lock^*1386^*DISPLAYIF:Key Ring,Try to unlock the door with the keys on your key ring^*1047^*Knock on the door^*867^*DISPLAYIFVAR:kitchenVisited,1,Keep walking past the kitchen^*815^*DISPLAYIFVAR:kitchenVisited,0,Keep walking past the door^*825^*Go back towards the forge^*810
 867:You knock on the door but there is no response.
-867:DISPLAYIF:Lock picking kit,Pick the lock^*811^*DISPLAYIF:Key Ring,Try to unlock the door with the keys on your key ring^*1048^*DISPLAYIFVAR:kitchenVisited,1,Keep walking past the kitchen^*815^*DISPLAYIFVAR:kitchenVisited,0,Keep walking past the door^*825^*Go back towards the forge^*810
+867:DISPLAYIF:Lock picking kit,Pick the lock^*1386^*DISPLAYIF:Key Ring,Try to unlock the door with the keys on your key ring^*1048^*DISPLAYIFVAR:kitchenVisited,1,Keep walking past the kitchen^*815^*DISPLAYIFVAR:kitchenVisited,0,Keep walking past the door^*825^*Go back towards the forge^*810
 868:You walk down the hallway and turn the corner until you reach a locked door.  Beyond the locked door, you can see the door to the kitchen and an open door further down the hall.
 868:Keep walking past the kitchen^*815^*Try to open the door^*866^*Go back towards the forge^*810
 869:You walk down the hallway and turn the corner until you reach a locked door.  Beyond the door, you can see two more doors further down the hall.  The first one is closed and the door beyond that is open. 
@@ -1889,7 +1889,7 @@ COMBINATION:Crumpled scrap of paper,12
 917:As you enter the turret, you see a small room enclosed by a circular wall of stone.  At the end of the room, you see a stone spiral staircase that is enclosed in a smaller circular wall. It leads both upwards and downwards, though you cannot see where it goes in either direction.
 917:Climb the spiral staircase up^*916^*Climb the spiral staircase down^*914^*Leave the turret and return to the courtyard^*300
 918:You go up to one of the large turrets in the corner of the courtyard.  The only entrance you can see from the ground level is a thick wooden door that is locked by a large metal padlock.  You look around and see that nobody is watching you, so now would be a good time to try to break in.
-918:Knock on the door^*410^*DISPLAYIF:Lock picking kit,Try to pick the lock^*405^*Try to force the door open^*408^*DISPLAYIFNOT:Lock picking kit,Enter a different castle turret^*913^*Return to the courtyard^*300
+918:Knock on the door^*410^*DISPLAYIF:Lock picking kit,Try to pick the lock^*1383^*Try to force the door open^*408^*DISPLAYIFNOT:Lock picking kit,Enter a different castle turret^*913^*Return to the courtyard^*300
 919:VARSPLIT:turretBottomVisited,1^*926^*927
 919:null^*1
 920:INVSPLIT:Guard Disguise^*942^*943
@@ -2143,13 +2143,13 @@ COMBINATION:Crumpled scrap of paper,12
 1044:INVADD:Rat poison, Bottle of wine^*You search through the sacks and barrels, but most of it is just food supplies.  In one of the sacks, you see a supply of arsenic in a container labeled "Rat poison", which you take.  You also take one of the bottles of wine from the rack.  You search through several more sacks, but you do not find anything else useful.
 1044:Leave the storeroom^*259
 1045:None of the keys on the key ring work.
-1045:DISPLAYIF:Lock picking kit,Pick the lock^*811^*Knock on the door^*812^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
+1045:DISPLAYIF:Lock picking kit,Pick the lock^*1386^*Knock on the door^*812^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
 1046:None of the keys on the key ring work.
-1046:DISPLAYIF:Lock picking kit,Pick the lock^*811^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
+1046:DISPLAYIF:Lock picking kit,Pick the lock^*1386^*Continue down the hallway to the left^*810^*Turn around and go down the hallway to the right^*815
 1047:None of the keys on the key ring work.
-1047:DISPLAYIF:Lock picking kit,Pick the lock^*811^*Knock on the door^*867^*DISPLAYIFVAR:kitchenVisited,1,Keep walking past the kitchen^*815^*DISPLAYIFVAR:kitchenVisited,0,Keep walking past the door^*825^*Go back towards the forge^*810
+1047:DISPLAYIF:Lock picking kit,Pick the lock^*1386^*Knock on the door^*867^*DISPLAYIFVAR:kitchenVisited,1,Keep walking past the kitchen^*815^*DISPLAYIFVAR:kitchenVisited,0,Keep walking past the door^*825^*Go back towards the forge^*810
 1048:None of the keys on the key ring work.
-1048:DISPLAYIF:Lock picking kit,Pick the lock^*811^*DISPLAYIFVAR:kitchenVisited,1,Keep walking past the kitchen^*815^*DISPLAYIFVAR:kitchenVisited,0,Keep walking past the door^*825^*Go back towards the forge^*810
+1048:DISPLAYIF:Lock picking kit,Pick the lock^*1386^*DISPLAYIFVAR:kitchenVisited,1,Keep walking past the kitchen^*815^*DISPLAYIFVAR:kitchenVisited,0,Keep walking past the door^*825^*Go back towards the forge^*810
 1049:You leave the armory and return to the hallway.  To the right, the hallway ends at a wide stairway.  To the left, the hallway turns into a corner.
 1049:Go to the right^*851^*Go to the left^*1003
 1050:HEALTHSPLIT:MAX^*1051^*1052
@@ -2487,11 +2487,11 @@ COMBINATION:Crumpled scrap of paper,12
 1239:You open the door and enter the passageway.
 1239:Pull the lever^*793^*Walk out into the inner bailey^*1244^*Return to the hall^*1245
 1240:You try to open the door, but it is locked.
-1240:DISPLAYIF:Lock picking kit,Pick the lock^*1241^*DISPLAYIF:Key Ring,Try to open it with a key from your key ring^*1242^*Go down the stairs^*1206^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the throne room^*1198
+1240:DISPLAYIF:Lock picking kit,Pick the lock^*1388^*DISPLAYIF:Key Ring,Try to open it with a key from your key ring^*1242^*Go down the stairs^*1206^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the throne room^*1198
 1241:You pick the lock on the door and open it.  You enter a narrow passageway with a wooden door on the other end.  You can also see a small lever on your left.
 1241:Pull the lever^*793^*Walk to the other end of the passageway^*1243
 1242:None of your keys work on the door.
-1242:DISPLAYIF:Lock picking kit,Pick the lock^*1241^*Go down the stairs^*1206^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the throne room^*1198
+1242:DISPLAYIF:Lock picking kit,Pick the lock^*1388^*Go down the stairs^*1206^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the throne room^*1198
 1243:VARSET:passagewayLockPicked,1^*You walk to the other end of the passageway and find that the door there is locked as well.  You pick that lock and open the door.  It leads outside the keep into the castle's inner bailey courtyard.
 1243:Go out into the inner bailey^*1246^*Go back and pull the lever^*793^*Go back and return to the hall^*1245
 1244:You walk through the passageway and open the door out to the inner bailey.  As you are leaving, you remember that your mission is to acquire King K's ring, and that you won't find him outside of the keep.  You decide to focus on your mission and not risk leaving the castle.
@@ -2772,6 +2772,18 @@ COMBINATION:Crumpled scrap of paper,12
 1381:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
 1382:RESTART:^*As you walk up to the large gate in front of the castle keep, one of the guards looks at you with a shocked expression.  "That's the prisoner the guards brought to the dungeon earlier today!" he gasps.  The guards draw swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
 1382:null^*1
+1383:LOCKPICK:3^*You are picking the lock
+1383:Done^*405
+1384:LOCKPICK:3^*You are picking the lock
+1384:Done^*624
+1385:LOCKPICK:3^*You are picking the lock
+1385:Done^*740
+1386:LOCKPICK:3^*You are picking the lock
+1386:Done^*811
+1387:LOCKPICK:3^*You are picking the lock
+1387:Done^*838
+1388:LOCKPICK:3^*You are picking the lock
+1388:Done^*1241
 3001:INVADD:true,Combination,Combination,Combination^*SAFECRACK:3002^*You are trying to crack a safe.<br>
 3001:Done^*0
 3002:ABORT!
