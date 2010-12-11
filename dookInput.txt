@@ -2680,7 +2680,7 @@ HEALING:First aid kit^*0.2
 1337:You walk up to the largest pile of bones.  As you get close to it, the wasteland around you suddenly bursts into flame.  Huge jets of fire burst through the ground and rise up several stories.  You scramble onto the pile of bones and barely avoid getting scorched by several flames jetting up underneath you.  You feel a blast of heat as a circle of searing blue flames rises around you, forcing you to climb to the top of the bone pile.  Suddenly, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered, scaly skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a diabolical grin on its face and a thick mustache on its pointed chin.
 1337:Continue^*143
 1338:"Don't play games with me, soldier," snaps the guard.  "If the keep were under attack, the enemy would be streaming through the inner bailey gate right now."
-1338:Offer him a bribe to let you in^*1339^*Tell him that you have orders from Colonel Graywald to enter^*1340^*Attack the guards^*1341^*Go around to the side wall^*1347
+1338:Offer him a bribe to let you in^*1339^*DISPLAYIFVAR:dungeonVisited,0,Tell him that you have orders from Colonel Graywald to enter^*1340^*Attack the guards^*1341^*Go around to the side wall^*1347
 1339:RESTART:^*"A soldier trying to bribe his way into the keep," says one of the guards, "Now that's a new one."  The guards draw their swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
 1339:null^*1
 1340:You tell the guard the you have orders from the colonel to enter the castle.  He stares at you suspiciously.  "And what orders are those?" he asks.
@@ -2700,13 +2700,13 @@ HEALING:First aid kit^*0.2
 1347:VARSPLIT:timeOfDay,night^*621^*623
 1347:null^*1
 1348:You tell the guard that the soldiers need more supplies from the keep.  "Very well," says the guard, "I will have the servants bring out more food to the tents."  He waves you off dismissively.
-1348:Tell the guard that you have orders from Colonel Graywald to enter^*1340^*Offer the guards a bribe to let you in^*1339^*Attack the guards^*1341^*Go around to the side of the keep^*1347
+1348:DISPLAYIFVAR:dungeonVisited,0,Tell the guard that you have orders from Colonel Graywald to enter^*1340^*Offer the guards a bribe to let you in^*1339^*Attack the guards^*1341^*Go around to the side of the keep^*1347
 1349:As you walk up to the large gate in front of the castle keep, one of the guards gives you a perplexed look.  "We have no need of soldiers in the keep right now," he says curtly.
-1349:Tell him that the keep is under attack^*1351^*Offer him a bribe to let you in^*1339^*Tell him that you have orders from Colonel Graywald to enter^*1340^*Tell him the soldiers need more supplies from the keep^*620^*Attack the guards^*1341^*Go around to the side wall^*790
+1349:Tell him that the keep is under attack^*1351^*Offer him a bribe to let you in^*1339^*DISPLAYIFVAR:dungeonVisited,0,Tell him that you have orders from Colonel Graywald to enter^*1340^*Tell him the soldiers need more supplies from the keep^*620^*Attack the guards^*1341^*Go around to the side wall^*790
 1350:INVSPLIT:Guard Disguise^*1352^*1353
 1350:null
 1351:"Don't play games with me, soldier," snaps the guard.  "If the keep were under attack, the enemy would be streaming through the inner bailey gate right now."
-1351:Offer him a bribe to let you in^*1339^*Tell him that you have orders from Colonel Graywald to enter^*1340^*Attack the guards^*1341^*Go around to the side wall^*790
+1351:Offer him a bribe to let you in^*1339^*DISPLAYIFVAR:dungeonVisited,0,Tell him that you have orders from Colonel Graywald to enter^*1340^*Attack the guards^*1341^*Go around to the side wall^*790
 1352:You walk up to the castle keep entrance gate and one of the guards calls for the gate to be opened.  You enter the keep and emerge in a wide hallway.  Straight in front of you, you see an entrance to a large great hall.  You walk into the great hall and look around.
 1352:Continue^*1197
 1353:INVSPLIT:Merchant Disguise^*1373^*1374
@@ -2754,7 +2754,7 @@ HEALING:First aid kit^*0.2
 1374:INVSPLIT:Assassin Garb^*1376^*1377
 1374:null^*1
 1375:As you walk up to the large gate in front of the castle keep, one of the guards gives you a perplexed look.  "We have no need of soldiers in the keep right now," he says curtly.
-1375:Tell him that the keep is under attack^*1338^*Offer him a bribe to let you in^*1339^*Tell him that you have orders from Colonel Graywald to enter^*1340^*Tell him the soldiers need more supplies from the keep^*1342^*Attack the guards^*1341^*Go around to the side wall^*1347
+1375:Tell him that the keep is under attack^*1338^*Offer him a bribe to let you in^*1339^*DISPLAYIFVAR:dungeonVisited,0,Tell him that you have orders from Colonel Graywald to enter^*1340^*Tell him the soldiers need more supplies from the keep^*1342^*Attack the guards^*1341^*Go around to the side wall^*1347
 1376:RESTART:^*As you walk up to the large gate in front of the keep, the two guards draw their swords to attack you.  "You will not pass through here, assassin!" shouts one of them.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
 1376:null^*1
 1377:As you walk up to the large gate in front of the castle keep, one of the guards gives you a perplexed look.  "What is your business here?" he asks.
