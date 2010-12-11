@@ -1223,9 +1223,7 @@ ARMOR:Chainmail armor^*2^*75
 1002:Done^*1000
 3000:LOCKPICK:3^*You are picking a lock
 3000:Done^*0
-3001:INVADD:Combination^*INVSPLIT:Combination^*3002^*3003
+3001:INVADD:true,Combination,Combination,Combination^*SAFECRACK:3002^*You are trying to crack a safe.<br>
 3001:Done^*0
-3002:SAFECRACK:true^*You are trying to crack a safe.1<br>
+3002:ABORT!
 3002:Done^*0
-3003:SAFECRACK:false^*You are trying to crack a safe.2<br>
-3003:Done^*0
