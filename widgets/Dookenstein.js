@@ -2639,6 +2639,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						}
 						else{
 							//this.message+=" " + choiceNum + " ";
+							
 							if(this.hasCombo>0){
 								this.message += "You have " + this.hasCombo + " combination(s) to the safe.<br>"
 								this.message= this.message+this.num[this.display[0]]+" is one part of the combination<br>";
@@ -2683,8 +2684,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										}
 									}
 								}
-							}
-							else{
+							}else{
 								choicesArray = [];
 								choicesArray[0]='Turn dial left by 1';
 								choicesArray[1]=this.page;
@@ -2723,50 +2723,54 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							}
 							
 							if(choiceNum==6){
-								if(this.currentNum==this.num[this.checked]){
-									this.checked++;
-									this.message += "You have successfully cracked the number! <br>";
-									if(this.checked==this.num.length){
-										this.inSafeCracking = 0;
-										this.checked=0;
-										this.message = "You have successfully cracked the safe! <br>";
-									}
-									else
-									{
-										if(this.checked == 1){
-											choicesArray = [];
-											choicesArray[0]='Turn dial left by 1';
-											choicesArray[1]=this.page;
-											choicesArray[2]='Turn dial left by 3';
-											choicesArray[3]=this.page;
-											choicesArray[4]='Turn dial left by 5';
-											choicesArray[5]=this.page;
-											choicesArray[6]='Turn dial left by 10';
-											choicesArray[7]=this.page;
-											choicesArray[8]='Turn dial left by 20';
-											choicesArray[9]=this.page;
-										}else
-										{
-											choicesArray = [];
-											choicesArray[0]='Turn dial right by 1';
-											choicesArray[1]=this.page;
-											choicesArray[2]='Turn dial right by 3';
-											choicesArray[3]=this.page;
-											choicesArray[4]='Turn dial right by 5';
-											choicesArray[5]=this.page;
-											choicesArray[6]='Turn dial right by 10';
-											choicesArray[7]=this.page;
-											choicesArray[8]='Turn dial right by 20';
-											choicesArray[9]=this.page;
-										}
-										choicesArray[10]='Check number ' + (this.checked+1);
-										choicesArray[11]=this.page;
-										choicesArray[12]='Abort';
-										choicesArray[13]=this.page;
-									}
+								if(previousChoice==choiceNum){
+									this.message += "You have rotate the dial before checking again.<br>";
 								}else{
-									this.health -= this.damage;
-									this.message += "Please try again.<br>";
+									if(this.currentNum==this.num[this.checked]){
+										this.checked++;
+										this.message += "You have successfully cracked the number! <br>";
+										if(this.checked==this.num.length){
+											this.inSafeCracking = 0;
+											this.checked=0;
+											this.message = "You have successfully cracked the safe! <br>";
+										}
+										else
+										{
+											if(this.checked == 1){
+												choicesArray = [];
+												choicesArray[0]='Turn dial left by 1';
+												choicesArray[1]=this.page;
+												choicesArray[2]='Turn dial left by 3';
+												choicesArray[3]=this.page;
+												choicesArray[4]='Turn dial left by 5';
+												choicesArray[5]=this.page;
+												choicesArray[6]='Turn dial left by 10';
+												choicesArray[7]=this.page;
+												choicesArray[8]='Turn dial left by 20';
+												choicesArray[9]=this.page;
+											}else
+											{
+												choicesArray = [];
+												choicesArray[0]='Turn dial right by 1';
+												choicesArray[1]=this.page;
+												choicesArray[2]='Turn dial right by 3';
+												choicesArray[3]=this.page;
+												choicesArray[4]='Turn dial right by 5';
+												choicesArray[5]=this.page;
+												choicesArray[6]='Turn dial right by 10';
+												choicesArray[7]=this.page;
+												choicesArray[8]='Turn dial right by 20';
+												choicesArray[9]=this.page;
+											}
+											choicesArray[10]='Check number ' + (this.checked+1);
+											choicesArray[11]=this.page;
+											choicesArray[12]='Abort';
+											choicesArray[13]=this.page;
+										}
+									}else{
+										this.health -= this.damage;
+										this.message += "Please try again.<br>";
+									}
 								}
 							}
 							
@@ -2795,6 +2799,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.message = "You have failed cracked the safe! <br>";
 							this.restart = 1;
 						}
+						
+						var previousChoice = choiceNum;
 					}
 					
 					//restart the game on next button press with RESTART
