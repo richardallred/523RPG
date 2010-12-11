@@ -67,6 +67,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.possibleWeapons = new Array();
 		//initialize healing items array
 		this.healingItems = new Array();
+		//initialize safe combinations array
+		this.combinationItems = new Array();
+		this.combinationValues = new Array();
 		//initialize external variables array
 		this.initVariableList = new Array();
 		this.variableList = new Array();
@@ -109,11 +112,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.inSafeCracking =0;
 		this.hasCombo = 0;
 		this.currentNum =0;
-		this.num = new Array(3);
 		this.checked = 0;
-		this.maxNum = 0;
-		this.display = new Array(3);
-		this.damage=0;
+		this.maxNum = 40;
+		this.safeDisplay = [];
+		this.safeEntered = [];
+		this.safeDamage=0;
 		//set jsonic reading rate - default for JSonic is 200
 		this.sonicRate = 250;
 		this.sonicVolume = 1.0;
@@ -285,6 +288,31 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					added.amount = 0.5;
 				}
 				this.healingItems[this.healingItems.length] = added;
+			}
+			else if (dataSplit[i].indexOf('COMBINATION:') != -1) {
+				//Parse a safecracking combination item
+				splitResult = dataSplit[i].split('COMBINATION:')[1];
+				var added = {
+					name: 'Error with combination item initialization - no name specified',
+					value: -1
+				}
+				added.name = splitResult;
+				if(this.difficulty=="Easy"){
+					this.maxNum=20;
+					added.value = Math.floor(Math.random()*this.maxNum);
+					this.safeDamage = 2;
+				}else{
+					if(this.difficulty=="Normal"){
+						this.maxNum = 40;
+						added.value = Math.floor(Math.random()*this.maxNum);
+						this.safeDamage = 3;
+					}else{
+						this.maxNum = 60;
+						added.value = Math.floor(Math.random()*this.maxNum);
+						this.safeDamage = 5;
+					}
+				}
+				this.combinationItems[this.combinationItems.length] = added;
 			}
 			else if (dataSplit[i].indexOf('INITIALIZE:') != -1) {
 				//Initialize variables - default is 100 health, 10 strength, and 0 gold
@@ -1050,6 +1078,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				COMBAT: - Special command to start combat
 				LOCKPICK:var - Creates a lock picking game with var number of tumblers
 				SAFECRACK:abortPage - Creates a safe cracking game and shows parts of the combination based off how many "Combination" are found in the inventory. go to abortPage if abort.
+				MAZE:message - Creates a randomized maze that displays message in every room.  Optional: MAZE:message,MESSAGE:message2,MESSAGE:... to display additional randomized messages
 				RESTART: - The story has reached some sort of end, so restart from page 1
 				*/
 				
@@ -1902,7 +1931,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									//Fight selected
 									strCompare = this.strength + currentWeapon.strengthbonus - aliveEnemies[f].str;
 									//k is randomly selected from 0-10.  A higher k value means that you deal more and take less damage.
-									k = Math.floor(Math.random()*(10));
+									k = Math.round(Math.random()*(10));
 									//75% chance that enemy defense will reduce damage you deal
 									if (Math.random() <= 0.75) {
 										damageDealt = 4 + Math.round(strCompare/2) + k - aliveEnemies[f].def;
@@ -2037,7 +2066,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										}
 										if (currentArmor != "None" && damageTaken > 0) {
 											if (Math.random() <= currentArmor.probability/100) {
-												damageReduced = Math.floor(Math.random()*(currentArmor.defense))
+												damageReduced = Math.round(Math.random()*(currentArmor.defense))
 												if (damageReduced == 0) {
 													damageReduced = 1;
 												}
@@ -2161,7 +2190,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							numOfTumblers=dojo.number.parse(numOfTumbler[1]);
 							//this.message=this.message+"<br>There are " + numOfTumblers +" Tumblers in this lock";
 							this.maxTumblers=numOfTumblers;
-							this.tumblers= new Array(numOfTumblers);
+							this.tumblers= [];
 							//console.log("created tumbler array");
 							for(m=0; m<=numOfTumblers; m++){
 								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
@@ -2568,56 +2597,50 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						
 					}
 					
-					//SAFECRACK:abortPage
-					else if(specialPageArray[p].match('SAFECRACK:') != null) {
-						
+					//SAFECRACK:pagenum.  Redirect to pagenum if the player aborts the safecracking attempt
+					else if(specialPageArray[p].match('SAFECRACK:') != null) {						
 						if(this.inSafeCracking==0){
-							//this.hasCombo = specialPageArray[p].split('SAFECRACK:');
-							//this.hasCombo2 = dojo.number.parse(this.hasCombo[1]);
-							//if(this.hasCombo[1]=="true")
-							//	this.hasCombo = 1;
-							
 							this.inSafeCracking = 1;
-							//num = new Array(3);
-							
-							for(i=0;i<3;i++){
-								if(this.difficulty=="Easy"){
-									this.maxNum=20;
-									this.num[i] = Math.floor(Math.random()*this.maxNum);
-									this.damage = 5;
-								}else{
-									if(this.difficulty=="Normal"){
-										this.maxNum = 40;
-										this.num[i] = Math.floor(Math.random()*this.maxNum);
-										this.damage = 10;
-									}else{
-										this.maxNum = 60;
-										this.num[i] = Math.floor(Math.random()*this.maxNum);
-										this.damage = 15;
+							this.safeEntered = [];
+							//check inventory for combination items
+							this.hasCombo = 0;
+							for (x = 0; x < this.combinationItems.length; x++) {
+								for (y = 1; y < this.inventory.length; y++) {
+									if (this.combinationItems[x].name == this.inventory[y]) {
+										this.hasCombo++;
 									}
 								}
-								
 							}
-							
-							for(i=0;i<this.inventory.length;i++){
-								if(this.inventory[i]=="Combination"){
-									this.hasCombo++;
+							this.message = this.message + '<br>';
+							if (this.hasCombo > 0 && this.safeDisplay.length < this.combinationItems.length) {
+								this.safeDisplay = [];
+								for (i = 0; i < this.hasCombo; i++) {
+									this.safeDisplay[i] = 'empty';
 								}
-							}
-							if(this.hasCombo>0){
-								this.message += "You have " + this.hasCombo + " combination(s) to the safe.<br>" 
-								this.display[0] = Math.floor(Math.random()*3);
-								this.display[1]=Math.floor(Math.random()*3);
-								this.display[2]=Math.floor(Math.random()*3);
-								while(this.display[1] == this.display[0])
+								for (i = 0; i < this.hasCombo; i++) {
+									rand = Math.floor(Math.random()*this.hasCombo);
+									counter = 0;
+									while (this.safeDisplay[rand] != 'empty' && counter < 999) {
+										rand = Math.floor(Math.random()*this.hasCombo);
+										counter++;
+									}
+									this.safeDisplay[rand] = i;
+								}
+								for (i = 0; i < this.safeDisplay.length; i++) {
+									this.message = this.message + 'Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it.<br>';
+								}
+									/*this.display[0] = Math.floor(Math.random()*3);
 									this.display[1]=Math.floor(Math.random()*3);
-								while(this.display[2] == this.display[0] || this.display[2] == this.display[1])
 									this.display[2]=Math.floor(Math.random()*3);
-								this.message= this.message+this.num[this.display[0]]+" is one part of the combination<br>";
-								if(this.hasCombo>1)
-									this.message= this.message+this.num[this.display[1]]+" is another<br>";
-								if(this.hasCombo>2)
-									this.message= this.message+this.num[this.display[2]]+" is another<br>";
+									while(this.display[1] == this.display[0])
+										this.display[1]=Math.floor(Math.random()*3);
+									while(this.display[2] == this.display[0] || this.display[2] == this.display[1])
+										this.display[2]=Math.floor(Math.random()*3);
+										this.message= this.message+ 'Your ' + this.combinationItems[this.display[0]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.display[0]].value + ' on it.';
+									if(this.hasCombo>1)
+										this.message= this.message+ 'Your ' + this.combinationItems[this.display[1]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.display[1]].value + ' on it.';
+									if(this.hasCombo>2)
+										this.message= this.message+ 'Your ' + this.combinationItems[this.display[2]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.display[2]].value + ' on it.';*/
 							}
 							
 							this.currentNum = 0;
@@ -2632,20 +2655,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							choicesArray[7]=this.page;
 							choicesArray[8]='Turn dial right by 20';
 							choicesArray[9]=this.page;
-							choicesArray[10]='Check number ' + (this.checked+1);
+							//choicesArray[10]='Check number ' + (this.checked+1);
+							choicesArray[10]='Change dial direction';
 							choicesArray[11]=this.page;
 							choicesArray[12]='Abort';
 							choicesArray[13]=this.page;
 						}
 						else{
-							//this.message+=" " + choiceNum + " ";
+							this.message = "";
 							if(this.hasCombo>0){
-								this.message += "You have " + this.hasCombo + " combination(s) to the safe.<br>"
-								this.message= this.message+this.num[this.display[0]]+" is one part of the combination<br>";
-								if(this.hasCombo>1)
-									this.message= this.message+this.num[this.display[1]]+" is another<br>";
-								if(this.hasCombo>2)
-									this.message= this.message+this.num[this.display[2]]+" is another<br>";
+								for (i = 0; i < this.safeDisplay.length; i++) {
+									this.message = this.message + 'Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it.<br>';
+								}
 							}
 							if(this.checked==0 || this.checked==2){
 								choicesArray = [];
@@ -2659,7 +2680,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								choicesArray[7]=this.page;
 								choicesArray[8]='Turn dial right by 20';
 								choicesArray[9]=this.page;
-								choicesArray[10]='Check number ' + (this.checked+1);
+								//choicesArray[10]='Check number ' + (this.checked+1);
+								choicesArray[10]='Change dial direction';
 								choicesArray[11]=this.page;
 								choicesArray[12]='Abort';
 								choicesArray[13]=this.page;
@@ -2696,7 +2718,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								choicesArray[7]=this.page;
 								choicesArray[8]='Turn dial left by 20';
 								choicesArray[9]=this.page;
-								choicesArray[10]='Check number ' + (this.checked+1);
+								//choicesArray[10]='Check number ' + (this.checked+1);
+								choicesArray[10]='Change dial direction';
 								choicesArray[11]=this.page;
 								choicesArray[12]='Abort';
 								choicesArray[13]=this.page;
@@ -2723,16 +2746,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							}
 							
 							if(choiceNum==6){
-								if(this.currentNum==this.num[this.checked]){
+								//if(this.currentNum==this.combinationItems[this.checked]){
+									this.safeEntered[this.checked] = this.currentNum;
 									this.checked++;
-									this.message += "You have successfully cracked the number! <br>";
-									if(this.checked==this.num.length){
-										this.inSafeCracking = 0;
-										this.checked=0;
-										this.message = "You have successfully cracked the safe! <br>";
+									if (this.safeEntered.length == 1) {
+										this.message += "You have entered: " + this.currentNum + ".<br>";
 									}
-									else
-									{
+									//if(this.checked==this.num.length){
+									//	this.inSafeCracking = 0;
+									//	this.checked=0;
+									//	this.message = "You have successfully cracked the safe! <br>";
+									//}
+									//else {
 										if(this.checked == 1){
 											choicesArray = [];
 											choicesArray[0]='Turn dial left by 1';
@@ -2759,15 +2784,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											choicesArray[8]='Turn dial right by 20';
 											choicesArray[9]=this.page;
 										}
-										choicesArray[10]='Check number ' + (this.checked+1);
+										//choicesArray[10]='Check number ' + (this.checked+1);
+										choicesArray[10]='Change dial direction';
 										choicesArray[11]=this.page;
 										choicesArray[12]='Abort';
 										choicesArray[13]=this.page;
-									}
-								}else{
-									this.health -= this.damage;
-									this.message += "Please try again.<br>";
-								}
+									//}
+								//}else{
+									//this.health -= this.safeDamage;
+									//this.message += "Please try again.<br>";
+								//}
 							}
 							
 						}
@@ -2785,7 +2811,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							return;
 						}
 						if(this.inSafeCracking != 0){
-							this.message+="The max number on this dial is " + this.maxNum + "<br>";
+							console.log(this.safeEntered.length);
+							if (this.safeEntered.length == 0) {
+								this.message+="The safe dial has " + this.maxNum + " numbers.<br>";
+							}
 							this.message += "The dial is on " + this.currentNum + "<br>";
 						}
 						
