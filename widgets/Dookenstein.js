@@ -2598,7 +2598,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					
 					//SAFECRACK:pagenum.  Redirect to pagenum if the player aborts the safecracking attempt
-					else if(specialPageArray[p].match('SAFECRACK:') != null) {						
+					else if(specialPageArray[p].match('SAFECRACK:') != null) {
 						if(this.inSafeCracking==0){
 							this.inSafeCracking = 1;
 							this.safeEntered = [];
@@ -2660,8 +2660,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							safeString = '';
 							if(this.hasCombo>0){
 								for (i = 0; i < this.safeDisplay.length; i++) {
-									safeString = safeString +' Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
-									//this.message = this.message + 'Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
+									//safeString = safeString +' Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
+									this.message = this.message + 'Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
 								}
 							}
 							if(this.checked==0 || this.checked==2){
@@ -2805,8 +2805,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							}
 							if(this.inSafeCracking != 0){
 								if (this.safeEntered.length == 0) {
-									safeString += "The safe dial goes from 0 to " + (this.maxNum-1) + ". <br>";
-									//this.message += "The safe dial goes from 0 to " + (this.maxNum-1) + ". <br>";
+									//safeString += "The safe dial goes from 0 to " + (this.maxNum-1) + ". <br>";
+									this.message += "The safe dial goes from 0 to " + (this.maxNum-1) + ". <br>";
 								} else {
 									if (this.safeEntered.length == 1) {
 										safeString += "You have entered: " + this.safeEntered[0] + "<br>";
