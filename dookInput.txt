@@ -88,7 +88,7 @@ COMBINATION:Crumpled scrap of paper
 3:Sword^*4^*Crossbow^*4^*Hidden dagger^*4^*Grappling hook^*4^*Lock picking kit^*4^*First aid kit^*4^*Tinderbox and torch^*4^*Shield^*4
 3:images/first_items.jpg
 4:You manage to arrive at Castle Dookenstein without incident.  The castle is a towering fortress of stone that looms over the countryside, surrounded by a deep moat.  An ancient forest is to the right of the castle.  There is a path that leads to the castle drawbridge and the main gate, which is closed.  Across the drawbridge, there are two guards in full Dookian armor standing by the gate.  On the top of the castle, there are several more guards facing the front of the castle and holding crossbows.  You come up with several ideas to enter the castle, but all of them are risky. <br>  You could try to talk your way past the guards and enter the front gate. <br> You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
-4:Try the front gate^*5^*Swim the moat^*200^*Attack the guards with a crossbow^*7^*Grapple up the back wall^*8
+4:Try the front gate^*5^*Swim the moat^*200^*Attack the guards with a crossbow^*7^*Grapple up the back wall^*8^*DISPLAYIF:Assassin Garb,Wait until dusk to enter the castle^*1392
 4:images/castle_final.jpg
 5:INVSPLIT:Merchant Disguise^*6^*26
 5:null^*1
@@ -142,8 +142,8 @@ COMBINATION:Crumpled scrap of paper
 29:Try to bribe the guards^*64^*Attack the guards^*38^*Leave and try to find another way in^*31
 30:DISPLAYGOLD:^*"There are no open positions in the castle guard," says one of the guards, "But Colonel Graywald is recruiting warriors for the upcoming invasion of Carolinia.  I hear the pay is decent.  I could arrange for an introduction, for the small fee of 5 gold coins."
 30:Say that you would like to join the invasion force^*65^*Say that you aren't interested in joining the war^*66
-31:VARSET:turnedAway,1^*You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
-31:Swim the moat^*200^*Attack the guards with a crossbow^*34^*Grapple up the back wall^*32
+31:VARSPLIT:timeOfDay,day^*1393^*1394
+31:null^*1
 31:images/castle_final.jpg
 32:INVSPLIT:Grappling hook^*100^*33
 32:null^*1
@@ -2801,17 +2801,27 @@ COMBINATION:Crumpled scrap of paper
 //1391:LOCKPICK:4^*You pull your lockpicking kit out of your pack and try to pick the lock while holding onto the grate.
 //1391:Done^*206
 //1391:images/locked_test.jpg
-1391:1389:INVSPLIT:asdf^*1^*206
-3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*text
+1391:INVSPLIT:asdf^*1^*206
+1392:VARSET:timeOfDay,night^*VARSET:turnedAway,0^*You lurk in the nearby forest, waiting patiently until dusk and carefully watching the castle.  Not much interesting happens except that the castle guards change posts several time.  Finally, dusk has settled and you are ready to try to enter the castle.
+1392:Try the front gate^*5^*Swim the moat^*200^*Attack the guards with a crossbow^*32^*Grapple up the back wall^*34
+1393:VARSET:turnedAway,1^*You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
+1393:Swim the moat^*200^*Attack the guards with a crossbow^*34^*Grapple up the back wall^*32^*DISPLAYIF:Assassin Garb,Wait until dusk to enter the castle^*1392
+1394:VARSET:turnedAway,1^*You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
+1394:Swim the moat^*200^*Attack the guards with a crossbow^*34^*Grapple up the back wall^*32
+3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*test
 3001:Continue^*3002
-3002:SAFECRACK:3003^*You are trying to crack a safe.
+3002:SAFECRACK:3004^*You are trying to crack a safe.
 3002:Donee^*0
-3003:INVADD:Crumpled scrap of paper^*SAFECRACK:3005^*You are trying to crack a safe.
-3003:Done^*3007
+3003:SAFECRACK:3008^*You are trying to crack a safe.
+3003:null^*3007
+3004:INVADD:Crumpled scrap of paper^*test2
+3004:Continue^*3003
 3005:LOCKPICK:3^*You are picking a lock
 3005:Done^*0
 3005:images/lock_pick.jpg
-3006:MAZE:There is nothing interesting here,MESSAGE:A rat scurries across the floor,MESSAGE:You run into a decomposed skeleton against the wall.  Chills run down your back,MESSAGE:You step on something. It makes a loud crunch underfoot, better get going,MESSAGE:A trail of cochroaches crosses the floor and climbs up the walls,MESSAGE:You start to think that you are lost,MESSAGE:You start to feel very alone. You wonder if this maze ever ends,MESSAGE:You stumble upon a great sword smashed to pieces,MESSAGE:Above you hang what seems like an endless amount of bodies.  I wonder if anyone has ever made it out alive,MESSAGE:You feel a cold drip of water on your head,MESSAGE:You shiver from the cold^*THIS IS A TEST.THE CAKE IS A LIE!
+3006:MAZE:There is nothing interesting here,MESSAGE:A rat scurries across the floor,MESSAGE:You run into a decomposed skeleton against the wall.  Chills run down your back,MESSAGE:You step on something. It makes a loud crunch underfoot, better get going,MESSAGE:A trail of cochroaches crosses the floor and climbs up the walls,MESSAGE:You start to think that you are lost,MESSAGE:You start to feel very alone. You wonder if this maze ever ends,MESSAGE:You stumble upon a great sword smashed to pieces,MESSAGE:Above you hang what seems like an endless amount of bodies.  I wonder if anyone has ever made it out alive,MESSAGE:You feel a cold drip of water on your head,MESSAGE:You shiver from the cold^*test maze.
 3006:Done^*3007
 3007:TEST
-3007:GO BACK!!!!^*0
+3007:Go Back^*3008
+3008:Abort!
+3008:go back^*0
