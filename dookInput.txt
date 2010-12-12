@@ -77,7 +77,7 @@ COMBINATION:Torn scrap of paper
 COMBINATION:Ripped scrap of paper
 COMBINATION:Crumpled scrap of paper
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.  <br>You can save and load the game from the settings menu.
-0:Play the game^*1^*Lockpicking^*3005^*Safecracking^*3001^*Maze^*3006
+0:Play the game^*1
 0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
@@ -1725,7 +1725,7 @@ COMBINATION:Crumpled scrap of paper
 835:You leave the body where it is and slip back into the kitchen.  After a few moments, you hear shouts from outside the room.  Someone must have found the servant's body.
 835:Try to hide somewhere in the kitchen^*801^*Leave the kitchen and investigate the shouts^*837
 836:You leave the servant's body where it is and casually walk the other direction down the hallway.  Near the end of the hallway, you see a locked door.  At the end of the hallway, there is a corner that goes to the right.
-836:DISPLAYIF:Lock picking kit,Try to pick the lock on the door^*1387^*DISPLAYIFNOT:Lock picking kit,Examine the lock on the door^*838^*Keep walking and turn the corner^*810
+836:DISPLAYIF:Lock picking kit,Try to pick the lock on the door^*838^*DISPLAYIFNOT:Lock picking kit,Examine the lock on the door^*838^*Keep walking and turn the corner^*810
 837:You leave the kitchen and find several guards standing around the body of the servant down the hallway.  One of them sees you and shouts at you to halt.
 837:Try to run away from the guards^*833^*Stand still and let the guards approach you^*839^*Try to fight the guards^*803
 838:As you are examining the lock on the door, you hear a shout for behind you.  You see several guards standing around the body of the servant down the hallway.  One of them is pointing and shouting at you.
@@ -2773,24 +2773,24 @@ COMBINATION:Crumpled scrap of paper
 1381:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
 1382:RESTART:^*As you walk up to the large gate in front of the castle keep, one of the guards looks at you with a shocked expression.  "That's the prisoner the guards brought to the dungeon earlier today!" he gasps.  The guards draw swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
 1382:null^*1
-1383:LOCKPICK:3^*You are picking the lock.
+1383:LOCKPICK:3^*You are picking the lock on a door to the castle turret.^*1395
 1383:Done^*405
-1384:LOCKPICK:3^*You are picking the lock.
+1384:LOCKPICK:3^*You are picking the lock on a door to the castle keep.^*1396
 1384:Done^*624
-1385:LOCKPICK:3^*You are picking the lock on a chest.
+1385:LOCKPICK:3^*You are picking the lock on a chest.^*1397
 1385:Done^*740
-1386:LOCKPICK:3^*You are picking the lock.
+1386:LOCKPICK:3^*You are picking the lock on a door.^*1398
 1386:Done^*811
-1387:LOCKPICK:3^*You are picking the lock.
-1387:Done^*838
-1388:LOCKPICK:3^*You are picking the lock.
+1387:The lock is rusted and very difficult to pick, especially while trying to hold on to the grate.  You push one of the tumblers incorrectly, jamming the lock and removing any hope of opening it.  The lock and the grate are both made of solid metal and there is no way past them.  You have no choice but to abandon the tunnel.
+1387:Swim to the small hole^*211^*Swim to the uneven bricks and try to scale the wall^*212
+1388:LOCKPICK:3^*You are picking the lock.^*1398
 1388:Done^*1241
 1389:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.
 1389:Try to pick the lock^*1391^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
 1389:images/locked_test.jpg
-1390:LOCKPICK:3^*You are picking the lock.
+1390:LOCKPICK:2^*You are picking the lock on a chest.^*1399
 1390:Done^*480
-1391:LOCKPICK:4^*You pull your lockpicking kit out of your pack and try to pick the lock while holding onto the grate.
+1391:LOCKPICK:4^*You pull your lockpicking kit out of your pack and try to pick the lock while holding onto the grate.^*1387
 1391:Done^*206
 1391:images/locked_test.jpg
 1392:VARSET:timeOfDay,night^*VARSET:turnedAway,0^*You lurk in the nearby forest, waiting patiently until dusk and carefully watching the castle.  Not much interesting happens except that the castle guards change posts several time.  Finally, dusk has settled and you are ready to try to enter the castle.
@@ -2799,6 +2799,16 @@ COMBINATION:Crumpled scrap of paper
 1393:Swim the moat^*200^*Attack the guards with a crossbow^*34^*Grapple up the back wall^*32^*DISPLAYIF:Assassin Garb,Wait until dusk to enter the castle^*1392
 1394:VARSET:turnedAway,1^*You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
 1394:Swim the moat^*200^*Attack the guards with a crossbow^*34^*Grapple up the back wall^*32
+1395:RESTART:^*Though you try for several minutes, you are unable to get the tumblers into the correct position to pick the lock.  As you futilely attempt to get the stubborn tumblers into place, you feel a tap on your back.  You look behind you and see a guard with his sword drawn.  "Trying to gain unauthorized access to the guard turret is punishable by death," states the guard grimly.  Before you can react, he cuts you down.  <br>Your life ends here.
+1395:null^*1
+1396:RESTART:^*Though you try for several minutes, you are unable to get the lock open.  As you futilely attempt to get the stubborn tumblers into place, you hear a shout nearby.  You look around and see two guards with crossbows pointed at you.  Before you can react, you are brought down by two deadly bolts in your chest.  <br>Your life ends here.
+1396:null^*1
+1397:RESTART:^*Though you try for several minutes, you are unable to align the tumbers of the lock.  As you are working, you hear a shout from the tent opening.  Several officers burst into the tent and see the body of the officer you killed.  They waste no time in executing you with their swords.
+1397:null^*1
+1398:RESTART:^*Though you try for several minutes, you are unable to align the tumbers of the lock.  You are trying so hard that you don't even notice the guard behind you until you feel a crossbow bolt burying itself into your back.  The wound is fatal and the last thing you see before you collapse to the ground is the guard reloading his crossbow for another shot.  <br>Your life ends here.
+1398:null^*1
+1399:RESTART:^*Though you try for several minutes, you are unable to get the tumblers into the correct position to pick the lock.  Your failed attempts are interrupted when several soldiers come into the room and see you.  They run at you with their swords drawn and you are quickly killed.
+1399:null^*1
 3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*test
 3001:Continue^*3002
 3002:SAFECRACK:3004^*You are trying to crack a safe.
@@ -2807,7 +2817,7 @@ COMBINATION:Crumpled scrap of paper
 3003:null^*3007
 3004:INVADD:Crumpled scrap of paper^*test2
 3004:Continue^*3003
-3005:LOCKPICK:3^*You are picking a lock.
+3005:LOCKPICK:3^*You are picking a lock.^*3008
 3005:Done^*0
 3005:images/lock_pick.jpg
 3006:MAZE:There is nothing interesting here,MESSAGE:A rat scurries across the floor,MESSAGE:You run into a decomposed skeleton against the wall.  Chills run down your back,MESSAGE:You step on something. It makes a loud crunch underfoot, better get going,MESSAGE:A trail of cochroaches crosses the floor and climbs up the walls,MESSAGE:You start to think that you are lost,MESSAGE:You start to feel very alone. You wonder if this maze ever ends,MESSAGE:You stumble upon a great sword smashed to pieces,MESSAGE:Above you hang what seems like an endless amount of bodies.  I wonder if anyone has ever made it out alive,MESSAGE:You feel a cold drip of water on your head,MESSAGE:You shiver from the cold^*test maze.
