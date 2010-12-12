@@ -2658,193 +2658,222 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						} else {
 							this.message = 'Rotate the safe dial until it matches each number of the combination, then change the dial direction. <br>';
 							safeString = '';
-							if(this.hasCombo>0){
-								for (i = 0; i < this.safeDisplay.length; i++) {
-									//safeString = safeString +' Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
-									this.message = this.message + 'Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
-								}
-							}
-							if(this.checked==0 || this.checked==2){
-								choicesArray = [];
-								choicesArray[0]='Turn dial right by 1';
-								choicesArray[1]=this.page;
-								choicesArray[2]='Turn dial right by 3';
-								choicesArray[3]=this.page;
-								choicesArray[4]='Turn dial right by 5';
-								choicesArray[5]=this.page;
-								choicesArray[6]='Turn dial right by 10';
-								choicesArray[7]=this.page;
-								choicesArray[8]='Turn dial right by 20';
-								choicesArray[9]=this.page;
-								//choicesArray[10]='Check number ' + (this.checked+1);
-								choicesArray[10]='Change dial direction';
-								choicesArray[11]=this.page;
-								choicesArray[12]='Leave the safe';
-								choicesArray[13]=this.page;
-								if(choiceNum<=5)
-								{
-									if(choiceNum<3){
-										if(choiceNum<2){
-											this.currentNum = (this.currentNum+1)%this.maxNum;
-										}else{
-											this.currentNum = (this.currentNum+3)%this.maxNum;
-										}
-									}else{
-										if(choiceNum<4){
-											this.currentNum = (this.currentNum+5)%this.maxNum;
-										}else{
-											if(choiceNum<5){
-												this.currentNum = (this.currentNum+10)%this.maxNum;
-											}else{
-												this.currentNum = (this.currentNum+20)%this.maxNum;
-											}
+							if (this.checked >= this.combinationItems.length) {
+								crackedSafe = true;
+								for (c = 0; c < this.safeEntered.length; c++) {
+									console.log("test");
+									if (this.safeEntered[c] != this.combinationItems[c].value) {
+										crackedSafe = false;
+										this.message = 'You try to open the safe, but the combination does not work and the safe shocks you, causing you to lose ' + this.safeDamage + ' health.'
+										this.health -= this.safeDamage;
+										if (this.health <= 0) {
+											this.health = 0;
+											this.message = '<br>The shock from the safe has killed you';
+											this.restart = 1;
+											this.inSafeCracking = 0;
+											console.log('dead');
 										}
 									}
 								}
+								console.log('2');
+								if (crackedSafe) {
+									choicesArray = this.choices[this.page].split(this.DELIMITER);
+									this.page = choicesArray[1];
+									this.processChoice(this.page, choiceNum);
+									this.choices = [];
+								} else {
+									this.choices = [];
+								}
+								
 							} else {
-								choicesArray = [];
-								choicesArray[0]='Turn dial left by 1';
-								choicesArray[1]=this.page;
-								choicesArray[2]='Turn dial left by 3';
-								choicesArray[3]=this.page;
-								choicesArray[4]='Turn dial left by 5';
-								choicesArray[5]=this.page;
-								choicesArray[6]='Turn dial left by 10';
-								choicesArray[7]=this.page;
-								choicesArray[8]='Turn dial left by 20';
-								choicesArray[9]=this.page;
-								//choicesArray[10]='Check number ' + (this.checked+1);
-								choicesArray[10]='Change dial direction';
-								choicesArray[11]=this.page;
-								choicesArray[12]='Leave the safe';
-								choicesArray[13]=this.page;
-								if(choiceNum<=5)
-								{
-									if(choiceNum<3){
-										if(choiceNum<2){
-											this.currentNum = Math.abs((this.currentNum-1+this.maxNum)%this.maxNum);
-										}else{
-											this.currentNum = Math.abs((this.currentNum-3+this.maxNum)%this.maxNum);
-										}
-									}else{
-										if(choiceNum<4){
-											this.currentNum = Math.abs((this.currentNum-5+this.maxNum)%this.maxNum);
-										}else{
-											if(choiceNum<5){
-												this.currentNum = Math.abs((this.currentNum-10+this.maxNum)%this.maxNum);
+								if(this.hasCombo>0){
+									for (i = 0; i < this.safeDisplay.length; i++) {
+										//safeString = safeString +' Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
+										this.message = this.message + 'Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
+									}
+								}
+								if(this.checked==0 || this.checked==2){
+									choicesArray = [];
+									choicesArray[0]='Turn dial right by 1';
+									choicesArray[1]=this.page;
+									choicesArray[2]='Turn dial right by 3';
+									choicesArray[3]=this.page;
+									choicesArray[4]='Turn dial right by 5';
+									choicesArray[5]=this.page;
+									choicesArray[6]='Turn dial right by 10';
+									choicesArray[7]=this.page;
+									choicesArray[8]='Turn dial right by 20';
+									choicesArray[9]=this.page;
+									//choicesArray[10]='Check number ' + (this.checked+1);
+									choicesArray[10]='Change dial direction';
+									choicesArray[11]=this.page;
+									choicesArray[12]='Leave the safe';
+									choicesArray[13]=this.page;
+									if(choiceNum<=5)
+									{
+										if(choiceNum<3){
+											if(choiceNum<2){
+												this.currentNum = (this.currentNum+1)%this.maxNum;
 											}else{
-												this.currentNum = Math.abs((this.currentNum-20+this.maxNum)%this.maxNum);
+												this.currentNum = (this.currentNum+3)%this.maxNum;
+											}
+										}else{
+											if(choiceNum<4){
+												this.currentNum = (this.currentNum+5)%this.maxNum;
+											}else{
+												if(choiceNum<5){
+													this.currentNum = (this.currentNum+10)%this.maxNum;
+												}else{
+													this.currentNum = (this.currentNum+20)%this.maxNum;
+												}
+											}
+										}
+									}
+								} else {
+									choicesArray = [];
+									choicesArray[0]='Turn dial left by 1';
+									choicesArray[1]=this.page;
+									choicesArray[2]='Turn dial left by 3';
+									choicesArray[3]=this.page;
+									choicesArray[4]='Turn dial left by 5';
+									choicesArray[5]=this.page;
+									choicesArray[6]='Turn dial left by 10';
+									choicesArray[7]=this.page;
+									choicesArray[8]='Turn dial left by 20';
+									choicesArray[9]=this.page;
+									//choicesArray[10]='Check number ' + (this.checked+1);
+									choicesArray[10]='Change dial direction';
+									choicesArray[11]=this.page;
+									choicesArray[12]='Leave the safe';
+									choicesArray[13]=this.page;
+									if(choiceNum<=5)
+									{
+										if(choiceNum<3){
+											if(choiceNum<2){
+												this.currentNum = Math.abs((this.currentNum-1+this.maxNum)%this.maxNum);
+											}else{
+												this.currentNum = Math.abs((this.currentNum-3+this.maxNum)%this.maxNum);
+											}
+										}else{
+											if(choiceNum<4){
+												this.currentNum = Math.abs((this.currentNum-5+this.maxNum)%this.maxNum);
+											}else{
+												if(choiceNum<5){
+													this.currentNum = Math.abs((this.currentNum-10+this.maxNum)%this.maxNum);
+												}else{
+													this.currentNum = Math.abs((this.currentNum-20+this.maxNum)%this.maxNum);
+												}
 											}
 										}
 									}
 								}
-							}
-							
-							if(choiceNum == 6){
-								if(previousChoice==choiceNum){
-									safeString += "You must rotate the dial before changing directions again.<br>";
-									//this.message += "You must rotate the dial before changing directions again.<br>";
-								} else {
-									this.safeEntered[this.checked] = this.currentNum;
-									this.checked++;
-									if (this.checked >= this.combinationItems.length) {
-										safeString = "";
-										this.message = "";
-										choicesArray = [];
-										choicesArray[0] = 'Try to open the safe';
-										choicesArray[1] = this.page;
-										choicesArray[2] = 'Leave the safe';
-										choicesArray[3] = this.page;
+								
+								if(choiceNum == 6){
+									if(previousChoice==choiceNum){
+										safeString += "You must rotate the dial before changing directions again.<br>";
+										//this.message += "You must rotate the dial before changing directions again.<br>";
 									} else {
-										if(this.checked == 1){
+										this.safeEntered[this.checked] = this.currentNum;
+										this.checked++;
+										if (this.checked >= this.combinationItems.length) {
+											safeString = "";
+											this.message = "";
 											choicesArray = [];
-											choicesArray[0]='Turn dial left by 1';
-											choicesArray[1]=this.page;
-											choicesArray[2]='Turn dial left by 3';
-											choicesArray[3]=this.page;
-											choicesArray[4]='Turn dial left by 5';
-											choicesArray[5]=this.page;
-											choicesArray[6]='Turn dial left by 10';
-											choicesArray[7]=this.page;
-											choicesArray[8]='Turn dial left by 20';
-											choicesArray[9]=this.page;
+											choicesArray[0] = 'Try to open the safe';
+											choicesArray[1] = this.page;
+											choicesArray[2] = 'Leave the safe';
+											choicesArray[3] = this.page;
 										} else {
-											choicesArray = [];
-											choicesArray[0]='Turn dial right by 1';
-											choicesArray[1]=this.page;
-											choicesArray[2]='Turn dial right by 3';
-											choicesArray[3]=this.page;
-											choicesArray[4]='Turn dial right by 5';
-											choicesArray[5]=this.page;
-											choicesArray[6]='Turn dial right by 10';
-											choicesArray[7]=this.page;
-											choicesArray[8]='Turn dial right by 20';
-											choicesArray[9]=this.page;
+											if(this.checked == 1){
+												choicesArray = [];
+												choicesArray[0]='Turn dial left by 1';
+												choicesArray[1]=this.page;
+												choicesArray[2]='Turn dial left by 3';
+												choicesArray[3]=this.page;
+												choicesArray[4]='Turn dial left by 5';
+												choicesArray[5]=this.page;
+												choicesArray[6]='Turn dial left by 10';
+												choicesArray[7]=this.page;
+												choicesArray[8]='Turn dial left by 20';
+												choicesArray[9]=this.page;
+											} else {
+												choicesArray = [];
+												choicesArray[0]='Turn dial right by 1';
+												choicesArray[1]=this.page;
+												choicesArray[2]='Turn dial right by 3';
+												choicesArray[3]=this.page;
+												choicesArray[4]='Turn dial right by 5';
+												choicesArray[5]=this.page;
+												choicesArray[6]='Turn dial right by 10';
+												choicesArray[7]=this.page;
+												choicesArray[8]='Turn dial right by 20';
+												choicesArray[9]=this.page;
+											}
+											//choicesArray[10]='Check number ' + (this.checked+1);
+											choicesArray[10]='Change dial direction';
+											choicesArray[11]=this.page;
+											choicesArray[12]='Leave the safe';
+											choicesArray[13]=this.page;
 										}
-										//choicesArray[10]='Check number ' + (this.checked+1);
-										choicesArray[10]='Change dial direction';
-										choicesArray[11]=this.page;
-										choicesArray[12]='Leave the safe';
-										choicesArray[13]=this.page;
 									}
 								}
-							}
-							
-							passedCheck = false;
-							if(choiceNum==7){
-								passedCheck = true;
-							}
-							if (passedCheck) {
-								// abort safecracking, redirect to first page
-								var abortPage = specialPageArray[p].split('SAFECRACK:');
-								this.inSafeCracking = 0;
-								this.checked=0;
-								this.page = abortPage[1];
-								this.processChoice(this.page,0);
-								return;
-							}
-							if(this.inSafeCracking != 0){
-								if (this.safeEntered.length == 0) {
-									//safeString += "The safe dial goes from 0 to " + (this.maxNum-1) + ". <br>";
-									this.message += "The safe dial goes from 0 to " + (this.maxNum-1) + ". <br>";
-								} else {
-									if (this.safeEntered.length == 1) {
-										safeString += "You have entered: " + this.safeEntered[0] + "<br>";
-										//this.message += "You have entered: " + this.safeEntered[0] + "<br>";
+								
+								passedCheck = false;
+								if(choiceNum==7){
+									passedCheck = true;
+								}
+								if (passedCheck) {
+									// abort safecracking, redirect to first page
+									var abortPage = specialPageArray[p].split('SAFECRACK:');
+									this.inSafeCracking = 0;
+									this.checked=0;
+									this.page = abortPage[1];
+									this.processChoice(this.page,0);
+									return;
+								}
+								if(this.inSafeCracking != 0){
+									if (this.safeEntered.length == 0) {
+										//safeString += "The safe dial goes from 0 to " + (this.maxNum-1) + ". <br>";
+										this.message += "The safe dial goes from 0 to " + (this.maxNum-1) + ". <br>";
 									} else {
-										safeString += "You have entered: ";
-										//this.message += "You have entered: ";
-										for (s = 0; s < this.safeEntered.length; s++) {
-											safeString += this.safeEntered[s];
-											//this.message += this.safeEntered[s];
-											if (s < this.safeEntered.length - 1) {
-												safeString += ',';
-												//this.message += ',';
+										if (this.safeEntered.length == 1) {
+											safeString += "You have entered: " + this.safeEntered[0] + "<br>";
+											//this.message += "You have entered: " + this.safeEntered[0] + "<br>";
+										} else {
+											safeString += "You have entered: ";
+											//this.message += "You have entered: ";
+											for (s = 0; s < this.safeEntered.length; s++) {
+												safeString += this.safeEntered[s];
+												//this.message += this.safeEntered[s];
+												if (s < this.safeEntered.length - 1) {
+													safeString += ',';
+													//this.message += ',';
+												}
+											}
+											if (this.checked < this.combinationItems.length) {
+												safeString += "<br>";
+												//this.message += "<br>";
 											}
 										}
-										if (this.checked < this.combinationItems.length) {
-											safeString += "<br>";
-											//this.message += "<br>";
-										}
+									}
+									if (this.checked < this.combinationItems.length) {
+										safeString += "The dial is on " + this.currentNum + "<br>";
+										//this.message += "The dial is on " + this.currentNum + "<br>";
 									}
 								}
-								if (this.checked < this.combinationItems.length) {
-									safeString += "The dial is on " + this.currentNum + "<br>";
-									//this.message += "The dial is on " + this.currentNum + "<br>";
+								
+								if(this.health<= 0){
+									this.inSafeCracking = 0;
+									this.checked=0;
+									this.message = "You have failed cracked the safe! <br>";
+									this.restart = 1;
 								}
+								
+								previousChoice = choiceNum;
+								this.message += safeString;
+								this.js.stop();
+								this.js.say({text : safeString.replace(new RegExp( '<br>', 'g' ),' '), cache : true});
 							}
-							
-							if(this.health<= 0){
-								this.inSafeCracking = 0;
-								this.checked=0;
-								this.message = "You have failed cracked the safe! <br>";
-								this.restart = 1;
-							}
-							
-							previousChoice = choiceNum;
-							this.message += safeString;
-							this.js.stop();
-							this.js.say({text : safeString.replace(new RegExp( '<br>', 'g' ),' '), cache : true});
 						}
 					}
 					//restart the game on next button press with RESTART
