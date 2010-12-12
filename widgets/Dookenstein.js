@@ -2200,16 +2200,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
 								if(this.difficulty=="HARD"){
 									this.tumblers[m]=Math.ceil(Math.random()*3);
-									this.maxWrong=3;
+									this.maxWrong=numOfTumblers*3+1;
 									this.maxPushes=9;
 								}else if(this.difficulty=="Normal"){
 									this.tumblers[m]=Math.ceil(Math.random()*6);
-									this.maxWrong=5;
+									this.maxWrong=numOfTumblers*2;
 									this.maxPushes=6;
 								}else{
 									this.tumblers[m]=Math.ceil(Math.random()*9);
-									this.maxWrong=10;
-									this.maxPushes=3;
+									this.maxWrong=numOfTumblers*3+1;
+									this.maxPushes=5;
 								}								
 							}
 							
@@ -2236,85 +2236,84 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							hintsArray[9]=hintsArray9;
 
 							
-							hintsArray1[1]='Marcus Ginyard\'s number while playing basketball for the Tar Heels';
-							hintsArray1[2]='Number of NCAA women\'s basketball championships won by the lady Tar Heels';
-							hintsArray1[3]='The number of All-Americans on the 2007 Carolina basketball team';
-							hintsArray1[4]='Number of years Marvin Williams was a Tar Heel before leaving for the NBA';
-							hintsArray1[5]='The margin of victory for the Tar Heels men\'s basketball team in the 1982 championship game.';
-							hintsArray1[6]='The loneliest number';
-							hintsArray1[7]='Margin of victory during Dean Smith\'s first NCAA title in 1982';
+							hintsArray1[1]='The square of this number is not between 10 and 50';
+							hintsArray1[2]='One less than the square of this number is divisible by 5';
+							hintsArray1[3]='An odd number';
+							hintsArray1[4]='One of the Fibonacci numbers';
+							hintsArray1[5]='A perfect square or a perfect cube';
+							hintsArray1[6]='Not divisible by 3';
+							hintsArray1[7]='Less than 3 digits in binary';
 						
 							
-							hintsArray2[1]='Number of national championships won under UNC men\'s basketball coach Roy Williams';
-							hintsArray2[2]='Raymond Felton\'s number while playing for the Tar Heel men\'s basketball team';
-							hintsArray2[3]='Number of times coach Dean Smith won national coach of the year';
-							hintsArray2[4]='Number of times UNC men\'s basketball team has gone undefeated for an entire season';
-							hintsArray2[5]='Number of losses for the 1982 UNC mens basketball team';
-							hintsArray2[6]='2';
-							hintsArray2[7]='2';
+							hintsArray2[1]='The square of this number is not between 10 and 50';
+							hintsArray2[2]='An even number';
+							hintsArray2[3]='A prime number';
+							hintsArray2[4]='One of the Fibonacci numbers';
+							hintsArray2[5]='Less than 3 digits in binary';
+							hintsArray2[6]='Has an irrational square root';
+							hintsArray2[7]='Not divisible by 3';
 														
-							hintsArray3[1]='Number of Tar Heels that were drafted in the first round of the 2009 NBA draft';
-							hintsArray3[2]='Number of years Ty Lawson was a Tar Heel before leaving for the NBA';
-							hintsArray3[3]='Number of years Michael Jordan was a Tar Heel before leaving for the NBA';
-							hintsArray3[4]='Number of movies in the Matrix series';
-							hintsArray3[5]='Number of Tar Heel men\'s basketball players chosen as All-Americans in 1998';
-							hintsArray3[6]='Number of overtimes that it took for Carolina to win its first NCAA title in 1954';
-							hintsArray3[7]='Number of losses for the 2009 UNC men\'s basketball team';
+							hintsArray3[1]='The square of this number is not between 10 and 50';
+							hintsArray3[2]='A prime number';
+							hintsArray3[3]='Less than 3 digits in binary';
+							hintsArray3[4]='An odd number';
+							hintsArray3[5]='One of the Fibonacci numbers';
+							hintsArray3[6]='Has an irrational square root';
+							hintsArray3[7]='Divisible by 3';
 							
 							
-							hintsArray4[1]='Number of Tar Heels that were drafted in the first round of the 2007 NBA draft';
-							hintsArray4[2]='Number of years Phil Ford was a Tar Heel before leaving for the NBA';
-							hintsArray4[3]='The number that was in the name of UNC a very famous offense ran by UNC and Phil Ford that dealt with holding the ball until the opposing defense conceeded an easy basketball';
-							hintsArray4[4]='Average number of conference losses per year for men\'s basketball coach Dean Smith.';
-							hintsArray4[5]='Number of losses for the 2005 UNC men\'s basketball team';
-							hintsArray4[6]='Number of times UNC men\'s lacrosse team has won the NCAA national championship';
-							hintsArray4[7]='4';
+							hintsArray4[1]='Greater than 3';
+							hintsArray4[2]='An even number';
+							hintsArray4[3]='Not divisible by 3';
+							hintsArray4[4]='The square of this number is between 10 and 50';
+							hintsArray4[5]='A perfect square or a perfect cube';
+							hintsArray4[6]='One less than the square of this number is divisible by 5';
+							hintsArray4[7]='Not one of the Fibonacci numbers';
 							
-							hintsArray5[1]='Total number of NCAA national championships won by the UNC men\'s basketball team';
-							hintsArray5[2]='Ty Lawson\'s average number of assists per game over his career as a Tar Heel';
-							hintsArray5[3]='Number of times the UNC men\'s basketball team has finished 1st in both the AP and Coaches poll';
-							hintsArray5[4]='The margin of victory for the UNC men\'s basketball team in the 2005 national championship game';
-							hintsArray5[5]='Number of UNC wrestlers that have been crowned national champions in their weight class';
-							hintsArray5[6]='5';
-							hintsArray5[7]='5';
+							hintsArray5[1]='Greater than 3';
+							hintsArray5[2]='A prime number';
+							hintsArray5[3]='One of the Fibonacci numbers';
+							hintsArray5[4]='Has an irrational square root';
+							hintsArray5[5]='Not divisible by 3';
+							hintsArray5[6]='An odd number';
+							hintsArray5[7]='The square of this number is between 10 and 50';
+							
+							hintsArray6[1]='Greater than 3';
+							hintsArray6[2]='An even number';
+							hintsArray6[3]='Divisible by 3';
+							hintsArray6[4]='Has an irrational square root';
+							hintsArray6[5]='The square of this number is between 10 and 50';
+							hintsArray6[6]='One less than the square of this number is divisible by 5';
+							hintsArray6[7]='Not one of the Fibonacci numbers';
+							
+							
+							hintsArray7[1]='Greater than 3';
+							hintsArray7[2]='A prime number';
+							hintsArray7[3]='Not divisible by 3';
+							hintsArray7[4]='An odd number';
+							hintsArray7[5]='Has an irrational square root';
+							hintsArray7[6]='The square of this number is between 10 and 50';
+							hintsArray7[7]='Not one of the Fibonacci numbers';
 														
-							hintsArray6[1]='Number of times the UNC basketball team has been crowned champions of men\'s basketball';
-							hintsArray6[2]='Ty Lawson\'s average number assists per game over his career as a Tar Heel';
-							hintsArray6[3]='Number of movies in the Star Wars saga.';
-							hintsArray6[4]='Margin of victory for UNC men\'s basketball team during the 1993 NCAA championship game';
-							hintsArray6[5]='Number of times the UNC women\'s field hockey team has won the NCAA national championship';
-							hintsArray6[6]='The number of strings on a standard guitar';
-							hintsArray6[7]='The number of points recieved for a touchdown in american football';
+							hintsArray8[1]='Greater than 3';
+							hintsArray8[2]='An even number';
+							hintsArray8[3]='One of the Fibonacci numbers';
+							hintsArray8[4]='Not divisible by 3';
+							hintsArray8[5]='Has an irrational square root';
+							hintsArray8[6]='The square of this number is not between 10 and 50';
+							hintsArray8[7]='A perfect square or a perfect cube';
 							
-							
-							hintsArray7[1]='Average number of losses per year for men\'s basketball coach Dean Smith';
-							hintsArray7[2]='The number of deadly sins';
-							hintsArray7[3]='Record for the highest number of steals in ACC tournament game by a Tar Heel, set by Dudley Bradley in 1979, against Duke';
-							hintsArray7[4]='Number of years in which the UNC women\'s soccer team did NOT win the national championship';
-							hintsArray7[5]='Number of years a typical student attends Hogwarts in the book series Harry Potter';
-							hintsArray7[6]='7';
-							hintsArray7[7]='7';
-														
-							hintsArray8[1]='The number of wins(in hundreds i.e. 235->2, 656->6, etc.) that Dean Smith had before retiring in 1998';
-							hintsArray8[2]='The number of points scored in the final 17 seconds of the game to send the game to overtime against Duke in 1979';
-							hintsArray8[3]='Number of UNC men\'s basketball players that have been named ACC Rookie of the Year.';
-							hintsArray8[4]='Number of times coach Dean Smith won ACC coach of the year';
-							hintsArray8[5]='Record for the fewest points scored in a single game by a Tar Heel men\'s basketball team';
-							hintsArray8[6]='8';
-							hintsArray8[7]='8';
-							
-							
-							hintsArray9[1]='Tyler Hansborough\'s average number of rebounds per game ove rhis career as a Tar Heel';
-							hintsArray9[2]='Number of UNC basketball players/coaches who have been inducted in the basketball hall of fame';
-							hintsArray9[3]='Highest number of steals in a single game ever for a Tar Heel, set by Derrick Phelps in 1992, against Georgia Tech';
-							hintsArray9[4]='Number of UNC women swimmers that won national championships in at least one event';
-							hintsArray9[5]='The number of innings in a typical baseball game';
-							hintsArray9[6]='The square root of 144 divided by 4 and then multiplied by 3';
-							hintsArray9[7]='9';
+							hintsArray9[1]='Greater than 3';
+							hintsArray9[2]='Divisible by 3';
+							hintsArray9[3]='An odd number';
+							hintsArray9[4]='One less than the square of this number is divisible by 5';
+							hintsArray9[5]='Not one of the Fibonacci numbers';
+							hintsArray9[6]='The square of this number is not between 10 and 50';
+							hintsArray9[7]='A perfect square or a perfect cube';
 							
 							this.inLockPicking=1;
 							choicesArray = [];
-							this.message = this.message + "<br>You must push each tumbler to the correct height before the lock will open.  Push the tumbler the number of times that is indicated by the hint and then check the tumbler to see if you pushed it to the correct height.  If you accidently push a tumbler too much, you can let it fall to return it to the bottom.  If you push too many of the tumblers to the wrong height, you will jam the lock and not be able to open it."
+							this.message = this.message + "<br>You must push each tumbler to the correct height before the lock will open.  Use the hint to guess how many times to push the tumbler then check the tumbler to see if you pushed it to the correct height.  If you pushed the tumbler to the wrong height, you will be told if you pushed too many or too little times.  To reset a tumbler to zero pushes, let it fall to the bottom.  If you push too many of the tumblers to the wrong height, you will jam the lock and not be able to open it.";
 							this.message=this.message+"<br>You are currently picking tumbler "+(this.currentTumbler) +" of "+numOfTumblers+".  ";
 							this.message=this.message+"Each tumbler can be pushed a maximum of "+this.maxPushes+" times.<br>";
 							this.message=this.message+"You have "+this.maxWrong+" attempts left to check tumblers in this lock.";
@@ -2349,9 +2348,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//Check to make sure we haven't reached the max pushes
 								if (this.currentPushes!=this.maxPushes) {
 									this.currentPushes+=1;
-									this.message = "You must push each tumbler to the correct height before the lock will open.  Push the tumbler the number of times that is indicated by the hint and then check the tumbler to see if you pushed it to the correct height.  If you accidently push a tumbler too much, you can let it fall to return it to the bottom.  If you push too many of the tumblers to the wrong height, you will jam the lock and not be able to open it."
-									this.message=this.message+"<br>You are currently picking tumbler " + (this.currentTumbler) + " of "+this.maxTumblers;
-									this.message=this.message+"<br>You have "+ this.maxWrong +" attempts left to check tumblers in this lock.<br>";
+									this.message = "You must push each tumbler to the correct height before the lock will open.  Use the hint to guess how many times to push the tumbler then check the tumbler to see if you pushed it to the correct height.";
+									this.message = this.message + "<br>You are currently picking tumbler " + (this.currentTumbler) + " of "+this.maxTumblers;
+									this.message = this.message + "<br>You have "+ this.maxWrong +" attempts left to check tumblers in this lock.<br>";
 									if (this.currentPushes == 1) {
 										this.message=this.message+"You have pushed the tumbler " + (this.currentPushes) + " time.  ";
 										this.lockString = "You have pushed the tumbler " + (this.currentPushes) + " time.  ";
@@ -2364,7 +2363,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//Circle back to 1 push after hitting max
 								} else {
 									this.currentPushes=1;
-									this.message = "You must push each tumbler to the correct height before the lock will open.  Push the tumbler the number of times that is indicated by the hint and then check the tumbler to see if you pushed it to the correct height.  If you accidently push a tumbler too much, you can let it fall to return it to the bottom.  If you push too many of the tumblers to the wrong height, you will jam the lock and not be able to open it."
+									this.message = "You must push each tumbler to the correct height before the lock will open.  Use the hint to guess how many times to push the tumbler then check the tumbler to see if you pushed it to the correct height.";
 									this.message = this.message+"<br>You are currently picking tumbler "+ (this.currentTumbler) + " of "+this.maxTumblers;
 									this.message = this.message+"<br>You have " + this.maxWrong + " attempts left to check tumblers in this lock.<br>";
 									if (this.currentPushes == 1) {
@@ -2453,7 +2452,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							//Choose to start the current tumbler over, does not reset max wrong
 							}else if(choiceNum==3){
 								this.currentPushes=0;
-								this.message = "You must push each tumbler to the correct height before the lock will open.  Push the tumbler the number of times that is indicated by the hint and then check the tumbler to see if you pushed it to the correct height.  If you accidently push a tumbler too much, you can let it fall to return it to the bottom.  If you push too many of the tumblers to the wrong height, you will jam the lock and not be able to open it."
+								this.message = "You must push each tumbler to the correct height before the lock will open.  Use the hint to guess how many times to push the tumbler then check the tumbler to see if you pushed it to the correct height.";
 								this.message=this.message+"<br>You are currently picking tumbler "+(this.currentTumbler) +" of "+this.maxTumblers;
 								this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock.<br>";
 								this.message=this.message+"You have pushed the tumbler "+(this.currentPushes)+ " times.  ";
