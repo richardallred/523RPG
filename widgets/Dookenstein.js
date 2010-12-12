@@ -299,16 +299,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				added.name = splitResult;
 				if(this.difficulty=="Easy"){
 					this.maxNum=20;
-					added.value = Math.floor(Math.random()*this.maxNum);
+					added.value = Math.ceil(Math.random()*(this.maxNum-1));
 					this.safeDamage = 2;
 				}else{
 					if(this.difficulty=="Normal"){
 						this.maxNum = 40;
-						added.value = Math.floor(Math.random()*this.maxNum);
+						added.value = Math.ceil(Math.random()*(this.maxNum-1));
 						this.safeDamage = 3;
 					}else{
 						this.maxNum = 60;
-						added.value = Math.floor(Math.random()*this.maxNum);
+						added.value = Math.ceil(Math.random()*(this.maxNum-1));
 						this.safeDamage = 5;
 					}
 				}
@@ -2599,10 +2599,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					
 					//SAFECRACK:pagenum.  Redirect to pagenum if the player aborts the safecracking attempt
 					else if(specialPageArray[p].match('SAFECRACK:') != null) {
-						if(this.inSafeCracking==0){
+						if(this.inSafeCracking==0 || (!crackedSafe && choiceNum == 1)){
 							this.inSafeCracking = 1;
 							this.safeEntered = [];
 							this.checked = 0;
+							crackedSafe = true;
 							//check inventory for combination items
 							this.hasCombo = 0;
 							for (x = 0; x < this.combinationItems.length; x++) {
@@ -2627,9 +2628,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									}
 									this.safeDisplay[rand] = i;
 								}
-								for (i = 0; i < this.safeDisplay.length; i++) {
-									this.message = this.message + 'Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
-								}
+							}
+							for (i = 0; i < this.safeDisplay.length; i++) {
+								this.message = this.message + 'Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
 							}
 							
 							this.currentNum = 0;
@@ -2659,32 +2660,46 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.message = 'Rotate the safe dial until it matches each number of the combination, then change the dial direction. <br>';
 							safeString = '';
 							if (this.checked >= this.combinationItems.length) {
-								crackedSafe = true;
-								for (c = 0; c < this.safeEntered.length; c++) {
-									console.log("test");
-									if (this.safeEntered[c] != this.combinationItems[c].value) {
-										crackedSafe = false;
-										this.message = 'You try to open the safe, but the combination does not work and the safe shocks you, causing you to lose ' + this.safeDamage + ' health.'
-										this.health -= this.safeDamage;
-										if (this.health <= 0) {
-											this.health = 0;
-											this.message = '<br>The shock from the safe has killed you';
-											this.restart = 1;
-											this.inSafeCracking = 0;
-											console.log('dead');
+								if (choiceNum == 2) {
+									// abort safecracking, redirect to first page
+									var abortPage = specialPageArray[p].split('SAFECRACK:');
+									this.inSafeCracking = 0;
+									this.checked=0;
+									this.page = abortPage[1];
+									this.processChoice(this.page,0);
+									return;
+								} else {
+									crackedSafe = true;
+									for (c = 0; c < this.safeEntered.length; c++) {
+										if (this.safeEntered[c] != this.combinationItems[c].value) {
+											crackedSafe = false;
+											this.message = 'You try to open the safe, but the combination does not work and the safe shocks you, causing you to lose ' + this.safeDamage + ' health.'
+											this.health -= this.safeDamage;
+											if (this.health <= 0) {
+												this.health = 0;
+												this.message = this.message + '<br>The shock from the safe has killed you.';
+												this.restart = 1;
+												this.checked = 0;
+												this.inSafeCracking = 0;
+												console.log('dead');
+											}
 										}
 									}
-								}
-								console.log('2');
-								if (crackedSafe) {
-									choicesArray = this.choices[this.page].split(this.DELIMITER);
-									this.page = choicesArray[1];
-									this.processChoice(this.page, choiceNum);
-									this.choices = [];
-								} else {
-									this.choices = [];
-								}
-								
+									if (crackedSafe) {
+										this.inSafeCracking = 0;
+										this.checked = 0;
+										choicesArray = this.choices[this.page].split(this.DELIMITER);
+										this.page = choicesArray[1];
+										this.processChoice(this.page, 0);
+										return;
+									} else {
+										choicesArray = [];
+										choicesArray[0] = 'Reset the dial and try again';
+										choicesArray[1] = this.page;
+										choicesArray[2] = 'Leave the safe';
+										choicesArray[3] = this.page;
+									}
+								}								
 							} else {
 								if(this.hasCombo>0){
 									for (i = 0; i < this.safeDisplay.length; i++) {
@@ -2861,14 +2876,6 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										//this.message += "The dial is on " + this.currentNum + "<br>";
 									}
 								}
-								
-								if(this.health<= 0){
-									this.inSafeCracking = 0;
-									this.checked=0;
-									this.message = "You have failed cracked the safe! <br>";
-									this.restart = 1;
-								}
-								
 								previousChoice = choiceNum;
 								this.message += safeString;
 								this.js.stop();
