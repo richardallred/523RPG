@@ -1195,6 +1195,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							//redirect to the randomly chosen page
 							this.page = randSplit[rand];
 							this.processChoice(this.page,0);
+							return;
 						}
 					}
 					//INVCHECK:item.  If the item is in the inventory, display the page, otherwise redirect to another page
@@ -2197,18 +2198,18 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.tumblers= [];
 							for(m=0; m<=numOfTumblers; m++){
 								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
-								if(this.difficulty=="Easy"){
+								if(this.difficulty=="HARD"){
 									this.tumblers[m]=Math.ceil(Math.random()*3);
-									this.maxWrong=5;
-									this.maxPushes=3;
+									this.maxWrong=3;
+									this.maxPushes=9;
 								}else if(this.difficulty=="Normal"){
 									this.tumblers[m]=Math.ceil(Math.random()*6);
-									this.maxWrong=10;
+									this.maxWrong=5;
 									this.maxPushes=6;
 								}else{
 									this.tumblers[m]=Math.ceil(Math.random()*9);
-									this.maxWrong=15;
-									this.maxPushes=9;
+									this.maxWrong=10;
+									this.maxPushes=3;
 								}								
 							}
 							
@@ -2420,8 +2421,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									this.maxWrong--;
 									//In this case, they have run out of attempts
 									if (this.maxWrong==0) {
-										this.message = "You have failed at picking this lock";
+										//this.message = "You have failed at picking this lock";
 										this.inLockPicking=0;
+										this.page = specialPageArray[specialPageArray.length-1];
+										this.processChoice(this.page,0);
+										return;
+										
 									//Otherwise tell them its wrong and try again
 									} else {
 										if (this.currentPushes < this.tumblers[this.currentTumbler-1]) {
@@ -2462,6 +2467,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								choicesArray = this.choices[this.page].split(this.DELIMITER);
 								this.page = choicesArray[1];
 								this.processChoice(this.page, choiceNum);
+								return;
 							}
 							this.js.stop();
 							this.js.say({text : this.lockString.replace(new RegExp( '<br>', 'g' ),' '), cache : true});
@@ -2476,13 +2482,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						MazeText=specialPageArray[p].split('MAZE:')[1].split(',MESSAGE:');
 						this.message=specialPageArray[specialPageArray.length-1];
 						//set default maze size and adjust it according to game difficulty level.
-						mazeSize=4;
+						mazeSize=5;
 						if(this.difficulty=='Easy')
-							{mazeSize=3;}
-						if(this.difficulty=='Normal')
 							{mazeSize=4;}
-						if(this.difficulty=='Hard')
+						if(this.difficulty=='Normal')
 							{mazeSize=5;}
+						if(this.difficulty=='Hard')
+							{mazeSize=6;}
 
 						//Populate the 2D Array with doors ramdomly stripping out any repeats until it reaches bottom right cell of array.
 						MazeArray = [];
@@ -2577,7 +2583,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							if(MazeArray[mazeRow][mazeCol].charAt(i)=='W')
 								{dir='West';}
 							choicesArray[i*2] ='Go ' + dir;
-							choicesArray[i*2+1] =this.page;
+							choicesArray[i*2+1] = this.page;
+							choicesArray[i*2+2] = 'Cheat (Skip the maze)';
+							choicesArray[i*2+3] = this.page;
 							}
 						//Prints the Maze array to the Console
 						/*for (m=0; m<MazeArray.length-1; m++)
@@ -2606,6 +2614,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								{
 									mazeCol--;
 								}
+							else {
+								//skip the maze
+								this.inMaze=0;
+								//redirect the player out of the maze
+								choicesArray = this.choices[this.page].split(this.DELIMITER);
+								this.page = choicesArray[1];
+								this.processChoice(this.page, choiceNum);
+								return;
+							}
 							//Putting custom choices in the array for Maze navigation
 							choicesArray = [];
 							//Randomly choose one of the messages read in from the input file and put it on the page
@@ -2620,6 +2637,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								choicesArray = this.choices[this.page].split(this.DELIMITER);
 								this.page = choicesArray[1];
 								this.processChoice(this.page, choiceNum);
+								return;
 							} else {
 							//populate the array of choices with the correct direction options
 							for(i=0; i<MazeArray[mazeRow][mazeCol].length; i++)
@@ -2635,6 +2653,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									{dir='West';}
 								choicesArray[i*2] ='Go to the ' + dir;
 								choicesArray[i*2+1] =this.page;
+								choicesArray[i*2+2] = 'Cheat (Skip the maze)';
+								choicesArray[i*2+3] = this.page;
 								}
 							}
 						}
