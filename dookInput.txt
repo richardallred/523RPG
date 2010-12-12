@@ -2773,35 +2773,26 @@ COMBINATION:Crumpled scrap of paper
 1381:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
 1382:RESTART:^*As you walk up to the large gate in front of the castle keep, one of the guards looks at you with a shocked expression.  "That's the prisoner the guards brought to the dungeon earlier today!" he gasps.  The guards draw swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
 1382:null^*1
-//1383:LOCKPICK:3^*You are picking the lock
-//1383:Done^*405
-1383:INVSPLIT:asdf^*1^*405
-//1384:LOCKPICK:3^*You are picking the lock
-//1384:Done^*624
-1384:INVSPLIT:asdf^*1^*624
-//1385:LOCKPICK:3^*You are picking the lock on a chest
-//1385:Done^*740
-1384:INVSPLIT:asdf^*1^*740
-//1386:LOCKPICK:3^*You are picking the lock
-//1386:Done^*811
-1386:INVSPLIT:asdf^*1^*811
-//1387:LOCKPICK:3^*You are picking the lock
-//1387:Done^*838
-1387:INVSPLIT:asdf^*1^*838
-//1388:LOCKPICK:3^*You are picking the lock
-//1388:Done^*1241
-1388:INVSPLIT:asdf^*1^*1241
-//1389:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.
-//1389:Try to pick the lock^*1391^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
-//1389:images/locked_test.jpg
-1389:INVSPLIT:asdf^*1^*1391
-//1390:LOCKPICK:3^*You are picking the lock
-//1390:Done^*480
-1390:INVSPLIT:asdf^*1^*480
-//1391:LOCKPICK:4^*You pull your lockpicking kit out of your pack and try to pick the lock while holding onto the grate.
-//1391:Done^*206
-//1391:images/locked_test.jpg
-1391:INVSPLIT:asdf^*1^*206
+1383:LOCKPICK:3^*You are picking the lock.
+1383:Done^*405
+1384:LOCKPICK:3^*You are picking the lock.
+1384:Done^*624
+1385:LOCKPICK:3^*You are picking the lock on a chest.
+1385:Done^*740
+1386:LOCKPICK:3^*You are picking the lock.
+1386:Done^*811
+1387:LOCKPICK:3^*You are picking the lock.
+1387:Done^*838
+1388:LOCKPICK:3^*You are picking the lock.
+1388:Done^*1241
+1389:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.
+1389:Try to pick the lock^*1391^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
+1389:images/locked_test.jpg
+1390:LOCKPICK:3^*You are picking the lock.
+1390:Done^*480
+1391:LOCKPICK:4^*You pull your lockpicking kit out of your pack and try to pick the lock while holding onto the grate.
+1391:Done^*206
+1391:images/locked_test.jpg
 1392:VARSET:timeOfDay,night^*VARSET:turnedAway,0^*You lurk in the nearby forest, waiting patiently until dusk and carefully watching the castle.  Not much interesting happens except that the castle guards change posts several time.  Finally, dusk has settled and you are ready to try to enter the castle.
 1392:Try the front gate^*5^*Swim the moat^*200^*Attack the guards with a crossbow^*32^*Grapple up the back wall^*34
 1393:VARSET:turnedAway,1^*You leave the front gate and return to the path outside the castle.  The guards watch you leave until you are out of sight.  It looks like you will need to find another way in. <br>You could avoid the guards and try to swim across the moat.  <br> You could hide in the forest and try to shoot the gate guards with a crossbow.  <br> You could go to the back side of the castle and try to grapple up to the roof with a grappling hook.
@@ -2811,12 +2802,12 @@ COMBINATION:Crumpled scrap of paper
 3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*test
 3001:Continue^*3002
 3002:SAFECRACK:3004^*You are trying to crack a safe.
-3002:Donee^*0
+3002:Done^*0
 3003:SAFECRACK:3008^*You are trying to crack a safe.
 3003:null^*3007
 3004:INVADD:Crumpled scrap of paper^*test2
 3004:Continue^*3003
-3005:LOCKPICK:3^*You are picking a lock
+3005:LOCKPICK:3^*You are picking a lock.
 3005:Done^*0
 3005:images/lock_pick.jpg
 3006:MAZE:There is nothing interesting here,MESSAGE:A rat scurries across the floor,MESSAGE:You run into a decomposed skeleton against the wall.  Chills run down your back,MESSAGE:You step on something. It makes a loud crunch underfoot, better get going,MESSAGE:A trail of cochroaches crosses the floor and climbs up the walls,MESSAGE:You start to think that you are lost,MESSAGE:You start to feel very alone. You wonder if this maze ever ends,MESSAGE:You stumble upon a great sword smashed to pieces,MESSAGE:Above you hang what seems like an endless amount of bodies.  I wonder if anyone has ever made it out alive,MESSAGE:You feel a cold drip of water on your head,MESSAGE:You shiver from the cold^*test maze.
