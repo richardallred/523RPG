@@ -111,7 +111,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//special mode for safe cracking
 		this.inSafeCracking =0;
 		this.hasCombo = 0;
-		this.currentNum =0;
+		this.currentNum = 0;
 		this.checked = 0;
 		this.maxNum = 40;
 		this.safeDisplay = [];
@@ -2115,7 +2115,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										combatString = combatString + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
 									}
 									if (aliveEnemies[f].health > 0) {
-										combatminusbr = combatString.replace(new RegExp( '<br>', 'g' ),'');
+										combatminusbr = combatString.replace(new RegExp( '<br>', 'g' ),' ');
 										this.js.stop();
 										this.js.say({text : combatminusbr, cache : true});
 									}
@@ -2602,6 +2602,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if(this.inSafeCracking==0){
 							this.inSafeCracking = 1;
 							this.safeEntered = [];
+							this.checked = 0;
 							//check inventory for combination items
 							this.hasCombo = 0;
 							for (x = 0; x < this.combinationItems.length; x++) {
@@ -2611,7 +2612,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									}
 								}
 							}
-							this.message = this.message + '<br>';
+							this.message = this.message + '<br>Rotate the safe dial until it matches each number of the combination, then change the dial direction. <br>';
 							if (this.hasCombo > 0 && this.safeDisplay.length < this.combinationItems.length) {
 								this.safeDisplay = [];
 								for (i = 0; i < this.hasCombo; i++) {
@@ -2627,23 +2628,12 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									this.safeDisplay[rand] = i;
 								}
 								for (i = 0; i < this.safeDisplay.length; i++) {
-									this.message = this.message + 'Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it.<br>';
+									this.message = this.message + 'Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
 								}
-									/*this.display[0] = Math.floor(Math.random()*3);
-									this.display[1]=Math.floor(Math.random()*3);
-									this.display[2]=Math.floor(Math.random()*3);
-									while(this.display[1] == this.display[0])
-										this.display[1]=Math.floor(Math.random()*3);
-									while(this.display[2] == this.display[0] || this.display[2] == this.display[1])
-										this.display[2]=Math.floor(Math.random()*3);
-										this.message= this.message+ 'Your ' + this.combinationItems[this.display[0]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.display[0]].value + ' on it.';
-									if(this.hasCombo>1)
-										this.message= this.message+ 'Your ' + this.combinationItems[this.display[1]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.display[1]].value + ' on it.';
-									if(this.hasCombo>2)
-										this.message= this.message+ 'Your ' + this.combinationItems[this.display[2]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.display[2]].value + ' on it.';*/
 							}
 							
 							this.currentNum = 0;
+							previousChoice = 0;
 							choicesArray = [];
 							choicesArray[0]='Turn dial right by 1';
 							choicesArray[1]=this.page;
@@ -2658,14 +2648,20 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							//choicesArray[10]='Check number ' + (this.checked+1);
 							choicesArray[10]='Change dial direction';
 							choicesArray[11]=this.page;
-							choicesArray[12]='Abort';
+							choicesArray[12]='Leave the safe';
 							choicesArray[13]=this.page;
-						}
-						else{
-							this.message = "";
+							this.message+="The safe dial goes from 0 to " + (this.maxNum-1) + ". <br>";
+							this.message += "The dial is on 0";
+							this.js.stop();
+							messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),' ');
+							this.js.say({text : messageminusbr, cache : true});
+						} else {
+							this.message = 'Rotate the safe dial until it matches each number of the combination, then change the dial direction. <br>';
+							safeString = '';
 							if(this.hasCombo>0){
 								for (i = 0; i < this.safeDisplay.length; i++) {
-									this.message = this.message + 'Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it.<br>';
+									safeString = safeString +' Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
+									//this.message = this.message + 'Your ' + this.combinationItems[this.safeDisplay[i]].name.toLowerCase() + ' has the number ' + this.combinationItems[this.safeDisplay[i]].value + ' on it. <br>';
 								}
 							}
 							if(this.checked==0 || this.checked==2){
@@ -2683,7 +2679,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//choicesArray[10]='Check number ' + (this.checked+1);
 								choicesArray[10]='Change dial direction';
 								choicesArray[11]=this.page;
-								choicesArray[12]='Abort';
+								choicesArray[12]='Leave the safe';
 								choicesArray[13]=this.page;
 								if(choiceNum<=5)
 								{
@@ -2705,7 +2701,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										}
 									}
 								}
-							else{
+							} else {
 								choicesArray = [];
 								choicesArray[0]='Turn dial left by 1';
 								choicesArray[1]=this.page;
@@ -2720,7 +2716,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//choicesArray[10]='Check number ' + (this.checked+1);
 								choicesArray[10]='Change dial direction';
 								choicesArray[11]=this.page;
-								choicesArray[12]='Abort';
+								choicesArray[12]='Leave the safe';
 								choicesArray[13]=this.page;
 								if(choiceNum<=5)
 								{
@@ -2744,19 +2740,22 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 							}
 							
-							if(choiceNum==6){
-								//if(this.currentNum==this.combinationItems[this.checked]){
+							if(choiceNum == 6){
+								if(previousChoice==choiceNum){
+									safeString += "You must rotate the dial before changing directions again.<br>";
+									//this.message += "You must rotate the dial before changing directions again.<br>";
+								} else {
 									this.safeEntered[this.checked] = this.currentNum;
 									this.checked++;
-									if (this.safeEntered.length == 1) {
-										this.message += "You have entered: " + this.currentNum + ".<br>";
-									}
-									//if(this.checked==this.num.length){
-									//	this.inSafeCracking = 0;
-									//	this.checked=0;
-									//	this.message = "You have successfully cracked the safe! <br>";
-									//}
-									//else {
+									if (this.checked >= this.combinationItems.length) {
+										safeString = "";
+										this.message = "";
+										choicesArray = [];
+										choicesArray[0] = 'Try to open the safe';
+										choicesArray[1] = this.page;
+										choicesArray[2] = 'Leave the safe';
+										choicesArray[3] = this.page;
+									} else {
 										if(this.checked == 1){
 											choicesArray = [];
 											choicesArray[0]='Turn dial left by 1';
@@ -2769,22 +2768,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											choicesArray[7]=this.page;
 											choicesArray[8]='Turn dial left by 20';
 											choicesArray[9]=this.page;
-										}else
-										{
-											if(this.checked == 1){
-												choicesArray = [];
-												choicesArray[0]='Turn dial left by 1';
-												choicesArray[1]=this.page;
-												choicesArray[2]='Turn dial left by 3';
-												choicesArray[3]=this.page;
-												choicesArray[4]='Turn dial left by 5';
-												choicesArray[5]=this.page;
-												choicesArray[6]='Turn dial left by 10';
-												choicesArray[7]=this.page;
-												choicesArray[8]='Turn dial left by 20';
-												choicesArray[9]=this.page;
-											}else
-											{
+										} else {
 											choicesArray = [];
 											choicesArray[0]='Turn dial right by 1';
 											choicesArray[1]=this.page;
@@ -2797,53 +2781,72 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 											choicesArray[8]='Turn dial right by 20';
 											choicesArray[9]=this.page;
 										}
-											choicesArray[10]='Check number ' + (this.checked+1);
-											choicesArray[11]=this.page;
-											choicesArray[12]='Abort';
-											choicesArray[13]=this.page;
-										}
 										//choicesArray[10]='Check number ' + (this.checked+1);
 										choicesArray[10]='Change dial direction';
 										choicesArray[11]=this.page;
-										choicesArray[12]='Abort';
+										choicesArray[12]='Leave the safe';
 										choicesArray[13]=this.page;
-									//}
-								//}else{
-									//this.health -= this.safeDamage;
-									//this.message += "Please try again.<br>";
-								//}
+									}
+								}
 							}
 							
-						}
-						passedCheck = false;
-						if(choiceNum==7){
-							passedCheck = true;
-						}
-						if (passedCheck) {
-							// abort safecracking, redirect to first page
-							var abortPage = specialPageArray[p].split('SAFECRACK:');
-							this.inSafeCracking = 0;
-							this.checked=0;
-							this.page = abortPage[1];
-							this.processChoice(this.page,0);
-							return;
-						}
-						if(this.inSafeCracking != 0){
-							console.log(this.safeEntered.length);
-							if (this.safeEntered.length == 0) {
-								this.message+="The safe dial has " + this.maxNum + " numbers.<br>";
+							passedCheck = false;
+							if(choiceNum==7){
+								passedCheck = true;
 							}
-							this.message += "The dial is on " + this.currentNum + "<br>";
-						}
-						
-						if(this.health<= 0){
-							this.inSafeCracking = 0;
-							this.checked=0;
-							this.message = "You have failed cracked the safe! <br>";
-							this.restart = 1;
+							if (passedCheck) {
+								// abort safecracking, redirect to first page
+								var abortPage = specialPageArray[p].split('SAFECRACK:');
+								this.inSafeCracking = 0;
+								this.checked=0;
+								this.page = abortPage[1];
+								this.processChoice(this.page,0);
+								return;
+							}
+							if(this.inSafeCracking != 0){
+								if (this.safeEntered.length == 0) {
+									safeString += "The safe dial goes from 0 to " + (this.maxNum-1) + ". <br>";
+									//this.message += "The safe dial goes from 0 to " + (this.maxNum-1) + ". <br>";
+								} else {
+									if (this.safeEntered.length == 1) {
+										safeString += "You have entered: " + this.safeEntered[0] + "<br>";
+										//this.message += "You have entered: " + this.safeEntered[0] + "<br>";
+									} else {
+										safeString += "You have entered: ";
+										//this.message += "You have entered: ";
+										for (s = 0; s < this.safeEntered.length; s++) {
+											safeString += this.safeEntered[s];
+											//this.message += this.safeEntered[s];
+											if (s < this.safeEntered.length - 1) {
+												safeString += ',';
+												//this.message += ',';
+											}
+										}
+										if (this.checked < this.combinationItems.length) {
+											safeString += "<br>";
+											//this.message += "<br>";
+										}
+									}
+								}
+								if (this.checked < this.combinationItems.length) {
+									safeString += "The dial is on " + this.currentNum + "<br>";
+									//this.message += "The dial is on " + this.currentNum + "<br>";
+								}
+							}
+							
+							if(this.health<= 0){
+								this.inSafeCracking = 0;
+								this.checked=0;
+								this.message = "You have failed cracked the safe! <br>";
+								this.restart = 1;
+							}
+							
+							previousChoice = choiceNum;
+							this.message += safeString;
+							this.js.stop();
+							this.js.say({text : safeString.replace(new RegExp( '<br>', 'g' ),' '), cache : true});
 						}
 					}
-					
 					//restart the game on next button press with RESTART
 					else if (specialPageArray[p].match('RESTART:') != null) {
 						//this.message = specialPageArray[p+1];
@@ -3006,13 +3009,13 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		this.drawAll();
 	},
 	runJSonic: function() {
-		if (this.inCombat == 0 || this.reread == 1) {
+		if ((this.inCombat == 0 && this.inSafeCracking == 0) || this.reread == 1) {
 			this.js.stop();
 		}
 		this.js.setProperty({name: "rate", value: this.sonicRate});
 		//don't let JSonic read the <br> tag
-		if (this.inCombat == 0 || this.reread == 1) {
-			messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),'');
+		if ((this.inCombat == 0 && this.inSafeCracking == 0) || this.reread == 1) {
+			messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),' ');
 			this.js.say({text : messageminusbr, cache : true});
 		}
 		this.reread = 0;
@@ -3022,7 +3025,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		for (i = 0 ; i < choicesArray.length; i+=2) {
 			if (choicesArray[i] != null && choicesArray[i] != '') {
 				//remove br tag from choices text
-				choicesminusbr = choicesArray[i].replace(new RegExp( '<br>', 'g' ),'');
+				choicesminusbr = choicesArray[i].replace(new RegExp( '<br>', 'g' ),' ');
 				choicesString = choicesString + choicesminusbr + ".  ";
 				//this.js.say({text : choicesminusbr, cache : true});
 			}
