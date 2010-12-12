@@ -436,7 +436,7 @@ COMBINATION:Crumpled scrap of paper
 191:You enter the door and see a long, narrow passageway with another wooden door on the end.  Near the end of the passageway, you see a small lever in the wall.
 191:Walk through the passageway and pull the lever^*793^*Walk through the passageway and go through the door^*195
 192:The surprised servant doesn't resist as you swiftly strike him down.  You enter the door that he came through and see a long, narrow passageway with another wooden door at the end.  You hurry through the passageway towards the door.  To your left, you can see a small lever in the wall.
-192:Pull the lever^*793^*Leave the passageway^*195
+192:Pull the lever^*793^*Continue through the door^*195
 193:VARSET:killedStairwayGuards,1^*As you slay the guards, you can see the servant you ran past earlier dodge past you and run down the hallway, screaming for help.  You quickly look around and see that you are in a hallway corner.  In front of you, you see many entrances to a large great hall.  Next to you is set of downward leading stairs and and you dash down the stairs, hoping to find a place to hide before the group of guards the servant brings finds you.  As you are running down the stairs, you hear shouts behind you.  You emerge in a narrow hallway at the bottom of the stairs.
 193:Run to the left^*1213^*Run to the right^*1214
 194:COMBAT:You are fighting two guards.  They are both armed with swords,NAME:first guard,WEAPON:Sword,STRENGTH:15,DEFENSE:2,ACCURACY:70,HEALTH:40,NAME2:second guard,WEAPON2:Sword,STRENGTH2:15,DEFENSE2:2,ACCURARCY2:70,HEALTH2:40,HIT:The first guard slashes you with his blade,HIT2:The second guard slashes you with his blade^*You have killed the guards.
@@ -1302,7 +1302,7 @@ COMBINATION:Crumpled scrap of paper
 623:You walk towards the side wall of the keep so you can examine it more closely.  The door on the wall is plain and wooden, and you can see an open lock on it.  The stained glass windows elsewhere on the wall are a good distance up, but you might be able to make the difficult climb up a rough section of the wall to reach them.
 623:Go around to the front entrance^*622^*Enter the wooden door^*662^*DISPLAYIFVAR:followedServant,0,Wait for one of the servants to come out of the door^*663^*Climb up to one of the stained glass windows and climb through it^*792^*DISPLAYIF:Grappling hook,Throw your grappling hook through one of the windows and climb up^*791
 624:You pick the lock on the door and enter the keep.  Inside, you see a small, narrow passageway with another wooden door at the end.  Near the end of the passageway, you see a small lever.
-624:Pull the lever^*793^*Leave the passageway^*794
+624:Pull the lever^*793^*Continue through the door^*794
 625:INVSPLIT:Soldier's Uniform^*1378^*1379
 625:null^*1
 626:You toss your grapple and it sails through one of the stained glass windows, shattering it.  Fortunately, the hook attaches to the window ledge and you are able to climb up.  When you reach the top, you pull yourself up to the window ledge and see a large cathedral on the other side.  The cathedral is quite tall, and you are standing in one of the stained glass windows near the top.  Rows of wooden chairs are laid out facing an altar.  The floor is a good distance below you and is covered with broken glass, and the wall inside the cathedral is unclimbable.  You could either try to jump down to the ground or use the rope from your grappling hook to climb down, though it would mean abandoning the grappling hook.
@@ -1404,7 +1404,7 @@ COMBINATION:Crumpled scrap of paper
 674:The guards escort you out of the throne room and leave you in the great hall.
 674:Continue^*1197
 675:The surprised servant doesn't resist as you swiftly strike him down.  You hurry through the rest of the passageway towards the door at the end.  To your left, you can see a small lever in the wall.
-675:Pull the lever^*793^*Leave the passageway^*195
+675:Pull the lever^*793^*Continue through the door^*195
 676:VARSET:passagewayLockPicked,1^*You run past the surprised servant towards the other end of the passageway.  He runs after you and shouts at you to stop.  You rush out the passageway door and run into two guards, who draw swords to attack you.
 676:Continue^*194
 677:VARSET:followedServant,1^*The servant watches you suspiciously as you follow him back towards the group of tents.
@@ -2773,32 +2773,41 @@ COMBINATION:Crumpled scrap of paper
 1381:Examine the altar^*635^*Examine the small door^*637^*Leave the cathedral^*636
 1382:RESTART:^*As you walk up to the large gate in front of the castle keep, one of the guards looks at you with a shocked expression.  "That's the prisoner the guards brought to the dungeon earlier today!" he gasps.  The guards draw swords and attack you.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
 1382:null^*1
-1383:LOCKPICK:3^*You are picking the lock
-1383:Done^*405
-1384:LOCKPICK:3^*You are picking the lock
-1384:Done^*624
-1385:LOCKPICK:3^*You are picking the lock on a chest
-1385:Done^*740
-1386:LOCKPICK:3^*You are picking the lock
-1386:Done^*811
-1387:LOCKPICK:3^*You are picking the lock
-1387:Done^*838
-1388:LOCKPICK:3^*You are picking the lock
-1388:Done^*1241
-1389:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.
-1389:Try to pick the lock^*1391^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
-1389:images/locked_test.jpg
-1390:LOCKPICK:3^*You are picking the lock
-1390:Done^*480
-1391:LOCKPICK:4^*You pull your lockpicking kit out of your pack and try to pick the lock while holding onto the grate.
-1391:Done^*206
-1391:images/locked_test.jpg
+//1383:LOCKPICK:3^*You are picking the lock
+//1383:Done^*405
+1383:INVSPLIT:asdf^*1^*405
+//1384:LOCKPICK:3^*You are picking the lock
+//1384:Done^*624
+1384:INVSPLIT:asdf^*1^*624
+//1385:LOCKPICK:3^*You are picking the lock on a chest
+//1385:Done^*740
+1384:INVSPLIT:asdf^*1^*740
+//1386:LOCKPICK:3^*You are picking the lock
+//1386:Done^*811
+1386:INVSPLIT:asdf^*1^*811
+//1387:LOCKPICK:3^*You are picking the lock
+//1387:Done^*838
+1387:INVSPLIT:asdf^*1^*838
+//1388:LOCKPICK:3^*You are picking the lock
+//1388:Done^*1241
+1388:INVSPLIT:asdf^*1^*1241
+//1389:You climb up the grate and try to pull it open, but the rusted lock keeps it firmly attached.
+//1389:Try to pick the lock^*1391^*Abandon the tunnel and swim to the small hole^*211^*Abandon the tunnel and try to scale the wall^*212
+//1389:images/locked_test.jpg
+1389:INVSPLIT:asdf^*1^*1391
+//1390:LOCKPICK:3^*You are picking the lock
+//1390:Done^*480
+1390:INVSPLIT:asdf^*1^*480
+//1391:LOCKPICK:4^*You pull your lockpicking kit out of your pack and try to pick the lock while holding onto the grate.
+//1391:Done^*206
+//1391:images/locked_test.jpg
+1391:1389:INVSPLIT:asdf^*1^*206
 3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*text
 3001:Continue^*3002
 3002:SAFECRACK:3003^*You are trying to crack a safe.
 3002:Donee^*0
 3003:INVADD:Crumpled scrap of paper^*SAFECRACK:3005^*You are trying to crack a safe.
-3003:Done^*0
+3003:Done^*3007
 3005:LOCKPICK:3^*You are picking a lock
 3005:Done^*0
 3005:images/lock_pick.jpg
