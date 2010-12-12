@@ -2183,11 +2183,14 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					}
 					//LOCKPICK: num of tumblers
 					else if (specialPageArray[p].match('LOCKPICK:') !=null) {
-						//Check to see if I'm setting up everything for the first time
+						//Calling the lockpicking minigame for the first time
 						if(this.inLockPicking==0){
 							//Read # of tumblers as set by the call from the input file
 							numOfTumbler = specialPageArray[p].split('LOCKPICK:');
 							numOfTumblers=dojo.number.parse(numOfTumbler[1]);
+							if (isNaN(numOfTumblers)) {
+								numOfTumblers = 3;
+							}
 							//this.message=this.message+"<br>There are " + numOfTumblers +" Tumblers in this lock";
 							this.maxTumblers=numOfTumblers;
 							this.tumblers= [];
@@ -2209,6 +2212,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}								
 							}
 							
+							//instantiate two dimensional array called hintsArray containing hints for each number
 							hintsArray = [];
 							hintsArray1= [];
 							hintsArray2= [];
@@ -2236,7 +2240,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							hintsArray1[3]='The number of All-Americans on the 2007 Carolina basketball team';
 							hintsArray1[4]='Number of years Marvin Williams was a Tar Heel before leaving for the NBA';
 							hintsArray1[5]='The margin of victory for the Tar Heels men\'s basketball team in the 1982 championship game.';
-							hintsArray1[6]='The lonliest number';
+							hintsArray1[6]='The loneliest number';
 							hintsArray1[7]='Margin of victory during Dean Smith\'s first NCAA title in 1982';
 						
 							
@@ -2309,23 +2313,24 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 														
 							this.inLockPicking=1;
 							choicesArray = [];
-							this.message=this.message+"<br><br>You are currently picking Tumbler #<b>"+(this.currentTumbler) +"</b> of <b>"+numOfTumblers;
-							this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
-							this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times.<br>";
-							this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
-							//Find a hint for the current tumbler						
+							this.message = this.message + "<br>You must push each tumbler to the correct height before the lock will open.  Push the tumbler the number of times that is indicated by the hint and then check the tumbler to see if you pushed it to the correct height.  If you accidently push a tumbler too much, you can let it fall to return it to the bottom.  If you push too many of the tumblers to the wrong height, you will jam the lock and not be able to open it."
+							this.message=this.message+"<br>You are currently picking tumbler "+(this.currentTumbler) +" of "+numOfTumblers+".  ";
+							//this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
+							this.message=this.message+"Each tumbler can be pushed a maximum of "+this.maxPushes+" times.<br>";
+							this.message=this.message+"You have "+this.maxWrong+" attempts left to check tumblers in this lock.";
+							//Find a hint for the current tumbler
 							curhintArray=hintsArray[this.tumblers[this.currentTumbler-1]];
 							this.hint=curhintArray[Math.ceil(Math.random()*7)];
 							//Add it to the message
-							this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
+							this.message=this.message+"<br>HINT:"+this.hint;
 							
-							choicesArray[0]='Pick tumbler '+this.currentTumbler;
+							choicesArray[0]='Push tumbler '+this.currentTumbler;
 							choicesArray[1]=this.page;
 							choicesArray[2]='Check tumbler '+this.currentTumbler;
 							choicesArray[3]=this.page;
-							choicesArray[4]='Start this Tumbler over';
+							choicesArray[4]='Let tumbler ' + this.currentTumbler + ' fall';
 							choicesArray[5]=this.page;
-							choicesArray[6]='Skip Lock-picking Game';
+							choicesArray[6]='Cheat (Skip the lock picking game)';
 							choicesArray[7]=this.page;
 						
 						//Return after button hit
@@ -2335,19 +2340,27 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								//Check to make sure we haven't reached the max pushes
 								if(this.currentPushes!=this.maxPushes){
 									this.currentPushes+=1;
-									this.message=this.message+"<br><br>You are currently picking Tumbler #<b>"+(this.currentTumbler) +"</b> of <b>"+this.maxTumblers;
-									this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
-									this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times.<br>";
-									this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
-									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
+									this.message = "You must push each tumbler to the correct height before the lock will open.  Push the tumbler the number of times that is indicated by the hint and then check the tumbler to see if you pushed it to the correct height.  If you accidently push a tumbler too much, you can let it fall to return it to the bottom.  If you push too many of the tumblers to the wrong height, you will jam the lock and not be able to open it."
+									this.message=this.message+"<br>You are currently picking tumbler "+(this.currentTumbler) +" of "+this.maxTumblers;
+									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock.<br>";
+									if (this.currentPushes == 1) {
+										this.message=this.message+"You have pushed the tumbler "+(this.currentPushes)+ " time.  ";
+									} else {
+										this.message=this.message+"You have pushed the tumbler "+(this.currentPushes)+ " times.  ";
+									}
+									this.message=this.message+"<br>HINT:"+this.hint;
 								//Circle back to 1 push after hitting max
 								}else{
 									this.currentPushes=1;
-									this.message=this.message+"<br><br>You are currently picking Tumbler #<b>"+(this.currentTumbler) +"</b> of <b>"+this.maxTumblers;
-									this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
-									this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times.<br>";
-									this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
-									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
+									this.message = "You must push each tumbler to the correct height before the lock will open.  Push the tumbler the number of times that is indicated by the hint and then check the tumbler to see if you pushed it to the correct height.  If you accidently push a tumbler too much, you can let it fall to return it to the bottom.  If you push too many of the tumblers to the wrong height, you will jam the lock and not be able to open it."
+									this.message=this.message+"<br>You are currently picking tumbler "+(this.currentTumbler) +" of "+this.maxTumblers;
+									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock.<br>";
+									if (this.currentPushes == 1) {
+										this.message=this.message+"You have pushed the tumbler "+(this.currentPushes)+ " time.  ";
+									} else {
+										this.message=this.message+"You have pushed the tumbler "+(this.currentPushes)+ " times.  ";
+									}
+									this.message=this.message+"<br>HINT:"+this.hint;
 								}
 								
 							//Choose to check current pushes
@@ -2356,11 +2369,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								if(this.currentPushes==this.tumblers[this.currentTumbler-1]){
 									//Move to next tumbler
 									this.currentTumbler++;
-									this.message=this.message+"<br><br>You successfully opened this tumbler!<br>";	
-									this.message=this.message+"<br>You are currently picking Tumbler #<b>"+(this.currentTumbler) +"</b> of <b>"+this.maxTumblers;
-									this.message=this.message+".</b>  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
-									this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times<br>";
-									this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
+									this.message="Tumbler " + (this.currentTumbler-1) + " clicks into place as you push it to the correct height.";
+									this.message=this.message+"<br>You are now picking tumbler "+(this.currentTumbler) +" of "+this.maxTumblers;
+									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock.";
+									this.message=this.message+"<br>HINT:"+this.hint;
 									curhintArray=hintsArray[this.tumblers[this.currentTumbler-1]];
 									this.hint=curhintArray[Math.ceil(Math.random()*7)];
 									this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
@@ -2368,10 +2380,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									//Check to see if we are done
 									if(this.currentTumbler<=this.maxTumblers){
 										this.currentPushes=0;
-										choicesArray[0]='Pick tumbler '+this.currentTumbler;
+										choicesArray = [];
+										choicesArray[0]='Push tumbler '+this.currentTumbler;
 										choicesArray[1]=this.page;
 										choicesArray[2]='Check tumbler '+this.currentTumbler;
 										choicesArray[3]=this.page;
+										choicesArray[4]='Let tumbler ' + this.currentTumbler + ' fall';
+										choicesArray[5]=this.page;
+										choicesArray[6]='Cheat (Skip the lock picking game)';
+										choicesArray[7]=this.page;
 									//End case
 									}else{
 										this.currentPushes=0;
@@ -2384,31 +2401,39 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 										this.processChoice(this.page, choiceNum);
 									}
 								//Incorrect Pushes for the that tumbler
-								}else{
+								} else if (this.currentPushes > 0) {
 									//Take away one of the attempts
 									this.maxWrong--;
 									//In this case, they have run out of attempts
-									if(this.maxWrong==0){
+									if (this.maxWrong==0) {
 										this.message="You have failed at picking this lock";
 										this.inLockPicking=0;
 									//Otherwise tell them its wrong and try again
-									}else{
-										this.message=this.message+"<br><br>This is the incorrect number of pushes for this tumbler!  Please Try Again!<br>"
-										this.message=this.message+"<br>You are currently picking Tumbler #<b>"+(this.currentTumbler)+"</b> of <b>"+this.maxTumblers;
-										this.message=this.message+"</b>.  You have pushed this tumbler <b>"+(this.currentPushes)+ "</b> time(s).  ";
-										this.message=this.message+"Each tumbler can be pressed a maximum of <b>"+this.maxPushes+"</b> times<br>";
-										this.message=this.message+"<br>You have <b>"+this.maxWrong+"</b> attempts left to check tumblers in this lock.<br>";
-										this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
+									} else {
+										if (this.currentPushes < this.tumblers[this.currentTumbler-1]) {
+											this.message="Tumbler " + (this.currentTumbler-1) + " grinds against the lock mechanism before falling to the ground.  You judge that you pushed it too low.";
+										} else {
+											this.message="Tumbler " + (this.currentTumbler-1) + " grinds against the lock mechanism before falling to the ground.  You judge that you pushed it too high.";
+										}
+										this.currentPushes = 0;
+										this.message=this.message+"<br>You are now picking tumbler "+(this.currentTumbler) +" of "+this.maxTumblers;
+										this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock.";
+										this.message=this.message+"<br>HINT:"+this.hint;
 									}
+								} else {
+									this.message="You must push the tumbler at least once before you can check to see if it is as the correct height!";
+									this.message=this.message+"<br>You are now picking tumbler "+(this.currentTumbler) +" of "+this.maxTumblers;
+									this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock.";
+									this.message=this.message+"<br>HINT:"+this.hint;
 								}
 							//Choose to start the current tumbler over, does not reset max wrong
 							}else if(choiceNum==3){
 								this.currentPushes=0;
-								this.message=this.message+"<br><br>You are currently picking Tumbler #"+(this.currentTumbler)+" of "+this.maxTumblers;
-								this.message=this.message+".  You have pushed this tumbler "+(this.currentPushes)+ " time(s).  ";
-								this.message=this.message+"Each tumbler can be pressed a maximum of "+this.maxPushes+" times";
+								this.message = "You must push each tumbler to the correct height before the lock will open.  Push the tumbler the number of times that is indicated by the hint and then check the tumbler to see if you pushed it to the correct height.  If you accidently push a tumbler too much, you can let it fall to return it to the bottom.  If you push too many of the tumblers to the wrong height, you will jam the lock and not be able to open it."
+								this.message=this.message+"<br>You are currently picking tumbler "+(this.currentTumbler) +" of "+this.maxTumblers;
 								this.message=this.message+"<br>You have "+this.maxWrong+" attempts left to check tumblers in this lock.<br>";
-								this.message=this.message+"<br><b>HINT:"+this.hint+"</b>";
+								this.message=this.message+"You have pushed the tumbler "+(this.currentPushes)+ " times.  ";
+								this.message=this.message+"<br>HINT:"+this.hint;
 							}else if(choiceNum==4){
 								//Skip the game
 								this.currentPushes=0;
