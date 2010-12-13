@@ -2198,7 +2198,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							this.tumblers= [];
 							for(m=0; m<=numOfTumblers; m++){
 								//Set values for the number of keypresses randomly for each tumbler dependant on the diffuculty setting
-								if(this.difficulty=="HARD"){
+								if(this.difficulty=="Hard"){
 									this.tumblers[m]=Math.ceil(Math.random()*3);
 									this.maxWrong=numOfTumblers*3+1;
 									this.maxPushes=9;
