@@ -77,7 +77,7 @@ COMBINATION:Torn scrap of paper
 COMBINATION:Ripped scrap of paper
 COMBINATION:Crumpled scrap of paper
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.  <br>You can save and load the game from the settings menu.
-0:Play the game^*1
+0:Play the game^*1^*Lockpicking demo^*3005^*Safecracking demo^*3001^*Maze demo^*3006
 0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
@@ -429,7 +429,7 @@ COMBINATION:Crumpled scrap of paper
 172:null^*1
 173:The altar is covered with candles and there is a red cloth draped over the center.  As you have no way of lighting the candles, there is nothing useful on the altar.
 173:Leave the cathedral^*636
-174:INVADD:Ripped scrap of paper^*The altar is covered with candles and there is a red cloth draped over the center.  Under the red cloth, you find a ripped scrap of paper with the number 4 on it, which you take.  As you have no way of lighting the candles, there is nothing else useful on the altar.
+174:INVADD:Ripped scrap of paper^*The altar is covered with candles and there is a red cloth draped over the center.  Under the red cloth, you find a ripped scrap of paper with a number on it, which you take.  As you have no way of lighting the candles, there is nothing else useful on the altar.
 174:Leave the cathedral^*636
 190:You enter the door and see a long, narrow passageway with another wooden door on the end.  You see a servant walking through the passage carrying a large bowl of gruel.  "You aren't allowed over here," he says, "Go back to your tent."
 190:Do as the servant says and follow him back to the tents^*677^*Attack the servant^*675^*Run past the servant^*676
@@ -2515,13 +2515,13 @@ COMBINATION:Crumpled scrap of paper
 1252:Continue^*1253
 1253:COMBAT:You are fighting five priests.  They are all using sacrificial daggers,NAME:first priest,WEAPON:Sacrificial Dagger,STRENGTH:11,DEFENSE:0,ACCURACY:70,HEALTH:30,NAME2:second priest,WEAPON2:Sacrificial Dagger,STRENGTH2:11,DEFENSE2:0,ACCURACY2:70,HEALTH2:30,NAME3:third priest,WEAPON3:Sacrificial Dagger,STRENGTH3:11,DEFENSE3:0,ACCURACY3:70,HEALTH3:30,NAME4:fourth priest,WEAPON4:Sacrificial Dagger,STRENGTH4:11,DEFENSE4:0,ACCURACY4:70,HEALTH4:30,NAME5:fifth priest,WEAPON5:Sacrificial Dagger,STRENGTH5:11,DEFENSE5:0,ACCURACY5:70,HEALTH5:30,HIT:The first priest stabs you,HIT2:The second priest stabs you,HIT3:The third priest stabs you,HIT4:The fourth priest stabs you,HIT5:The fifth priest stabs you^*You manage to kill all the priests.
 1253:Continue^*1254
-1254:VARSET:killedPriests,1^*INVADD:Sacrificial Dagger^*You search the bodies, but the priests are not carrying anything other than the sacrificial daggers.  As you are searching, you see strange occult tattoos crossing the priests' bodies.  You take one of the daggers and leave the cathedral.
+1254:VARSET:killedPriests,1^*INVADD:Sacrificial Dagger,Golden key^*You search the bodies and you find a tiny golden key on one of the priests.  The priests are not carrying anything other than the sacrificial daggers.  As you are searching, you see strange occult tattoos crossing the priests' bodies.  You take one of the daggers and the key before leaving the cathedral.
 1254:Continue^*1248
 1255:You hand one of the priests the golden cross.  He raises it in the air and the group of priests start chanting in a strange language.  As they chant, you see the cross turn a crimson red color and start to glow with power.  Reflexively, you ready your shield to defend yourself.  A bolt of power jumps at you from the cross, but the metal from the shield reflects it and bolt hits the group of priests.  The bolt explodes, instantly killing the priests.
 1255:Continue^*1257
 1256:RESTART:^*You hand one of the priests the golden cross.  He raises it in the air and the group of priests start chanting in a strange language.  As they chant, you see the cross turn a crimson red color and start to glow with power.  You lunge towards the priests, but it is too late.  A bolt of power jumps from the cross and strikes you down, rendering you helpless.  As you lay on the ground, paralyzed and in pain, you see one of the priests draw a sacrificial dagger and plunge it into your heart.  <br>Your life ends here.
 1256:null^*1
-1257:VARSET:killedPriests,1^*INVADD:Sacrificial Dagger^*You search the charred bodies of the priests, but they are not carrying anything other than a set of sacrificial daggers.  As you are searching, you see strange occult tattoos crossing the priests' bodies.  You take one of the sacrificial daggers.  Clenched in one of the priests' hands, you see the golden cross, which has returned to its normal color.
+1257:VARSET:killedPriests,1^*INVADD:Sacrificial Dagger,Golden key^*You search the charred bodies of the priests and you find a tiny golden key on one of them.  They are not carrying anything else other than a set of sacrificial daggers.  As you are searching, you see strange occult tattoos crossing the priests' bodies.  You take the key and one of the sacrificial daggers.  Clenched in one of the priests' hands, you see the golden cross, which has returned to its normal color.
 1257:Take the cross^*1258^*Leave the cathedral instead^*1248
 1258:INVADD:Golden cross^*You take the cross and continue towards the cathedral exit.
 1258:Continue^*1248
@@ -2632,12 +2632,12 @@ COMBINATION:Crumpled scrap of paper
 1311:You walk down the hallway until you reach the archway leading to the throne room.  Inside the busy throne room, you can see King K's court receiving a group of ambassadors.
 1311:Enter the throne room^*1281^*Go to the great hall^*1197^*Walk through the hallway to the inscribed door^*1265^*Walk through the hallway to the downward stairs^*1236
 1312:You enter the throne room and look around.  Since there is nobody else in the throne room, the only thing of interest that you can see is a golden throne that is draped with dark blue tapestries.  You examine the throne, but there is nothing unusual about it and it is far too heavy for you to take.
-1312:Sit on the throne^*1313^*Leave the throne room and go back to the great hall^*1197
+1312:Examine the throne^*1406^*Leave the throne room and go back to the great hall^*1197
 1313:You sit on the throne and cackle wickedly as you pretend to be the King.  After a few seconds, you get bored and decide to leave.
 1313:Leave the throne room and go back to the great hall^*1197
-1314:INVADD:Invasion Plans,Torn scrap of paper^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see a set of military plans for the upcoming invasion of Carolinia.  Together with the military documents you took from the outer bailey barracks, you now have a complete set of invasion plans, which could prove extremely valuable to a defense against the Dookian invasion.  You search through some of the other documents, but the only thing you find is a torn scrap of paper with the number 18 on it buried among a pile of treaties.  The scrap of paper looks very out of place, so you do decide to take it.  There is nothing else of interest to you in the room.
+1314:INVADD:Invasion Plans,Torn scrap of paper^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see a set of military plans for the upcoming invasion of Carolinia.  Together with the military documents you took from the outer bailey barracks, you now have a complete set of invasion plans, which could prove extremely valuable to a defense against the Dookian invasion.  You search through some of the other documents, but the only thing you find is a torn scrap of paper with a number written on it buried among a pile of treaties.  The scrap of paper looks very out of place, so you do decide to take it.  There is nothing else of interest to you in the room.
 1314:Leave the room^*1319
-1315:INVADD:Military Plans,Torn scrap of paper^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see detailed military plans for the upcoming invasion of Carolinia.  You decide to take the military plans, as they may be useful in defending against a Dookian invasion.  You search through some of the other documents, but the only thing you find is a torn scrap of paper with the number 18 on it buried among a pile of treaties.  The scrap of paper looks very out of place, so you do decide to take it.  There is nothing else of interest to you in the room., but there is nothing else of interest to you.
+1315:INVADD:Military Plans,Torn scrap of paper^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see detailed military plans for the upcoming invasion of Carolinia.  You decide to take the military plans, as they may be useful in defending against a Dookian invasion.  You search through some of the other documents, but the only thing you find is a torn scrap of paper with a number written on it buried among a pile of treaties.  The scrap of paper looks very out of place, so you do decide to take it.  There is nothing else of interest to you in the room., but there is nothing else of interest to you.
 1315:Leave the room^*1319
 1316:INVSPLIT:Military Documents^*1314^*1315
 1316:null^*1
@@ -2663,14 +2663,14 @@ COMBINATION:Crumpled scrap of paper
 1326:Attack the guards^*1278^*Try to bribe the guards^*1327^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1327:"I don't care how much gold you give me," says one of the guards, "I won't have to on my conscience that I let an assassin upstairs."  The guards refuse to take your bribe.
 1327:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
-1328:RANDSPLIT:^*1329^*1330^*1331^*1332
+1328:INVSPLIT:Crumpled scrap of paper^*1409^*1410
 1328:null^*1
-1329:GOLDSPLIT:40^*1331^*1355
+1329:GOLDSPLIT:30^*1331^*1355
 1329:null^*1
-1330:GOLDSPLIT:40^*1331^*1356
+1330:GOLDSPLIT:30^*1331^*1356
 1330:null^*1
 1331:You sidle through the crowd, casually rifling through the pockets of the people in the court.  Unfortunately, you do not manage to steal anything.
-1331:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1336^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1331:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpocket more people^*1336^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
 1332:RESTART:^*You sidle through the crowd, casually sifting your hands through the pockets of the distracted courtiers.  As you are lifting a pouch of gold, one of the guards standing in the room sees you.  "Thief!" he shouts, and soon the throne room is in an uproar.  You try to escape in the chaos, but several of the guards grab you.  The King orders you executed on the spot for daring to steal in his presence.
 1332:null^*1
 1333:The guards refuse to take any of your gold.
@@ -2718,9 +2718,9 @@ COMBINATION:Crumpled scrap of paper
 1354:VARSPLIT:killedInterrogator,1^*610^*611
 1354:null^*1
 1355:GAINGOLD:5-8^*You sidle through the crowd, casually lifting the possessions of the distracted court members.  You find several small pouches of gold, and you end up stealing a total of #gold gold coins.
-1355:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1334^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1355:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpocket more people^*1334^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
 1356:GAINGOLD:2-4^*You sidle through the crowd, casually digging your hands through the pockets of the distracted court members.  You only manage to steal a pouch of gold from one person, but you find that it contains #gold gold coins.
-1356:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpicket more people^*1335^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+1356:DISPLAYIFVAR:throneVisited,0,Listen to the ambassadors^*1285^*Try to pickpocket more people^*1335^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
 1357:You climb through the hole in the rocks and emerge in a narrow cave tunnel.  The tunnel soon takes a sharp downward decline and you can see it split off into a complicated looking maze of tunnels going in many different directions.  As there are no torches lining the tunnels, they rapidly descend into darkness.
 1357:DISPLAYIF:Tinderbox and torch,Light your torch and enter the maze of tunnels^*1362^*DISPLAYIFNOT:Tinderbox and torch,Enter the pitch black maze of tunnels^*1363^*Go back and leave the dungeon^*1150
 1358:You climb through the hole in the rocks, but there is an even larger pile of rocks beyond it that is impossible to pass through.  The larger pile of rocks looks like it is the result of a recent cave in.  As using more explosive potions to blast through would be far too risky and ineffective, you are forced to give up and climb back out.
@@ -2754,7 +2754,7 @@ COMBINATION:Crumpled scrap of paper
 1372:VARSET:killedDungeonGuard,1^*INVADD:Key Ring^*INVADD:Sword^*A quick search of the guard's body reveals a key ring with several keys on it, which you take.  You also find a sword, but nothing else useful.  You pull the lever and the grate grinds open, allowing you to descend the staircase.
 1372:Continue^*1023
 1373:As you walk up to the large gate in front of the castle keep, one of the guards gives you a perplexed look.  "I didn't think merchants were allowed in the inner bailey," he says.
-1373:Content not added
+1373:Say that you need to get some supplies from the keep^*1402^*Say that you just needed to visit the infirmary^*1401^*Say you need to talk to the King^*1400^*Attack the guards^*1404
 1374:INVSPLIT:Assassin Garb^*1376^*1377
 1374:null^*1
 1375:As you walk up to the large gate in front of the castle keep, one of the guards gives you a perplexed look.  "We have no need of soldiers in the keep right now," he says curtly.
@@ -2762,7 +2762,7 @@ COMBINATION:Crumpled scrap of paper
 1376:RESTART:^*As you walk up to the large gate in front of the keep, the two guards draw their swords to attack you.  "You will not pass through here, assassin!" shouts one of them.  You fight them, but it is not long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
 1376:null^*1
 1377:As you walk up to the large gate in front of the castle keep, one of the guards gives you a perplexed look.  "What is your business here?" he asks.
-1377:Content not added^*999^*Go around to the side wall^*790
+1377:Say that you got a new position as a guard^*1405^*Say that you were visiting the infirmary^*1401^*Say you need to talk to the King^*1400^*Attack the guards^*1404
 1378:You look at the cracks in the wall and the uneven stone, and you work out a path that you could climb to reach the stained glass window.  However, the climb would be quite difficult and you probably wouldn't be able to make it while carrying any armor, including your soldier's uniform.
 1378:Discard your armor and attempt the climb^*627^*Attempt the climb while wearing your armor^*628^*Decide not to climb up the wall^*629
 1379:LOSEHEALTH:2^*You look at the cracks in the wall and the uneven stone, and you work out a path that you could climb to reach the stained glass window.  As you scale the rough stone with your hands, they start bleeding from the strain of your weight.  The fatigue from the climb causes you to lose 2 health.  Fortunately, you are a skilled climber, so you eventually make it to the window and pull yourself up on the ledge.  Unsurprisingly, the stained glass window was not designed to be opened.  You will have to break through it to gain entrance to the keep.
@@ -2809,20 +2809,44 @@ COMBINATION:Crumpled scrap of paper
 1398:null^*1
 1399:RESTART:^*Though you try for several minutes, you are unable to get the tumblers into the correct position to pick the lock.  Your failed attempts are interrupted when several soldiers come into the room and see you.  They run at you with their swords drawn and you are quickly killed.
 1399:null^*1
-3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*test
+1400:The guards call for the gate to be opened and one of them directs you.  "Go straight through the great hall and you will reach the throne room."  You enter the keep and find yourself in a wide hallway.  You walk forwards into the great hall and the gate closes behind you.
+1400:Continue^*1197
+1401:You say that you were visiting the infirmary and that you wish to return to the keep.  The guards wish you a speedy recovery and call for the gate to be opened.  You enter the keep and find yourself in a wide hallway.  In front of you, you can see a large great hall.  As you walk forwards into the great hall, you hear the gate close behind you.
+1401:Continue^*1197
+1402:"Get supplies from the keep?" asks one of the guards incredulously, "You can get all the supplies you need from the merchant's district in the outer bailey.  The only reason you would want to get some from the keep is the steal from us."  The guards draw their swords and attack you.
+1402:Fight them^*1404^*Run away^*1403
+1403:RESTART:^*You run away as fast as you can from the keep gate, but your run is cut short from a hail of arrows from several arrow slits above you.  <br>Your life ends here.
+1403:null^*1
+1404:RESTART:^*You attack the guards, but you do not manage to fight them for very long before several carefully aimed arrows fly out of some of the nearby arrow slits and fatally pierce you.
+1404:null^*1
+1405:You say that you received a new position as a castle guard and that you are reporting to the keep for duty.  The guards glare at you suspiciously.  "There hasn't been any openings for new castle guards," says one of them.  The guards draw their swords and attack you.
+1405:Fight them^*1404^*Run away^*1403
+1406:INVSPLIT:Crumpled scrap of paper^*1407^*1408
+1406:null^*1
+1407:You examine the throne, but there is nothing unusual about it and it is far too heavy for you to take.
+1407:Sit on the throne^*1313^*Leave the throne room and go back to the great hall^*1197
+1408:INVADD:Crumpled scrap of paper^*You examine the throne, but there is nothing unusual about it and it is far too heavy for you to take.  However, you do find a crumpled scrap of paper on the ground near the throne, which you take.  The scrap of paper has a number written on it.
+1408:Sit on the throne^*1313^*Leave the throne room and go back to the great hall^*1197
+1409:RANDSPLIT:^*1329^*1330^*1331^*1332
+1409:null^*1
+1410:INVADD:Crumpled scrap of paper^*You sidle through the crowd, casually rifling through the pockets of the people in the court.  Unfortunately, none of the people you try to pickpocket are carying anything valuable.  You are about to give up in frustration when you see a crumpled scrap on the ground near one of the members of the court, which you take.  The scrap of paper has a number written on it.
+1410:Keep trying to pickpocket people^*1336^*Try to find a way to attack the King^*1288^*Go to the center of the room and talk to the King^*1284^*Leave the throne room and go back to the great hall^*1197
+3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*Added two pieces of paper.
 3001:Continue^*3002
 3002:SAFECRACK:3004^*You are trying to crack a safe.
 3002:Done^*0
 3003:SAFECRACK:3008^*You are trying to crack a safe.
 3003:null^*3007
-3004:INVADD:Crumpled scrap of paper^*test2
+3004:INVADD:Crumpled scrap of paper^*Added a third piece of paper.
 3004:Continue^*3003
 3005:LOCKPICK:3^*You are picking a lock.^*3008
 3005:Done^*0
-3005:images/lock_pick.jpg
+//3005:images/lock_pick.jpg
 3006:MAZE:There is nothing interesting here,MESSAGE:A rat scurries across the floor,MESSAGE:You run into a decomposed skeleton against the wall.  Chills run down your back,MESSAGE:You step on something. It makes a loud crunch underfoot, better get going,MESSAGE:A trail of cochroaches crosses the floor and climbs up the walls,MESSAGE:You start to think that you are lost,MESSAGE:You start to feel very alone. You wonder if this maze ever ends,MESSAGE:You stumble upon a great sword smashed to pieces,MESSAGE:Above you hang what seems like an endless amount of bodies.  I wonder if anyone has ever made it out alive,MESSAGE:You feel a cold drip of water on your head,MESSAGE:You shiver from the cold^*test maze.
 3006:Done^*3007
-3007:TEST
-3007:Go Back^*3008
-3008:Abort!
-3008:go back^*0
+3007:You have completed the maze
+3007:Go Back^*0
+3008:You have failed to pick the lock.
+3008:Go Back^*0
+3009:You have left the safe.
+3009:Go Back^*0
