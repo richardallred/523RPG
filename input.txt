@@ -179,7 +179,7 @@ COMBINATION:Crumpled scrap of paper
 47:DISPLAYGOLD:^*"Very well," says one of the guards, "Give me the item to deliver and the name of the person, and I will make sure that the item is delivered - for a small fee of five gold pieces, of course." 
 47:Give the guards one of your items and the gold^*62^*Say that the delivery must be made in person^*63
 48:"Very well," says one of the guards, "Give me the message and I will ensure that it is delivered to the King."
-48:Say that the message must be delivered in person^*617^*Tell him that there is a plot to overthrow the King^*618^*Tell him that the Carolinians plan to attack the castle^*67^*Tell him that one of the King's relatives has died^*68^*Tell him that the peasents are revolting^*667
+48:Say that the message must be delivered in person^*617^*Tell him that there is a plot to overthrow the King^*618^*Tell him that the Carolinians plan to attack the castle^*67^*Tell him that one of the King's relatives has died^*68^*Tell him that the peasants are revolting^*667
 49:"If you are telling the truth," says the guard, "Then you will surrender your weapons immediately and come with us."
 49:Surrender to the guards^*42^*Fight the guards^*38^*Flee across the drawbridge^*41^*Take a running leap into the moat^*41
 50:"The Duke's youngest son Ernest is not a merchant," says one of the guards, "And you look nothing like him."  The guards seize you and place you under arrest.
@@ -274,7 +274,7 @@ COMBINATION:Crumpled scrap of paper
 94:Say that you must have counted wrong and <br>you actually have 20 gold pieces^*55^*Attack the guards^*38^*Leave and find another way in^*31
 95:LOSEGOLD:5^*The guard takes your delivery and 5 gold pieces and calls for the gate to be opened. The gate opens and the guard walks in.  You start to follow him, but the other guard holds out a hand to stop you.  "You are no longer needed here, mercenary," says the guard, "The delivery will be made."
 95:Insist that you come with the guard to make sure^*96^*Run past the guard through the open gate^*76^*Leave and try to find another way into the castle^*31
-96:You are allowed to follow the guard into the castle courtyard.  Knowing that the guard will soon find out that there is no such person as Norman Orwell, you wait until he is distacted and slip in to the crowd of people.  You quickly move through the crowd away from him.  In a few moments, you hear him give a shout of surprise, but you are already a good distance away from him.  You can see a stable and some merchant stalls nearby.
+96:You are allowed to follow the guard into the castle courtyard.  Knowing that the guard will soon find out that there is no such person as Norman Orwell, you wait until he is distracted and slip in to the crowd of people.  You quickly move through the crowd away from him.  In a few moments, you hear him give a shout of surprise, but you are already a good distance away from him.  You can see a stable and some merchant stalls nearby.
 96:Try to hide in the stable^*399^*Try to hide in the merchant stalls^*400
 97:LOSEGOLD:30^*You pay the guards, and they allow you to enter the castle.^*98
 97:Enter the Castle^*300
@@ -2586,8 +2586,8 @@ COMBINATION:Crumpled scrap of paper
 1272:null^*1
 1273:INVSPLIT:Hammer^*875^*876
 1273:null^*1
-1274:The guards ignore you as you walk up the stairs to the top level of the keep.  Here, you can see several rooms that are used as sleeping quarters for all the keep's residents, including King K himself.
-1274:Content not added^*999^*Walk back down the stairs^*1365
+1274:The guards ignore you as you walk up the stairs to the top level of the keep.  Here, you can see several rooms that are used as sleeping quarters for all the keep's residents, including King K himself.  From the stairway, you can see entrances to the servant quarters on the right and the guest quarters on the left.
+1274:Walk to the servant quarters^*1427^*Walk to the guest quarters^*1428^*Walk back down the stairs^*1365
 1275:VARSPLIT:bribedGuards,0^*1325^*1274
 1275:null^*1
 1276:INVREMOVE:Guard Disguise,Chainmail Armor^*INVADD:Platemail Armor^*You remove your guard uniform and put on a suit of platemail armor.  It is extremely heavy and cumbersome, but it provides you with excellent protection.
@@ -2878,19 +2878,59 @@ COMBINATION:Crumpled scrap of paper
 1417:Continue^*1412
 1418:You are unable to keep the eagnerness out of your voice when you tell the demon that you are interested in the amulet.  You reach out your hand but the demon shakes its head.  "I will need something in return, of course.  Since you have nothing else to offer me, I will give it to you in return for your soul."
 1418:Trade your soul for the amulet^*189^*Refuse to trade your soul^*1411^*Ask the demon what it is talking about^*1411
-1419:Refuse to trade your soul
-1419:Content not added^*999
+1419:You flat out refuse to give your soul to the demon.  "There is nothing else you could offer me," the demon says flatly, "I will just have to take your body instead."  The demon reaches its large, clawed hand towards you.  You try to back away, but you are trapped by the hot blue flames circling around you.
+1419:Challenge the demon to a fight^*146^*DISPLAYIF:Crossbow,Shoot the demon with your crossbow^*1426^*DISPLAYIF:Throwing Knives,Attack the demon with your throwing knives^*157^*DISPLAYIF:Golden cross,Hold up your golden cross to try to ward off the demon^*1423^*DISPLAYIF:Silver cross,Hold up your silver cross to try to ward off the demon^*1423^*Do nothing^*1425
 1420:RESTART:^*You offer your soul to the demon and it places its clawed, scaly hand against your forehead.  You briefly experience a painful, stabbing headache.  The demon then withdraws its hand and places the dagger at your feet.  You pick up the dagger, only to feel an incredible feeling of agony as a deadly venom flows through your body.  "I forgot to mention that touching the hilt causes death as well," says the demon.  Your lifeless body falls to the ground and the demon rips your soul from it.
 1420:null^*1
 1421:RESTART:^*You offer your soul to the demon and it places its clawed, scaly hand against your forehead.  You briefly experience a painful, stabbing headache.  The demon then withdraws its hand and places the suit of armor at your feet.  You put on the armor, only to feel incredible pain as the armor fuses onto your skin.  "The armor really will make you invincible from any blows," says the demon, "A pity that it is deadly for mortals to wear."  The armor eats away at your skin like acid until your body can take no more.  Your lifeless body falls to the ground and the demon rips your soul from it.
 1421:null^*1
 1422:RESTART:^*You offer your soul to the demon and it places its clawed, scaly hand against your forehead.  You briefly experience a painful, stabbing headache.  The demon then withdraws its hand and presses the bracelet onto your wrist, causing you to instantly turn to solid gold.  As your soul leaves your now lifeless body, the demon snatches it from the air.  <br>Your life ends here.
 1422:null^*1
+1423:As you take the cross out of your pack and hold it up, you are shocked to see that it has transformed into a crimson red color.  The cross feels warm and seems to pulse in your hand with raw power.  As the demon sees it, the smile on its face turns into a menacing snarl.  "That cross is mine," growls the demon, "You have no right to hold it like that."  The flames circling around you suddenly grow higher and more intense.  The demon holds out a large, gnarled hand.  "Throw me the cross," says the demon, "Or I will roast you slowly before I take it myself."  The cross seems to pulse in your hand with protest and you can feel it building up energy.
+1423:Throw the cross to the demon^*153^*Throw the cross into the fire instead^*154^*Try to use the power of the cross to attack the demon^*155^*Offer to trade the cross to the demon^*1424
+1424:"I'll tell you want the trade is," snarls the demon, "Give me the cross and I won't kill you slowly and painfully."
+1424:Throw the cross to the demon^*153^*Throw the cross into the fire instead^*154^*Try to use the power of the cross to attack the demon^*155
+1425:RESTART:^*You back away as close as your can bear to the scorching circle of flames, but you can go no further.  The demon reaches forwards and uses its clawed hand to rip your heart out.  <br>Your life ends here.
+1425:null^*1
+1426:RESTART:^*You pull out your crossbow to fire it at the demon, but the demon points at it and it bursts into flame in front of you, burning your hands.  You are helpless as the demon reaches forwards and uses its clawed hand to rip your heart out.  <br>Your life ends here.
+1426:null^*1
+1427:You approach the entrance to the servant quarters in the middle of the hallway.  There is a wooden door at one the end of the hallway and a downward staircase on the other end.
+1427:Enter the servant quarters^*1431^*Walk to the wooden door^*1430^*Walk to the stairs^*1429
+1428:You approach the entrance to the guest quarters.  The guest quarters consist of a variety of doors, all leading to different rooms.  Down the hallway, you can see an entrance to the noble's quarters.  You can also see a downward stairway in the other direction.
+1428:Enter the guest quarters^*1432^*Walk to the noble's quarters^*1438^*Walk over to the stairs^*1429
+1429:You walk over to the downward staircase.  From the stairway, you can see entrances to the servant quarters on the right and the guest quarters on the left.
+1429:Go down the stairs^*1365^*Walk to the servant quarters^*1427^*Walk to the guest quarters^*1428
+1430:You walk towards the wooden door in the hallway corner.  You can see an entrance to the servant quarters down one the hallway and a guarded entrance to the King's quarters down the other hallway.
+1430:Enter the door^*1433^*Walk to the servant quarters^*1427^*Walk to the King's quarters^*1435
+1431:Enter the servant quarters
+1431:Content not added^*999^*Leave the servant quarters^*1436
+1432:Enter the guest quarters
+1432:Content not added^*999^*Leave the guest quarters^*1437
+1433:Enter the door
+1433:Content not added^*999^*Leave the room^*1434
+1434:You leave the room and emerge into a hallway.  To the right, you can see an guarded entrance to the King's quarters.  To the left, you can see an entrance to the servant quarters.
+1434:Walk to the servant quarters^*1427^*Walk to the King's quarters^*1435
+1435:VARSPLIT:killedRoyalGuards,0^*1439^*1440
+1435:null^*1
+1436:You leave the servant quarters and return to the hallway.  To the left, you can see a wooden door.  To the right, you can see a downward staircase.
+1436:Walk over to the stairs^*1429^*Walk to the wooden door^*1430
+1437:You leave the guest quarters and return to the hallway.  Down the hallway, you can see a stairway leading down.  In the other direction, you can see an entrance to the noble's quarters.
+1437:Walk to the noble's quarters^*1438^*Walk to the stairway^*1429
+1438:You approach the entrance to the noble's quarters.  The interior looks luxurious.  You can see the guarded door to the King's quarters on one side of you, and there is the entrance the guest quarters on your other side.
+1438:Go to the guest quarters^*1428^*Go to the King's quarters^*1435
+1439:INVSPLIT:Assassin Garb^*1441^*1442
+1439:null^*1
+1440:
+1440:
+1441:
+1441:
+1442:
+1442:
 3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*Added two pieces of paper.
 3001:Continue^*3002
 3002:SAFECRACK:3004^*You are trying to crack a safe.
 3002:Done^*0
-3003:SAFECRACK:3008^*You are trying to crack a safe.
+3003:SAFECRACK:3009^*You are trying to crack a safe.
 3003:null^*3007
 3004:INVADD:Crumpled scrap of paper^*Added a third piece of paper.
 3004:Continue^*3003
