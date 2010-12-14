@@ -37,6 +37,7 @@ INITIALIZE:killedRoyalGuards,0
 INITIALIZE:killedPriests,0
 INITIALIZE:killedServant,0
 INITIALIZE:killedDemon,0
+INITIALIZE:killedMercenary,0
 INITIALIZE:healingElixir,0
 INITIALIZE:addedElixir,0
 INITIALIZE:addedRed,0
@@ -416,7 +417,7 @@ COMBINATION:Crumpled scrap of paper
 164:Continue^*143
 165:LOSEHEALTH:15^*You look down into the chasm and see a flaming, bone-filled wasteland.  Massive piles of bones lie on the scorched ground, and giant flames flare up in various locations.  Suddenly, you feel a force pull you forwards that sends you tumbling into the crevasse.  You don't fall far before you land in a large pile of bones.  As you hit the pile, several of the sharp bones cut into you, causing you to lose 15 health.  You feel a blast of heat as a circle of searing blue flames rises around you.  As you struggle to get up from the pile of bones that you are lying on, the ground in front of you rips open.  From the tear in the ground, a massive demon rises up before you.  Its blistered, scaly skin is an unnatural shade of blue and two large blue horns jut from its head.  You can see a vicious grin on its face and a thick mustache on its pointed chin.
 165:Continue^*143
-166:INVREMOVE:Golden cross,Silver cross,false^*The burst of steam has brought you into a catacombs corridor.  Behind you, you can see a large fissure in the catacombs floor that would be impossible to jump over or otherwise cross.  On either side of you, you can see rows of shelves containing stone coffins.  The corridor in front of you is littered with bones that seem to be scattered haphazardly across the ground.  You have nowhere else to go, so you walk forwards, picking your way among the bones.  Eventually the catacombs splits off and you see a short hallway that leads to a set of upwards stairs.  You climb the stairs and exit through a door at the top.  You emerge in a large cathedral.
+166:INVADD:Shard of rock^*INVREMOVE:Golden cross,Silver cross,false^*The burst of steam has brought you into a catacombs corridor.  You can see several glowing shards of rock scattered around you.  You pick one up, and it feels warm to the touch.  You decide to put it into your pocket.  Behind you, you can see a large fissure in the catacombs floor that would be impossible to jump over or otherwise cross.  On either side of you, you can see rows of shelves containing stone coffins.  The corridor in front of you is littered with bones that seem to be scattered haphazardly across the ground.  You have nowhere else to go, so you walk forwards, picking your way among the bones.  Eventually the catacombs splits off and you see a short hallway that leads to a set of upwards stairs.  You climb the stairs and exit through a door at the top.  You emerge in a large cathedral.
 166:Look around the cathedral^*167^*Leave the cathedral^*636
 167:You look around the cathedral.  There are stained glass windows high above you to your right, and you can see rows of wooden chairs in front of you that are laid out facing a large, gilded altar.  Behind you, there is a small door to the catacombs that you just walked out of.
 167:Examine the altar^*168^*Leave the cathedral^*636
@@ -2582,8 +2583,7 @@ COMBINATION:Crumpled scrap of paper
 1269:null^*1
 1270:INVSPLIT:timeOfDay,night^*1296^*1297
 1270:null^*1
-//1271:ANYSPLIT:Servant Disguise,Guard Disguise^*1274^*1275
-1271:ANYSPLIT:Servant Disguise,Guard Disguise^*1325^*1275
+1271:ANYSPLIT:Servant Disguise,Guard Disguise^*1274^*1275
 1271:null^*1
 1272:VARSET:guardDisguise,1^*INVSPLIT:Hammer^*875^*876
 1272:null^*1
@@ -2681,10 +2681,8 @@ COMBINATION:Crumpled scrap of paper
 1318:Read the documents on the tables^*1316^*Leave the room before someone sees you^*1319
 1319:You leave the room and return to the hallway.  What do you do next?
 1319:Go to the great hall^*1197^*Walk around the hallway corner to the guard barracks^*1266^*Walk down the hallway to the throne room^*1198
-//1320:GOLDSPLIT:30^*1322^*1321
-//1320:null^*1
-1320:The guards refuse to take your gold.
-1320:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
+1320:GOLDSPLIT:30^*1322^*1321
+1320:null^*1
 1321:DISPLAYGOLD:^*You hint to the guards that perhaps a few gold coins could convince them to look the other way.  The guard whispers that they would need 15 gold coins each to do something like that for you.  Unfortunately, you do not have enough gold, and the guards refuse to take any less.
 1321:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1322:DISPLAYGOLD:^*You hint to the guards that perhaps a few gold coins could convince them to look the other way.  The guard whispers that they would need 15 gold coins each to do something like that for you.
@@ -2908,7 +2906,7 @@ COMBINATION:Crumpled scrap of paper
 1430:You walk towards the wooden door in the hallway corner.  You can see an entrance to the servant quarters down one the hallway and a guarded entrance to the King's quarters down the other hallway.
 1430:Enter the door^*1433^*Walk to the servant quarters^*1427^*Walk to the King's quarters^*1435
 1431:INVSPLIT:Servant Disguise^*1453^*1454
-1431:null^*1
+1431:null^*1^*Content not added^*999
 1432:Enter the guest quarters.  The quarters consist of many identical looking wooden doors, most of which are locked.  Some of the empty doors lead to unoccupied rooms with beds in them.  Near the back of the quarters, there is a heavy wooden door with a small keyhole in it.
 1432:Try to open one of the locked doors^*1459^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
 1433:You enter a circular torchlit room that is empty except for a desk that is covered with several pieces of parchment.
@@ -2951,8 +2949,8 @@ COMBINATION:Crumpled scrap of paper
 1451:Fight the guards^*1444^*Run from the guards^*1445
 1452:You try to talk your way past the guards, but they do not listen to you.  "If you were allowed in here," one of them says shortly, "We would know."
 1452:Attack the guards^*1444^*Try to bribe the guards^*1451^*Go to the noble's quarters^*1438^*Go to the wooden door^*1430
-1453:Enter the servant quarters
-1453:Content not added^*999^*Leave the servant quarters^*1436
+1453:You enter the servant quarters and see several makeshift beds clustered close together.  There are several servants residing in the quarters, but there is nothing particularly interesting there.
+1453:Leave the servant quarters^*1436
 1454:You enter the servant quarters and see several makeshift beds clustered close together.  One of the servants inside sees you.  "Only servants are allowed in here, sir," he says, "Please leave."
 1454:Attack him^*1455^*Ignore him and walk into the servant quarters anyway^*1456^*Leave the servant quarters^*1436
 1455:RESTART:^*The servant is so surprised when you attack him that he is only able to reflexively shout before you strike him down.  However, the shout rouses many other servants, who rush to attack you with whatever items they have on hand.  You manage to fend them off until one of them gets behind you and smashes you on the back of the head.  The servants overwhelm you and beat you to death.
@@ -2963,8 +2961,8 @@ COMBINATION:Crumpled scrap of paper
 1457:Attack the servants^*1458^*Leave the servant quarters^*1436
 1458:RESTART:^*You attack the servants and they quickly grab whatever items are at hand to defend themselves.  You manage to fend them off until one of them gets behind you and smashes you on the back of the head.  The servants overwhelm you and beat you to death.
 1458:null^*1
-1459:Try one of the locked doors
-1459:Content not added^*999
+1459:VARSPLIT:killedMercenary,0^*1485^*1486
+1459:null^*1
 1460:You go into one of the empty rooms.  There is nothing interesting to you except a single bed in the room.
 1460:Go to sleep on the bed^*1467^*Leave the room^*1468
 1461:VARSPLIT:openedDoor,1^*1470^*1469
@@ -3001,6 +2999,30 @@ COMBINATION:Crumpled scrap of paper
 1476:Try to open one of the locked doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
 1477:VARSET:slept,1^*VARSET:timeOfDay,day^*GAINHEALTH:5^*As you look at the guest bed, you realize how exhausted you are.  You decide to take a short nap to regain some of your energy.  You shift for a while on the uncomfortable guest bed before finally falling asleep.  You fall into a deep, dreamless sleep that lasts for many hours.  The sleep causes you to recover 5 health.  By the time you finally wake up, it is close to midday.  You get out of the bed and leave the room.  The guest quarters looks the same as it did during the night.
 1477:Try to open one of the locked doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1478:As you are picking the lock on the door, it suddenly opens.  An irritated looking mercenary stands in the doorway and stares at you.  "Why are you trying to pick the lock on my door?" he demands, "Give me one reason that I shouldn't call the guards on you."
+1478:Attack the mercenary^*1480^*Try to placate him with a few gold coins^*1482^*Apologize and leave^*1483
+1479:You knock on the door and it opens after a few moments.  An irritated looking mercenary stands in the doorway and stares at you.  "Who are you to disturb me like this?" he demands, "I should call the guards on you for intruding upon my privacy like this."
+1479:Attack the mercenary^*1480^*Try to placate him with a few gold coins^*1482^*Apologize and leave^*1483
+1480:As you launch at atttack towards the mercenary, he backs into his room and draws a sword to defend himself.
+1480:Continue^*1481
+1481:COMBAT:You are fighting a mercenary. The mercenary is using a sword,NAME:mercenary,WEAPON:Sword,STRENGTH:16,DEFENSE:1,ACCURACY:70,HEALTH:100,HIT:The mercenary slices you with a quick maneuver,HIT:The mercenary quickly stabs you,HIT:The mercenary cuts you,MISS:The mercenary dodges you.^*You have killed the mercenary.
+1481:Continue^*1484
+1482:GOLDSPLIT:3^*1487^*1488
+1482:null^*1
+1483:You quickly leave, mumbling apologies to the mercenary.  He glares at you, but does not follow you or call the guards.
+1483:Continue^*1437
+1484:GAINGOLD:9^*INVADD:Sword^*The mercenary falls to the ground, dead.  You search his body and find a sword and 9 gold coins, which you take.  The mercenary's room doesn't contain much other than several personal possessions, which are useless to you.  You leave the room and return to the guest quarters.
+1484:Try to open a different locked door^*1486^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1485:You try to open one of the locked doors, but the lock is secure.
+1485:DISPLAYIF:Lock picking kit,Try to pick the lock^*1478^*Knock on the door^*1479^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1486:After your encounter with the mercenary, you don't feel like risking opening any more of the guest rooms.
+1486:Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1487:LOSEGOLD:3^*You give the mercenary 3 gold coins and he calms down.  "That seems like fair payment for bothering me," says the mercenary, "Now get out of my sight and don't come back."  He slams the door in your face.
+1487:Knock on the door again^*1489^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1488:DISPLAYGOLD:^*You decide to give the mercenary a few gold coins to calm him down, but you change your mind when you realize how few coins you have.  Instead, you quickly leave while mumbling apologies to the mercenary.  He glares at you, but does not follow you or call the guards.
+1488:Continue^*1437
+1489:You knock on the door again just to mess with the mercenary.  He opens it with an angry expression on his face.  "Now you've done it," he growls.  He draws a sword and attacks you.
+1489:Continue^*1481
 3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*Added two pieces of paper.
 3001:Continue^*3002
 3002:SAFECRACK:3004^*You are trying to crack a safe.
