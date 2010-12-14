@@ -291,7 +291,8 @@ COMBINATION:Crumpled scrap of paper
 102:Pull yourself up the grapple^*104^*Abandon your grappling hook and go back around to the front of the castle^*105
 103:LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.
 103:Try the Eastern tower^*102^*Go back to the castle entrance^*4
-104:You slowly scale the castle wall while being careful to stay quiet and not bring any attention to yourself.  Your arms ache, but you finally reach the ledge of the window and you pull yourself inside.  You find yourself in a circular torchlit room that is empty except for a desk that is covered with several pieces of parchment.  There is a single door that leads out of the room, and you think that you can hear the faint sound of voices outside.
+//104:You slowly scale the castle wall while being careful to stay quiet and not bring any attention to yourself.  Your arms ache, but you finally reach the ledge of the window and you pull yourself inside.  You find yourself in a circular torchlit room that is empty except for a desk that is covered with several pieces of parchment.  There is a single door that leads out of the room, and you think that you can hear the faint sound of voices outside.
+104:RESTART:^*You slowly scale the castle wall while being careful to stay quiet and not bring any attention to yourself.  Your arms ache painfully about halfway up the wall, and you being to panic.  By the time you are three quarters of the way up the wall, your grip weakens and you plummet to your death to the water below.
 104:Search the room^*106^*Quietly leave the room^*107
 105:INVREMOVE:Grappling hook^*The grapple is firmly attached the window ledge, but you do not want to risk the long climb up the castle wall, since you know that a fall from that height would likely be fatal.  You decide to leave the grapple attached to the window and return to the front of the castle.  What do you try next?
 105:DISPLAYIFVAR:turnedAway,0,Try the front gate^*5^*Swim the moat^*200^*DISPLAYIF:Crossbow,Attack the guards with a crossbow^*7
@@ -2581,7 +2582,8 @@ COMBINATION:Crumpled scrap of paper
 1269:null^*1
 1270:INVSPLIT:timeOfDay,night^*1296^*1297
 1270:null^*1
-1271:ANYSPLIT:Servant Disguise,Guard Disguise^*1274^*1275
+//1271:ANYSPLIT:Servant Disguise,Guard Disguise^*1274^*1275
+1271:ANYSPLIT:Servant Disguise,Guard Disguise^*1325^*1275
 1271:null^*1
 1272:VARSET:guardDisguise,1^*INVSPLIT:Hammer^*875^*876
 1272:null^*1
@@ -2679,8 +2681,10 @@ COMBINATION:Crumpled scrap of paper
 1318:Read the documents on the tables^*1316^*Leave the room before someone sees you^*1319
 1319:You leave the room and return to the hallway.  What do you do next?
 1319:Go to the great hall^*1197^*Walk around the hallway corner to the guard barracks^*1266^*Walk down the hallway to the throne room^*1198
-1320:GOLDSPLIT:30^*1322^*1321
-1320:null^*1
+//1320:GOLDSPLIT:30^*1322^*1321
+//1320:null^*1
+1320:The guards refuse to take your gold.
+1320:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1321:DISPLAYGOLD:^*You hint to the guards that perhaps a few gold coins could convince them to look the other way.  The guard whispers that they would need 15 gold coins each to do something like that for you.  Unfortunately, you do not have enough gold, and the guards refuse to take any less.
 1321:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1322:DISPLAYGOLD:^*You hint to the guards that perhaps a few gold coins could convince them to look the other way.  The guard whispers that they would need 15 gold coins each to do something like that for you.
@@ -2934,7 +2938,7 @@ COMBINATION:Crumpled scrap of paper
 1445:RESTART:^*You sprint away from the elite guards, but they both draw crossbows almost instantly.  Their aim is perfect and two deadly crossbow bolts lodge into your back, bringing you crashing to the ground.  <br>Your life ends here.
 1445:null^*1
 1446:Try to enter the King's quarters
-1446:
+1446:Content not added^*999
 1447:Enter the noble's quarters.
 1447:Content not added^*999^*Leave the noble's quarters^*1448
 1448:You leave the noble's quarters and return to the hallway.  Down the hallway, you can see a downward stairway.  In the other direction, there is an entrance to the noble's quarters.
