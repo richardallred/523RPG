@@ -854,7 +854,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 			if (choiceNum == 1) {
 				if (this.inCombat == 0 && this.inMaze == 0 && this.inLockPicking == 0 && this.inSafeCracking == 0 && this.invselect == 0 && this.restart == 0) {
 					this.updateHash();
-					this.message = "Game saved successfully.";
+					this.message = "Game saved successfully.  To preserve this saved game after closing the window, you can bookmark the page.";
 				} else if (this.invselect == 1) {
 					this.message = "You cannot save the game during inventory selection.";
 				} else if (this.inCombat == 1) {
