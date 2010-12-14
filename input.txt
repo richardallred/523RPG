@@ -292,9 +292,10 @@ COMBINATION:Crumpled scrap of paper
 102:Pull yourself up the grapple^*104^*Abandon your grappling hook and go back around to the front of the castle^*105
 103:LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.
 103:Try the Eastern tower^*102^*Go back to the castle entrance^*4
-//104:LOSEHEALTH:3^*You slowly scale the castle wall while being careful to stay quiet and not bring any attention to yourself.  Your arms ache, but you finally reach the ledge of the window and you pull yourself inside.  You lose 3 health from the strain of the climb.  You find yourself in a circular torchlit room that is empty except for a desk that is covered with several pieces of parchment.  There is a single door that leads out of the room, and you think that you can hear the faint sound of voices outside.
-104:RESTART:^*You slowly scale the castle wall while being careful to stay quiet and not bring any attention to yourself.  Your arms ache painfully about halfway up the wall, and you are forced to slow your climbing pace.  When you are about three quarters of the way up the wall, you are shocked to see the face of a guard looking out of the window above you.  He stares down at you for a moment before detaching the grappling hook, sending you plummeting to your death.
-104:Search the room^*106^*Quietly leave the room^*107
+104:LOSEHEALTH:3^*You slowly scale the castle wall while being careful to stay quiet and not bring any attention to yourself.  Your arms ache, but you finally reach the ledge of the window and you pull yourself inside.  You lose 3 health from the strain of the climb.  You find yourself in a circular torchlit room that is empty except for a desk that is covered with several pieces of parchment.  There is a single door that leads out of the room, and you think that you can hear the faint sound of voices outside.
+104:Search the room^*106^*Quietly leave the room^*1434
+//104:RESTART:^*You slowly scale the castle wall while being careful to stay quiet and not bring any attention to yourself.  Your arms ache painfully about halfway up the wall, and you are forced to slow your climbing pace.  When you are about three quarters of the way up the wall, you are shocked to see the face of a guard looking out of the window above you.  He stares down at you for a moment before detaching the grappling hook, sending you plummeting to your death.
+//104:Search the room^*106^*Quietly leave the room^*107
 105:INVREMOVE:Grappling hook^*The grapple is firmly attached the window ledge, but you do not want to risk the long climb up the castle wall, since you know that a fall from that height would likely be fatal.  You decide to leave the grapple attached to the window and return to the front of the castle.  What do you try next?
 105:DISPLAYIFVAR:turnedAway,0,Try the front gate^*5^*Swim the moat^*200^*DISPLAYIF:Crossbow,Attack the guards with a crossbow^*7
 106:INVSPLIT:Tinderbox and torch^*108^*109
@@ -302,9 +303,11 @@ COMBINATION:Crumpled scrap of paper
 107:RESTART:^*You creep out of the room and emerge near a hallway corner. You hear the sound of voices coming from a room at the end of the hall to the right.  Down the hall to the left, you can see several doors.  Suddenly, you see several guards come out one of the doors on your left.  They pull out crossbows and shoot you.
 107:Content not added^*999
 108:You look around and find nothing particularly useful to you, just notes scribbled by a guard on the pieces of parchment.  You decide to leave the room.
-108:Continue^*107
+108:Continue^*1434
+//108:Continue^*107
 109:You look around and find nothing particularly useful to you, just notes scribbled by a guard on the pieces of parchment.  You consider trying to take one of the torches in the room, but they are firmly attached to the wall, and you would have no way of lighting one.  You decide to leave the room.
-109:Continue^*107
+109:Continue^*1434
+//109:Continue^*107
 110:The tunnel eventually widens into a large cave room.  You can see stalactites and stalagmites everywhere, and water continually drips from the ceiling, threatening to extinguish your torch.  You suddenly stop in your tracks when you see a horrifying sight in front of you.  You see a gigantic cave salamander crawling into the cave room from a side tunnel.  The salamander is several times as big as you are and could eat you in one bite.
 110:DISPLAYIF:Crossbow^*Shoot the salamander with your crossbow^*111^*Quickly extinguish your torch^*112^*Go up and attack the salamander^*116^*Take some food from your pack and scatter onto the ground^*120^*Do nothing and stand completely still^*114^*Run back out of the cave^*121
 111:RESTART:^*Fortunately, your pack kept your crossbow dry during your swim.  You set the torch down beside you and fire a crossbow bolt into the salamander's forehead.  The salamander responds by racing towards you with blinding speed.  You don't even have time to react before the salamander charges over to you and devours you whole. <br>Your life ends here.
@@ -2937,8 +2940,8 @@ COMBINATION:Crumpled scrap of paper
 1445:null^*1
 1446:As you try to enter the King's quarters, the elite guards stop you.  "You are not permitted to enter the King's quarters," says one of them.
 1446:Try to bribe the guards^*1451^*Try to talk your way past the guards^*1452^*Go to the wooden door^*1430^*Go to the noble's quarters^*1438
-1447:Enter the noble's quarters.
-1447:Content not added^*999^*Leave the noble's quarters^*1448
+1447:You enter the noble's quarters, but the rooms there all have guards posted outside.  You don't want to cause any trouble, so you decide to leave.
+1447:Leave the noble's quarters^*1448
 1448:You leave the noble's quarters and return to the hallway.  Down the hallway, you can see a downward stairway.  In the other direction, there is an entrance to the noble's quarters.
 1448:Go to the guest quarters^*1428^*Go to the King's quarters^*1435
 1449:VARSET:killedRoyalGuards,1^*INVADD:Sword^*The royal guards fall to the ground, dead.  You search the bodies but they are only carrying swords.  Now that the guards are dead, you can enter the King's quarters.
