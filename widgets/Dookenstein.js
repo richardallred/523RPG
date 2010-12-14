@@ -18,7 +18,8 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		//postCreate is called after the dom is created
 		//load from data all pages and choices and update first page
 		var xhrArgs = {
-			url: 'dookInput.txt',
+			//url: 'dookInput.txt',
+			url: 'input.txt',
 			handleAs: "text",
 			preventCache: true,
 			//dojo.hitch will fix scope problems
@@ -2650,7 +2651,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									{dir='South';}
 								if(MazeArray[mazeRow][mazeCol].charAt(i)=='W')
 									{dir='West';}
-								choicesArray[i*2] ='Go to the ' + dir;
+								choicesArray[i*2] ='Go ' + dir;
 								choicesArray[i*2+1] =this.page;
 								choicesArray[i*2+2] = 'Cheat (Skip the maze)';
 								choicesArray[i*2+3] = this.page;
