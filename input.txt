@@ -2932,8 +2932,8 @@ COMBINATION:Crumpled scrap of paper
 1441:Fight the guards^*1444^*Run from the guards^*1445
 1442:As you walk up the King's quarters, you can see two guards in front of the room.  They are dressed in the armor of the King's elite guards, and you know that they are the best and most trusted of the guards who are assigned to personally protect the King.  They are standing in front of the door leading to the King's quarters.  Down the hallway, you can see a wooden door.  In the other direction, there is an entrance to the noble's quarters.
 1442:Try to enter the King's quarters^*1446^*Go to the wooden door^*1430^*Go to the noble's quarters^*1438
-1443:Enter the King's quarters
-1443:Content not added^*999
+1443:VARSPLIT:timeOfDay,night^*1491^*1492
+1443:null^*1
 1444:COMBAT:You are fighting two elite guards.  They are both armed with swords,NAME:first guard,WEAPON:Sword,STRENGTH:25,DEFENSE:3,ACCURACY:70,HEALTH:100,NAME2:second guard,WEAPON2:Sword,STRENGTH2:25,DEFENSE2:3,ACCURARCY2:70,HEALTH2:100,HIT:The first guard slashes you with his blade,HIT2:The second guard slashes you with his blade^*You have killed the guards.
 1444:Continue^*1449
 1445:RESTART:^*You sprint away from the elite guards, but they both draw crossbows almost instantly.  Their aim is perfect and two deadly crossbow bolts lodge into your back, bringing you crashing to the ground.  <br>Your life ends here.
@@ -3002,9 +3002,9 @@ COMBINATION:Crumpled scrap of paper
 1476:Try to open one of the locked doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
 1477:VARSET:slept,1^*VARSET:timeOfDay,day^*GAINHEALTH:5^*As you look at the guest bed, you realize how exhausted you are.  You decide to take a short nap to regain some of your energy.  You shift for a while on the uncomfortable guest bed before finally falling asleep.  You fall into a deep, dreamless sleep that lasts for many hours.  The sleep causes you to recover 5 health.  By the time you finally wake up, it is close to midday.  You get out of the bed and leave the room.  The guest quarters looks the same as it did during the night.
 1477:Try to open one of the locked doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
-1478:As you are picking the lock on the door, it suddenly opens.  An irritated looking mercenary stands in the doorway and stares at you.  "Why are you trying to pick the lock on my door?" he demands, "Give me one reason that I shouldn't call the guards on you."
+1478:VARSET:killedMercenary,1^*As you are picking the lock on the door, it suddenly opens.  An irritated looking mercenary stands in the doorway and stares at you.  "Why are you trying to pick the lock on my door?" he demands, "Give me one reason that I shouldn't call the guards on you."
 1478:Attack the mercenary^*1480^*Try to placate him with a few gold coins^*1482^*Apologize and leave^*1483
-1479:You knock on the door and it opens after a few moments.  An irritated looking mercenary stands in the doorway and stares at you.  "Who are you to disturb me like this?" he demands, "I should call the guards on you for intruding upon my privacy like this."
+1479:VARSET:killedMercenary,1^*You knock on the door and it opens after a few moments.  An irritated looking mercenary stands in the doorway and stares at you.  "Who are you to disturb me like this?" he demands, "I should call the guards on you for intruding upon my privacy like this."
 1479:Attack the mercenary^*1480^*Try to placate him with a few gold coins^*1482^*Apologize and leave^*1483
 1480:As you launch at atttack towards the mercenary, he backs into his room and draws a sword to defend himself.
 1480:Continue^*1481
@@ -3028,6 +3028,18 @@ COMBINATION:Crumpled scrap of paper
 1489:Continue^*1481
 1490:"It doesn't matter," says the guard.  "You are not a registered guest in the keep."
 1490:Attack the guards^*1278^*Try to bribe the guards^*1320^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
+1491:You enter the King's quarters, and you see King K asleep in a large, luxurious bed.  You can see that the ring is still on his finger beside him.
+1491:Attack King K in his sleep^*1493^*Try to slide the ring off of King K's finger without waking him^*1494
+1492:The inside of the King's quarters is very grand.  You enter the King's quarters, but it is empty.  You leave and return to the hallway.
+1492:Go to the noble's quarters^*1438^*Go to the wooden door^*1430
+1493:INVSPLIT:Hidden dagger^*1495^*1496
+1493:null^*1
+1494:RESTART:^*As you try to slide the ring off of King K's finger, he rolls over and wakes up.  As soon as he sees you, he blasts you with a deadly bolt of magic.
+1494:null^*1
+1495:THEEND:^*You use your hidden dagger to slit the King's throat before you take the ring.  You use the power of the ring to blast your way out of the castle.  You have completed your mission.
+1495:null^*1
+1496:
+1496:
 3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*Added two pieces of paper.
 3001:Continue^*3002
 3002:SAFECRACK:3004^*You are trying to crack a safe.
