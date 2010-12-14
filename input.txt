@@ -2937,8 +2937,8 @@ COMBINATION:Crumpled scrap of paper
 1444:Continue^*1449
 1445:RESTART:^*You sprint away from the elite guards, but they both draw crossbows almost instantly.  Their aim is perfect and two deadly crossbow bolts lodge into your back, bringing you crashing to the ground.  <br>Your life ends here.
 1445:null^*1
-1446:Try to enter the King's quarters
-1446:Content not added^*999
+1446:As you try to enter the King's quarters, the elite guards stop you.  "You are not permitted to enter the King's quarters," says one of them.
+1446:Try to bribe the guards^*1451^*Try to talk your way past the guards^*1452^*Go to the wooden door^*1430^*Go to the noble's quarters^*1438
 1447:Enter the noble's quarters.
 1447:Content not added^*999^*Leave the noble's quarters^*1448
 1448:You leave the noble's quarters and return to the hallway.  Down the hallway, you can see a downward stairway.  In the other direction, there is an entrance to the noble's quarters.
@@ -2947,16 +2947,20 @@ COMBINATION:Crumpled scrap of paper
 1449:Continue^*1443
 1450:You look around and find nothing particularly useful to you, just notes scribbled by a guard on the pieces of parchment.  You decide to leave the room.
 1450:Leave the room^*1434
+1451:As soon as you hint that you want to bribe the guards, they draw swords to attack you.
+1451:Fight the guards^*1444^*Run from the guards^*1445
+1452:You try to talk your way past the guards, but they do not listen to you.  "If you were allowed in here," one of them says shortly, "We would know."
+1452:Attack the guards^*1444^*Try to bribe the guards^*1451^*Go to the noble's quarters^*1438^*Go to the wooden door^*1430
 3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*Added two pieces of paper.
 3001:Continue^*3002
 3002:SAFECRACK:3004^*You are trying to crack a safe.
 3002:Done^*0
 3003:SAFECRACK:3009^*You are trying to crack a safe.
-3003:null^*3007
+3003:null^*3010
 3004:INVADD:Crumpled scrap of paper^*Added a third piece of paper.
 3004:Continue^*3003
 3005:LOCKPICK:3^*You are picking a lock.^*3008
-3005:Done^*0
+3005:Done^*3011
 //3005:images/lock_pick.jpg
 3006:MAZE:There is nothing interesting here,MESSAGE:A rat scurries across the floor,MESSAGE:You run into a decomposed skeleton against the wall.  Chills run down your back,MESSAGE:You step on something. It makes a loud crunch underfoot, better get going,MESSAGE:A trail of cochroaches crosses the floor and climbs up the walls,MESSAGE:You start to think that you are lost,MESSAGE:You start to feel very alone. You wonder if this maze ever ends,MESSAGE:You stumble upon a great sword smashed to pieces,MESSAGE:Above you hang what seems like an endless amount of bodies.  I wonder if anyone has ever made it out alive,MESSAGE:You feel a cold drip of water on your head,MESSAGE:You shiver from the cold^*You enter a maze.
 3006:Done^*3007
@@ -2966,3 +2970,7 @@ COMBINATION:Crumpled scrap of paper
 3008:Go Back^*0
 3009:You have left the safe.
 3009:Go Back^*0
+3010:You have opened the safe.
+3010:Go Back^*0
+3011:You have opened the lock.
+3011:Go Back^*0
