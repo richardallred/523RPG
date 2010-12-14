@@ -440,7 +440,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	},
 	_rereadText: function(event) {
 		this.reread = 1;
-		this.runJSonic();
+		if (this.sonicVolume != 0.0) {
+			this.runJSonic();
+		}
 	},
 	_settings: function(event) {
 		//"Settings" or "Go back" was selected
@@ -981,18 +983,24 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		if (focusNum == 0) {
 		//set focus on read text again button
 			this._focusReread();
-			this.js.stop();
-			this.js.say({text: "Read text again"});
+			if (this.sonicVolume != 0.0) {
+				this.js.stop();
+				this.js.say({text: "Read text again"});
+			}
 		} else if (focusNum == -1) {
 		//set focus on settings button
 			this._focusSettings();
-			this.js.stop();
-			this.js.say({text: this.settings.label});
+			if (this.sonicVolume != 0.0) {
+				this.js.stop();
+				this.js.say({text: this.settings.label});
+			}
 		} else {
 			this.buttons[focusNum - 1].focus();
 			//make JSonic say the name the button that is focused on
-			this.js.stop();
-			this.js.say({text: this.buttons[focusNum - 1].label});
+			if (this.sonicVolume != 0.0) {
+				this.js.stop();
+				this.js.say({text: this.buttons[focusNum - 1].label});
+			}
 		}
 	},
 	choose: function(choiceNum) {
@@ -1402,12 +1410,16 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							if (selectedString != 1) {
 								this.message = this.message + ' <br>You can take ' + selectedString + ' more items.'
 								if (this.invselect == 1) {
-									this.js.say({text :'You can take ' + selectedString + ' more items.'});
+									if (this.sonicVolume != 0.0) {
+										this.js.say({text :'You can take ' + selectedString + ' more items.'});
+									}
 								}
 							} else {
 								this.message = this.message + ' <br>You can take ' + selectedString + ' more item.'
 								if (this.invselect == 1) {
-									this.js.say({text :'You can take ' + selectedString + ' more item.'});
+									if (this.sonicVolume != 0.0) {
+										this.js.say({text :'You can take ' + selectedString + ' more item.'});
+									}
 								}
 							}
 						}
@@ -1855,8 +1867,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 						if (this.inCombat == 0 || this.chooseWeapon == 1) {
 							//just entering combat, allow the user to switch weapons
 							this.message = 'Choose a weapon to fight with.'
-							this.js.stop();
-							this.js.say({text : this.message, cache : true});
+							if (this.sonicVolume != 0.0) {
+								this.js.stop();
+								this.js.say({text : this.message, cache : true});
+							}
 							availableWeapons = [];
 							for (x = 0; x < this.possibleWeapons.length; x++) {
 								for (y = 1; y < this.inventory.length; y++) {
@@ -1926,8 +1940,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								this.message = combatInfo[0] + '.  You are using: ' + currentWeapon.name;
 							}
 							if (disableFight) {
-								this.js.stop();
-								this.js.say({text : this.message, cache : true});
+								if (this.sonicVolume != 0.0) {
+									this.js.stop();
+									this.js.say({text : this.message, cache : true});
+								}
 							}
 							if (choiceNum <= enemies.length && !disableFight) {
 								for (f = 0; f < aliveEnemies.length; f++) {
@@ -2119,8 +2135,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 									}
 									if (aliveEnemies[f].health > 0) {
 										combatminusbr = combatString.replace(new RegExp( '<br>', 'g' ),' ');
-										this.js.stop();
-										this.js.say({text : combatminusbr, cache : true});
+										if (this.sonicVolume != 0.0) {
+											this.js.stop();
+											this.js.say({text : combatminusbr, cache : true});
+										}
 									}
 									//this.message = this.message + '<br>Health Left: ' + this.health + '/' + this.MAX_HEALTH;
 									if (this.health <= 0) {
@@ -2338,9 +2356,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							choicesArray[6]='Cheat (Skip the lock picking game)';
 							choicesArray[7]=this.page;
 							
-							this.js.stop();
-							messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),' ');
-							this.js.say({text : messageminusbr, cache : true});
+							if (this.sonicVolume != 0.0) {
+								this.js.stop();
+								messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),' ');
+								this.js.say({text : messageminusbr, cache : true});
+							}
 						
 						//Return after button hit
 						} else {
@@ -2470,8 +2490,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								this.processChoice(this.page, choiceNum);
 								return;
 							}
-							this.js.stop();
-							this.js.say({text : this.lockString.replace(new RegExp( '<br>', 'g' ),' '), cache : true});
+							if (this.sonicVolume != 0.0) {
+								this.js.stop();
+								this.js.say({text : this.lockString.replace(new RegExp( '<br>', 'g' ),' '), cache : true});
+							}
 						}
 					}
 					
@@ -2718,9 +2740,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 							choicesArray[13]=this.page;
 							this.message+="The safe dial goes from 0 to " + (this.maxNum-1) + ". <br>";
 							this.message += "The dial is on 0";
-							this.js.stop();
-							messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),' ');
-							this.js.say({text : messageminusbr, cache : true});
+							if (this.sonicVolume != 0.0) {
+								this.js.stop();
+								messageminusbr = this.message.replace(new RegExp( '<br>', 'g' ),' ');
+								this.js.say({text : messageminusbr, cache : true});
+							}
 						} else {
 							this.message = 'Rotate the safe dial until it matches each number of the combination, then change the dial direction. <br>';
 							safeString = '';
@@ -2943,8 +2967,10 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 								}
 								previousChoice = choiceNum;
 								this.message += safeString;
-								this.js.stop();
-								this.js.say({text : safeString.replace(new RegExp( '<br>', 'g' ),' '), cache : true});
+								if (this.sonicVolume != 0.0) {
+									this.js.stop();
+									this.js.say({text : safeString.replace(new RegExp( '<br>', 'g' ),' '), cache : true});
+								}
 							}
 						}
 					}
@@ -3105,7 +3131,9 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 		if (this.invselecting != 2) {
 			//read off page text and buttons
 			this._focusReread();
-			this.runJSonic();
+			if (this.sonicVolume != 0.0) {
+				this.runJSonic();
+			}
 		}
 		this.displayMessage.innerHTML = this.message;
 		//update URL bar with the dojo hash function
@@ -3153,11 +3181,15 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 	},
 	speedUpJSonic: function() {
 		this.sonicRate += 50;
-		this.runJSonic();
+		if (this.sonicVolume != 0.0) {
+			this.runJSonic();
+		}
 	},
 	slowDownJSonic: function() {
 		this.sonicRate -= 50;
-		this.runJSonic();
+		if (this.sonicVolume != 0.0) {
+			this.runJSonic();
+		}
 	},
 	//save all data to the URL bar with dojo.hash
 	updateHash: function() {
