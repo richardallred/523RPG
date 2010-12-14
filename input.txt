@@ -80,7 +80,7 @@ COMBINATION:Torn scrap of paper
 COMBINATION:Ripped scrap of paper
 COMBINATION:Crumpled scrap of paper
 0:You are about to play Return to Castle Dookenstein. <br><br> Press the M key to mute the sound, press the right arrow key to speed reading up, and press the left arrow key to slow reading down. <br>Press the X key or the up and down arrow keys to scroll through the choices and press the C key or the Enter key or the spacebar to select a choice. <br> The W A S D keys can be used instead of the arrow keys.  <br>You can save and load the game from the settings menu.
-0:Play the game^*1^*Lock picking demo^*3005^*Safecracking demo^*3001^*Maze demo^*3006
+0:Play the game^*1
 0:images/castle_final.jpg
 1:The brutal and tyrannous King K of the nearby land of Dookia has uncovered a legendary ring that gives its possessor the power to cast devastating magic.  King K plans to march into battle with the ring in one week's time to subjugate the land of Carolinia under Dookian rule forever.  You are Rameses, an elite Carolinian warrior.  The King of Carolinia has sent you on a quest to King K's castle, the dreaded castle Dookenstein, in hopes of recovering the ring and saving your country.
 1:Continue^*2
@@ -2686,7 +2686,7 @@ COMBINATION:Crumpled scrap of paper
 1319:Go to the great hall^*1197^*Walk around the hallway corner to the guard barracks^*1266^*Walk down the hallway to the throne room^*1198
 1320:GOLDSPLIT:30^*1322^*1321
 1320:null^*1
-1321:DISPLAYGOLD:^*You hint to the guards that perhaps a few gold coins could convince them to look the other way.  The guard whispers that they would need 15 gold coins each to do something like that for you.  Unfortunately, you do not have enough gold, and the guards refuse to take any less.
+1321:DISPLAYGOLD:^*You hint to the guards that perhaps a few gold coins could convince them to look the other way.  The guard whispers that they would need 15 gold coins each to do something like that for you.  Unfortunately, you do not have 30 gold coins, and the guards refuse to take any less.
 1321:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1322:DISPLAYGOLD:^*You hint to the guards that perhaps a few gold coins could convince them to look the other way.  The guard whispers that they would need 15 gold coins each to do something like that for you.
 1322:Give them 30 gold^*1323^*Attack the guards instead^*1278^*Tell them that you changed your mind^*1324
@@ -2695,7 +2695,7 @@ COMBINATION:Crumpled scrap of paper
 1324:You decide not to bribe the guards at the moment.  What do you do next?
 1324:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1325:One of the guards stops your as you try to go up the stairs.  "You're not allowed up there," he says.
-1325:Attack the guards^*1278^*Try to bribe the guards^*1320^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
+1325:Tell him that you were up there earlier^*1490^*Attack the guards^*1278^*Try to bribe the guards^*1320^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1326:One of the guards stops your as you try to go up the stairs.  "You're not allowed up there," he says.
 1326:Attack the guards^*1278^*Try to bribe the guards^*1327^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1327:"I don't care how much gold you give me," says one of the guards, "I won't have to on my conscience that I let an assassin upstairs."  The guards refuse to take your bribe.
@@ -3026,6 +3026,8 @@ COMBINATION:Crumpled scrap of paper
 1488:Continue^*1437
 1489:You knock on the door again just to mess with the mercenary.  He opens it with an angry expression on his face.  "Now you've done it," he growls.  He draws a sword and attacks you.
 1489:Continue^*1481
+1490:"It doesn't matter," says the guard.  "You are not a registered guest in the keep."
+1490:Attack the guards^*1278^*Try to bribe the guards^*1320^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*Added two pieces of paper.
 3001:Continue^*3002
 3002:SAFECRACK:3004^*You are trying to crack a safe.
