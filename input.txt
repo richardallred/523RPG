@@ -47,9 +47,9 @@ INITIALIZE:addedOrange,0
 INITIALIZE:addedClear,0
 INITIALIZE:addedBlack,0
 INITIALIZE:addedDrink,0
+INITIALIZE:openedDoor,0
 INITIALIZE:rammedDoor,0
 INITIALIZE:bribedGuards,0
-INITIALIZE:wearingAmulet,0
 INITIALIZE:unwashed,0
 INITIALIZE:lostPack,0
 INITIALIZE:audience,0
@@ -291,7 +291,7 @@ COMBINATION:Crumpled scrap of paper
 102:Pull yourself up the grapple^*104^*Abandon your grappling hook and go back around to the front of the castle^*105
 103:LOSEHEALTH:5^*You climb up to the top of the tree, far enough to where you think the grapple will now reach the North tower.  As you swing the grapple you lose your balance and fall to the ground, causing a loss of 5 health.  You decide not to try that again.
 103:Try the Eastern tower^*102^*Go back to the castle entrance^*4
-//104:You slowly scale the castle wall while being careful to stay quiet and not bring any attention to yourself.  Your arms ache, but you finally reach the ledge of the window and you pull yourself inside.  You find yourself in a circular torchlit room that is empty except for a desk that is covered with several pieces of parchment.  There is a single door that leads out of the room, and you think that you can hear the faint sound of voices outside.
+//104:LOSEHEALTH:3^*You slowly scale the castle wall while being careful to stay quiet and not bring any attention to yourself.  Your arms ache, but you finally reach the ledge of the window and you pull yourself inside.  You lose 3 health from the strain of the climb.  You find yourself in a circular torchlit room that is empty except for a desk that is covered with several pieces of parchment.  There is a single door that leads out of the room, and you think that you can hear the faint sound of voices outside.
 104:RESTART:^*You slowly scale the castle wall while being careful to stay quiet and not bring any attention to yourself.  Your arms ache painfully about halfway up the wall, and you are forced to slow your climbing pace.  When you are about three quarters of the way up the wall, you are shocked to see the face of a guard looking out of the window above you.  He stares down at you for a moment before detaching the grappling hook, sending you plummeting to your death.
 104:Search the room^*106^*Quietly leave the room^*107
 105:INVREMOVE:Grappling hook^*The grapple is firmly attached the window ledge, but you do not want to risk the long climb up the castle wall, since you know that a fall from that height would likely be fatal.  You decide to leave the grapple attached to the window and return to the front of the castle.  What do you try next?
@@ -462,7 +462,7 @@ COMBINATION:Crumpled scrap of paper
 187:Tell the demon that you want to make a deal^*185^*Tell the demon about your mission to stop King K^*186^*Tell the demon to give you treasure or you will slay it^*171^*Tell the demon that you want it to roast you to death^*188
 188:RESTART:^*"A deal for your treasure?" you say sarcastically, "I'd rather you roast me to death."  The demon obliges with an upward wave of its arms.  A gigantic jet of flame bursts through the pile of bones under you and incinerates you on the spot.  <br>Your life ends here.
 188:null^*1
-189:INVADD:Magic amulet^*VARSET:wearingAmulet,1^*"I'll trade you my soul," you tell the demon, "Just give me that amulet."  "So quick to trade your soul away?" sighs the demon, "You are a foolish one..."  The demon places its clawed, scaly hand against your forehead and you briefly experience a painful, stabbing headache.  The demon then withdraws its hand and places the amulet around your neck.  "And now," says the demon, "It is time for you to leave."
+189:INVADD:Magic amulet^*"I'll trade you my soul," you tell the demon, "Just give me that amulet."  "So quick to trade your soul away?" sighs the demon, "You are a foolish one..."  The demon places its clawed, scaly hand against your forehead and you briefly experience a painful, stabbing headache.  The demon then withdraws its hand and places the amulet around your neck.  "And now," says the demon, "It is time for you to leave."
 189:Continue^*1412
 190:You enter the door and see a long, narrow passageway with another wooden door on the end.  You see a servant walking through the passage carrying a large bowl of gruel.  "You aren't allowed over here," he says, "Go back to your tent."
 190:Do as the servant says and follow him back to the tents^*677^*Attack the servant^*675^*Run past the servant^*676
@@ -816,7 +816,7 @@ COMBINATION:Crumpled scrap of paper
 363:Look at the food^*366^*Look at the clothing and armor^*322^*Look at the weapons^*323^*Try to sell something^*512^*Return to the courtyard^*300
 364:DISPLAYGOLD:^*You see stalls full of many fine pieces of clothing, but not many of them catch your interest.  You see a set of clothes that would make a decent mercenary disguise, which you could exchange your merchant clothing for.  In the armor stand, you see a set of fine shields for purchase, as well as a suit of chainmail armor that would fit you. 
 364:Buy a mercenary disguise for 3 gold coins^*370^*Buy the chainmail armor for 16 gold coins^*367^*Buy a shield for 8 gold coins^*368^*Go back to the other stalls^*372
-365:INVSPLIT:Chainmail Armor^*379^*380
+365:ANYSPLIT:Chainmail Armor,Guard Disguise^*379^*380
 365:null^*1
 366:VARSPLIT:mealsEaten,0^*320^*369
 366:null^*1
@@ -2879,7 +2879,7 @@ COMBINATION:Crumpled scrap of paper
 1415:Offer to trade your soul^*1422^*Refuse to trade your soul^*1419
 1416:"A ring that allows mortals to use magic?" says the demon, "I had one of those, but I gave it away to King K in exchange for his soul and the lives of his guards.  What is your interest in that ring?"  You explain that you are on a mission from Carolinia to retrieve the ring from King K.  "I cannot give you the ring," says the demon, "But I believe you will be interested in this."  It pulls out a golden amulet with a green gem in the middle.  "This amulet will nullify any magic used against you.  It should counter the effect of that ring quite nicely."
 1416:Tell the demon you want the amulet^*1418^*Say that you want the dagger instead^*1413^*Say that you want the armor instead^*1414^*Say that you want the bracelet instead^*1415^*Tell the demon that you will slay it and take all of the artifacts^*171
-1417:INVADD:Magic amulet^*VARSET:wearingAmulet,1^*"I'll trade you my soul," you tell the demon, "Just give me that amulet."  The demon places its clawed, scaly hand against your forehead and you briefly experience a painful, stabbing headache.  The demon then withdraws its hand and places the amulet around your neck.  "And now," says the demon, "It is time for you to leave."
+1417:INVADD:Magic amulet^*"I'll trade you my soul," you tell the demon, "Just give me that amulet."  The demon places its clawed, scaly hand against your forehead and you briefly experience a painful, stabbing headache.  The demon then withdraws its hand and places the amulet around your neck.  "And now," says the demon, "It is time for you to leave."
 1417:Continue^*1412
 1418:You are unable to keep the eagerness out of your voice when you tell the demon that you are interested in the amulet.  You reach out your hand but the demon shakes its head.  "I will need something in return, of course.  Since you have nothing else to offer me, I will give it to you in return for your soul."
 1418:Trade your soul for the amulet^*189^*Refuse to trade your soul^*1411^*Ask the demon what it is talking about^*1411
@@ -2907,10 +2907,10 @@ COMBINATION:Crumpled scrap of paper
 1429:Go down the stairs^*1365^*Walk to the servant quarters^*1427^*Walk to the guest quarters^*1428
 1430:You walk towards the wooden door in the hallway corner.  You can see an entrance to the servant quarters down one the hallway and a guarded entrance to the King's quarters down the other hallway.
 1430:Enter the door^*1433^*Walk to the servant quarters^*1427^*Walk to the King's quarters^*1435
-1431:Enter the servant quarters
-1431:Content not added^*999^*Leave the servant quarters^*1436
-1432:Enter the guest quarters
-1432:Content not added^*999^*Leave the guest quarters^*1437
+1431:INVSPLIT:Servant Disguise^*1453^*1454
+1431:null^*1
+1432:Enter the guest quarters.  The quarters consist of many identical looking wooden doors, most of which are locked.  Some of the empty doors lead to unoccupied rooms with beds in them.  Near the back of the quarters, there is a heavy wooden door with a small keyhole in it.
+1432:Try to open one of the locked doors^*1459^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
 1433:You enter a circular torchlit room that is empty except for a desk that is covered with several pieces of parchment.
 1433:Search the room^*1450^*Leave the room^*1434
 1434:You leave the room and emerge into a hallway.  To the right, you can see an guarded entrance to the King's quarters.  To the left, you can see an entrance to the servant quarters.
@@ -2951,12 +2951,62 @@ COMBINATION:Crumpled scrap of paper
 1451:Fight the guards^*1444^*Run from the guards^*1445
 1452:You try to talk your way past the guards, but they do not listen to you.  "If you were allowed in here," one of them says shortly, "We would know."
 1452:Attack the guards^*1444^*Try to bribe the guards^*1451^*Go to the noble's quarters^*1438^*Go to the wooden door^*1430
+1453:Enter the servant quarters
+1453:Content not added^*999^*Leave the servant quarters^*1436
+1454:You enter the servant quarters and see several makeshift beds clustered close together.  One of the servants inside sees you.  "Only servants are allowed in here, sir," he says, "Please leave."
+1454:Attack him^*1455^*Ignore him and walk into the servant quarters anyway^*1456^*Leave the servant quarters^*1436
+1455:RESTART:^*The servant is so surprised when you attack him that he is only able to reflexively shout before you strike him down.  However, the shout rouses many other servants, who rush to attack you with whatever items they have on hand.  You manage to fend them off until one of them gets behind you and smashes you on the back of the head.  The servants overwhelm you and beat you to death.
+1455:null^*1
+1456:You don't walk very far into the servant quarters before a group of irate servants grab you and physically carry you out of the room.  They deposit you in the hallway and leave you.
+1456:Go back into the servant quarters^*1457^*Walk over to the stairs^*1429^*Walk to the wooden door^*1430
+1457:You go back into the servant quarters, but an angry group of servants blocks your way.
+1457:Attack the servants^*1458^*Leave the servant quarters^*1436
+1458:RESTART:^*You attack the servants and they quickly grab whatever items are at hand to defend themselves.  You manage to fend them off until one of them gets behind you and smashes you on the back of the head.  The servants overwhelm you and beat you to death.
+1458:null^*1
+1459:Try one of the locked doors
+1459:Content not added^*999
+1460:You go into one of the empty rooms.  There is nothing interesting to you except a single bed in the room.
+1460:Go to sleep on the bed^*1467^*Leave the room^*1468
+1461:VARSPLIT:openedDoor,1^*1470^*1469
+1461:null^*1
+1462:Unsurprisingly, the heavy wooden door is firmly locked and impossible to open.  You look at the keys on your key ring, but they are all too large for you to even attempt to fit them into the key hole.
+1462:DISPLAYIF:Golden key,Try your golden key in the lock^*1465^*DISPLAYIF:Lock picking kit,Try to pick the lock^*1464^*Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1463:Unsurprisingly, the heavy wooden door is firmly locked and impossible to open.
+1463:DISPLAYIF:Golden key,Try your golden key in the lock^*1465^*DISPLAYIF:Lock picking kit,Try to pick the lock^*1464^*Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1464:You try to pick the lock with some of the lock picks in your kit, but it is impossible to get open.
+1464:DISPLAYIF:Golden key,Try your golden key in the lock^*1465^*Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1465:VARSET:openedDoor,1^*INVSPLIT:Hammer^*1471^*1472
+1465:null^*1
+1466:You leave the priests' room.  What do you do next?
+1466:Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1467:VARSPLIT:slept,0^*1474^*1475
+1467:null^*1
+1468:You leave the empty room.  What do you do next?
+1468:Try to open one of the locked doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1469:VARSPLIT:Key Ring^*1462^*1463
+1469:null^*1
+1470:There is nothing more of interest to you in the priests' room.
+1470:Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1471:GAINGOLD:12^*Your small golden key you got from the priests fits in the keyhole and you are able to open the door.  Inside, you see a small torchlit room.  In the center, there is a white marble slab that is covered with dried blood.  On the side of the room, there is a pile of 12 gold coins, which you take.  You also see a pile of bones that have been twisted into strange shapes on the other side of the room.  Next to the pile of misshapen bones, there is a large bloody hammer.  You decide to leave the eerie room and return to the guest quarters as soon as possible.
+1471:Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1472:GAINGOLD:12^*Your small golden key you got from the priests fits in the keyhole and you are able to open the door.  Inside, you see a small torchlit room.  In the center, there is a white marble slab that is covered with dried blood.  On the side of the room, there is a pile of 12 gold coins, which you take.  You also see a pile of bones that have been twisted into strange shapes on the other side of the room.  Next to the pile of misshapen bones, there is a large bloody hammer.
+1472:Take the hammer^*1473^*Leave the room^*1466
+1473:INVADD:Hammer^*The large bloody hammer looks like it will make a very effective weapon, so you take it.  There is nothing else of interest in the priests' room, so you return to the guest quarters.
+1473:Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1474:VARSPLIT:timeOfDay,day^*1476^*1477
+1474:null^*1
+1475:You aren't very tired, so you are unable to go to sleep on the uncomfortable bed.  You eventually get up and leave the empty room.
+1475:Try to open one of the locked doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1476:VARSET:slept,1^*VARSET:timeOfDay,night^*GAINHEALTH:5^*You decide to take a short nap to rest your body from the day's trials.  You shift for a while on the uncomfortable guest bed before finally falling asleep.  You are more exhausted than you had thought and you fall into a deep sleep that lasts for many hours.  The sleep causes you to recover 5 health.  By the time you finally wake up, it is the middle of the night.  You get out of the bed and leave the room.  You see that some of the doors that were open earlier are now closed and locked.
+1476:Try to open one of the locked doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1477:VARSET:slept,1^*VARSET:timeOfDay,day^*GAINHEALTH:5^*As you look at the guest bed, you realize how exhausted you are.  You decide to take a short nap to regain some of your energy.  You shift for a while on the uncomfortable guest bed before finally falling asleep.  You fall into a deep, dreamless sleep that lasts for many hours.  The sleep causes you to recover 5 health.  By the time you finally wake up, it is close to midday.  You get out of the bed and leave the room.  The guest quarters looks the same as it did during the night.
+1477:Try to open one of the locked doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
 3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*Added two pieces of paper.
 3001:Continue^*3002
 3002:SAFECRACK:3004^*You are trying to crack a safe.
-3002:Done^*0
+3002:Done^*3010
 3003:SAFECRACK:3009^*You are trying to crack a safe.
-3003:null^*3010
+3003:Done^*3010
 3004:INVADD:Crumpled scrap of paper^*Added a third piece of paper.
 3004:Continue^*3003
 3005:LOCKPICK:3^*You are picking a lock.^*3008
