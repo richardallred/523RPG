@@ -1081,6 +1081,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				SAFECRACK:abortPage - Creates a safe cracking game and shows parts of the combination based off how many "Combination" are found in the inventory. go to abortPage if abort.
 				MAZE:message - Creates a randomized maze that displays message in every room.  Optional: MAZE:message,MESSAGE:message2,MESSAGE:... to display additional randomized messages
 				RESTART: - The story has reached some sort of end, so restart from page 1
+				THEEND: - The same as restart, but do not drop health to 0
 				*/
 				
 				for(p=0; p<specialPageArray.length; p++){
@@ -2950,6 +2951,11 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 					//restart the game on next button press with RESTART
 					else if (specialPageArray[p].match('RESTART:') != null) {
 						//this.message = specialPageArray[p+1];
+						this.health = 0;
+						this.restart = 1;
+					}
+					else if (specialPageArray[p].match('THEEND:') != null) {
+						//this.message = specialPageArray[p+1];
 						this.restart = 1;
 					}
 					else {
@@ -3064,7 +3070,7 @@ dojo.declare('myapp.Dookenstein', [dijit._Widget, dijit._Templated], {
 				//if there is a saved game, there is an option to load it
 					choicesArray = ['Restart',1,'Load Game'];
 				}
-				this.health = 0;
+				//this.health = 0;
 				this.drawHealthBar(this.health);
 			}
 			this.refreshAll();
