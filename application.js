@@ -14,6 +14,7 @@ dojo.require('dijit.layout.AccordionContainer');
 dojo.require('dijit.layout.TabContainer');
 dojo.require('myapp.Dookenstein');
 dojo.require('myapp.Maze');
+dojo.require('myapp.CYOAC');
 
 // adjust the namespace if you changed it in index.html; this widget serves
 // as our main controller to do stuff across the whole app and kick off the
