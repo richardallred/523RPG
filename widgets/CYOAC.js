@@ -438,12 +438,25 @@ dojo.declare('myapp.CYOAC', [dijit._Widget, dijit._Templated], {
 		}
 	},
 	_listPages: function(event) {
+		this.message = "";
 		if (this.savedPageText.length === 0) {
 			this.message = "You have no saved pages <br>";
 			this.displayMessage.innerHTML = '<br><br>' + this.message + '<br>';
 		}
+		var addBR = 0;
 		for (i = 0; i < this.savedPageText.length; i++) {
-			console.log(this.savedPages[i]);
+			this.message += this.savedPages[i];
+			if (i < this.savedPageText.length - 1) {
+				this.message += ',';
+				if (this.message.length % 120 > addBR) {
+					addBR = this.message.length % 120;
+				} else {
+					addBR = this.message.length % 120;
+					this.message += '<br>';
+				}
+			}
 		}
+		this.displayMessage.innerHTML = '<br><br>' + this.message + '<br><br>';
+		this.message = "";
 	}
 });
