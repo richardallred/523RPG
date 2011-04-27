@@ -196,13 +196,6 @@ dojo.declare('myapp.CYOAC', [dijit._Widget, dijit._Templated], {
 		}
 	},
 	_saveAll: function() {
-		/*var def = uow.data.setRole({
-			user: 'dmar314@gmail.com',
-			role: 'admin'
-		});
-		def.then(function(db) {
-			console.log(db);
-		});*/
 		var def = uow.data.getDatabase({
 		  database: 'testdb', 
 		  collection : 'cyoa', 
@@ -212,13 +205,8 @@ dojo.declare('myapp.CYOAC', [dijit._Widget, dijit._Templated], {
 		  db.newItem({value : 'test'});
 		  db.save();
 		});
-		var def = uow.getUser();
-		def.then(function(user) {
-		  var text = dojo.toJson(user);
-		  console.log(text);
-		});
-		/*var fetchtest = uow.data.getDatabase({
-			database: 'david_test', 
+		var fetchtest = uow.data.getDatabase({
+			database: 'testdb', 
 			collection : 'cyoa', 
 			mode : 'r'
 		});
@@ -238,7 +226,7 @@ dojo.declare('myapp.CYOAC', [dijit._Widget, dijit._Templated], {
 				  console.log('db error');
 				}
 			});
-		});*/
+		});
 		found = -1;
 		this.message = '';
 		if (this.pageNameText.value === '' || this.pageNameText.value === 'Insert Page Name') {
