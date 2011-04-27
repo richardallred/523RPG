@@ -197,8 +197,8 @@ dojo.declare('myapp.CYOAC', [dijit._Widget, dijit._Templated], {
 	},
 	_saveAll: function() {
 		var def = uow.data.getDatabase({
-		  database: 'testdb', 
-		  collection : 'cyoa', 
+		  database: 'catalog', 
+		  collection : 'rolodex', 
 		  mode : 'c'
 		});
 		def.then(function(db) {
@@ -206,8 +206,8 @@ dojo.declare('myapp.CYOAC', [dijit._Widget, dijit._Templated], {
 		  db.save();
 		});
 		var fetchtest = uow.data.getDatabase({
-			database: 'testdb', 
-			collection : 'cyoa', 
+			database: 'catalog', 
+			collection : 'rolodex', 
 			mode : 'r'
 		});
 		def.then(function(db) {
