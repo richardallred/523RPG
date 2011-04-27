@@ -1,0 +1,38 @@
+<div class="Dookenstein">
+<div dojoType="dijit.layout.ContentPane" dojoAttachPoint="cDiv" region = "left">
+	<div dojoAttachPoint="generateDiv"></div>
+	<!--Edit another page:<select dojoType="dijit.form.ComboBox" dojoAttachPoint="goToPageText" ></select>&nbsp <button dojoType="dijit.form.Button" dojoAttachEvent="onClick:_saveAndGo">Save and Go</button><button dojoType="dijit.form.Button" dojoAttachEvent="onClick:_goToPage">Go without saving</button><button dojoType="dijit.form.Button" dojoAttachEvent="onClick:_listPages">List pages</button></span><br><br>
+	<span dojoAttachPoint="displayMessage"></span>
+	<br>
+	<span> Page Name: <input type="text" value="Insert page name" dojoAttachPoint="pageNameText"></span>
+	<br>
+	<form action="">Page Text:&nbsp
+	<select name="pageOptions">
+		<option value="none">Special Page Commands</option>
+		<option value="split">Redirect to another page...</option>
+		<option value="inv">Add or remove an inventory item...</option>
+		<option value="gain">Gain/lose health or gold...</option>
+		<option value="var">Set or display a variable...</option>
+		<option value="mini">Add combat or another minigame...</option>
+		</select>
+		</form>
+	<textarea rows="15" cols="80" dojoAttachPoint="pageTextArea">Insert page text here</textarea>
+	<br>
+	<form action="">Choice 1 Label: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Choice 1 Link: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<select name="choiceOptions">
+		<option value="none">Special Choice Commands</option>
+		<option value="displayif">Display if an item is in inventory...</option>
+		<option value="displayifvar">Display if a variable is a given value...</option>
+		<option value="displayifvisited">Display if a page has been visited...</option>
+		</select>
+		</form>
+	<input type="text" dojoAttachPoint="choiceText" value="Insert choice 1 label">&nbsp <input type="text" dojoAttachPoint="choiceLinkText" value="Link choice 1 to this page">&nbsp <button dojoType="dijit.form.Button" dojoAttachEvent="onClick:_saveAndGoChoice">Save and go to this page</button><button dojoType="dijit.form.Button" dojoAttachEvent="onClick:_goToPageChoice">Go to this page without saving</button><br>
+	<button dojoType="dijit.form.Button">Add another choice</button>
+	<br><button dojoType="dijit.form.Button">Add image</button>
+
+</div>
+<div dojoType="dijit.layout.ContentPane" title="canvasDiv" style="float: bottom;" region = "bottom">
+	<canvas id="canvas" width="500" height="500" style="position:absolute;" dojoAttachPoint="dojoCanvas"></canvas>
+</div>
+-->
+</div>
