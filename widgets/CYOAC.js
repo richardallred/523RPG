@@ -196,7 +196,7 @@ dojo.declare('myapp.CYOAC', [dijit._Widget, dijit._Templated], {
 		}
 	},
 	_saveAll: function() {
-		var def = uow.data.getDatabase({
+		/*var def = uow.data.getDatabase({
 		  database: 'test', 
 		  collection : 'test', 
 		  mode : 'c'
@@ -226,7 +226,7 @@ dojo.declare('myapp.CYOAC', [dijit._Widget, dijit._Templated], {
 				  console.log('db error');
 				}
 			});
-		});
+		});*/
 		found = -1;
 		this.message = '';
 		if (this.pageNameText.value === '' || this.pageNameText.value === 'Insert Page Name') {
