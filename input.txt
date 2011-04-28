@@ -377,9 +377,9 @@ COMBINATION:Crumpled scrap of paper
 143:VARSET:killedDemon,1^*VARSPLIT:killedPriests,0^*144^*145
 143:null^*1
 144:"You dare to enter my lair," booms the demon, "No doubt you are a fool in search of treasure.  Another greedy mortal looking for power who will end up lost among my piles of bones."
-144:Tell the demon you are looking for treasure^*150^*Say that you wandered into the lair by accident^*151^*Tell the demon you entered its lair to slay it^*171^*Challenge the demon to a fight^*146^*DISPLAYIF:Crossbow,Shoot the demon with your crossbow^*149^*DISPLAYIF:Throwing Knives,Attack the demon with your throwing knives^*157^*DISPLAYIF:Golden cross,Hold up your golden cross to try to ward off the demon^*152^*DISPLAYIF:Silver cross,Hold up your silver cross to try to ward off the demon^*152^*Do nothing^*172
+144:Tell the demon you are looking for treasure^*150^*Say that you came into the lair by accident^*151^*Tell the demon you entered its lair to slay it^*171^*Challenge the demon to a fight^*146^*DISPLAYIF:Crossbow,Shoot the demon with your crossbow^*149^*DISPLAYIF:Throwing Knives,Attack the demon with your throwing knives^*157^*DISPLAYIF:Golden cross,Hold up your golden cross to try to ward off the demon^*152^*DISPLAYIF:Silver cross,Hold up your silver cross to try to ward off the demon^*152^*Do nothing^*172
 145:"You dare to enter my lair," booms the demon, "Especially after you slaughtered my priests.  Are you after my treasure or are you just here to anger me?  Either way, I intend to see you lost among my piles of bones."
-145:Tell the demon you are looking for treasure^*150^*Say that you wandered into the lair by accident^*151^*Tell the demon you entered its lair to slay it^*171^*Challenge the demon to a fight^*146^*DISPLAYIF:Crossbow,Shoot the demon with your crossbow^*149^*DISPLAYIF:Throwing Knives,Attack the demon with your throwing knives^*157^*DISPLAYIF:Golden cross,Hold up your golden cross to try to ward off the demon^*152^*DISPLAYIF:Silver cross,Hold up your silver cross to try to ward off the demon^*152^*Do nothing^*172
+145:Tell the demon you are looking for treasure^*150^*Say that you came into the lair by accident^*151^*Tell the demon you entered its lair to slay it^*171^*Challenge the demon to a fight^*146^*DISPLAYIF:Crossbow,Shoot the demon with your crossbow^*149^*DISPLAYIF:Throwing Knives,Attack the demon with your throwing knives^*157^*DISPLAYIF:Golden cross,Hold up your golden cross to try to ward off the demon^*152^*DISPLAYIF:Silver cross,Hold up your silver cross to try to ward off the demon^*152^*Do nothing^*172
 146:Ignoring the fact that the demon is several times taller than you are, you challenge it to fight you.  The demon laughs loudly, but you see the flames around you rescind, allowing you to attack the demon at close range.  "You really think you stand a chance against me?" it roars.  It suddenly launches a ball of fire at you, which you narrowly dodge.
 146:Continue^*147
 147:COMBAT:You are fighting a blue demon,NAME:demon,WEAPON:None,STRENGTH:30,DEFENSE:0,ACCURACY:70,HEALTH:100,HIT:The demon blasts you with flame,HIT:The demon scorches you,HIT:The demon kicks you with massive force,HIT:The demon stabs you with its pointed chin,MISS:Your demon is unaffected by your attack.^*The demon roars with fury as you strike a killing blow.
@@ -2674,7 +2674,7 @@ COMBINATION:Crumpled scrap of paper
 1313:Leave the throne room and go back to the great hall^*1197
 1314:INVADD:Invasion Plans,Torn scrap of paper^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see a set of military plans for the upcoming invasion of Carolinia.  Together with the military documents you took from the outer bailey barracks, you now have a complete set of invasion plans, which could prove extremely valuable to a defense against the Dookian invasion.  You search through some of the other documents, but the only thing you find is a torn scrap of paper with a number written on it buried among a pile of treaties.  The scrap of paper looks very out of place, so you do decide to take it.  There is nothing else of interest to you in the room.
 1314:Leave the room^*1319
-1315:INVADD:Military Plans,Torn scrap of paper^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see detailed military plans for the upcoming invasion of Carolinia.  You decide to take the military plans, as they may be useful in defending against a Dookian invasion.  You search through some of the other documents, but the only thing you find is a torn scrap of paper with a number written on it buried among a pile of treaties.  The scrap of paper looks very out of place, so you do decide to take it.  There is nothing else of interest to you in the room., but there is nothing else of interest to you.
+1315:INVADD:Military Plans,Torn scrap of paper^*On one of the tables in the room, you see several tax records for the different Dookian provinces.  On a different table, you see detailed military plans for the upcoming invasion of Carolinia.  You decide to take the military plans, as they may be useful in defending against a Dookian invasion.  You search through some of the other documents, but the only thing you find is a torn scrap of paper with a number written on it buried among a pile of treaties.  The scrap of paper looks very out of place, so you do decide to take it.  There is nothing else of interest to you in the room.
 1315:Leave the room^*1319
 1316:INVSPLIT:Military Documents^*1314^*1315
 1316:null^*1
@@ -2690,7 +2690,7 @@ COMBINATION:Crumpled scrap of paper
 1321:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1322:DISPLAYGOLD:^*You hint to the guards that perhaps a few gold coins could convince them to look the other way.  The guard whispers that they would need 15 gold coins each to do something like that for you.
 1322:Give them 30 gold^*1323^*Attack the guards instead^*1278^*Tell them that you changed your mind^*1324
-1323:LOSEGOLD:30^*VARSET:bribedGuards,1^*The guards pocket your gold and tell you that you are free to walk up the stairs.
+1323:VARSET:bribedGuards,1^*LOSEGOLD:30^*The guards pocket your gold and tell you that you are free to walk up the stairs.
 1323:Go up the stairs^*1271^*Go to the great hall^*1197^*Walk around the hallway corner to the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
 1324:You decide not to bribe the guards at the moment.  What do you do next?
 1324:Attack the guards^*1278^*Go to the great hall^*1197^*Walk around the hallway corner towards the cathedral^*1199^*Walk down the hallway towards the guard barracks^*1266
@@ -2910,8 +2910,8 @@ COMBINATION:Crumpled scrap of paper
 1430:Enter the door^*1433^*Walk to the servant quarters^*1427^*Walk to the King's quarters^*1435
 1431:INVSPLIT:Servant Disguise^*1453^*1454
 1431:null^*1^*Content not added^*999
-1432:Enter the guest quarters.  The quarters consist of many identical looking wooden doors, most of which are locked.  Some of the empty doors lead to unoccupied rooms with beds in them.  Near the back of the quarters, there is a heavy wooden door with a small keyhole in it.
-1432:Try to open one of the locked doors^*1459^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1432:Enter the guest quarters.  The quarters consist of many identical looking wooden doors, most of which are closed.  Some of the open doors lead to unoccupied rooms with beds in them.  Near the back of the quarters, there is a heavy wooden door with a small keyhole in it.
+1432:Try to open one of the closed doors^*1459^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
 1433:You enter a circular torchlit room that is empty except for a desk that is covered with several pieces of parchment.
 1433:Search the room^*1450^*Leave the room^*1434
 1434:You leave the room and emerge into a hallway.  To the right, you can see an guarded entrance to the King's quarters.  To the left, you can see an entrance to the servant quarters.
@@ -2971,37 +2971,37 @@ COMBINATION:Crumpled scrap of paper
 1461:VARSPLIT:openedDoor,1^*1470^*1469
 1461:null^*1
 1462:Unsurprisingly, the heavy wooden door is firmly locked and impossible to open.  You look at the keys on your key ring, but they are all too large for you to even attempt to fit them into the key hole.
-1462:DISPLAYIF:Golden key,Try your golden key in the lock^*1465^*DISPLAYIF:Lock picking kit,Try to pick the lock^*1464^*Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1462:DISPLAYIF:Golden key,Try your golden key in the lock^*1465^*DISPLAYIF:Lock picking kit,Try to pick the lock^*1464^*Try to open one of the closed doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
 1463:Unsurprisingly, the heavy wooden door is firmly locked and impossible to open.
-1463:DISPLAYIF:Golden key,Try your golden key in the lock^*1465^*DISPLAYIF:Lock picking kit,Try to pick the lock^*1464^*Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1463:DISPLAYIF:Golden key,Try your golden key in the lock^*1465^*DISPLAYIF:Lock picking kit,Try to pick the lock^*1464^*Try to open one of the closed doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
 1464:You try to pick the lock with some of the lock picks in your kit, but it is impossible to get open.
-1464:DISPLAYIF:Golden key,Try your golden key in the lock^*1465^*Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1464:DISPLAYIF:Golden key,Try your golden key in the lock^*1465^*Try to open one of the closed doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
 1465:VARSET:openedDoor,1^*INVSPLIT:Hammer^*1471^*1472
 1465:null^*1
 1466:You leave the priests' room.  What do you do next?
-1466:Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1466:Try to open one of the closed doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
 1467:VARSPLIT:slept,0^*1474^*1475
 1467:null^*1
-1468:You leave the empty room.  What do you do next?
-1468:Try to open one of the locked doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1468:You leave the empty room.  None of the other open rooms appear to contain anything more than just a bed.  What do you do next?
+1468:Try to open one of the closed doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
 1469:VARSPLIT:Key Ring^*1462^*1463
 1469:null^*1
 1470:There is nothing more of interest to you in the priests' room.
-1470:Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1470:Try to open one of the closed doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
 1471:GAINGOLD:12^*Your small golden key you got from the priests fits in the keyhole and you are able to open the door.  Inside, you see a small torchlit room.  In the center, there is a white marble slab that is covered with dried blood.  On the side of the room, there is a pile of 12 gold coins, which you take.  You also see a pile of bones that have been twisted into strange shapes on the other side of the room.  Next to the pile of misshapen bones, there is a large bloody hammer.  You decide to leave the eerie room and return to the guest quarters as soon as possible.
-1471:Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1471:Try to open one of the closed doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
 1472:GAINGOLD:12^*Your small golden key you got from the priests fits in the keyhole and you are able to open the door.  Inside, you see a small torchlit room.  In the center, there is a white marble slab that is covered with dried blood.  On the side of the room, there is a pile of 12 gold coins, which you take.  You also see a pile of bones that have been twisted into strange shapes on the other side of the room.  Next to the pile of misshapen bones, there is a large bloody hammer.
 1472:Take the hammer^*1473^*Leave the room^*1466
 1473:INVADD:Hammer^*The large bloody hammer looks like it will make a very effective weapon, so you take it.  There is nothing else of interest in the priests' room, so you return to the guest quarters.
-1473:Try to open one of the other locked doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
+1473:Try to open one of the closed doors^*1459^*Go into one of the empty rooms^*1460^*Leave the guest quarters^*1437
 1474:VARSPLIT:timeOfDay,day^*1476^*1477
 1474:null^*1
-1475:You aren't very tired, so you are unable to go to sleep on the uncomfortable bed.  You eventually get up and leave the empty room.
-1475:Try to open one of the locked doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1475:You aren't very tired, so you are unable to go to sleep on the uncomfortable bed.  You eventually get up and leave the empty room.  None of the other open rooms appear to contain anything more than just a bed.
+1475:Try to open one of the closed doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
 1476:VARSET:slept,1^*VARSET:timeOfDay,night^*GAINHEALTH:5^*You decide to take a short nap to rest your body from the day's trials.  You shift for a while on the uncomfortable guest bed before finally falling asleep.  You are more exhausted than you had thought and you fall into a deep sleep that lasts for many hours.  The sleep causes you to recover 5 health.  By the time you finally wake up, it is the middle of the night.  You get out of the bed and leave the room.  You see that some of the doors that were open earlier are now closed and locked.
-1476:Try to open one of the locked doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1476:Try to open one of the closed doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
 1477:VARSET:slept,1^*VARSET:timeOfDay,day^*GAINHEALTH:5^*As you look at the guest bed, you realize how exhausted you are.  You decide to take a short nap to regain some of your energy.  You shift for a while on the uncomfortable guest bed before finally falling asleep.  You fall into a deep, dreamless sleep that lasts for many hours.  The sleep causes you to recover 5 health.  By the time you finally wake up, it is close to midday.  You get out of the bed and leave the room.  The guest quarters looks the same as it did during the night.
-1477:Try to open one of the locked doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1477:Try to open one of the closed doors^*1459^*Go to the heavy wooden door^*1461^*Leave the guest quarters^*1437
 1478:VARSET:killedMercenary,1^*As you are picking the lock on the door, it suddenly opens.  An irritated looking mercenary stands in the doorway and stares at you.  "Why are you trying to pick the lock on my door?" he demands, "Give me one reason that I shouldn't call the guards on you."
 1478:Attack the mercenary^*1480^*Try to placate him with a few gold coins^*1482^*Apologize and leave^*1483
 1479:VARSET:killedMercenary,1^*You knock on the door and it opens after a few moments.  An irritated looking mercenary stands in the doorway and stares at you.  "Who are you to disturb me like this?" he demands, "I should call the guards on you for intruding upon my privacy like this."
@@ -3015,11 +3015,11 @@ COMBINATION:Crumpled scrap of paper
 1483:You quickly leave, mumbling apologies to the mercenary.  He glares at you, but does not follow you or call the guards.
 1483:Continue^*1437
 1484:GAINGOLD:9^*INVADD:Sword^*The mercenary falls to the ground, dead.  You search his body and find a sword and 9 gold coins, which you take.  The mercenary's room doesn't contain much other than several personal possessions, which are useless to you.  You leave the room and return to the guest quarters.
-1484:Try to open a different locked door^*1486^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
-1485:You try to open one of the locked doors, but the lock is secure.
-1485:DISPLAYIF:Lock picking kit,Try to pick the lock^*1478^*Knock on the door^*1479^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
-1486:After your encounter with the mercenary, you don't feel like risking opening any more of the guest rooms.
-1486:Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1484:Try to open a different closed door^*1486^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1485:You try to open one of the closed doors, but it is securely locked.
+1485:DISPLAYIF:Lock picking kit,Try to pick the lock^*1478^*Knock on the door^*1479^*Try to open a different closed door^*1486^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1486:You check another one of the closed doors, but it is locked.
+1486:DISPLAYIF:Lock picking kit,Try to pick the lock^*1497^*Knock on the door^*1498^*Try to open a different closed door^*1499^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
 1487:LOSEGOLD:3^*You give the mercenary 3 gold coins and he calms down.  "That seems like fair payment for bothering me," says the mercenary, "Now get out of my sight and don't come back."  He slams the door in your face.
 1487:Knock on the door again^*1489^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
 1488:DISPLAYGOLD:^*You decide to give the mercenary a few gold coins to calm him down, but you change your mind when you realize how few coins you have.  Instead, you quickly leave while mumbling apologies to the mercenary.  He glares at you, but does not follow you or call the guards.
@@ -3038,8 +3038,32 @@ COMBINATION:Crumpled scrap of paper
 1494:null^*1
 1495:THEEND:^*You use your hidden dagger to slit the King's throat before you take the ring.  You use the power of the ring to blast your way out of the castle.  You have completed your mission.
 1495:null^*1
-1496:
-1496:
+1496:RESTART:^*As you are about to strike the King down, he suddenly snaps awake.  As soon as he sees you, he blasts you with a deadly bolt of magic.
+1496:null^*1
+1497:RANDSPLIT:^*1504^*1505^*1504^*1505^*1506
+1497:null^*1
+1498:You knock on the door, but there is no response.
+1498:DISPLAYIF:Lock picking kit,Try to pick the lock^*1497^*Try to open a different closed door^*1499^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1499:You try to open yet another closed door.  Unsurprisingly, it is locked.
+1499:DISPLAYIF:Lock picking kit,Try to pick the lock^*1497^*Knock on the door^*1498^*Try to open a different closed door^*1500^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1500:You try to open yet another closed door.  Unsurprisingly, it is locked.
+1500:DISPLAYIF:Lock picking kit,Try to pick the lock^*1497^*Knock on the door^*1498^*Try to open a different closed door^*1501^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1501:RANDSPLIT:^*1500^*1500^*1500^*1500^*1503
+1501:null^*1
+1502:You knock on the door, but there is no response.
+1502:DISPLAYIF:Lock picking kit,Try to pick the lock^*1497^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1503:You try the last available closed door in the guest quarters.  It too is locked.
+1503:DISPLAYIF:Lock picking kit,Try to pick the lock^*1497^*Knock on the door^*1502^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1504:The lock on the door is quite easy to pick and you quickly open it.  The room is unoccupied and you conduct a brief search.  Unfortunately, you do not find anything of value.
+1504:Try a different closed door^*1507^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1505:GAINGOLD:3-6^*The lock on the door is quite easy to pick and you quickly open it.  The room is unoccupied and you conduct a brief search.  You manage to find #gold gold coins, which you take.
+1505:Try a different closed door^*1507^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1506:RESTART:^*The lock on the door is simple and you open it with little effort.  The room is unoccupied and you conduct a brief search.  Inside, you find a locked wooden chest and decide pick it open.  As you are opening it, a hidden needle jabs out and pierces your hand.  A burning sensation fills your hand and you realize that the needle contains a deadly venom.  The poison soon overcomes you and you slump to the ground, dead.
+1506:null^*1
+1507:The next door you try to open is also locked.
+1507:Try to pick the lock^*1506^*Knock on the door^*1508^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
+1508:You knock on the door, but there is no response.
+1508:Try to pick the lock^*1506^*Go into one of the empty rooms^*1460^*Try to open the heavy wooden door^*1461^*Leave the guest quarters^*1437
 3001:INVADD:Torn scrap of paper,Ripped scrap of paper^*Added two pieces of paper.
 3001:Continue^*3002
 3002:SAFECRACK:3004^*You are trying to crack a safe.
